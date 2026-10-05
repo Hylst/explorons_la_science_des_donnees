@@ -28,21 +28,21 @@ const GradientsSection = () => {
   const backpropagationSteps = [
     {
       step: 1,
-      title: "Forward Pass",
+      title: "Passe avant",
       description: "Calcul des activations couche par couche",
       equations: ["z_1 = W_1 x + b_1", "a_1 = \\sigma(z_1)", "z_2 = W_2 a_1 + b_2", "\\hat{y} = \\sigma(z_2)"],
       color: "blue"
     },
     {
       step: 2,
-      title: "Loss Calculation",
+      title: "Calcul de la perte",
       description: "Calcul de la fonction de coût",
       equations: ["L = \\frac{1}{2}(\\hat{y} - y)^2"],
       color: "red"
     },
     {
       step: 3,
-      title: "Backward Pass",
+      title: "Passe arrière",
       description: "Calcul des gradients par la règle de la chaîne",
       equations: [
         "\\frac{\\partial L}{\\partial W_2} = \\frac{\\partial L}{\\partial \\hat{y}} \\frac{\\partial \\hat{y}}{\\partial z_2} \\frac{\\partial z_2}{\\partial W_2}",
@@ -52,7 +52,7 @@ const GradientsSection = () => {
     },
     {
       step: 4,
-      title: "Parameters Update",
+      title: "Mise à jour des paramètres",
       description: "Mise à jour des poids avec les gradients",
       equations: ["W_1 := W_1 - \\alpha \\frac{\\partial L}{\\partial W_1}", "W_2 := W_2 - \\alpha \\frac{\\partial L}{\\partial W_2}"],
       color: "purple"
@@ -61,13 +61,13 @@ const GradientsSection = () => {
 
   const mlApplications = [
     {
-      name: "Régression Logistique",
+      name: "Régression logistique",
       gradient: "\\frac{\\partial L}{\\partial w} = -\\sum_{i=1}^{n} (y_i - \\sigma(w^T x_i)) x_i",
       description: "Gradient de la log-vraisemblance pour classification binaire",
       use: "Classification, probabilités de classe"
     },
     {
-      name: "Support Vector Machines",
+      name: "Machines à vecteurs de support (SVM)",
       gradient: "\\frac{\\partial L}{\\partial w} = w - C\\sum_{i : y_i\\, w \\cdot x_i < 1} y_i x_i",
       description: "Sous-gradient de la perte à charnière avec régularisation (somme sur les points mal classés ou dans la marge)",
       use: "Classification avec marge maximale"
@@ -104,8 +104,8 @@ const GradientsSection = () => {
             <ul className="text-sm space-y-1">
               <li>• Direction de montée maximale</li>
               <li>• Perpendiculaire aux courbes de niveau</li>
-              <li>• Magnitude = vitesse de changement</li>
-              <li>• Null au sommet/minimum</li>
+              <li>• Norme = taux de variation maximal</li>
+              <li>• Nul aux points critiques (minimum, maximum, col)</li>
             </ul>
           </div>
         </div>
@@ -164,7 +164,7 @@ const GradientsSection = () => {
                 <ul className="text-xs space-y-1 mt-2">
                   <li>• Direction de montée la plus raide</li>
                   <li>• Perpendiculaire aux courbes de niveau</li>
-                  <li>• Magnitude = taux de variation maximal</li>
+                  <li>• Norme = taux de variation maximal</li>
                   <li>• Gradient nul aux points critiques</li>
                 </ul>
               </div>
@@ -172,9 +172,9 @@ const GradientsSection = () => {
               <div className="bg-yellow-50 p-3 rounded-lg">
                 <h4 className="font-semibold text-sm">En optimisation :</h4>
                 <ul className="text-xs space-y-1 mt-2">
-                  <li>• Gradient descent : θ := θ - α∇f(θ)</li>
+                  <li>• Descente de gradient : θ := θ - α∇f(θ)</li>
                   <li>• Direction opposée pour minimiser</li>
-                  <li>• Magnitude indique la "urgence" du changement</li>
+                  <li>• La norme du gradient indique la raideur de la pente</li>
                 </ul>
               </div>
             </div>
@@ -186,12 +186,12 @@ const GradientsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Brain className="h-5 w-5" />
-            Backpropagation : La règle de la chaîne en action
+            Rétropropagation : la règle de la chaîne en action
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="mb-6">
-            La backpropagation utilise massivement la règle de la chaîne pour calculer 
+            La rétropropagation (backpropagation) applique la règle de la chaîne, couche après couche, pour calculer 
             efficacement les gradients dans les réseaux de neurones.
           </p>
           
@@ -214,7 +214,7 @@ const GradientsSection = () => {
             ))}
           </div>
 
-          <CourseHighlight title="🔥 La magie de la règle de la chaîne" type="warning">
+          <CourseHighlight title="🔥 Le rôle de la règle de la chaîne" type="warning">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold mb-3">Principe fondamental :</h4>
@@ -228,7 +228,7 @@ const GradientsSection = () => {
                 <ul className="text-sm space-y-1">
                   <li>• Calcul efficace des gradients</li>
                   <li>• Réutilisation des calculs intermédiaires</li>
-                  <li>• Complexité linéaire O(n)</li>
+                  <li>• Coût du même ordre qu'une passe avant</li>
                   <li>• Parallélisation possible</li>
                 </ul>
               </div>
@@ -245,7 +245,7 @@ const GradientsSection = () => {
           <Tabs value={selectedExample} onValueChange={setSelectedExample} className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="algorithms">Algorithmes ML</TabsTrigger>
-              <TabsTrigger value="deep">Deep Learning</TabsTrigger>
+              <TabsTrigger value="deep">Apprentissage profond</TabsTrigger>
               <TabsTrigger value="optimization">Optimiseurs</TabsTrigger>
             </TabsList>
             
@@ -275,24 +275,24 @@ const GradientsSection = () => {
                     <CardTitle className="text-lg">Réseaux Convolutifs (CNN)</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CourseEquation latex="\frac{\partial L}{\partial K} = \sum_{i,j} \frac{\partial L}{\partial Y_{i,j}} \star X_{i,j}" />
-                    <p className="text-sm">Gradients des filtres de convolution pour la vision par ordinateur.</p>
+                    <CourseEquation latex="\frac{\partial L}{\partial K_{m,n}} = \sum_{i,j} \frac{\partial L}{\partial Y_{i,j}}\, X_{i+m,\,j+n}" />
+                    <p className="text-sm">Gradient d'un filtre de convolution (sans marge ni pas) : une corrélation entre l'entrée et le gradient de la sortie.</p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-green-500">
                   <CardHeader>
-                    <CardTitle className="text-lg">Attention Mechanisms</CardTitle>
+                    <CardTitle className="text-lg">Mécanismes d'attention</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CourseEquation latex="\frac{\partial}{\partial Q} \text{softmax}(QK^T/\sqrt{d_k})V" />
-                    <p className="text-sm">Gradients des mécanismes d'attention dans les transformers.</p>
+                    <CourseEquation latex="\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V" />
+                    <p className="text-sm">L'attention des transformers : tout y est dérivable, les gradients de la perte remontent jusqu'à Q, K et V.</p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-l-4 border-l-orange-500">
                   <CardHeader>
-                    <CardTitle className="text-lg">Generative Adversarial Networks</CardTitle>
+                    <CardTitle className="text-lg">Réseaux antagonistes génératifs (GAN)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CourseEquation latex="\min_G \max_D V(D,G) = \mathbb{E}[\log D(x)] + \mathbb{E}[\log(1-D(G(z)))]" />
@@ -302,7 +302,7 @@ const GradientsSection = () => {
 
                 <Card className="border-l-4 border-l-pink-500">
                   <CardHeader>
-                    <CardTitle className="text-lg">Reinforcement Learning</CardTitle>
+                    <CardTitle className="text-lg">Apprentissage par renforcement</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CourseEquation latex="\nabla_\theta J(\theta) = \mathbb{E}[\nabla_\theta \log \pi_\theta(a|s) A(s,a)]" />
@@ -316,13 +316,13 @@ const GradientsSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="bg-gradient-to-br from-blue-50 to-blue-100">
                   <CardHeader>
-                    <CardTitle className="text-lg">Adam Optimizer</CardTitle>
+                    <CardTitle className="text-lg">Optimiseur Adam</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CourseEquation latex="m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t" />
                     <CourseEquation latex="v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2" />
                     <CourseEquation latex="\theta_{t+1} = \theta_t - \frac{\alpha}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t" />
-                    <p className="text-sm">Adapte le learning rate individuellement pour chaque paramètre.</p>
+                    <p className="text-sm">Adapte le taux d'apprentissage de chaque paramètre ; m̂ et v̂ sont les moyennes mobiles du gradient et de son carré, corrigées de leur biais.</p>
                   </CardContent>
                 </Card>
 
@@ -342,10 +342,10 @@ const GradientsSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="🎓 Le saviez-vous ? Gradient vanishing/exploding" type="info">
+      <CourseHighlight title="🎓 Le saviez-vous ? Disparition et explosion du gradient" type="info">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">🌊 Gradient Vanishing</h4>
+            <h4 className="font-semibold mb-3">🌊 Disparition du gradient</h4>
             <p className="text-sm mb-2">
               Dans les réseaux profonds, les gradients peuvent devenir très petits 
               en se propageant vers les premières couches.
@@ -355,13 +355,13 @@ const GradientsSection = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">💥 Gradient Exploding</h4>
+            <h4 className="font-semibold mb-3">💥 Explosion du gradient</h4>
             <p className="text-sm mb-2">
               À l'inverse, les gradients peuvent exploser et devenir trop grands, 
               causant une instabilité d'entraînement.
             </p>
             <div className="bg-red-50 p-3 rounded">
-              <p className="text-xs"><strong>Solutions :</strong> Gradient clipping, learning rate adaptatif</p>
+              <p className="text-xs"><strong>Solutions :</strong> écrêtage du gradient (clipping), initialisation soignée, normalisation</p>
             </div>
           </div>
         </div>

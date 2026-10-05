@@ -55,7 +55,7 @@ const DatabasesRefactored = () => {
         icon: <Zap className="h-4 w-4" />
       },
       {
-        title: "Sécurité et gouvernance",
+        title: "Sécurité et protection des données",
         href: "#security",
         icon: <Shield className="h-4 w-4" />
       },
@@ -86,7 +86,7 @@ const DatabasesRefactored = () => {
       <section className="py-8 space-y-16">
         <PageHeader
           title="Bases de Données en Data Science"
-          description="Explorez l'art de stocker, gérer et exploiter les données. Des concepts fondamentaux aux architectures distribuées modernes, découvrez tout l'écosystème des bases de données."
+          description="Explorez l'art de stocker, gérer et exploiter les données. Des concepts fondamentaux aux architectures distribuées modernes, découvrez les grandes familles de bases de données."
         />
 
         <DatabasesIntroSection />

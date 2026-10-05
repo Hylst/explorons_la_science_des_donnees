@@ -30,5 +30,8 @@ export const LICENSE_NAME = "GNU AGPL v3 ou ultérieure";
 export const LICENSE_FILE = "LICENSE.txt";
 /** Inventaire des composants tiers embarqués (moteurs Python et SQL), généré par scripts/sync-runtimes.mjs. */
 export const NOTICE_FILE = "vendor/NOTICE.txt";
-/** Adresse publique du code source (dépôt publié le 5 octobre 2026). Mettre `null` pour ne plus afficher de lien. */
-export const SOURCE_URL = "https://github.com/Hylst/explorons_la_science_des_donnees" as string | null;
+/**
+ * Adresse à laquelle le site renvoie pour le code source. Volontairement `null` (décision de l'auteur du 5 octobre 2026) :
+ * le code est publié, mais le site ne met aucun lien vers le dépôt, il le propose sur demande par la page Contact.
+ */
+export const SOURCE_URL = null as string | null;

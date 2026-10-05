@@ -24,12 +24,12 @@ const GaussianDistributionSection = () => {
   const normalComparisons = Array.from({ length: 100 }, (_, i) => {
     const x = -6 + (i * 12) / 99;
     const n1 = (1 / Math.sqrt(2 * Math.PI * 1)) * Math.exp(-((x - 0) ** 2) / (2 * 1)); // N(0,1)
-    const n2 = (1 / Math.sqrt(2 * Math.PI * 4)) * Math.exp(-((x - 0) ** 2) / (2 * 4)); // N(0,2)
+    const n2 = (1 / Math.sqrt(2 * Math.PI * 4)) * Math.exp(-((x - 0) ** 2) / (2 * 4)); // N(0,4) : variance 4, σ = 2
     const n3 = (1 / Math.sqrt(2 * Math.PI * 1)) * Math.exp(-((x - 2) ** 2) / (2 * 1)); // N(2,1)
     return { 
       x: x.toFixed(1), 
       'N(0,1)': n1.toFixed(4), 
-      'N(0,2)': n2.toFixed(4), 
+      'N(0,4)': n2.toFixed(4), 
       'N(2,1)': n3.toFixed(4),
       xNum: x
     };
@@ -62,8 +62,8 @@ const GaussianDistributionSection = () => {
     },
     returns: {
       title: "Rendements financiers",
-      mean: 0.08,
-      std: 0.15,
+      mean: 8,
+      std: 15,
       unit: "%",
       description: "Rendements annuels d'un portefeuille",
       interpretation: "68% des années: rendement entre -7% et +23%"
@@ -219,11 +219,11 @@ const GaussianDistributionSection = () => {
                   />
                   <Line 
                     type="monotone" 
-                    dataKey="N(0,2)" 
+                    dataKey="N(0,4)" 
                     stroke="#10b981" 
                     strokeWidth={2}
                     dot={false}
-                    name="N(0,2) - Plus large"
+                    name="N(0,4) - Plus large"
                   />
                   <Line 
                     type="monotone" 
@@ -242,7 +242,7 @@ const GaussianDistributionSection = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-1 bg-green-500"></div>
-                  <span className="text-sm">N(0,2) : μ=0, σ=√2 (plus étalée)</span>
+                  <span className="text-sm">N(0,4) : μ=0, σ=2 (plus étalée)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-1 bg-yellow-500"></div>
@@ -372,7 +372,7 @@ const GaussianDistributionSection = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border">
-                    <h6 className="font-semibold mb-2">🎯 Intervalles de confiance</h6>
+                    <h6 className="font-semibold mb-2">🎯 Plages de valeurs attendues (règle 68-95-99,7)</h6>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>68% des valeurs :</span>
@@ -425,7 +425,7 @@ const GaussianDistributionSection = () => {
                       {selectedExample === 'returns' && (
                         <>
                           <li>• Gestion de portefeuille et risque</li>
-                          <li>• Modèles de pricing d'options</li>
+                          <li>• Modèles d'évaluation d'options</li>
                           <li>• Value at Risk (VaR) et stress testing</li>
                         </>
                       )}
@@ -518,7 +518,7 @@ const GaussianDistributionSection = () => {
                 <div><strong>Shapiro-Wilk :</strong> Petit échantillon (n ≤ 50)</div>
                 <div><strong>Kolmogorov-Smirnov :</strong> Grand échantillon</div>
                 <div><strong>Anderson-Darling :</strong> Sensible aux queues</div>
-                <div><strong>Jarque-Bera :</strong> Basé sur skewness et kurtosis</div>
+                <div><strong>Jarque-Bera :</strong> Basé sur l'asymétrie (skewness) et l'aplatissement (kurtosis)</div>
                 <div><strong>Q-Q plot :</strong> Méthode graphique</div>
               </div>
             </div>
@@ -627,8 +627,8 @@ const GaussianDistributionSection = () => {
                 <ul className="text-sm space-y-2">
                   <li>• <strong>Histogramme :</strong> Forme en cloche symétrique</li>
                   <li>• <strong>Q-Q plot :</strong> Points alignés sur la diagonale</li>
-                  <li>• <strong>Box plot :</strong> Médiane centrée, whiskers équilibrés</li>
-                  <li>• <strong>Density plot :</strong> Courbe lisse unimodale</li>
+                  <li>• <strong>Boîte à moustaches :</strong> médiane centrée, moustaches équilibrées</li>
+                  <li>• <strong>Courbe de densité :</strong> courbe lisse, un seul sommet</li>
                 </ul>
               </div>
 

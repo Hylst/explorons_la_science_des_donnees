@@ -17,7 +17,7 @@ const OperationsSection = () => {
 
   return (
     <section id="operations" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">3. Opérations Matricielles : Les Règles du Jeu</h2>
+      <h2 className="text-3xl font-bold mb-6">4. Opérations Matricielles : Les Règles du Jeu</h2>
       
       <CourseHighlight title="🎮 Rappel : Les matrices comme des règles de jeu" type="concept">
         <p>
@@ -269,7 +269,7 @@ const OperationsSection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Applications Cruciales :</h4>
+                <h4 className="font-semibold mb-2">À quoi ça sert :</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                   <div className="bg-white p-3 rounded">
                     <p className="font-semibold text-blue-600">Résolution de systèmes</p>
@@ -331,7 +331,7 @@ const OperationsSection = () => {
               </div>
 
               <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Applications Révolutionnaires :</h4>
+                <h4 className="font-semibold mb-3">Quelques applications :</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
@@ -345,7 +345,7 @@ const OperationsSection = () => {
                   </div>
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-purple-600">🎵 Reconnaissance Faciale</p>
+                      <p className="font-semibold text-purple-600">👤 Reconnaissance Faciale</p>
                       <p className="text-xs">Eigenfaces pour identifier les visages</p>
                     </div>
                     <div className="bg-white p-3 rounded">
@@ -417,9 +417,9 @@ const OperationsSection = () => {
                       </div>
                     </div>
                     <div className="bg-white p-3 rounded">
-                      <p className="text-sm font-semibold">Applications magiques :</p>
+                      <p className="text-sm font-semibold">Applications :</p>
                       <ul className="text-xs space-y-1">
-                        <li>• Compression d'images (JPEG)</li>
+                        <li>• Compression d'images (approximation de rang faible)</li>
                         <li>• Systèmes de recommandation</li>
                         <li>• Analyse de données (PCA)</li>
                         <li>• Traitement du langage naturel</li>
@@ -464,11 +464,11 @@ const OperationsSection = () => {
                   <div className="bg-white p-3 rounded">
                     <p className="text-sm">
                       <strong>Compression :</strong> 1,000,000 → 100,050 nombres (90% de réduction !)<br/>
-                      <strong>Qualité :</strong> Visuellement quasi-identique à l'original
+                      <strong>Qualité :</strong> correcte pour une image peu détaillée ; les détails fins se perdent quand on garde peu de valeurs singulières
                     </p>
                   </div>
                   <p className="text-xs text-purple-600">
-                    C'est exactement ce principe qu'utilise le format JPEG pour compresser vos photos !
+                    Le format JPEG repose sur une idée voisine (garder ce qui compte le plus), mais avec une autre transformation : la transformée en cosinus discrète.
                   </p>
                 </div>
               </div>

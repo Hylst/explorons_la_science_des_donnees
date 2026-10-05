@@ -35,7 +35,7 @@ const ProbabilityIntro = () => {
           <div className="bg-amber-50 p-6 rounded-lg border border-amber-200 my-6">
             <h3 className="text-lg font-semibold text-amber-700 mb-3">🚨 Pourquoi c'est crucial aujourd'hui ?</h3>
             <p className="mb-3">
-              Nous vivons dans un monde d'<strong>explosion de données</strong> où chaque décision important 
+              Nous vivons dans un monde d'<strong>explosion de données</strong> où chaque décision importante 
               implique de l'incertitude :
             </p>
             <ul className="space-y-2 text-sm">
@@ -70,20 +70,19 @@ const ProbabilityIntro = () => {
           </div>
         </div>
 
-        <CourseHighlight title="🚀 Pourquoi les probabilités sont-elles révolutionnaires ?" type="concept">
+        <CourseHighlight title="🚀 Ce que les probabilités changent" type="concept">
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-red-700 mb-2">❌ Avant les probabilités :</h4>
+                <h4 className="font-semibold text-red-700 mb-2">❌ Sans les probabilités :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Décisions basées sur l'intuition pure</li>
-                  <li>• Superstitions et croyances</li>
                   <li>• Impossibilité de quantifier les risques</li>
                   <li>• Gestion émotionnelle de l'incertitude</li>
                 </ul>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-700 mb-2">✅ Après les probabilités :</h4>
+                <h4 className="font-semibold text-green-700 mb-2">✅ Avec les probabilités :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Quantification rigoureuse de l'incertitude</li>
                   <li>• Optimisation basée sur les données</li>
@@ -99,7 +98,7 @@ const ProbabilityIntro = () => {
                 <div>
                   <strong>GPS :</strong> Calcul du trajet optimal en temps réel<br/>
                   <strong>Netflix :</strong> Recommandations personnalisées<br/>
-                  <strong>Météo :</strong> Prévisions à 7 jours avec précision
+                  <strong>Météo :</strong> Prévisions exprimées en probabilités (« 30 % de risque de pluie »)
                 </div>
                 <div>
                   <strong>Médecine :</strong> Diagnostic assisté par IA<br/>
@@ -118,7 +117,7 @@ const ProbabilityIntro = () => {
               <h4 className="font-semibold mb-2">Vous saurez :</h4>
               <ul className="space-y-1">
                 <li>✓ Calculer des probabilités dans la vraie vie</li>
-                <li>✓ Comprendre l'indépendance et la corrélation</li>
+                <li>✓ Comprendre l'indépendance de deux événements</li>
                 <li>✓ Appliquer le théorème de Bayes</li>
                 <li>✓ Modéliser l'incertitude avec les distributions</li>
               </ul>
@@ -129,7 +128,7 @@ const ProbabilityIntro = () => {
                 <li>✓ Prendre de meilleures décisions</li>
                 <li>✓ Évaluer les risques rationnellement</li>
                 <li>✓ Comprendre les statistiques dans les médias</li>
-                <li>✓ Construire vos premiers modèles prédictifs</li>
+                <li>✓ Comprendre comment les probabilités servent aux modèles prédictifs</li>
               </ul>
             </div>
           </div>

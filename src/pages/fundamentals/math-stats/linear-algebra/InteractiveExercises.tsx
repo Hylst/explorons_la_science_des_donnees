@@ -17,8 +17,8 @@ const InteractiveExercises = () => {
       id: 1,
       title: "Produit scalaire",
       question: "Calculez le produit scalaire de v₁ = [3, 4] et v₂ = [2, 1]",
-      options: ["10", "11", "14", "7"],
-      correct: 0,
+      options: ["11", "10", "14", "7"],
+      correct: 1,
       explanation: "3×2 + 4×1 = 6 + 4 = 10",
       hint: "Multipliez coordonnée par coordonnée puis additionnez"
     },
@@ -26,8 +26,8 @@ const InteractiveExercises = () => {
       id: 2,
       title: "Multiplication matricielle",
       question: "Que donne la multiplication [[2,1],[3,4]] × [5,2]ᵀ ?",
-      options: ["[12, 23]", "[10, 15]", "[12, 20]", "[11, 22]"],
-      correct: 0,
+      options: ["[10, 15]", "[11, 22]", "[12, 23]", "[12, 20]"],
+      correct: 2,
       explanation: "Ligne 1: 2×5 + 1×2 = 12, Ligne 2: 3×5 + 4×2 = 23",
       hint: "Chaque ligne de la matrice doit être multipliée avec le vecteur"
     },
@@ -35,8 +35,8 @@ const InteractiveExercises = () => {
       id: 3,
       title: "Déterminant 2×2",
       question: "Quel est le déterminant de [[5,2],[3,1]] ?",
-      options: ["-1", "1", "8", "16"],
-      correct: 0,
+      options: ["1", "8", "16", "-1"],
+      correct: 3,
       explanation: "det = (5×1) - (2×3) = 5 - 6 = -1",
       hint: "Pour une matrice 2×2: ad - bc"
     }
@@ -72,7 +72,7 @@ const InteractiveExercises = () => {
 
   return (
     <section id="exercises" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">6. Exercices Interactifs</h2>
+      <h2 className="text-3xl font-bold mb-6">7. Exercices Interactifs</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
@@ -212,9 +212,9 @@ const InteractiveExercises = () => {
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                     <p className="font-medium text-blue-800 mb-1">Quiz terminé !</p>
                     <p className="text-sm text-blue-600">
-                      {score === exercises.length ? "🎉 Parfait ! Vous avez de bonnes bases !" : 
-                       score >= exercises.length * 0.7 ? "👍 Très bien ! Continuez ainsi !" :
-                       "📚 Relisez le cours et réessayez !"}
+                      {score === exercises.length ? "🎉 Trois sur trois, bravo !" :
+                       score >= 2 ? "👍 Bien joué, encore un petit effort !" :
+                       "📚 Un tour dans le cours, puis on réessaie !"}
                     </p>
                   </div>
                 )}
@@ -230,11 +230,11 @@ const InteractiveExercises = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-purple-600" />
-                <span>Implémenter SVD en Python</span>
+                <span>Calculer une décomposition en valeurs singulières (SVD) avec NumPy et reconstruire la matrice</span>
               </div>
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-green-600" />
-                <span>Créer un système de recommandation</span>
+                <span>Prédire une note manquante en factorisant une petite matrice utilisateurs × films</span>
               </div>
             </div>
           </CourseHighlight>

@@ -6,7 +6,7 @@ const ConfidenceIntervalsSection = () => {
   const confidenceLevels = [
     { level: "90%", z: 1.645, usage: "Exploration préliminaire" },
     { level: "95%", z: 1.96, usage: "Standard en recherche" },
-    { level: "99%", z: 2.576, usage: "Haute précision requise" }
+    { level: "99%", z: 2.576, usage: "Quand une erreur coûte cher (plus de confiance, intervalle plus large)" }
   ];
 
   return (

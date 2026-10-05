@@ -60,7 +60,8 @@ Avant une livraison : `npm run typecheck`, `npm run lint`, `npm test`, `npm run 
 | [readme_dev.md](readme_dev.md) | guide pour développer : commandes, ajout de contenu, changement d'identité, livraison |
 | [docs/SOURCES.md](docs/SOURCES.md) | vérification des chiffres externes affichés sur le site |
 | [CHANGELOG.md](CHANGELOG.md) | historique des changements |
-| [LICENSE](LICENSE) | licence AGPL-3.0-or-later et exceptions (images, moteurs d'exécution tiers) |
+| [LICENSE](LICENSE) | texte de la licence GNU AGPL v3 |
+| [NOTICE.md](NOTICE.md) | avis de droits d'auteur de l'AGPL-3.0-or-later et exceptions (logos, moteurs d'exécution tiers) |
 
 ## Technologies
 
@@ -76,7 +77,7 @@ React 18, TypeScript, Vite 7 (plugin SWC), Tailwind CSS 3, shadcn/ui (Radix), Re
 
 ## Licence
 
-Code et contenus rédigés pour le site : [GNU AGPL v3 ou ultérieure](LICENSE) (SPDX : `AGPL-3.0-or-later`). Exceptions : les logos de `public/img/logos/` appartiennent à leurs détenteurs, et les moteurs d'exécution (Pyodide, NumPy, pandas, SciPy, scikit-learn, SQLite, sql.js) comme les bibliothèques npm gardent leur propre licence.
+Code et contenus rédigés pour le site : [GNU AGPL v3 ou ultérieure](LICENSE) (SPDX : `AGPL-3.0-or-later`, avis dans [NOTICE.md](NOTICE.md)). Exceptions : les logos de `public/img/logos/` appartiennent à leurs détenteurs, et les moteurs d'exécution (Pyodide, NumPy, pandas, SciPy, scikit-learn, SQLite, sql.js) comme les bibliothèques npm gardent leur propre licence.
 
 ## Contact
 

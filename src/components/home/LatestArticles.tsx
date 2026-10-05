@@ -1,4 +1,4 @@
-import { asset } from "@/lib/asset";
+import { blogImage } from "@/lib/blog-image";
 
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,21 +6,17 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import blogPosts from "@/data/blog-posts.json";
 
-// Illustrations SVG animées génériques (public/svg/cards) : les articles du blog n'ont pas d'image propre
-const ILLUSTRATIONS = [
-  asset("svg/cards/pipeline-donnees.svg"),
-  asset("svg/cards/reseau-neurones.svg"),
-  asset("svg/cards/tableau-de-bord.svg"),
-];
+// Nombre d'articles mis en avant sur l'accueil
+const ARTICLE_COUNT = 3;
 
 // Articles réels du blog (l'article mis en avant d'abord), pour ne jamais pointer vers un article inexistant
 const articles = [...blogPosts]
   .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)))
-  .slice(0, ILLUSTRATIONS.length)
-  .map((post, index) => ({
+  .slice(0, ARTICLE_COUNT)
+  .map((post) => ({
     title: post.title,
     description: post.excerpt,
-    image: ILLUSTRATIONS[index],
+    image: blogImage(post.id),
     category: post.categories[0],
     href: `/blog/${post.id}`
   }));

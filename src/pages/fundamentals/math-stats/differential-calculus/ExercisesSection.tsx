@@ -62,10 +62,10 @@ const ExercisesSection = () => {
       context: "Vous entraînez un modèle de régression linéaire",
       problem: "Soit J(w) = (1/2m) ∑(h(x) - y)² où h(x) = wx. Calculez ∂J/∂w",
       solution: "∂J/∂w = (1/m) ∑(wx - y)x",
-      application: "Ce gradient est utilisé dans l'algorithme de gradient descent pour ajuster les poids"
+      application: "Ce gradient sert à la descente de gradient pour ajuster les poids"
     },
     {
-      title: "Backpropagation simple",
+      title: "Rétropropagation simple",
       context: "Réseau à une couche cachée avec activation sigmoïde",
       problem: "Calculez ∂L/∂w₁ pour L = (1/2)(ŷ - y)² où ŷ = σ(w₂σ(w₁x))",
       solution: "∂L/∂w₁ = (ŷ - y) × ŷ(1-ŷ) × w₂ × σ(w₁x)(1-σ(w₁x)) × x",
@@ -124,7 +124,7 @@ const ExercisesSection = () => {
                 <div className="flex justify-between items-start">
                   <CardTitle className="text-lg">Exercice {index + 1}</CardTitle>
                   <Badge 
-                    variant={exercise.level === "Débutant" ? "secondary" : exercise.level === "Intermédiaire" ? "default" : "destructive"}
+                    variant={exercise.level === "Débutant" ? "secondary" : exercise.level === "Intermédiaire" ? "default" : "outline"}
                   >
                     {exercise.level}
                   </Badge>
@@ -147,7 +147,8 @@ const ExercisesSection = () => {
 
                   <div className="flex gap-3 items-center">
                     <Input
-                      placeholder="Votre réponse (ex: 2x + 1)"
+                      placeholder="Votre réponse (ex : 2x + 1)"
+                      aria-label={`Votre réponse à l'exercice ${index + 1}`}
                       value={userAnswers[index] || ''}
                       onChange={(e) => {
                         const newAnswers = [...userAnswers];
@@ -170,7 +171,7 @@ const ExercisesSection = () => {
                     }`}>
                       {scores[index] ? <CheckCircle className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
                       <span className="font-semibold">
-                        {scores[index] ? 'Correct ! Excellente réponse.' : 'Incorrect. Consultez la solution pour comprendre.'}
+                        {scores[index] ? 'Correct, bravo ! (une forme équivalente est acceptée)' : 'Pas encore : relisez l\'indice ou consultez la solution.'}
                       </span>
                     </div>
                   )}
@@ -187,7 +188,7 @@ const ExercisesSection = () => {
                     <div className="space-y-4 border-t pt-4">
                       <div className="bg-green-50 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">Solution :</h4>
-                        <CourseEquation latex={exercise.solution} displayMode={false} />
+                        <CourseEquation latex={exercise.solution.replace(/\b(sin|cos)\b/g, "\\$1 ")} displayMode={false} />
                       </div>
 
                       <div className="bg-gray-50 p-4 rounded-lg">
@@ -253,12 +254,12 @@ const ExercisesSection = () => {
             </Card>
           ))}
 
-          <CourseHighlight title="🚀 Projet pratique : Implémentez votre gradient descent" type="example">
+          <CourseHighlight title="🚀 Projet pratique : programmez votre descente de gradient" type="example">
             <div className="bg-white p-6 rounded-lg border">
               <h4 className="font-semibold mb-4">Défi : Codez un optimiseur simple</h4>
               <div className="space-y-3">
                 <p className="text-sm">
-                  <strong>Objectif :</strong> Implémentez l'algorithme de gradient descent pour minimiser f(x) = x² + 2x + 1
+                  <strong>Objectif :</strong> programmez la descente de gradient pour minimiser f(x) = x² + 2x + 1 (à essayer dans l'éditeur Python de la page Programmation, ou sur votre machine)
                 </p>
                 <div className="bg-gray-100 p-3 rounded text-xs font-mono">
                   {`def gradient_descent(f, df, x0, lr=0.1, iterations=100):

@@ -128,7 +128,7 @@ const ConditionalProbabilitySection = () => {
   return (
     <section id="conditional-probability" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🌳 5. Probabilité Conditionnelle : Quand l'Information Change Tout
+        🌳 2. Probabilité Conditionnelle : Quand l'Information Change Tout
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -146,7 +146,7 @@ const ConditionalProbabilitySection = () => {
                 Maintenant P(As|Cœur) = 1/13 ≈ 7.7%... Toujours pareil !
               </p>
               <p className="text-sm mt-2">
-                <strong>🎯 Mais si je dis "la carte est une figure" ?</strong> 
+                <strong>🎯 Mais si je dis "la carte est une figure" ?</strong>{" "}
                 Alors P(As|Figure) = 0% car un As n'est pas une figure !
               </p>
             </div>
@@ -282,20 +282,22 @@ const ConditionalProbabilitySection = () => {
                             </div>
                             
                             {/* Résultat final */}
-                            <div 
+                            <button
+                              type="button"
+                              aria-pressed={selectedPath === `${branch.condition}|${outcome.result}`}
                               className={`px-2 py-1 rounded text-xs border-2 cursor-pointer transition-all ${
-                                selectedPath === `${branch.condition}-${outcome.result}` 
+                                selectedPath === `${branch.condition}|${outcome.result}` 
                                   ? 'bg-blue-100 border-blue-500 shadow-md' 
                                   : 'bg-white border-gray-200 hover:border-gray-400'
                               }`}
-                              onClick={() => setSelectedPath(`${branch.condition}-${outcome.result}`)}
+                              onClick={() => setSelectedPath(`${branch.condition}|${outcome.result}`)}
                             >
                               {outcome.result}
-                            </div>
+                            </button>
                             
                             {/* Probabilité jointe */}
                             <div className="text-xs text-gray-500">
-                              P = {(outcome.joint * 100).toFixed(1)}%
+                              P = {(outcome.joint * 100).toFixed(2)}%
                             </div>
                           </div>
                         ))}
@@ -308,9 +310,9 @@ const ConditionalProbabilitySection = () => {
               {/* Calculs détaillés pour le chemin sélectionné */}
               {selectedPath && (
                 <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <h6 className="font-semibold text-blue-800 mb-2">🧮 Calculs pour : {selectedPath}</h6>
+                  <h6 className="font-semibold text-blue-800 mb-2">🧮 Calculs pour : {selectedPath.replace("|", " → ")}</h6>
                   {(() => {
-                    const [condition, result] = selectedPath.split('-');
+                    const [condition, result] = selectedPath.split('|');
                     const branch = currentScenario.branches.find(b => b.condition === condition);
                     const outcome = branch?.outcomes.find(o => o.result === result);
                     
@@ -401,8 +403,8 @@ const ConditionalProbabilitySection = () => {
                   P(A|B) n'existe que si P(B) &gt; 0
                 </div>
                 <div className="bg-orange-50 p-3 rounded border-l-4 border-orange-400">
-                  <strong>Biais de base rate :</strong><br/>
-                  Ignorer P(B) mène à des erreurs
+                  <strong>Négliger le taux de base :</strong><br/>
+                  Oublier la probabilité a priori P(A) (par exemple la fréquence d'une maladie) mène à des erreurs
                 </div>
               </div>
             </div>
@@ -417,7 +419,7 @@ const ConditionalProbabilitySection = () => {
             <h4 className="font-semibold">🤖 Machine Learning :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Classification :</strong> P(Classe|Features)
+                <strong>Classification :</strong> P(Classe|Caractéristiques)
               </div>
               <div className="bg-white p-3 rounded border">
                 <strong>Naive Bayes :</strong> Hypothèse d'indépendance conditionnelle
@@ -429,7 +431,7 @@ const ConditionalProbabilitySection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">📊 Analytics :</h4>
+            <h4 className="font-semibold">📊 Analyse client :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Segmentation :</strong> P(Achat|Segment)
@@ -438,7 +440,7 @@ const ConditionalProbabilitySection = () => {
                 <strong>Attribution :</strong> P(Conversion|Canal)
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Prédiction :</strong> P(Churn|Comportement)
+                <strong>Prédiction :</strong> P(Départ du client|Comportement)
               </div>
             </div>
           </div>

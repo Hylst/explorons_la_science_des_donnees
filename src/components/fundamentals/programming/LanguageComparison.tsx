@@ -1294,6 +1294,169 @@ GROUP BY dataset_split;`}
                 />
             </CardContent>
           </Card>
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Code className="h-5 w-5 text-indigo-600" />
+                🚀 Autres exemples, langage par langage
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-8">
+              {/* Python Advanced Examples */}
+              <div className="border-l-4 border-blue-500 pl-6">
+                <h4 className="font-semibold text-blue-700 mb-4">🐍 Python - Machine Learning Pipeline</h4>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                  <pre>{`# Pipeline ML complet avec validation croisée
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+import pandas as pd
+
+# Création d'un pipeline automatisé
+ml_pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('classifier', RandomForestClassifier(n_estimators=100))
+])
+
+# Validation croisée avec métriques
+scores = cross_val_score(ml_pipeline, X_train, y_train, 
+                        cv=5, scoring='accuracy')
+print(f"Précision moyenne: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")`}</pre>
+                </div>
+              </div>
+
+              {/* R Advanced Examples */}
+              <div className="border-l-4 border-purple-500 pl-6">
+                <h4 className="font-semibold text-purple-700 mb-4">📊 R - Analyse Statistique Avancée</h4>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                  <pre>{`# Modèle mixte avec effets aléatoires
+library(lme4)
+library(ggplot2)
+library(dplyr)
+
+# Modèle hiérarchique pour données longitudinales
+model <- lmer(response ~ time * treatment + (1|subject), 
+              data = longitudinal_data)
+
+# Visualisation des effets
+longitudinal_data %>%
+  ggplot(aes(x = time, y = response, color = treatment)) +
+  geom_smooth(method = "lm", se = TRUE) +
+  facet_wrap(~subject) +
+  theme_minimal() +
+  labs(title = "Évolution par sujet et traitement")`}</pre>
+                </div>
+              </div>
+
+              {/* SQL Advanced Examples */}
+              <div className="border-l-4 border-green-500 pl-6">
+                <h4 className="font-semibold text-green-700 mb-4">🗄️ SQL - Requêtes Analytiques Complexes</h4>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                  <pre>{`-- Analyse de cohorte avec fonctions fenêtre
+WITH user_cohorts AS (
+  SELECT 
+    user_id,
+    DATE_TRUNC('month', first_purchase_date) as cohort_month,
+    DATE_TRUNC('month', purchase_date) as purchase_month
+  FROM purchases p
+  JOIN users u ON p.user_id = u.id
+),
+cohort_data AS (
+  SELECT 
+    cohort_month,
+    purchase_month,
+    COUNT(DISTINCT user_id) as users,
+    EXTRACT(YEAR FROM AGE(purchase_month, cohort_month)) * 12
+      + EXTRACT(MONTH FROM AGE(purchase_month, cohort_month)) as period_number
+  FROM user_cohorts
+  GROUP BY cohort_month, purchase_month
+)
+SELECT 
+  cohort_month,
+  period_number,
+  users,
+  ROUND(100.0 * users / FIRST_VALUE(users) OVER (
+    PARTITION BY cohort_month ORDER BY period_number
+  ), 2) as retention_rate
+FROM cohort_data
+ORDER BY cohort_month, period_number;`}</pre>
+                </div>
+              </div>
+
+              {/* JavaScript Advanced Examples */}
+              <div className="border-l-4 border-yellow-500 pl-6">
+                <h4 className="font-semibold text-yellow-700 mb-4">⚡ JavaScript - Visualisation Interactive</h4>
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                  <pre>{`// Dashboard interactif avec D3.js et observables
+class DataDashboard {
+  constructor(containerId) {
+    this.container = d3.select(containerId);
+    this.data$ = new rxjs.BehaviorSubject([]);
+    this.filters$ = new rxjs.BehaviorSubject({});
+    
+    // Pipeline réactif pour les données
+    this.filteredData$ = rxjs.combineLatest([
+      this.data$, this.filters$
+    ]).pipe(
+      rxjs.operators.map(([data, filters]) => 
+        this.applyFilters(data, filters)
+      ),
+      rxjs.operators.debounceTime(300)
+    );
+    
+    this.setupVisualization();
+  }
+  
+  async loadData(url) {
+    const data = await d3.json(url);
+    this.data$.next(data);
+  }
+  
+  setupVisualization() {
+    this.filteredData$.subscribe(data => {
+      this.updateCharts(data);
+    });
+  }
+}`}</pre>
+                </div>
+              </div>
+
+              {/* Performance */}
+              <div className="mt-8 p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-gray-200">
+                <h4 className="font-semibold mb-2">⚡ Et les performances ?</h4>
+                <p className="text-sm text-gray-700">
+                  Les temps d&apos;exécution dépendent de la taille des données, du matériel, de l&apos;implémentation et des bibliothèques utilisées :
+                  aucun classement général n&apos;a de sens. Mesurez vos propres cas (par exemple avec <code>timeit</code> en Python) avant de choisir.
+                </p>
+              </div>
+
+              {/* Best Practices */}
+              <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg border border-green-200">
+                <h4 className="font-semibold mb-3">💡 Bonnes Pratiques Avancées</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-medium text-green-700 mb-2">🔧 Optimisation</h5>
+                    <ul className="text-sm space-y-1 text-gray-700">
+                      <li>• Vectorisation des opérations</li>
+                      <li>• Mise en cache intelligente</li>
+                      <li>• Parallélisation des tâches</li>
+                      <li>• Profiling de performance</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-medium text-green-700 mb-2">🛡️ Robustesse</h5>
+                    <ul className="text-sm space-y-1 text-gray-700">
+                      <li>• Gestion d'erreurs complète</li>
+                      <li>• Tests unitaires et d'intégration</li>
+                      <li>• Validation des données</li>
+                      <li>• Documentation du code</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="use-cases" className="space-y-6">
@@ -1571,7 +1734,7 @@ GROUP BY dataset_split;`}
               <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
                 <h4 className="font-semibold mb-3">💡 Un petit conseil</h4>
                 <p className="text-sm mb-3">
-                  <strong>Ne tombez pas dans le piège du "langage parfait" !</strong> 
+                  <strong>Ne tombez pas dans le piège du "langage parfait" !</strong>{" "}
                   Les meilleurs data scientists sont polyvalents. Commencez par un langage, 
                   prenez-le bien en main, puis ajoutez les autres selon vos besoins.
                 </p>
@@ -1580,172 +1743,6 @@ GROUP BY dataset_split;`}
                     <strong>Repère indicatif (avis de l'auteur) :</strong> la plus grande part de votre temps ira à un langage principal, 
                     le reste aux langages complémentaires. Choisissez bien votre langage principal !
                   </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="advanced-examples" className="space-y-6">
-          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Code className="h-5 w-5 text-indigo-600" />
-                🚀 Exemples Avancés par Langage
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-8">
-              {/* Python Advanced Examples */}
-              <div className="border-l-4 border-blue-500 pl-6">
-                <h4 className="font-semibold text-blue-700 mb-4">🐍 Python - Machine Learning Pipeline</h4>
-                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`# Pipeline ML complet avec validation croisée
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
-import pandas as pd
-
-# Création d'un pipeline automatisé
-ml_pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('classifier', RandomForestClassifier(n_estimators=100))
-])
-
-# Validation croisée avec métriques
-scores = cross_val_score(ml_pipeline, X_train, y_train, 
-                        cv=5, scoring='accuracy')
-print(f"Précision moyenne: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")`}</pre>
-                </div>
-              </div>
-
-              {/* R Advanced Examples */}
-              <div className="border-l-4 border-purple-500 pl-6">
-                <h4 className="font-semibold text-purple-700 mb-4">📊 R - Analyse Statistique Avancée</h4>
-                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`# Modèle mixte avec effets aléatoires
-library(lme4)
-library(ggplot2)
-library(dplyr)
-
-# Modèle hiérarchique pour données longitudinales
-model <- lmer(response ~ time * treatment + (1|subject), 
-              data = longitudinal_data)
-
-# Visualisation des effets
-longitudinal_data %>%
-  ggplot(aes(x = time, y = response, color = treatment)) +
-  geom_smooth(method = "lm", se = TRUE) +
-  facet_wrap(~subject) +
-  theme_minimal() +
-  labs(title = "Évolution par sujet et traitement")`}</pre>
-                </div>
-              </div>
-
-              {/* SQL Advanced Examples */}
-              <div className="border-l-4 border-green-500 pl-6">
-                <h4 className="font-semibold text-green-700 mb-4">🗄️ SQL - Requêtes Analytiques Complexes</h4>
-                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`-- Analyse de cohorte avec fonctions fenêtre
-WITH user_cohorts AS (
-  SELECT 
-    user_id,
-    DATE_TRUNC('month', first_purchase_date) as cohort_month,
-    DATE_TRUNC('month', purchase_date) as purchase_month
-  FROM purchases p
-  JOIN users u ON p.user_id = u.id
-),
-cohort_data AS (
-  SELECT 
-    cohort_month,
-    purchase_month,
-    COUNT(DISTINCT user_id) as users,
-    EXTRACT(YEAR FROM AGE(purchase_month, cohort_month)) * 12
-      + EXTRACT(MONTH FROM AGE(purchase_month, cohort_month)) as period_number
-  FROM user_cohorts
-  GROUP BY cohort_month, purchase_month
-)
-SELECT 
-  cohort_month,
-  period_number,
-  users,
-  ROUND(100.0 * users / FIRST_VALUE(users) OVER (
-    PARTITION BY cohort_month ORDER BY period_number
-  ), 2) as retention_rate
-FROM cohort_data
-ORDER BY cohort_month, period_number;`}</pre>
-                </div>
-              </div>
-
-              {/* JavaScript Advanced Examples */}
-              <div className="border-l-4 border-yellow-500 pl-6">
-                <h4 className="font-semibold text-yellow-700 mb-4">⚡ JavaScript - Visualisation Interactive</h4>
-                <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`// Dashboard interactif avec D3.js et observables
-class DataDashboard {
-  constructor(containerId) {
-    this.container = d3.select(containerId);
-    this.data$ = new rxjs.BehaviorSubject([]);
-    this.filters$ = new rxjs.BehaviorSubject({});
-    
-    // Pipeline réactif pour les données
-    this.filteredData$ = rxjs.combineLatest([
-      this.data$, this.filters$
-    ]).pipe(
-      rxjs.operators.map(([data, filters]) => 
-        this.applyFilters(data, filters)
-      ),
-      rxjs.operators.debounceTime(300)
-    );
-    
-    this.setupVisualization();
-  }
-  
-  async loadData(url) {
-    const data = await d3.json(url);
-    this.data$.next(data);
-  }
-  
-  setupVisualization() {
-    this.filteredData$.subscribe(data => {
-      this.updateCharts(data);
-    });
-  }
-}`}</pre>
-                </div>
-              </div>
-
-              {/* Performance */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-gray-200">
-                <h4 className="font-semibold mb-2">⚡ Et les performances ?</h4>
-                <p className="text-sm text-gray-700">
-                  Les temps d&apos;exécution dépendent de la taille des données, du matériel, de l&apos;implémentation et des bibliothèques utilisées :
-                  aucun classement général n&apos;a de sens. Mesurez vos propres cas (par exemple avec <code>timeit</code> en Python) avant de choisir.
-                </p>
-              </div>
-
-              {/* Best Practices */}
-              <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg border border-green-200">
-                <h4 className="font-semibold mb-3">💡 Bonnes Pratiques Avancées</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="font-medium text-green-700 mb-2">🔧 Optimisation</h5>
-                    <ul className="text-sm space-y-1 text-gray-700">
-                      <li>• Vectorisation des opérations</li>
-                      <li>• Mise en cache intelligente</li>
-                      <li>• Parallélisation des tâches</li>
-                      <li>• Profiling de performance</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-green-700 mb-2">🛡️ Robustesse</h5>
-                    <ul className="text-sm space-y-1 text-gray-700">
-                      <li>• Gestion d'erreurs complète</li>
-                      <li>• Tests unitaires et d'intégration</li>
-                      <li>• Validation des données</li>
-                      <li>• Documentation du code</li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </CardContent>

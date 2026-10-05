@@ -552,7 +552,7 @@ const DispersionSection = () => {
 
             <div className="bg-green-50 p-4 rounded-lg">
               <h5 className="font-semibold mb-2 text-green-700">Écart Absolu Médian</h5>
-              <CourseEquation latex="MAD = \text{mediane}(|x_i - \text{mediane}|)" />
+              <CourseEquation latex="MAD = \text{médiane}(|x_i - \text{médiane}|)" />
               <p className="text-xs text-green-600 mt-2">
                 Ultra-robuste. Alternative à l'écart-type pour données avec aberrantes.
               </p>
@@ -652,7 +652,7 @@ const DispersionSection = () => {
                       className="flex items-center gap-1"
                     >
                       <RotateCcw className="h-3 w-3" />
-                      Reset
+                      Réinitialiser
                     </Button>
                   </div>
                 </div>
@@ -704,7 +704,7 @@ const DispersionSection = () => {
                       <h5 className="font-semibold mb-2">Calcul en cours</h5>
                       <div className="text-sm">
                         <p><strong>Somme des écarts²:</strong> {varianceData.slice(0, animationStep + 1).reduce((sum, item) => sum + Math.pow(item.deviation, 2), 0)}</p>
-                        <p><strong>Variance actuelle:</strong> {(varianceData.slice(0, animationStep + 1).reduce((sum, item) => sum + Math.pow(item.deviation, 2), 0) / Math.max(1, animationStep)).toFixed(2)}</p>
+                        <p><strong>Variance actuelle:</strong> {animationStep === 0 ? "non définie (il faut au moins 2 valeurs)" : (varianceData.slice(0, animationStep + 1).reduce((sum, item) => sum + Math.pow(item.deviation, 2), 0) / animationStep).toFixed(2)}</p>
                       </div>
                     </div>
                   </div>
@@ -834,9 +834,9 @@ const DispersionSection = () => {
                     <div className="bg-indigo-50 p-4 rounded">
                       <h5 className="font-semibold mb-3">🎯 Interprétations</h5>
                       <div className="space-y-2 text-sm">
-                        <p><strong>Maths ↔ Physique (0.85):</strong> Très forte corrélation - les compétences mathématiques aident en physique</p>
-                        <p><strong>Physique ↔ Chimie (0.78):</strong> Forte corrélation - sciences expérimentales liées</p>
-                        <p><strong>Sciences ↔ Histoire (0.38-0.45):</strong> Corrélation modérée - compétences générales d'étude</p>
+                        <p><strong>Maths ↔ Physique (0.85):</strong> Très forte corrélation : les élèves forts en maths sont souvent forts en physique (sans que l'un cause l'autre)</p>
+                        <p><strong>Physique ↔ Chimie (0.78):</strong> Corrélation modérée à forte</p>
+                        <p><strong>Sciences ↔ Histoire (0.38-0.45):</strong> Corrélation faible</p>
                       </div>
                     </div>
                     
@@ -1044,9 +1044,9 @@ const DispersionSection = () => {
                     <div className="text-xs font-mono text-center">
                       <div className="mb-2 text-gray-600">Cov(Maths, Physique, Chimie)</div>
                       <div className="space-y-1">
-                        <div>⎡  42.5   38.2   32.1 ⎤</div>
-                        <div>⎢  38.2   35.8   29.5 ⎥</div>
-                        <div>⎣  32.1   29.5   25.2 ⎦</div>
+                        <div>⎡  43.3   42.2   21.8 ⎤</div>
+                        <div>⎢  42.2   41.3   21.2 ⎥</div>
+                        <div>⎣  21.8   21.2   15.8 ⎦</div>
                       </div>
                     </div>
                     <div className="mt-4 text-xs space-y-2">
@@ -1054,7 +1054,7 @@ const DispersionSection = () => {
                         <strong>Interprétation :</strong>
                         <ul className="mt-1 space-y-1">
                           <li>• Toutes covariances positives → corrélation positive</li>
-                          <li>• Maths-Physique : relation la plus forte (38.2)</li>
+                          <li>• Maths-Physique : covariance la plus élevée (42.2) ; pour comparer des liens, on regarde la corrélation (0.998 ici)</li>
                           <li>• Les bonnes notes tendent à aller ensemble</li>
                         </ul>
                       </div>

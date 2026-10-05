@@ -7,7 +7,7 @@ import { Building2, TrendingUp, Stethoscope, ShoppingCart, Gamepad2, Zap, Target
 const PracticalApplicationsSection = () => {
   const applications = [
     {
-      domain: "Business Intelligence",
+      domain: "Pilotage d'activité (BI)",
       icon: <Building2 className="h-6 w-6" />,
       color: "blue",
       cases: [
@@ -15,13 +15,13 @@ const PracticalApplicationsSection = () => {
           title: "Analyse des ventes",
           metrics: ["Moyenne mobile", "Médiane des commandes", "CV des revenus"],
           insight: "Identifier tendances et saisonnalité",
-          example: "E-commerce: médiane panier = 45€, CV = 120% → forte variabilité client"
+          example: "Boutique en ligne : médiane du panier = 45 €, CV = 120 % → clients très différents les uns des autres"
         },
         {
           title: "Performance RH",
           metrics: ["Écart-type des évaluations", "Corrélation expérience/salaire", "Quartiles de productivité"],
-          insight: "Optimiser recrutement et rétention",
-          example: "Tech: corrélation (années d'expérience, salaire) = 0.73"
+          insight: "Comprendre les écarts entre équipes et entre postes",
+          example: "Exemple fictif : corrélation (années d'expérience, salaire) = 0,73"
         }
       ]
     },
@@ -34,13 +34,13 @@ const PracticalApplicationsSection = () => {
           title: "Gestion des risques",
           metrics: ["Volatilité (écart-type)", "VaR (percentiles)", "Corrélation actifs"],
           insight: "Construire portefeuilles diversifiés",
-          example: "Actions tech: σ = 25%, obligations: σ = 5%, r = 0.2 → diversification efficace"
+          example: "Actions : σ = 25 %, obligations : σ = 5 %, r = 0,2 → les mélanger réduit la variabilité de l'ensemble"
         },
         {
           title: "Trading algorithmique",
           metrics: ["Sharpe ratio", "Corrélations glissantes", "Écart-type des rendements"],
-          insight: "Détecter anomalies et opportunités",
-          example: "Stratégie momentum: si CV > 30% → réduire exposition"
+          insight: "Détecter les anomalies",
+          example: "Exemple de règle : si l'écart-type des rendements dépasse un seuil fixé à l'avance, on réduit l'exposition"
         }
       ]
     },
@@ -53,13 +53,13 @@ const PracticalApplicationsSection = () => {
           title: "Épidémiologie",
           metrics: ["Incidence moyenne", "Corrélation âge/maladie", "Écart-type géographique"],
           insight: "Suivre évolution et cibler prévention",
-          example: "COVID: r(densité population, contamination) = 0.65"
+          example: "Exemple fictif : r(densité de population, taux de contamination) = 0,65"
         },
         {
           title: "Essais cliniques",
           metrics: ["Moyenne ± écart-type", "Médiane de survie", "Corrélation dose/effet"],
-          insight: "Valider efficacité traitements",
-          example: "Nouveau médicament: réduction moyenne = 15% ± 8%"
+          insight: "Décrire l'effet observé d'un traitement",
+          example: "Traitement testé : réduction moyenne = 15 % ± 8 % (moyenne ± écart-type)"
         }
       ]
     },
@@ -71,51 +71,51 @@ const PracticalApplicationsSection = () => {
         {
           title: "Comportement client",
           metrics: ["LTV médiane", "Corrélation prix/demande", "Segmentation par quartiles"],
-          insight: "Optimiser pricing et ciblage",
+          insight: "Décrire les habitudes d'achat",
           example: "Panier : mode = 1 article, médiane = 2, moyenne = 3,4 → quelques gros paniers tirent la moyenne vers le haut"
         },
         {
-          title: "A/B Testing",
+          title: "Test A/B",
           metrics: ["Différence des moyennes", "Test de corrélation", "IC de conversion"],
-          insight: "Valider impact des changements",
-          example: "Version B: +12% conversion, p < 0.05 → déploiement validé"
+          insight: "Mesurer l'effet d'un changement",
+          example: "Version B : +12 % de conversion (en relatif), p < 0,05 → écart peu probable par hasard seul ; reste à juger s'il compte en pratique"
         }
       ]
     },
     {
-      domain: "Gaming & UX",
+      domain: "Jeu vidéo et expérience utilisateur",
       icon: <Gamepad2 className="h-6 w-6" />,
       color: "yellow",
       cases: [
         {
           title: "Expérience utilisateur",
           metrics: ["Temps de session médian", "CV temps de chargement", "Corrélation bugs/satisfaction"],
-          insight: "Améliorer rétention et engagement",
-          example: "Temps chargement: μ = 2.1s, σ = 0.8s → optimisation nécessaire si > 3s"
+          insight: "Repérer ce qui gêne les joueurs",
+          example: "Temps de chargement : μ = 2,1 s, σ = 0,8 s ; un seuil de 3 s vaut environ μ + 1,1σ, soit près de 13 % des chargements si la loi est à peu près normale"
         },
         {
-          title: "Monétisation",
+          title: "Dépenses des joueurs",
           metrics: ["ARPU moyen", "Corrélation niveau/achat", "Distribution des dépenses"],
-          insight: "Maximiser revenus par utilisateur",
-          example: "Whale detection: P95 dépenses = 500€/mois (vs médiane = 0€)"
+          insight: "Comprendre la répartition des dépenses",
+          example: "P95 des dépenses = 500 €/mois alors que la médiane = 0 € : la moyenne ne résume pas une telle distribution"
         }
       ]
     },
     {
-      domain: "IoT & Manufacturing",
+      domain: "Industrie et capteurs",
       icon: <Zap className="h-6 w-6" />,
       color: "orange",
       cases: [
         {
           title: "Contrôle qualité",
           metrics: ["Cartes de contrôle (μ ± 3σ)", "Cpk process", "Corrélation paramètres"],
-          insight: "Maintenir qualité et réduire défauts",
-          example: "Machine: μ = 10.0mm, σ = 0.05mm, spécifications ± 0.3mm → Cpk = 2, processus capable"
+          insight: "Maintenir la qualité et réduire les défauts",
+          example: "Machine : μ = 10,0 mm, σ = 0,05 mm, tolérance ± 0,3 mm → Cpk = 0,3 / (3 × 0,05) = 2, processus capable"
         },
         {
           title: "Maintenance prédictive",
           metrics: ["Tendance vibrations", "Corrélation température/usure", "Seuils d'alerte"],
-          insight: "Anticiper pannes et optimiser maintenance",
+          insight: "Anticiper les pannes",
           example: "Vibration > μ + 2σ depuis 3 jours → maintenance préventive"
         }
       ]
@@ -140,15 +140,14 @@ const PracticalApplicationsSection = () => {
 
       {/* Introduction */}
       <div className="mb-8">
-        <CourseHighlight title="🚀 De la théorie à l'impact réel" type="concept">
+        <CourseHighlight title="De la théorie à la pratique" type="concept">
           <p className="text-lg mb-4">
-            Les statistiques descriptives ne sont pas qu'un exercice académique. 
-            Elles sont l'épine dorsale de TOUTES les décisions data-driven modernes. 
-            Voici des domaines où elles servent au quotidien.
+            Les statistiques descriptives ne sont pas qu'un exercice scolaire : on les retrouve dans de nombreux domaines.
+            En voici quelques-uns.
           </p>
           <div className="bg-blue-100 p-4 rounded-lg">
             <p className="text-sm">
-              <strong>💡 Insight clé :</strong> moyenne, écart-type, quartiles et corrélation reviennent dans presque toutes les analyses de données. Les exemples chiffrés de cette page sont illustratifs : leurs valeurs sont inventées pour l'exemple.
+              <strong>💡 À retenir :</strong> moyenne, écart-type, quartiles et corrélation reviennent dans presque toutes les analyses de données. Les exemples chiffrés de cette page sont illustratifs : leurs valeurs sont inventées pour l'exemple.
             </p>
           </div>
         </CourseHighlight>
@@ -170,14 +169,14 @@ const PracticalApplicationsSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {app.cases.map((useCase, caseIndex) => (
                   <div key={caseIndex} className="bg-white p-4 rounded-lg border border-gray-200">
-                    <h5 className="font-semibold mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold mb-3 flex items-center gap-2">
                       <Brain className="h-4 w-4 text-gray-600" />
                       {useCase.title}
-                    </h5>
+                    </h3>
                     
                     <div className="space-y-3">
                       <div>
-                        <h6 className="text-sm font-semibold text-gray-700 mb-2">🔧 Métriques clés :</h6>
+                        <h4 className="text-sm font-semibold text-gray-700 mb-2">🔧 Métriques clés :</h4>
                         <div className="flex flex-wrap gap-1">
                           {useCase.metrics.map((metric, metricIndex) => (
                             <Badge key={metricIndex} variant="outline" className="text-xs">
@@ -188,15 +187,15 @@ const PracticalApplicationsSection = () => {
                       </div>
                       
                       <div>
-                        <h6 className="text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1">
+                        <h4 className="text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1">
                           <Lightbulb className="h-3 w-3" />
                           Objectif :
-                        </h6>
+                        </h4>
                         <p className="text-sm text-gray-600">{useCase.insight}</p>
                       </div>
                       
                       <div className={`p-3 rounded-lg ${colorClasses[app.color as keyof typeof colorClasses]}`}>
-                        <h6 className="text-sm font-semibold mb-1">📊 Exemple concret :</h6>
+                        <h4 className="text-sm font-semibold mb-1">📊 Exemple :</h4>
                         <p className="text-xs">{useCase.example}</p>
                       </div>
                     </div>
@@ -213,7 +212,7 @@ const PracticalApplicationsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-6 w-6 text-indigo-600" />
-            🎯 Votre Feuille de Route Pratique
+            🎯 Pour passer à la pratique
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -239,13 +238,13 @@ const PracticalApplicationsSection = () => {
                   <div className="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
                   <div>
                     <p className="font-semibold text-sm">Chercher les relations</p>
-                    <p className="text-xs text-gray-600">Corrélations, patterns cachés</p>
+                    <p className="text-xs text-gray-600">Corrélations, motifs cachés</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</div>
                   <div>
-                    <p className="font-semibold text-sm">Visualiser les insights</p>
+                    <p className="font-semibold text-sm">Visualiser les résultats</p>
                     <p className="text-xs text-gray-600">Graphiques adaptés au message</p>
                   </div>
                 </div>
@@ -253,7 +252,7 @@ const PracticalApplicationsSection = () => {
                   <div className="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">5</div>
                   <div>
                     <p className="font-semibold text-sm">Communiquer les résultats</p>
-                    <p className="text-xs text-gray-600">Histoire data-driven claire</p>
+                    <p className="text-xs text-gray-600">Un récit clair, appuyé sur les données</p>
                   </div>
                 </div>
               </div>
@@ -266,7 +265,7 @@ const PracticalApplicationsSection = () => {
                   <h5 className="font-semibold text-sm text-green-700 mb-2">🌱 Débutant</h5>
                   <ul className="text-xs space-y-1">
                     <li>• Excel/Google Sheets : Fonctions statistiques de base</li>
-                    <li>• Tableau Public : Visualisations drag & drop</li>
+                    <li>• Tableau Public : visualisations par glisser-déposer</li>
                     <li>• JASP/jamovi : Interface graphique pour stats</li>
                   </ul>
                 </div>
@@ -276,16 +275,16 @@ const PracticalApplicationsSection = () => {
                   <ul className="text-xs space-y-1">
                     <li>• Python : pandas, seaborn, scipy.stats</li>
                     <li>• R : dplyr, ggplot2, corrplot</li>
-                    <li>• Power BI : Analytics avancées</li>
+                    <li>• Power BI : tableaux de bord</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white p-3 rounded-lg border">
                   <h5 className="font-semibold text-sm text-purple-700 mb-2">⚡ Expert</h5>
                   <ul className="text-xs space-y-1">
-                    <li>• Spark : Big Data statistics</li>
-                    <li>• TensorFlow : Stats pour ML</li>
-                    <li>• Custom dashboards : APIs temps réel</li>
+                    <li>• Spark : statistiques sur de gros volumes</li>
+                    <li>• TensorFlow Probability : statistiques pour le ML</li>
+                    <li>• Tableaux de bord sur mesure, alimentés en continu</li>
                   </ul>
                 </div>
               </div>
@@ -295,13 +294,13 @@ const PracticalApplicationsSection = () => {
           <div className="mt-6 p-4 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <Target className="h-5 w-5 text-green-600" />
-              🎯 Prochaines étapes recommandées
+              🎯 Quelques idées pour la suite
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div>
                 <p className="font-semibold">Cette semaine :</p>
                 <ul className="text-xs space-y-1">
-                  <li>• Analyser un dataset personnel</li>
+                  <li>• Analyser un jeu de données qui vous intéresse</li>
                   <li>• Calculer corrélations principales</li>
                   <li>• Créer 3 visualisations</li>
                 </ul>
@@ -311,15 +310,15 @@ const PracticalApplicationsSection = () => {
                 <ul className="text-xs space-y-1">
                   <li>• Automatiser un rapport</li>
                   <li>• Prendre en main Python/R stats</li>
-                  <li>• Présenter insights à l'équipe</li>
+                  <li>• Présenter vos résultats à quelqu'un</li>
                 </ul>
               </div>
               <div>
                 <p className="font-semibold">D'ici 3 mois :</p>
                 <ul className="text-xs space-y-1">
-                  <li>• Dashboard temps réel</li>
+                  <li>• Un tableau de bord qui se met à jour</li>
                   <li>• Modèle prédictif simple</li>
-                  <li>• Formation équipe métier</li>
+                  <li>• Expliquer votre démarche à des non-spécialistes</li>
                 </ul>
               </div>
             </div>

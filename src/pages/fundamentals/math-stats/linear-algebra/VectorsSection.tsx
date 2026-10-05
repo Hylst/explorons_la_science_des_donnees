@@ -134,8 +134,8 @@ const VectorsSection = () => {
               <CourseEquation latex="\vec{u} \cdot \vec{v} = \sum_{i=1}^{n} u_i v_i = u_1v_1 + u_2v_2 + ... + u_nv_n" />
               <div className="bg-blue-50 p-3 rounded-lg mt-3">
                 <p className="text-sm">
-                  <strong>Interprétation :</strong> Plus le produit scalaire est grand, 
-                  plus les vecteurs "pointent dans la même direction".
+                  <strong>Interprétation :</strong> à longueurs fixées, plus le produit scalaire est grand,
+                  plus les vecteurs "pointent dans la même direction" ; divisé par les deux longueurs, il donne le cosinus de l'angle.
                 </p>
               </div>
             </div>
@@ -143,8 +143,8 @@ const VectorsSection = () => {
               <h4 className="font-semibold mb-3">Applications concrètes</h4>
               <ul className="text-sm space-y-2">
                 <li>• <strong>Similarité :</strong> Comparer deux documents texte</li>
-                <li>• <strong>Recommendations :</strong> "Les utilisateurs qui aiment A aiment aussi B"</li>
-                <li>• <strong>Computer Vision :</strong> Détecter des formes dans les images</li>
+                <li>• <strong>Recommandations :</strong> "Les utilisateurs qui aiment A aiment aussi B"</li>
+                <li>• <strong>Vision par ordinateur :</strong> Détecter des formes dans les images</li>
                 <li>• <strong>Machine Learning :</strong> Calculer la "distance" entre données</li>
               </ul>
             </div>
@@ -189,9 +189,9 @@ const VectorsSection = () => {
                 <h4 className="font-semibold mb-2">Applications pratiques :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Physique :</strong> Force magnétique, moment angulaire</li>
-                  <li>• <strong>3D Graphics :</strong> Calcul des normales de surface</li>
+                  <li>• <strong>Graphisme 3D :</strong> Calcul des normales de surface</li>
                   <li>• <strong>Robotique :</strong> Orientation dans l'espace</li>
-                  <li>• <strong>Computer Vision :</strong> Détection de plans</li>
+                  <li>• <strong>Vision par ordinateur :</strong> Détection de plans</li>
                 </ul>
               </div>
 
@@ -316,9 +316,9 @@ const VectorsSection = () => {
             
             <p><strong>Analyse :</strong></p>
             <div className="space-y-2 text-sm">
-              <p>• <strong>Similarité A-B :</strong> cos(θ) = (0.8×0.9 + 0.6×0.4 + 0.3×0.2) / (|A|×|B|) ≈ 0.95 → Très similaires</p>
-              <p>• <strong>Similarité A-C :</strong> cos(θ) = (0.8×(-0.7) + 0.6×0.8 + 0.3×0.6) / (|A|×|C|) ≈ -0.12 → Opposés</p>
-              <p>• <strong>Conclusion :</strong> A et B sont des avis positifs similaires, C est négatif et détaillé</p>
+              <p>• <strong>Similarité A-B :</strong> cos(θ) = (0.8×0.9 + 0.6×0.4 + 0.3×0.2) / (|A|×|B|) ≈ 0.97 → Très similaires</p>
+              <p>• <strong>Similarité A-C :</strong> cos(θ) = (0.8×(-0.7) + 0.6×0.8 + 0.3×0.6) / (|A|×|C|) ≈ 0.08 → Presque orthogonaux : très peu de ressemblance</p>
+              <p>• <strong>Conclusion :</strong> A et B sont des avis positifs similaires, C s'en distingue nettement</p>
             </div>
           </div>
         </div>

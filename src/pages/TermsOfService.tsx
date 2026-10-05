@@ -5,6 +5,7 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Users, AlertTriangle, Scale, BookOpen, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   AUTHOR_CREDIT,
   LEGAL_UPDATED,
@@ -110,7 +111,10 @@ const TermsOfService = () => {
                       <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{SOURCE_URL}</a>.
                     </>
                   ) : (
-                    " Le dépôt du code source n'est pas public à ce jour."
+                    <>
+                      {" "}Le code source est disponible sur demande, par la{" "}
+                      <Link to="/contact" className="text-blue-600 hover:underline">page de contact</Link>.
+                    </>
                   )}
                 </p>
               </div>

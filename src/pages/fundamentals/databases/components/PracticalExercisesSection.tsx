@@ -48,20 +48,20 @@ GROUP BY p.id, p.nom
 ORDER BY total_vendu DESC
 LIMIT 5;
 
--- 3. Panier moyen par client  
-SELECT 
+-- 3. Panier moyen par client
+SELECT
     c.nom,
     COUNT(co.id) as nb_commandes,
     AVG(co.total) as panier_moyen,
     SUM(co.total) as total_depense
 FROM clients c
-LEFT JOIN commandes co ON c.id = co.client_id
+JOIN commandes co ON c.id = co.client_id
 GROUP BY c.id, c.nom
-HAVING COUNT(co.id) > 0
 ORDER BY panier_moyen DESC;
 
 -- 4. Clients inactifs (6+ mois)
-SELECT 
+-- les clients sans aucune commande ne sont pas listés (utiliser LEFT JOIN pour les inclure)
+SELECT
     c.nom, 
     c.email,
     MAX(co.date_commande) as derniere_commande,
@@ -70,6 +70,27 @@ FROM clients c
 JOIN commandes co ON c.id = co.client_id
 GROUP BY c.id, c.nom, c.email
 HAVING MAX(co.date_commande) < DATE_SUB(NOW(), INTERVAL 6 MONTH)
+ORDER BY derniere_commande ASC;`,
+      variante: `-- Variante SQLite (après avoir créé vos tables)
+-- 1. Chiffre d'affaires par mois
+SELECT
+    strftime('%Y', date_commande) AS annee,
+    strftime('%m', date_commande) AS mois,
+    SUM(total) AS ca_mensuel
+FROM commandes
+GROUP BY annee, mois
+ORDER BY annee DESC, mois DESC;
+
+-- 4. Clients inactifs (6+ mois)
+SELECT
+    c.nom,
+    c.email,
+    MAX(co.date_commande) AS derniere_commande,
+    CAST(julianday('now') - julianday(MAX(co.date_commande)) AS INTEGER) AS jours_inactivite
+FROM clients c
+JOIN commandes co ON c.id = co.client_id
+GROUP BY c.id, c.nom, c.email
+HAVING MAX(co.date_commande) < date('now', '-6 months')
 ORDER BY derniere_commande ASC;`,
       explanation: `Ces requêtes combinent plusieurs concepts clés :
                    - Agrégations (SUM, COUNT, AVG) pour les métriques business
@@ -82,7 +103,8 @@ ORDER BY derniere_commande ASC;`,
       level: "Intermédiaire", 
       description: "Implémentez un système de recommandation d'amis",
       context: `Vous développez la fonctionnalité "Amis suggérés" d'un réseau social. 
-                L'objectif est de suggérer de nouveaux contacts basés sur les amis communs.`,
+                L'objectif est de suggérer de nouveaux contacts basés sur les amis communs.
+                Chaque amitié est enregistrée dans les deux sens (une ligne A vers B et une ligne B vers A).`,
       tables: [
         "utilisateurs (id, nom, email, ville, age, profession)",
         "amities (user1_id, user2_id, date_amitie, statut)",
@@ -96,18 +118,15 @@ ORDER BY derniere_commande ASC;`,
         "Calculez le score de compatibilité entre utilisateurs"
       ],
       solution: `-- 1. Amis communs entre Alice (id=1) et Bob (id=2)
-SELECT 
+SELECT
     u.nom as ami_commun,
-    u.ville,
-    COUNT(*) as interactions
+    u.ville
 FROM amities a1
 JOIN amities a2 ON a1.user2_id = a2.user2_id
-JOIN utilisateurs u ON a1.user2_id = u.id
-LEFT JOIN posts p ON u.id = p.user_id AND p.date_post > DATE_SUB(NOW(), INTERVAL 30 DAY)
+JOIN utilisateurs u ON u.id = a1.user2_id
 WHERE a1.user1_id = 1 AND a2.user1_id = 2
   AND a1.statut = 'accepte' AND a2.statut = 'accepte'
-GROUP BY u.id, u.nom, u.ville
-ORDER BY interactions DESC;
+ORDER BY u.nom;
 
 -- 2. Recommandations d'amis (amis d'amis)
 WITH amis_alice AS (
@@ -148,7 +167,9 @@ ORDER BY interets_communs DESC;
 -- 4. Score de compatibilité composite
 -- Cette requête réutilise la CTE « candidats » de la requête 2 : recopiez son WITH (amis_alice, candidats)
 -- devant elle pour l'exécuter seule.
-SELECT 
+-- Poids arbitraires choisis pour l'exemple ; amis_communs et interets_communs sont des comptages,
+-- proximite_geo vaut 1 (même ville) ou 0.
+SELECT
     u.nom,
     (amis_communs * 0.4 + interets_communs * 0.3 + proximite_geo * 0.3) as score_compatibilite
 FROM (
@@ -158,7 +179,7 @@ FROM (
         amis_communs,
         COALESCE(interets.nb_interets, 0) as interets_communs,
         CASE 
-            WHEN ville = (SELECT ville FROM utilisateurs WHERE id = 1) THEN 10
+            WHEN ville = (SELECT ville FROM utilisateurs WHERE id = 1) THEN 1
             ELSE 0 
         END as proximite_geo
     FROM candidats
@@ -172,7 +193,8 @@ FROM (
 ) scores
 JOIN utilisateurs u ON scores.candidat_id = u.id
 ORDER BY score_compatibilite DESC;`,
-      explanation: `Cet exercice avancé utilise :
+      variante: "",
+      explanation: `Cet exercice de niveau intermédiaire utilise :
                    - WITH clauses (CTE) pour structurer les requêtes complexes
                    - Jointures multiples pour croiser différentes sources
                    - Fonctions d'agrégation avec GROUP_CONCAT
@@ -224,7 +246,11 @@ SELECT
         ORDER BY DATE(mes.timestamp) 
         ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
     ) as moyenne_mobile_7j,
-    CASE 
+    -- 7 lignes consécutives = 7 jours si une mesure par jour
+    CASE
+        WHEN LAG(AVG(mes.valeur), 7) OVER (
+            PARTITION BY m.id ORDER BY DATE(mes.timestamp)
+        ) IS NULL THEN 'DONNEES INSUFFISANTES'
         WHEN AVG(mes.valeur) > LAG(AVG(mes.valeur), 7) OVER (
             PARTITION BY m.id ORDER BY DATE(mes.timestamp)
         ) THEN 'DEGRADATION'
@@ -269,20 +295,20 @@ SELECT
         WHEN 6 THEN 'Vendredi'
         WHEN 7 THEN 'Samedi'
     END as jour_frequent,
-    ROUND(AVG(heure), 0) as heure_frequente
+    ROUND(AVG(heure), 0) as heure_moyenne
 FROM pannes
-WHERE panne_precedente IS NOT NULL
 GROUP BY machine_id, nom, type_panne, jour_semaine
 HAVING nb_occurrences >= 3
 ORDER BY nb_occurrences DESC;
 
--- 4. Score de maintenance prédictive
+-- 4. Score de maintenance
+-- Score heuristique pour l'exemple, pas un modèle prédictif.
 -- Le score est calculé dans une sous-requête : un alias défini dans un SELECT
 -- ne peut pas être réutilisé dans ce même SELECT (le CASE vient donc après).
 SELECT
     machine,
     age_annees,
-    utilisation_quotidienne,
+    mesures_par_heure,
     variabilite_mesures,
     score_maintenance,
     CASE
@@ -296,19 +322,20 @@ FROM (
         m.nom as machine,
         -- Facteur âge (plus vieille = plus risquée)
         ROUND(DATEDIFF(NOW(), m.date_installation) / 365.0, 1) as age_annees,
-        -- Facteur utilisation récente
-        COUNT(mes.id) / 24.0 as utilisation_quotidienne,
-        -- Facteur dérive des mesures
-        STDDEV(mes.valeur) as variabilite_mesures,
+        -- Facteur utilisation récente (nombre de mesures par heure sur 24 h)
+        COUNT(mes.id) / 24.0 as mesures_par_heure,
+        -- Facteur dérive des mesures (0 si aucune mesure : une machine muette est un signal à part)
+        COALESCE(STDDEV(mes.valeur), 0) as variabilite_mesures,
         -- Score de maintenance composite (0-100)
         LEAST(100,
             (DATEDIFF(NOW(), m.date_installation) / 365.0 * 10) +
             (COUNT(mes.id) / 24.0 * 5) +
-            (STDDEV(mes.valeur) * 2) +
+            (COALESCE(STDDEV(mes.valeur), 0) * 2) +
             (COALESCE(MAX(pannes_recentes.nb_pannes), 0) * 15)
         ) as score_maintenance
     FROM machines m
-    LEFT JOIN capteurs c ON m.id = c.machine_id
+    -- un seul type de capteur : mélanger températures, vibrations et pressions n'aurait pas de sens
+    LEFT JOIN capteurs c ON m.id = c.machine_id AND c.type_capteur = 'vibration'
     LEFT JOIN mesures mes ON c.id = mes.capteur_id
         AND mes.timestamp > DATE_SUB(NOW(), INTERVAL 24 HOUR)
     LEFT JOIN (
@@ -323,11 +350,12 @@ FROM (
     GROUP BY m.id, m.nom, m.date_installation
 ) scores
 ORDER BY score_maintenance DESC;`,
-      explanation: `Cet exercice expert utilise des techniques avancées :
+      variante: "",
+      explanation: `Cet exercice de niveau avancé utilise des techniques plus poussées :
                    - Fonctions de fenêtrage (OVER, LAG) pour l'analyse temporelle
                    - Une CTE et des sous-requêtes pour structurer l'analyse
                    - Calculs statistiques (STDDEV, moyennes mobiles)
-                   - Scoring prédictif avec facteurs pondérés`
+                   - Score de priorité à facteurs pondérés (heuristique, pas un modèle prédictif)`
     }
   ];
 
@@ -341,11 +369,18 @@ ORDER BY score_maintenance DESC;`,
       </div>
 
       <p className="text-sm text-gray-600">
-        Les corrigés utilisent la syntaxe MySQL (<code>NOW()</code>, <code>DATE_SUB</code>, <code>DATEDIFF</code>, <code>STDDEV</code>,
+        Ces exercices sont à corriger vous-même : aucun jeu de données n&apos;est fourni et le site ne vérifie pas votre réponse ;
+        comparez votre requête au corrigé.
+      </p>
+
+      <p className="text-sm text-gray-600">
+        Les corrigés utilisent la syntaxe MySQL (<code>YEAR</code>, <code>MONTH</code>, <code>NOW()</code>, <code>DATE_SUB</code>, <code>DATEDIFF</code>, <code>STDDEV</code>,{" "}
         <code>LEAST</code>, <code>DAYOFWEEK</code>, <code>HOUR</code>, <code>TIMESTAMPDIFF</code>). L&apos;éditeur SQL du site (page Programmation)
-        exécute SQLite sur une base vide : pour y essayer une requête, créez d&apos;abord les tables, puis remplacez les fonctions de date par
-        <code>date(&apos;now&apos;, &apos;-6 months&apos;)</code> et <code>julianday(&apos;now&apos;) - julianday(colonne)</code> ; SQLite n&apos;a ni <code>STDDEV</code>,
-        ni <code>DAYOFWEEK</code>, ni <code>HOUR</code>, ni <code>TIMESTAMPDIFF</code> (utilisez <code>strftime</code>), et <code>min(a, b)</code> tient lieu de <code>LEAST</code>.
+        exécute SQLite sur une base vide : pour y essayer une requête, créez d&apos;abord les tables, puis remplacez les fonctions de date par{" "}
+        <code>date(&apos;now&apos;, &apos;-6 months&apos;)</code> et <code>julianday(&apos;now&apos;) - julianday(colonne)</code> ; SQLite n&apos;a ni <code>YEAR</code>, ni <code>MONTH</code>,
+        ni <code>DATEDIFF</code>, ni <code>STDDEV</code>, ni <code>DAYOFWEEK</code>, ni <code>HOUR</code>, ni <code>TIMESTAMPDIFF</code> (utilisez <code>strftime</code>),
+        et <code>min(a, b)</code> tient lieu de <code>LEAST</code>. De plus, <code>GROUP_CONCAT</code> et les alias dans <code>HAVING</code> fonctionnent sous MySQL et SQLite,
+        pas sous PostgreSQL (<code>string_agg</code>, expression répétée). Pour l&apos;exercice 1, une variante SQLite des questions 1 et 4 est donnée sous le corrigé.
       </p>
 
       {/* Sélecteur d'exercices */}
@@ -437,9 +472,9 @@ ORDER BY score_maintenance DESC;`,
         {/* Solution */}
         <Card>
           <CardHeader>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-wrap justify-between items-center gap-2">
               <CardTitle className="flex items-center gap-2">
-                <PlayCircle className="h-5 w-5" />
+                <PlayCircle className="h-5 w-5 flex-shrink-0" />
                 Solution complète
               </CardTitle>
               <Button
@@ -459,9 +494,17 @@ ORDER BY score_maintenance DESC;`,
                   </pre>
                 </div>
 
+                {currentEx.variante && (
+                  <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
+                    <pre className="text-sm">
+                      <code>{currentEx.variante}</code>
+                    </pre>
+                  </div>
+                )}
+
                 <div className="bg-green-50 p-4 rounded-lg">
                   <div className="flex items-start gap-2">
-                    <Lightbulb className="h-4 w-4 text-green-600 mt-0.5" />
+                    <Lightbulb className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <div>
                       <h5 className="font-semibold text-green-800 mb-1">💡 Explication détaillée</h5>
                       <p className="text-sm text-green-700 whitespace-pre-line">
@@ -486,7 +529,7 @@ ORDER BY score_maintenance DESC;`,
                 <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-2" />
                 <p className="text-gray-600">
                   Essayez d'abord de résoudre l'exercice par vous-même, 
-                  puis cliquez sur "Révéler la solution" pour voir la correction détaillée.
+                  puis cliquez sur « Révéler la solution » pour voir la correction détaillée.
                 </p>
               </div>
             )}
@@ -495,7 +538,7 @@ ORDER BY score_maintenance DESC;`,
       </div>
 
       {/* Navigation entre exercices */}
-      <div className="flex justify-between items-center pt-6 border-t">
+      <div className="flex flex-wrap justify-between items-center gap-3 pt-6 border-t">
         <Button
           variant="outline"
           onClick={() => {

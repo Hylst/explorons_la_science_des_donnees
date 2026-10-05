@@ -11,13 +11,15 @@ import { nlpTerms } from './nlp';
 import { mlopsTerms } from './mlops';
 import { evaluationTerms } from './evaluation';
 import { toolsTerms } from './tools';
+import { dictionaryTerms } from './dictionaries';
+import { termKeys } from './from-definition';
 import { GlossaryCategory } from './types';
 
 // Export types and constants
 export * from './types';
 
-// Combine all terms into a single array
-export const glossaryTerms = [
+// Entrées écrites à la main, puis termes des dictionnaires de survol des cours qui n'y figurent pas déjà
+const handWrittenTerms = [
   ...fundamentalsTerms,
   ...toolsTerms,
   ...statisticsTerms,
@@ -26,6 +28,13 @@ export const glossaryTerms = [
   ...nlpTerms,
   ...mlopsTerms,
   ...evaluationTerms
+];
+const handWrittenKeys = new Set(handWrittenTerms.flatMap((entry) => termKeys(entry.term, entry.englishTerm)));
+
+// Combine all terms into a single array
+export const glossaryTerms = [
+  ...handWrittenTerms,
+  ...dictionaryTerms.filter((entry) => !termKeys(entry.term, entry.englishTerm).some((key) => handWrittenKeys.has(key)))
 ];
 
 // Export individual term arrays for potential future use

@@ -46,7 +46,7 @@ const BayesianStatisticsSection = () => {
               <div className="bg-blue-50 p-3 rounded">
                 <h5 className="font-semibold text-blue-700 mb-2">En pratique :</h5>
                 <p className="text-sm text-blue-600">
-                  Posterieur ∝ Vraisemblance × Prieur
+                  Loi a posteriori ∝ Vraisemblance × Loi a priori
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ const BayesianStatisticsSection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border">
-              <h4 className="font-semibold text-red-700 mb-2">Prieur conjugué</h4>
+              <h4 className="font-semibold text-red-700 mb-2">Loi a priori conjuguée</h4>
               <p className="text-sm text-gray-600 mb-2">
                 La forme mathématique est préservée après mise à jour
               </p>
@@ -113,9 +113,9 @@ const BayesianStatisticsSection = () => {
             </div>
             
             <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-lg border">
-              <h4 className="font-semibold text-blue-700 mb-2">Prieur non-informatif</h4>
+              <h4 className="font-semibold text-blue-700 mb-2">Loi a priori non informative</h4>
               <p className="text-sm text-gray-600 mb-2">
-                Laisse les données "parler" (Jeffrey's prior)
+                Laisse les données "parler" (loi a priori de Jeffreys)
               </p>
               <div className="text-xs text-blue-600">
                 Ex: Uniforme, Normal vague
@@ -123,7 +123,7 @@ const BayesianStatisticsSection = () => {
             </div>
             
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border">
-              <h4 className="font-semibold text-green-700 mb-2">Prieur informatif</h4>
+              <h4 className="font-semibold text-green-700 mb-2">Loi a priori informative</h4>
               <p className="text-sm text-gray-600 mb-2">
                 Intègre des connaissances d'expert
               </p>

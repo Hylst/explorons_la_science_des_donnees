@@ -1,18 +1,18 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, Code, BookOpen, ExternalLink } from "lucide-react";
+import { Target, Code, BookOpen } from "lucide-react";
 
 const PracticalApplicationsSection = () => {
   const applications = [
     {
       domain: "Recherche médicale",
-      techniques: ["Essais cliniques", "Meta-analyses", "Survival analysis"],
+      techniques: ["Essais cliniques", "Méta-analyses", "Analyse de survie"],
       example: "Tester l'efficacité d'un nouveau médicament avec contrôle placebo",
       tools: ["R", "SAS", "SPSS"]
     },
     {
       domain: "Marketing digital",
-      techniques: ["A/B testing", "Attribution modeling", "Customer lifetime value"],
+      techniques: ["A/B testing", "Modélisation de l'attribution", "Valeur vie client (CLV)"],
       example: "Optimiser les campagnes publicitaires par tests multivariés",
       tools: ["Python", "Google Analytics", "Adobe Analytics"]
     },
@@ -145,7 +145,7 @@ const PracticalApplicationsSection = () => {
                   <strong>Seuil :</strong> α = 0.05
                 </p>
                 <p className="text-sm">
-                  <strong>Puissance :</strong> 80% pour détecter +2% de conversion
+                  <strong>Puissance :</strong> 80 % pour détecter +2 points de conversion (de 10 % à 12 %)
                 </p>
               </div>
             </div>
@@ -177,7 +177,7 @@ power.prop.test(p1 = 0.10, p2 = 0.12, power = 0.80)`}
               <ul className="space-y-2">
                 {resource.items.map((item, idx) => (
                   <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
-                    <ExternalLink className="h-3 w-3 text-blue-500 mt-1 flex-shrink-0" />
+                    <span aria-hidden="true" className="text-blue-500 mt-0.5 flex-shrink-0">•</span>
                     <span>{item}</span>
                   </li>
                 ))}

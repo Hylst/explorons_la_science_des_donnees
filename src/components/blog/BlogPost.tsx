@@ -8,6 +8,7 @@ import { sanitizeHtml } from "@/lib/sanitize";
 import { useBlogFavorites } from "@/hooks/use-blog-favorites";
 import { Helmet } from "react-helmet-async";
 import { SITE_NAME } from "@/config/site";
+import { blogImage } from "@/lib/blog-image";
 
 interface BlogPostProps {
   id: string;
@@ -74,6 +75,15 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
             </Badge>
           ))}
         </div>
+
+        <img
+          src={blogImage(post.id)}
+          alt=""
+          width={800}
+          height={450}
+          decoding="async"
+          className="aspect-[16/9] w-full rounded-lg object-cover"
+        />
       </div>
 
       {/* Contenu de l'article */}

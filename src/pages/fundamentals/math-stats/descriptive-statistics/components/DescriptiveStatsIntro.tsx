@@ -36,7 +36,7 @@ const DescriptiveStatsIntro = () => {
           </div>
 
           <div className="bg-amber-50 p-6 rounded-lg border border-amber-200 my-6">
-            <h3 className="text-lg font-semibold text-amber-700 mb-3">🚨 Pourquoi c'est crucial en 2024 ?</h3>
+            <h3 className="text-lg font-semibold text-amber-700 mb-3">🚨 Pourquoi c'est utile aujourd'hui ?</h3>
             <p className="mb-3">
               Nous sommes submergés par les données. Chaque clic, chaque achat, chaque interaction 
               génère des informations. Sans statistiques descriptives :
@@ -87,12 +87,12 @@ const DescriptiveStatsIntro = () => {
           </div>
         </div>
 
-        <CourseHighlight title="🌟 L'impact révolutionnaire des statistiques descriptives" type="concept">
+        <CourseHighlight title="🌟 Ce que changent les statistiques descriptives" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
-              <strong>Révolution #1 :</strong> De l'intuition à la précision. Avant, on disait 
-              "nos ventes vont bien". Maintenant : "nos ventes ont augmenté de 15% avec un écart-type 
-              de 3%, ce qui indique une croissance stable et prévisible."
+              <strong>Premier changement :</strong> de l'intuition à la mesure. Au lieu de dire « nos ventes vont bien »,
+              on peut dire (exemple fictif) « nos ventes ont augmenté de 15 % en moyenne, avec un écart-type de 3 % d'un mois
+              à l'autre » : c'est plus précis, et c'est un point de départ pour d'autres questions.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -139,7 +139,7 @@ const DescriptiveStatsIntro = () => {
               <ul className="space-y-1">
                 <li>✓ Calculer moyenne, médiane, mode avec discernement</li>
                 <li>✓ Interpréter variance et écart-type intuitivement</li>
-                <li>✓ Utiliser les quartiles pour segmenter</li>
+                <li>✓ Utiliser l'écart interquartile pour repérer les valeurs extrêmes</li>
                 <li>✓ Mesurer et interpréter les corrélations</li>
                 <li>✓ Créer des visualisations percutantes</li>
               </ul>
@@ -151,7 +151,7 @@ const DescriptiveStatsIntro = () => {
                 <li>✓ Communiquer efficacement avec les données</li>
                 <li>✓ Détecter les patterns et anomalies</li>
                 <li>✓ Prendre des décisions data-driven</li>
-                <li>✓ Valider ou invalider des hypothèses</li>
+                <li>✓ Repérer des pistes à tester ensuite (avec les tests statistiques)</li>
               </ul>
             </div>
           </div>

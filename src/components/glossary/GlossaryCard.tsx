@@ -9,10 +9,11 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { GlossaryEntry } from "@/data/glossary/types";
+import { CATEGORY_INFO, GlossaryEntry, type GlossaryCategory } from "@/data/glossary/types";
 import TechnicalTooltip from './TechnicalTooltip';
 import ConceptDiagram from './ConceptDiagram';
-import TruncatedText from '@/components/ui/truncated-text';
+import { ExpandableGlossaryText, GlossaryMarkdown } from './GlossaryText';
+import { countWords, splitSections } from '@/lib/glossary-markdown';
 import CollapsibleSection from '@/components/ui/collapsible-section';
 
 interface GlossaryCardProps {
@@ -454,126 +455,35 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
   };
 
   /**
-   * Format description text with enhanced truncation and collapsible sections
-   * - Automatic truncation for descriptions over 100 words
-   * - Collapsible sections for very long content (500+ words)
-   * - Technical tooltips and diagrams integration
-   * - Improved markdown rendering with proper formatting
+   * Définition affichée avec la mise en forme du markdown (lib/glossary-markdown) :
+   * - une longue définition (plus de 500 mots) est découpée en sections repliables, une par titre en gras ;
+   * - sinon, au-delà de 100 mots, seul le début est affiché (par blocs entiers) avec « Voir plus » ;
+   * - l'explication technique et le diagramme restent proposés en sections repliables.
    */
   const formatDescription = (text: string): JSX.Element => {
     const tooltipData = getTechnicalTooltipData(entry.term);
-    
-    // Ensure text is properly formatted as string
-    const formattedText = typeof text === 'string' ? text : String(text || '');
-    
-    // Calculate word count to determine display strategy
-    const wordCount = formattedText.trim().split(/\s+/).length;
+    const description = typeof text === 'string' ? text : String(text || '');
+    const wordCount = countWords(description);
     const isVeryLong = wordCount > 500;
-    const isLong = wordCount > 100;
-    
-    // Split very long descriptions into logical sections
-    const createSections = (text: string) => {
-      const sections = [];
-      
-      // Try to split by common section indicators
-      const sectionPatterns = [
-        /\n\n\*\*([^*]+)\*\*:/g, // **Section Title:**
-        /\n\n([A-Z][^\n]*):(?=\s)/g, // Title: (at start of line)
-        /\n\n(\d+\.)\s/g, // 1. Numbered lists
-        /\n\n([A-Z][a-z]+\s[a-z]+)\s*:/g // Multi-word titles
-      ];
-      
-      interface MatchResult {
-         index: number;
-         title: string;
-         fullMatch: string;
-       }
-       
-       const matches: MatchResult[] = [];
-      
-      // Find all section breaks
-      sectionPatterns.forEach(pattern => {
-        let match;
-        while ((match = pattern.exec(text)) !== null) {
-          matches.push({
-            index: match.index,
-            title: match[1],
-            fullMatch: match[0]
-          });
-        }
-      });
-      
-      // Sort matches by position
-      matches.sort((a, b) => a.index - b.index);
-      
-      if (matches.length > 1) {
-         // Create sections based on matches
-         matches.forEach((match, i) => {
-          if (i === 0 && match.index > 100) {
-            // Add introduction section
-            sections.push({
-              title: "Introduction",
-              content: text.substring(0, match.index).trim(),
-              defaultOpen: true
-            });
-          }
-          
-          const nextMatch = matches[i + 1];
-          const endIndex = nextMatch ? nextMatch.index : text.length;
-          const content = text.substring(match.index, endIndex)
-            .replace(match.fullMatch, '')
-            .trim();
-          
-          if (content.length > 50) {
-            sections.push({
-              title: match.title,
-              content: content,
-              defaultOpen: i === 0 // First section open by default
-            });
-          }
-        });
-      }
-      
-      // If no good sections found, split by paragraphs
-      if (sections.length === 0) {
-        const paragraphs = text.split('\n\n').filter(p => p.trim().length > 0);
-        if (paragraphs.length > 3) {
-          const midPoint = Math.ceil(paragraphs.length / 2);
-          sections.push(
-            {
-              title: "Définition principale",
-              content: paragraphs.slice(0, midPoint).join('\n\n'),
-              defaultOpen: true
-            },
-            {
-              title: "Détails et applications",
-              content: paragraphs.slice(midPoint).join('\n\n'),
-              defaultOpen: false
-            }
-          );
-        }
-      }
-      
-      return sections;
-    };
-    
+    const sections = isVeryLong ? splitSections(description) : [];
+
     return (
       <div className="space-y-4">
-        {/* Technical tooltip for enhanced explanation */}
+        {/* Explication technique détaillée */}
         {tooltipData && (
-          <CollapsibleSection 
-            title="Explication technique détaillée" 
+          <CollapsibleSection
+            title="Explication technique détaillée"
             variant="subtle"
             defaultOpen={false}
           >
             <TechnicalTooltip data={tooltipData} />
           </CollapsibleSection>
         )}
-        
-        {/* SVG Diagram if available */}
+
+        {/* Diagramme SVG s'il existe */}
         {tooltipData?.diagram && (
-          <CollapsibleSection 
-            title="Diagramme conceptuel" 
+          <CollapsibleSection
+            title="Diagramme conceptuel"
             variant="subtle"
             defaultOpen={!isVeryLong}
           >
@@ -582,36 +492,17 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
             </div>
           </CollapsibleSection>
         )}
-        
-        {/* Main description with smart truncation */}
-        {isVeryLong ? (
-          // Very long descriptions: use collapsible sections
+
+        {sections.length > 0 ? (
           <div className="space-y-3">
-            {createSections(formattedText).map((section, index) => (
-              <CollapsibleSection
-                key={index}
-                title={section.title}
-                defaultOpen={section.defaultOpen}
-                variant="outlined"
-              >
-                <TruncatedText
-                  text={section.content}
-                  wordLimit={150}
-                  showWordCount={false}
-                  enableMarkdown={true}
-                />
+            {sections.map((section, index) => (
+              <CollapsibleSection key={section.title + index} title={section.title} defaultOpen={index === 0} variant="outlined">
+                <GlossaryMarkdown text={section.content} />
               </CollapsibleSection>
             ))}
           </div>
         ) : (
-          // Regular descriptions: use truncated text
-          <TruncatedText
-            text={formattedText}
-            wordLimit={isLong ? 100 : 200}
-            showWordCount={isLong}
-            enableMarkdown={true}
-            className=""
-          />
+          <ExpandableGlossaryText text={description} wordLimit={100} />
         )}
       </div>
     );
@@ -625,6 +516,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
       "deep-learning": "Deep Learning",
       statistiques: "Statistiques",
       nlp: "Traitement du Langage",
+      evaluation: "Évaluation des modèles",
       "computer-vision": "Vision par Ordinateur",
       preprocessing: "Préparation des Données",
       mlops: "MLOps & Production",
@@ -632,7 +524,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
       visualization: "Visualisation",
       ethics: "Éthique & IA"
     };
-    return displayNames[category || ""] || category || "Général";
+    return displayNames[category || ""] || CATEGORY_INFO[category as GlossaryCategory]?.name || category || "Général";
   };
 
   // Category colors for visual distinction
@@ -643,6 +535,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
       "deep-learning": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
       statistiques: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
       nlp: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
+      evaluation: "bg-amber-100 text-amber-900 dark:bg-amber-900 dark:text-amber-100",
       "computer-vision": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200",
       preprocessing: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
       mlops: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
@@ -691,12 +584,12 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
 
       <CardContent className="pl-8 pr-6 pb-6">
         <div className="relative">
-          {/* Notebook lines background */}
-          <div className="absolute inset-0 opacity-10 dark:opacity-5 pointer-events-none">
-            {[...Array(Math.ceil(entry.description.length / 80))].map((_, i) => (
-              <div key={i} className="h-6 border-b border-blue-200 dark:border-blue-800" style={{ top: `${i * 24}px` }} />
-            ))}
-          </div>
+          {/* Lignes de cahier : un seul fond répété (et non un élément par ligne : 4 800 éléments de moins sur la page) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-10 dark:opacity-5 pointer-events-none text-blue-200 dark:text-blue-800"
+            style={{ backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent 23px, currentColor 23px, currentColor 24px)" }}
+          />
           
           {/* Content */}
           <div className="relative z-10">

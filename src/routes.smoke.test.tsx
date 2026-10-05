@@ -53,6 +53,13 @@ afterEach(() => {
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+/** Identifiants présents plusieurs fois (une ancre ou un label ne vise alors que le premier) */
+const idsEnDouble = (el: Element) => {
+  const vus = new Map<string, number>();
+  for (const node of el.querySelectorAll("[id]")) vus.set(node.id, (vus.get(node.id) ?? 0) + 1);
+  return [...vus].filter(([, n]) => n > 1).map(([id, n]) => `${id} x${n}`);
+};
+
 describe("routes : chaque page s'affiche", () => {
   it("trouve les routes du site", () => {
     expect(routes.length).toBeGreaterThan(40);
@@ -82,6 +89,8 @@ describe("routes : chaque page s'affiche", () => {
     expect(container.querySelectorAll("h1").length, `titres h1 de ${route} (il en faut exactement un)`).toBe(1);
     // un seul fil d'Ariane par page (régression du 5 octobre 2026 : /machine-learning/supervised en affichait deux, l'un sous l'autre)
     expect(container.querySelectorAll('nav[aria-label="breadcrumb"]').length, `fils d'Ariane de ${route}`).toBeLessThanOrEqual(1);
+    // régression du 5 octobre 2026 : l'algèbre linéaire affichait chaque section deux fois, avec les mêmes id
+    expect(idsEnDouble(container), `id en double sur ${route}`).toEqual([]);
 
     // Radix n'affiche que l'onglet actif : on active chaque onglet (y compris ceux qui apparaissent ensuite)
     // pour que le contenu des autres onglets soit rendu, lui aussi.
@@ -99,6 +108,7 @@ describe("routes : chaque page s'affiche", () => {
           await wait(10);
         });
         expect(container.textContent ?? "", `onglet « ${onglet.textContent} » de ${route}`).not.toContain("Une erreur s'est produite");
+        expect(idsEnDouble(container), `id en double, onglet « ${onglet.textContent} » de ${route}`).toEqual([]);
       }
       if (nouveaux === 0) break;
     }

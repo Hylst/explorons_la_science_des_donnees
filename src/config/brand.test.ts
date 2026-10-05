@@ -234,10 +234,21 @@ describe("licence", () => {
     expect(LICENSE_SPDX).toBe("AGPL-3.0-or-later");
   });
 
-  it("le fichier LICENSE déclare le même identifiant SPDX et cite le nom actuel du site", () => {
+  it("NOTICE.md déclare le même identifiant SPDX et cite le nom actuel du site", () => {
+    const notice = read("NOTICE.md");
+    expect(notice.split("\n")[0]).toBe(`SPDX-License-Identifier: ${LICENSE_SPDX}`);
+    expect(notice).toMatch(new RegExp(`^${escapeRegExp(SITE_NAME)}`, "m"));
+    expect(notice).toContain("GNU Affero General Public License");
+  });
+
+  // GitHub ne reconnaît la licence (et n'affiche « AGPL-3.0 » plutôt que « Other ») que si le fichier est le texte officiel seul :
+  // l'avis du projet et les exceptions vivent dans NOTICE.md.
+  it("LICENSE est le texte officiel de la GNU AGPL v3, sans préambule du projet", () => {
     const license = read("LICENSE");
-    expect(license.split("\n")[0]).toBe(`SPDX-License-Identifier: ${LICENSE_SPDX}`);
-    expect(license).toMatch(new RegExp(`^${escapeRegExp(SITE_NAME)}`, "m"));
-    expect(license).toContain("GNU Affero General Public License");
+    expect(license.trimStart().startsWith("GNU AFFERO GENERAL PUBLIC LICENSE\n")).toBe(true);
+    expect(license).toContain("Version 3, 19 November 2007");
+    expect(license).not.toContain("SPDX-License-Identifier");
+    expect(license).not.toContain(SITE_NAME);
+    expect(license.split("\n").length).toBeGreaterThan(640);
   });
 });

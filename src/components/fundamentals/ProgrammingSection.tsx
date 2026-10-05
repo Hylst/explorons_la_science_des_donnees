@@ -14,27 +14,17 @@ const ProgrammingSection = () => {
       <div id="programming-intro">
         <ProgrammingIntro />
       </div>
-      <div id="python-masterclass">
-        <PythonMasterclass />
-      </div>
-      <div id="language-comparison">
-        <LanguageComparison />
-      </div>
-      <div id="practical-exercises">
-        <PracticalExercises />
-      </div>
-      <div id="advanced-concepts">
-        <AdvancedConcepts />
-      </div>
+      <PythonMasterclass />
+      <LanguageComparison />
+      <PracticalExercises />
+      <AdvancedConcepts />
       <div id="interactive-challenges">
         <InteractiveChallenges />
       </div>
       <div id="code-editor">
         <CodeEditor />
       </div>
-      <div id="resources">
-        <ResourcesSection />
-      </div>
+      <ResourcesSection />
     </div>
   );
 };

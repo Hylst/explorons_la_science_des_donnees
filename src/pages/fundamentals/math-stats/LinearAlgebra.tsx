@@ -5,6 +5,7 @@ import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import LinearAlgebraIntro from "./linear-algebra/LinearAlgebraIntro";
 import VectorsSection from "./linear-algebra/VectorsSection";
 import MatricesSection from "./linear-algebra/MatricesSection";
+import MatrixTypesSection from "./linear-algebra/MatrixTypesSection";
 import OperationsSection from "./linear-algebra/OperationsSection";
 import DecompositionsSection from "./linear-algebra/DecompositionsSection";
 import ApplicationsSection from "./linear-algebra/ApplicationsSection";
@@ -25,6 +26,7 @@ const LinearAlgebra = () => {
             <LinearAlgebraIntro />
             <VectorsSection />
             <MatricesSection />
+            <MatrixTypesSection />
             <OperationsSection />
             <DecompositionsSection />
             <ApplicationsSection />

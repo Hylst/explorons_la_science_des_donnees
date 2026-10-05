@@ -1,17 +1,10 @@
-import { asset } from "@/lib/asset";
+import { courseImage } from "@/lib/course-image";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { COURSE_CATALOG, FEATURED_COURSE_IDS } from "@/data/course-catalog";
-
-// Illustrations SVG animées des cours mis en avant (public/svg/cards, dessinées pour le site ; les données viennent de data/course-catalog.ts)
-const IMAGES: Record<string, string> = {
-  "python-basics": asset("svg/cards/python-code.svg"),
-  "math-intro": asset("svg/cards/maths-descente.svg"),
-  "ml-models-guide": asset("svg/cards/ml-frontiere.svg"),
-};
 
 const courses = FEATURED_COURSE_IDS.flatMap((id) => COURSE_CATALOG.filter((course) => course.id === id));
 
@@ -39,7 +32,7 @@ const FeaturedCourses = () => {
             <Card key={course.id} className="overflow-hidden card-hover flex flex-col">
               <div className="aspect-[16/9] relative">
                 <img
-                  src={IMAGES[course.id]}
+                  src={courseImage(course.id)}
                   alt=""
                   width={800}
                   height={450}

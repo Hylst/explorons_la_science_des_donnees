@@ -83,9 +83,9 @@ const CorrelationSection = () => {
     { type: "Parfaite positive", r: 1.0, color: "#10B981", description: "Relation linéaire parfaite croissante" },
     { type: "Forte positive", r: 0.8, color: "#22C55E", description: "Forte tendance croissante avec variabilité" },
     { type: "Modérée positive", r: 0.5, color: "#84CC16", description: "Tendance croissante modérée" },
-    { type: "Faible positive", r: 0.2, color: "#EAB308", description: "Légère tendance croissante" },
+    { type: "Négligeable positive", r: 0.2, color: "#EAB308", description: "Légère tendance croissante" },
     { type: "Nulle", r: 0.0, color: "#6B7280", description: "Aucune relation linéaire" },
-    { type: "Faible négative", r: -0.2, color: "#F97316", description: "Légère tendance décroissante" },
+    { type: "Négligeable négative", r: -0.2, color: "#F97316", description: "Légère tendance décroissante" },
     { type: "Modérée négative", r: -0.5, color: "#EF4444", description: "Tendance décroissante modérée" },
     { type: "Forte négative", r: -0.8, color: "#DC2626", description: "Forte tendance décroissante" },
     { type: "Parfaite négative", r: -1.0, color: "#B91C1C", description: "Relation linéaire parfaite décroissante" }
@@ -266,7 +266,7 @@ const CorrelationSection = () => {
                   <li>• <strong>Borné :</strong> -1 ≤ r ≤ 1 (toujours !)</li>
                   <li>• <strong>Sans unité :</strong> Comparable universellement</li>
                   <li>• <strong>Symétrique :</strong> r(X,Y) = r(Y,X)</li>
-                  <li>• <strong>Invariant :</strong> Résiste aux transformations linéaires</li>
+                  <li>• <strong>Invariant :</strong> ne change pas si l'on change d'unité (x → ax + b avec a &gt; 0) ; le signe s'inverse si a &lt; 0</li>
                 </ul>
               </div>
 
@@ -594,7 +594,7 @@ const CorrelationSection = () => {
               <h5 className="font-semibold mb-2 text-blue-700">Spearman (ρ)</h5>
               <p className="text-sm mb-3">Corrélation de rang, parfaite pour relations monotones non-linéaires</p>
               <div className="text-xs space-y-1">
-                <p><strong>Avantage :</strong> Détecte relations courbes</p>
+                <p><strong>Avantage :</strong> détecte les relations monotones, même courbes (pas les relations en U)</p>
                 <p><strong>Usage :</strong> Variables ordinales</p>
                 <p><strong>Exemple :</strong> Satisfaction client vs fidélité</p>
               </div>
@@ -614,8 +614,8 @@ const CorrelationSection = () => {
               <h5 className="font-semibold mb-2 text-purple-700">Corrélation partielle</h5>
               <p className="text-sm mb-3">Corrélation entre X et Y en contrôlant Z</p>
               <div className="text-xs space-y-1">
-                <p><strong>Avantage :</strong> Élimine effet confondant</p>
-                <p><strong>Usage :</strong> Analyse causale</p>
+                <p><strong>Avantage :</strong> retire l'effet linéaire d'une variable mesurée Z</p>
+                <p><strong>Usage :</strong> explorer un facteur confondant (cela ne prouve pas la causalité)</p>
                 <p><strong>Exemple :</strong> Éducation vs salaire (contrôlé par âge)</p>
               </div>
             </div>

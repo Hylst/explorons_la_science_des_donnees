@@ -25,11 +25,11 @@ const DifferentialCalculusIntro = () => {
           </Badge>
           <Badge className="bg-yellow-100 text-yellow-800 p-3 justify-center flex items-center gap-2">
             <TrendingUp className="h-4 w-4" />
-            Gradient descent
+            Descente de gradient
           </Badge>
           <Badge className="bg-pink-100 text-pink-800 p-3 justify-center flex items-center gap-2">
             <Zap className="h-4 w-4" />
-            Backpropagation
+            Rétropropagation
           </Badge>
         </div>
 
@@ -40,7 +40,7 @@ const DifferentialCalculusIntro = () => {
             <li>• Appliquer les dérivées à l'optimisation</li>
             <li>• Découvrir les gradients et dérivées partielles</li>
             <li>• Implémenter la descente de gradient</li>
-            <li>• Comprendre la backpropagation</li>
+            <li>• Comprendre la rétropropagation (backpropagation)</li>
           </ul>
         </CourseHighlight>
       </div>

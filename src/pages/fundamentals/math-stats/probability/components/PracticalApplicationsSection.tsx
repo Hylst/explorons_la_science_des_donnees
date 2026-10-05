@@ -16,9 +16,9 @@ const PracticalApplicationsSection = () => {
 
   // Classification data for ML example
   const classificationData = [
-    { category: 'Spam', probability: 0.85, confidence: 'Haute' },
-    { category: 'Important', probability: 0.12, confidence: 'Moyenne' },
-    { category: 'Promotion', probability: 0.03, confidence: 'Faible' }
+    { category: 'Spam', probability: 0.85, label: 'Très probable' },
+    { category: 'Important', probability: 0.12, label: 'Peu probable' },
+    { category: 'Promotion', probability: 0.03, label: 'Très peu probable' }
   ];
 
   // A/B testing data
@@ -54,6 +54,12 @@ const PracticalApplicationsSection = () => {
     }, 0);
   };
 
+  /** Écart-type des rendements : la mesure de risque la plus simple */
+  const calculateReturnStd = () => {
+    const mean = calculateExpectedReturn();
+    return Math.sqrt(riskData.reduce((sum, scenario) => sum + scenario.probability * (scenario.return - mean) ** 2, 0));
+  };
+
   /**
    * Calculate confidence interval for A/B testing
    */
@@ -85,8 +91,10 @@ const PracticalApplicationsSection = () => {
             
             <p className="text-gray-700">
               De la classification automatique d'emails à l'optimisation de campagnes marketing, 
-              en passant par l'analyse de risques financiers, les probabilités transforment 
-              l'incertitude en opportunités d'affaires.
+              en passant par l'analyse de risques financiers, les probabilités aident à décider malgré l'incertitude.
+            </p>
+            <p className="text-sm text-gray-600">
+              Les chiffres des quatre exemples ci-dessous sont fictifs : ils servent seulement à illustrer les calculs.
             </p>
 
             {/* Navigation des applications */}
@@ -134,7 +142,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5" />
-              🤖 Classification d'Emails - Machine Learning
+              🤖 Classification d'e-mails (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -170,8 +178,8 @@ const PracticalApplicationsSection = () => {
                   <div key={item.category} className="bg-gray-50 p-3 rounded flex justify-between items-center">
                     <div>
                       <span className="font-medium">{item.category}</span>
-                      <Badge className="ml-2" variant={item.confidence === 'Haute' ? 'default' : item.confidence === 'Moyenne' ? 'secondary' : 'outline'}>
-                        {item.confidence}
+                      <Badge className="ml-2" variant={item.probability >= 0.7 ? 'default' : item.probability >= 0.1 ? 'secondary' : 'outline'}>
+                        {item.label}
                       </Badge>
                     </div>
                     <span className="text-lg font-bold" style={{ color: COLORS[index] }}>
@@ -183,7 +191,7 @@ const PracticalApplicationsSection = () => {
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h5 className="font-semibold mb-2">🎯 Décision automatique :</h5>
                   <p className="text-sm">
-                    <strong>Classification :</strong> Spam (85% de confiance)<br/>
+                    <strong>Classification :</strong> Spam (probabilité estimée : 85 %, au-dessus du seuil)<br/>
                     <strong>Action :</strong> Déplacer vers le dossier spam<br/>
                     <strong>Seuil de décision :</strong> 70%
                   </p>
@@ -207,7 +215,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
-              📊 A/B Testing - Optimisation de Conversion
+              📊 Test A/B : comparer deux versions (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -250,8 +258,9 @@ const PracticalApplicationsSection = () => {
                   <ul className="text-sm space-y-1">
                     <li>• <strong>Amélioration :</strong> +4.2 points de pourcentage</li>
                     <li>• <strong>Lift relatif :</strong> +17.1%</li>
-                    <li>• <strong>Significativité :</strong> p-value &lt; 0.05</li>
-                    <li>• <strong>Recommandation :</strong> Déployer la Version B</li>
+                    <li>• <strong>Test :</strong> Z ≈ 2,13, p ≈ 0,033 (bilatéral), donc p &lt; 0,05</li>
+                    <li>• <strong>Lecture :</strong> un écart aussi grand serait rare si les deux versions convertissaient pareil ; reste à juger s'il compte en pratique</li>
+                    <li>• <strong>Piège :</strong> les deux intervalles ci-dessus se chevauchent, et pourtant la différence est significative : il faut tester la différence elle-même</li>
                   </ul>
                 </div>
               </div>
@@ -273,7 +282,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5" />
-              ⚖️ Analyse de Risque Financier
+              ⚖️ Analyse de risque (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -324,11 +333,12 @@ const PracticalApplicationsSection = () => {
                 <div className="bg-yellow-50 p-4 rounded-lg">
                   <h5 className="font-semibold mb-2 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4" />
-                    💡 Recommandation :
+                    💡 À retenir :
                   </h5>
                   <p className="text-sm">
-                    Investissement modérément attractif avec un rendement espéré positif de {calculateExpectedReturn().toFixed(2)}%.
-                    Diversifier pour réduire les risques.
+                    Rendement espéré : {calculateExpectedReturn().toFixed(2)} %. L'espérance ne dit rien du risque : il faut aussi
+                    regarder la dispersion des scénarios (de -3 % à +15 %), ici un écart-type d'environ {calculateReturnStd().toFixed(2)} points.
+                    Ce calcul illustre une notion de cours, ce n'est pas un conseil d'investissement.
                   </p>
                 </div>
               </div>
@@ -350,7 +360,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              🎯 Système de Recommandation
+              🎯 Système de recommandation (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -390,7 +400,7 @@ const PracticalApplicationsSection = () => {
                 </div>
                 
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">📊 Métriques du système (valeurs fictives pour l'exemple)</h5>
+                  <h5 className="font-semibold mb-2">📊 Métriques du système</h5>
                   <div className="space-y-2 text-sm">
                     <div><strong>Précision :</strong> 87.3%</div>
                     <div><strong>Rappel :</strong> 82.1%</div>
@@ -404,7 +414,7 @@ const PracticalApplicationsSection = () => {
             <div className="mt-6">
               <CourseEquation latex="Score(u,i) = \sum_{j \in factors} w_j \cdot P(like_j | user_u, item_i)" />
               <p className="text-sm text-gray-600 mt-2">
-                Score de recommandation basé sur les probabilités conditionnelles des préférences utilisateur
+                Modèle simplifié, à titre d'illustration : les systèmes réels utilisent plutôt le filtrage collaboratif ou la factorisation de matrices
               </p>
             </div>
           </CardContent>
@@ -416,18 +426,18 @@ const PracticalApplicationsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-6 w-6 text-green-600" />
-            Synthèse : L'Impact des Probabilités en Data Science
+            Synthèse : ce que les probabilités apportent
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <CourseHighlight title="Points Clés" type="info">
-              Les probabilités permettent de transformer l'incertitude en décisions quantifiées et optimisées.
+              Les probabilités permettent de prendre des décisions en tenant compte de l'incertitude, et de dire avec quelle assurance on le fait.
             </CourseHighlight>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <ul className="space-y-2 text-sm">
-                <li>• Pratiquer avec des datasets réels</li>
+                <li>• Pratiquer avec des jeux de données réels</li>
                 <li>• Implémenter des modèles probabilistes</li>
                 <li>• Approfondir les tests statistiques</li>
               </ul>

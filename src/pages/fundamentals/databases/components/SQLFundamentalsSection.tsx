@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Server, 
-  Code, 
-  Play,
+  Code,
   BookOpen,
   Lightbulb,
   AlertTriangle,
@@ -36,7 +35,7 @@ SELECT
 FROM employes 
 GROUP BY departement
 HAVING AVG(salaire) > 50000;`,
-      explanation: "Cette requête trouve les 10 employés IT les mieux payés, puis calcule des statistiques par département."
+      explanation: "La première requête donne les 10 employés IT de plus de 25 ans les mieux payés. La seconde, indépendante, calcule des statistiques par département et ne garde que ceux dont le salaire moyen dépasse 50 000."
     },
     insert: {
       title: "INSERT - Ajouter des données",
@@ -74,14 +73,14 @@ SET
         WHEN anciennete > 2 THEN salaire * 1.05
         ELSE salaire * 1.02
     END,
-    date_maj = NOW()
+    date_maj = CURRENT_TIMESTAMP
 WHERE status = 'actif';`,
       explanation: "UPDATE modifie les données existantes. Attention au WHERE pour éviter de tout modifier !"
     },
     join: {
       title: "JOIN - Relier les tables",
       description: "Combiner des données de plusieurs tables",
-      code: `-- INNER JOIN (intersection)
+      code: `-- INNER JOIN (seulement les lignes qui ont une correspondance des deux côtés)
 SELECT 
     e.nom,
     e.salaire,
@@ -106,7 +105,7 @@ SELECT
 FROM departements d
 LEFT JOIN employes e ON d.id = e.dept_id
 GROUP BY d.id, d.nom_departement;`,
-      explanation: "Les JOINs relient les tables. INNER = intersection, LEFT = tous les éléments de gauche."
+      explanation: "Les JOINs relient les tables. INNER JOIN ne garde que les lignes qui ont une correspondance des deux côtés. LEFT JOIN garde toutes les lignes de la table de gauche, avec NULL quand il n'y a pas de correspondance."
     }
   };
 
@@ -124,15 +123,15 @@ GROUP BY d.id, d.nom_departement;`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
-            SQL : Le langage universel des données
+            SQL : le langage des bases relationnelles
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <p className="mb-4">
-                <strong>SQL (Structured Query Language)</strong> est LE langage pour communiquer 
-                avec les bases de données relationnelles. Créé en 1974, il reste très utilisé !
+                <strong>SQL (Structured Query Language)</strong> est le langage de référence des bases de données relationnelles.
+                Il est issu des travaux d'IBM du début des années 1970 (SEQUEL, 1974) et reste très utilisé.
               </p>
               
               <div className="bg-green-50 p-4 rounded-lg mb-4">
@@ -140,7 +139,7 @@ GROUP BY d.id, d.nom_departement;`,
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Standard :</strong> Fonctionne sur la plupart des bases de données relationnelles (avec des variantes de dialecte)</li>
                   <li>• <strong>Puissant :</strong> Requêtes complexes en quelques lignes</li>
-                  <li>• <strong>Optimisé :</strong> Performances exceptionnelles</li>
+                  <li>• <strong>Optimisable :</strong> le SGBD choisit un plan d'exécution et des index peuvent l'accélérer</li>
                   <li>• <strong>Déclaratif :</strong> On dit QUOI, pas COMMENT</li>
                 </ul>
               </div>
@@ -150,23 +149,23 @@ GROUP BY d.id, d.nom_departement;`,
               <h4 className="font-semibold mb-3">🏗️ Anatomie d'une requête SQL</h4>
               <div className="space-y-2 font-mono text-sm">
                 <div className="flex">
-                  <span className="text-blue-600 font-bold w-16">SELECT</span>
+                  <span className="text-blue-600 font-bold w-24 flex-shrink-0">SELECT</span>
                   <span className="text-gray-600">quelles colonnes</span>
                 </div>
                 <div className="flex">
-                  <span className="text-purple-600 font-bold w-16">FROM</span>
+                  <span className="text-purple-600 font-bold w-24 flex-shrink-0">FROM</span>
                   <span className="text-gray-600">quelle table</span>
                 </div>
                 <div className="flex">
-                  <span className="text-orange-600 font-bold w-16">WHERE</span>
+                  <span className="text-orange-600 font-bold w-24 flex-shrink-0">WHERE</span>
                   <span className="text-gray-600">quelles conditions</span>
                 </div>
                 <div className="flex">
-                  <span className="text-green-600 font-bold w-16">GROUP BY</span>
+                  <span className="text-green-600 font-bold w-24 flex-shrink-0">GROUP BY</span>
                   <span className="text-gray-600">regrouper par</span>
                 </div>
                 <div className="flex">
-                  <span className="text-red-600 font-bold w-16">ORDER BY</span>
+                  <span className="text-red-600 font-bold w-24 flex-shrink-0">ORDER BY</span>
                   <span className="text-gray-600">trier par</span>
                 </div>
               </div>
@@ -180,7 +179,7 @@ GROUP BY d.id, d.nom_departement;`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Code className="h-5 w-5" />
-            Exemples SQL interactifs
+            Exemples SQL (à lire)
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -200,7 +199,7 @@ GROUP BY d.id, d.nom_departement;`,
 
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-3">
-              <Play className="h-4 w-4 text-green-600" />
+              <BookOpen className="h-4 w-4 text-green-600 flex-shrink-0" />
               <h4 className="font-semibold">{sqlExamples[activeExample].title}</h4>
             </div>
             
@@ -216,7 +215,7 @@ GROUP BY d.id, d.nom_departement;`,
 
             <div className="bg-blue-50 p-4 rounded-lg">
               <div className="flex items-start gap-2">
-                <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5" />
+                <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <h5 className="font-semibold text-blue-800 mb-1">💡 Explication</h5>
                   <p className="text-sm text-blue-700">
@@ -239,8 +238,8 @@ GROUP BY d.id, d.nom_departement;`,
         </CardHeader>
         <CardContent>
           <p className="mb-6">
-            Les bases de données relationnelles garantissent 4 propriétés essentielles 
-            pour la fiabilité des transactions :
+            Les moteurs relationnels transactionnels (PostgreSQL, MySQL/InnoDB, SQLite...) offrent 4 propriétés
+            pour fiabiliser les transactions, l'isolation étant réglable par niveaux :
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -261,7 +260,7 @@ GROUP BY d.id, d.nom_departement;`,
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-blue-800 mb-2">🔹 Cohérence</h4>
                 <p className="text-sm mb-2">
-                  Les données respectent toujours les règles métier et contraintes.
+                  Une transaction fait passer la base d'un état valide à un autre état valide : toutes les contraintes déclarées sont respectées.
                 </p>
                 <div className="bg-white p-2 rounded text-xs">
                   Contraintes : clés étrangères, CHECK, NOT NULL, UNIQUE...
@@ -304,7 +303,7 @@ GROUP BY d.id, d.nom_departement;`,
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="performance" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full h-auto grid-cols-1 sm:grid-cols-3">
               <TabsTrigger value="performance">Performance</TabsTrigger>
               <TabsTrigger value="security">Sécurité</TabsTrigger>
               <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
@@ -315,9 +314,9 @@ GROUP BY d.id, d.nom_departement;`,
                 <div className="bg-green-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-green-800 mb-2">✅ À faire</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Utiliser des index sur les colonnes WHERE</li>
+                    <li>• Indexer les colonnes souvent utilisées dans WHERE, JOIN et ORDER BY (si la table est grosse)</li>
                     <li>• Éviter SELECT * (spécifier les colonnes)</li>
-                    <li>• Utiliser LIMIT pour les gros résultats</li>
+                    <li>• Limiter le nombre de lignes (LIMIT, TOP ou FETCH FIRST selon le SGBD)</li>
                     <li>• Comparer EXISTS et IN sur les grosses sous-requêtes (selon le SGBD, les plans diffèrent)</li>
                     <li>• Analyser les plans d'exécution</li>
                   </ul>
@@ -325,7 +324,7 @@ GROUP BY d.id, d.nom_departement;`,
                 <div className="bg-red-50 p-4 rounded-lg">
                   <h4 className="font-semibold text-red-800 mb-2">❌ À éviter</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Fonctions dans les clauses WHERE</li>
+                    <li>• Fonctions appliquées à une colonne indexée dans WHERE (ex. YEAR(date_commande) = 2024)</li>
                     <li>• Jointures sans conditions appropriées</li>
                     <li>• N+1 queries (requêtes en boucle)</li>
                     <li>• Index inutiles (ralentissent les écritures)</li>
@@ -338,24 +337,33 @@ GROUP BY d.id, d.nom_departement;`,
             <TabsContent value="security" className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg border border-red-200">
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5" />
+                  <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-red-800 mb-2">🚨 Injections SQL</h4>
                     <p className="text-sm mb-3">
                       Une faille classique de sécurité web (catégorie « Injection » de l'OWASP Top 10) ! Toujours utiliser des requêtes préparées.
                     </p>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <div>
                         <span className="text-red-600 font-semibold text-xs">❌ DANGER :</span>
-                        <code className="bg-white p-1 rounded text-xs ml-2">
-                          "SELECT * FROM users WHERE id = " + userId
+                        <code className="bg-white p-1 rounded text-xs ml-2 break-all">
+                          query = "SELECT * FROM users WHERE id = " + userId
                         </code>
+                        <p className="text-xs mt-1">
+                          Si userId vaut « 1 OR 1=1 », la requête devient
+                          {" "}<code className="bg-white p-1 rounded break-all">SELECT * FROM users WHERE id = 1 OR 1=1</code>{" "}
+                          et renvoie tous les utilisateurs.
+                        </p>
                       </div>
                       <div>
                         <span className="text-green-600 font-semibold text-xs">✅ SÉCURISÉ :</span>
-                        <code className="bg-white p-1 rounded text-xs ml-2">
-                          "SELECT * FROM users WHERE id = ?"
+                        <code className="bg-white p-1 rounded text-xs ml-2 break-all">
+                          cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
                         </code>
+                        <p className="text-xs mt-1">
+                          La valeur est transmise séparément du texte de la requête : le moteur ne l'interprète
+                          jamais comme du SQL. Le marqueur varie selon le pilote (?, %s, :id, $1).
+                        </p>
                       </div>
                     </div>
                   </div>

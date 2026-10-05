@@ -220,11 +220,11 @@ const ClusteringSection = () => {
                     <h4 className="font-semibold mb-2">🔄 Deux Approches :</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white p-3 rounded border-l-4 border-green-400">
-                        <strong>⬆️ Agglomerative (Bottom-up) :</strong> 
+                        <strong>⬆️ Agglomerative (Bottom-up) :</strong>{" "}
                         Partir des individus et former des familles, puis des clans
                       </div>
                       <div className="bg-white p-3 rounded border-l-4 border-blue-400">
-                        <strong>⬇️ Divisive (Top-down) :</strong> 
+                        <strong>⬇️ Divisive (Top-down) :</strong>{" "}
                         Partir du clan entier et diviser en sous-groupes
                       </div>
                     </div>

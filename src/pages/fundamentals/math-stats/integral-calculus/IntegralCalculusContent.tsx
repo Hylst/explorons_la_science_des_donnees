@@ -10,19 +10,19 @@ const IntegralCalculusContent = () => {
       name: "Intégration par substitution",
       formula: "∫ f(g(x))g'(x)dx = ∫ f(u)du",
       description: "Changement de variable pour simplifier l'intégrale",
-      example: "∫ 2x(x² + 1)³dx"
+      example: "∫ 2x(x² + 1)³dx = (x² + 1)⁴/4 + C (avec u = x² + 1)"
     },
     {
       name: "Intégration par parties",
       formula: "∫ udv = uv - ∫ vdu",
       description: "Pour les produits de fonctions",
-      example: "∫ x·eˣdx"
+      example: "∫ x·eˣdx = (x - 1)eˣ + C (avec u = x et dv = eˣdx)"
     },
     {
       name: "Fractions partielles",
       formula: "∫ P(x)/Q(x)dx",
       description: "Décomposition de fractions rationnelles",
-      example: "∫ 1/(x² - 1)dx"
+      example: "∫ 1/(x² - 1)dx = ½ ln|(x - 1)/(x + 1)| + C, car 1/(x² - 1) = ½ [1/(x - 1) - 1/(x + 1)]"
     }
   ];
 
@@ -30,20 +30,20 @@ const IntegralCalculusContent = () => {
     {
       domain: "Statistiques",
       description: "Calcul de probabilités avec des densités continues",
-      example: "∫ f(x)dx = P(a ≤ X ≤ b)",
+      example: "∫_a^b f(x)dx = P(a ≤ X ≤ b)",
       use_cases: ["Loi normale", "Fonctions de densité", "Espérance mathématique"]
     },
     {
       domain: "Machine Learning",
-      description: "Optimisation et fonctions de coût",
-      example: "Risque (perte moyenne) : R(θ) = E[L(θ, X)] = ∫ L(θ, x) p(x) dx",
-      use_cases: ["Gradient descent", "Régularisation", "Fonctions de perte"]
+      description: "Perte moyenne attendue d'un modèle",
+      example: "R(\\theta) = \\mathbb{E}[L(\\theta, X)] = \\int L(\\theta, x)\\, p(x)\\, dx",
+      use_cases: ["Risque espéré (perte moyenne)", "Entropie et divergence de Kullback-Leibler", "Pertes moyennes sur une loi continue"]
     },
     {
       domain: "Analyse de données",
-      description: "Calcul d'aires sous les courbes",
-      example: "AUC = ∫ ROC(x)dx",
-      use_cases: ["Métriques de performance", "Analyse de tendances", "Intégration numérique"]
+      description: "Aire sous la courbe ROC (u = taux de faux positifs, TPR = taux de vrais positifs)",
+      example: "\\mathrm{AUC} = \\int_0^1 \\mathrm{TPR}(u)\\, du",
+      use_cases: ["Métriques de performance", "Intégration numérique (méthode des trapèzes)"]
     }
   ];
 
@@ -54,15 +54,15 @@ const IntegralCalculusContent = () => {
         <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-8 rounded-xl border border-purple-100">
           <h2 className="text-3xl font-bold mb-6 text-indigo-900 flex items-center gap-3">
             <Lightbulb className="h-8 w-8 text-yellow-500" />
-            🧮 Le Calcul Intégral : L'Art de l'Accumulation
+            🧮 Le calcul intégral : mesurer une accumulation
           </h2>
           
           <div className="max-w-none text-gray-700 mb-8">
             <p className="text-xl leading-relaxed mb-6">
               Le calcul intégral est l'art de mesurer l'accumulation. Là où les dérivées nous parlent 
               de vitesse de changement, les intégrales nous parlent de quantités totales accumulées. 
-              En data science, c'est un outil fondamental pour comprendre les probabilités, 
-              optimiser les modèles et analyser les tendances.
+              En data science, on la retrouve surtout dans les probabilités continues (densités, espérance)
+              et dans certains indicateurs comme l'aire sous la courbe ROC (AUC).
             </p>
             
             <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500 my-6">
@@ -184,7 +184,7 @@ const IntegralCalculusContent = () => {
       <section id="applications" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Target className="h-6 w-6 text-green-600" />
-          Applications en Data Science
+          Applications en science des données
         </h2>
 
         <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-100">
@@ -239,7 +239,7 @@ const IntegralCalculusContent = () => {
                 <summary className="cursor-pointer font-medium text-blue-800">Voir la solution</summary>
                 <div className="mt-3 space-y-2">
                   <CourseEquation latex="A = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}" />
-                  <p className="text-sm text-blue-700">L'aire est de 8/3 unités carrées.</p>
+                  <p className="text-sm text-blue-700">L'aire vaut 8/3 unités d'aire (environ 2,67).</p>
                 </div>
               </details>
             </CardContent>
@@ -250,15 +250,15 @@ const IntegralCalculusContent = () => {
               <CardTitle className="text-lg">Exercice 2 : Probabilité continue</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="mb-4">Pour une loi uniforme sur [0,1], calculez P(0.2 ≤ X ≤ 0.7)</p>
+              <p className="mb-4">Pour une loi uniforme sur [0,1], calculez P(0,2 ≤ X ≤ 0,7)</p>
               <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                <CourseEquation latex="P(0.2 \leq X \leq 0.7) = \int_{0.2}^{0.7} 1 dx" />
+                <CourseEquation latex="P(0{,}2 \leq X \leq 0{,}7) = \int_{0{,}2}^{0{,}7} 1\, dx" />
               </div>
               <details className="bg-blue-50 p-4 rounded border">
                 <summary className="cursor-pointer font-medium text-blue-800">Voir la solution</summary>
                 <div className="mt-3 space-y-2">
-                  <CourseEquation latex="P = [x]_{0.2}^{0.7} = 0.7 - 0.2 = 0.5" />
-                  <p className="text-sm text-blue-700">La probabilité est de 0.5 ou 50%.</p>
+                  <CourseEquation latex="P = [x]_{0{,}2}^{0{,}7} = 0{,}7 - 0{,}2 = 0{,}5" />
+                  <p className="text-sm text-blue-700">La probabilité vaut 0,5, soit 50 %.</p>
                 </div>
               </details>
             </CardContent>
@@ -272,7 +272,7 @@ const IntegralCalculusContent = () => {
             <h4 className="font-semibold mb-3">Avec les bases du calcul intégral, vous pouvez aborder :</h4>
             <ul className="space-y-2 text-sm">
               <li>✓ Calcul des probabilités continues</li>
-              <li>✓ Optimisation de fonctions de coût</li>
+              <li>✓ Espérance et variance d'une variable continue</li>
               <li>✓ Analyse de performance de modèles</li>
               <li>✓ Méthodes d'intégration numérique</li>
             </ul>

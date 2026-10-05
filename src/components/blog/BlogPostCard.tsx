@@ -3,6 +3,7 @@ import { Heart, Clock, User } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { blogImage } from "@/lib/blog-image";
 
 interface BlogPost {
   id: string;
@@ -57,7 +58,16 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, onReadMore, isFavorit
   };
 
   return (
-    <Card className={`hover:shadow-lg transition-all duration-300 ${post.featured ? 'ring-2 ring-blue-200' : ''}`}>
+    <Card className={`overflow-hidden hover:shadow-lg transition-all duration-300 ${post.featured ? 'ring-2 ring-blue-200' : ''}`}>
+      <img
+        src={blogImage(post.id)}
+        alt=""
+        width={800}
+        height={450}
+        loading="lazy"
+        decoding="async"
+        className="aspect-[16/9] w-full object-cover"
+      />
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <CardTitle className="text-xl font-bold leading-tight pr-4">

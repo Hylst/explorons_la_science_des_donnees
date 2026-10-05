@@ -70,7 +70,7 @@ const DerivativeConceptSection = () => {
     {
       title: "🚗 Analogie automobile",
       description: "Si votre position est f(t), alors votre vitesse est f'(t) - la dérivée de votre position par rapport au temps.",
-      example: "Position : 50m → Vitesse : 10 m/s (variation de position)"
+      example: "Position f(t) = 5t² (en m) → vitesse à t = 1 s : f'(1) = 10 m/s"
     },
     {
       title: "🏔️ Analogie montagne",
@@ -79,7 +79,7 @@ const DerivativeConceptSection = () => {
     },
     {
       title: "💰 Analogie économique",
-      description: "Si f(x) est votre capital, f'(x) est votre taux de croissance instantané.",
+      description: "Si f(t) est votre capital au temps t, f'(t) est la vitesse à laquelle il varie (en euros par mois, par exemple).",
       example: "Capital croissant → Dérivée positive | Perte → Dérivée négative"
     }
   ];
@@ -235,9 +235,9 @@ const DerivativeConceptSection = () => {
           <div>
             <h4 className="font-semibold mb-2">En machine learning</h4>
             <ul className="text-sm space-y-1">
-              <li>• On utilise des approximations lisses</li>
-              <li>• Leaky ReLU, Swish, GELU...</li>
-              <li>• Permet la backpropagation</li>
+              <li>• La ReLU s'utilise telle quelle : on fixe par convention sa dérivée en 0</li>
+              <li>• Variantes : Leaky ReLU (pente non nulle à gauche), Swish et GELU (lisses)</li>
+              <li>• La rétropropagation fonctionne sans difficulté</li>
             </ul>
           </div>
         </div>
@@ -279,8 +279,8 @@ const DerivativeConceptSection = () => {
             <div>
               <h4 className="font-semibold mb-2">Applications ML</h4>
               <ul className="text-sm space-y-1">
-                <li>• Gradient descent</li>
-                <li>• Backpropagation</li>
+                <li>• Descente de gradient</li>
+                <li>• Rétropropagation</li>
                 <li>• Optimisation</li>
                 <li>• Fonctions de coût</li>
               </ul>

@@ -29,7 +29,8 @@ Pour les commandes et les procédures d'ajout de contenu, voir [readme_dev.md](r
 ├── eslint.config.js         ESLint 9 (typescript-eslint, react-hooks, react-refresh) ; ignore dist et dist-hylst
 ├── postcss.config.js        tailwindcss + autoprefixer
 ├── components.json          Réglages de la CLI shadcn/ui (alias @/components, @/lib, @/hooks)
-├── LICENSE                  AGPL-3.0-or-later (en-tête SPDX, exceptions pour images et moteurs tiers)
+├── LICENSE                  Texte officiel de la GNU AGPL v3, seul (GitHub le reconnaît)
+├── NOTICE.md                En-tête SPDX, droits d'auteur, exceptions (logos, moteurs tiers) ; publié avec LICENSE sous LICENSE.txt
 ├── README.md                Présentation, démarrage rapide, index de la documentation
 ├── features.md              État des fonctionnalités par section
 ├── structure.md             Ce document
@@ -122,8 +123,8 @@ public/
 ├── robots.txt               Règles pour les robots ; la ligne Sitemap: est ajoutée au build hylst
 ├── favicon.svg, logo.png    Icône et image de partage (og:image)
 ├── icons/                   Icônes PWA (192, 512, apple-touch-icon)
-├── img/                     Logos (devicon et marques), CREDITS.md
-├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : six illustrations animées de l'accueil (CSS, sans script, qui respectent prefers-reduced-motion)
+├── img/                     Logos (devicon et marques), blog/ (une image WebP par article, générée en local), CREDITS.md
+├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : trois illustrations animées des cours de l'accueil (CSS, sans script, qui respectent prefers-reduced-motion)
 ├── sandbox/                 Bac à sable JavaScript : js-runner.html, js-runner.js, js-core.js
 └── vendor/                  Moteurs Python et SQL, NOTICE.txt (généré, non suivi par git, environ 39 Mo mesurés)
 ```
@@ -228,7 +229,7 @@ Ces formats sont donc porteurs : un `path` construit dynamiquement ou une indent
 - une ligne `Sitemap:` ajoutée à `robots.txt` ;
 - échec du build si une route n'a ni métadonnée statique ni métadonnée dynamique (message : ajouter la route dans `src/config/page-meta.ts`).
 
-Le plugin `productionHardening` agit sur tout build (pas en développement) : il injecte une Content-Security-Policy dans `index.html`, copie `LICENSE` vers `LICENSE.txt` dans la sortie et remplace `__BUILD_ID__` dans `sw.js`.
+Le plugin `productionHardening` agit sur tout build (pas en développement) : il injecte une Content-Security-Policy dans `index.html`, publie `NOTICE.md` suivi de `LICENSE` sous `LICENSE.txt` dans la sortie et remplace `__BUILD_ID__` dans `sw.js`.
 
 `scripts/verify-dist.mjs` (appelé automatiquement après `build:hylst`) vérifie la sortie. Il est écrit pour le build hylst : lancé sur un `dist/` ordinaire (`npm run verify:dist`), il échoue sur les chemins absolus et l'absence de canonical et de sitemap (constaté sur le dossier `dist/` existant), alors qu'il réussit sur `dist-hylst/`.
 

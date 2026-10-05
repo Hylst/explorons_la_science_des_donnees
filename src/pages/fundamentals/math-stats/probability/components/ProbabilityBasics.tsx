@@ -53,14 +53,14 @@ const ProbabilityBasics = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5" />
-              Définition rigoureuse
+              Définition classique (Laplace)
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <p className="text-sm leading-relaxed">
-                La probabilité d'un événement A est le rapport entre le nombre de cas favorables 
-                et le nombre total de cas possibles (approche classique de Laplace).
+                Quand tous les cas possibles sont équiprobables (approche classique de Laplace), la probabilité d'un
+                événement A est le rapport entre le nombre de cas favorables et le nombre total de cas possibles.
               </p>
               <CourseEquation latex="P(A) = \frac{\text{Nombre de cas favorables}}{\text{Nombre total de cas possibles}}" />
               

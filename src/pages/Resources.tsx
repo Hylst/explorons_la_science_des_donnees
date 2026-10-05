@@ -93,10 +93,10 @@ const ResourcesPage = () => {
         
         <div className="space-y-12">
           <div id="initiation-courses"><InitiationCoursesSection /></div>
-          <div id="books"><BooksSection /></div>
-          <div id="courses"><CoursesSection /></div>
-          <div id="websites"><WebsitesSection /></div>
-          <div id="videos"><VideosSection /></div>
+          <BooksSection />
+          <CoursesSection />
+          <WebsitesSection />
+          <VideosSection />
         </div>
         
         <div className="mt-12 flex justify-between items-center pt-8 border-t">

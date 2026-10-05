@@ -51,7 +51,23 @@ function erf(x: number): number {
  * Présente les concepts avec des exemples interactifs et des visualisations dynamiques
  */
 const RandomVariables = () => {
-  const [selectedExample, setSelectedExample] = useState<'notifications' | 'temperature' | 'sales'>('notifications');
+  // Simulation de lancers de deux dés (exercice Monte Carlo) : null tant qu'on n'a pas lancé
+  const [simulation, setSimulation] = useState<{ n: number; mean: number; std: number; p7: number; mode: number } | null>(null);
+  const simulateDice = (n: number) => {
+    const counts = new Array(13).fill(0);
+    let sum = 0;
+    let sumSq = 0;
+    for (let i = 0; i < n; i++) {
+      const total = 2 + Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6);
+      counts[total]++;
+      sum += total;
+      sumSq += total * total;
+    }
+    const mean = sum / n;
+    const std = Math.sqrt(sumSq / n - mean * mean);
+    const mode = counts.indexOf(Math.max(...counts));
+    setSimulation({ n, mean, std, p7: counts[7] / n, mode });
+  };
   const [lambdaParam, setLambdaParam] = useState([3]);
   const [muParam, setMuParam] = useState([25]);
   const [sigmaParam, setSigmaParam] = useState([5]);
@@ -114,7 +130,7 @@ const RandomVariables = () => {
   return (
     <section id="random-variables" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🎯 2. Variables Aléatoires : Transformer le Hasard en Nombres
+        🎯 3. Variables Aléatoires : Transformer le Hasard en Nombres
       </h2>
       
       <div className="mb-8">
@@ -137,38 +153,32 @@ const RandomVariables = () => {
             </p>
           </div>
           
-          {/* Sélecteur d'exemples interactifs */}
+          {/* Accès direct aux trois exemples de la section */}
           <div className="flex flex-wrap gap-2 mt-6">
-            <Button 
-              variant={selectedExample === 'notifications' ? 'default' : 'outline'}
-              onClick={() => setSelectedExample('notifications')}
-              className="flex items-center gap-2"
-            >
-              <Zap className="h-4 w-4" />
-              Notifications
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <a href="#rv-discretes">
+                <Zap className="h-4 w-4" />
+                Notifications
+              </a>
             </Button>
-            <Button 
-              variant={selectedExample === 'temperature' ? 'default' : 'outline'}
-              onClick={() => setSelectedExample('temperature')}
-              className="flex items-center gap-2"
-            >
-              <TrendingUp className="h-4 w-4" />
-              Température
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <a href="#rv-continues">
+                <TrendingUp className="h-4 w-4" />
+                Température
+              </a>
             </Button>
-            <Button 
-              variant={selectedExample === 'sales' ? 'default' : 'outline'}
-              onClick={() => setSelectedExample('sales')}
-              className="flex items-center gap-2"
-            >
-              <DollarSign className="h-4 w-4" />
-              Ventes
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <a href="#rv-ventes">
+                <DollarSign className="h-4 w-4" />
+                Ventes
+              </a>
             </Button>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <Card className="border-l-4 border-l-purple-500">
+        <Card id="rv-discretes" className="border-l-4 border-l-purple-500 scroll-mt-24">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
@@ -244,7 +254,7 @@ const RandomVariables = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-orange-500">
+        <Card id="rv-continues" className="border-l-4 border-l-orange-500 scroll-mt-24">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
@@ -410,9 +420,9 @@ const RandomVariables = () => {
         </CardContent>
       </Card>
 
-      {/* Exemple interactif basé sur la sélection */}
-      {selectedExample === 'sales' && (
-        <Card className="mb-8">
+      {/* Exemple : ventes d'une semaine (statistiques descriptives) */}
+      {(
+        <Card id="rv-ventes" className="mb-8 scroll-mt-24">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
@@ -440,19 +450,19 @@ const RandomVariables = () => {
                 <div className="space-y-3">
                   <div className="bg-blue-50 p-3 rounded flex justify-between">
                     <span>Moyenne :</span>
-                    <span className="font-bold">{salesStats.mean.toFixed(1)} €</span>
+                    <span className="font-bold">{salesStats.mean.toFixed(1)}</span>
                   </div>
                   <div className="bg-green-50 p-3 rounded flex justify-between">
                     <span>Médiane :</span>
-                    <span className="font-bold">{salesStats.median.toFixed(1)} €</span>
+                    <span className="font-bold">{salesStats.median.toFixed(1)}</span>
                   </div>
                   <div className="bg-purple-50 p-3 rounded flex justify-between">
-                    <span>Écart-type :</span>
-                    <span className="font-bold">{salesStats.stdDev.toFixed(1)} €</span>
+                    <span>Écart-type (population) :</span>
+                    <span className="font-bold">{salesStats.stdDev.toFixed(1)}</span>
                   </div>
                   <div className="bg-orange-50 p-3 rounded flex justify-between">
                     <span>Min - Max :</span>
-                    <span className="font-bold">{salesStats.min} - {salesStats.max} €</span>
+                    <span className="font-bold">{salesStats.min} - {salesStats.max}</span>
                   </div>
                 </div>
               </div>
@@ -515,7 +525,7 @@ const RandomVariables = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Dice6 className="h-5 w-5" />
-            🎯 Exercice Interactif : Simulation Monte Carlo
+            🎯 Exercice interactif : simulation de Monte Carlo
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -525,7 +535,23 @@ const RandomVariables = () => {
             </p>
             
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
-              <h4 className="font-semibold mb-4">Résultats théoriques vs simulés</h4>
+              <h4 className="font-semibold mb-2">Résultats théoriques et simulés</h4>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {[100, 1000, 10000].map((n) => (
+                  <Button key={n} size="sm" variant="outline" onClick={() => simulateDice(n)}>
+                    <Dice6 className="h-4 w-4 mr-1" />
+                    Lancer {n.toLocaleString("fr-FR")} fois
+                  </Button>
+                ))}
+              </div>
+              {simulation && (
+                <p className="text-sm text-gray-700 mb-3" aria-live="polite">
+                  Sur {simulation.n.toLocaleString("fr-FR")} lancers simulés : somme la plus fréquente {simulation.mode}, part des 7
+                  {" "}{(simulation.p7 * 100).toFixed(2)} %, moyenne {simulation.mean.toFixed(2)}, écart-type {simulation.std.toFixed(2)}.
+                  Relancez : les résultats changent un peu à chaque fois, et se rapprochent de la théorie quand n grandit.
+                </p>
+              )}
+              <p className="text-xs text-gray-500 mb-2">Valeurs théoriques :</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="bg-white p-3 rounded shadow">
                   <div className="text-2xl font-bold text-blue-600">7</div>

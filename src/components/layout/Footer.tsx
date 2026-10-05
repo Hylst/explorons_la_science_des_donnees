@@ -54,15 +54,17 @@ const Footer = () => {
                 {LICENSE_SPDX}
               </a>
               .
-              {SOURCE_URL && (
-                <>
-                  {" "}
-                  <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">
-                    Code source
-                  </a>
-                  .
-                </>
+              {" "}
+              {SOURCE_URL ? (
+                <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-primary hover:underline">
+                  Code source
+                </a>
+              ) : (
+                <Link to="/contact" className="hover:text-primary hover:underline">
+                  Code source sur demande
+                </Link>
               )}
+              .
             </p>
             <p>
               Un site de la plateforme{" "}

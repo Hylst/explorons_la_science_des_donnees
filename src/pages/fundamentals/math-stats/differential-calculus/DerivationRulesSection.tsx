@@ -29,7 +29,7 @@ const DerivationRulesSection = () => {
       example: "\\frac{d}{dx}[x^2 + x] = 2x + 1"
     },
     {
-      name: "Règle du produit par une constante",
+      name: "Règle du facteur constant",
       formula: "\\frac{d}{dx}[cf(x)] = cf'(x)",
       explanation: "Les constantes sortent de la dérivée",
       example: "\\frac{d}{dx}[3x^2] = 3 \\cdot 2x = 6x"
@@ -64,7 +64,7 @@ const DerivationRulesSection = () => {
     {
       name: "Exponentielle",
       formula: "\\frac{d}{dx}[e^x] = e^x",
-      description: "Auto-dérivée ! Propriété unique de l'exponentielle",
+      description: "Elle est sa propre dérivée : à une constante multiplicative près, c'est la seule fonction dans ce cas",
       mlUse: "Base des activations softmax et des distributions exponentielles"
     },
     {
@@ -89,7 +89,7 @@ const DerivationRulesSection = () => {
       name: "ReLU",
       formula: "\\frac{d}{dx}[\\max(0,x)] = \\begin{cases} 1 & \\text{si } x > 0 \\\\ 0 & \\text{si } x < 0 \\\\ \\text{indéfini} & \\text{si } x = 0 \\end{cases}",
       description: "Non dérivable en 0, mais on utilise 0 par convention",
-      mlUse: "Activation la plus populaire en deep learning"
+      mlUse: "Activation très répandue en apprentissage profond"
     }
   ];
 
@@ -190,8 +190,8 @@ const DerivationRulesSection = () => {
           
           <CourseHighlight title="🔥 Focus : Règle de la chaîne" type="warning">
             <p className="mb-3">
-              La règle de la chaîne est <strong>fondamentale</strong> en machine learning ! 
-              Elle est à la base de la backpropagation dans les réseaux de neurones.
+              La règle de la chaîne est <strong>essentielle</strong> en apprentissage automatique :
+              elle est à la base de la rétropropagation dans les réseaux de neurones.
             </p>
             <div className="bg-red-50 p-4 rounded-lg">
               <h4 className="font-semibold mb-2">Exemple concret en ML :</h4>

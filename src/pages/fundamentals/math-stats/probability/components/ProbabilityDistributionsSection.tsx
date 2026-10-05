@@ -377,12 +377,12 @@ const ProbabilityDistributionsSection = () => {
 
               {/* Fonction de répartition */}
               <div className="space-y-3">
-                <h5 className="font-semibold">📈 Fonction de répartition (CDF)</h5>
+                <h5 className="font-semibold">📈 Fonction de répartition F(x) = P(X ≤ x)</h5>
                 <div className="h-64 bg-white rounded border">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={currentDistribution.data}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="x" fontSize={12} tickFormatter={(value) => Number(value).toFixed(1)} />
+                      <XAxis dataKey="x" fontSize={12} tickFormatter={(value) => Number(value).toFixed(selectedDistribution === "binomial" || selectedDistribution === "poisson" ? 0 : 1)} />
                       <YAxis fontSize={12} tickFormatter={(value) => Number(value).toFixed(2)} />
                       <Tooltip formatter={(value) => [Number(value).toFixed(4), 'P(X ≤ x)']} />
                       <Line 
@@ -498,26 +498,26 @@ const ProbabilityDistributionsSection = () => {
             <h4 className="font-semibold">🎯 Distribution Binomiale :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>A/B Testing :</strong> Conversion rate testing
+                <strong>Test A/B :</strong> taux de conversion
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Quality Control :</strong> Defect rate analysis
+                <strong>Contrôle qualité :</strong> taux de défauts
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Survey Analysis :</strong> Yes/No response modeling
+                <strong>Enquêtes :</strong> réponses oui/non
               </div>
             </div>
             
             <h4 className="font-semibold">⚡ Distribution de Poisson :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Web Analytics :</strong> Page views per hour
+                <strong>Audience web :</strong> pages vues par heure
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Network Traffic :</strong> Packet arrival modeling
+                <strong>Trafic réseau :</strong> arrivée des paquets
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Customer Service :</strong> Call center arrivals
+                <strong>Service client :</strong> appels reçus par heure
               </div>
             </div>
           </div>
@@ -526,26 +526,26 @@ const ProbabilityDistributionsSection = () => {
             <h4 className="font-semibold">⏱️ Distribution Exponentielle :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Reliability Engineering :</strong> Component lifetime
+                <strong>Fiabilité :</strong> durée de vie d'un composant
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Queueing Theory :</strong> Service time modeling
+                <strong>Files d'attente :</strong> durées de service
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Finance :</strong> Time between trades
+                <strong>Finance :</strong> délai entre deux transactions
               </div>
             </div>
             
             <h4 className="font-semibold">📏 Distribution Uniforme :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Monte Carlo :</strong> Random number generation
+                <strong>Monte Carlo :</strong> génération de nombres aléatoires
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Simulation :</strong> Uniform sampling
+                <strong>Simulation :</strong> tirage uniforme
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Cryptography :</strong> Key generation
+                <strong>Cryptographie :</strong> génération de clés
               </div>
             </div>
           </div>

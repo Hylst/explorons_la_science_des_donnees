@@ -4,13 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Cloud, FileText, Network, Key, Lightbulb, Zap, AlertCircle } from "lucide-react";
+import { Cloud, FileText, Network, Key, Lightbulb, Zap, AlertCircle, Table2 } from "lucide-react";
 
 const NoSQLSection = () => {
   const nosqlTypes = {
     document: {
       icon: <FileText className="h-5 w-5" />,
-      title: "Document Stores",
+      title: "Documents (Document Stores)",
       description: "Stockage de documents JSON/BSON flexibles",
       examples: ["MongoDB", "CouchDB", "Amazon DocumentDB"],
       useCases: [
@@ -38,9 +38,9 @@ const NoSQLSection = () => {
   }
 }`,
       advantages: [
-        "Schema flexible et évolutif",
+        "Schéma flexible et évolutif",
         "Requêtes riches et expressives", 
-        "Scaling horizontal naturel",
+        "Mise à l'échelle horizontale naturelle",
         "Performance sur lectures"
       ],
       disadvantages: [
@@ -51,8 +51,8 @@ const NoSQLSection = () => {
     },
     keyvalue: {
       icon: <Key className="h-5 w-5" />,
-      title: "Key-Value Stores", 
-      description: "Stockage simple clé-valeur ultra-rapide",
+      title: "Clé-valeur (Key-Value)",
+      description: "Stockage simple clé-valeur, avec une très faible latence en mémoire (Redis)",
       examples: ["Redis", "Amazon DynamoDB", "Riak"],
       useCases: [
         "Cache et sessions",
@@ -74,9 +74,9 @@ session:abc123 -> {"user_id": 1234, "panier": [1, 5, 12]}
 app:maintenance_mode -> false
 app:max_upload_size -> 10485760`,
       advantages: [
-        "Performance exceptionnelle",
-        "Simplicité extrême",
-        "Scaling linéaire",
+        "Accès par clé très rapide",
+        "Modèle très simple",
+        "Mise à l'échelle facilitée par le partage des clés",
         "Faible latence"
       ],
       disadvantages: [
@@ -86,15 +86,15 @@ app:max_upload_size -> 10485760`,
       ]
     },
     columnar: {
-      icon: <Network className="h-5 w-5" />,
-      title: "Column Family",
-      description: "Stockage orienté colonnes pour Big Data",
-      examples: ["Cassandra", "HBase", "Amazon SimpleDB"],
+      icon: <Table2 className="h-5 w-5" />,
+      title: "Colonnes larges (Column Family)",
+      description: "Lignes regroupant des familles de colonnes, pensées pour de très gros volumes d'écritures (à ne pas confondre avec le stockage en colonnes des entrepôts analytiques)",
+      examples: ["Cassandra", "HBase", "ScyllaDB"],
       useCases: [
-        "Analytics et reporting",
-        "Logs et métriques",
+        "Journaux et métriques",
         "IoT et capteurs",
-        "Time series data"
+        "Séries temporelles",
+        "Historiques d'activité"
       ],
       structure: `# Famille de colonnes : user_activity
 Row Key: user_1234_2024-01-15
@@ -111,9 +111,9 @@ Column Family: metrics
   actions_count -> 27`,
       advantages: [
         "Très performant sur gros volumes",
-        "Compression excellente",
+        "Bonne compression",
         "Distribution automatique",
-        "Écriture ultra-rapide"
+        "Écritures très rapides"
       ],
       disadvantages: [
         "Complexité de modélisation",
@@ -123,7 +123,7 @@ Column Family: metrics
     },
     graph: {
       icon: <Network className="h-5 w-5" />,
-      title: "Graph Databases",
+      title: "Graphes (Graph Databases)",
       description: "Gestion des relations et réseaux complexes",
       examples: ["Neo4j", "Amazon Neptune", "ArangoDB"],
       useCases: [
@@ -140,14 +140,15 @@ CREATE (ml:Skill {nom: "Machine Learning"})
 
 CREATE (alice)-[:KNOWS {since: 2020}]->(bob)
 CREATE (alice)-[:HAS_SKILL {level: "expert"}]->(python)
-CREATE (alice)-[:HAS_SKILL {level: "intermediate"}]->(ml)
+CREATE (alice)-[:HAS_SKILL {level: "intermediate"}]->(ml);
 
-// Recommandation : amis des amis avec compétences similaires
+// Recommandation : amis d'amis qui partagent au moins une compétence (données d'exemple à compléter)
 MATCH (user:User {nom: "Alice"})
       -[:KNOWS]->()-[:KNOWS]->(recommendation:User)
 WHERE NOT (user)-[:KNOWS]->(recommendation)
+  AND recommendation <> user
   AND (user)-[:HAS_SKILL]->()<-[:HAS_SKILL]-(recommendation)
-RETURN recommendation`,
+RETURN DISTINCT recommendation;`,
       advantages: [
         "Requêtes de traversée naturelles",
         "Performance sur relations complexes",
@@ -176,7 +177,7 @@ RETURN recommendation`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Lightbulb className="h-5 w-5 text-yellow-500" />
-            Pourquoi NoSQL ? L'évolution nécessaire
+            Pourquoi NoSQL ? Des compromis différents du relationnel
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -184,14 +185,14 @@ RETURN recommendation`,
             <div>
               <p className="mb-4">
                 <strong>NoSQL</strong> (Not Only SQL) répond aux limites du relationnel face aux défis modernes :
-                volumes massifs, variété des données, scaling horizontal.
+                volumes massifs, variété des données, mise à l'échelle horizontale.
               </p>
               
               <div className="bg-purple-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-purple-800 mb-2">🚀 Les 3V du Big Data (souvent étendus à 5V : + Véracité et Valeur)</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Volume :</strong> Téraoctets → Pétaoctets</li>
-                  <li>• <strong>Vitesse :</strong> Temps réel, millions de requêtes/sec</li>
+                  <li>• <strong>Vélocité :</strong> Données qui arrivent en continu, parfois en temps réel</li>
                   <li>• <strong>Variété :</strong> JSON, XML, images, logs, graphes...</li>
                 </ul>
               </div>
@@ -201,20 +202,20 @@ RETURN recommendation`,
               <div className="bg-red-50 p-3 rounded-lg">
                 <h5 className="font-semibold text-red-800 mb-1">❌ Limites SQL classique</h5>
                 <ul className="text-xs space-y-1">
-                  <li>• Schema rigide difficile à faire évoluer</li>
-                  <li>• Scaling vertical limité et coûteux</li>
+                  <li>• Schéma rigide difficile à faire évoluer</li>
+                  <li>• Mise à l'échelle verticale limitée et coûteuse (le partage entre serveurs est possible en SQL, mais plus délicat)</li>
                   <li>• Jointures complexes sur gros volumes</li>
-                  <li>• Inadapté aux données semi-structurées</li>
+                  <li>• Données très variables : le JSON est possible en SQL (JSONB sous PostgreSQL) mais moins naturel</li>
                 </ul>
               </div>
               
               <div className="bg-green-50 p-3 rounded-lg">
                 <h5 className="font-semibold text-green-800 mb-1">✅ Avantages NoSQL</h5>
                 <ul className="text-xs space-y-1">
-                  <li>• Flexibilité du schema</li>
-                  <li>• Scaling horizontal natif</li>
+                  <li>• Flexibilité du schéma</li>
+                  <li>• Répartition sur plusieurs serveurs souvent prévue dès la conception</li>
                   <li>• Performance sur gros volumes</li>
-                  <li>• Adapté aux données modernes</li>
+                  <li>• Souvent mieux adapté aux données très variables ou très volumineuses</li>
                 </ul>
               </div>
             </div>
@@ -234,7 +235,7 @@ RETURN recommendation`,
                 key={key}
                 variant={selectedType === key ? "default" : "outline"}
                 onClick={() => setSelectedType(key as keyof typeof nosqlTypes)}
-                className="h-auto py-3 flex flex-col items-center gap-2"
+                className="h-auto py-3 flex flex-col items-center gap-2 whitespace-normal text-center"
               >
                 {type.icon}
                 <span className="text-xs font-medium">{type.title}</span>
@@ -244,7 +245,7 @@ RETURN recommendation`,
 
           <div className="space-y-6">
             {/* En-tête du type sélectionné */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               {nosqlTypes[selectedType].icon}
               <div>
                 <h3 className="text-xl font-bold">{nosqlTypes[selectedType].title}</h3>
@@ -380,9 +381,9 @@ RETURN recommendation`,
 
           <Tabs defaultValue="cp" className="w-full">
             <TabsList className="grid w-full h-auto grid-cols-1 sm:grid-cols-3">
-              <TabsTrigger value="cp">CP (Consistency + Partition)</TabsTrigger>
-              <TabsTrigger value="ap">AP (Availability + Partition)</TabsTrigger>
-              <TabsTrigger value="ca">CA (sans partition)</TabsTrigger>
+              <TabsTrigger value="cp" className="whitespace-normal">CP (Consistency + Partition)</TabsTrigger>
+              <TabsTrigger value="ap" className="whitespace-normal">AP (Availability + Partition)</TabsTrigger>
+              <TabsTrigger value="ca" className="whitespace-normal">CA (sans partition)</TabsTrigger>
             </TabsList>
             
             <TabsContent value="cp" className="space-y-4">

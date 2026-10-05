@@ -9,11 +9,14 @@ import { Zap, Brain, Star } from "lucide-react";
 
 const DecompositionsSection = () => {
   const [showSVDDemo, setShowSVDDemo] = useState(false);
-  const [compressionLevel, setCompressionLevel] = useState(50);
+  // Nombre de valeurs singulières gardées pour une image en niveaux de gris de 1920 x 1080
+  const [rank, setRank] = useState(50);
+  const kept = rank * (1920 + 1080 + 1);
+  const saved = 1 - kept / (1920 * 1080);
 
   return (
     <section id="decompositions" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">4. Décompositions : Décortiquer les Matrices</h2>
+      <h2 className="text-3xl font-bold mb-6">5. Décompositions : Décortiquer les Matrices</h2>
       
       <CourseHighlight title="🔬 Analogie : La décomposition comme une autopsie" type="concept">
         <p>
@@ -115,20 +118,24 @@ const DecompositionsSection = () => {
                 <div>
                   <h4 className="font-semibold mb-3">Compression interactive</h4>
                   <div className="space-y-3">
-                    <label className="text-sm font-medium">
-                      Niveau de compression : {compressionLevel}%
+                    <label className="text-sm font-medium" htmlFor="svd-rank">
+                      Valeurs singulières gardées (k) : {rank}
                     </label>
-                    <input 
-                      type="range" 
-                      min="10" 
-                      max="90" 
-                      value={compressionLevel}
-                      onChange={(e) => setCompressionLevel(parseInt(e.target.value))}
+                    <input
+                      id="svd-rank"
+                      type="range"
+                      min="1"
+                      max="400"
+                      value={rank}
+                      onChange={(e) => setRank(parseInt(e.target.value))}
                       className="w-full"
                     />
                     <div className="bg-green-50 p-3 rounded-lg">
                       <p className="text-xs">
-                        <strong>Espace économisé :</strong> {compressionLevel}%
+                        <strong>Valeurs à stocker :</strong> k × (1920 + 1080 + 1) = {kept.toLocaleString("fr-FR")} au lieu de 2 073 600
+                      </p>
+                      <p className="text-xs">
+                        <strong>Espace économisé :</strong> {saved > 0 ? `${(saved * 100).toFixed(1)} %` : "aucun (k trop grand : mieux vaut garder l'image telle quelle)"}
                       </p>
                       <p className="text-xs">
                         La qualité conservée dépend de l'image : elle se lit sur la décroissance des valeurs singulières, pas sur une règle fixe.
@@ -152,7 +159,7 @@ const DecompositionsSection = () => {
                     <div className="bg-white p-3 rounded-lg">
                       <Badge className="bg-blue-100 text-blue-800 mb-2">Image originale</Badge>
                       <p className="text-sm">1920×1080 pixels</p>
-                      <p className="text-sm">2,073,600 valeurs</p>
+                      <p className="text-sm">2 073 600 valeurs (niveaux de gris)</p>
                       <p className="text-sm font-semibold">Image complète</p>
                     </div>
                     <div className="bg-white p-3 rounded-lg">
@@ -256,7 +263,7 @@ const DecompositionsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-white p-3 rounded-lg">
             <p className="font-medium text-purple-600">🎯 Analyse de données</p>
-            <p className="text-xs text-gray-600">SVD, EVD → Patterns cachés</p>
+            <p className="text-xs text-gray-600">SVD, EVD → structures cachées</p>
           </div>
           <div className="bg-white p-3 rounded-lg">
             <p className="font-medium text-blue-600">⚡ Calcul rapide</p>

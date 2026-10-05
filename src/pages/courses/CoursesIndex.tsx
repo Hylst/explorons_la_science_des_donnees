@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Code, BarChart3, Brain } from "lucide-react";
 import { COURSE_CATALOG, COURSE_CATEGORIES, type CourseCategoryId } from "@/data/course-catalog";
+import { courseImage } from "@/lib/course-image";
 
 const CATEGORY_ICONS: Record<CourseCategoryId, JSX.Element> = {
   programming: <Code className="h-8 w-8 text-blue-600" />,
@@ -52,7 +53,16 @@ const CoursesIndex = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.courses.map((course, courseIndex) => (
-                    <Card key={courseIndex} className="hover:shadow-md transition-shadow">
+                    <Card key={courseIndex} className="overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                      <img
+                        src={courseImage(course.id)}
+                        alt=""
+                        width={800}
+                        height={450}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[16/9] w-full object-cover"
+                      />
                       <CardHeader>
                         <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                           <div className="flex flex-wrap gap-2">
@@ -68,7 +78,7 @@ const CoursesIndex = () => {
                         <CardTitle className="text-lg">{course.title}</CardTitle>
                         <CardDescription>{course.description}</CardDescription>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="mt-auto">
                         <Button asChild className="w-full">
                           <Link to={course.href}>
                             {course.status === "plan" ? "Voir le plan du cours" : "Commencer le cours"}

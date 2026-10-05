@@ -25,7 +25,7 @@ const MatrixTypesSection = () => {
 
   return (
     <section id="matrix-types" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">4. Types de Matrices Importantes : La Boîte à Outils</h2>
+      <h2 className="text-3xl font-bold mb-6">3. Types de Matrices Importantes : La Boîte à Outils</h2>
       
       <CourseHighlight title="🧰 Analogie : Les matrices comme des outils spécialisés" type="concept">
         <p>

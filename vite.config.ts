@@ -41,9 +41,16 @@ const productionHardening = (): Plugin => {
     },
     // Publie le texte de la licence (lien du pied de page) et versionne le cache du service worker à chaque build
     writeBundle() {
+      // Le fichier publié réunit l'avis du projet (NOTICE.md : droits d'auteur, exceptions) et le texte de la licence (LICENSE, texte AGPL seul
+      // pour que GitHub le reconnaisse)
       const licensePath = path.resolve(__dirname, "LICENSE");
-      if (!fs.existsSync(licensePath)) throw new Error("Fichier LICENSE introuvable à la racine du dépôt (publié sous " + LICENSE_FILE + ")");
-      fs.copyFileSync(licensePath, path.join(outDir, LICENSE_FILE));
+      const noticePath = path.resolve(__dirname, "NOTICE.md");
+      if (!fs.existsSync(licensePath) || !fs.existsSync(noticePath)) {
+        throw new Error("Fichiers LICENSE et NOTICE.md introuvables à la racine du dépôt (publiés ensemble sous " + LICENSE_FILE + ")");
+      }
+      const read = (file: string) => fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n");
+      const rule = "=".repeat(72);
+      fs.writeFileSync(path.join(outDir, LICENSE_FILE), `${read(noticePath)}\n${rule}\nTexte integral de la licence\n${rule}\n\n${read(licensePath)}`);
       const swPath = path.join(outDir, "sw.js");
       if (!fs.existsSync(swPath)) return;
       const buildId = Date.now().toString(36);

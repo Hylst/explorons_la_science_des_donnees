@@ -90,7 +90,7 @@ const OptimizationSection = () => {
     <section id="optimization" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">3. Optimisation avec les Dérivées</h2>
       
-      <CourseHighlight title="🎯 L'objectif ultime" type="concept">
+      <CourseHighlight title="🎯 L'objectif" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p className="mb-4">
@@ -109,7 +109,7 @@ const OptimizationSection = () => {
             <h4 className="font-semibold mb-2">Applications concrètes :</h4>
             <ul className="text-sm space-y-1">
               <li>• Ajuster les poids d'un réseau de neurones</li>
-              <li>• Optimiser les hyperparamètres</li>
+              <li>• Ajuster les coefficients d'une régression</li>
               <li>• Minimiser la fonction de coût</li>
               <li>• Trouver les meilleurs paramètres de modèle</li>
             </ul>
@@ -190,14 +190,14 @@ const OptimizationSection = () => {
           <div className="space-y-6">
             <div>
               <p className="mb-4">
-                Explorez l'effet du taux d'apprentissage (learning rate) sur la convergence 
+                Explorez l'effet du taux d'apprentissage α sur la convergence 
                 pour minimiser f(x) = (x-1)².
               </p>
               
               <div className="bg-yellow-50 p-4 rounded-lg mb-4">
                 <CourseEquation latex="x_{n+1} = x_n - \alpha f'(x_n)" />
                 <p className="text-sm text-center">
-                  α = {learningRate[0]} (taux d'apprentissage)
+                  α = {learningRate[0].toLocaleString("fr-FR")} (taux d'apprentissage)
                 </p>
               </div>
 
@@ -212,13 +212,14 @@ const OptimizationSection = () => {
                       showFullPath();
                     }}
                     min={0.01}
-                    max={0.5}
+                    max={1}
                     step={0.01}
                     className="mt-2"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
-                    <span>0.01 (lent)</span>
-                    <span>0.5 (rapide)</span>
+                    <span>0,01 (lent)</span>
+                    <span>0,5 (un seul pas)</span>
+                    <span>1 (oscille sans fin)</span>
                   </div>
                 </div>
 
@@ -243,7 +244,7 @@ const OptimizationSection = () => {
                       <ResponsiveContainer width="100%" height="100%">
                         <ComposedChart data={functionPoints}>
                           <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis type="number" dataKey="x" domain={[-2, 5]} />
+                          <XAxis type="number" dataKey="x" domain={[-2, 5]} allowDataOverflow />
                           <YAxis type="number" domain={[0, 10]} allowDataOverflow />
                           <Tooltip />
                           <Line type="monotone" dataKey="fx" stroke="#94A3B8" strokeWidth={2} dot={false} name="f(x)" isAnimationActive={false} />
@@ -277,7 +278,7 @@ const OptimizationSection = () => {
                       <span className="font-semibold">Point de départ :</span> x₀ = 4
                     </div>
                     <div>
-                      <span className="font-semibold">Nombre d'itérations :</span> {gradientData.length}
+                      <span className="font-semibold">Nombre d'itérations :</span> {lastStep}
                     </div>
                     <div>
                       <span className="font-semibold">Point final :</span> x = {gradientData[gradientData.length - 1]?.x}
@@ -293,7 +294,7 @@ const OptimizationSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="⚠️ Hyperparamètre critique : le learning rate" type="warning">
+      <CourseHighlight title="⚠️ Un réglage décisif : le taux d'apprentissage" type="warning">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-red-50 p-4 rounded-lg">
             <h4 className="font-semibold text-red-800 mb-2">α trop grand</h4>
@@ -316,7 +317,7 @@ const OptimizationSection = () => {
             <ul className="text-sm space-y-1">
               <li>• Convergence très lente</li>
               <li>• Beaucoup d'itérations nécessaires</li>
-              <li>• Coût computationnel élevé</li>
+              <li>• Coût de calcul élevé</li>
             </ul>
           </div>
         </div>
@@ -325,22 +326,22 @@ const OptimizationSection = () => {
       <CourseHighlight title="🔍 Zoom sur : Variantes de l'optimisation" type="info">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">Gradient Descent classique</h4>
+            <h4 className="font-semibold mb-3">Descente de gradient classique</h4>
             <CourseEquation latex="\theta_{t+1} = \theta_t - \alpha \nabla J(\theta_t)" />
             <p className="text-sm text-gray-600">Simple mais peut être lent</p>
           </div>
           <div>
             <h4 className="font-semibold mb-3">Momentum</h4>
-            <CourseEquation latex="v_t = \beta v_{t-1} + (1-\beta) \nabla J(\theta_t)" />
+            <CourseEquation latex="v_t = \beta v_{t-1} + (1-\beta) \nabla J(\theta_t), \quad \theta_{t+1} = \theta_t - \alpha v_t" />
             <p className="text-sm text-gray-600">Accélère la convergence avec &quot;inertie&quot;</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">Adam (Adaptive)</h4>
+            <h4 className="font-semibold mb-3">Adam (moments adaptatifs)</h4>
             <CourseEquation latex="\theta_{t+1} = \theta_t - \frac{\alpha}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t" />
-            <p className="text-sm text-gray-600">Adapte le learning rate par paramètre</p>
+            <p className="text-sm text-gray-600">Adapte le taux d'apprentissage pour chaque paramètre (m̂ et v̂ : moyennes mobiles du gradient et de son carré, corrigées de leur biais)</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">Stochastic Gradient Descent</h4>
+            <h4 className="font-semibold mb-3">Descente de gradient stochastique (SGD)</h4>
             <CourseEquation latex="\theta_{t+1} = \theta_t - \alpha \nabla J_i(\theta_t)" />
             <p className="text-sm text-gray-600">Utilise un échantillon aléatoire à chaque étape</p>
           </div>

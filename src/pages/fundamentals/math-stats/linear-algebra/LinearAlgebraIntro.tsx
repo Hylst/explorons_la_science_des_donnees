@@ -3,13 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { Brain, Target, Zap } from "lucide-react";
-import VectorsSection from "./VectorsSection";
-import MatricesSection from "./MatricesSection";
-import MatrixTypesSection from "./MatrixTypesSection";
-import OperationsSection from "./OperationsSection";
-import ApplicationsSection from "./ApplicationsSection";
-import DecompositionsSection from "./DecompositionsSection";
-import InteractiveExercises from "./InteractiveExercises";
 
 const LinearAlgebraIntro = () => {
   return (
@@ -68,7 +61,7 @@ const LinearAlgebraIntro = () => {
             </p>
             <div className="bg-purple-100 p-4 rounded-lg mt-4">
               <p className="text-sm">
-                <strong>Fait étonnant :</strong> Une image 1920×1080 pixels est en réalité un vecteur de 2,073,600 dimensions ! 
+                <strong>Fait étonnant :</strong> Une image en niveaux de gris de 1920×1080 pixels est un vecteur de 2 073 600 dimensions (6 220 800 en couleur RGB) ! 
                 L'algèbre linéaire nous permet de manipuler ces "monstres" mathématiques comme s'il s'agissait de simples nombres.
               </p>
             </div>
@@ -113,13 +106,6 @@ const LinearAlgebraIntro = () => {
         </div>
       </div>
       
-      <VectorsSection />
-      <MatricesSection />
-      <MatrixTypesSection />
-      <OperationsSection />
-      <ApplicationsSection />
-      <DecompositionsSection />
-      <InteractiveExercises />
     </section>
   );
 };

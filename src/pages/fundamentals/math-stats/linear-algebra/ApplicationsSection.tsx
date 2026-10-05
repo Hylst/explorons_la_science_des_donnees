@@ -9,7 +9,7 @@ import { Brain, Camera, Music, Smartphone } from "lucide-react";
 const ApplicationsSection = () => {
   return (
     <section id="applications" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">5. Applications Révolutionnaires</h2>
+      <h2 className="text-3xl font-bold mb-6">6. Applications</h2>
       
       <CourseHighlight title="🌍 L'algèbre linéaire façonne notre monde quotidien" type="concept">
         <p>
@@ -42,8 +42,8 @@ const ApplicationsSection = () => {
               <div className="bg-purple-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-purple-700 mb-2">Exemple concret : ChatGPT</h4>
                 <p className="text-xs text-purple-600">
-                  Contient des matrices avec des milliards de paramètres. 
-                  Chaque mot que vous tapez déclenche des millions de multiplications matricielles !
+                  Ses paramètres (des dizaines à des centaines de milliards pour les grands modèles de langage ; le chiffre exact n'est pas public)
+                  sont rangés dans des centaines de matrices. Chaque mot traité demande des milliards d'opérations arithmétiques.
                 </p>
               </div>
 
@@ -58,7 +58,7 @@ const ApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Camera className="h-6 w-6 text-green-600" />
-              Computer Vision
+              Vision par ordinateur
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -154,7 +154,7 @@ const ApplicationsSection = () => {
 
       <CourseHighlight title="🎯 Exercice intégré : Système de recommandation simplifié" type="example">
         <div className="space-y-4">
-          <p><strong>Scenario :</strong> Créer un mini-Netflix avec 3 utilisateurs et 4 films</p>
+          <p><strong>Scénario :</strong> Créer un mini-Netflix avec 3 utilisateurs et 4 films</p>
           
           <div className="bg-gray-50 p-4 rounded-lg">
             <h4 className="font-semibold mb-2">Matrice des notes (R) :</h4>

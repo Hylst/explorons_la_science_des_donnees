@@ -339,7 +339,7 @@ const MatricesSection = () => {
               
               <div>
                 <h5 className="font-semibold">Application au point (4, 2) :</h5>
-                <CourseEquation latex="\begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2.828 \\ 2.124 \end{pmatrix}" />
+                <CourseEquation latex="\begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2.828 \\ 2.121 \end{pmatrix}" />
               </div>
               
               <div className="bg-blue-100 p-3 rounded">
@@ -367,8 +367,8 @@ const MatricesSection = () => {
           </p>
           <div className="bg-white p-3 rounded-lg">
             <p className="text-xs">
-              <strong>Exemple concret :</strong> GPT-3 contient des matrices avec des milliards d'éléments. 
-              Chaque fois que vous lui posez une question, ce sont des millions de multiplications matricielles qui se déclenchent !
+              <strong>Exemple concret :</strong> GPT-3 répartit ses 175 milliards de paramètres dans des centaines de matrices.
+              Pour chaque mot qu'il produit, cela représente des centaines de milliards d'opérations arithmétiques (multiplications et additions) !
             </p>
           </div>
           <div className="bg-purple-100 p-3 rounded-lg mt-3">

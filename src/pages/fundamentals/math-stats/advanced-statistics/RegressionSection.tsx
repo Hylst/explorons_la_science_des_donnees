@@ -90,7 +90,7 @@ const RegressionSection = () => {
                 </div>
                 <div className="bg-purple-50 p-3 rounded">
                   <h5 className="font-semibold text-purple-700">RMSE</h5>
-                  <p className="text-sm text-purple-600">Erreur quadratique moyenne</p>
+                  <p className="text-sm text-purple-600">Racine de l'erreur quadratique moyenne</p>
                 </div>
                 <div className="bg-orange-50 p-3 rounded">
                   <h5 className="font-semibold text-orange-700">Test F</h5>
@@ -164,8 +164,8 @@ const RegressionSection = () => {
                 <p className="text-xs text-purple-600">Combinaison des deux approches</p>
               </div>
               <div className="bg-orange-50 p-3 rounded">
-                <strong className="text-orange-700">LASSO/Ridge</strong>
-                <p className="text-xs text-orange-600">Régularisation automatique</p>
+                <strong className="text-orange-700">LASSO (et Ridge)</strong>
+                <p className="text-xs text-orange-600">LASSO met certains coefficients à 0 (il sélectionne) ; Ridge réduit les coefficients sans en éliminer</p>
               </div>
             </div>
           </CardContent>

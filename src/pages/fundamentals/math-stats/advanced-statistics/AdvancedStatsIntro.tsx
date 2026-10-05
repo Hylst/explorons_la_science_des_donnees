@@ -26,7 +26,7 @@ const AdvancedStatsIntro = () => {
     {
       icon: <Brain className="h-6 w-6 text-purple-600" />,
       title: "Modèles avancés",
-      description: "ANOVA, régression multiple et modèles mixtes"
+      description: "ANOVA, régression multiple, logistique et polynomiale"
     },
     {
       icon: <Zap className="h-6 w-6 text-orange-600" />,

@@ -70,7 +70,7 @@ const BayesTheoremSection = () => {
   return (
     <section id="bayes-theorem" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🧠 3. Le Théorème de Bayes : L'Art de Réviser ses Croyances
+        🧠 5. Le Théorème de Bayes : L'Art de Réviser ses Croyances
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -84,7 +84,7 @@ const BayesTheoremSection = () => {
             </p>
             <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
               <p className="text-sm">
-                <strong>🎯 C'est exactement ce que fait le théorème de Bayes :</strong> 
+                <strong>🎯 C'est exactement ce que fait le théorème de Bayes :</strong>{" "}
                 Il nous dit comment mettre à jour nos croyances quand on reçoit de nouvelles informations.
               </p>
             </div>
@@ -318,13 +318,13 @@ const BayesTheoremSection = () => {
             <h4 className="font-semibold">🤖 Machine Learning :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Naive Bayes Classifier :</strong> Classification de textes, emails, sentiments
+                <strong>Classifieur bayésien naïf :</strong> Classification de textes, emails, sentiments
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Bayesian Networks :</strong> Modélisation de dépendances complexes
+                <strong>Réseaux bayésiens :</strong> Modélisation de dépendances complexes
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>A/B Testing :</strong> Mise à jour des croyances avec nouvelles données
+                <strong>Test A/B :</strong> Mise à jour des croyances avec nouvelles données
               </div>
             </div>
           </div>
@@ -339,19 +339,19 @@ const BayesTheoremSection = () => {
                 <strong>Recommandations :</strong> Affinement des préférences utilisateur
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Pricing Dynamique :</strong> Ajustement des prix selon la demande
+                <strong>Tarification dynamique :</strong> Ajustement des prix selon la demande
               </div>
             </div>
           </div>
         </div>
         
         <div className="mt-6 bg-indigo-100 p-4 rounded-lg">
-          <h5 className="font-semibold text-indigo-800 mb-2">💡 Pourquoi Bayes est-il si puissant ?</h5>
+          <h5 className="font-semibold text-indigo-800 mb-2">💡 Ce que l'approche bayésienne apporte</h5>
           <div className="text-sm text-indigo-700 space-y-1">
             <p>• <strong>Apprentissage continu :</strong> Les modèles s'améliorent avec chaque nouvelle donnée</p>
             <p>• <strong>Gestion de l'incertitude :</strong> Quantification explicite de la confiance</p>
             <p>• <strong>Intégration d'expertise :</strong> Combinaison de connaissances et de données</p>
-            <p>• <strong>Robustesse :</strong> Fonctionne même avec peu de données</p>
+            <p>• <strong>Données rares :</strong> l'a priori aide quand les données manquent, à condition qu'il soit raisonnable</p>
           </div>
         </div>
       </CourseHighlight>

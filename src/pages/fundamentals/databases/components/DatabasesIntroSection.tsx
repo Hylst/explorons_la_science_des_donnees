@@ -80,16 +80,17 @@ const DatabasesIntroSection = () => {
                 <h4 className="font-semibold text-blue-800 mb-2">💡 Définition simple</h4>
                 <p className="text-sm">
                   C'est comme un classeur géant, mais digital, qui peut contenir des millions 
-                  d'informations organisées de façon à les retrouver en quelques millisecondes !
+                  d'informations organisées de façon à les retrouver rapidement.
                 </p>
               </div>
 
-              <div className="flex gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {Object.entries(analogies).map(([key, analogy]) => (
                   <Button
                     key={key}
                     variant={activeAnalogy === key ? "default" : "outline"}
                     size="sm"
+                    aria-label={analogy.title}
                     onClick={() => setActiveAnalogy(key as keyof typeof analogies)}
                   >
                     {analogy.title.split(' ')[0]}
@@ -130,8 +131,8 @@ const DatabasesIntroSection = () => {
               <div className="bg-green-50 p-3 rounded-lg">
                 <h4 className="font-semibold text-green-800 mb-2">🎯 Les données sont partout</h4>
                 <p className="text-sm">
-                  90% du travail d'un Data Scientist consiste à collecter, nettoyer 
-                  et préparer les données. Sans base de données, impossible !
+                  Une grande partie du temps d'un data scientist passe à collecter, nettoyer 
+                  et préparer les données. Les ranger dans une base facilite beaucoup ce travail.
                 </p>
               </div>
               
@@ -142,7 +143,7 @@ const DatabasesIntroSection = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 font-bold">•</span>
-                  <span><strong>Vitesse :</strong> Accès en temps réel aux informations</span>
+                  <span><strong>Vélocité :</strong> Accès en temps réel aux informations</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 font-bold">•</span>
@@ -175,7 +176,7 @@ const DatabasesIntroSection = () => {
               </div>
               
               <div className="flex items-center gap-3 p-2 bg-yellow-50 rounded">
-                <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+                <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
                 <div>
                   <span className="font-semibold">Stockage</span>
                   <p className="text-xs text-gray-600">Base de données structurée</p>
@@ -183,7 +184,7 @@ const DatabasesIntroSection = () => {
               </div>
               
               <div className="flex items-center gap-3 p-2 bg-orange-50 rounded">
-                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+                <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
                 <div>
                   <span className="font-semibold">Préparation</span>
                   <p className="text-xs text-gray-600">Nettoyage et transformation</p>
@@ -191,7 +192,7 @@ const DatabasesIntroSection = () => {
               </div>
               
               <div className="flex items-center gap-3 p-2 bg-green-50 rounded">
-                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">4</div>
+                <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm font-bold">4</div>
                 <div>
                   <span className="font-semibold">Analyse</span>
                   <p className="text-xs text-gray-600">Machine Learning et insights</p>
@@ -254,15 +255,15 @@ const DatabasesIntroSection = () => {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="structured" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full h-auto grid-cols-1 sm:grid-cols-3">
               <TabsTrigger value="structured">Structurées</TabsTrigger>
               <TabsTrigger value="semi-structured">Semi-structurées</TabsTrigger>
-              <TabsTrigger value="unstructured">Non-structurées</TabsTrigger>
+              <TabsTrigger value="unstructured">Non structurées</TabsTrigger>
             </TabsList>
             
             <TabsContent value="structured" className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">📊 Données Structurées (20%)</h4>
+                <h4 className="font-semibold mb-2">📊 Données structurées</h4>
                 <p className="text-sm mb-3">
                   Données organisées en tables avec des colonnes et des types définis
                 </p>
@@ -290,7 +291,7 @@ const DatabasesIntroSection = () => {
             
             <TabsContent value="semi-structured" className="space-y-4">
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">🔗 Données Semi-structurées (10%)</h4>
+                <h4 className="font-semibold mb-2">🔗 Données semi-structurées</h4>
                 <p className="text-sm mb-3">
                   Données avec une structure flexible, souvent avec des métadonnées
                 </p>
@@ -318,7 +319,7 @@ const DatabasesIntroSection = () => {
             
             <TabsContent value="unstructured" className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">📝 Données Non-structurées (70%)</h4>
+                <h4 className="font-semibold mb-2">📝 Données non structurées</h4>
                 <p className="text-sm mb-3">
                   Données sans format prédéfini, nécessitant un traitement spécialisé
                 </p>
@@ -335,9 +336,9 @@ const DatabasesIntroSection = () => {
                   <div>
                     <h5 className="font-semibold text-sm mb-1">Technologies :</h5>
                     <div className="flex flex-wrap gap-1">
-                      <Badge variant="secondary">Hadoop</Badge>
-                      <Badge variant="secondary">Spark</Badge>
-                      <Badge variant="secondary">S3</Badge>
+                      <Badge variant="secondary">Hadoop (HDFS)</Badge>
+                      <Badge variant="secondary">S3 (stockage objet)</Badge>
+                      <Badge variant="secondary">Data lake</Badge>
                     </div>
                   </div>
                 </div>
