@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
+import { positionKey } from "@/lib/scroll-key";
 
 // Les pages sont chargées à la demande : le contenu (ancre, hauteur) peut apparaître après coup
 const RETRY_DELAY_MS = 100;
@@ -63,7 +64,7 @@ const ScrollManager = () => {
   const location = useLocation();
   const navigationType = useNavigationType();
   const positions = useRef<Record<string, number>>(loadPositions());
-  const currentKey = useRef(location.key);
+  const currentKey = useRef(positionKey(location));
 
   // Restauration gérée ici : celle du navigateur s'applique avant l'affichage des pages chargées à la demande
   useEffect(() => {
@@ -77,8 +78,8 @@ const ScrollManager = () => {
   // Mis à jour avant tout événement de défilement, pour ne jamais attribuer
   // la position de la nouvelle page à l'ancienne entrée d'historique
   useLayoutEffect(() => {
-    currentKey.current = location.key;
-  }, [location.key]);
+    currentKey.current = positionKey(location);
+  }, [location]);
 
   useEffect(() => {
     let frame = 0;
@@ -100,7 +101,8 @@ const ScrollManager = () => {
   }, []);
 
   useEffect(() => {
-    const { hash, key } = location;
+    const { hash } = location;
+    const key = positionKey(location);
 
     if (navigationType === "POP" && positions.current[key] !== undefined) {
       const saved = positions.current[key];

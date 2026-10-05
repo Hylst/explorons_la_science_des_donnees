@@ -27,7 +27,7 @@ const eventResources = [
     title: "PyData",
     url: "https://pydata.org/",
     type: "Conférences et meetups",
-    description: "Réseau de conférences et de meetups locaux autour de Python pour l'analyse de données."
+    description: "Réseau de conférences et de rencontres locales autour de Python pour l'analyse de données."
   },
   {
     title: "PyCon FR",
@@ -66,7 +66,7 @@ const EventsSection = () => (
     <h2 className="text-3xl font-bold mb-6">Événements</h2>
     <div className="max-w-none mb-6">
       <p>
-        Conférences, meetups et compétitions pour apprendre, échanger et rencontrer d'autres personnes du domaine.
+        Conférences, rencontres et compétitions pour apprendre, échanger et rencontrer d'autres personnes du domaine.
         Cette page ne recopie pas de calendrier : les dates changent chaque année et une liste figée serait vite fausse.
         Voici les sites de référence, où trouver les prochaines éditions.
       </p>

@@ -63,11 +63,11 @@ const ContributeSection = () => (
       <TabsList className="grid grid-cols-2 w-full max-w-md mb-6">
         <TabsTrigger value="open-source" className="flex items-center gap-2">
           <Code className="h-4 w-4" />
-          Projets Open Source
+          Projets open source
         </TabsTrigger>
         <TabsTrigger value="content" className="flex items-center gap-2">
           <Edit className="h-4 w-4" />
-          Contenu Éducatif
+          Contenu éducatif
         </TabsTrigger>
       </TabsList>
 
@@ -79,13 +79,13 @@ const ContributeSection = () => (
               <h3 className="text-lg font-semibold mb-2">Comment contribuer à l'open source</h3>
               <p className="text-sm mb-4">
                 Contribuer à des projets open source est un excellent moyen d'améliorer vos compétences tout en aidant la communauté.
-                Voici comment commencer:
+                Voici comment commencer :
               </p>
               <ol className="text-sm space-y-2 list-decimal pl-5 mb-4">
                 <li>Trouvez un projet qui vous intéresse</li>
                 <li>Lisez la documentation et les guides de contribution</li>
                 <li>Commencez par des tickets étiquetés « good first issue » ou « beginner friendly »</li>
-                <li>Forkez le dépôt, créez une branche, et soumettez une pull request</li>
+                <li>Dupliquez (fork) le dépôt, créez une branche, puis proposez une demande de fusion (pull request)</li>
                 <li>Soyez patient et ouvert aux retours</li>
               </ol>
               <Button variant="outline" size="sm" asChild className="whitespace-normal h-auto py-2 text-left">
@@ -98,7 +98,7 @@ const ContributeSection = () => (
           </div>
         </div>
 
-        <h3 className="text-xl font-semibold mb-4">Projets populaires en Data Science</h3>
+        <h3 className="text-xl font-semibold mb-4">Quelques projets open source de la data science</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {openSourceProjects.map((project) => (
             <Card key={project.name} className="hover:shadow-md transition-all">
@@ -113,7 +113,7 @@ const ContributeSection = () => (
               </CardHeader>
               <CardContent className="pb-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium">Langage:</span>
+                  <span className="text-xs font-medium">Langage :</span>
                   <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                     {project.language}
                   </span>
@@ -140,7 +140,7 @@ const ContributeSection = () => (
               <h3 className="text-lg font-semibold mb-2">Partagez votre expertise</h3>
               <p className="text-sm mb-4">
                 Le contenu éducatif est crucial pour aider les autres à apprendre et à progresser.
-                Voici quelques façons de partager vos connaissances:
+                Voici quelques façons de partager vos connaissances :
               </p>
               <ul className="text-sm space-y-2 list-disc pl-5 mb-4">
                 <li>Écrire des articles de blog</li>

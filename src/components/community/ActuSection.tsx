@@ -62,7 +62,7 @@ const ActuSection = () => {
       <h2 className="text-3xl font-bold mb-6">Actualités Data Science</h2>
       <div className="max-w-none mb-6">
         <p>
-          Une sélection d'articles récents issus de flux RSS publics. Chaque article s'ouvre sur le site de sa source.
+          Les derniers articles de plusieurs flux RSS publics, repris sans tri. Chaque article s'ouvre sur le site de sa source. Le flux « Le Big Data » n'apparaît pas ici : le script de récupération ne peut pas le lire.
           L'onglet « Sources RSS » donne les adresses des flux pour les suivre dans votre propre lecteur.
         </p>
       </div>
@@ -76,7 +76,7 @@ const ActuSection = () => {
         <TabsContent value="articles">
           <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-3 py-2 mb-6">
             Instantané pris le <time dateTime={fetchedAt}>{formatArticleDate(fetchedAt)}</time>. Ce site est statique et ne lit pas
-            les flux en direct : la liste est renouvelée à chaque publication du site.
+            les flux en direct : l'auteur renouvelle cette liste de temps en temps, à la main.
           </p>
 
           <NewsFilters
@@ -112,7 +112,7 @@ const ActuSection = () => {
         </TabsContent>
 
         <TabsContent value="sources">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {rssSources.map((source) => (
               <RSSSourceCard key={source.url} source={source} onCopyFeed={copyFeed} />
             ))}

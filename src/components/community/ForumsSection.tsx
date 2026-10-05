@@ -84,7 +84,7 @@ const ForumsSection = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-6">Forums et groupes</h2>
+      <h2 className="text-3xl font-bold mb-6">Forums et espaces de questions-réponses</h2>
       <div className="max-w-none mb-6">
         <p>
           Les forums et espaces de questions-réponses où vous pouvez poser vos questions et échanger avec d'autres personnes du domaine.
@@ -130,7 +130,7 @@ const ForumsSection = () => {
                   <Button variant="outline" size="sm" asChild>
                     <a href={forum.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
                       <ExternalLink className="h-3 w-3" />
-                      Rejoindre
+                      Consulter
                     </a>
                   </Button>
                 </div>

@@ -94,7 +94,7 @@ const ResourcesSection = () => {
               title="Data Science Specialization"
               author="Johns Hopkins University (Coursera)"
               link="https://www.coursera.org/specializations/jhu-data-science"
-              description="Une série de 10 cours couvrant tous les aspects de la Data Science."
+              description="Une série de 10 cours qui suivent les étapes d'une analyse de données, avec R."
             />
             <ResourceItem
               title="Deep Learning Specialization"
@@ -137,7 +137,7 @@ const ResourcesSection = () => {
         </div>
         
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg my-8 border border-blue-100">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-wrap justify-between items-center gap-4">
             <div>
               <h3 className="text-xl font-semibold mb-2">Explorez notre page Ressources</h3>
               <p className="text-gray-700">

@@ -9,17 +9,17 @@ const DefinitionSection = () => {
         <div className="bg-ds-blue-100 p-2 rounded-full">
           <Lightbulb className="h-6 w-6 text-ds-blue-500" />
         </div>
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-ds-blue-500 to-ds-purple-500 bg-clip-text text-transparent">Qu'est-ce que la Data Science?</h2>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-ds-blue-500 to-ds-purple-500 bg-clip-text text-transparent">Qu'est-ce que la Data Science ?</h2>
       </div>
       
       <div className="max-w-none">
         <p className="text-lg">
-          La Data Science est un domaine interdisciplinaire qui utilise des méthodes scientifiques, des processus, des algorithmes et des systèmes pour extraire des connaissances et des insights à partir de données structurées et non structurées.
+          La Data Science est un domaine interdisciplinaire qui utilise des méthodes scientifiques, des processus, des algorithmes et des systèmes pour extraire des connaissances et des enseignements à partir de données structurées et non structurées.
         </p>
         
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg my-6 border border-blue-100">
           <p className="text-lg font-medium text-gray-800">
-            Elle combine des compétences en mathématiques, statistiques, informatique et connaissance du domaine pour analyser et interpréter des données complexes, identifier des patterns, faire des prédictions et aider à la prise de décision.
+            Elle combine des compétences en mathématiques, statistiques, informatique et connaissance du domaine pour analyser et interpréter des données complexes, repérer des motifs (régularités), faire des prédictions et aider à la prise de décision.
           </p>
         </div>
         
@@ -42,7 +42,7 @@ const DefinitionSection = () => {
             cardTitle="Aide à la décision"
             className="border-t-4 border-t-ds-blue-300 hover:shadow-md transition-all"
           >
-            <p className="text-gray-700">Transformer les données en insights actionnables pour orienter les décisions stratégiques.</p>
+            <p className="text-gray-700">Transformer les données en enseignements exploitables pour orienter les décisions stratégiques.</p>
           </CustomCard>
         </div>
       </div>

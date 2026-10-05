@@ -15,7 +15,7 @@ const socialAccounts = [
       {
         name: "Kirk Borne",
         handle: "@KirkDBorne",
-        description: "Expert en data science, IA et big data. Partage régulier d'articles et de ressources.",
+        description: "Compte consacré à la data science, à l'IA et au big data.",
         url: "https://x.com/KirkDBorne",
         icon: <Twitter className="h-5 w-5 text-sky-500" />
       }

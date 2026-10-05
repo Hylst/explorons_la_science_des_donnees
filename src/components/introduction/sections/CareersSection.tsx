@@ -37,7 +37,7 @@ const CareerCard = ({
       <CardContent className="pt-4">
         <p>{description}</p>
         <div className="mt-3 text-sm text-gray-600">
-          <p className={`font-medium ${titleColor}`}>Compétences requises:</p>
+          <p className={`font-medium ${titleColor}`}>Compétences requises :</p>
           <p>{skills}</p>
         </div>
       </CardContent>
@@ -89,7 +89,7 @@ const CareersSection = () => {
     {
       title: "Data Analyst",
       acronym: "DA",
-      description: "Focalisé sur l'analyse descriptive, le Data Analyst transforme les données en insights actionnables pour les décideurs métier.",
+      description: "Focalisé sur l'analyse descriptive, le Data Analyst transforme les données en enseignements exploitables pour les décideurs métier.",
       skills: "SQL, Excel, visualisation, statistiques descriptives",
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
@@ -111,8 +111,8 @@ const CareersSection = () => {
     {
       title: "Business Intelligence Analyst",
       acronym: "BI",
-      description: "Spécialiste de la transformation des données en rapports et dashboards pour suivre les KPIs et faciliter les décisions stratégiques.",
-      skills: "SQL, outils BI (Tableau, Power BI), data warehousing, business acumen",
+      description: "Spécialiste de la transformation des données en rapports et tableaux de bord pour suivre les indicateurs clés et faciliter les décisions stratégiques.",
+      skills: "SQL, outils BI (Tableau, Power BI), entrepôts de données, sens du métier",
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
       acronymBg: "bg-ds-purple-100",
@@ -122,7 +122,7 @@ const CareersSection = () => {
     {
       title: "Chief Data Officer",
       acronym: "CDO",
-      description: "Responsable stratégique de la gouvernance des données et de la transformation data-driven de l'organisation au niveau exécutif.",
+      description: "Responsable stratégique de la gouvernance des données et de la transformation par les données de l'organisation au niveau exécutif.",
       skills: "Leadership, stratégie, gouvernance des données, management",
       fromColor: "from-ds-blue-50",
       toColor: "to-ds-purple-50",
@@ -144,7 +144,7 @@ const CareersSection = () => {
       <div className="max-w-none">
         <p className="text-lg mb-6">
           L'écosystème de la Data Science offre une grande variété de carrières, chacune avec ses compétences spécifiques, 
-          ses responsabilités et ses perspectives d'évolution. Découvrez les principaux métiers de ce domaine en pleine expansion.
+          ses responsabilités et ses perspectives d'évolution. Voici les principaux métiers de ce domaine.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -158,9 +158,9 @@ const CareersSection = () => {
 
           <h4 className="font-semibold mb-2">Ce que proposent les offres d'emploi (Apec)</h4>
           <div className="space-y-2 mb-2">
-            <SalaryRangeItem role="Data Analyst" range="33-53K€ (moyenne 43K€)" level="mid" />
-            <SalaryRangeItem role="Data Scientist" range="35-60K€ (moyenne 46K€)" level="mid" />
-            <SalaryRangeItem role="Data Engineer" range="35-60K€ (moyenne 47K€)" level="mid" />
+            <SalaryRangeItem role="Data Analyst" range="33-53 k€ (moyenne 43 k€)" level="mid" />
+            <SalaryRangeItem role="Data Scientist" range="35-60 k€ (moyenne 46 k€)" level="mid" />
+            <SalaryRangeItem role="Data Engineer" range="35-60 k€ (moyenne 47 k€)" level="mid" />
           </div>
           <SourceNote
             className="mb-6"
@@ -178,23 +178,23 @@ const CareersSection = () => {
 
           <h4 className="font-semibold mb-2">Estimations de l'auteur par niveau d'expérience</h4>
           <div className="space-y-2 mb-6">
-            <SalaryRangeItem role="Data Analyst" range="35-45K€" level="junior" />
-            <SalaryRangeItem role="Data Scientist" range="45-60K€" level="junior" />
-            <SalaryRangeItem role="Data Engineer" range="45-55K€" level="junior" />
-            <SalaryRangeItem role="ML Engineer" range="50-65K€" level="junior" />
+            <SalaryRangeItem role="Data Analyst" range="35-45 k€" level="junior" />
+            <SalaryRangeItem role="Data Scientist" range="45-60 k€" level="junior" />
+            <SalaryRangeItem role="Data Engineer" range="45-55 k€" level="junior" />
+            <SalaryRangeItem role="ML Engineer" range="50-65 k€" level="junior" />
           </div>
           
           <div className="space-y-2 mb-6">
-            <SalaryRangeItem role="Data Analyst Senior" range="50-70K€" level="mid" />
-            <SalaryRangeItem role="Data Scientist Senior" range="65-85K€" level="mid" />
-            <SalaryRangeItem role="Data Engineer Senior" range="60-80K€" level="mid" />
-            <SalaryRangeItem role="ML Engineer Senior" range="70-90K€" level="mid" />
+            <SalaryRangeItem role="Data Analyst Senior" range="50-70 k€" level="mid" />
+            <SalaryRangeItem role="Data Scientist Senior" range="65-85 k€" level="mid" />
+            <SalaryRangeItem role="Data Engineer Senior" range="60-80 k€" level="mid" />
+            <SalaryRangeItem role="ML Engineer Senior" range="70-90 k€" level="mid" />
           </div>
           
           <div className="space-y-2">
-            <SalaryRangeItem role="Lead Data Scientist" range="80-110K€" level="senior" />
-            <SalaryRangeItem role="Head of Data" range="90-130K€" level="senior" />
-            <SalaryRangeItem role="Chief Data Officer" range="120K€+" level="senior" />
+            <SalaryRangeItem role="Lead Data Scientist" range="80-110 k€" level="senior" />
+            <SalaryRangeItem role="Head of Data" range="90-130 k€" level="senior" />
+            <SalaryRangeItem role="Chief Data Officer" range="120 k€ et plus" level="senior" />
           </div>
           
           <p className="text-xs text-gray-500 mt-4">
@@ -230,7 +230,7 @@ const CareersSection = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-ds-blue-500 font-bold">•</span>
-                  <span>Bootcamps spécialisés (3-6 mois)</span>
+                  <span>Bootcamps spécialisés (durée variable selon l'organisme)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-ds-blue-500 font-bold">•</span>

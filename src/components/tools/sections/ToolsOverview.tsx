@@ -11,7 +11,7 @@ const ToolsOverview = () => {
         <p className="text-lg text-muted-foreground leading-relaxed">
           La data science s'appuie sur un écosystème riche et diversifié d'outils, chacun optimisé pour des tâches spécifiques.
           De la collecte des données brutes à la communication des résultats, découvrez les technologies qui alimentent 
-          l'innovation en science des données et apprenez à construire votre stack technique idéal.
+          l'innovation en science des données et apprenez à choisir votre boîte à outils.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ const ToolsOverview = () => {
             <div className="space-y-3">
               <p className="text-sm leading-relaxed">
                 Python, R, SQL, Julia et autres langages spécialisés pour l'analyse et le traitement des données.
-                Chaque langage possède ses forces, ses écosystèmes de packages et ses domaines d'application privilégiés.
+                Chaque langage possède ses forces, ses écosystèmes de paquets et ses domaines d'application privilégiés.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 <Badge variant="secondary" className="bg-blue-50 text-blue-800 border-blue-200">Python</Badge>
@@ -45,7 +45,7 @@ const ToolsOverview = () => {
               <div className="pt-2 space-y-1">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Zap className="h-3 w-3" />
-                  <span>Performance et simplicité</span>
+                  <span>Langages généralistes et spécialisés</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Users className="h-3 w-3" />
@@ -57,7 +57,7 @@ const ToolsOverview = () => {
           <CardFooter className="flex flex-wrap gap-1">
             <Button variant="ghost" size="sm" asChild className="whitespace-normal h-auto py-2 text-left group-hover:bg-blue-50 transition-colors">
               <Link to="/fundamentals/programming" className="flex items-center gap-1">
-                Voir les détails des langages
+                Lire le cours sur les langages de programmation
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -100,7 +100,7 @@ const ToolsOverview = () => {
               <div className="pt-2 space-y-1">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Zap className="h-3 w-3" />
-                  <span>Scalabilité et performance</span>
+                  <span>Pensés pour de gros volumes de données</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Database className="h-3 w-3" />
@@ -112,7 +112,7 @@ const ToolsOverview = () => {
           <CardFooter className="flex flex-wrap gap-1">
             <Button variant="ghost" size="sm" asChild className="whitespace-normal h-auto py-2 text-left group-hover:bg-amber-50 transition-colors">
               <Link to="/fundamentals/databases" className="flex items-center gap-1">
-                Explorer les outils de traitement
+                Lire le cours sur les bases de données
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -158,7 +158,7 @@ const ToolsOverview = () => {
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Zap className="h-3 w-3" />
-                  <span>Performance GPU optimisée</span>
+                  <span>Calcul sur GPU possible (TensorFlow, PyTorch)</span>
                 </div>
               </div>
             </div>
@@ -166,7 +166,7 @@ const ToolsOverview = () => {
           <CardFooter className="flex flex-wrap gap-1">
             <Button variant="ghost" size="sm" asChild className="whitespace-normal h-auto py-2 text-left group-hover:bg-purple-50 transition-colors">
               <Link to="/machine-learning" className="flex items-center gap-1">
-                Découvrir les frameworks ML
+                Lire le cours d'apprentissage automatique
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -267,17 +267,6 @@ const ToolsOverview = () => {
                   Coursera - Spécialisation certifiante
                 </a>
               </li>
-              <li>
-                <a 
-                  href="https://www.kaggle.com/learn" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 hover:text-blue-600 transition-colors"
-                >
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                  Kaggle Learn - Micro-cours gratuits
-                </a>
-              </li>
             </ul>
           </div>
           
@@ -319,7 +308,7 @@ const ToolsOverview = () => {
                   className="group flex items-center gap-2 hover:text-purple-600 transition-colors"
                 >
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                  TensorFlow Guide complet
+                  Guide TensorFlow
                 </a>
               </li>
             </ul>
@@ -372,7 +361,7 @@ const ToolsOverview = () => {
           <div className="p-2 bg-gray-500 rounded-lg">
             <Zap className="h-6 w-6 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-gray-900">Comment construire votre stack technique ?</h3>
+          <h3 className="text-xl font-bold text-gray-900">Comment choisir vos outils ?</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -393,7 +382,7 @@ const ToolsOverview = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <h4 className="font-semibold text-gray-800">Notre recommandation pour débuter :</h4>
+            <h4 className="font-semibold text-gray-800">Une suggestion pour débuter (point de vue de l'auteur) :</h4>
             <div className="bg-white/80 p-4 rounded-lg border">
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">

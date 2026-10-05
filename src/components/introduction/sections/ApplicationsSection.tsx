@@ -38,7 +38,7 @@ const ApplicationsSection = () => {
       title: "Finance",
       icon: "💰",
       description: "Automatisation des processus financiers, détection de fraudes et prise de décision d'investissement.",
-      examples: ["Détection de fraudes", "Trading algorithmique", "Évaluation des risques", "Credit scoring"]
+      examples: ["Détection de fraudes", "Trading algorithmique", "Évaluation des risques", "Score de crédit"]
     },
     {
       title: "Marketing",
@@ -56,7 +56,7 @@ const ApplicationsSection = () => {
       title: "Énergie",
       icon: "⚡",
       description: "Optimisation de la production, réduction de la consommation et planification des ressources.",
-      examples: ["Prévision de consommation", "Optimisation de production", "Smart grids", "Détection de pannes"]
+      examples: ["Prévision de consommation", "Optimisation de production", "Réseaux électriques intelligents", "Détection de pannes"]
     },
     {
       title: "Industrie & Fabrication",
@@ -68,7 +68,7 @@ const ApplicationsSection = () => {
       title: "E-commerce & Retail",
       icon: "🛒",
       description: "Personnalisation de l'expérience d'achat, prévision des stocks et optimisation des prix.",
-      examples: ["Recommandations de produits", "Optimisation du merchandising", "Prévision des ventes", "Optimisation des stocks"]
+      examples: ["Recommandations de produits", "Aménagement des rayons", "Prévision des ventes", "Optimisation des stocks"]
     },
     {
       title: "Éducation",
@@ -95,9 +95,9 @@ const ApplicationsSection = () => {
       
       <div className="max-w-none">
         <p className="text-lg mb-6">
-          La Data Science s'applique aujourd'hui dans presque tous les secteurs d'activité, transformant radicalement 
-          la façon dont les organisations opèrent, prennent des décisions et créent de la valeur. Découvrez comment 
-          cette discipline est utilisée dans de nombreux domaines :
+          La Data Science s'applique aujourd'hui dans presque tous les secteurs d'activité, et change peu à peu
+          la façon dont les organisations travaillent et décident. Voici comment
+          cette discipline est utilisée dans quelques domaines :
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
@@ -122,11 +122,11 @@ const ApplicationsSection = () => {
             <div className="space-y-4">
               <div className="rounded-lg bg-white p-4 border border-purple-50">
                 <h4 className="font-semibold text-ds-purple-600">Prise de décision basée sur les données</h4>
-                <p className="text-sm text-gray-700">Remplacement des intuitions et hypothèses par des décisions fondées sur l'analyse objective des données.</p>
+                <p className="text-sm text-gray-700">Appuyer les intuitions et les hypothèses sur des analyses de données, en gardant un regard critique sur leurs limites.</p>
               </div>
               <div className="rounded-lg bg-white p-4 border border-purple-50">
                 <h4 className="font-semibold text-ds-purple-600">Innovation de rupture</h4>
-                <p className="text-sm text-gray-700">Création de nouveaux produits, services et modèles économiques rendus possibles uniquement grâce à l'exploitation massive des données.</p>
+                <p className="text-sm text-gray-700">Création de nouveaux produits, services et modèles économiques parfois rendus possibles par l'exploitation de grandes quantités de données.</p>
               </div>
             </div>
           </div>

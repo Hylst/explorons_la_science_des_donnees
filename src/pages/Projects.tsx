@@ -35,19 +35,19 @@ const topTechnologies = (() => {
 /** Classes complètes (jamais construites dynamiquement, sinon Tailwind ne les génère pas) */
 const LEVEL_SECTIONS: Record<ProjectLevel, { title: string; description: string; icon: ReactNode; iconBox: string }> = {
   beginner: {
-    title: "Projets pour Débutants",
+    title: "Projets pour débutants",
     description: "Des projets pour vos premières analyses et vos premiers modèles.",
     icon: <BookOpen className="h-5 w-5 text-green-600" />,
     iconBox: "bg-green-100"
   },
   intermediate: {
-    title: "Projets Intermédiaires",
+    title: "Projets intermédiaires",
     description: "Des projets plus complets, qui combinent plusieurs techniques et outils.",
     icon: <TrendingUp className="h-5 w-5 text-yellow-600" />,
     iconBox: "bg-yellow-100"
   },
   advanced: {
-    title: "Projets Avancés",
+    title: "Projets avancés",
     description: "Des projets exigeants, qui demandent de solides bases en machine learning.",
     icon: <Rocket className="h-5 w-5 text-red-600" />,
     iconBox: "bg-red-100"
@@ -90,7 +90,7 @@ const Projects = () => {
   return (
     <ContentLayout
       title="Projets Data Science"
-      backLink={{ href: "/tools", label: "Retour aux outils" }}
+      backLink={{ href: "/", label: "Retour à l'accueil" }}
       sidebar={{ items: sidebarItems }}
     >
       <section className="py-8">

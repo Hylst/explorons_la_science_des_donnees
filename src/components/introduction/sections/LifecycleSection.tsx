@@ -31,12 +31,12 @@ const LifecycleSection = () => {
     { 
       num: "03", 
       title: "Préparation des données", 
-      desc: "Nettoyer, transformer et préparer les données pour l'analyse (traitement des valeurs manquantes, outliers, etc.)" 
+      desc: "Nettoyer, transformer et préparer les données pour l'analyse (traitement des valeurs manquantes, des valeurs aberrantes, etc.)" 
     },
     { 
       num: "04", 
       title: "Exploration des données", 
-      desc: "Analyser les données pour identifier les patterns, relations et tendances à l'aide de statistiques descriptives et visualisations" 
+      desc: "Analyser les données pour repérer les motifs, relations et tendances à l'aide de statistiques descriptives et visualisations" 
     },
   ];
 
@@ -61,7 +61,7 @@ const LifecycleSection = () => {
     },
     { 
       num: "08", 
-      title: "Monitoring", 
+      title: "Suivi en production", 
       desc: "Surveiller les performances du modèle sur le long terme et l'ajuster en fonction des évolutions des données", 
       colorClass: "text-ds-blue-400" 
     },
@@ -92,7 +92,7 @@ const LifecycleSection = () => {
           <div className="relative py-4 my-4">
             <div className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-ds-purple-200 to-ds-blue-200"></div>
             <div className="flex justify-center">
-              <div className="bg-white px-6 relative -top-3 text-gray-500">Processus itératif</div>
+              <div className="bg-white px-6 relative -top-3 text-gray-500">Le cycle se répète : on revient souvent en arrière</div>
             </div>
           </div>
           

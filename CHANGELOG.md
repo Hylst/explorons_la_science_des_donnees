@@ -1,6 +1,15 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, nuit] - Pages restantes relues, math-intro allégé, défilement, performances mesurées
+
+- **Dépôt public** mis à jour (commit `e1988a8`, contrôles passés dans le dépôt public) : GitHub reconnaît désormais la licence AGPL-3.0.
+- **math-intro** : les quatre sections qui suivaient les 5 modules (environ 1 100 lignes, avec un « ROI de votre apprentissage » et des « scénarios business ») recoupaient les pages dédiées ; remplacées par « Pour aller plus loin », six cartes vers ces pages.
+- **Introduction et communauté** (relecture R6) : frise historique (AlexNet et ImageNet 2012 au lieu d'un « 2010 » sans événement, XVIIe siècle, ordre chronologique, source de GPT-3 lue), page Actualités qui disait la liste renouvelée « à chaque publication » (elle l'est à la main), crédit d'auteur avec l'assistance IA sans afficher l'adresse e-mail hors de la page Contact, ton et anglicismes.
+- **Outils et projets** (relectures R5 et R7) : `df.corr()` qui échoue avec pandas 2 sur une colonne texte, infobulle qui nommait « Usage » les quatre langages, liens en double, offre edX payante, outils fermés retirés après vérification (Neptune.ai, WhyLabs) ou abandonnés (Cortex, TorchText), LiteRT, chiffre de Spark sourcé, gratuité de Tableau, Power BI et Looker Studio dite précisément, données fictives annoncées, `col-span-3` qui créait des colonnes implicites sur mobile ; projets : avertissement « pas un conseil en investissement », espèces d'Iris, outils de sentiment conçus pour l'anglais.
+- **Défilement** : au chargement complet d'une page, React Router donne la clé « default » à toutes les pages ; la position mémorisée de la page chargée avant dans l'onglet s'appliquait à la nouvelle et masquait son ancre. Positions indexées par entrée d'historique et par adresse (`lib/scroll-key.ts`, test vérifié par mutation, scénario rejoué dans Chrome).
+- **Performances** : mesurées avec compression gzip comme sur hylst.fr (le serveur local de test ne compressait pas, ce qui faussait les mesures du 2 octobre) : accueil 89, blog 92, math-intro 79, glossaire 61, probabilités 46 (blocage du fil principal : 5 433 éléments rendus d'un coup). Essai `content-visibility` sur les sections : +6 à +21 points, mais il cassait la restauration du défilement au retour ; écarté.
+
 ## [2026-10-05, soir] - Glossaire, licence, illustrations, cours de maths et bases de données relus
 
 - **Décisions de l'auteur appliquées** : le site ne renvoie plus vers le dépôt de code (`SOURCE_URL = null`, « Code source sur demande » par la page Contact) ; ton sympathique et humble, jamais commercial ; illustrations générées en local en WebP.

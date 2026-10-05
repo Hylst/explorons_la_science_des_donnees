@@ -68,7 +68,7 @@ export function AdvancedProjectSearch({ filters, onChange, resultCount, totalCou
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Search className="h-5 w-5" />
-          Recherche de Projets
+          Recherche de projets
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">

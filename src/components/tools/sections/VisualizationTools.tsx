@@ -26,18 +26,18 @@ import { datavizDefinitions } from "@/components/fundamentals/definitions/datavi
 const VisualizationTools = () => {
   // Données pour les exemples de visualisation
   const lineChartData = [
-    { month: 'Jan', temperature: 4, rainfall: 65 },
-    { month: 'Feb', temperature: 6, rainfall: 59 },
-    { month: 'Mar', temperature: 10, rainfall: 80 },
-    { month: 'Apr', temperature: 14, rainfall: 78 },
-    { month: 'May', temperature: 18, rainfall: 95 },
-    { month: 'Jun', temperature: 22, rainfall: 58 },
-    { month: 'Jul', temperature: 25, rainfall: 40 },
-    { month: 'Aug', temperature: 24, rainfall: 52 },
-    { month: 'Sep', temperature: 20, rainfall: 63 },
-    { month: 'Oct', temperature: 16, rainfall: 75 },
-    { month: 'Nov', temperature: 10, rainfall: 88 },
-    { month: 'Dec', temperature: 6, rainfall: 67 }
+    { month: 'janv.', temperature: 4, rainfall: 65 },
+    { month: 'févr.', temperature: 6, rainfall: 59 },
+    { month: 'mars', temperature: 10, rainfall: 80 },
+    { month: 'avr.', temperature: 14, rainfall: 78 },
+    { month: 'mai', temperature: 18, rainfall: 95 },
+    { month: 'juin', temperature: 22, rainfall: 58 },
+    { month: 'juil.', temperature: 25, rainfall: 40 },
+    { month: 'août', temperature: 24, rainfall: 52 },
+    { month: 'sept.', temperature: 20, rainfall: 63 },
+    { month: 'oct.', temperature: 16, rainfall: 75 },
+    { month: 'nov.', temperature: 10, rainfall: 88 },
+    { month: 'déc.', temperature: 6, rainfall: 67 }
   ];
 
   const barChartData = [
@@ -76,8 +76,8 @@ const VisualizationTools = () => {
       <h2 className="text-2xl font-bold">Outils de visualisation de données</h2>
       <p className="text-lg mb-6">
         La visualisation est essentielle pour comprendre, analyser et communiquer efficacement les
-        insights tirés des données. Ces outils permettent de transformer des données brutes en 
-        représentations visuelles percutantes.
+        enseignements tirés des données. Ces outils permettent de transformer des données brutes en
+        représentations visuelles lisibles.
       </p>
 
       {/* Exemples de visualisations */}
@@ -118,7 +118,7 @@ const VisualizationTools = () => {
                 </LineChart>
               </ResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
-                Graphique linéaire montrant la température et les précipitations mensuelles
+                Graphique linéaire sur des données fictives : température et précipitations mensuelles
               </p>
             </div>
           </CardContent>
@@ -145,7 +145,7 @@ const VisualizationTools = () => {
                 </BarChart>
               </ResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
-                Diagramme à barres comparant des valeurs entre différentes catégories
+                Diagramme à barres sur des données fictives, comparant des valeurs entre différentes catégories
               </p>
             </div>
           </CardContent>
@@ -168,7 +168,7 @@ const VisualizationTools = () => {
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name} : ${(percent * 100).toFixed(0)} %`}
                   >
                     {pieChartData.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -210,7 +210,7 @@ const VisualizationTools = () => {
                 </ScatterChart>
               </ResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
-                Nuage de points illustrant les relations entre deux variables
+                Nuage de points sur des données fictives, illustrant la relation entre deux variables
               </p>
             </div>
           </CardContent>
@@ -240,7 +240,7 @@ const VisualizationTools = () => {
                   <Badge variant="outline" className="bg-blue-50">Flexibilité</Badge>
                   <Badge variant="outline" className="bg-blue-50">Personnalisation</Badge>
                   <Badge variant="outline" className="bg-blue-50">Publication</Badge>
-                  <Badge variant="outline" className="bg-blue-50">Large adoption</Badge>
+                  <Badge variant="outline" className="bg-blue-50">Très utilisé</Badge>
                 </div>
                 
                 <p className="text-sm">
@@ -304,7 +304,7 @@ plt.show()`}</pre>
                 Seaborn
               </CardTitle>
               <CardDescription>
-                Interface haut niveau pour créer des visualisations statistiques attrayantes
+                Interface de haut niveau pour créer des visualisations statistiques attrayantes
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
@@ -380,7 +380,7 @@ plt.show()`}</pre>
                 
                 <p className="text-sm">
                   Plotly permet de créer des visualisations interactives sophistiquées pour le web,
-                  avec des fonctionnalités de zoom, survol, et animation. Il est disponible en Python,
+                  avec des fonctionnalités de zoom, survol et animation. Il est disponible en Python,
                   R et JavaScript.
                 </p>
                 
@@ -414,7 +414,7 @@ plt.show()`}</pre>
                 </div>
                 
                 <p className="text-sm">
-                  ggplot2 implémente la "grammaire des graphiques", une approche cohérente et expressive
+                  ggplot2 implémente la « grammaire des graphiques », une approche cohérente et expressive
                   pour décrire et créer des visualisations complexes en R. C'est la bibliothèque de 
                   visualisation de référence dans l'écosystème R.
                 </p>
@@ -427,8 +427,8 @@ library(dplyr)
 
 # Charger et préparer les données
 data(diamonds)
-diamond_sample <- diamonds %>% 
-  sample_n(1000)
+diamond_sample <- diamonds %>%
+  slice_sample(n = 1000)
 
 # Créer le graphique
 p <- ggplot(diamond_sample, aes(x = carat, y = price, color = cut)) +
@@ -555,10 +555,10 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             <CardHeader className="bg-blue-50 rounded-t-lg">
               <div className="flex justify-between items-center">
                 <CardTitle className="flex items-center">Tableau</CardTitle>
-                <img src={asset("img/logos/tableau.svg")} alt="Tableau Logo" className="h-8 w-8" />
+                <img src={asset("img/logos/tableau.svg")} alt="" className="h-8 w-8" />
               </div>
               <CardDescription>
-                Plateforme de visualisation et d'analyse très répandue
+                Plateforme de visualisation et d'analyse de Salesforce
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-4">
@@ -580,8 +580,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 </div>
                 
                 <div className="flex items-center gap-1 text-xs text-gray-600">
-                  <span className="font-medium">Type:</span>
-                  <span>Commercial (version gratuite limitée)</span>
+                  <span className="font-medium">Type :</span>
+                  <span>Commercial (Tableau Public est gratuit, mais ce que vous y publiez est visible de tous)</span>
                 </div>
               </div>
             </CardContent>
@@ -591,7 +591,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             <CardHeader className="bg-yellow-50 rounded-t-lg">
               <div className="flex justify-between items-center">
                 <CardTitle className="flex items-center"><GlossaryTerm definition={datavizDefinitions["power-bi"]}>Power BI</GlossaryTerm></CardTitle>
-                <img src={asset("img/logos/powerbi.svg")} alt="Power BI Logo" className="h-8 w-8" />
+                <img src={asset("img/logos/powerbi.svg")} alt="" className="h-8 w-8" />
               </div>
               <CardDescription>
                 Solution de Business Intelligence de Microsoft
@@ -600,8 +600,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             <CardContent className="pt-4">
               <div className="space-y-4">
                 <p className="text-sm">
-                  Power BI est une suite d'outils d'analyse qui s'intègre parfaitement avec 
-                  l'écosystème Microsoft, offrant des fonctionnalités puissantes (voir les tarifs sur le site de Microsoft).
+                  Power BI est une suite d'outils d'analyse qui s'intègre bien à
+                  l'écosystème Microsoft (Excel, Azure, Teams).
                 </p>
                 
                 <div className="p-3 bg-gray-50 rounded-lg">
@@ -616,8 +616,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 </div>
                 
                 <div className="flex items-center gap-1 text-xs text-gray-600">
-                  <span className="font-medium">Type:</span>
-                  <span>Commercial (version gratuite disponible)</span>
+                  <span className="font-medium">Type :</span>
+                  <span>Commercial (Power BI Desktop est gratuit pour créer des rapports ; leur partage en ligne demande une licence)</span>
                 </div>
               </div>
             </CardContent>
@@ -651,8 +651,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 </div>
                 
                 <div className="flex items-center gap-1 text-xs text-gray-600">
-                  <span className="font-medium">Type:</span>
-                  <span>Gratuit</span>
+                  <span className="font-medium">Type :</span>
+                  <span>Gratuit (une version Pro payante existe)</span>
                 </div>
               </div>
             </CardContent>
@@ -691,7 +691,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 </div>
                 
                 <div className="flex items-center gap-1 text-xs text-gray-600">
-                  <span className="font-medium">Type:</span>
+                  <span className="font-medium">Type :</span>
                   <span>Open-source (avec version cloud payante)</span>
                 </div>
               </div>
@@ -729,7 +729,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 </div>
                 
                 <div className="flex items-center gap-1 text-xs text-gray-600">
-                  <span className="font-medium">Type:</span>
+                  <span className="font-medium">Type :</span>
                   <span>Open-source</span>
                 </div>
               </div>
@@ -885,7 +885,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 <span className="font-medium">Interactivité</span>
               </div>
               <p className="text-xs pl-8">
-                Besoin de filtres, drill-down ou autres interactions ?
+                Besoin de filtres, d'exploration détaillée (drill-down) ou d'autres interactions ?
               </p>
             </div>
             
@@ -905,7 +905,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 <span className="font-medium">Budget</span>
               </div>
               <p className="text-xs pl-8">
-                Coûts des licences, hosting, et ressources humaines pour le développement.
+                Coûts des licences, de l'hébergement et des ressources humaines pour le développement.
               </p>
             </div>
             

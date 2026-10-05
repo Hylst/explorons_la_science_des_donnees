@@ -6,7 +6,6 @@ import {
   BarChart3,
   BrainCircuit,
   BookOpen,
-  GraduationCap,
   Wrench
 } from "lucide-react";
 
@@ -21,8 +20,7 @@ export const useToolsSidebar = () => {
     { title: "Frameworks de Machine Learning", href: "/tools/ml-frameworks", icon: <BrainCircuit className="h-4 w-4" /> },
     { title: "Outils de visualisation", href: "/tools/visualization", icon: <LineChart className="h-4 w-4" /> },
     { title: "Outils de Business Intelligence", href: "/tools/visualization#bi-tools", icon: <BarChart3 className="h-4 w-4" /> },
-    { title: "Livres et publications", href: "/resources", icon: <BookOpen className="h-4 w-4" /> },
-    { title: "Cours et formations", href: "/resources", icon: <GraduationCap className="h-4 w-4" /> }
+    { title: "Livres, cours et formations", href: "/resources", icon: <BookOpen className="h-4 w-4" /> }
   ];
 
   return { items: entries.map((entry) => ({ ...entry, isActive: !entry.href.includes("#") && entry.href === pathname })) };

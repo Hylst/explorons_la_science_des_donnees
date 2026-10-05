@@ -100,7 +100,7 @@ const MLFrameworks = () => {
                     outerRadius={130}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)} %`}
                     labelLine={false}
                   >
                     {mlApplicationData.map((_, index) => (
@@ -121,7 +121,7 @@ const MLFrameworks = () => {
       
       {/* Section scikit-learn */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <Card className="col-span-3 md:col-span-2 hover:shadow-md transition-all">
+        <Card className="md:col-span-2 hover:shadow-md transition-all">
           <CardHeader className="bg-blue-50 rounded-t-lg border-b">
             <CardTitle className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-blue-700" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ const MLFrameworks = () => {
               scikit-learn
             </CardTitle>
             <CardDescription>
-              Bibliothèque Python d'apprentissage automatique pour le Machine Learning classique
+              Bibliothèque Python de Machine Learning classique
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
@@ -201,7 +201,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <h5 className="font-medium text-blue-700 mb-1">scikit-learn</h5>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Algorithmes classiques (arbres, SVM, etc.)</li>
-                  <li>Datasets de taille moyenne</li>
+                  <li>Jeux de données de taille moyenne</li>
                   <li>Prétraitement des données</li>
                   <li>Prototypage rapide</li>
                 </ul>
@@ -212,7 +212,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Deep learning complexe</li>
                   <li>Déploiement en production</li>
-                  <li>TensorFlow Lite pour mobile/edge</li>
+                  <li>LiteRT (ex-TensorFlow Lite) pour mobile et appareils embarqués</li>
                   <li>TensorFlow.js pour navigateur</li>
                 </ul>
               </div>
@@ -221,7 +221,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <h5 className="font-medium text-orange-700 mb-1">PyTorch</h5>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Recherche et expérimentation</li>
-                  <li>Computer vision avancée</li>
+                  <li>Vision par ordinateur avancée</li>
                   <li>Traitement du langage naturel</li>
                   <li>Modèles personnalisés complexes</li>
                 </ul>
@@ -232,7 +232,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Compétitions et défis ML</li>
                   <li>Problèmes avec données tabulaires</li>
-                  <li>Performances optimales</li>
+                  <li>Souvent très performants sur ce type de données</li>
                   <li>Algorithmes à base d'arbres</li>
                 </ul>
               </div>
@@ -241,7 +241,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <h5 className="font-medium text-purple-700 mb-1">Hugging Face</h5>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Modèles de langage préentraînés</li>
-                  <li>Fine-tuning de transformers</li>
+                  <li>Ajustement fin (fine-tuning) de transformers</li>
                   <li>NLP et génération de texte</li>
                   <li>Partage et collaboration</li>
                 </ul>
@@ -268,7 +268,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
               TensorFlow
             </CardTitle>
             <CardDescription>
-              Plateforme end-to-end open source pour le machine learning
+              Plateforme open source de bout en bout pour le machine learning
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
@@ -278,7 +278,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <Badge variant="outline" className="bg-red-50">Keras API</Badge>
                 <Badge variant="outline" className="bg-red-50">TensorBoard</Badge>
                 <Badge variant="outline" className="bg-red-50">TF Serving</Badge>
-                <Badge variant="outline" className="bg-red-50">TFLite</Badge>
+                <Badge variant="outline" className="bg-red-50">LiteRT</Badge>
               </div>
               
               <p className="text-sm">
@@ -319,11 +319,11 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
           <CardContent className="pt-6">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="outline" className="bg-orange-50">Graphs dynamiques</Badge>
+                <Badge variant="outline" className="bg-orange-50">Graphes dynamiques</Badge>
                 <Badge variant="outline" className="bg-orange-50">Recherche</Badge>
                 <Badge variant="outline" className="bg-orange-50">PyTorch Lightning</Badge>
                 <Badge variant="outline" className="bg-orange-50">TorchVision</Badge>
-                <Badge variant="outline" className="bg-orange-50">TorchText</Badge>
+                <Badge variant="outline" className="bg-orange-50">TorchAudio</Badge>
               </div>
               
               <p className="text-sm">
@@ -370,7 +370,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
               
               <p className="text-sm">
                 XGBoost et LightGBM sont des implémentations optimisées d'algorithmes de gradient boosting,
-                offrant des performances exceptionnelles pour les problèmes de classification et de régression
+                offrant souvent de très bonnes performances pour les problèmes de classification et de régression
                 sur des données tabulaires.
               </p>
               
@@ -409,7 +409,7 @@ model = xgb.train(
 # Faire des prédictions
 preds = model.predict(dtest)
 rmse = root_mean_squared_error(y_test, preds)
-print(f"RMSE: {rmse:.4f}")`}</pre>
+print(f"RMSE : {rmse:.4f}")`}</pre>
                 </div>
               </div>
             </div>
@@ -444,8 +444,8 @@ print(f"RMSE: {rmse:.4f}")`}</pre>
               </div>
               
               <p className="text-sm">
-                Hugging Face Transformers est devenue la bibliothèque de référence pour le traitement du langage naturel,
-                offrant un accès facile à des centaines de modèles préentraînés comme BERT, GPT, T5 et autres.
+                Hugging Face Transformers est très utilisée pour le traitement du langage naturel : elle donne accès
+                à de nombreuses architectures (BERT, GPT-2, T5, CamemBERT...) et à des modèles préentraînés partagés sur le Hugging Face Hub.
               </p>
               
               <div className="bg-purple-50 p-4 rounded-lg border border-purple-100 mt-4">
@@ -489,7 +489,7 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
         <p className="mb-6">
           L'AutoML (Machine Learning automatisé) vise à rendre les techniques d'apprentissage automatique
           accessibles aux non-spécialistes en automatisant les tâches complexes comme la sélection de modèles,
-          le réglage des hyperparamètres et le feature engineering.
+          le réglage des hyperparamètres et la construction de variables (feature engineering).
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -550,7 +550,7 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
                 <li>MLflow</li>
                 <li>Weights & Biases</li>
                 <li>Comet ML</li>
-                <li>Neptune.ai</li>
+                <li>ClearML</li>
               </ul>
               <div className="mt-2 text-xs text-gray-600">
                 Suivi des métriques, paramètres et artefacts lors de l'entraînement des modèles
@@ -584,7 +584,7 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
                 <li>BentoML</li>
                 <li>TensorFlow Serving</li>
                 <li>Seldon Core</li>
-                <li>Cortex</li>
+                <li>KServe</li>
               </ul>
               <div className="mt-2 text-xs text-gray-600">
                 Mise en production des modèles sous forme d'API ou de services
@@ -599,12 +599,11 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
             <CardContent>
               <ul className="list-disc pl-5 space-y-1 text-sm">
                 <li>Evidently AI</li>
-                <li>WhyLabs</li>
                 <li>Fiddler AI</li>
                 <li>Prometheus/Grafana</li>
               </ul>
               <div className="mt-2 text-xs text-gray-600">
-                Monitoring des performances et détection de dérive des modèles en production
+                Suivi des performances et détection de dérive des modèles en production
               </div>
             </CardContent>
           </Card>

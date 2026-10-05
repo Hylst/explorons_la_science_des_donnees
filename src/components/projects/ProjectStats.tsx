@@ -21,7 +21,10 @@ export function ProjectStats() {
       icon: <Target className="h-5 w-5" />,
       label: "Projets proposés",
       value: String(projects.length),
-      description: LEVELS.map((level) => `${levelSummary(level).count} ${LEVEL_LABELS[level].toLowerCase()}`).join(" · "),
+      description: LEVELS.map((level) => {
+        const { count } = levelSummary(level);
+        return `${count} ${LEVEL_LABELS[level].toLowerCase()}${count > 1 ? "s" : ""}`;
+      }).join(" · "),
       color: "text-blue-600"
     },
     {

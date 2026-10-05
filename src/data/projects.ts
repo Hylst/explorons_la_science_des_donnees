@@ -24,8 +24,8 @@ export const projects: Project[] = [
   // PROJETS DÉBUTANTS
   {
     id: "beginner-1",
-    title: "Analyse exploratoire de données - Ventes",
-    description: "Découvrez les bases de l'analyse de données en explorant un jeu de données de ventes (à choisir, par exemple sur data.gouv.fr ou Kaggle). Apprenez à nettoyer, visualiser et extraire des insights.",
+    title: "Analyse exploratoire de données : ventes",
+    description: "Découvrez les bases de l'analyse de données en explorant un jeu de données de ventes (à choisir, par exemple sur data.gouv.fr ou Kaggle). Apprenez à nettoyer, visualiser et extraire des enseignements.",
     level: "beginner",
     technologies: ["Python", "Pandas", "Matplotlib", "Seaborn"],
     category: "analyse",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     id: "beginner-2",
     title: "Classification des fleurs d'Iris",
-    description: "Votre premier modèle de machine learning ! Classifiez les variétés de fleurs d'Iris avec des algorithmes simples.",
+    description: "Votre premier modèle de machine learning ! Classifiez les trois espèces de fleurs d'Iris avec des algorithmes simples.",
     level: "beginner",
     technologies: ["Python", "scikit-learn", "Matplotlib", "NumPy"],
     category: "machine learning",
@@ -58,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     id: "beginner-3",
-    title: "Dashboard COVID-19 avec Streamlit",
+    title: "Tableau de bord COVID-19 avec Streamlit",
     description: "Créez un tableau de bord interactif pour visualiser l'évolution des données COVID-19 mondiales.",
     level: "beginner",
     technologies: ["Python", "Streamlit", "Plotly", "Pandas"],
@@ -75,8 +75,8 @@ export const projects: Project[] = [
   },
   {
     id: "beginner-4",
-    title: "Analyse de Sentiments sur des Messages Courts",
-    description: "Analysez les sentiments de messages courts (avis clients, publications de réseaux sociaux) avec des techniques de NLP simples.",
+    title: "Analyse de sentiments sur des messages courts",
+    description: "Analysez les sentiments de messages courts (avis clients, publications de réseaux sociaux) avec des techniques simples de traitement du langage naturel. Attention : TextBlob et VADER sont conçus pour l'anglais ; pour du français, choisissez un lexique ou un modèle adapté.",
     level: "beginner",
     technologies: ["Python", "NLTK", "TextBlob", "Pandas"],
     category: "nlp",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     prerequisites: ["Python de base"],
     learningObjectives: [
       "Constitution d'un jeu de textes",
-      "Préprocessing de texte",
+      "Prétraitement de texte",
       "Analyse de sentiments",
       "Visualisation de résultats"
     ]
@@ -94,7 +94,7 @@ export const projects: Project[] = [
   // PROJETS INTERMÉDIAIRES
   {
     id: "intermediate-1",
-    title: "Système de Recommandation E-commerce",
+    title: "Système de recommandation pour le commerce en ligne",
     description: "Développez un système de recommandation complet pour un site e-commerce avec filtrage collaboratif et basé sur le contenu.",
     level: "intermediate",
     technologies: ["Python", "scikit-learn", "Surprise", "Flask", "PostgreSQL"],
@@ -111,7 +111,7 @@ export const projects: Project[] = [
   },
   {
     id: "intermediate-2",
-    title: "Prédiction des Prix Immobiliers",
+    title: "Prédiction des prix immobiliers",
     description: "Créez un modèle de régression avancé pour prédire les prix immobiliers en utilisant des données géographiques et économiques.",
     level: "intermediate",
     technologies: ["Python", "XGBoost", "GeoPandas", "Folium", "Docker"],
@@ -122,13 +122,13 @@ export const projects: Project[] = [
     learningObjectives: [
       "Régression avec XGBoost",
       "Données géographiques",
-      "Feature engineering avancé",
+      "Construction de variables avancée (feature engineering)",
       "Validation et optimisation"
     ]
   },
   {
     id: "intermediate-3",
-    title: "Détection de Fraudes Bancaires",
+    title: "Détection de fraudes bancaires",
     description: "Implémentez des algorithmes de détection d'anomalies pour identifier les transactions frauduleuses en temps réel.",
     level: "intermediate",
     technologies: ["Python", "scikit-learn", "Kafka", "Redis", "Elasticsearch"],
@@ -147,42 +147,42 @@ export const projects: Project[] = [
   // PROJETS AVANCÉS
   {
     id: "advanced-1",
-    title: "Classification d'Images Médicales avec CNN",
+    title: "Classification d'images médicales avec un CNN",
     description: "Développez, à but pédagogique, un classifieur d'images médicales à base de réseaux de neurones convolutifs. Cet exercice ne constitue pas un dispositif médical.",
     level: "advanced",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "pydicom"],
     category: "computer-vision",
     duration: "20-25 heures",
     difficulty: 5,
-    prerequisites: ["Deep Learning", "Computer Vision", "Python avancé"],
+    prerequisites: ["Deep Learning", "Vision par ordinateur", "Python avancé"],
     learningObjectives: [
       "CNNs pour l'imagerie médicale",
-      "Transfer Learning",
+      "Apprentissage par transfert",
       "Gestion des données DICOM",
       "Éthique en IA médicale"
     ]
   },
   {
     id: "advanced-2",
-    title: "Traduction Automatique avec Transformers",
+    title: "Traduction automatique avec des Transformers",
     description: "Construisez un système de traduction automatique fondé sur l'architecture Transformer (Vaswani et al., 2017).",
     level: "advanced",
-    technologies: ["Python", "PyTorch", "Transformers", "CUDA", "Weights&Biases"],
+    technologies: ["Python", "PyTorch", "Transformers", "CUDA", "Weights & Biases"],
     category: "nlp",
     duration: "25-30 heures",
     difficulty: 5,
-    prerequisites: ["NLP avancé", "Deep Learning", "Attention mechanisms"],
+    prerequisites: ["NLP avancé", "Deep Learning", "Mécanismes d'attention"],
     learningObjectives: [
       "Architecture Transformer",
       "Attention multi-têtes",
-      "Fine-tuning de modèles pré-entraînés",
+      "Ajustement fin de modèles préentraînés",
       "Évaluation BLEU/chrF"
     ]
   },
   {
     id: "advanced-3",
-    title: "Système de Trading Algorithmique",
-    description: "Développez une stratégie de trading automatisée utilisant le machine learning et l'analyse technique avancée.",
+    title: "Système de trading algorithmique",
+    description: "Développez, à but pédagogique, une stratégie de trading automatisée testée sur données historiques (backtesting). Cet exercice n'est pas un conseil en investissement : les performances passées ne préjugent pas des résultats futurs.",
     level: "advanced",
     technologies: ["Python", "backtrader", "QuantLib", "Apache Airflow", "Docker"],
     category: "finance",
@@ -229,9 +229,9 @@ export const hoursOf = (project: Project): [number, number] => {
 
 export type DurationFilter = "all" | "short" | "medium" | "long";
 export const DURATION_LABELS: Record<Exclude<DurationFilter, "all">, string> = {
-  short: "Court : jusqu'à 4 h",
-  medium: "Moyen : 5 à 12 h",
-  long: "Long : 13 h et plus"
+  short: "Court : démarre à 4 h ou moins",
+  medium: "Moyen : démarre entre 5 et 12 h",
+  long: "Long : démarre à 13 h ou plus"
 };
 
 /** Rangement par durée minimale annoncée : court jusqu'à 4 h, moyen de 5 à 12 h, long à partir de 13 h */

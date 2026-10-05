@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { CONTACT_EMAIL } from "@/config/contact";
+import { AUTHOR_CREDIT } from "@/config/site";
 
 const IntroConclusionSection = () => {
   return (
@@ -66,7 +66,12 @@ const IntroConclusionSection = () => {
       </div>
       
       <div className="text-sm text-muted-foreground mt-8 text-right">
-        <p>Auteur: Geoffroy Streit - {CONTACT_EMAIL}</p>
+        <p>
+          Auteur : {AUTHOR_CREDIT} ·{" "}
+          <Link to="/contact" className="underline">
+            le contacter
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ const PillarsSection = () => {
     {
       title: "Intelligence Artificielle",
       subtitle: "Les algorithmes avancés",
-      description: "Les techniques d'IA et d'apprentissage automatique permettent d'extraire des insights complexes et de réaliser des prédictions.",
+      description: "Les techniques d'IA et d'apprentissage automatique permettent d'extraire des résultats complexes et de réaliser des prédictions.",
       color: "border-t-ds-purple-300",
       titleColor: "text-ds-purple-500",
       skills: [
@@ -73,12 +73,12 @@ const PillarsSection = () => {
     },
     {
       title: "Visualisation",
-      subtitle: "La communication des insights",
+      subtitle: "La communication des résultats",
       description: "L'art de présenter les données de manière claire et compréhensible pour faciliter la prise de décision.",
       color: "border-t-ds-purple-400",
       titleColor: "text-ds-purple-600",
       skills: [
-        "Data storytelling",
+        "Narration à partir des données (data storytelling)",
         "Dashboards interactifs",
         "Bibliothèques de visualisation",
         "Design d'information"
@@ -111,7 +111,7 @@ const PillarsSection = () => {
               <CardContent>
                 <p className="text-gray-700">{pillar.description}</p>
                 <div className="mt-4 pt-4 border-t border-dashed">
-                  <span className={`text-sm font-medium ${pillar.titleColor}`}>Compétences clés:</span>
+                  <span className={`text-sm font-medium ${pillar.titleColor}`}>Compétences clés :</span>
                   <ul className="mt-2 space-y-1 text-sm">
                     {pillar.skills.map((skill, idx) => (
                       <li key={idx}>• {skill}</li>

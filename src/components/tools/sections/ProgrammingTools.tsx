@@ -76,7 +76,7 @@ const ProgrammingTools = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="year" label={{ value: 'Année de l\'enquête', position: 'insideBottom', offset: -15 }} />
                   <YAxis domain={[0, 70]} label={{ value: 'Répondants (%)', angle: -90, position: 'insideLeft' }} />
-                  <Tooltip formatter={(value: number) => [`${value.toLocaleString('fr-FR')} %`, 'Usage']} />
+                  <Tooltip formatter={(value: number, name: string) => [`${value.toLocaleString('fr-FR')} %`, name]} />
                   <Legend verticalAlign="top" height={36} />
                   <Line type="monotone" dataKey="Python" stroke="#3b82f6" strokeWidth={2} />
                   <Line type="monotone" dataKey="R" stroke="#10b981" strokeWidth={2} />
@@ -96,6 +96,11 @@ const ProgrammingTools = () => {
                 ]}
               />
               <p className="text-xs text-muted-foreground text-center">Julia ne figure pas dans la liste de 2025. Parmi les data scientists, R est nettement plus utilisé que dans cet échantillon généraliste (27 % des praticiens de l'enquête Anaconda 2021 l'utilisent souvent ou toujours).</p>
+              <SourceNote
+                className="text-center"
+                consulted="1er octobre 2026"
+                sources={[{ label: "Anaconda, State of Data Science 2021", href: "https://know.anaconda.com/rs/387-XNW-688/images/Anaconda-2021-SODS-Report-Final.pdf" }]}
+              />
             </div>
           </CardContent>
         </Card>
@@ -145,7 +150,7 @@ const ProgrammingTools = () => {
               Python
             </CardTitle>
             <CardDescription>
-              Le langage dominant en Data Science et Machine Learning
+              Le langage le plus utilisé par les praticiens de la data dans l'enquête Anaconda 2021 (63 % l'emploient souvent ou toujours)
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
@@ -176,10 +181,10 @@ const ProgrammingTools = () => {
               </div>
               
               <Tabs defaultValue="analyse" className="mt-6">
-                <TabsList className="grid grid-cols-3 mb-4">
-                  <TabsTrigger value="analyse">Analyse de données</TabsTrigger>
-                  <TabsTrigger value="ml">Machine Learning</TabsTrigger>
-                  <TabsTrigger value="viz">Visualisation</TabsTrigger>
+                <TabsList className="grid h-auto grid-cols-1 sm:grid-cols-3 mb-4">
+                  <TabsTrigger value="analyse" className="whitespace-normal">Analyse de données</TabsTrigger>
+                  <TabsTrigger value="ml" className="whitespace-normal">Machine Learning</TabsTrigger>
+                  <TabsTrigger value="viz" className="whitespace-normal">Visualisation</TabsTrigger>
                 </TabsList>
                 <TabsContent value="analyse" className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                   <h4 className="font-medium text-blue-800 mb-2">Exemple de code Python pour l'analyse de données</h4>
@@ -259,7 +264,7 @@ sns.boxplot(x='category', y='value', data=df, ax=axes[0])
 axes[0].set_title('Valeurs par catégorie')
 
 # Second subplot: heatmap de corrélation
-corr = df.corr()
+corr = df.corr(numeric_only=True)
 sns.heatmap(corr, annot=True, cmap='coolwarm', ax=axes[1])
 axes[1].set_title('Matrice de corrélation')
 
@@ -270,7 +275,7 @@ plt.show()`}</pre>
               </Tabs>
             </div>
           </CardContent>
-          <CardFooter className="bg-blue-50/30 border-t">
+          <CardFooter className="bg-blue-50/30 border-t flex-wrap gap-2">
             <Button asChild variant="outline" size="sm" className="mr-2 whitespace-normal h-auto py-2 text-left">
               <a href="https://www.python.org/doc/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4" /> 
@@ -382,7 +387,7 @@ plt.show()`}</pre>
                 <Badge variant="outline" className="bg-green-50">ggplot2</Badge>
                 <Badge variant="outline" className="bg-green-50">dplyr</Badge>
                 <Badge variant="outline" className="bg-green-50">tidyr</Badge>
-                <Badge variant="outline" className="bg-green-50">caret</Badge>
+                <Badge variant="outline" className="bg-green-50">tidymodels</Badge>
               </div>
               
               <p className="text-sm">
@@ -482,7 +487,7 @@ plt.show()`}</pre>
               <div className="p-3 bg-gray-50 rounded-lg mt-2">
                 <h4 className="font-medium mb-2 text-sm">Points forts</h4>
                 <ul className="list-disc pl-5 space-y-1 text-xs">
-                  <li>Performances comparables au C/C++</li>
+                  <li>Performances souvent proches du C/C++ sur les calculs numériques (benchmarks du projet)</li>
                   <li>Syntaxe intuitive proche de Python et MATLAB</li>
                   <li>Parallélisation et calcul distribué intégrés</li>
                   <li>Multiple dispatch pour une programmation flexible</li>
@@ -514,7 +519,7 @@ plt.show()`}</pre>
             <div className="space-y-3">
               <div className="flex flex-wrap gap-2 mb-3">
                 <Badge variant="outline" className="bg-blue-50">Apache Spark</Badge>
-                <Badge variant="outline" className="bg-blue-50">Akka</Badge>
+                <Badge variant="outline" className="bg-blue-50">Spark MLlib</Badge>
                 <Badge variant="outline" className="bg-blue-50">Vegas</Badge>
               </div>
               
@@ -684,17 +689,6 @@ plt.show()`}</pre>
                   className="flex items-center p-2 rounded hover:bg-blue-100 transition-colors"
                 >
                   <span className="flex-1">Spécialisation Data Science avec Python (Université du Michigan)</span>
-                  <ExternalLink className="h-4 w-4 text-blue-500" />
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://www.edx.org/certificates/professional-certificate/harvardx-data-science" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center p-2 rounded hover:bg-blue-100 transition-colors"
-                >
-                  <span className="flex-1">Certificate Professionnel Harvard en Data Science (R)</span>
                   <ExternalLink className="h-4 w-4 text-blue-500" />
                 </a>
               </li>

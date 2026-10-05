@@ -75,7 +75,7 @@ const DataProcessingTools = () => {
                 </svg>
               </div>
               <h4 className="font-medium text-orange-700">Analyse</h4>
-              <p className="text-xs text-gray-600 mt-1">Extraction d'insights et modélisation</p>
+              <p className="text-xs text-gray-600 mt-1">Extraction d'enseignements et modélisation</p>
             </div>
           </div>
           
@@ -185,7 +185,7 @@ resume = df.groupby('categorie').agg({
                   
                   <p className="text-sm">
                     Les packages dplyr et tidyr offrent une grammaire intuitive pour manipuler les données
-                    en R, avec des opérations chainables et lisibles.
+                    en R, avec des opérations enchaînables et lisibles.
                   </p>
                   
                   <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100 mt-4">
@@ -376,9 +376,9 @@ resultats <- donnees %>%
                       <h4 className="font-medium mb-2 text-green-700">Points forts</h4>
                       <ul className="list-disc pl-5 space-y-1 text-sm">
                         <li>Schéma flexible ou sans schéma</li>
-                        <li>Mise à l'échelle horizontale facile</li>
+                        <li>Conçues pour la mise à l'échelle horizontale (sauf les bases de graphes, plus délicates à répartir)</li>
                         <li>Performances élevées pour des cas spécifiques</li>
-                        <li>Types: document, clé-valeur, colonne, graphe</li>
+                        <li>Types : document, clé-valeur, colonne, graphe</li>
                       </ul>
                     </div>
                   </div>
@@ -731,8 +731,12 @@ extraction >> transformation >> chargement`}</pre>
                   <div className="space-y-4">
                     <p className="text-sm">
                       Spark est un moteur de traitement rapide avec des APIs en Scala, Java, Python et R,
-                      avec des gains pouvant atteindre 20 fois par rapport à Hadoop MapReduce pour des applications itératives (article fondateur de Spark, NSDI 2012). Le gain réel dépend beaucoup du traitement.
+                      avec des gains pouvant atteindre 20 fois par rapport à Hadoop MapReduce pour des applications itératives. Le gain réel dépend beaucoup du traitement.
                     </p>
+                    <SourceNote
+                      consulted="5 octobre 2026"
+                      sources={[{ label: "Zaharia et al., « Resilient Distributed Datasets », NSDI 2012", href: "https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf" }]}
+                    />
                     
                     <div className="grid grid-cols-2 gap-2">
                       <div className="p-3 bg-orange-50 rounded text-center">
@@ -740,8 +744,8 @@ extraction >> transformation >> chargement`}</pre>
                         <p className="text-xs mt-1">Requêtes sur données structurées</p>
                       </div>
                       <div className="p-3 bg-orange-50 rounded text-center">
-                        <h5 className="font-medium text-orange-700 text-sm">Spark Streaming</h5>
-                        <p className="text-xs mt-1">Traitement de flux en temps réel</p>
+                        <h5 className="font-medium text-orange-700 text-sm">Structured Streaming</h5>
+                        <p className="text-xs mt-1">Flux traités avec l'API DataFrame</p>
                       </div>
                       <div className="p-3 bg-orange-50 rounded text-center">
                         <h5 className="font-medium text-orange-700 text-sm">MLlib</h5>
@@ -931,7 +935,7 @@ resultats.write.parquet("resultats.parquet")`}</pre>
             <h4 className="font-medium text-blue-700 mb-2">Conseils pour la sélection d'outils</h4>
             <ul className="list-disc pl-5 space-y-1">
               <li>Privilégiez les outils qui s'intègrent bien ensemble</li>
-              <li>Tenez compte de la scalabilité future</li>
+              <li>Tenez compte de la capacité à monter en charge</li>
               <li>Évaluez le coût total (licences, infrastructure, maintenance)</li>
               <li>Considérez l'écosystème et le support communautaire</li>
               <li>Optez pour la simplicité lorsque possible, la complexité augmente les coûts de maintenance</li>

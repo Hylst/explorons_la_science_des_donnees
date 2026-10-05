@@ -1,5 +1,6 @@
 
 import { History } from "lucide-react";
+import { SourceNote } from "@/components/ui/source-note";
 
 interface HistoryEventProps {
   period: string;
@@ -26,17 +27,17 @@ const HistorySection = () => {
       
       <div className="max-w-none">
         <p className="text-lg">
-          L'histoire de la Data Science commence bien avant l'ère numérique. Ses racines remontent aux statistiques classiques du 17ème siècle, mais c'est l'explosion des données numériques et la puissance de calcul croissante qui ont véritablement permis son essor.
+          L'histoire de la Data Science commence bien avant l'ère numérique. Ses racines remontent aux statistiques classiques du XVIIe siècle, mais c'est l'explosion des données numériques et la puissance de calcul croissante qui ont véritablement permis son essor.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
           <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <h3 className="text-xl font-semibold mb-2 text-ds-purple-600">Les débuts historiques</h3>
             <ul className="space-y-2">
-              <HistoryEvent period="17ème siècle" event="Développement des premiers concepts statistiques" />
+              <HistoryEvent period="XVIIe siècle" event="Développement des premiers concepts statistiques" />
               <HistoryEvent period="1800-1900" event="Avancées majeures en probabilités et statistiques" />
-              <HistoryEvent period="1960-1970" event="Émergence de l'analyse de données assistée par ordinateur" />
               <HistoryEvent period="1962" event="John Tukey publie 'The Future of Data Analysis' et défend l'analyse de données comme discipline à part entière" />
+              <HistoryEvent period="1960-1970" event="Émergence de l'analyse de données assistée par ordinateur" />
             </ul>
           </div>
           
@@ -44,8 +45,8 @@ const HistorySection = () => {
             <h3 className="text-xl font-semibold mb-2 text-ds-blue-600">Ère moderne</h3>
             <ul className="space-y-2">
               <HistoryEvent period="Années 2000" event="L'essor du web fait exploser les volumes de données et prépare l'ère du Big Data" color="text-ds-blue-500" />
-              <HistoryEvent period="2010" event="Explosion des applications d'intelligence artificielle et démocratisation des outils" color="text-ds-blue-500" />
-              <HistoryEvent period="2015" event="Adoption généralisée du Deep Learning et des techniques de Machine Learning avancées" color="text-ds-blue-500" />
+              <HistoryEvent period="2012" event="AlexNet (Krizhevsky, Sutskever et Hinton) remporte le concours ImageNet : l'apprentissage profond s'impose en vision par ordinateur" color="text-ds-blue-500" />
+              <HistoryEvent period="2015" event="Des bibliothèques libres (TensorFlow, puis PyTorch) diffusent l'apprentissage profond hors des laboratoires" color="text-ds-blue-500" />
               <HistoryEvent period="Aujourd'hui" event="Intégration profonde dans tous les secteurs d'activité et développement de l'IA générative" color="text-ds-blue-500" />
             </ul>
           </div>
@@ -72,6 +73,11 @@ const HistorySection = () => {
               </div>
             ))}
           </div>
+          <SourceNote
+            className="mt-2"
+            consulted="5 octobre 2026"
+            sources={[{ label: "Brown et al., « Language Models are Few-Shot Learners », arXiv 2005.14165 (GPT-3, 175 milliards de paramètres)", href: "https://arxiv.org/abs/2005.14165" }]}
+          />
         </div>
       </div>
     </div>

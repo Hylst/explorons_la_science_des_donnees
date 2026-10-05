@@ -24,7 +24,7 @@ Les niveaux des sections 1, 2 et 7 reprennent les rapports de recherche R1 (prog
 | `src/components/fundamentals/programming/ProgrammingIntro.tsx` | `/fundamentals/programming` | Usage chez les praticiens (Anaconda), PyPy, PyPI |
 | `src/components/fundamentals/data-preparation/IntroductionSection.tsx` | `/fundamentals/data-preparation` | Part du temps consacrée à la préparation des données |
 | `src/components/tools/sections/DataProcessingTools.tsx` | `/tools/data-processing` | Part du temps consacrée au chargement et au nettoyage (Anaconda 2020 et 2022, mêmes sources que ci-dessus) |
-| `src/components/introduction/sections/HistorySection.tsx` | `/introduction` | Repères datés : TensorFlow publié en open source (9 novembre 2015, blog Google), GPT-3 : Brown et al., « Language Models are Few-Shot Learners », arXiv 2005.14165 (175 milliards de paramètres) ; sources connues, non rouvertes lors de cette passe |
+| `src/components/introduction/sections/HistorySection.tsx` | `/introduction` | Repères datés : TensorFlow publié en open source (9 novembre 2015, blog Google), GPT-3 : Brown et al., « Language Models are Few-Shot Learners », arXiv 2005.14165 (175 milliards de paramètres ; résumé lu le 5 octobre 2026, `SourceNote` sous la frise) ; TensorFlow : source connue, non rouverte ; AlexNet et ImageNet 2012 (Krizhevsky, Sutskever et Hinton) : fait connu, non rouvert |
 | `src/pages/fundamentals/databases/components/DatabasesIntroSection.tsx` | `/fundamentals/databases` | Volumes de données et impact business |
 | `src/components/introduction/sections/CareersSection.tsx` | `/introduction` | Fourchettes de salaires Apec |
 
@@ -178,7 +178,7 @@ Autres chiffres sourcés dans le texte de pages, **sans** composant `SourceNote`
 
 | Où | Valeur affichée | Source citée dans le texte | Niveau |
 |---|---|---|---|
-| `src/components/tools/sections/DataProcessingTools.tsx` (`/tools/data-processing`) | Spark : « des gains pouvant atteindre 20 fois par rapport à Hadoop MapReduce pour des applications itératives » (remplace « jusqu'à 100 fois ») | Article fondateur de Spark, NSDI 2012 : https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf | page lue (résumé et section 6 de l'article : « Spark is up to 20 × faster than Hadoop for iterative applications ») |
+| `src/components/tools/sections/DataProcessingTools.tsx` (`/tools/data-processing`) | Spark : « des gains pouvant atteindre 20 fois par rapport à Hadoop MapReduce pour des applications itératives » (remplace « jusqu'à 100 fois ») | Article fondateur de Spark, NSDI 2012 : https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf | page lue (résumé et section 6 de l'article : « Spark is up to 20 × faster than Hadoop for iterative applications » ; relu le 5 octobre 2026, `SourceNote` ajoutée sous la carte Spark) |
 | `src/components/fundamentals/programming/PythonMasterclass.tsx` (`/fundamentals/programming`) | « Votre cerveau peut identifier une image vue pendant 13 millisecondes seulement » (remplace « 60 000 fois plus rapidement que le texte », sans source) | Mary Potter, MIT, 2014 ; relais du MIT News du 16 janvier 2014 : https://news.mit.edu/2014/in-the-blink-of-an-eye-0116 | page lue (relais du MIT News : « as little as 13 milliseconds » ; l'étude originale n'a pas été ouverte) |
 
 ## 10. Plateformes et cours externes (aucun prix affiché)
@@ -263,3 +263,10 @@ Le site précise que ces montants varient selon la localisation, la taille de l'
 - **Sources essayées sans succès** (recherche R3-a et R1-c) : Glassdoor France (HTTP 403), Robert Walters (HTTP 403), Talent.io (certificat invalide, dernière édition publique trouvée : 2023), Urban Linker (page JavaScript non lisible), API Wayback Machine (429). Aucune de ces sources ne sert de référence au site.
 - **Chiffres non affichés.** Ce registre ne couvre pas les données du site qui sont propres à celui-ci (quiz, projets, progression, jeux de données d'exemple à graine fixe de `src/lib/sample-datasets.ts`) : elles sont calculées localement et ne sont pas des chiffres externes.
 - **Liens corrigés le 3 octobre 2026 (relecture des redirections).** Udacity : retiré (voir section 10). Mode (tutoriel SQL) : l'adresse redirige (301) vers ThoughtSpot, qui l'héberge. edX MITx : l'adresse mène à une page générique des partenaires ; remplacée par MIT OpenCourseWare. Hastie, Tibshirani et Friedman : le livre est désormais à hastie.su.domains. Google : la page `ai.google/education/` est devenue `ai.google/learn-ai-skills/` (parcours gratuits et payants) ; le cours interactif sur le machine learning est le Machine Learning Crash Course (developers.google.com/machine-learning/crash-course). Gitter (python/community) : adresse non vérifiable, carte retirée. Paquets Jupyter : `jupyter_contrib_nbextensions` (dernière version : novembre 2022) et `jupyterthemes` (2018) ne concernent que l'interface classique.
+
+## Outils retirés des listes (5 octobre 2026)
+
+- Neptune.ai : « Following its acquisition by OpenAI, Neptune services will be permanently discontinued » (docs.neptune.ai, lu le 5 octobre 2026 ; arrêt le 5 mars 2026). Remplacé par ClearML dans `MLFrameworks.tsx`.
+- WhyLabs : « WhyLabs, Inc. is discontinuing operations » (whylabs.ai, lu le 5 octobre 2026). Retiré (Evidently AI reste listé).
+- Cortex (déploiement) : dernière version en 2022 selon la relecture R7, non revérifié. Remplacé par KServe.
+- TorchText : développement arrêté en 2024 (dernière version 0.18). Remplacé par TorchAudio. TensorFlow Lite est devenu LiteRT (2024).
