@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingSidebarToggle from "./FloatingSidebarToggle";
+import { useSidebarBounds } from "@/hooks/use-sidebar-bounds";
 
 interface ContentLayoutProps {
   children: ReactNode;
@@ -39,13 +40,15 @@ interface ContentLayoutProps {
 // Pas de window.scrollTo au montage : ScrollManager remet les nouvelles pages en haut et restaure la
 // position au retour arrière ; un scrollTo ici, exécuté juste après, annulait la restauration et l'ancre.
 const ContentLayout = ({ children, title, backLink, sidebar }: ContentLayoutProps) => {
+  useSidebarBounds();
   return (
     <Layout>
       <div className="flex flex-col md:flex-row w-full min-h-screen">
         <SidebarProvider defaultOpen={true}>
           {/* Sidebar avec hauteur corrigée et padding approprié */}
           <div className="md:fixed md:top-14 md:bottom-0 md:left-0 z-10 md:w-[var(--sidebar-width)]">
-            <Sidebar className="h-full border-r bg-sidebar">
+            {/* Bornée par la barre de navigation et le pied de page (voir use-sidebar-bounds) */}
+            <Sidebar className="md:!top-[var(--sidebar-top,0px)] md:!bottom-[var(--sidebar-bottom,0px)] md:!h-auto border-r bg-sidebar">
               <SidebarHeader className="border-b border-sidebar-border p-4 min-h-[4rem]">
                 <div className="flex items-start justify-between mb-2">
                   <h2 className="text-lg font-semibold text-sidebar-foreground leading-tight break-words">{title}</h2>
