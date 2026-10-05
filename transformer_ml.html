@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformers en Machine Learning</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --standardization-color: #3498db;
+            --normalization-color: #2ecc71;
+            --uniformization-color: #e74c3c;
+            --other-color: #9b59b6;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--standardization-color), var(--normalization-color), var(--uniformization-color));
+            color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--dark-text);
+            border-bottom: 2px solid;
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem;
+        }
+        
+        h3 {
+            margin: 1.5rem 0 0.5rem;
+            color: var(--dark-text);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .concepts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .concept-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 5px solid;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .standardization-card {
+            border-top-color: var(--standardization-color);
+        }
+        
+        .normalization-card {
+            border-top-color: var(--normalization-color);
+        }
+        
+        .uniformization-card {
+            border-top-color: var(--uniformization-color);
+        }
+        
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .explanation {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-left: 4px solid;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+        
+        .explanation-standardization { border-left-color: var(--standardization-color); }
+        .explanation-normalization { border-left-color: var(--normalization-color); }
+        .explanation-uniformization { border-left-color: var(--uniformization-color); }
+        
+        .analogy {
+            background-color: #e8f4fc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .example {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 5px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .formula {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-style: italic;
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+        
+        .pros-cons {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .pros, .cons {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .pros {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+        }
+        
+        .cons {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+        }
+        
+        .interactive-demo {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .slider-container {
+            margin: 1rem 0;
+        }
+        
+        .slider {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            color: #7f8c8d;
+        }
+        
+        @media (max-width: 768px) {
+            .concepts-container {
+                flex-direction: column;
+            }
+            
+            .pros-cons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transformers en Machine Learning</h1>
+        <p class="subtitle">Standardisation, Normalisation et Uniformisation des données</p>
+    </header>
+
+    <div class="concepts-container">
+        <div class="concept-card standardization-card">
+            <div class="icon">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <h2>Standardisation (StandardScaler)</h2>
+            
+            <div class="explanation explanation-standardization">
+                <h3>C'est quoi ?</h3>
+                <p>La standardisation transforme les données pour qu'elles aient une moyenne de 0 et un écart-type de 1. Elle est aussi appelée transformation Z-score.</p>
+            </div>
+            
+            <div class="formula">
+                z = (x - μ) / σ
+            </div>
+            
+            <div class="analogy">
+                <h3>Analogie</h3>
+                <p>La standardisation, c'est comme noter tous les élèves d'une classe sur une échelle commune. Au lieu de notes sur 20, on les compare par rapport à la moyenne de la classe.</p>
+                <p>Un élève avec 16/20 dans une classe faible pourrait avoir un meilleur z-score qu'un élève avec 17/20 dans une classe forte.</p>
+            </div>
+            
+            <div class="example">
+                # Exemple avec StandardScaler en Python<br>
+                from sklearn.preprocessing import StandardScaler<br><br>
+                # Données originales<br>
+                data = [[0, 10], [1, 20], [2, 30], [3, 40], [4, 50]]<br><br>
+                # Création et application du scaler<br>
+                scaler = StandardScaler()<br>
+                scaled_data = scaler.fit_transform(data)<br><br>
+                # Résultat: chaque colonne a moyenne=0 et écart-type=1<br>
+                print(scaled_data)
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Avantages</h4>
+                    <ul>
+                        <li>Conserve la forme de la distribution</li>
+                        <li>Moins sensible aux outliers que la normalisation Min-Max</li>
+                        <li>Idéal pour les algorithmes qui supposent des données centrées</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Inconvénients</h4>
+                    <ul>
+                        <li>Ne garantit pas d'intervalle spécifique</li>
+                        <li>Peut ne pas être idéal pour les algorithmes qui nécessitent des données entre 0 et 1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept-card normalization-card">
+            <div class="icon">
+                <i class="fas fa-compress-arrows-alt"></i>
+            </div>
+            <h2>Normalisation (MinMaxScaler)</h2>
+            
+            <div class="explanation explanation-normalization">
+                <h3>C'est quoi ?</h3>
+                <p>La normalisation transforme les données pour les ramener dans un intervalle spécifique, généralement [0, 1]. Elle préserve la distribution originale mais la compresse ou l'étire.</p>
+            </div>
+            
+            <div class="formula">
+                x' = (x - min(x)) / (max(x) - min(x))
+            </div>
+            
+            <div class="analogy">
+                <h3>Analogie</h3>
+                <p>La normalisation, c'est comme redimensionner une image. Vous conservez toutes les proportions et détails, mais vous adaptez la taille à l'écran disponible.</p>
+                <p>Que l'image fasse 1000x1000 pixels ou 100x100 pixels, le contenu est le même, juste à une échelle différente.</p>
+            </div>
+            
+            <div class="example">
+                # Exemple avec MinMaxScaler en Python<br>
+                from sklearn.preprocessing import MinMaxScaler<br><br>
+                # Données originales<br>
+                data = [[10, 20], [15, 30], [20, 40], [25, 50], [30, 60]]<br><br>
+                # Création et application du scaler<br>
+                scaler = MinMaxScaler(feature_range=(0, 1))<br>
+                normalized_data = scaler.fit_transform(data)<br><br>
+                # Résultat: toutes les valeurs entre 0 et 1<br>
+                print(normalized_data)
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Avantages</h4>
+                    <ul>
+                        <li>Garantit un intervalle spécifique</li>
+                        <li>Préserve les relations entre les valeurs originales</li>
+                        <li>Idéal pour les réseaux de neurones</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Inconvénients</h4>
+                    <ul>
+                        <li>Très sensible aux outliers</li>
+                        <li>Peut concentrer la plupart des valeurs dans une petite partie de l'intervalle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept-card uniformization-card">
+            <div class="icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <h2>Uniformisation (QuantileTransformer)</h2>
+            
+            <div class="explanation explanation-uniformization">
+                <h3>C'est quoi ?</h3>
+                <p>L'uniformisation transforme les données pour suivre une distribution uniforme ou normale. Elle est utile pour gérer les distributions non normales ou les outliers.</p>
+            </div>
+            
+            <div class="analogy">
+                <h3>Analogie</h3>
+                <p>L'uniformisation, c'est comme répartir également la population dans une salle de concert. Au lieu d'avoir tout le monde regroupé au même endroit, on répartit les gens uniformément dans tout l'espace.</p>
+                <p>Chaque section de la salle a à peu près le même nombre de personnes, quelle que soit leur taille ou leur poids.</p>
+            </div>
+            
+            <div class="example">
+                # Exemple avec QuantileTransformer en Python<br>
+                from sklearn.preprocessing import QuantileTransformer<br><br>
+                # Données originales (non normales)<br>
+                data = [[1], [5], [10], [20], [50], [100], [200], [500], [1000]]<br><br>
+                # Création et application du transformer<br>
+                transformer = QuantileTransformer(output_distribution='uniform')<br>
+                uniform_data = transformer.fit_transform(data)<br><br>
+                # Résultat: distribution uniforme<br>
+                print(uniform_data)
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>Avantages</h4>
+                    <ul>
+                        <li>Réduit l'impact des outliers</li>
+                        <li>Peut rendre les données normales si souhaité</li>
+                        <li>Utile pour les données asymétriques</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>Inconvénients</h4>
+                    <ul>
+                        <li>Plus complexe à calculer</li>
+                        <li>Peut déformer les relations non linéaires</li>
+                        <li>Nécessite plus de données pour être efficace</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-demo">
+        <h2>Démonstration Interactive des Transformations</h2>
+        
+        <div class="slider-container">
+            <label for="outliers">Nombre d'outliers:</label>
+            <input type="range" id="outliers" class="slider" min="0" max="10" value="2">
+            <span id="outliers-value">2 outliers</span>
+        </div>
+        
+        <div class="slider-container">
+            <label for="skewness">Asymétrie des données:</label>
+            <input type="range" id="skewness" class="slider" min="-5" max="5" value="0">
+            <span id="skewness-value">0 (symétrique)</span>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="transformationChart"></canvas>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>Quand utiliser la Standardisation?</h4>
+                <ul>
+                    <li>Données approximativement normales</li>
+                    <li>Algorithms sensibles à l'échelle (SVM, régression)</li>
+                    <li>Présence modérée d'outliers</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>Quand utiliser la Normalisation?</h4>
+                <ul>
+                    <li>Réseaux de neurones</li>
+                    <li>Algorithms qui nécessitent des données entre 0 et 1</li>
+                    <li>Absence d'outliers extrêmes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2>Autres Transformers Importants</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Transformer</th>
+                <th>Fonction</th>
+                <th>Utilisation</th>
+                <th>Exemple</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>RobustScaler</td>
+                <td>Standardisation robuste aux outliers</td>
+                <td>Données avec nombreux outliers</td>
+                <td>Données financières, mesures avec erreurs</td>
+            </tr>
+            <tr>
+                <td>PowerTransformer</td>
+                <td>Rend les données plus gaussiennes</td>
+                <td>Données asymétriques</td>
+                <td>Données de revenus, tailles</td>
+            </tr>
+            <tr>
+                <td>OneHotEncoder</td>
+                <td>Encode les variables catégorielles</td>
+                <td>Variables non numériques</td>
+                <td>Pays, couleurs, catégories</td>
+            </tr>
+            <tr>
+                <td>LabelEncoder</td>
+                <td>Convertit les labels en nombres</td>
+                <td>Variables cibles catégorielles</td>
+                <td>Classification: spam/non-spam</td>
+            </tr>
+            <tr>
+                <td>PCA</td>
+                <td>Réduction de dimensionnalité</td>
+                <td>Données avec nombreuses features</td>
+                <td>Images, génomique, recommandation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="interactive-demo">
+        <h2>Workflow Typique de Prétraitement</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 1.5rem 0; flex-wrap: wrap;">
+            <div style="text-align: center; padding: 1rem; background: #e8f4fc; border-radius: 8px; margin: 0.5rem; flex: 1;">
+                <div style="font-size: 2rem; color: #3498db;">1</div>
+                <div>Nettoyage des données</div>
+            </div>
+            <div style="font-size: 1.5rem; color: #7f8c8d;">→</div>
+            <div style="text-align: center; padding: 1rem; background: #e8f4fc; border-radius: 8px; margin: 0.5rem; flex: 1;">
+                <div style="font-size: 2rem; color: #3498db;">2</div>
+                <div>Gestion des valeurs manquantes</div>
+            </div>
+            <div style="font-size: 1.5rem; color: #7f8c8d;">→</div>
+            <div style="text-align: center; padding: 1rem; background: #e8f4fc; border-radius: 8px; margin: 0.5rem; flex: 1;">
+                <div style="font-size: 2rem; color: #3498db;">3</div>
+                <div>Encodage des variables catégorielles</div>
+            </div>
+            <div style="font-size: 1.5rem; color: #7f8c8d;">→</div>
+            <div style="text-align: center; padding: 1rem; background: #e8f4fc; border-radius: 8px; margin: 0.5rem; flex: 1;">
+                <div style="font-size: 2rem; color: #3498db;">4</div>
+                <div>Standardisation/Normalisation</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-style: italic;">L'ordre peut varier selon les besoins, mais c'est un workflow typique pour préparer les données pour le machine learning.</p>
+    </div>
+
+    <footer>
+        <p>Guide des Transformers en Machine Learning - 2023</p>
+    </footer>
+
+    <script>
+        // Interactive chart for transformations
+        const ctx = document.getElementById('transformationChart').getContext('2d');
+        let transformationChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 50}, (_, i) => i + 1),
+                datasets: [
+                    {
+                        label: 'Données Originales',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Standardisées',
+                        data: [],
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Normalisées',
+                        data: [],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Valeur'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Échantillon'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Comparaison des Transformations'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+        
+        // Sliders functionality
+        const outliersSlider = document.getElementById('outliers');
+        const skewnessSlider = document.getElementById('skewness');
+        const outliersValue = document.getElementById('outliers-value');
+        const skewnessValue = document.getElementById('skewness-value');
+        
+        outliersSlider.addEventListener('input', updateChart);
+        skewnessSlider.addEventListener('input', updateChart);
+        
+        function updateChart() {
+            const outliers = parseInt(outliersSlider.value);
+            const skewness = parseInt(skewnessSlider.value);
+            
+            outliersValue.textContent = `${outliers} outlier${outliers > 1 ? 's' : ''}`;
+            skewnessValue.textContent = `${skewness} (${skewness === 0 ? 'symétrique' : skewness > 0 ? 'asymétrique droit' : 'asymétrique gauche'})`;
+            
+            // Generate sample data based on parameters
+            const originalData = generateData(50, skewness, outliers);
+            
+            // Standardize data
+            const mean = originalData.reduce((a, b) => a + b, 0) / originalData.length;
+            const std = Math.sqrt(originalData.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) / originalData.length);
+            const standardizedData = originalData.map(x => (x - mean) / std);
+            
+            // Normalize data
+            const min = Math.min(...originalData);
+            const max = Math.max(...originalData);
+            const normalizedData = originalData.map(x => (x - min) / (max - min));
+            
+            // Update chart
+            transformationChart.data.datasets[0].data = originalData;
+            transformationChart.data.datasets[1].data = standardizedData;
+            transformationChart.data.datasets[2].data = normalizedData;
+            transformationChart.update();
+        }
+        
+        function generateData(n, skewness, outliers) {
+            let data = [];
+            
+            // Generate base data with some skewness
+            for (let i = 0; i < n - outliers; i++) {
+                let value = Math.random() * 10 + 10;
+                
+                // Apply skewness
+                if (skewness > 0) {
+                    value = Math.pow(value, 1 + skewness / 10);
+                } else if (skewness < 0) {
+                    value = Math.pow(value, 1 / (1 - skewness / 10));
+                }
+                
+                data.push(value);
+            }
+            
+            // Add outliers
+            for (let i = 0; i < outliers; i++) {
+                data.push(50 + Math.random() * 50);
+            }
+            
+            return data;
+        }
+        
+        // Initialize the chart
+        updateChart();
+    </script>
+</body>
+</html>

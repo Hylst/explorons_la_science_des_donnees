@@ -1,0 +1,63 @@
+[
+  {
+    "id": "data-science-jobs",
+    "title": "Les différents métiers de la Data Science : guide complet",
+    "excerpt": "Du Data Analyst au Machine Learning Engineer : les métiers de la data, ce que chacun fait en pratique et les compétences à acquérir.",
+    "author": "Geoffroy Streit",
+    "date": "2 octobre 2026",
+    "readTime": "15 min",
+    "categories": [
+      "Carrières",
+      "Guide"
+    ],
+    "featured": true
+  },
+  {
+    "id": "data-analysis-journey",
+    "title": "Quand les données ne veulent pas parler : diagnostic",
+    "excerpt": "Cas d'école : un projet de prédiction d'achats qui bute sur la qualité des données, et la démarche d'audit pour le remettre sur les rails.",
+    "author": "Geoffroy Streit",
+    "date": "2 octobre 2026",
+    "readTime": "8 min",
+    "categories": [
+      "Cas d'école",
+      "Erreurs communes"
+    ]
+  },
+  {
+    "id": "correlation-causation",
+    "title": "Corrélation n'est pas causalité : 4 pièges",
+    "excerpt": "Variable cachée, hasard, causalité inversée, paradoxe de Simpson : quatre pièges illustrés par des exemples d'école et deux études publiées.",
+    "author": "Geoffroy Streit",
+    "date": "2 octobre 2026",
+    "readTime": "7 min",
+    "categories": [
+      "Méthodologie",
+      "Cas d'école"
+    ]
+  },
+  {
+    "id": "data-visualization-story",
+    "title": "Un graphique qui change la décision",
+    "excerpt": "Cas d'école : pourquoi tracer avant de calculer (quartet d'Anscombe) et quels principes rendent une visualisation lisible et honnête.",
+    "author": "Geoffroy Streit",
+    "date": "2 octobre 2026",
+    "readTime": "6 min",
+    "categories": [
+      "Visualisation",
+      "Cas d'école"
+    ]
+  },
+  {
+    "id": "data-cleaning-nightmare",
+    "title": "Nettoyage des données : méthode et pièges",
+    "excerpt": "Cas d'école : un jeu de données censé être propre ne l'est pas. Inventaire des défauts fréquents et méthode en cinq étapes pour les traiter.",
+    "author": "Geoffroy Streit",
+    "date": "2 octobre 2026",
+    "readTime": "6 min",
+    "categories": [
+      "Data Cleaning",
+      "Cas d'école"
+    ]
+  }
+]

@@ -1,0 +1,286 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 250 95% 76%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 19% 39%;
+
+    --accent: 263 70% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 74% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 250 95% 76%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 263 70% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .gradient-heading {
+    @apply bg-gradient-to-r from-ds-blue-500 to-ds-purple-500 bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .code-block {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-md font-code overflow-x-auto my-4;
+  }
+
+  .chart-container {
+    @apply mb-12;
+  }
+
+  .chart-legend-container {
+    @apply mb-16;
+  }
+
+  /* Enhanced card surface with micro-interactions */
+  .card-surface {
+    @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply transition-all duration-300 hover:shadow-lg hover:border-primary/20;
+  }
+
+  .card-surface .text-muted-foreground {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  /* Interactive button with sophisticated animations */
+  .btn-interactive {
+    @apply relative overflow-hidden transition-all duration-300;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/20 before:to-secondary/20;
+    @apply before:translate-x-[-100%] before:transition-transform before:duration-300;
+    @apply hover:before:translate-x-0 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Gradient text with animation */
+  .gradient-text-animated {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+    @apply animate-gradient-x;
+    background-size: 200% 200%;
+  }
+
+  /* Glassmorphism effect */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20 shadow-lg;
+    @apply dark:bg-gray-900/10 dark:border-gray-700/20;
+  }
+
+  /* Floating elements */
+  .float-element {
+    @apply animate-float;
+  }
+
+  .float-element:nth-child(2n) {
+    @apply animate-float-delayed;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer-loading {
+    @apply relative overflow-hidden bg-gray-300 dark:bg-gray-700;
+  }
+
+  .shimmer-loading::after {
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent;
+    @apply animate-shimmer;
+    content: '';
+  }
+
+  /* Enhanced focus styles */
+  .focus-enhanced {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
+    @apply transition-all duration-200;
+  }
+
+  /* Pulse glow effect */
+  .pulse-glow {
+    @apply animate-pulse-glow;
+  }
+
+  /* Staggered entrance animations */
+  .stagger-child:nth-child(1) {
+    @apply animate-stagger-1;
+  }
+
+  .stagger-child:nth-child(2) {
+    @apply animate-stagger-2;
+  }
+
+  .stagger-child:nth-child(3) {
+    @apply animate-stagger-3;
+  }
+
+  /* Interactive link with underline animation */
+  .link-animated {
+    @apply relative inline-block transition-colors duration-300;
+  }
+
+  .link-animated::after {
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300;
+    content: '';
+  }
+
+  .link-animated:hover::after {
+    @apply w-full;
+  }
+
+  /* Enhanced project card */
+  .project-card-enhanced {
+    @apply relative overflow-hidden border rounded-lg transition-all duration-500;
+    @apply hover:shadow-2xl hover:-translate-y-2 hover:rotate-1;
+    @apply group;
+  }
+
+  .project-card-enhanced::before {
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 transition-opacity duration-300;
+    @apply group-hover:opacity-100;
+    content: '';
+  }
+
+  /* Typewriter effect */
+  .typewriter {
+    @apply relative;
+  }
+
+  .typewriter::after {
+    @apply absolute right-0 w-0.5 h-full bg-primary animate-pulse;
+    content: '';
+  }
+}
+
+.mb-8 {
+  margin-bottom: 4rem !important;
+}
+
+.chart-description {
+  margin-bottom: 2.5rem !important;
+}
+
+.project-card {
+  @apply relative overflow-hidden border rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.project-card-gradient {
+  @apply absolute inset-0 bg-gradient-to-br from-ds-blue-50 to-ds-purple-50 opacity-50;
+}
+
+.project-card-content {
+  @apply relative z-10 p-6;
+}
+
+.section-header {
+  @apply border-l-4 border-ds-blue-500 pl-6 py-2 mb-8;
+}
+
+.section-title {
+  @apply text-3xl font-bold mb-6 bg-gradient-to-r from-ds-blue-500 to-ds-purple-500 bg-clip-text text-transparent;
+}
+
+/* Légendes des graphiques : le texte suit la couleur du texte courant, seule la pastille garde la couleur de la série
+   (les teintes claires des séries donnaient 2:1 sur fond blanc). Recharts pose la couleur en style en ligne. */
+.recharts-legend-item-text {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Texte à dégradé : le dégradé est peint dans la boîte de ligne. Avec un interligne serré (text-4xl vaut 1,11, text-5xl vaut 1)
+   les lettres basses (g, p, q, y) sont rognées. Cet interligne minimal les laisse entières, sans toucher aux marges. */
+.bg-clip-text.text-transparent,
+.gradient-heading,
+.gradient-text-animated,
+.section-title {
+  line-height: 1.25;
+}
+
+/* Respecte le réglage « réduire les animations » du système : animations et transitions quasi instantanées */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

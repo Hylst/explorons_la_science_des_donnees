@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Complet des Modèles de Machine Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --supervised-color: #3498db;
+            --unsupervised-color: #e74c3c;
+            --reinforcement-color: #f39c12;
+            --deep-color: #9b59b6;
+            --linear-color: #27ae60;
+            --tree-color: #2ecc71;
+            --ensemble-color: #e67e22;
+            --svm-color: #95a5a6;
+            --bayes-color: #f1c40f;
+            --clustering-color: #1abc9c;
+            --nn-color: #34495e;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --card-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            --hover-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background: var(--light-bg);
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-types-nav {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 1rem 2rem;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--dark-text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .nav-tab:hover::before {
+            left: 0;
+        }
+        
+        .nav-tab:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .nav-tab.supervised::before { background: var(--supervised-color); }
+        .nav-tab.unsupervised::before { background: var(--unsupervised-color); }
+        .nav-tab.reinforcement::before { background: var(--reinforcement-color); }
+        .nav-tab.deep::before { background: var(--deep-color); }
+        
+        .nav-tab.active {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .nav-tab.supervised.active { background: var(--supervised-color); border-color: var(--supervised-color); }
+        .nav-tab.unsupervised.active { background: var(--unsupervised-color); border-color: var(--unsupervised-color); }
+        .nav-tab.reinforcement.active { background: var(--reinforcement-color); border-color: var(--reinforcement-color); }
+        .nav-tab.deep.active { background: var(--deep-color); border-color: var(--deep-color); }
+        
+        .content-section {
+            padding: 3rem 0;
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+        
+        .section-intro p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .model-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            transition: var(--transition);
+        }
+        
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .model-card.linear::before { background: var(--linear-color); }
+        .model-card.tree::before { background: var(--tree-color); }
+        .model-card.ensemble::before { background: var(--ensemble-color); }
+        .model-card.svm::before { background: var(--svm-color); }
+        .model-card.bayes::before { background: var(--bayes-color); }
+        .model-card.clustering::before { background: var(--clustering-color); }
+        .model-card.nn::before { background: var(--nn-color); }
+        
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .model-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .model-icon.linear { background: var(--linear-color); }
+        .model-icon.tree { background: var(--tree-color); }
+        .model-icon.ensemble { background: var(--ensemble-color); }
+        .model-icon.svm { background: var(--svm-color); }
+        .model-icon.bayes { background: var(--bayes-color); }
+        .model-icon.clustering { background: var(--clustering-color); }
+        .model-icon.nn { background: var(--nn-color); }
+        
+        .model-title {
+            flex: 1;
+        }
+        
+        .model-title h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            color: var(--dark-text);
+        }
+        
+        .model-subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        
+        .explanation {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+        
+        .explanation.linear { border-left-color: var(--linear-color); }
+        .explanation.tree { border-left-color: var(--tree-color); }
+        .explanation.ensemble { border-left-color: var(--ensemble-color); }
+        .explanation.svm { border-left-color: var(--svm-color); }
+        .explanation.bayes { border-left-color: var(--bayes-color); }
+        .explanation.clustering { border-left-color: var(--clustering-color); }
+        .explanation.nn { border-left-color: var(--nn-color); }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .pros {
+            background: rgba(39, 174, 96, 0.08);
+            border: 1px solid rgba(39, 174, 96, 0.2);
+        }
+        
+        .pros h4::before {
+            content: '✓';
+            margin-right: 0.5rem;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .cons {
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+        
+        .cons h4::before {
+            content: '✗';
+            margin-right: 0.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .use-cases {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .use-cases h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .use-cases h4::before {
+            content: '💡';
+            font-size: 1.2rem;
+        }
+        
+        .comparison-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin: 3rem 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .performance-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .performance-excellent {
+            background: rgba(39, 174, 96, 0.2);
+            color: #27ae60;
+        }
+        
+        .performance-good {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+        
+        .performance-moderate {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+        
+        .performance-low {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-example::before {
+            content: 'Python';
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #a0a0a0;
+        }
+        
+        .selection-guide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .selection-guide h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .guide-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        footer {
+            background: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .nav-tab {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Guide Complet des Modèles de Machine Learning</h1>
+                <p class="subtitle">Maîtrisez les algorithmes d'apprentissage automatique : supervisé, non supervisé, reinforcement learning et deep learning</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="learning-types-nav">
+        <div class="container">
+            <div class="nav-tabs">
+                <a href="#supervised" class="nav-tab supervised active" onclick="showSection('supervised')">
+                    <i class="fas fa-graduation-cap"></i>
+                    Apprentissage Supervisé
+                </a>
+                <a href="#unsupervised" class="nav-tab unsupervised" onclick="showSection('unsupervised')">
+                    <i class="fas fa-search"></i>
+                    Non Supervisé
+                </a>
+                <a href="#reinforcement" class="nav-tab reinforcement" onclick="showSection('reinforcement')">
+                    <i class="fas fa-robot"></i>
+                    Reinforcement Learning
+                </a>
+                <a href="#deep" class="nav-tab deep" onclick="showSection('deep')">
+                    <i class="fas fa-brain"></i>
+                    Deep Learning
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- APPRENTISSAGE SUPERVISÉ -->
+        <section id="supervised" class="content-section active">
+            <div class="section-intro">
+                <h2>Apprentissage Supervisé</h2>
+                <p>L'apprentissage supervisé utilise des données étiquetées pour entraîner des modèles à prédire des résultats. Il comprend la classification (prédiction de catégories) et la régression (prédiction de valeurs numériques).</p>
+            </div>
+
+            <div class="models-grid">
+                <!-- SGD Classifier -->
+                <div class="model-card linear">
+                    <div class="model-header">
+                        <div class="model-icon linear">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>SGDClassifier</h3>
+                            <p class="model-subtitle">Classification par Descente de Gradient Stochastique</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation linear">
+                        <h4>🎯 Comment ça marche ?</h4>
+                        <p>Imaginez que vous descendez une montagne dans le brouillard. La descente de gradient stochastique fait exactement ça : elle prend des "pas" aléatoires dans la direction qui semble descendre le plus rapidement, en se basant sur quelques points seulement à chaque étape.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Extrêmement rapide sur de gros datasets</li>
+                                <li>Faible consommation mémoire</li>
+                                <li>Apprentissage en ligne possible</li>
+                                <li>Scalabilité excellente</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Nécessite normalisation des données</li>
+                                <li>Sensible aux hyperparamètres</li>
+                                <li>Convergence parfois instable</li>
+                                <li>Modèle linéaire uniquement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Datasets de millions d'échantillons</li>
+                            <li>Classification de textes</li>
+                            <li>Détection de spam</li>
+                            <li>Systèmes de recommandation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Decision Tree -->
+                <div class="model-card tree">
+                    <div class="model-header">
+                        <div class="model-icon tree">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>DecisionTreeClassifier</h3>
+                            <p class="model-subtitle">Classification par Arbre de Décision</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation tree">
+                        <h4>🌳 Comment ça marche ?</h4>
+                        <p>Comme un questionnaire médical : "Avez-vous de la fièvre ?" → OUI → "Plus de 38°C ?" → OUI → "Consultez un médecin". L'arbre pose des questions successives sur vos données pour arriver à une décision finale.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Interprétation très facile</li>
+                                <li>Pas de preprocessing nécessaire</li>
+                                <li>Gère données numériques et catégorielles</li>
+                                <li>Visualisation possible</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Très sensible à l'overfitting</li>
+                                <li>Instabilité élevée</li>
+                                <li>Biais vers features dominantes</li>
+                                <li>Performance modeste seul</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Aide à la décision médicale</li>
+                            <li>Scoring crédit explicable</li>
+                            <li>Règles métier automatisées</li>
+                            <li>Exploration de données</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- K-Neighbors -->
+                <div class="model-card svm">
+                    <div class="model-header">
+                        <div class="model-icon svm">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>KNeighborsClassifier</h3>
+                            <p class="model-subtitle">Classification par k Plus Proches Voisins</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation svm">
+                        <h4>👥 Comment ça marche ?</h4>
+                        <p>Si vous voulez savoir quel restaurant choisir, regardez ce que font vos 5 voisins les plus proches qui vous ressemblent. KNN fait pareil : il regarde les k exemples les plus similaires et vote pour la classe majoritaire.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Simple à comprendre</li>
+                                <li>Aucun entraînement nécessaire</li>
+                                <li>Fonctionne avec données non-linéaires</li>
+                                <li>Adaptatif aux changements</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Prédiction très lente</li>
+                                <li>Stockage de toutes les données</li>
+                                <li>Sensible au scaling</li>
+                                <li>Problème de la malédiction dimensionnelle</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Systèmes de recommandation</li>
+                            <li>Reconnaissance de motifs</li>
+                            <li>Classification d'images simples</li>
+                            <li>Données avec frontières complexes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ensemble Methods -->
+                <div class="model-card ensemble">
+                    <div class="model-header">
+                        <div class="model-icon ensemble">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Méthodes Ensemblistes</h3>
+                            <p class="model-subtitle">Random Forest, XGBoost, AdaBoost</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation ensemble">
+                        <h4>🎼 Comment ça marche ?</h4>
+                        <p>Un orchestre symphonique sonne mieux qu'un seul musicien. Les méthodes ensemblistes combinent plusieurs modèles "faibles" pour créer un "super-modèle" plus robuste et précis.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Performance exceptionnelle</li>
+                                <li>Réduction overfitting</li>
+                                <li>Robustesse aux outliers</li>
+                                <li>Gestion automatique des features</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Temps d'entraînement élevé</li>
+                                <li>Modèle "boîte noire"</li>
+                                <li>Nombreux hyperparamètres</li>
+                                <li>Consommation mémoire importante</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Compétitions de data science</li>
+                            <li>Prédiction de prix immobiliers</li>
+                            <li>Détection de fraudes</li>
+                            <li>Classification d'images complexes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- SVM -->
+                <div class="model-card bayes">
+                    <div class="model-header">
+                        <div class="model-icon bayes">
+                            <i class="fas fa-divide"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Support Vector Machines</h3>
+                            <p class="model-subtitle">Machines à Vecteurs de Support</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation bayes">
+                        <h4>✂️ Comment ça marche ?</h4>
+                        <p>SVM trace la "meilleure" ligne (hyperplan) pour séparer vos données en maximisant la marge entre les classes. Avec les kernels, il peut même séparer des données non-linéaires en les projetant dans un espace de dimension supérieure.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Efficace en haute dimension</li>
+                                <li>Robuste à l'overfitting</li>
+                                <li>Kernels pour non-linéarité</li>
+                                <li>Mémoire efficiente</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Lent sur gros datasets</li>
+                                <li>Sensible au scaling</li>
+                                <li>Choix du kernel critique</li>
+                                <li>Pas de probabilités directes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Classification de textes</li>
+                            <li>Reconnaissance d'images</li>
+                            <li>Bioinformatique</li>
+                            <li>Données haute dimension</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Naive Bayes -->
+                <div class="model-card linear">
+                    <div class="model-header">
+                        <div class="model-icon linear">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Naive Bayes</h3>
+                            <p class="model-subtitle">Classificateur Bayésien Naïf</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation linear">
+                        <h4>🎲 Comment ça marche ?</h4>
+                        <p>Basé sur le théorème de Bayes, il calcule la probabilité d'appartenance à chaque classe. "Naïf" car il suppose (à tort) que toutes les caractéristiques sont indépendantes, mais fonctionne étonnamment bien malgré cette simplification.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Très rapide à entraîner</li>
+                                <li>Fonctionne avec peu de données</li>
+                                <li>Gère bien les classes multiples</li>
+                                <li>Probabilités de sortie</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Hypothèse d'indépendance forte</li>
+                                <li>Performance limitée</li>
+                                <li>Sensible au déséquilibre des classes</li>
+                                <li>Probabilités mal calibrées</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Filtrage de spam</li>
+                            <li>Analyse de sentiment</li>
+                            <li>Classification de documents</li>
+                            <li>Diagnostic médical simple</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+# Exemple d'utilisation des modèles supervisés
+from sklearn.linear_model import SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+
+# Initialisation des modèles
+models = {
+    'SGD': SGDClassifier(random_state=42),
+    'Decision Tree': DecisionTreeClassifier(random_state=42),
+    'KNN': KNeighborsClassifier(n_neighbors=5),
+    'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42),
+    'SVM': SVC(kernel='rbf', random_state=42),
+    'Naive Bayes': GaussianNB()
+}
+
+# Entraînement et évaluation
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print(f"{name}: {score:.4f}")
+            </div>
+        </section>
+
+        <!-- APPRENTISSAGE NON SUPERVISÉ -->
+        <section id="unsupervised" class="content-section">
+            <div class="section-intro">
+                <h2>Apprentissage Non Supervisé</h2>
+                <p>L'apprentissage non supervisé découvre des structures cachées dans les données sans étiquettes. Il inclut le clustering, la réduction de dimensionnalité et la détection d'anomalies.</p>
+            </div>
+
+            <div class="models-grid">
+                <!-- K-Means -->
+                <div class="model-card clustering">
+                    <div class="model-header">
+                        <div class="model-icon clustering">
+                            <i class="fas fa-circle-nodes"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>K-Means</h3>
+                            <p class="model-subtitle">Clustering par Centroïdes</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation clustering">
+                        <h4>🎯 Comment ça marche ?</h4>
+                        <p>Imaginez que vous organisez k groupes d'amis pour une soirée. K-Means place k "centres de table" optimaux et assigne chaque invité à la table la plus proche, puis ajuste les centres pour minimiser les distances.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Simple et rapide</li>
+                                <li>Fonctionne bien sur clusters sphériques</li>
+                                <li>Scalable sur gros datasets</li>
+                                <li>Résultats reproductibles</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Nécessite de choisir k</li>
+                                <li>Sensible à l'initialisation</li>
+                                <li>Assume clusters sphériques</li>
+                                <li>Sensible aux outliers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Segmentation clients</li>
+                            <li>Compression d'images</li>
+                            <li>Préprocessing pour autres algos</li>
+                            <li>Analyse de marché</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DBSCAN -->
+                <div class="model-card clustering">
+                    <div class="model-header">
+                        <div class="model-icon clustering">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>DBSCAN</h3>
+                            <p class="model-subtitle">Clustering basé sur la Densité</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation clustering">
+                        <h4>🏘️ Comment ça marche ?</h4>
+                        <p>DBSCAN identifie des "quartiers denses" dans vos données. Il groupe les points proches les uns des autres et isole les points solitaires comme du "bruit". Pas besoin de spécifier le nombre de clusters à l'avance !</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Détecte clusters de forme arbitraire</li>
+                                <li>Identifie automatiquement les outliers</li>
+                                <li>Pas besoin de spécifier k</li>
+                                <li>Robuste au bruit</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Sensible aux paramètres eps et min_samples</li>
+                                <li>Difficile avec densités variables</li>
+                                <li>Performance médiocre en haute dimension</li>
+                                <li>Complexité de paramétrage</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Détection d'anomalies</li>
+                            <li>Analyse d'images satellites</li>
+                            <li>Détection de fraudes</li>
+                            <li>Analyse de réseaux sociaux</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PCA -->
+                <div class="model-card svm">
+                    <div class="model-header">
+                        <div class="model-icon svm">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>PCA</h3>
+                            <p class="model-subtitle">Analyse en Composantes Principales</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation svm">
+                        <h4>📐 Comment ça marche ?</h4>
+                        <p>PCA trouve les directions dans lesquelles vos données varient le plus et projette tout sur ces axes principaux. C'est comme regarder l'ombre d'un objet 3D sur un mur 2D en choisissant l'angle qui préserve le plus d'informations.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Réduction drastique de dimensionnalité</li>
+                                <li>Suppression du bruit</li>
+                                <li>Visualisation possible</li>
+                                <li>Accélère autres algorithmes</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Perte d'interprétabilité</li>
+                                <li>Assume relations linéaires</li>
+                                <li>Toutes composantes pas égales</li>
+                                <li>Sensible au scaling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Préprocessing pour ML</li>
+                            <li>Visualisation de données</li>
+                            <li>Compression d'images</li>
+                            <li>Détection d'anomalies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hierarchical Clustering -->
+                <div class="model-card clustering">
+                    <div class="model-header">
+                        <div class="model-icon clustering">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Clustering Hiérarchique</h3>
+                            <p class="model-subtitle">Agglomération ou Division</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation clustering">
+                        <h4>🌳 Comment ça marche ?</h4>
+                        <p>Construit un arbre de clusters soit en fusionnant graduellement les points proches (agglomératif), soit en divisant récursivement les groupes (divisif). Le dendrogramme résultant montre toute la hiérarchie des regroupements possibles.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Hiérarchie complète des clusters</li>
+                                <li>Pas besoin de spécifier k</li>
+                                <li>Résultats déterministes</li>
+                                <li>Visualisation avec dendrogramme</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Complexité O(n³) - très lent</li>
+                                <li>Sensible au bruit et outliers</li>
+                                <li>Difficile de défaire les mauvaises fusions</li>
+                                <li>Choix de la distance critique</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Phylogénie en biologie</li>
+                            <li>Taxonomie et classification</li>
+                            <li>Analyse de petits datasets</li>
+                            <li>Exploration de structures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+# Exemple d'utilisation des modèles non supervisés
+from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Préparation des données
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Clustering
+kmeans = KMeans(n_clusters=3, random_state=42)
+dbscan = DBSCAN(eps=0.5, min_samples=5)
+hierarchical = AgglomerativeClustering(n_clusters=3)
+
+# Réduction de dimensionnalité
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# Application et visualisation
+clusters_kmeans = kmeans.fit_predict(X_scaled)
+clusters_dbscan = dbscan.fit_predict(X_scaled)
+clusters_hierarchical = hierarchical.fit_predict(X_scaled)
+
+print(f"Variance expliquée par PCA: {pca.explained_variance_ratio_.sum():.3f}")
+            </div>
+        </section>
+
+        <!-- REINFORCEMENT LEARNING -->
+        <section id="reinforcement" class="content-section">
+            <div class="section-intro">
+                <h2>Reinforcement Learning</h2>
+                <p>L'apprentissage par renforcement apprend par interaction avec un environnement, en maximisant une récompense cumulative. L'agent apprend une politique optimale par essais et erreurs.</p>
+            </div>
+
+            <div class="models-grid">
+                <!-- Q-Learning -->
+                <div class="model-card ensemble">
+                    <div class="model-header">
+                        <div class="model-icon ensemble">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Q-Learning</h3>
+                            <p class="model-subtitle">Apprentissage par Valeurs d'Action</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation ensemble">
+                        <h4>🎮 Comment ça marche ?</h4>
+                        <p>L'agent apprend une "table de triche" (Q-table) qui lui dit quelle action prendre dans chaque situation pour maximiser sa récompense future. Comme apprendre à jouer aux échecs en mémorisant les meilleurs coups pour chaque position.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Ne nécessite pas de modèle de l'environnement</li>
+                                <li>Apprentissage par expérience pure</li>
+                                <li>Convergence garantie sous conditions</li>
+                                <li>Conceptuellement simple</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Limité aux espaces d'états discrets</li>
+                                <li>Exploration vs exploitation</li>
+                                <li>Curse of dimensionality</li>
+                                <li>Apprentissage peut être long</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Jeux de stratégie simples</li>
+                            <li>Robotique de base</li>
+                            <li>Optimisation de trajets</li>
+                            <li>Systèmes de recommandation adaptatifs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Policy Gradient -->
+                <div class="model-card ensemble">
+                    <div class="model-header">
+                        <div class="model-icon ensemble">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Policy Gradient</h3>
+                            <p class="model-subtitle">Apprentissage Direct de Politique</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation ensemble">
+                        <h4>🎭 Comment ça marche ?</h4>
+                        <p>Au lieu d'apprendre les valeurs des actions, l'agent apprend directement une politique (stratégie) qui lui dit quoi faire. C'est comme apprendre à conduire en ajustant progressivement son style de conduite plutôt qu'en mémorisant des règles.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Fonctionne avec espaces continus</li>
+                                <li>Peut apprendre politiques stochastiques</li>
+                                <li>Meilleure convergence dans certains cas</li>
+                                <li>Adaptable aux environnements complexes</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Variance élevée des gradients</li>
+                                <li>Échantillonnage intensif requis</li>
+                                <li>Peut converger vers optimum local</li>
+                                <li>Tuning d'hyperparamètres délicat</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Contrôle robotique continu</li>
+                            <li>Jeux vidéo complexes</li>
+                            <li>Trading algorithmique</li>
+                            <li>Véhicules autonomes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Actor-Critic -->
+                <div class="model-card ensemble">
+                    <div class="model-header">
+                        <div class="model-icon ensemble">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Actor-Critic</h3>
+                            <p class="model-subtitle">Apprentissage Hybride</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation ensemble">
+                        <h4>🎭 Comment ça marche ?</h4>
+                        <p>Combine le meilleur des deux mondes : un "Actor" (acteur) qui décide quoi faire et un "Critic" (critique) qui évalue ces décisions. C'est comme avoir un joueur et son coach qui l'aide à s'améliorer.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Réduit la variance du Policy Gradient</li>
+                                <li>Apprentissage plus stable</li>
+                                <li>Adaptable à différents environnements</li>
+                                <li>Base pour algorithmes avancés (A3C, PPO)</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Complexité d'implémentation accrue</li>
+                                <li>Deux réseaux à optimiser</li>
+                                <li>Sensible aux hyperparamètres</li>
+                                <li>Peut introduire du biais</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Jeux Atari et Go</li>
+                            <li>Robotique avancée</li>
+                            <li>Gestion de portefeuille</li>
+                            <li>Systèmes de dialogue</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+# Exemple conceptuel de Q-Learning
+import numpy as np
+
+class QLearningAgent:
+    def __init__(self, n_states, n_actions, learning_rate=0.1, discount=0.95):
+        self.q_table = np.zeros((n_states, n_actions))
+        self.lr = learning_rate
+        self.gamma = discount
+        self.epsilon = 0.1  # exploration rate
+    
+    def choose_action(self, state):
+        if np.random.random() < self.epsilon:
+            return np.random.randint(self.q_table.shape[1])  # explore
+        return np.argmax(self.q_table[state])  # exploit
+    
+    def update(self, state, action, reward, next_state):
+        best_next = np.max(self.q_table[next_state])
+        self.q_table[state, action] += self.lr * (
+            reward + self.gamma * best_next - self.q_table[state, action]
+        )
+
+# Utilisation
+agent = QLearningAgent(n_states=100, n_actions=4)
+# ... entraînement dans l'environnement
+            </div>
+        </section>
+
+        <!-- DEEP LEARNING -->
+        <section id="deep" class="content-section">
+            <div class="section-intro">
+                <h2>Deep Learning</h2>
+                <p>Le deep learning utilise des réseaux de neurones profonds pour apprendre des représentations hiérarchiques complexes des données. Révolutionnaire pour l'image, le texte et la parole.</p>
+            </div>
+
+            <div class="models-grid">
+                <!-- Neural Networks -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Réseaux de Neurones</h3>
+                            <p class="model-subtitle">Perceptrons Multi-Couches</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>🧠 Comment ça marche ?</h4>
+                        <p>Inspirés du cerveau, ils connectent des neurones artificiels en couches. Chaque neurone reçoit des signaux, les traite avec une fonction d'activation, et transmet le résultat. L'apprentissage ajuste les connexions pour minimiser les erreurs.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Capacité d'approximation universelle</li>
+                                <li>Apprend features automatiquement</li>
+                                <li>Performance exceptionnelle</li>
+                                <li>Flexibilité architecturale</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Nécessite énormément de données</li>
+                                <li>Coûteux computationnellement</li>
+                                <li>Boîte noire difficile à interpréter</li>
+                                <li>Nombreux hyperparamètres</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Reconnaissance d'images</li>
+                            <li>Traitement du langage naturel</li>
+                            <li>Reconnaissance vocale</li>
+                            <li>Prédiction de séries temporelles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CNN -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>CNN</h3>
+                            <p class="model-subtitle">Réseaux Convolutionnels</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>👁️ Comment ça marche ?</h4>
+                        <p>Spécialisés pour les images, ils utilisent des filtres convolutionnels qui glissent sur l'image pour détecter des motifs (contours, textures, formes). Les couches successives combinent ces motifs pour reconnaître des objets complexes.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>État de l'art en vision par ordinateur</li>
+                                <li>Invariance à la translation</li>
+                                <li>Partage de paramètres efficace</li>
+                                <li>Hiérarchie de features naturelle</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Sensible aux rotations/déformations</li>
+                                <li>Beaucoup de données d'entraînement</li>
+                                <li>Calculs intensifs (GPU requis)</li>
+                                <li>Architecture complexe à designer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Classification d'images</li>
+                            <li>Détection d'objets</li>
+                            <li>Segmentation d'images</li>
+                            <li>Imagerie médicale</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RNN/LSTM -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>RNN/LSTM</h3>
+                            <p class="model-subtitle">Réseaux Récurrents</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>🔄 Comment ça marche ?</h4>
+                        <p>Conçus pour les séquences (texte, parole, séries temporelles), ils maintiennent une "mémoire" des éléments précédents. Les LSTM résolvent le problème de mémoire à long terme avec des mécanismes sophistiqués de "portes".</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Gère les séquences de longueur variable</li>
+                                <li>Capture dépendances temporelles</li>
+                                <li>Mémoire à long terme (LSTM)</li>
+                                <li>Flexibilité entrée/sortie</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Entraînement séquentiel (lent)</li>
+                                <li>Problème du gradient qui s'évanouit</li>
+                                <li>Difficile à paralléliser</li>
+                                <li>Remplacés par les Transformers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Traduction automatique</li>
+                            <li>Génération de texte</li>
+                            <li>Reconnaissance vocale</li>
+                            <li>Prédiction de séries temporelles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Transformers -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Transformers</h3>
+                            <p class="model-subtitle">Attention is All You Need</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>🎯 Comment ça marche ?</h4>
+                        <p>Révolutionnent le NLP avec le mécanisme d'attention : le modèle "fait attention" aux parties importantes de la séquence simultanément, sans traitement séquentiel. Base de GPT, BERT, et autres modèles de langage massifs.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Parallélisation excellent</li>
+                                <li>Capture dépendances à long terme</li>
+                                <li>Mécanisme d'attention puissant</li>
+                                <li>État de l'art en NLP</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Extrêmement gourmand en ressources</li>
+                                <li>Complexité O(n²) avec la longueur</li>
+                                <li>Nécessite datasets massifs</li>
+                                <li>Difficile à interpréter</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Modèles de langage (ChatGPT, BERT)</li>
+                            <li>Traduction automatique</li>
+                            <li>Résumé automatique</li>
+                            <li>Vision par ordinateur (ViT)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- GANs -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>GANs</h3>
+                            <p class="model-subtitle">Réseaux Antagonistes Génératifs</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>⚔️ Comment ça marche ?</h4>
+                        <p>Deux réseaux s'affrontent : un Générateur crée de fausses données (faux billets) et un Discriminateur tente de les détecter (policier). Cette compétition pousse le générateur à créer des données de plus en plus réalistes.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Génère des données très réalistes</li>
+                                <li>Apprentissage non supervisé</li>
+                                <li>Applications créatives nombreuses</li>
+                                <li>Peut générer des données rares</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Entraînement très instable</li>
+                                <li>Mode collapse fréquent</li>
+                                <li>Difficile à évaluer</li>
+                                <li>Problèmes éthiques (deepfakes)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Génération d'images</li>
+                            <li>Augmentation de données</li>
+                            <li>Art génératif</li>
+                            <li>Super-résolution d'images</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Autoencoders -->
+                <div class="model-card nn">
+                    <div class="model-header">
+                        <div class="model-icon nn">
+                            <i class="fas fa-compress"></i>
+                        </div>
+                        <div class="model-title">
+                            <h3>Autoencoders</h3>
+                            <p class="model-subtitle">Encodage-Décodage Neuronal</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation nn">
+                        <h4>🗜️ Comment ça marche ?</h4>
+                        <p>Apprennent à compresser les données (encodeur) puis à les reconstruire (décodeur). En forçant un goulot d'étranglement au milieu, ils extraient les caractéristiques les plus importantes des données.</p>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Avantages</h4>
+                            <ul>
+                                <li>Réduction de dimensionnalité non-linéaire</li>
+                                <li>Détection d'anomalies efficace</li>
+                                <li>Débruitage des données</li>
+                                <li>Apprentissage de représentations</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Inconvénients</h4>
+                            <ul>
+                                <li>Qualité reconstruction limitée</li>
+                                <li>Difficile à optimiser</li>
+                                <li>Latent space pas toujours interprétable</li>
+                                <li>Surpassés par GANs pour génération</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="use-cases">
+                        <h4>Cas d'usage idéaux</h4>
+                        <ul>
+                            <li>Détection d'anomalies</li>
+                            <li>Compression d'images</li>
+                            <li>Débruitage de données</li>
+                            <li>Initialisation de réseaux profonds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+# Exemple de réseau de neurones simple avec PyTorch
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+class SimpleNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(SimpleNN, self).__init__()
+        self.hidden = nn.Linear(input_size, hidden_size)
+        self.output = nn.Linear(hidden_size, output_size)
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(0.2)
+    
+    def forward(self, x):
+        x = self.relu(self.hidden(x))
+        x = self.dropout(x)
+        x = self.output(x)
+        return x
+
+# Initialisation et entraînement
+model = SimpleNN(input_size=784, hidden_size=128, output_size=10)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Boucle d'entraînement
+for epoch in range(100):
+    optimizer.zero_grad()
+    outputs = model(X_train)
+    loss = criterion(outputs, y_train)
+    loss.backward()
+    optimizer.step()
+            </div>
+        </section>
+
+        <!-- SECTION COMPARATIVE -->
+        <div class="comparison-section">
+            <h2>🔍 Tableau Comparatif Complet</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Vue d'ensemble des performances et caractéristiques de tous les modèles</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Type d'Apprentissage</th>
+                        <th>Complexité</th>
+                        <th>Performance</th>
+                        <th>Interprétabilité</th>
+                        <th>Vitesse Entraînement</th>
+                        <th>Vitesse Prédiction</th>
+                        <th>Taille Dataset</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SGDClassifier</strong></td>
+                        <td>Supervisé</td>
+                        <td>Faible</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-good">Élevée</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td>Grande → Très Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DecisionTree</strong></td>
+                        <td>Supervisé</td>
+                        <td>Moyenne</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Élevée</span></td>
+                        <td><span class="performance-badge performance-excellent">Rapide</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td>Petite → Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KNeighbors</strong></td>
+                        <td>Supervisé</td>
+                        <td>Faible</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-moderate">Moyenne</span></td>
+                        <td><span class="performance-badge performance-excellent">Instant</span></td>
+                        <td><span class="performance-badge performance-low">Lente</span></td>
+                        <td>Petite → Moyenne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Random Forest</strong></td>
+                        <td>Supervisé</td>
+                        <td>Élevée</td>
+                        <td><span class="performance-badge performance-excellent">Excellente</span></td>
+                        <td><span class="performance-badge performance-moderate">Moyenne</span></td>
+                        <td><span class="performance-badge performance-good">Modérée</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Moyenne → Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XGBoost</strong></td>
+                        <td>Supervisé</td>
+                        <td>Élevée</td>
+                        <td><span class="performance-badge performance-excellent">Excellente</span></td>
+                        <td><span class="performance-badge performance-moderate">Faible</span></td>
+                        <td><span class="performance-badge performance-moderate">Modérée</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Moyenne → Très Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SVM</strong></td>
+                        <td>Supervisé</td>
+                        <td>Élevée</td>
+                        <td><span class="performance-badge performance-excellent">Excellente</span></td>
+                        <td><span class="performance-badge performance-low">Faible</span></td>
+                        <td><span class="performance-badge performance-low">Lente</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Petite → Moyenne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Naive Bayes</strong></td>
+                        <td>Supervisé</td>
+                        <td>Faible</td>
+                        <td><span class="performance-badge performance-moderate">Moyenne</span></td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td>Petite → Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>K-Means</strong></td>
+                        <td>Non Supervisé</td>
+                        <td>Faible</td>
+                        <td><span class="performance-badge performance-good">Variable</span></td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td>Moyenne → Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DBSCAN</strong></td>
+                        <td>Non Supervisé</td>
+                        <td>Moyenne</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-moderate">Modérée</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Petite → Moyenne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PCA</strong></td>
+                        <td>Non Supervisé</td>
+                        <td>Moyenne</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-low">Faible</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td><span class="performance-badge performance-excellent">Très Rapide</span></td>
+                        <td>Moyenne → Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neural Networks</strong></td>
+                        <td>Deep Learning</td>
+                        <td>Très Élevée</td>
+                        <td><span class="performance-badge performance-excellent">Excellente</span></td>
+                        <td><span class="performance-badge performance-low">Très Faible</span></td>
+                        <td><span class="performance-badge performance-low">Très Lente</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Très Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CNN</strong></td>
+                        <td>Deep Learning</td>
+                        <td>Très Élevée</td>
+                        <td><span class="performance-badge performance-excellent">Excellente (Images)</span></td>
+                        <td><span class="performance-badge performance-low">Très Faible</span></td>
+                        <td><span class="performance-badge performance-low">Très Lente</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Très Grande</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transformers</strong></td>
+                        <td>Deep Learning</td>
+                        <td>Extrême</td>
+                        <td><span class="performance-badge performance-excellent">État de l'art (NLP)</span></td>
+                        <td><span class="performance-badge performance-low">Très Faible</span></td>
+                        <td><span class="performance-badge performance-low">Extrêmement Lente</span></td>
+                        <td><span class="performance-badge performance-moderate">Modérée</span></td>
+                        <td>Massive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q-Learning</strong></td>
+                        <td>Reinforcement</td>
+                        <td>Moyenne</td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-good">Bonne</span></td>
+                        <td><span class="performance-badge performance-moderate">Variable</span></td>
+                        <td><span class="performance-badge performance-good">Rapide</span></td>
+                        <td>Interaction Required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GUIDE DE SÉLECTION -->
+        <div class="selection-guide">
+            <h3>🎯 Guide de Sélection du Modèle Parfait</h3>
+            <p>Choisissez le bon algorithme en fonction de votre contexte et de vos contraintes</p>
+
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <h4>💾 Dataset Massif (>1M échantillons)</h4>
+                    <p>→ SGDClassifier, XGBoost, Neural Networks</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🔍 Interprétabilité Cruciale</h4>
+                    <p>→ DecisionTree, Linear Models, Naive Bayes</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>⚡ Performance Maximale</h4>
+                    <p>→ Ensemble Methods (XGBoost, Random Forest)</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🖼️ Données Images</h4>
+                    <p>→ CNN, Vision Transformers, Pre-trained Models</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>📝 Traitement de Texte</h4>
+                    <p>→ Transformers (BERT, GPT), TF-IDF + SVM</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🎮 Apprentissage par Interaction</h4>
+                    <p>→ Q-Learning, Policy Gradient, Actor-Critic</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🔓 Données Sans Étiquettes</h4>
+                    <p>→ K-Means, DBSCAN, PCA, Autoencoders</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>⏰ Contrainte Temps Réel</h4>
+                    <p>→ Linear Models, Decision Tree, Naive Bayes</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>📊 Données Tabulaires</h4>
+                    <p>→ XGBoost, Random Forest, SVM</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🎯 Détection d'Anomalies</h4>
+                    <p>→ DBSCAN, Autoencoders, One-Class SVM</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🔬 Recherche/Expérimentation</h4>
+                    <p>→ Testez plusieurs approches et comparez !</p>
+                </div>
+
+                <div class="guide-item">
+                    <h4>🏭 Production/Business</h4>
+                    <p>→ Modèles simples et robustes d'abord</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW RECOMMANDÉ -->
+        <div class="comparison-section">
+            <h2>🚀 Workflow Recommandé pour Choisir un Modèle</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 2rem; border-radius: 15px; margin: 1.5rem 0;">
+                    <h3>1️⃣ Définir le Problème</h3>
+                    <ul>
+                        <li>Classification ou régression ? (supervisé)</li>
+                        <li>Découverte de patterns ? (non supervisé)</li>
+                        <li>Apprentissage par interaction ? (reinforcement)</li>
+                        <li>Données complexes ? (deep learning)</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 2rem; border-radius: 15px; margin: 1.5rem 0;">
+                    <h3>2️⃣ Analyser les Données</h3>
+                    <ul>
+                        <li>Taille du dataset (quelques centaines → millions)</li>
+                        <li>Type de données (numériques, catégorielles, images, texte)</li>
+                        <li>Qualité des données (bruit, valeurs manquantes)</li>
+                        <li>Déséquilibre des classes</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 2rem; border-radius: 15px; margin: 1.5rem 0;">
+                    <h3>3️⃣ Définir les Contraintes</h3>
+                    <ul>
+                        <li>Temps d'entraînement disponible</li>
+                        <li>Ressources computationnelles (CPU, GPU, mémoire)</li>
+                        <li>Besoin d'interprétabilité</li>
+                        <li>Latence de prédiction requise</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; padding: 2rem; border-radius: 15px; margin: 1.5rem 0;">
+                    <h3>4️⃣ Stratégie Progressive</h3>
+                    <ol>
+                        <li><strong>Baseline simple</strong> : Régression linéaire, Decision Tree, Naive Bayes</li>
+                        <li><strong>Modèles intermédiaires</strong> : Random Forest, SVM, XGBoost</li>
+                        <li><strong>Deep Learning</strong> : Si les modèles classiques ne suffisent pas</li>
+                        <li><strong>Optimisation</strong> : Hyperparameter tuning, ensemble methods</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Guide Complet des Modèles de Machine Learning</p>
+            <p>Conçu pour les data scientists, développeurs et étudiants passionnés d'IA</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Mettre à jour les onglets
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelector(`.nav-tab.${sectionId}`).classList.add('active');
+            
+            // Scroll vers le haut pour mobile
+            if (window.innerWidth <= 768) {
+                document.querySelector('.learning-types-nav').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Appliquer l'animation à tous les cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.model-card, .comparison-section, .selection-guide');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Gestion du scroll pour la navigation sticky
+        let lastScrollTop = 0;
+        const nav = document.querySelector('.learning-types-nav');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

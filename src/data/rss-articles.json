@@ -1,0 +1,185 @@
+{
+  "fetchedAt": "2026-10-02T08:47:47.571Z",
+  "articles": [
+    {
+      "title": "GTFS DU 260926",
+      "source": "Data.gouv.fr",
+      "date": "2026-10-02T08:08:35.976Z",
+      "url": "https://www.data.gouv.fr/datasets/gtfs-du-260926",
+      "excerpt": "Jeu de données mis à jour le 25/09/26.",
+      "category": "Données publiques",
+      "language": "Français"
+    },
+    {
+      "title": "Données essentielles des marchés publics - Région Auvergne Rhône-Alpes",
+      "source": "Data.gouv.fr",
+      "date": "2026-10-02T07:47:22.546Z",
+      "url": "https://www.data.gouv.fr/datasets/donnees-essentielles-des-marches-publics-region-auvergne-rhone-alpes-1986",
+      "excerpt": "L'arrêté du 14 avril 2017 (https://www.legifrance.gouv.fr/eli/arrete/2017/4/14/ECFM1637256A/jo/texte), modifié par l'arrêté du 27 juillet 2018 (https://www.legifrance.gouv.fr/affic…",
+      "category": "Données publiques",
+      "language": "Français"
+    },
+    {
+      "title": "BrowserAct AI Web Scraper in 2026: Build Once, Run Repeatedly",
+      "source": "KDnuggets",
+      "date": "2026-10-01T17:42:13.000Z",
+      "url": "https://www.kdnuggets.com/2026/09/browseractai/browseract-ai-web-scraper-in-2026-build-once-run-repeatedly",
+      "excerpt": "Describe your data needs in plain language and turn websites into a continuous source of fresh data.",
+      "category": "Expertise",
+      "language": "Anglais"
+    },
+    {
+      "title": "The eternal complement",
+      "source": "OpenAI News",
+      "date": "2026-10-01T17:00:00.000Z",
+      "url": "https://openai.com/index/the-eternal-complement",
+      "excerpt": "Advanced AI may matter most for the routine work behind breakthrough ideas. Explore why execution could shape the next economy and the pace of progress.",
+      "category": "IA",
+      "language": "Anglais"
+    },
+    {
+      "title": "CEMIS fichier véhicules LOI LOM 2026",
+      "source": "Data.gouv.fr",
+      "date": "2026-10-01T16:19:58.992Z",
+      "url": "https://www.data.gouv.fr/datasets/cemis-fichier-vehicules-loi-lom-2026",
+      "excerpt": "Fichier des véhicules données 2025 pour la déclaration de la loi LOM 2026",
+      "category": "Données publiques",
+      "language": "Français"
+    },
+    {
+      "title": "DELTA fichier véhicules LOI LOM 2026",
+      "source": "Data.gouv.fr",
+      "date": "2026-10-01T16:15:02.150Z",
+      "url": "https://www.data.gouv.fr/datasets/delta-fichier-vehicules-loi-lom-2026",
+      "excerpt": "Fichier des véhicules données 2025 pour la déclaration de la loi LOM 2026",
+      "category": "Données publiques",
+      "language": "Français"
+    },
+    {
+      "title": "From Messy Documents to Structured Data with Docling",
+      "source": "KDnuggets",
+      "date": "2026-10-01T16:00:00.000Z",
+      "url": "https://www.kdnuggets.com/from-messy-documents-to-structured-data-with-docling",
+      "excerpt": "Docling takes documents in whatever inconsistent format they arrive in, and converts them into one unified, structured representation that both people and AI systems can work with reliably, rather than everyone…",
+      "category": "Expertise",
+      "language": "Anglais"
+    },
+    {
+      "title": "How Albertsons Companies is reimagining retail from the inside out",
+      "source": "OpenAI News",
+      "date": "2026-10-01T16:00:00.000Z",
+      "url": "https://openai.com/index/albertsons-reimagining-retail",
+      "excerpt": "Albertsons Cos. is using ChatGPT Enterprise and the OpenAI API to help teams work faster and make grocery shopping easier for millions of customers.",
+      "category": "IA",
+      "language": "Anglais"
+    },
+    {
+      "title": "Autoencoders vs. PCA: I Rigged the Test and PCA Still Won",
+      "source": "Towards Data Science",
+      "date": "2026-10-01T15:30:02.000Z",
+      "url": "https://towardsdatascience.com/autoencoders-vs-pca-i-rigged-the-test-and-pca-still-won/",
+      "excerpt": "A theoretical advantage that didn't survive contact with a real benchmark.",
+      "category": "Communauté",
+      "language": "Anglais"
+    },
+    {
+      "title": "How to Use Marimo for Interactive Data Analysis",
+      "source": "KDnuggets",
+      "date": "2026-10-01T14:00:38.000Z",
+      "url": "https://www.kdnuggets.com/how-to-use-marimo-for-interactive-data-analysis",
+      "excerpt": "Learn how to use Marimo for interactive data analysis with Python, Pandas, and Altair, and turn a reactive notebook into a simple shareable dashboard.",
+      "category": "Expertise",
+      "language": "Anglais"
+    },
+    {
+      "title": "Can an Apartment Search Agent Call the Model Fewer Times and Still Find Good Matches?",
+      "source": "Towards Data Science",
+      "date": "2026-10-01T14:00:01.000Z",
+      "url": "https://towardsdatascience.com/can-an-apartment-search-agent-call-the-model-fewer-times-and-still-find-good-matches/",
+      "excerpt": "I traced 2,500 listing checks with Weights & Biases Weave, removed avoidable model work one change at a time, and scored every version against the same answers.",
+      "category": "Communauté",
+      "language": "Anglais"
+    },
+    {
+      "title": "What the ReLU Revolution Revealed About Biological Plausibility",
+      "source": "Towards Data Science",
+      "date": "2026-10-01T12:30:01.000Z",
+      "url": "https://towardsdatascience.com/what-the-relu-revolution-revealed-about-biological-plausibility/",
+      "excerpt": "The activation function was never a fixed biological commitment but a working hypothesis revised under empirical pressure.",
+      "category": "Communauté",
+      "language": "Anglais"
+    },
+    {
+      "title": "10 Python One-Liners That Will Make Your Code Cleaner and Faster",
+      "source": "KDnuggets",
+      "date": "2026-10-01T12:00:14.000Z",
+      "url": "https://www.kdnuggets.com/10-python-one-liners-that-will-make-your-code-cleaner-and-faster",
+      "excerpt": "Get work done, and have seconds added back to your life since you won't be writing second, third or &mdash; *gasp!* &mdash; fourth line follow-ups to your impeccable typed line numero uno.",
+      "category": "Expertise",
+      "language": "Anglais"
+    },
+    {
+      "title": "Your AI Bill Is a Toll Booth. Stop Paying Twice.",
+      "source": "Towards Data Science",
+      "date": "2026-10-01T11:00:01.000Z",
+      "url": "https://towardsdatascience.com/your-ai-bill-is-a-toll-booth-stop-paying-twice/",
+      "excerpt": "The budget nobody saw coming",
+      "category": "Communauté",
+      "language": "Anglais"
+    },
+    {
+      "title": "The Den frees up 10-15 hours a week to grow with ChatGPT Work",
+      "source": "OpenAI News",
+      "date": "2026-10-01T00:00:00.000Z",
+      "url": "https://openai.com/index/the-den-family-social",
+      "excerpt": "As it opens a new location, the social club prepares grant applications in 2 hours instead of 3 days and liquor-license materials in 3 hours instead of 4 days.",
+      "category": "IA",
+      "language": "Anglais"
+    },
+    {
+      "title": "Disrupting a coordinated model-distillation campaign",
+      "source": "OpenAI News",
+      "date": "2026-09-30T10:30:00.000Z",
+      "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign",
+      "excerpt": "Learn how OpenAI disrupted a campaign to extract protected model reasoning and is strengthening defenses against adversarial distillation.",
+      "category": "IA",
+      "language": "Anglais"
+    },
+    {
+      "title": "Incident sécurité Anthropic Claude : risques AI inattendus",
+      "source": "Liora (ex-DataScientest)",
+      "date": "2026-07-31T15:37:13.000Z",
+      "url": "https://liora.io/incident-securite-anthropic-claude",
+      "excerpt": "Anthropic a révélé en juillet 2024 que trois de ses modèles d'IA Claude avaient piraté de manière autonome les systèmes d’organisations externes lors de tests internes de cybersécurité, après qu’une mauvaise…",
+      "category": "Formation",
+      "language": "Français"
+    },
+    {
+      "title": "GIFAS Cyber Boost sécurise la filière aérospatiale",
+      "source": "Liora (ex-DataScientest)",
+      "date": "2026-07-28T13:14:26.000Z",
+      "url": "https://liora.io/gifas-cyber-boost-securise-aerospatiale",
+      "excerpt": "L'industrie aérospatiale française a lancé, le 27 juillet 2026, un programme de cybersécurité de plusieurs millions d'euros pour protéger 200 fournisseurs, petites et moyennes entreprises (PME), contre des millions de…",
+      "category": "Formation",
+      "language": "Français"
+    },
+    {
+      "title": "AI Engineer : tout ce qu’il faut savoir sur ce métier",
+      "source": "Liora (ex-DataScientest)",
+      "date": "2026-06-25T19:33:23.000Z",
+      "url": "https://liora.io/ai-engineer-fiche-metier",
+      "excerpt": "🎯 TL;DR — L’essentiel en 30 secondes L’AI Engineer (ou ingénieur IA) conçoit et déploie des systèmes d’intelligence artificielle opérationnels dans des produits réels. C’est l’un des métiers tech les plus demandés en…",
+      "category": "Formation",
+      "language": "Français"
+    },
+    {
+      "title": "Devenez AI Engineer : la formation complète pour maîtriser l’IA",
+      "source": "Liora (ex-DataScientest)",
+      "date": "2026-06-23T18:00:38.000Z",
+      "url": "https://liora.io/formation-ai-engineer",
+      "excerpt": "🎯 TL;DR — Ce qu’il faut retenir en 30 secondes Le métier d’AI Engineer est le plus en croissance sur LinkedIn en 2025. La demande explose, les salaires suivent, et les profils qualifiés manquent cruellement sur le…",
+      "category": "Formation",
+      "language": "Français"
+    }
+  ]
+}

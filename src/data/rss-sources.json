@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Data.gouv.fr",
+    "url": "https://www.data.gouv.fr/fr/datasets/recent.atom",
+    "siteUrl": "https://www.data.gouv.fr/",
+    "description": "Le portail officiel des données publiques en France : derniers jeux de données publiés",
+    "language": "Français",
+    "category": "Données publiques"
+  },
+  {
+    "name": "Liora (ex-DataScientest)",
+    "url": "https://liora.io/feed",
+    "siteUrl": "https://liora.io/",
+    "description": "Blog de l'organisme de formation data anciennement nommé DataScientest : articles, tutoriels et analyses",
+    "language": "Français",
+    "category": "Formation"
+  },
+  {
+    "name": "Le Big Data",
+    "url": "https://www.lebigdata.fr/feed",
+    "siteUrl": "https://www.lebigdata.fr/",
+    "description": "Actualités et analyses autour du big data, de l'IA et du cloud",
+    "language": "Français",
+    "category": "Actualités"
+  },
+  {
+    "name": "KDnuggets",
+    "url": "https://www.kdnuggets.com/feed",
+    "siteUrl": "https://www.kdnuggets.com/",
+    "description": "Articles sur le machine learning et la data science par des experts du secteur",
+    "language": "Anglais",
+    "category": "Expertise"
+  },
+  {
+    "name": "OpenAI News",
+    "url": "https://openai.com/news/rss.xml",
+    "siteUrl": "https://openai.com/news/",
+    "description": "Les annonces et publications d'OpenAI",
+    "language": "Anglais",
+    "category": "IA"
+  },
+  {
+    "name": "Towards Data Science",
+    "url": "https://towardsdatascience.com/feed",
+    "siteUrl": "https://towardsdatascience.com/",
+    "description": "Publication communautaire de partage d'idées et d'expériences en data science",
+    "language": "Anglais",
+    "category": "Communauté"
+  }
+]

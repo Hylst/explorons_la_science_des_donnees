@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chartGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
+  
+  <!-- Main chart area background -->
+  <rect x="4" y="6" width="24" height="20" rx="2" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Bar chart -->
+  <rect x="6" y="18" width="3" height="6" fill="url(#chartGradient)"/>
+  <rect x="10" y="15" width="3" height="9" fill="url(#chartGradient)"/>
+  <rect x="14" y="12" width="3" height="12" fill="url(#chartGradient)"/>
+  <rect x="18" y="16" width="3" height="8" fill="url(#chartGradient)"/>
+  <rect x="22" y="10" width="3" height="14" fill="url(#chartGradient)"/>
+  
+  <!-- Trend line -->
+  <path d="M 7.5 21 L 11.5 18 L 15.5 15 L 19.5 19 L 23.5 13" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.8"/>
+  
+  <!-- Data points on trend line -->
+  <circle cx="7.5" cy="21" r="1.5" fill="#ef4444"/>
+  <circle cx="11.5" cy="18" r="1.5" fill="#ef4444"/>
+  <circle cx="15.5" cy="15" r="1.5" fill="#ef4444"/>
+  <circle cx="19.5" cy="19" r="1.5" fill="#ef4444"/>
+  <circle cx="23.5" cy="13" r="1.5" fill="#ef4444"/>
+  
+  <!-- Grid lines -->
+  <g opacity="0.3">
+    <line x1="6" y1="8" x2="26" y2="8" stroke="#64748b" stroke-width="0.5"/>
+    <line x1="6" y1="12" x2="26" y2="12" stroke="#64748b" stroke-width="0.5"/>
+    <line x1="6" y1="16" x2="26" y2="16" stroke="#64748b" stroke-width="0.5"/>
+    <line x1="6" y1="20" x2="26" y2="20" stroke="#64748b" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Mathematical symbols -->
+  <g transform="translate(4, 28)" fill="#ffffff" font-family="Arial, sans-serif" font-size="6" font-weight="bold">
+    <text x="0" y="0">Σ</text>
+    <text x="8" y="0">μ</text>
+    <text x="16" y="0">σ</text>
+    <text x="22" y="0">π</text>
+  </g>
+</svg>
