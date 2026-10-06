@@ -252,7 +252,8 @@ describe("matchesFilters", () => {
 
   describe("combinaison de filtres", () => {
     it("un projet doit satisfaire tous les filtres actifs", () => {
-      expect(ids(select({ level: "beginner", technologies: ["Pandas"] })).sort()).toEqual(["beginner-1", "beginner-3", "beginner-4"]);
+      expect(ids(select({ level: "beginner", technologies: ["Pandas"] })).sort()).toEqual(["beginner-1", "beginner-3"]);
+      expect(ids(select({ level: "beginner", technologies: ["scikit-learn"] })).sort()).toEqual(["beginner-2", "beginner-4"]);
       expect(ids(select({ level: "beginner", technologies: ["Pandas"], category: "visualisation" }))).toEqual(["beginner-3"]);
       expect(ids(select({ level: "beginner", technologies: ["Pandas"], category: "visualisation", query: "covid", duration: "medium" }))).toEqual(["beginner-3"]);
     });

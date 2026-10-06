@@ -6,11 +6,12 @@ import {
   Search,
   Filter,
   BookOpen,
-  Rocket
+  Rocket,
+  Compass
 } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 
-export type ProjectsSectionType = "overview" | "stats" | "search" | "categories" | "beginner" | "intermediate" | "advanced";
+export type ProjectsSectionType = "overview" | "guided" | "stats" | "search" | "categories" | "beginner" | "intermediate" | "advanced";
 
 interface ProjectsSidebarProps {
   currentSection: ProjectsSectionType;
@@ -19,6 +20,7 @@ interface ProjectsSidebarProps {
 
 const SECTIONS: { section: ProjectsSectionType; title: string; icon: React.ReactNode }[] = [
   { section: "overview", title: "Vue d'ensemble", icon: <BookOpen className="h-4 w-4" /> },
+  { section: "guided", title: "Projets guidés", icon: <Compass className="h-4 w-4" /> },
   { section: "stats", title: "Les projets en chiffres", icon: <BarChart3 className="h-4 w-4" /> },
   { section: "search", title: "Recherche et filtres", icon: <Search className="h-4 w-4" /> },
   { section: "categories", title: "Catégories", icon: <Filter className="h-4 w-4" /> },

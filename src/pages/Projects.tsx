@@ -7,6 +7,8 @@ import { ProjectCategories } from "@/components/projects/ProjectCategories";
 import { ProjectStats } from "@/components/projects/ProjectStats";
 import { AdvancedProjectSearch } from "@/components/projects/AdvancedProjectSearch";
 import ProjectsSidebar, { ProjectsSectionType } from "@/components/projects/ProjectsSidebar";
+import LessonModuleView from "@/components/courses/lessons/LessonModuleView";
+import { guidedProjects } from "@/data/lessons/projects";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -56,7 +58,7 @@ const LEVEL_SECTIONS: Record<ProjectLevel, { title: string; description: string;
 
 const Projects = () => {
   const sections: ProjectsSectionType[] = [
-    "overview", "stats", "search", "categories", "beginner", "intermediate", "advanced"
+    "overview", "guided", "stats", "search", "categories", "beginner", "intermediate", "advanced"
   ];
   const { currentSection } = useSectionTracker<ProjectsSectionType>(sections);
   const [filters, setFilters] = useState<ProjectFilterState>(DEFAULT_FILTERS);
@@ -160,13 +162,24 @@ const Projects = () => {
           </div>
 
           <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-4 py-3 mb-12">
-            Ces projets sont des sujets à réaliser vous-même : aucun jeu de données ni corrigé n'est fourni sur ce site.
+            Trois projets sont guidés pas à pas, avec leurs données et des exercices vérifiés dans votre navigateur ; les autres sont des sujets à réaliser vous-même, sans jeu de données ni corrigé fournis ici.
             Pour contribuer à de vrais projets open source, consultez la section « Contribuer » de la{" "}
             <Link to="/community#contribute" className="underline text-primary">page Communauté</Link>.
           </p>
         </div>
 
         <div className="space-y-16">
+          <section id="guided" aria-labelledby="projets-guides-titre" className="scroll-mt-24 space-y-4">
+            <h2 id="projets-guides-titre" className="text-2xl font-bold">Projets guidés</h2>
+            <p className="text-muted-foreground">
+              Trois projets complets, de l'énoncé à la conclusion : les données sont fournies, chaque étape a son exercice vérifié et son corrigé,
+              et tout s'exécute dans votre navigateur. Les données de ventes et les avis sont fictifs ; les fleurs d'iris sont un jeu réel.
+            </p>
+            {guidedProjects.modules.map((module, index) => (
+              <LessonModuleView key={module.id} courseId="projects" module={module} number={index + 1} />
+            ))}
+          </section>
+
           <div id="stats">
             <ProjectStats />
           </div>

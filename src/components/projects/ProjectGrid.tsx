@@ -8,6 +8,10 @@ import CourseItemActions from "@/components/courses/CourseItemActions";
 import { useCourseProgress } from "@/hooks/use-course-progress";
 import { categoryIcon } from "./category-icons";
 import { categoryLabel, LEVEL_LABELS, type Project, type ProjectLevel } from "@/data/projects";
+import { guidedProjects } from "@/data/lessons/projects";
+import { scrollToSection } from "@/lib/scroll";
+
+const GUIDED_IDS = new Set(guidedProjects.modules.map((m) => m.id));
 import { CheckCircle, Clock, Database, Star, Code, BarChart3, Brain } from "lucide-react";
 
 interface ProjectGridProps {
@@ -180,10 +184,27 @@ export const ProjectGrid = memo(function ProjectGrid({ projects, emptyMessage }:
                 </div>
               </div>
 
-              <p className="rounded-md bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
-                Ce projet est un sujet à réaliser vous-même : aucun jeu de données ni corrigé n'est fourni sur ce site.
-                « Commencer » et « Terminé » enregistrent seulement votre avancement, dans ce navigateur.
-              </p>
+              {GUIDED_IDS.has(selectedProject.id) ? (
+                <div className="space-y-2 rounded-md bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
+                  <p>Ce projet est guidé pas à pas sur cette page : données fournies, exercices vérifiés et corrigés exécutables.</p>
+                  <Button
+                    type="button"
+                    className="h-auto whitespace-normal"
+                    onClick={() => {
+                      const id = selectedProject.id;
+                      setSelectedProject(null);
+                      scrollToSection(`module-${id}`);
+                    }}
+                  >
+                    Faire le projet guidé
+                  </Button>
+                </div>
+              ) : (
+                <p className="rounded-md bg-muted/50 px-3 py-2 text-sm text-muted-foreground">
+                  Ce projet est un sujet à réaliser vous-même : aucun jeu de données ni corrigé n'est fourni sur ce site.
+                  « Commencer » et « Terminé » enregistrent seulement votre avancement, dans ce navigateur.
+                </p>
+              )}
 
               <CourseItemActions
                 courseId="projects"

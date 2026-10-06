@@ -17,7 +17,8 @@ export interface Project {
 }
 
 /**
- * Les projets proposés : des sujets à réaliser soi-même. Aucun jeu de données ni corrigé n'est fourni ici, et aucune
+ * Les projets proposés. Trois sont guidés pas à pas (src/data/lessons/projects : données, exercices vérifiés, corrigés) ;
+ * les autres sont des sujets à réaliser soi-même, sans jeu de données ni corrigé fournis. Aucune
  * statistique de fréquentation n'est affichée : le site est statique, il ne compte ni participants ni notes.
  */
 export const projects: Project[] = [
@@ -25,7 +26,7 @@ export const projects: Project[] = [
   {
     id: "beginner-1",
     title: "Analyse exploratoire de données : ventes",
-    description: "Découvrez les bases de l'analyse de données en explorant un jeu de données de ventes (à choisir, par exemple sur data.gouv.fr ou Kaggle). Apprenez à nettoyer, visualiser et extraire des enseignements.",
+    description: "Découvrez les bases de l'analyse de données sur un jeu de ventes fictif fourni (projet guidé), puis refaites-la sur de vraies données, par exemple de data.gouv.fr. Nettoyer, calculer, visualiser, conclure.",
     level: "beginner",
     technologies: ["Python", "Pandas", "Matplotlib", "Seaborn"],
     category: "analyse",
@@ -76,9 +77,9 @@ export const projects: Project[] = [
   {
     id: "beginner-4",
     title: "Analyse de sentiments sur des messages courts",
-    description: "Analysez les sentiments de messages courts (avis clients, publications de réseaux sociaux) avec des techniques simples de traitement du langage naturel. Attention : TextBlob et VADER sont conçus pour l'anglais ; pour du français, choisissez un lexique ou un modèle adapté.",
+    description: "Analysez le sentiment d'avis courts (projet guidé sur un corpus fictif fourni) : une méthode à base de lexique, puis un modèle TF-IDF, et leurs limites. TextBlob et VADER, conçus pour l'anglais, ne conviennent pas au français.",
     level: "beginner",
-    technologies: ["Python", "NLTK", "TextBlob", "Pandas"],
+    technologies: ["Python", "scikit-learn", "NumPy"],
     category: "nlp",
     duration: "4-6 heures",
     difficulty: 2,

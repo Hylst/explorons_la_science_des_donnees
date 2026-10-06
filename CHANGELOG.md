@@ -1,6 +1,12 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, soir] - Trois projets guidés
+
+- **Demande de l'auteur** : des projets détaillés, et pas seulement des fiches. Trois projets sont désormais guidés pas à pas sur la page Projets (section « Projets guidés », lien dans la barre latérale et bouton « Faire le projet guidé » dans la fiche) : analyse exploratoire de ventes (données fictives avec de vrais défauts : 3 doublons, 3 catégories mal saisies, 12 prix manquants), classification des iris (référence naïve, comparaison en validation croisée, matrice de confusion : 1 erreur sur 45), analyse du sentiment de 40 avis fictifs (lexique, puis TF-IDF et régression logistique).
+- **Honnêteté des conclusions**, vérifiées sur le moteur : le lexique obtient 100 % sur le corpus parce qu'il a été écrit en lisant ce corpus (le texte le dit), le modèle TF-IDF n'atteint qu'environ 70 % en validation croisée, et « Pas bon du tout » est classé positif : la négation reste un piège.
+- Même format et mêmes contrôles que les cours (exemples exécutés, exercices vérifiés, réponse de départ refusée avec un message en français) ; progression et notes partagées avec les fiches de projet. Testé dans Chrome.
+
 ## [2026-10-06, soir] - Cours de statistiques appliquées rédigé
 
 - **Six modules pratiques**, qui renvoient aux pages de théorie du site : décrire des données réelles (médiane, écart interquartile, valeurs atypiques), probabilités en pratique (simulation, lois binomiale et normale, théorème central limite simulé), tests d'hypothèses (p-value, Welch, test apparié, erreurs, taille d'effet), corrélation et régression (Pearson, Spearman, linregress), ANOVA (Levene, Tukey), tests non paramétriques et khi-deux. 12 exercices vérifiés, 24 questions de quiz.
