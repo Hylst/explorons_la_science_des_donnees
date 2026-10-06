@@ -1,6 +1,13 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, midi] - Cours de machine learning supervisé rédigé
+
+- **Huit modules** : introduction (vocabulaire, partage entraînement et test, premier KNN), régression linéaire (moindres carrés, RMSE, R²), régression logistique (sigmoïde, seuil de décision, mise à l'échelle dans un pipeline), arbres de décision (Gini, surapprentissage mesuré), forêts aléatoires (bagging, score hors du sac), SVM (marge, C, noyaux), évaluation (matrice de confusion, précision, rappel, validation croisée, fuites de données), hyperparamètres (GridSearchCV, pipeline, jeu de test gardé pour la fin). 16 exercices vérifiés par de vrais tests Python, 32 questions de quiz, figures Matplotlib.
+- **Données** : les jeux fournis avec scikit-learn (iris, wine, breast cancer, diabetes) et des données fabriquées ; rien n'est téléchargé. Chaque valeur citée dans les textes a été mesurée avec le Pyodide du site (par exemple : KNN sur wine 64 % sans mise à l'échelle, SVM 66 % puis 98 % avec, un arbre libre parfait à l'entraînement et à 80 % sur le test). Une légende qui exagérait un résultat (choix du nombre de voisins) a été réécrite d'après les scores réels.
+- **Contrôle Python** : `lessons-python.test.ts` exécute chaque exemple et chaque corrigé avec le même Pyodide que le site (sans réseau) ; il a trouvé un exemple qui aurait échoué chez l'apprenant (`as_frame=True` sans `import pandas` : le moteur ne charge que les paquets importés). Testé dans Chrome : exemple exécuté, réponse de départ refusée avec un message en français, réponse juste écrite autrement acceptée, figure affichée.
+- **Page commune des cours rédigés** (`LessonCoursePage`) pour les bases de données et le ML supervisé. Le cours n'est plus un « plan » (catalogue et description mis à jour).
+
 ## [2026-10-06, matin] - Premier cours rédigé avec exercices vérifiés : bases de données
 
 - **Format commun des cours rédigés** (`lib/lessons`, `components/courses/lessons`) : modules repliables avec objectifs, texte, exemples modifiables exécutés par le vrai moteur du site, exercices vérifiés, quiz et progression locale. Un exercice SQL compare le résultat de la réponse à celui du corrigé sur les mêmes données : plusieurs requêtes différentes peuvent être justes.

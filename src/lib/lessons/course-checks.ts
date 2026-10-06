@@ -2,6 +2,9 @@
 import { describe, expect, it } from "vitest";
 import { compareSqlOutputs, parseSqlTables } from "./check";
 import { runSqlNode } from "./sql-node";
+import { runPythonNode } from "./python-node";
+
+const PYTHON_TIMEOUT = 120_000;
 import type { LessonCourse, LessonSection } from "./types";
 
 const withSetup = (setup: string | undefined, code: string) => (setup ? `${setup}\n${code}` : code);
@@ -67,6 +70,34 @@ export const describeLessonCourse = (course: LessonCourse) => {
               expect(verdict.ok, "la réponse de départ ne doit pas déjà être juste").toBe(false);
               if (section.ordered) expect(section.solution).toMatch(/ORDER BY/i);
             });
+          }
+        }
+
+        // Python : exécuté par Pyodide sous Node (mêmes paquets que le site). Le premier chargement prend quelques secondes.
+        const pySections = module.sections.filter((s) => (s.kind === "code" || s.kind === "exercise") && s.language === "python");
+
+        // Le moteur ne charge que les paquets vus dans les imports, et garde ceux déjà chargés : un exemple qui a besoin
+        // de pandas sans l'importer marche après un autre exemple, mais échoue s'il est lancé en premier.
+        it("Python : pandas importé explicitement quand il est requis sans import (as_frame=True)", () => {
+          for (const s of pySections) {
+            const codes = s.kind === "code" ? [s.code] : s.kind === "exercise" ? [s.starter, s.solution] : [];
+            for (const code of codes) if (/as_frame\s*=\s*True/.test(code)) expect(code, code).toMatch(/import pandas/);
+          }
+        });
+        for (const [n, section] of pySections.entries()) {
+          if (section.kind === "code") {
+            it(`exemple Python ${n + 1} s'exécute sans erreur`, async () => {
+              const result = await runPythonNode(withSetup(section.setup, section.code));
+              expect(result.error, section.code).toBeUndefined();
+            }, PYTHON_TIMEOUT);
+          } else if (section.kind === "exercise") {
+            it(`exercice Python ${n + 1} : le corrigé passe les tests, la réponse de départ non`, async () => {
+              expect(section.test, "un exercice Python doit avoir des tests (assert)").toMatch(/assert\b/);
+              const solved = await runPythonNode(`${withSetup(section.setup, section.solution)}\n${section.test}`);
+              expect(solved.error, section.solution).toBeUndefined();
+              const start = await runPythonNode(`${withSetup(section.setup, section.starter)}\n${section.test}`);
+              expect(start.error, "la réponse de départ ne doit pas déjà passer les tests").toBeDefined();
+            }, PYTHON_TIMEOUT);
           }
         }
       });
