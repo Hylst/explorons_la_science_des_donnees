@@ -198,6 +198,17 @@ Autres chiffres sourcés dans le texte de pages, **sans** composant `SourceNote`
 | Deep Learning Specialization (DeepLearning.AI, aussi sur Coursera) | Environ 127 h au total, 5 h par semaine, soit 5 semaines par cours (4 pour le cours 3) ; conditions d'accès variables (aucun montant affiché) | https://www.deeplearning.ai/courses/deep-learning-specialization/ | page lue (« 127h29m », « 5 hours a week », cours 3 d'environ 4 semaines) |
 
 
+## 11. Références du cours de traitement du langage (6 octobre 2026)
+
+Le cours ne cite aucun chiffre externe sur l'usage ou le marché ; ses valeurs numériques sont calculées sur ses propres corpus fictifs. Les faits externes cités :
+
+| Fait cité | Source | Niveau |
+|---|---|---|
+| Étiquettes d'entités du modèle français de spaCy : LOC, MISC, ORG, PER ; données d'entraînement incluant WikiNER | Métadonnées `fr_core_news_sm-3.8.0.json` du dépôt explosion/spacy-models | page lue (6 octobre 2026) |
+| CamemBERT : Martin et al., 2020 ; entraîné sur OSCAR (138 Go de texte) ; jeton `<mask>` ; usage par `pipeline("fill-mask", ...)` | Fiche du modèle almanach/camembert-base sur Hugging Face | page lue (6 octobre 2026) |
+| Word2vec (Mikolov et al., 2013), Transformer (Vaswani et al., 2017), BERT (Devlin et al., 2018), GPT (Radford et al., 2018) | Références bibliographiques classiques, citées par auteur et année | non vérifié (non relu à la source pour cette page) |
+| Vocabulaire des transformeurs « de quelques dizaines de milliers d'unités » | Connaissance générale (ordre de grandeur, sans chiffre précis) | non vérifié |
+
 ---
 
 ## Éléments éditoriaux

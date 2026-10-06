@@ -17,7 +17,7 @@ Le site est une application 100 % statique : pas de serveur applicatif, pas de b
 | Routes canoniques (sitemap) | 56 | 1 accueil, 1 introduction, 11 Fondamentaux, 4 Machine Learning, 5 Outils, 11 Cours (catalogue + 10 cours), 9 Quiz (index + 8 catégories), 1 glossaire, 1 projets, 1 ressources, 1 communauté, 6 blog (index + 5 articles), 4 pages d'information (à propos, contact, confidentialité, conditions) |
 | Anciennes URL redirigées | 28 | `LEGACY_REDIRECTS` dans `src/config/routes.ts` ; le build génère une page de redirection pour chacune |
 | Pages HTML générées (build hylst) | 84 | 56 canoniques + 28 redirections, plus `404.html` et `sitemap.xml` |
-| Cours sous `/courses/` | 10 | 5 avec contenu rédigé, 5 qui sont des plans de modules (voir « Cours ») |
+| Cours sous `/courses/` | 10 | tous avec contenu rédigé (voir « Cours ») |
 | Questions de quiz | 165 | 8 catégories : Programmation 25, puis 20 pour chacune des 7 autres ; 10 questions tirées au hasard par tentative |
 | Termes du glossaire | 179 | 7 catégories effectivement utilisées (fondamentaux 23, statistiques 20, machine learning 34, deep learning 31, NLP 3, MLOps 34, évaluation 34) ; aucun doublon de nom |
 | Projets | 10 | 4 débutant, 3 intermédiaire, 3 avancé ; 9 catégories, 31 technologies distinctes |
@@ -84,7 +84,7 @@ Le site est une application 100 % statique : pas de serveur applicatif, pas de b
 
 ### Cours (`/courses`, 11 routes)
 
-Catalogue (`CoursesIndex.tsx`) : 6 catégories et 10 cours, lus dans `src/data/course-catalog.ts` (source unique, partagée avec l'accueil). Les 5 cours dont les leçons sont rédigées (Python, introduction aux mathématiques, statistiques inférentielles, guide des modèles de ML, Transformers) se présentent avec « Commencer le cours » ; les 5 qui ne sont que des plans de modules portent le badge « Plan du cours » et le bouton « Voir le plan du cours ». Niveau, durée « indicative » et nombre de modules ne sont affichés que s'ils figurent sur la page du cours. Les 10 cours sont routés dans `CourseRouter.tsx` ; tout autre chemin affiche la page 404.
+Catalogue (`CoursesIndex.tsx`) : 6 catégories et 10 cours, lus dans `src/data/course-catalog.ts` (source unique, partagée avec l'accueil). Depuis le 6 octobre 2026, les 10 cours ont des leçons rédigées et se présentent avec « Commencer le cours » ; le statut `plan` (badge « Plan du cours ») reste prévu dans le code mais n'est plus utilisé. Niveau, durée « indicative » et nombre de modules ne sont affichés que s'ils figurent sur la page du cours. Les 10 cours sont routés dans `CourseRouter.tsx` ; tout autre chemin affiche la page 404.
 
 | Cours | Route | État | Détail vérifié |
 | --- | --- | --- | --- |
@@ -93,13 +93,13 @@ Catalogue (`CoursesIndex.tsx`) : 6 catégories et 10 cours, lus dans `src/data/c
 | Statistiques inférentielles | `/courses/math-stats/inferential-statistics` | Disponible | Échantillonnage, tests d'hypothèses, intervalles de confiance, approche bayésienne, 3 exercices résolus (test t, intervalle, Bayes) ; en-tête : 6 modules, environ 1 heure |
 | Guide des modèles de ML | `/courses/machine-learning/ml-models-guide` | Disponible | Page unique de fiches de modèles (`MLModelsSection`), sans modules ni suivi |
 | Transformers | `/courses/machine-learning/transformers` | Disponible | Page unique d'environ 1 900 lignes : transformateurs de données (standardisation, normalisation, uniformisation) puis architecture Transformer (attention, BERT et GPT, Vision Transformers) |
-| Statistiques appliquées | `/courses/statistics/applied-statistics` | Partiel | Plan de 6 modules (statistiques descriptives, probabilités, tests, régression, ANOVA, non paramétrique) sans leçon ; « Commencer » change seulement un statut, des notes sont possibles ; onglet « Cas d'étude » = fiches à réaliser, onglet « Outils » = liste |
-| Fondamentaux des bases de données | `/courses/databases/database-fundamentals` | Partiel | Plan de 6 modules sans leçon, même mécanique ; onglets Projets et Outils = fiches |
-| Visualisation de données avancée | `/courses/dataviz/data-visualization` | Partiel | Plan de 7 modules sans leçon ; onglet Projets (3 fiches) et Galerie (liste de liens et de pistes) |
-| Machine learning supervisé (plan) | `/courses/machine-learning/supervised-learning` | Partiel | Plan de 8 modules sans leçon, 3 fiches de projets, onglet « Validation des acquis » : trois repères calculés sur la progression réelle (modules, projets, meilleur quiz ML à 80 % ou plus) ; aucun certificat. Le contenu pédagogique est dans `/machine-learning/supervised` |
-| Traitement du langage naturel | `/courses/nlp/natural-language-processing` | Partiel | Plan de 8 modules sans leçon, projets et onglet « Modèles » |
+| Statistiques appliquées | `/courses/statistics/applied-statistics` | Disponible | 6 modules rédigés (`src/data/lessons/applied-statistics`), 12 exercices Python vérifiés (scipy, pandas) sur des données réelles de scikit-learn ; environ 11 h 30 |
+| Fondamentaux des bases de données | `/courses/databases/database-fundamentals` | Disponible | 6 modules rédigés (`src/data/lessons/database-fundamentals`), 19 exercices SQL exécutés par SQLite dans le navigateur et comparés au corrigé ; environ 14 h 30 |
+| Visualisation de données | `/courses/dataviz/data-visualization` | Disponible | 7 modules rédigés (`src/data/lessons/data-visualization`), 13 exercices Matplotlib vérifiés en inspectant la figure ; Seaborn, Plotly, Altair et D3.js en lecture seulement ; environ 13 h 30 |
+| Machine learning supervisé | `/courses/machine-learning/supervised-learning` | Disponible | 8 modules rédigés (`src/data/lessons/supervised-learning`), 16 exercices scikit-learn vérifiés ; environ 18 h |
+| Traitement du langage naturel | `/courses/nlp/natural-language-processing` | Disponible | 8 modules rédigés (`src/data/lessons/nlp`), 16 exercices Python vérifiés (re, NumPy, scikit-learn) ; spaCy et transformers en lecture seulement (absents de Pyodide) ; environ 17 h 30 |
 
-Les cinq plans partagent `CourseModuleTemplate` : chaque module affiche titre, description, durée, niveau, un bouton **Commencer** (statut « en cours », puis « Marquer comme terminé », puis « Rouvrir ») et une boîte de **notes** enregistrées dans le navigateur (`CourseItemActions`, clé `course-progress-<cours>`). Aucun de ces modules n'ouvre de leçon : le suivi est réel mais le contenu qu'il suit n'existe pas encore. Les pages d'accueil de ces cours le disent dans leurs métadonnées (« modules annoncés »).
+Les cinq cours rédigés le 6 octobre 2026 partagent `LessonCoursePage` (`src/components/courses/lessons/`) : modules repliables avec objectifs, texte, exemples exécutables, exercices vérifiés (la réponse de départ est refusée avec un message en français), quiz de module, et boutons **Commencer**, **Terminé** et **Notes** (`CourseItemActions`, clé `course-progress-<cours>`). Le contenu est en données (`src/data/lessons/`) et chaque exemple et corrigé est exécuté par les tests (`lessons.test.ts`, `lessons-python.test.ts`).
 
 ### Quiz (`/quiz`, 9 routes)
 
@@ -189,7 +189,7 @@ Les cinq plans partagent `CourseModuleTemplate` : chaque module affiche titre, d
 - **Worker Python (et SQL) de même origine, donc non isolé.** Contrairement à l'iframe JavaScript (origine opaque, sans réseau), les workers Python et SQL sont chargés depuis l'origine du site, sans `sandbox` ni politique propre : la CSP du site est une balise `<meta>` qui ne s'applique pas à un worker. Le code s'exécute sur la machine du visiteur, mais rien dans le dépôt n'empêche ce code d'utiliser les API de l'origine, `fetch` compris (non testé).
 - **Moteurs lourds.** Environ 39 Mo dans `public/vendor` (non versionné, recréé par `npm run runtimes:sync`, qui a besoin du réseau la première fois). Ils ne se téléchargent qu'à la première exécution, puis restent en cache.
 - **Données externes datées.** Les actualités sont un instantané du 2 octobre 2026. Les chiffres de marché des pages Outils, Introduction et Programmation portent une date de consultation (1er octobre 2026) et vieillissent. Les liens externes (ressources, forums, vidéos) ne sont pas vérifiés automatiquement.
-- **Cours en plan.** Cinq cours sur dix ne sont que des plans de modules : suivi et notes réels, aucune leçon derrière. Le catalogue `/courses` les signale par le badge « Plan du cours ».
+- **Cours en plan.** Plus aucun depuis le 6 octobre 2026 : les cinq plans de modules ont été rédigés (bases de données, ML supervisé, visualisation, statistiques appliquées, traitement du langage).
 - **Contenu illustratif.** Plusieurs encadrés de la préparation des données (validation, automatisation, qualité avancée) montrent des chiffres d'exemple fixes, signalés comme tels dans leur texte.
 - **Projets sans corrigé.** Aucun jeu de données ni solution n'est fourni ; certains énoncés citent des jeux publics (Iris, Boston Housing, COVID-19) à récupérer soi-même.
 - **Blog limité.** 5 articles de 2024, sans recherche ni filtre.

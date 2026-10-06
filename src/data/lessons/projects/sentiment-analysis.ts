@@ -2,7 +2,7 @@ import type { LessonModule } from "@/lib/lessons/types";
 import { lines } from "../lines";
 
 /** 40 avis courts, fictifs, écrits pour l'exercice (20 positifs, 20 négatifs), sur une médiathèque et son café */
-const CORPUS = lines(
+export const CORPUS = lines(
   "import numpy as np",
   "",
   "avis = [",

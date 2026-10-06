@@ -1,6 +1,14 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, nuit] - Cours de traitement du langage rédigé : plus aucun cours « plan »
+
+- **Huit modules** : fondamentaux (tâches, ambiguïtés, découpage en mots), prétraitement (minuscules, accents avec unicodedata, mots vides, raciniseur jouet et ses limites), représentations (sac de mots, n-grammes, TF-IDF, similarité cosinus, petit moteur de recherche), analyse de sentiment (bayésien naïf, bigrammes, marquage de la négation), entités nommées (expressions régulières, annotation BIO), plongements et attention (softmax stable et attention programmées avec NumPy, BERT et CamemBERT), modèles de langage (bigrammes, température, hallucinations), projet d'assistant de FAQ (seuil « je ne sais pas » et évaluation sur un jeu de test).
+- **Corpus fictifs** écrits pour le cours (une médiathèque) ; le module 4 reprend les 40 avis du projet guidé. **Honnêteté des résultats**, tous mesurés sur le moteur : 0,70 et 0,75 en validation croisée avec des plis de 0,5 à 1 (l'écart ne prouve rien sur 40 avis), l'ironie reste à 0,49, l'assistant de FAQ répond juste à 6 questions de test sur 8 et ses deux erreurs sont expliquées (aucun seuil ne les corrige).
+- **Bibliothèques absentes du moteur** (spaCy, transformers) présentées en code à lire, avec des faits relus à la source : étiquettes PER, LOC, ORG, MISC du modèle français de spaCy, exemple et corpus de CamemBERT (`docs/SOURCES.md`, section 11).
+- **Corrigés en route grâce aux mesures** : un exercice TF-IDF avait six réponses ex aequo (remplacé par la recherche de l'IDF le plus faible), un texte affirmait que « la » figure dans tous les documents (3 sur 6), un exemple sur les accents n'en contenait aucun.
+- Les 10 cours du catalogue sont désormais rédigés. Testé dans Chrome : réponse de départ refusée avec un message en français, réponses justes acceptées (modules 1, 6 et 8), aucune erreur console, aucun débordement à 390, 768, 1024 et 1280 px.
+
 ## [2026-10-06, soir] - Trois projets guidés
 
 - **Demande de l'auteur** : des projets détaillés, et pas seulement des fiches. Trois projets sont désormais guidés pas à pas sur la page Projets (section « Projets guidés », lien dans la barre latérale et bouton « Faire le projet guidé » dans la fiche) : analyse exploratoire de ventes (données fictives avec de vrais défauts : 3 doublons, 3 catégories mal saisies, 12 prix manquants), classification des iris (référence naïve, comparaison en validation croisée, matrice de confusion : 1 erreur sur 45), analyse du sentiment de 40 avis fictifs (lexique, puis TF-IDF et régression logistique).

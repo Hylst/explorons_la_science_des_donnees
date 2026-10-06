@@ -127,12 +127,12 @@ export const COURSE_CATALOG: CatalogCourse[] = [
     id: "natural-language-processing",
     category: "ai",
     title: "Traitement du langage naturel",
-    description: "NLTK, spaCy, BERT et techniques modernes de NLP.",
+    description: "Nettoyage, TF-IDF, sentiment, entités, attention et génération, exécutés pour de vrai avec scikit-learn et NumPy.",
     level: "Intermédiaire",
-    duration: "8 semaines",
+    duration: "≈ 17 h 30",
     modules: 8,
     href: "/courses/nlp/natural-language-processing",
-    status: "plan",
+    status: "redige",
   },
 ];
 
