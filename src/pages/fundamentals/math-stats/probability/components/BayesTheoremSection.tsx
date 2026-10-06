@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Target, Calculator } from "lucide-react";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 /**
  * Composant pour la section sur le théorème de Bayes
@@ -271,7 +272,7 @@ const BayesTheoremSection = () => {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h5 className="font-semibold mb-3">📊 Visualisation sur 100,000 personnes :</h5>
                   <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <DeferredResponsiveContainer width="100%" height="100%">
                       <BarChart data={bayesVisualizationData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="category" fontSize={12} />
@@ -279,7 +280,7 @@ const BayesTheoremSection = () => {
                         <Tooltip formatter={(value) => [Math.round(Number(value)), 'Personnes']} />
                         <Bar dataKey="value" fill="#3b82f6" />
                       </BarChart>
-                    </ResponsiveContainer>
+                    </DeferredResponsiveContainer>
                   </div>
                 </div>
               </div>

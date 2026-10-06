@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { TrendingUp, AlertTriangle, Eye, Zap, Heart, Users } from "lucide-react";
 import { readableTextColor } from "@/lib/contrast";
 import { makeUniform } from "@/lib/sample-datasets";
@@ -167,7 +168,7 @@ const CorrelationSection = () => {
           </div>
 
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
+            <DeferredResponsiveContainer width="100%" height="100%">
               <ScatterChart data={currentExample.data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="x" name="Variable X" />
@@ -178,7 +179,7 @@ const CorrelationSection = () => {
                 />
                 <Scatter dataKey="y" fill={currentExample.color} />
               </ScatterChart>
-            </ResponsiveContainer>
+            </DeferredResponsiveContainer>
           </div>
         </CardContent>
       </Card>

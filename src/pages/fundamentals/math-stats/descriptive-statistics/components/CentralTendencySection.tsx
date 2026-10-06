@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ScatterChart, Scatter } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { Calculator, AlertTriangle, CheckCircle } from "lucide-react";
 
 const CentralTendencySection = () => {
@@ -111,7 +112,7 @@ const CentralTendencySection = () => {
             <div>
               <h5 className="font-semibold mb-3">📊 Visualisation des données</h5>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <ScatterChart data={distributionData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="index" name="Position" />
@@ -122,14 +123,14 @@ const CentralTendencySection = () => {
                     />
                     <Scatter dataKey="valeur" fill="#8884d8" />
                   </ScatterChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </div>
             
             <div>
               <h5 className="font-semibold mb-3">📈 Comparaison des mesures</h5>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={comparaisonData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="mesure" />
@@ -137,7 +138,7 @@ const CentralTendencySection = () => {
                     <Tooltip />
                     <Bar dataKey="valeur" fill="#3B82F6" />
                   </BarChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </div>
           </div>

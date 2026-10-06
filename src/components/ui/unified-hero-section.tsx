@@ -108,7 +108,8 @@ const UnifiedHeroSection = ({
 
   const renderContent = () => (
     <div className="relative z-20">
-      <AnimatedEntrance animation="fade-in-up" delay={200}>
+      {/* Le titre s'affiche dès le premier rendu (sans animation retardée) : c'est souvent le plus grand élément de la page */}
+      <div>
         <div className="flex flex-col gap-6 lg:gap-8">
           {/* Floating decorative elements */}
           {decorative && (
@@ -142,7 +143,7 @@ const UnifiedHeroSection = ({
           )}
           
           {/* Enhanced Title with multiple gradient effects */}
-          <AnimatedEntrance animation="fade-in-up" delay={600}>
+          <div>
             <div className="relative">
               {/* Glowing background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 blur-3xl opacity-30 animate-pulse-glow"></div>
@@ -187,7 +188,7 @@ const UnifiedHeroSection = ({
                 </>
               )}
             </div>
-          </AnimatedEntrance>
+          </div>
 
           {/* Enhanced Subtitle for non-course variants */}
           {variant !== "course" && subtitle && (
@@ -318,7 +319,7 @@ const UnifiedHeroSection = ({
             </AnimatedEntrance>
           )}
         </div>
-      </AnimatedEntrance>
+      </div>
     </div>
   );
 

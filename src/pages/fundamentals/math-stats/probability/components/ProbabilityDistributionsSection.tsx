@@ -6,7 +6,8 @@ import { Slider } from "@/components/ui/slider";
 import { BarChart3, Zap, Clock, Shuffle, Target } from "lucide-react";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Area, AreaChart } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Area, AreaChart } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 // Fonctions de calcul des distributions : pures, donc définies hors du composant (elles ne sont pas des dépendances des hooks)
 /**
@@ -347,7 +348,7 @@ const ProbabilityDistributionsSection = () => {
               <div className="space-y-3">
                 <h5 className="font-semibold">📊 Fonction de {selectedDistribution === 'exponential' || selectedDistribution === 'uniform' ? 'densité' : 'masse'}</h5>
                 <div className="h-64 bg-white rounded border">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     {selectedDistribution === 'exponential' || selectedDistribution === 'uniform' ? (
                       <AreaChart data={currentDistribution.data}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -371,7 +372,7 @@ const ProbabilityDistributionsSection = () => {
                         <Bar dataKey="probability" fill={currentDistribution.color} />
                       </BarChart>
                     )}
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
 
@@ -379,7 +380,7 @@ const ProbabilityDistributionsSection = () => {
               <div className="space-y-3">
                 <h5 className="font-semibold">📈 Fonction de répartition F(x) = P(X ≤ x)</h5>
                 <div className="h-64 bg-white rounded border">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <LineChart data={currentDistribution.data}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="x" fontSize={12} tickFormatter={(value) => Number(value).toFixed(selectedDistribution === "binomial" || selectedDistribution === "poisson" ? 0 : 1)} />
@@ -393,7 +394,7 @@ const ProbabilityDistributionsSection = () => {
                         dot={false}
                       />
                     </LineChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
             </div>

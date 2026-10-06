@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, Cell, ReferenceLine } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, ScatterChart, Scatter, Cell, ReferenceLine } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { TrendingUp, BarChart3, AlertCircle, Target, Zap, Play, RotateCcw } from "lucide-react";
 
 // Type definitions for better TypeScript support
@@ -292,7 +293,7 @@ const DispersionSection = () => {
             <div>
               <h5 className="font-semibold mb-3">📊 Évolution dans le temps</h5>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <LineChart data={timeSeriesData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="periode" />
@@ -308,14 +309,14 @@ const DispersionSection = () => {
                       />
                     ))}
                   </LineChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </div>
 
             <div>
               <h5 className="font-semibold mb-3">📈 Comparaison des écarts-types</h5>
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="nom" />
@@ -323,7 +324,7 @@ const DispersionSection = () => {
                     <Tooltip formatter={(value) => [value, 'Écart-type']} />
                     <Bar dataKey="ecartType" fill="#3B82F6" />
                   </BarChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </div>
           </div>
@@ -659,7 +660,7 @@ const DispersionSection = () => {
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="h-80">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <DeferredResponsiveContainer width="100%" height="100%">
                       <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="x" domain={[0, 9]} />
@@ -684,7 +685,7 @@ const DispersionSection = () => {
                           ))}
                         </Scatter>
                       </ScatterChart>
-                    </ResponsiveContainer>
+                    </DeferredResponsiveContainer>
                   </div>
                   
                   <div className="space-y-4">
@@ -719,7 +720,7 @@ const DispersionSection = () => {
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="h-80">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <DeferredResponsiveContainer width="100%" height="100%">
                       <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis 
@@ -747,7 +748,7 @@ const DispersionSection = () => {
                           ))}
                         </Scatter>
                       </ScatterChart>
-                    </ResponsiveContainer>
+                    </DeferredResponsiveContainer>
                   </div>
                   
                   <div className="space-y-4">

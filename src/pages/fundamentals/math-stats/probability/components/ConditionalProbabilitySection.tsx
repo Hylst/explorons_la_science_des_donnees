@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Calculator, TreePine, AlertTriangle } from "lucide-react";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 /**
  * Composant pour la section sur la probabilité conditionnelle
@@ -337,7 +338,7 @@ const ConditionalProbabilitySection = () => {
             <div className="space-y-3">
               <h5 className="font-semibold">📊 Probabilités Jointes</h5>
               <div className="h-64 bg-white rounded border">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={barData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis 
@@ -356,7 +357,7 @@ const ConditionalProbabilitySection = () => {
                     />
                     <Bar dataKey="probability" fill="#3B82F6" name="probability" />
                   </BarChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </div>
           </div>

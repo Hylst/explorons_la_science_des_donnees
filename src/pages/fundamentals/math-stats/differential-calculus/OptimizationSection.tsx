@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Scatter, ComposedChart } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Scatter, ComposedChart } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { Pause, Play, RotateCcw, Target, TrendingDown } from "lucide-react";
 
 const REPLAY_DELAY_MS = 450;
@@ -241,7 +242,7 @@ const OptimizationSection = () => {
                   <div>
                     <h4 className="font-semibold mb-2">Fonction f(x) = (x-1)²</h4>
                     <div className="h-48">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <DeferredResponsiveContainer width="100%" height="100%">
                         <ComposedChart data={functionPoints}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis type="number" dataKey="x" domain={[-2, 5]} allowDataOverflow />
@@ -250,14 +251,14 @@ const OptimizationSection = () => {
                           <Line type="monotone" dataKey="fx" stroke="#94A3B8" strokeWidth={2} dot={false} name="f(x)" isAnimationActive={false} />
                           <Scatter data={visiblePath} dataKey="fx" fill="#DC2626" name="Itérations" isAnimationActive={false} />
                         </ComposedChart>
-                      </ResponsiveContainer>
+                      </DeferredResponsiveContainer>
                     </div>
                   </div>
                   
                   <div>
                     <h4 className="font-semibold mb-2">Convergence</h4>
                     <div className="h-48">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <DeferredResponsiveContainer width="100%" height="100%">
                         <LineChart data={gradientData}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="step" />
@@ -266,7 +267,7 @@ const OptimizationSection = () => {
                           <Line type="monotone" dataKey="fx" stroke="#DC2626" strokeWidth={2} name="f(x)" />
                           <Line type="monotone" dataKey="x" stroke="#2563EB" strokeWidth={2} name="x" />
                         </LineChart>
-                      </ResponsiveContainer>
+                      </DeferredResponsiveContainer>
                     </div>
                   </div>
                 </div>

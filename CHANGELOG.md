@@ -1,6 +1,15 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, nuit] - Performances : graphiques à la demande, titre sans attente
+
+- **Mesuré d'abord** (Chrome, processeur ralenti 4 fois) : le temps de blocage restant des probabilités venait du dessin des graphiques Recharts (environ 1 s pour la section des variables aléatoires, 1,4 s pour la loi normale), et l'introduction attendait la deuxième section, dessinée dans la même tâche.
+- **Graphiques dessinés à l'approche de l'écran** (`DeferredResponsiveContainer`, 25 graphiques sur trois pages) : la place exacte est réservée, la page ne bouge pas, la restauration de la position au retour reste juste. Une seule section affichée avant les autres.
+- **Glossaire** : la page s'affiche avant ses 127 Ko de définitions, chargées à part.
+- **Titre des bandeaux** : il restait invisible environ 0,8 s (deux animations d'apparition retardées en JavaScript), ce qui retardait l'affichage principal de toutes les pages. Il s'affiche désormais tout de suite ; sous-titre, description et badges gardent leur apparition progressive.
+- **Lighthouse mobile** (2 passes) : probabilités 68 → 94, statistiques descriptives 70-76 → 94, calcul différentiel 83 → 92, algèbre linéaire 94, glossaire 81 → 89, accueil 89 → 94, À propos 95. Erreur de ma part corrigée : j'avais annoncé le glossaire à 61, une mesure antérieure à son affichage par lots ; remesuré, il était à 81.
+- Vérifié dans Chrome : retour, suivant, rechargement et ancres sur le glossaire et les probabilités ; aucun débordement sur 6 pages à 4 largeurs ; tests du conteneur différé (mutation détectée).
+
 ## [2026-10-06, nuit] - Pages longues affichées par morceaux
 
 - **Demande de l'auteur** : accélérer les pages longues sans casser le retour à la position de lecture. Nouveau composant `ProgressiveSections` : l'introduction s'affiche avec la page, les sections suivantes (formules, graphiques) sont chargées à la demande et ajoutées une à une quand le navigateur est libre ; toute la page est là en une à deux secondes.

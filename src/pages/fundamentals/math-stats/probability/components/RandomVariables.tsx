@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Area, AreaChart } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 // Fonctions mathématiques pures : hors du composant, elles ne sont pas des dépendances des hooks
 /**
@@ -224,7 +225,7 @@ const RandomVariables = () => {
               </div>
 
               <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={notificationData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="notifications" />
@@ -232,7 +233,7 @@ const RandomVariables = () => {
                     <Tooltip formatter={(value) => [value, 'Probabilité']} />
                     <Bar dataKey="probability" fill="#8B5CF6" />
                   </BarChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
               
               <div className="bg-purple-50 p-3 rounded text-sm">
@@ -316,7 +317,7 @@ const RandomVariables = () => {
               </div>
 
               <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <AreaChart data={temperatureData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="temperature" />
@@ -324,7 +325,7 @@ const RandomVariables = () => {
                     <Tooltip formatter={(value) => [value, 'Densité']} />
                     <Area type="monotone" dataKey="probability" stroke="#F97316" fill="#FED7AA" strokeWidth={2} />
                   </AreaChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
               
               <div className="bg-orange-50 p-3 rounded text-sm">
@@ -434,7 +435,7 @@ const RandomVariables = () => {
               <div>
                 <h4 className="font-semibold mb-3">Données de ventes</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <BarChart data={salesData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="day" />
@@ -442,7 +443,7 @@ const RandomVariables = () => {
                       <Tooltip />
                       <Bar dataKey="sales" fill="#10B981" />
                     </BarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
               <div>

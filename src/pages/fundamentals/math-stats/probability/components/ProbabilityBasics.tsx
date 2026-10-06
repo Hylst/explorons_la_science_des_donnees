@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const ProbabilityBasics = () => {
   const diceData = [
@@ -109,7 +110,7 @@ const ProbabilityBasics = () => {
           </CardHeader>
           <CardContent>
             <div className="h-64 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <BarChart data={diceData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="face" />
@@ -117,7 +118,7 @@ const ProbabilityBasics = () => {
                   <Tooltip formatter={(value) => [`${value}%`, 'Probabilité']} />
                   <Bar dataKey="probability" fill="#10B981" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </div>
             <div className="space-y-3">
               <CourseEquation latex="P(\text{Face } i) = \frac{1}{6} \approx 16.67\%" />
@@ -301,7 +302,7 @@ const ProbabilityBasics = () => {
                 Dans votre ville, l'application météo indique les probabilités suivantes pour demain :
               </p>
               <div className="h-48 mb-4">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       data={weatherData}
@@ -317,7 +318,7 @@ const ProbabilityBasics = () => {
                     </Pie>
                     <Tooltip />
                   </PieChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
               <div className="bg-gray-50 p-3 rounded text-xs">
                 <strong>🎯 Rappel important :</strong> Ces probabilités doivent totaliser 100% 

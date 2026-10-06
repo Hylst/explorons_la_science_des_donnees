@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ReferenceDot } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, ReferenceDot } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const X_MIN = -3;
 const X_MAX = 5;
@@ -137,7 +138,7 @@ const DerivativeConceptSection = () => {
           </CardHeader>
           <CardContent>
             <div className="h-64 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" dataKey="x" domain={[X_MIN, X_MAX]} ticks={[-3, -2, -1, 0, 1, 2, 3, 4, 5]} />
@@ -152,7 +153,7 @@ const DerivativeConceptSection = () => {
                   <ReferenceLine x={1} stroke="#94A3B8" strokeDasharray="3 3" label="Min en x=1" />
                   <ReferenceDot x={x0} y={f(x0)} r={6} fill="#059669" stroke="#ffffff" />
                 </LineChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </div>
 
             <div className="space-y-3 mb-4">

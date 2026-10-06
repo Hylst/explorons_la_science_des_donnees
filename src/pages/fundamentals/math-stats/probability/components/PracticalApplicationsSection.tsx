@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import CourseEquation from "@/components/courses/CourseEquation";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 /**
  * Component for practical applications of probability in data science
@@ -150,7 +151,7 @@ const PracticalApplicationsSection = () => {
               <div>
                 <h4 className="font-semibold mb-3">Distribution des probabilités</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
                         data={classificationData}
@@ -168,7 +169,7 @@ const PracticalApplicationsSection = () => {
                       </Pie>
                       <Tooltip formatter={(value) => [`${(Number(value) * 100).toFixed(1)}%`, 'Probabilité']} />
                     </PieChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
               
@@ -223,7 +224,7 @@ const PracticalApplicationsSection = () => {
               <div>
                 <h4 className="font-semibold mb-3">Comparaison des variantes</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <BarChart data={abTestData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="variant" />
@@ -231,7 +232,7 @@ const PracticalApplicationsSection = () => {
                       <Tooltip formatter={(value) => [`${value}%`, 'Taux de conversion']} />
                       <Bar dataKey="rate" fill="#10B981" />
                     </BarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
               
@@ -290,7 +291,7 @@ const PracticalApplicationsSection = () => {
               <div>
                 <h4 className="font-semibold mb-3">Scénarios de rendement</h4>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <BarChart data={riskData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="scenario" />
@@ -301,7 +302,7 @@ const PracticalApplicationsSection = () => {
                       ]} />
                       <Bar dataKey="return" fill="#3B82F6" />
                     </BarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </div>
               

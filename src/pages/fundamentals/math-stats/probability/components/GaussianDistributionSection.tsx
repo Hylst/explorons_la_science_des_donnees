@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, AreaChart, Area, BarChart, Bar } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { AlertTriangle, Eye, Zap, Calculator, Target, Bell, Layers } from "lucide-react";
 
 /**
@@ -124,7 +125,7 @@ const GaussianDistributionSection = () => {
               Visualisation de la courbe normale standard N(0,1)
             </h4>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <ResponsiveContainer width="100%" height={300}>
+              <DeferredResponsiveContainer width="100%" height={300}>
                 <AreaChart data={standardNormalData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
@@ -147,7 +148,7 @@ const GaussianDistributionSection = () => {
                     fillOpacity={0.3}
                   />
                 </AreaChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-600 mt-2 text-center">
                 Distribution normale standard : μ = 0, σ = 1. La forme caractéristique en "cloche" de Gauss.
               </p>
@@ -195,7 +196,7 @@ const GaussianDistributionSection = () => {
           <div className="mb-6">
             <h4 className="font-semibold mb-4">📊 Comparaison de distributions normales</h4>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <ResponsiveContainer width="100%" height={350}>
+              <DeferredResponsiveContainer width="100%" height={350}>
                 <LineChart data={normalComparisons}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
@@ -234,7 +235,7 @@ const GaussianDistributionSection = () => {
                     name="N(2,1) - Décalée"
                   />
                 </LineChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-1 bg-blue-500"></div>
@@ -308,7 +309,7 @@ const GaussianDistributionSection = () => {
           <div className="mb-6">
             <h4 className="font-semibold mb-4">📊 Visualisation de la règle empirique</h4>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <ResponsiveContainer width="100%" height={250}>
+              <DeferredResponsiveContainer width="100%" height={250}>
                 <BarChart data={empiricalRuleData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="range" />
@@ -316,7 +317,7 @@ const GaussianDistributionSection = () => {
                   <Tooltip formatter={(value) => [`${value}%`, 'Pourcentage']} />
                   <Bar dataKey="percentage" fill="#3b82f6" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </div>
           </div>
         </CardContent>
