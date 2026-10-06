@@ -1,5 +1,6 @@
 import { memo } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
+import { frenchSpacing } from "@/lib/lessons/typography";
 
 const TEXT = "text-gray-700 dark:text-gray-300";
 
@@ -29,7 +30,7 @@ const components: Components = {
 
 /** Texte d'une leçon (markdown sans tableaux : react-markdown sans extension GFM) */
 const LessonMarkdown = memo(function LessonMarkdown({ md }: { md: string }) {
-  return <ReactMarkdown components={components}>{md}</ReactMarkdown>;
+  return <ReactMarkdown components={components}>{frenchSpacing(md)}</ReactMarkdown>;
 });
 
 export default LessonMarkdown;

@@ -5,6 +5,7 @@ import CourseItemActions from "@/components/courses/CourseItemActions";
 import LessonMarkdown from "./LessonMarkdown";
 import RunnableCode from "./RunnableCode";
 import LessonExercise from "./LessonExercise";
+import { frenchSpacing } from "@/lib/lessons/typography";
 import type { LessonModule } from "@/lib/lessons/types";
 
 interface LessonModuleViewProps {
@@ -40,7 +41,7 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
           <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700 dark:bg-blue-900 dark:text-blue-200">{number}</span>
           <span className="min-w-0 flex-1">
             <span className="block text-lg font-semibold text-slate-900 dark:text-slate-100">{module.title}</span>
-            <span className="mt-1 block text-sm text-slate-600 dark:text-slate-400">{module.summary}</span>
+            <span className="mt-1 block text-sm text-slate-600 dark:text-slate-400">{frenchSpacing(module.summary)}</span>
             <span className="mt-2 inline-flex items-center gap-1 text-xs text-slate-500">
               <Clock className="h-3.5 w-3.5" aria-hidden="true" />
               {module.duration} (indicatif)
@@ -58,7 +59,7 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
             </p>
             <ul className="ml-5 list-disc space-y-1 text-sm text-slate-700 dark:text-slate-300">
               {module.objectives.map((objective) => (
-                <li key={objective}>{objective}</li>
+                <li key={objective}>{frenchSpacing(objective)}</li>
               ))}
             </ul>
           </div>

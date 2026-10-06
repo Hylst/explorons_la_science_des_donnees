@@ -1,6 +1,13 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, après-midi] - Cours de visualisation de données rédigé
+
+- **Sept modules** : principes (choix du graphique, ordre de lecture des encodages selon Cleveland et McGill, axe tronqué, couleurs), Matplotlib en profondeur (figure et axes, subplots, annotations, export), graphiques statistiques (histogrammes, boîtes à moustaches, carte de corrélation), visualisations interactives et format long (melt, pivot), grammaire des graphiques et facettes, le web (SVG, échelles linéaires comme d3.scaleLinear, jointure de données de D3.js en lecture), tableaux de bord. 13 exercices, 28 questions de quiz.
+- **Honnêteté sur les outils** : le moteur du site n'a que Matplotlib pour dessiner. Seaborn, Plotly, Altair et D3.js sont présentés en lecture (Seaborn et Plotly ne sont pas dans Pyodide ; Altair, Bokeh et Plotly chargeraient une bibliothèque JavaScript depuis un serveur tiers). Les titres des modules le disent.
+- **Exercices de graphiques vérifiés** en inspectant la figure produite (nombre de barres, titres, échelles, annotations, légende). Nouvelle règle des contrôles : la réponse de départ doit échouer sur un message lisible en français, pas sur une erreur technique (vérifié par mutation).
+- **Corrigés en route** : la figure d'un exercice ne s'affichait pas quand le code ne faisait que dessiner (sans print) ; la typographie française (espace insécable avant : ; ? ! % et dans les guillemets) est appliquée à l'affichage des leçons, sans toucher au code. Une légende sur les corrélations des iris est passée de « faiblement » à « faible à modérée (de -0,12 à -0,43) » après mesure.
+
 ## [2026-10-06, midi] - Cours de machine learning supervisé rédigé
 
 - **Huit modules** : introduction (vocabulaire, partage entraînement et test, premier KNN), régression linéaire (moindres carrés, RMSE, R²), régression logistique (sigmoïde, seuil de décision, mise à l'échelle dans un pipeline), arbres de décision (Gini, surapprentissage mesuré), forêts aléatoires (bagging, score hors du sac), SVM (marge, C, noyaux), évaluation (matrice de confusion, précision, rappel, validation croisée, fuites de données), hyperparamètres (GridSearchCV, pipeline, jeu de test gardé pour la fin). 16 exercices vérifiés par de vrais tests Python, 32 questions de quiz, figures Matplotlib.

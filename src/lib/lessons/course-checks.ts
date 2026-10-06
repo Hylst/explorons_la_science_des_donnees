@@ -97,6 +97,8 @@ export const describeLessonCourse = (course: LessonCourse) => {
               expect(solved.error, section.solution).toBeUndefined();
               const start = await runPythonNode(`${withSetup(section.setup, section.starter)}\n${section.test}`);
               expect(start.error, "la réponse de départ ne doit pas déjà passer les tests").toBeDefined();
+              // l'apprenant doit lire un message en français (assert ..., "message"), pas une erreur technique
+              expect(start.error, "la réponse de départ doit échouer sur un assert lisible, pas sur une autre erreur").toMatch(/AssertionError: \S/);
             }, PYTHON_TIMEOUT);
           }
         }

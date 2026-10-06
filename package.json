@@ -18,6 +18,7 @@
     "build:hylst": "vite build --mode hylst --outDir dist-hylst",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "pretest": "node scripts/sync-runtimes.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:smoke": "vitest run --config vitest.smoke.config.ts",

@@ -98,7 +98,7 @@ const LessonExercise = ({ exercise, number }: LessonExerciseProps) => {
           </p>
         )}
       </div>
-      {result && (result.output || result.error) && (
+      {result && (result.output || result.error || (result.images?.length ?? 0) > 0) && (
         <div className="mt-3 rounded-md border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-950">
           <p className="mb-1 text-xs font-medium text-slate-500">Votre résultat</p>
           {result.error && <pre className="overflow-x-auto whitespace-pre-wrap text-sm text-red-700 dark:text-red-400">{result.error}</pre>}

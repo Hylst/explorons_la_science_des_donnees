@@ -86,13 +86,13 @@ export const COURSE_CATALOG: CatalogCourse[] = [
   {
     id: "data-visualization",
     category: "dataviz",
-    title: "Visualisation de données avancée",
-    description: "Python, D3.js et outils modernes de visualisation.",
+    title: "Visualisation de données",
+    description: "Choisir le bon graphique et le réaliser avec Matplotlib, des distributions aux tableaux de bord.",
     level: "Intermédiaire",
-    duration: "6 semaines",
+    duration: "≈ 13 h 30",
     modules: 7,
     href: "/courses/dataviz/data-visualization",
-    status: "plan",
+    status: "redige",
   },
   {
     id: "supervised-learning",
