@@ -64,13 +64,13 @@ export const COURSE_CATALOG: CatalogCourse[] = [
   {
     id: "applied-statistics",
     category: "math-stats",
-    title: "Statistiques appliquées pour l'analyse de données",
-    description: "Application pratique des statistiques en analyse de données : tests d'hypothèses, régression, ANOVA.",
+    title: "Statistiques appliquées",
+    description: "Tests d'hypothèses, corrélation, ANOVA et tests non paramétriques, calculés pour de vrai avec scipy et pandas.",
     level: "Intermédiaire",
-    duration: "6 semaines",
+    duration: "≈ 11 h 30",
     modules: 6,
     href: "/courses/statistics/applied-statistics",
-    status: "plan",
+    status: "redige",
   },
   {
     id: "database-fundamentals",

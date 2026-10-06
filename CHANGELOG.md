@@ -1,6 +1,12 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, soir] - Cours de statistiques appliquées rédigé
+
+- **Six modules pratiques**, qui renvoient aux pages de théorie du site : décrire des données réelles (médiane, écart interquartile, valeurs atypiques), probabilités en pratique (simulation, lois binomiale et normale, théorème central limite simulé), tests d'hypothèses (p-value, Welch, test apparié, erreurs, taille d'effet), corrélation et régression (Pearson, Spearman, linregress), ANOVA (Levene, Tukey), tests non paramétriques et khi-deux. 12 exercices vérifiés, 24 questions de quiz.
+- **Données réelles** fournies avec scikit-learn : 442 patients diabétiques (en unités d'origine), 178 vins de trois cultivars, les iris ; données fictives annoncées comme telles pour les exemples de trajets et d'abonnements. Valeurs mesurées avec le Pyodide du site, y compris les cas instructifs : une p-value de 0,051 (le seuil n'est pas magique), une différence non significative entre les deux groupes du jeu diabetes (p ≈ 0,37), des variances très différentes pour les pétales d'iris (Levene p ≈ 3 × 10⁻⁸).
+- **Neuf cours sur dix sont désormais rédigés** ; seul le traitement du langage reste un plan. Testé dans Chrome : exemple exécuté, message en français sur la réponse de départ, réponses justes écrites autrement acceptées, khi-deux du module 6.
+
 ## [2026-10-06, après-midi] - Cours de visualisation de données rédigé
 
 - **Sept modules** : principes (choix du graphique, ordre de lecture des encodages selon Cleveland et McGill, axe tronqué, couleurs), Matplotlib en profondeur (figure et axes, subplots, annotations, export), graphiques statistiques (histogrammes, boîtes à moustaches, carte de corrélation), visualisations interactives et format long (melt, pivot), grammaire des graphiques et facettes, le web (SVG, échelles linéaires comme d3.scaleLinear, jointure de données de D3.js en lecture), tableaux de bord. 13 exercices, 28 questions de quiz.
