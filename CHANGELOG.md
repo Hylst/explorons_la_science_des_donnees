@@ -1,6 +1,13 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, matin] - Premier cours rédigé avec exercices vérifiés : bases de données
+
+- **Format commun des cours rédigés** (`lib/lessons`, `components/courses/lessons`) : modules repliables avec objectifs, texte, exemples modifiables exécutés par le vrai moteur du site, exercices vérifiés, quiz et progression locale. Un exercice SQL compare le résultat de la réponse à celui du corrigé sur les mêmes données : plusieurs requêtes différentes peuvent être justes.
+- **Fondamentaux des bases de données** : les six modules sont rédigés (introduction, SQL de base, modélisation et formes normales, SQL avancé avec jointures externes, CTE, dates et fonctions de fenêtre, NoSQL et JSON dans SQLite, index, plans d'exécution et transactions), sur un jeu de données de bibliothèques (auteurs et titres réels, adhérents et emprunts inventés). 19 exercices, 24 questions de quiz. Le cours n'est plus un « plan ».
+- **Contrôles** : chaque exemple et chaque corrigé est exécuté par les tests (sql.js, même mise en forme que le site) ; la réponse de départ ne doit pas suffire ; les résultats annoncés dans les textes ont été vérifiés sur le moteur (par exemple la durée moyenne d'emprunt de 16,6 jours, les plans SCAN puis SEARCH). Testé dans Chrome : réponse fausse refusée avec un message utile, réponse juste écrite autrement acceptée, index composé accepté grâce à la comparaison de la seule colonne `detail`.
+- **Défaut trouvé par les tests en cours de route** : l'option qui limite la comparaison à certaines colonnes validait une réponse quand la colonne demandée n'existait pas ; corrigé avant livraison.
+
 ## [2026-10-06, nuit] - Pages restantes relues, math-intro allégé, défilement, performances mesurées
 
 - **Dépôt public** mis à jour (commit `e1988a8`, contrôles passés dans le dépôt public) : GitHub reconnaît désormais la licence AGPL-3.0.
