@@ -1,15 +1,17 @@
-
+import { lazy } from "react";
 import Layout from "@/components/layout/Layout";
+import ProgressiveSections from "@/components/layout/ProgressiveSections";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 
+// L'introduction est chargée avec la page ; les sections suivantes sont chargées à la demande (ProgressiveSections)
 import LinearAlgebraIntro from "./linear-algebra/LinearAlgebraIntro";
-import VectorsSection from "./linear-algebra/VectorsSection";
-import MatricesSection from "./linear-algebra/MatricesSection";
-import MatrixTypesSection from "./linear-algebra/MatrixTypesSection";
-import OperationsSection from "./linear-algebra/OperationsSection";
-import DecompositionsSection from "./linear-algebra/DecompositionsSection";
-import ApplicationsSection from "./linear-algebra/ApplicationsSection";
-import InteractiveExercises from "./linear-algebra/InteractiveExercises";
+const VectorsSection = lazy(() => import("./linear-algebra/VectorsSection"));
+const MatricesSection = lazy(() => import("./linear-algebra/MatricesSection"));
+const MatrixTypesSection = lazy(() => import("./linear-algebra/MatrixTypesSection"));
+const OperationsSection = lazy(() => import("./linear-algebra/OperationsSection"));
+const DecompositionsSection = lazy(() => import("./linear-algebra/DecompositionsSection"));
+const ApplicationsSection = lazy(() => import("./linear-algebra/ApplicationsSection"));
+const InteractiveExercises = lazy(() => import("./linear-algebra/InteractiveExercises"));
 
 const LinearAlgebra = () => {
 
@@ -23,14 +25,16 @@ const LinearAlgebra = () => {
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="space-y-16">
-            <LinearAlgebraIntro />
-            <VectorsSection />
-            <MatricesSection />
-            <MatrixTypesSection />
-            <OperationsSection />
-            <DecompositionsSection />
-            <ApplicationsSection />
-            <InteractiveExercises />
+            <ProgressiveSections>
+              <LinearAlgebraIntro />
+              <VectorsSection />
+              <MatricesSection />
+              <MatrixTypesSection />
+              <OperationsSection />
+              <DecompositionsSection />
+              <ApplicationsSection />
+              <InteractiveExercises />
+            </ProgressiveSections>
           </div>
         </div>
       </div>

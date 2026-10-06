@@ -77,7 +77,11 @@ describe("routes : chaque page s'affiche", () => {
     });
     // les pages sont chargées à la demande : on attend la fin du chargement (15 s au plus)
     const debut = Date.now();
-    while (Date.now() - debut < 15000 && (container.textContent ?? "").includes("Chargement de la page")) {
+    // les pages longues s'affichent par morceaux (ProgressiveSections) : on attend aussi la dernière section
+    while (
+      Date.now() - debut < 15000 &&
+      ((container.textContent ?? "").includes("Chargement de la page") || container.querySelector("[data-sections-pending]"))
+    ) {
       await act(async () => {
         await wait(50);
       });
@@ -85,6 +89,7 @@ describe("routes : chaque page s'affiche", () => {
     const texte = container.textContent ?? "";
     expect(texte).not.toContain("Une erreur s'est produite");
     expect(texte).not.toContain("Chargement de la page");
+    expect(container.querySelector("[data-sections-pending]"), `sections encore en attente sur ${route}`).toBeNull();
     expect(texte.length).toBeGreaterThan(300);
     expect(container.querySelectorAll("h1").length, `titres h1 de ${route} (il en faut exactement un)`).toBe(1);
     // un seul fil d'Ariane par page (régression du 5 octobre 2026 : /machine-learning/supervised en affichait deux, l'un sous l'autre)

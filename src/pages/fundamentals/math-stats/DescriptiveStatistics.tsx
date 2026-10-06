@@ -1,18 +1,16 @@
-
+import { lazy } from "react";
 import Layout from "@/components/layout/Layout";
+import ProgressiveSections from "@/components/layout/ProgressiveSections";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
-// Supprimer cette ligne : import { ChartBar, TrendingUp, Calculator, BarChart3, Target, Eye } from "lucide-react";
 
-// Import des nouveaux composants modulaires
+// L'introduction est chargée avec la page ; les sections suivantes sont chargées à la demande (ProgressiveSections)
 import DescriptiveStatsIntro from "./descriptive-statistics/components/DescriptiveStatsIntro";
-import CentralTendencySection from "./descriptive-statistics/components/CentralTendencySection";
-import DispersionSection from "./descriptive-statistics/components/DispersionSection";
-import CorrelationSection from "./descriptive-statistics/components/CorrelationSection";
-import PracticalApplicationsSection from "./descriptive-statistics/components/PracticalApplicationsSection";
+const CentralTendencySection = lazy(() => import("./descriptive-statistics/components/CentralTendencySection"));
+const DispersionSection = lazy(() => import("./descriptive-statistics/components/DispersionSection"));
+const CorrelationSection = lazy(() => import("./descriptive-statistics/components/CorrelationSection"));
+const PracticalApplicationsSection = lazy(() => import("./descriptive-statistics/components/PracticalApplicationsSection"));
 
 const DescriptiveStatistics = () => {
-  // Supprimer les lignes 13-22 qui définissent sidebarItems
-  
   return (
     <Layout>
       <div className="min-h-screen">
@@ -22,11 +20,13 @@ const DescriptiveStatistics = () => {
           description="Les outils statistiques fondamentaux pour décrire des données et en tirer des conclusions prudentes"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">
-          <DescriptiveStatsIntro />
-          <CentralTendencySection />
-          <DispersionSection />
-          <CorrelationSection />
-          <PracticalApplicationsSection />
+          <ProgressiveSections>
+            <DescriptiveStatsIntro />
+            <CentralTendencySection />
+            <DispersionSection />
+            <CorrelationSection />
+            <PracticalApplicationsSection />
+          </ProgressiveSections>
         </div>
       </div>
     </Layout>

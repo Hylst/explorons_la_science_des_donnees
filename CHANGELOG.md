@@ -1,6 +1,13 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-06, nuit] - Pages longues affichées par morceaux
+
+- **Demande de l'auteur** : accélérer les pages longues sans casser le retour à la position de lecture. Nouveau composant `ProgressiveSections` : l'introduction s'affiche avec la page, les sections suivantes (formules, graphiques) sont chargées à la demande et ajoutées une à une quand le navigateur est libre ; toute la page est là en une à deux secondes.
+- **Mesures Lighthouse mobile** (build local servi avec gzip, 2 à 3 passes) : probabilités 46 → 68 (affichage du contenu principal 5,8 → 3,0 s), statistiques descriptives 58 → 70-76, calcul différentiel 67 → 83, algèbre linéaire 72 → 94 ; aucun décalage de mise en page.
+- **Retour à la position de lecture préservé** : au retour (précédent, suivant, rechargement) ou vers une ancre, tout est affiché d'emblée, et `ScrollManager` attend que plus aucune section ne soit en attente avant de défiler. Vérifié dans Chrome sur les quatre pages, à 390, 768 et 1280 px : position retrouvée au pixel près, ancres sous la barre de navigation, aucune erreur console, aucun débordement.
+- Tests : composant (6 tests, deux mutations détectées) et test de fumée qui exige qu'aucune section ne reste en attente (mutation détectée).
+
 ## [2026-10-06, nuit] - Cours de traitement du langage rédigé : plus aucun cours « plan »
 
 - **Huit modules** : fondamentaux (tâches, ambiguïtés, découpage en mots), prétraitement (minuscules, accents avec unicodedata, mots vides, raciniseur jouet et ses limites), représentations (sac de mots, n-grammes, TF-IDF, similarité cosinus, petit moteur de recherche), analyse de sentiment (bayésien naïf, bigrammes, marquage de la négation), entités nommées (expressions régulières, annotation BIO), plongements et attention (softmax stable et attention programmées avec NumPy, BERT et CamemBERT), modèles de langage (bigrammes, température, hallucinations), projet d'assistant de FAQ (seuil « je ne sais pas » et évaluation sur un jeu de test).

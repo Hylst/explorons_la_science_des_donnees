@@ -1,13 +1,15 @@
-
+import { lazy } from "react";
 import Layout from "@/components/layout/Layout";
+import ProgressiveSections from "@/components/layout/ProgressiveSections";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 
+// L'introduction est chargée avec la page ; les sections suivantes sont chargées à la demande (ProgressiveSections)
 import DifferentialCalculusIntro from "./differential-calculus/DifferentialCalculusIntro";
-import DerivativeConceptSection from "./differential-calculus/DerivativeConceptSection";
-import DerivationRulesSection from "./differential-calculus/DerivationRulesSection";
-import OptimizationSection from "./differential-calculus/OptimizationSection";
-import GradientsSection from "./differential-calculus/GradientsSection";
-import ExercisesSection from "./differential-calculus/ExercisesSection";
+const DerivativeConceptSection = lazy(() => import("./differential-calculus/DerivativeConceptSection"));
+const DerivationRulesSection = lazy(() => import("./differential-calculus/DerivationRulesSection"));
+const OptimizationSection = lazy(() => import("./differential-calculus/OptimizationSection"));
+const GradientsSection = lazy(() => import("./differential-calculus/GradientsSection"));
+const ExercisesSection = lazy(() => import("./differential-calculus/ExercisesSection"));
 
 const DifferentialCalculus = () => {
 
@@ -21,12 +23,14 @@ const DifferentialCalculus = () => {
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="space-y-16">
-            <DifferentialCalculusIntro />
-            <DerivativeConceptSection />
-            <DerivationRulesSection />
-            <OptimizationSection />
-            <GradientsSection />
-            <ExercisesSection />
+            <ProgressiveSections>
+              <DifferentialCalculusIntro />
+              <DerivativeConceptSection />
+              <DerivationRulesSection />
+              <OptimizationSection />
+              <GradientsSection />
+              <ExercisesSection />
+            </ProgressiveSections>
           </div>
         </div>
       </div>
