@@ -1,29 +1,33 @@
+import { Sigma } from "lucide-react";
+import { Link } from "react-router-dom";
+import LessonCoursePage from "@/components/courses/lessons/LessonCoursePage";
+import { mathIntroCourse } from "@/data/lessons/math-intro";
+import { migrateMathIntroProgress } from "@/lib/progress-migration";
 
-import Layout from "@/components/layout/Layout";
-import MathIntroContent from "./components/MathIntroContent";
-import UnifiedHeroSection from "@/components/ui/unified-hero-section";
+// L'ancien cours enregistrait les modules terminés sous une autre clé : on les reprend une fois, avant le premier affichage
+migrateMathIntroProgress();
 
-const MathIntroCourse = () => {
-  return (
-    <Layout>
-      <div className="min-h-screen">
-        <UnifiedHeroSection
-          variant="course"
-          title="Introduction aux Mathématiques"
-          description="Les fondements mathématiques utiles en data science"
-          
-          courseInfo={{
-            level: "Débutant",
-            duration: "≈ 3 heures",
-            modules: 5
-          }}
-        />
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
-          <MathIntroContent />
-        </div>
-      </div>
-    </Layout>
-  );
-};
+/** Cours « Introduction aux mathématiques » : modules dans src/data/lessons/math-intro */
+const MathIntroCourse = () => (
+  <LessonCoursePage
+    course={mathIntroCourse}
+    title="Introduction aux mathématiques"
+    categoryName="Mathématiques et statistiques"
+    description="Nombres, ensembles, fonctions, dérivées et intégrales, avec à chaque fois leur usage en data science : formules, figures, et calculs exécutés dans votre navigateur."
+    level="Débutant"
+    icon={Sigma}
+    language="python"
+    next={
+      <p>
+        Pour approfondir : les pages des fondamentaux sur le{" "}
+        <Link to="/fundamentals/math-stats/differential-calculus" className="text-primary underline">calcul différentiel</Link>, le{" "}
+        <Link to="/fundamentals/math-stats/integral-calculus" className="text-primary underline">calcul intégral</Link>, l'
+        <Link to="/fundamentals/math-stats/linear-algebra" className="text-primary underline">algèbre linéaire</Link> et les{" "}
+        <Link to="/fundamentals/math-stats/probability-theory" className="text-primary underline">probabilités</Link>, puis le cours de{" "}
+        <Link to="/courses/math-stats/inferential-statistics" className="text-primary underline">statistiques inférentielles</Link>.
+      </p>
+    }
+  />
+);
 
 export default MathIntroCourse;

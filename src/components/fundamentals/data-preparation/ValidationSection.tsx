@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { CheckCircle, XCircle, AlertTriangle, Shield, FileText, BarChart3, Settings } from "lucide-react";
+import { CheckCircle, Shield, FileText, BarChart3, Settings } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import RunnableCode from "@/components/courses/lessons/RunnableCode";
 import { VALIDATION_RAPPORT } from "@/data/data-quality-demos";
@@ -46,84 +45,65 @@ export const ValidationSection: React.FC = () => {
   ];
 
   /**
-   * Sample validation test results
+   * Familles de contrôles : ce qu'on vérifie, comment le calculer avec pandas, un exemple de violation.
+   * Aucun score ici : les chiffres d'un rapport se calculent sur des données (voir le rapport exécutable plus haut).
    */
-  const qualityTests = [
+  const qualityChecks = [
     {
-      name: "Complétude des données",
-      status: "success",
-      score: 97.3,
-      details: "416 enregistrements incomplets sur 15 420",
+      name: "Complétude",
+      question: "Les champs obligatoires sont-ils renseignés ?",
+      code: "df['client_id'].notna().mean()",
+      example: "une commande sans identifiant de client",
       critical: false
     },
     {
       name: "Validité des formats",
-      status: "warning",
-      score: 89.1,
-      details: "1 420 emails invalides, 261 codes postaux incorrects (sur 15 420)",
+      question: "Les valeurs ont-elles la forme attendue ?",
+      code: "df['code_postal'].str.fullmatch('[0-9]{5}')",
+      example: "un code postal à quatre chiffres, une adresse électronique sans domaine",
       critical: false
     },
     {
       name: "Cohérence temporelle",
-      status: "error",
-      score: 76.8,
-      details: "3 578 dates de fin antérieures aux dates de début (sur 15 420)",
+      question: "Les dates s'enchaînent-elles dans le bon ordre ?",
+      code: "(df['livraison'] >= df['commande']).mean()",
+      example: "une livraison datée de la veille de la commande",
       critical: true
     },
     {
       name: "Unicité des identifiants",
-      status: "success",
-      score: 99.9,
-      details: "15 doublons détectés sur les IDs clients (sur 15 420)",
+      question: "Chaque identifiant n'apparaît-il qu'une fois ?",
+      code: "df['client_id'].duplicated().sum()",
+      example: "deux fiches différentes avec le même identifiant",
       critical: true
     }
   ];
 
   /**
-   * Business rules validation
+   * Règles métier : chaque règle s'écrit comme un test qui renvoie vrai ou faux pour chaque ligne
    */
   const businessRules = [
     {
       rule: "Âge entre 0 et 120 ans",
-      passed: 15418,
-      failed: 2,
-      status: "success"
+      code: "df['age'].between(0, 120)",
+      why: "un âge de 150 ans est une erreur de saisie, pas un client"
     },
     {
-      rule: "Montant vente {'>'} 0",
-      passed: 15401,
-      failed: 19,
-      status: "warning"
+      rule: "Montant de vente strictement positif",
+      code: "df['montant'] > 0",
+      why: "un montant nul ou négatif peut être un avoir, un test ou une erreur : à distinguer avec les équipes concernées"
     },
     {
-      rule: "Date livraison ≥ Date commande",
-      passed: 15375,
-      failed: 45,
-      status: "error"
+      rule: "Date de livraison postérieure ou égale à la date de commande",
+      code: "df['livraison'] >= df['commande']",
+      why: "l'ordre inverse signale une date mal saisie ou un fuseau horaire mal géré"
     },
     {
-      rule: "Code produit dans catalogue",
-      passed: 15420,
-      failed: 0,
-      status: "success"
+      rule: "Code produit présent dans le catalogue",
+      code: "df['produit'].isin(catalogue['produit'])",
+      why: "un produit inconnu fausse toutes les analyses par produit"
     }
   ];
-
-  /**
-   * Get status icon based on test result
-   */
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "success":
-        return <CheckCircle className="h-4 w-4 text-green-500" />;
-      case "warning":
-        return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
-      case "error":
-        return <XCircle className="h-4 w-4 text-red-500" />;
-      default:
-        return <CheckCircle className="h-4 w-4 text-gray-400" />;
-    }
-  };
 
   return (
     <section id="validation" className="space-y-12">
@@ -135,7 +115,7 @@ export const ValidationSection: React.FC = () => {
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           La validation garantit que vos données respectent les standards de qualité, 
           les règles métier et les exigences de conformité avant utilisation. Le rapport exécutable calcule ses chiffres sur un petit tableau inventé ;
-          les autres chiffres de cette section sont des exemples fictifs, pas des mesures.
+          les onglets décrivent les familles de contrôles et la façon de les calculer.
         </p>
       </div>
 
@@ -187,8 +167,8 @@ export const ValidationSection: React.FC = () => {
           </div>
 
           <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-3 py-2">
-            Les onglets suivants montrent d'autres façons de présenter un rapport de validation. Leurs chiffres sont inventés
-            et ne sont pas calculés : seul le rapport ci-dessus l'est.
+            Les onglets suivants passent en revue les familles de contrôles : ce que chacune vérifie et comment la calculer.
+            Ils ne donnent aucun score, car un score n'a de sens que calculé sur de vraies données, comme dans le rapport ci-dessus.
           </p>
 
           <Tabs value={activeTest} onValueChange={setActiveTest}>
@@ -202,228 +182,145 @@ export const ValidationSection: React.FC = () => {
 
             <TabsContent value="quality" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🔍 Tests de Qualité des Données</h4>
+                <h4 className="font-semibold mb-4">Tests de qualité des données</h4>
                 <div className="space-y-4">
-                  {qualityTests.map((test, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        {getStatusIcon(test.status)}
-                        <div>
-                          <div className="font-medium flex items-center gap-2">
-                            {test.name}
-                            {test.critical && (
-                              <Badge variant="destructive" className="text-xs">Critique</Badge>
-                            )}
-                          </div>
-                          <div className="text-sm text-muted-foreground">{test.details}</div>
-                        </div>
+                  {qualityChecks.map((check) => (
+                    <div key={check.name} className="p-4 border rounded-lg">
+                      <div className="font-medium flex flex-wrap items-center gap-2">
+                        {check.name}
+                        {check.critical && (
+                          <Badge variant="destructive" className="text-xs">Critique</Badge>
+                        )}
                       </div>
-                      <div className="text-right">
-                        <div className={`text-lg font-bold ${
-                          test.status === 'success' ? 'text-green-600' :
-                          test.status === 'warning' ? 'text-yellow-600' : 'text-red-600'
-                        }`}>
-                          {test.score}%
-                        </div>
-                        <Progress 
-                          value={test.score} 
-                          className="w-20 h-2"
-                        />
-                      </div>
+                      <p className="text-sm text-muted-foreground mt-1">{check.question}</p>
+                      <p className="text-sm mt-2">
+                        Calcul avec pandas : <code className="bg-gray-100 px-1 rounded text-xs [overflow-wrap:anywhere]">{check.code}</code>
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1">Exemple de violation : {check.example}.</p>
                     </div>
                   ))}
                 </div>
+                <p className="text-sm text-muted-foreground mt-4">
+                  « Critique » veut dire qu'une seule violation peut fausser les analyses (des dates dans le désordre, un identifiant
+                  partagé par deux personnes) : on bloque la livraison des données plutôt que de signaler et continuer.
+                </p>
               </div>
             </TabsContent>
 
             <TabsContent value="metrics" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">📊 Métriques de Validation</h4>
+                <h4 className="font-semibold mb-4">Indicateurs de validation et leur calcul</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
                     {
                       category: "Complétude",
                       metrics: [
-                        { name: "Taux de remplissage", value: "97.3%", trend: "+0.2%" },
-                        { name: "Champs obligatoires", value: "99.1%", trend: "+0.1%" },
-                        { name: "Valeurs nulles", value: "2.7%", trend: "-0.2%" }
+                        { name: "Taux de remplissage", formula: "cellules renseignées / cellules attendues" },
+                        { name: "Lignes complètes", formula: "lignes dont tous les champs obligatoires sont renseignés / lignes" }
                       ]
                     },
                     {
                       category: "Exactitude",
                       metrics: [
-                        { name: "Formats valides", value: "89.1%", trend: "-1.2%" },
-                        { name: "Plages de valeurs", value: "94.7%", trend: "+0.5%" },
-                        { name: "Cohérence référentielle", value: "98.2%", trend: "0%" }
+                        { name: "Formats valides", formula: "valeurs au bon format / valeurs renseignées" },
+                        { name: "Valeurs dans les bornes", formula: "valeurs dans la plage admise / valeurs renseignées" },
+                        { name: "Cohérence référentielle", formula: "clés trouvées dans la table de référence / clés" }
                       ]
                     },
                     {
                       category: "Cohérence",
                       metrics: [
-                        { name: "Règles métier", value: "91.4%", trend: "+1.1%" },
-                        { name: "Contraintes temporelles", value: "76.8%", trend: "-2.3%" },
-                        { name: "Dépendances logiques", value: "95.6%", trend: "+0.8%" }
+                        { name: "Règles métier respectées", formula: "lignes sans aucune violation / lignes" },
+                        { name: "Ordre des dates", formula: "paires de dates dans le bon ordre / paires renseignées" }
                       ]
                     }
-                  ].map((category, index) => (
-                    <Card key={index}>
+                  ].map((category) => (
+                    <Card key={category.category}>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-base">{category.category}</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3">
-                        {category.metrics.map((metric, mIndex) => (
-                          <div key={mIndex} className="flex items-center justify-between">
-                            <span className="text-sm">{metric.name}</span>
-                            <div className="text-right">
-                              <div className="font-semibold">{metric.value}</div>
-                              <div className={`text-xs ${
-                                metric.trend.startsWith('+') ? 'text-green-600' :
-                                metric.trend.startsWith('-') ? 'text-red-600' : 'text-gray-600'
-                              }`}>
-                                {metric.trend}
-                              </div>
-                            </div>
+                        {category.metrics.map((metric) => (
+                          <div key={metric.name}>
+                            <div className="text-sm font-medium">{metric.name}</div>
+                            <div className="text-xs text-muted-foreground">{metric.formula}</div>
                           </div>
                         ))}
                       </CardContent>
                     </Card>
                   ))}
                 </div>
+                <p className="text-sm text-muted-foreground mt-4">
+                  Un indicateur isolé dit peu de choses : on le suit d'une livraison de données à l'autre, et on fixe ses seuils
+                  d'alerte avec les personnes qui connaissent les données. Attention à ne pas additionner les violations de plusieurs
+                  règles pour compter les lignes défectueuses : une même ligne peut en enfreindre plusieurs.
+                </p>
               </div>
             </TabsContent>
 
             <TabsContent value="compliance" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🛡️ Rapports de Conformité</h4>
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Card className="bg-blue-50 border-blue-200">
-                      <CardHeader>
-                        <CardTitle className="text-blue-700 flex items-center gap-2">
-                          <FileText className="h-5 w-5" />
-                          RGPD Compliance
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Données personnelles identifiées</span>
-                          <Badge className="bg-blue-600 text-white">8 champs</Badge>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Consentement documenté</span>
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Droit à l'oubli</span>
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Chiffrement en transit</span>
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                <h4 className="font-semibold mb-4">Conformité : les questions à se poser</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="bg-blue-50 border-blue-200">
+                    <CardHeader>
+                      <CardTitle className="text-blue-700 flex items-center gap-2">
+                        <FileText className="h-5 w-5" />
+                        Données personnelles (RGPD)
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="text-sm space-y-2">
+                        <li>• Quelles colonnes contiennent des données personnelles, directement ou par recoupement ?</li>
+                        <li>• Sur quelle base légale sont-elles traitées (consentement, contrat, obligation légale, intérêt légitime...) ?</li>
+                        <li>• Peut-on retrouver et effacer les données d'une personne qui le demande ?</li>
+                        <li>• Combien de temps les garde-t-on, et qui y a accès ?</li>
+                        <li>• Sont-elles protégées pendant leur transfert et leur stockage ?</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
 
-                    <Card className="bg-green-50 border-green-200">
-                      <CardHeader>
-                        <CardTitle className="text-green-700 flex items-center gap-2">
-                          <Shield className="h-5 w-5" />
-                          Standards Qualité
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">ISO 8000 (Qualité données)</span>
-                          <Badge variant="outline">À évaluer</Badge>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">DAMA-DMBOK (référentiel de bonnes pratiques)</span>
-                          <Badge variant="outline">À évaluer</Badge>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Documentation métadonnées</span>
-                          <AlertTriangle className="h-4 w-4 text-yellow-500" />
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm">Traçabilité des modifications</span>
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <h5 className="font-medium text-yellow-800 mb-2">⚠️ Actions Requises</h5>
-                    <ul className="text-sm text-yellow-700 space-y-1">
-                      <li>• Compléter la documentation des métadonnées pour 3 tables</li>
-                      <li>• Mettre à jour les politiques de rétention des données</li>
-                      <li>• Effectuer l'audit de sécurité trimestriel</li>
-                    </ul>
-                  </div>
+                  <Card className="bg-green-50 border-green-200">
+                    <CardHeader>
+                      <CardTitle className="text-green-700 flex items-center gap-2">
+                        <Shield className="h-5 w-5" />
+                        Documentation et traçabilité
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="text-sm space-y-2">
+                        <li>• Chaque colonne a-t-elle une définition, une unité, une source (dictionnaire de données) ?</li>
+                        <li>• Sait-on qui a modifié quoi, et quand ?</li>
+                        <li>• Les règles de validation sont-elles écrites et versionnées avec le code ?</li>
+                        <li>• Pour aller plus loin, des référentiels existent : la norme ISO 8000 sur la qualité des données, le guide DAMA-DMBOK sur la gestion des données.</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </TabsContent>
 
             <TabsContent value="business" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">⚙️ Contrôles de Cohérence Métier</h4>
+                <h4 className="font-semibold mb-4">Contrôles de cohérence métier</h4>
                 <div className="space-y-4">
-                  {businessRules.map((rule, index) => {
-                    const total = rule.passed + rule.failed;
-                    const successRate = (rule.passed / total) * 100;
-                    
-                    return (
-                      <div key={index} className="p-4 border rounded-lg">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(rule.status)}
-                            <span className="font-medium">{rule.rule}</span>
-                          </div>
-                          <Badge 
-                            variant={rule.status === 'success' ? 'default' : 
-                                   rule.status === 'warning' ? 'secondary' : 'destructive'}
-                          >
-                            {successRate.toFixed(1)}%
-                          </Badge>
-                        </div>
-                        <div className="grid grid-cols-3 gap-4 text-sm">
-                          <div className="text-center p-2 bg-green-50 rounded">
-                            <div className="font-semibold text-green-600">{rule.passed.toLocaleString()}</div>
-                            <div className="text-green-700">Conformes</div>
-                          </div>
-                          <div className="text-center p-2 bg-red-50 rounded">
-                            <div className="font-semibold text-red-600">{rule.failed.toLocaleString()}</div>
-                            <div className="text-red-700">Non-conformes</div>
-                          </div>
-                          <div className="text-center p-2 bg-gray-50 rounded">
-                            <div className="font-semibold text-gray-600">{total.toLocaleString()}</div>
-                            <div className="text-gray-700">Total</div>
-                          </div>
-                        </div>
-                        <Progress value={successRate} className="mt-3" />
-                      </div>
-                    );
-                  })}
+                  {businessRules.map((rule) => (
+                    <div key={rule.rule} className="p-4 border rounded-lg">
+                      <div className="font-medium">{rule.rule}</div>
+                      <p className="text-sm mt-2">
+                        Test : <code className="bg-gray-100 px-1 rounded text-xs [overflow-wrap:anywhere]">{rule.code}</code>
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-1">Pourquoi : {rule.why}.</p>
+                    </div>
+                  ))}
                 </div>
-
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h5 className="font-medium text-blue-800 mb-3">💡 Recommandations d'Amélioration</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <h6 className="font-medium mb-2">Priorité Haute:</h6>
-                      <ul className="text-blue-700 space-y-1">
-                        <li>• Corriger les 3 578 dates de fin antérieures aux dates de début et les 45 livraisons antérieures à la commande</li>
-                        <li>• Valider les 19 montants négatifs ou nuls</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-medium mb-2">Priorité Moyenne:</h6>
-                      <ul className="text-blue-700 space-y-1">
-                        <li>• Automatiser la validation des âges</li>
-                        <li>• Implémenter des contrôles en temps réel</li>
-                      </ul>
-                    </div>
-                  </div>
+                  <h5 className="font-medium text-blue-800 mb-2">Dans quel ordre corriger</h5>
+                  <ul className="text-sm text-blue-700 space-y-1">
+                    <li>• D'abord les violations critiques, qui faussent tout le reste (dates incohérentes, identifiants en double).</li>
+                    <li>• Ensuite celles qui demandent l'avis des équipes concernées (montants nuls ou négatifs : erreur ou avoir ?).</li>
+                    <li>• Puis automatiser les contrôles, pour qu'ils tournent à chaque nouvelle livraison de données.</li>
+                  </ul>
                 </div>
               </div>
             </TabsContent>

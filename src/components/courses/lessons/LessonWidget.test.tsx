@@ -48,4 +48,10 @@ describe("LessonWidgetView", () => {
     expect(div.querySelector(".animate-pulse")).toBeNull();
     expect((div.textContent ?? "").length).toBeGreaterThan(50);
   });
+
+  it.each(["venn-diagram", "activation-functions", "tangent-line", "riemann-sum"] as const)("affiche la figure mathématique %s", async (widget) => {
+    const div = await render(widget);
+    expect(div.querySelector(".animate-pulse")).toBeNull();
+    expect(div.querySelector("svg")).not.toBeNull();
+  });
 });

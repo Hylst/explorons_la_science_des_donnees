@@ -19,7 +19,12 @@ export type LessonWidget =
   | "data-types-comparison"
   | "python-vs-numpy-performance"
   | "matplotlib-workflow"
-  | "jupyter-workflow";
+  | "jupyter-workflow"
+  /* figures SVG du cours d'introduction aux mathématiques (components/courses/CourseFigures) */
+  | "venn-diagram"
+  | "activation-functions"
+  | "tangent-line"
+  | "riemann-sum";
 
 export type LessonSection =
   /** Texte en markdown (titres ###, listes, **gras**, `code`, tableaux simples) */
@@ -46,7 +51,9 @@ export type LessonSection =
   /** Encadré : à retenir, attention, astuce */
   | { kind: "note"; tone: "info" | "warning" | "tip"; md: string }
   /** Composant interactif (schéma, banc d'essai), sans code à vérifier */
-  | { kind: "widget"; widget: LessonWidget };
+  | { kind: "widget"; widget: LessonWidget }
+  /** Formule mathématique en LaTeX (rendue par KaTeX ; les tests vérifient qu'elle se compile) */
+  | { kind: "equation"; latex: string; caption?: string };
 
 export interface LessonModule {
   /** Identifiant stable (sert à mémoriser la progression : ne pas le changer) */

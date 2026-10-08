@@ -1,5 +1,5 @@
+import { lazy, Suspense, useState } from "react";
 import LessonWidgetView from "./LessonWidget";
-import { useState } from "react";
 import { ChevronDown, Clock, Target, Info, AlertTriangle, Lightbulb, Play } from "lucide-react";
 import CourseQuizBlock from "@/components/courses/CourseQuizBlock";
 import CourseItemActions from "@/components/courses/CourseItemActions";
@@ -8,6 +8,9 @@ import RunnableCode from "./RunnableCode";
 import LessonExercise from "./LessonExercise";
 import { frenchSpacing } from "@/lib/lessons/typography";
 import type { LessonModule } from "@/lib/lessons/types";
+
+// KaTeX (environ 77 Ko) n'est chargé que si le module contient une formule
+const CourseEquation = lazy(() => import("@/components/courses/CourseEquation"));
 
 interface LessonModuleViewProps {
   courseId: string;
@@ -80,6 +83,16 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
               );
             }
             if (section.kind === "widget") return <LessonWidgetView key={index} widget={section.widget} />;
+            if (section.kind === "equation") {
+              return (
+                <figure key={index} className="mb-4">
+                  <Suspense fallback={<div className="h-12" aria-hidden="true" />}>
+                    <CourseEquation latex={section.latex} />
+                  </Suspense>
+                  {section.caption && <figcaption className="mt-1 text-center text-sm text-muted-foreground">{frenchSpacing(section.caption)}</figcaption>}
+                </figure>
+              );
+            }
             if (section.kind === "code") {
               exampleCount += 1;
               return (

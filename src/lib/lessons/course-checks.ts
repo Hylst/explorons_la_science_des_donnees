@@ -1,4 +1,5 @@
 // Contrôles partagés des cours rédigés : à n'appeler que depuis un fichier *.test.ts doté de « // @vitest-environment node »
+import katex from "katex";
 import { describe, expect, it } from "vitest";
 import { compareSqlOutputs, parseSqlTables } from "./check";
 import { runSqlNode } from "./sql-node";
@@ -28,6 +29,10 @@ export const describeLessonCourse = (course: LessonCourse) => {
           expect(module.sections.some((s) => s.kind === "text")).toBe(true);
           expect(module.sections.some((s) => s.kind === "code")).toBe(true);
           expect(module.sections.some((s) => s.kind === "exercise")).toBe(true);
+          // chaque formule doit se compiler avec KaTeX (une formule fausse s'afficherait en rouge sur la page)
+          for (const s of module.sections) {
+            if (s.kind === "equation") expect(() => katex.renderToString(s.latex, { throwOnError: true }), s.latex).not.toThrow();
+          }
           expect(module.quiz.length).toBeGreaterThanOrEqual(3);
         });
 

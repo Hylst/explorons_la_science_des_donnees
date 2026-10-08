@@ -6,6 +6,7 @@
  */
 import path from "node:path";
 import { loadPyodide, type PyodideInterface } from "pyodide";
+import { ENGINE_SETUP } from "@/lib/runner/python-setup";
 
 const ROOT = process.cwd();
 const VENDOR = path.join(ROOT, "public", "vendor", `pyodide-${__PYODIDE_VERSION__}`) + path.sep;
@@ -25,6 +26,9 @@ const load = () =>
     lockFileURL: VENDOR + "pyodide-lock.json",
     packageBaseUrl: VENDOR,
     packageCacheDir: VENDOR,
+  }).then((py) => {
+    py.runPython(ENGINE_SETUP);
+    return py;
   }));
 
 export const runPythonNode = async (code: string): Promise<{ output: string; error?: string }> => {

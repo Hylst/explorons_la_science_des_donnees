@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import { dataPreparationEnhancedDefinitions } from '../../../data/data-preparation-enhanced-definitions';
 import { 
@@ -61,49 +60,44 @@ export const AutomationSection: React.FC = () => {
   ];
 
   /**
-   * Sample ETL pipeline configuration
+   * Trois pipelines d'exemple (fictifs) : ce qui compte est l'enchaînement des étapes, pas des durées ou des taux,
+   * qui n'auraient de sens que mesurés. Le troisième montre l'intérêt d'une étape de validation qui bloque la suite.
    */
   const etlPipelines = [
     {
       id: "sales-pipeline",
       name: "Pipeline Ventes",
       status: "running",
-      lastRun: "2024-01-15 14:30",
-      duration: "12m 34s",
-      success: 98.7,
+      note: "La transformation est en cours ; le chargement attend qu'elle se termine.",
       stages: [
-        { name: "Extract", status: "completed", duration: "2m 15s" },
-        { name: "Validate", status: "completed", duration: "1m 45s" },
-        { name: "Transform", status: "running", duration: "8m 34s" },
-        { name: "Load", status: "pending", duration: "-" }
+        { name: "Extraction", status: "completed" },
+        { name: "Validation", status: "completed" },
+        { name: "Transformation", status: "running" },
+        { name: "Chargement", status: "pending" }
       ]
     },
     {
       id: "customer-pipeline",
       name: "Pipeline Clients",
       status: "completed",
-      lastRun: "2024-01-15 13:45",
-      duration: "8m 12s",
-      success: 99.2,
+      note: "Toutes les étapes ont réussi : les données sont disponibles pour les analyses.",
       stages: [
-        { name: "Extract", status: "completed", duration: "1m 30s" },
-        { name: "Validate", status: "completed", duration: "2m 10s" },
-        { name: "Transform", status: "completed", duration: "3m 45s" },
-        { name: "Load", status: "completed", duration: "47s" }
+        { name: "Extraction", status: "completed" },
+        { name: "Validation", status: "completed" },
+        { name: "Transformation", status: "completed" },
+        { name: "Chargement", status: "completed" }
       ]
     },
     {
       id: "inventory-pipeline",
       name: "Pipeline Inventaire",
       status: "error",
-      lastRun: "2024-01-15 12:20",
-      duration: "5m 23s",
-      success: 76.3,
+      note: "La validation a échoué : la transformation et le chargement ne sont pas lancés, les données douteuses n'atteignent pas les tableaux de bord.",
       stages: [
-        { name: "Extract", status: "completed", duration: "1m 15s" },
-        { name: "Validate", status: "error", duration: "2m 30s" },
-        { name: "Transform", status: "skipped", duration: "-" },
-        { name: "Load", status: "skipped", duration: "-" }
+        { name: "Extraction", status: "completed" },
+        { name: "Validation", status: "error" },
+        { name: "Transformation", status: "skipped" },
+        { name: "Chargement", status: "skipped" }
       ]
     }
   ];
@@ -224,7 +218,7 @@ export const AutomationSection: React.FC = () => {
 
             <TabsContent value="etl" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🔄 Pipelines ETL en Cours</h4>
+                <h4 className="font-semibold mb-4">Un pipeline, étape par étape (exemples fictifs)</h4>
                 <div className="space-y-4">
                   {etlPipelines.map((pipeline) => {
                     const statusDisplay = getStatusDisplay(pipeline.status);
@@ -236,19 +230,12 @@ export const AutomationSection: React.FC = () => {
                               {statusDisplay.icon}
                               <div>
                                 <h5 className="font-semibold">{pipeline.name}</h5>
-                                <p className="text-sm text-muted-foreground">
-                                  Dernière exécution: {pipeline.lastRun} • Durée: {pipeline.duration}
-                                </p>
+                                <p className="text-sm text-muted-foreground">{pipeline.note}</p>
                               </div>
-                            </div>
-                            <div className="text-right">
-                              <Badge className={`bg-${statusDisplay.color}-600`}>
-                                {pipeline.success}% succès
-                              </Badge>
                             </div>
                           </div>
                           
-                          <div className="grid grid-cols-4 gap-2">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             {pipeline.stages.map((stage, index) => {
                               const stageStatus = getStatusDisplay(stage.status);
                               return (
@@ -257,7 +244,6 @@ export const AutomationSection: React.FC = () => {
                                     {stageStatus.icon}
                                   </div>
                                   <div className="text-xs font-medium">{stage.name}</div>
-                                  <div className="text-xs text-muted-foreground">{stage.duration}</div>
                                 </div>
                               );
                             })}
@@ -335,19 +321,19 @@ export const AutomationSection: React.FC = () => {
                     <CardHeader>
                       <CardTitle className="text-purple-700 flex items-center gap-2">
                         <GitBranch className="h-5 w-5" />
-                        Orchestrateurs Supportés
+                        Orchestrateurs courants
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
                       {[
-                        { name: "Apache Airflow", status: "Actif" },
-                        { name: "Prefect", status: "Configuré" },
-                        { name: "Dagster", status: "Disponible" },
-                        { name: "Azure Data Factory", status: "Intégré" }
-                      ].map((orchestrator, index) => (
-                        <div key={index} className="flex justify-between items-center p-2 bg-white rounded">
-                          <span className="text-sm font-medium">{orchestrator.name}</span>
-                          <Badge variant="outline">{orchestrator.status}</Badge>
+                        { name: "Apache Airflow", role: "logiciel libre, enchaînements de tâches décrits en Python ; très répandu" },
+                        { name: "Prefect", role: "logiciel libre, flux écrits comme des fonctions Python" },
+                        { name: "Dagster", role: "logiciel libre, organisé autour des données produites" },
+                        { name: "Azure Data Factory", role: "service géré du nuage de Microsoft" }
+                      ].map((orchestrator) => (
+                        <div key={orchestrator.name} className="p-2 bg-white rounded">
+                          <div className="text-sm font-medium">{orchestrator.name}</div>
+                          <div className="text-xs text-muted-foreground">{orchestrator.role}</div>
                         </div>
                       ))}
                     </CardContent>
@@ -357,28 +343,16 @@ export const AutomationSection: React.FC = () => {
                     <CardHeader>
                       <CardTitle className="text-green-700 flex items-center gap-2">
                         <Clock className="h-5 w-5" />
-                        Planification avancée (exemple)
+                        Ce que l'on planifie
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      <div className="text-sm space-y-2">
-                        <div className="flex justify-between">
-                          <span>Workflows actifs:</span>
-                          <span className="font-semibold">12</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Exécutions/jour:</span>
-                          <span className="font-semibold">48</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Taux de succès:</span>
-                          <span className="font-semibold text-green-600">97.3%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Temps moyen:</span>
-                          <span className="font-semibold">23m 45s</span>
-                        </div>
-                      </div>
+                      <ul className="text-sm space-y-2">
+                        <li>• <strong>Quand</strong> : à heure fixe (tous les jours à 6 h) ou à l'arrivée d'un fichier</li>
+                        <li>• <strong>Dans quel ordre</strong> : une tâche ne démarre que si celles dont elle dépend ont réussi</li>
+                        <li>• <strong>En cas d'échec</strong> : combien de nouvelles tentatives, après quel délai</li>
+                        <li>• <strong>Qui prévenir</strong> : une alerte quand une tâche échoue ou dure anormalement</li>
+                      </ul>
                     </CardContent>
                   </Card>
                 </div>
@@ -424,23 +398,23 @@ export const AutomationSection: React.FC = () => {
                     {[
                       {
                         env: "Développement",
-                        status: "active",
+                        status: "essais",
                         version: "v2.1.3",
-                        health: 98,
+                        role: "on essaie et on casse sans conséquence",
                         color: "blue"
                       },
                       {
-                        env: "Staging",
-                        status: "deploying",
+                        env: "Recette (staging)",
+                        status: "vérification",
                         version: "v2.1.4-rc1",
-                        health: 95,
+                        role: "copie de la production, pour tester une nouvelle version dans des conditions réalistes",
                         color: "yellow"
                       },
                       {
                         env: "Production",
-                        status: "stable",
+                        status: "en service",
                         version: "v2.1.2",
-                        health: 99,
+                        role: "ce qu'utilisent les personnes ; on n'y met que ce qui a passé la recette",
                         color: "green"
                       }
                     ].map((env, index) => (
@@ -452,15 +426,11 @@ export const AutomationSection: React.FC = () => {
                           </div>
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
-                              <span>Version:</span>
+                              <span>Version (exemple) :</span>
                               <span className="font-mono">{env.version}</span>
                             </div>
-                            <div className="flex justify-between">
-                              <span>Santé:</span>
-                              <span className={`font-semibold text-${env.color}-600`}>{env.health}%</span>
-                            </div>
+                            <p className="text-muted-foreground">{env.role}</p>
                           </div>
-                          <Progress value={env.health} className="mt-3 h-2" />
                         </CardContent>
                       </Card>
                     ))}
@@ -476,7 +446,7 @@ export const AutomationSection: React.FC = () => {
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <h6 className="font-medium mb-3">☁️ Plateformes Supportées</h6>
+                          <h6 className="font-medium mb-3">Plateformes courantes</h6>
                           <div className="space-y-2">
                             {[
                               { name: "AWS", services: "EC2, S3, RDS, Lambda" },
@@ -493,17 +463,17 @@ export const AutomationSection: React.FC = () => {
                         </div>
                         
                         <div>
-                          <h6 className="font-medium mb-3">🔧 Outils DevOps</h6>
+                          <h6 className="font-medium mb-3">Outils DevOps</h6>
                           <div className="space-y-2">
                             {[
-                              { tool: "Docker", status: "Configuré" },
-                              { tool: "Terraform", status: "Actif" },
-                              { tool: "Ansible", status: "Disponible" },
-                              { tool: "Jenkins", status: "Intégré" }
-                            ].map((tool, index) => (
-                              <div key={index} className="flex justify-between items-center p-2 bg-white rounded border">
-                                <span className="text-sm font-medium">{tool.tool}</span>
-                                <Badge variant="outline">{tool.status}</Badge>
+                              { tool: "Docker", role: "emballer le programme et ses dépendances dans une image" },
+                              { tool: "Terraform", role: "décrire l'infrastructure dans des fichiers versionnés" },
+                              { tool: "Ansible", role: "configurer des serveurs de façon répétable" },
+                              { tool: "Jenkins", role: "lancer tests et déploiements à chaque modification" }
+                            ].map((tool) => (
+                              <div key={tool.tool} className="p-2 bg-white rounded border">
+                                <div className="text-sm font-medium">{tool.tool}</div>
+                                <div className="text-xs text-muted-foreground">{tool.role}</div>
                               </div>
                             ))}
                           </div>

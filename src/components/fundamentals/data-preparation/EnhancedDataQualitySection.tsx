@@ -277,7 +277,7 @@ const EnhancedDataQualitySection: React.FC = () => {
           description: "Supprimer toutes les lignes avec des valeurs manquantes",
           pros: ["Simple à implémenter", "Pas de biais d'imputation", "Données restantes complètes"],
           cons: ["Perte importante d'information", "Réduction de la taille d'échantillon", "Biais si données non MCAR"],
-          when: "< 5% de données manquantes, MCAR confirmé",
+          when: "Peu de valeurs manquantes (moins de 5 % est un repère souvent cité, pas une règle) et manquantes au hasard (MCAR)",
           code: "df.dropna()"
         },
         {

@@ -2,6 +2,7 @@
 import type { PyodideInterface } from 'pyodide';
 import type { WorkerRequest, WorkerResponse } from './types';
 import { wasmBlocked } from './csp-guard';
+import { ENGINE_SETUP } from './python-setup';
 
 // Pyodide (Python dans WebAssembly) est servi par le site lui-même : public/vendor/pyodide (voir scripts/sync-runtimes.mjs)
 let pyodidePromise: Promise<PyodideInterface> | null = null;
@@ -45,7 +46,9 @@ const loadPython = (baseUrl: string, status: (m: string) => void) =>
     status('Chargement de Python (une dizaine de Mo, une seule fois)…');
     const indexURL = `${baseUrl}vendor/pyodide-${__PYODIDE_VERSION__}/`;
     const module = await import(/* @vite-ignore */ `${indexURL}pyodide.module.js`);
-    return (await module.loadPyodide({ indexURL })) as PyodideInterface;
+    const py = (await module.loadPyodide({ indexURL })) as PyodideInterface;
+    py.runPython(ENGINE_SETUP);
+    return py;
   })().catch((error) => {
     pyodidePromise = null;
     throw error;

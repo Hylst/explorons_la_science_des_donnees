@@ -1,5 +1,16 @@
-
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
+
+## [2026-10-09] - Les dix cours au même format, chiffres inventés retirés de la préparation des données
+
+- **Préparation des données** : les onglets de validation (tests de qualité, métriques, conformité, règles métier) et d'automatisation (pipelines, orchestration, déploiement) affichaient des scores, des tendances, des durées et des états d'installation inventés (« 76,8 % », « +0,2 % », « 3 578 dates sur 15 420 », « 12m 34s », « 97,3 % de succès », « Santé 98 % », orchestrateurs « Actif » ou « Configuré »). Ils deviennent des guides de méthode : ce que vérifie chaque contrôle et comment le calculer avec pandas, la formule de chaque indicateur, les questions à se poser pour le RGPD, l'enchaînement des étapes d'un pipeline (une validation qui échoue bloque la suite), le rôle de chaque environnement et de chaque outil. Seuls restent des chiffres calculés par le code (rapport de validation, simulation de monitoring).
+- **Les quatre derniers cours convertis au format des cours en données** (sous-agents Sonnet, chaque cours relu, ses tests relancés et plusieurs faits vérifiés avant intégration) :
+  - **Introduction aux mathématiques** : 5 modules, 15 exercices vérifiés numériquement, 33 formules, environ 9 h. Corrections : la dérivée n'existe que si la limite existe (exemple de la valeur absolue), définition de l'intégrale et théorème fondamental, domaine et image distingués. La progression enregistrée sous l'ancien format est reprise une fois.
+  - **Statistiques inférentielles** : 6 modules, 18 exercices, environ 12 h, tout montré par simulation à graine fixe. Corrections : la règle « n > 30 suffit » est contredite par la mesure (11,5 % de faux positifs à n = 30 sur données log-normales), intervalle de confiance et intervalle de tolérance distingués, interprétation fréquentiste correcte, ancien graphique de couverture fondé sur des moyennes inventées remplacé par une couverture mesurée.
+  - **Guide des modèles de machine learning** : 6 modules (choisir une famille, gradient stochastique, boosting, clustering, Q-learning, réseaux de neurones), 17 exercices, environ 14 h, sans répéter le cours de ML supervisé. Corrections : SGD « extrêmement rapide » contredit par la mesure, conditions de convergence du Q-learning, équivariance des convolutions, approximation universelle présentée comme un résultat d'existence.
+  - **Transformers en machine learning** : 6 modules (deux sens du mot, mise à l'échelle, transformations et pipelines, attention multi-têtes et positions, BERT / GPT / ViT, workflow), 17 exercices, environ 12 h 30. Corrections : ce que préserve la normalisation min-max, limites du QuantileTransformer, biais propres aux images des ViT.
+- **Format des cours** : section « équation » (formule KaTeX, chargée à la demande, chaque formule compilée par les tests) et figures mathématiques SVG en widgets. Plus aucun cours écrit à la main en composants : les dix cours exécutent leurs exemples et vérifient leurs exercices.
+- **Moteur Python** : l'avertissement interne de Pyodide « JsProxy.as_object_map() is deprecated », déclenché par scikit-learn pendant une validation croisée, s'affichait dans la sortie des apprenants ; il est masqué, lui seul (testé, mutation détectée).
+- Anciens composants retirés : `MLModelsSection`, les modules et composants de math-intro, `InferentialStatisticsCourse`, l'ancienne page Transformers de 1 900 lignes.
 
 ## [2026-10-08, après-midi] - Cours Python exécutable, outils du quotidien, cas pratiques calculés
 

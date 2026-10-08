@@ -69,6 +69,13 @@ if (typeof window !== 'undefined') {
   });
 }
 
+/** Marque des éléments comme terminés sans hook (reprise d'une progression enregistrée sous un ancien format) */
+export const markDone = (courseId: string, itemIds: string[]) =>
+  update(courseId, (current) => ({
+    ...current,
+    status: { ...current.status, ...Object.fromEntries(itemIds.map((id) => [id, "done" as const])) },
+  }));
+
 export const useCourseProgress = (courseId: string) => {
   const data = useSyncExternalStore(subscribe, () => load(courseId));
 
