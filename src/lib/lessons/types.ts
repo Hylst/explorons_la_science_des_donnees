@@ -7,6 +7,20 @@ import type { CourseQuizQuestion } from "@/components/courses/CourseQuizBlock";
  */
 export type LessonLanguage = "sql" | "python";
 
+/**
+ * Composants interactifs qu'un module peut insérer entre ses sections (cours Python) : banc d'essai NumPy mesuré
+ * dans le navigateur et schémas animés de components/courses/python. Chargés à la demande (LessonWidget).
+ */
+export type LessonWidget =
+  | "numpy-benchmark"
+  | "numpy-array-structure"
+  | "numpy-broadcasting"
+  | "pandas-dataframe"
+  | "data-types-comparison"
+  | "python-vs-numpy-performance"
+  | "matplotlib-workflow"
+  | "jupyter-workflow";
+
 export type LessonSection =
   /** Texte en markdown (titres ###, listes, **gras**, `code`, tableaux simples) */
   | { kind: "text"; md: string }
@@ -30,7 +44,9 @@ export type LessonSection =
       hint?: string;
     }
   /** Encadré : à retenir, attention, astuce */
-  | { kind: "note"; tone: "info" | "warning" | "tip"; md: string };
+  | { kind: "note"; tone: "info" | "warning" | "tip"; md: string }
+  /** Composant interactif (schéma, banc d'essai), sans code à vérifier */
+  | { kind: "widget"; widget: LessonWidget };
 
 export interface LessonModule {
   /** Identifiant stable (sert à mémoriser la progression : ne pas le changer) */

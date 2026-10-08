@@ -1,3 +1,4 @@
+import LessonWidgetView from "./LessonWidget";
 import { useState } from "react";
 import { ChevronDown, Clock, Target, Info, AlertTriangle, Lightbulb, Play } from "lucide-react";
 import CourseQuizBlock from "@/components/courses/CourseQuizBlock";
@@ -78,6 +79,7 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
                 </aside>
               );
             }
+            if (section.kind === "widget") return <LessonWidgetView key={index} widget={section.widget} />;
             if (section.kind === "code") {
               exampleCount += 1;
               return (

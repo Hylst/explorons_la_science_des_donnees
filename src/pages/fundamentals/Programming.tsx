@@ -6,7 +6,7 @@ import LazyBlock from "@/components/layout/LazyBlock";
 import { createStandardSidebar } from "@/components/layout/StandardSidebar";
 import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { Code, BookOpen, Cpu, Zap, Users, Rocket, Trophy, Terminal } from "lucide-react";
+import { Code, BookOpen, Cpu, Zap, Users, Rocket, Trophy, Terminal, GitBranch } from "lucide-react";
 
 // Contenu (84 Ko, graphiques Recharts) chargé après le bandeau, qui s'affiche sans l'attendre
 const ProgrammingSection = lazy(() => import("@/components/fundamentals/ProgrammingSection"));
@@ -20,6 +20,7 @@ const SECTIONS = [
   "advanced-concepts",
   "interactive-challenges",
   "code-editor",
+  "tooling",
   "resources"
 ];
 
@@ -33,6 +34,7 @@ const standardSidebar = createStandardSidebar({
     { title: "Concepts avancés", href: "#advanced-concepts", icon: <Rocket className="h-4 w-4" /> },
     { title: "Défis interactifs", href: "#interactive-challenges", icon: <Trophy className="h-4 w-4" /> },
     { title: "Éditeur de code", href: "#code-editor", icon: <Terminal className="h-4 w-4" /> },
+    { title: "Git, environnements, Docker", href: "#tooling", icon: <GitBranch className="h-4 w-4" /> },
     { title: "Ressources et communautés", href: "#resources", icon: <Users className="h-4 w-4" /> }
   ]
 });

@@ -22,7 +22,7 @@ const components: Components = {
     </pre>
   ),
   code: ({ children }) => (
-    <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.9em] text-gray-900 dark:bg-gray-800 dark:text-gray-100">{children}</code>
+    <code className="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.9em] text-gray-900 [overflow-wrap:anywhere] dark:bg-gray-800 dark:text-gray-100">{children}</code>
   ),
   // aucun lien externe dans les leçons (le site n'appelle aucun tiers) : un lien éventuel reste du texte
   a: ({ children }) => <span className="underline">{children}</span>,

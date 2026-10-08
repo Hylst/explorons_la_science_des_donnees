@@ -2,19 +2,11 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { CheckCircle, XCircle, AlertTriangle, Shield, FileText, BarChart3, Settings } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-
-interface ValidationResults {
-  timestamp: string;
-  overallScore: number;
-  testsRun: number;
-  passed: number;
-  warnings: number;
-  errors: number;
-}
+import RunnableCode from "@/components/courses/lessons/RunnableCode";
+import { VALIDATION_RAPPORT } from "@/data/data-quality-demos";
 
 /**
  * Validation Section Component
@@ -22,7 +14,6 @@ interface ValidationResults {
  */
 export const ValidationSection: React.FC = () => {
   const [activeTest, setActiveTest] = useState<string>("quality");
-  const [validationResults, setValidationResults] = useState<ValidationResults | null>(null);
 
   /**
    * Data quality test categories
@@ -134,20 +125,6 @@ export const ValidationSection: React.FC = () => {
     }
   };
 
-  /**
-   * Run validation tests simulation
-   */
-  const runValidation = () => {
-    setValidationResults({
-      timestamp: new Date().toLocaleString(),
-      overallScore: 90.8,
-      testsRun: 24,
-      passed: 18,
-      warnings: 4,
-      errors: 2
-    });
-  };
-
   return (
     <section id="validation" className="space-y-12">
       <div className="text-center space-y-6">
@@ -157,7 +134,8 @@ export const ValidationSection: React.FC = () => {
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           La validation garantit que vos données respectent les standards de qualité, 
-          les règles métier et les exigences de conformité avant utilisation. Les chiffres affichés dans cette section sont des exemples fictifs, pas des mesures.
+          les règles métier et les exigences de conformité avant utilisation. Le rapport exécutable calcule ses chiffres sur un petit tableau inventé ;
+          les autres chiffres de cette section sont des exemples fictifs, pas des mesures.
         </p>
       </div>
 
@@ -187,44 +165,31 @@ export const ValidationSection: React.FC = () => {
       {/* Validation Dashboard */}
       <Card className="bg-gradient-to-br from-green-50 to-blue-50">
         <CardHeader>
-          <CardTitle className="flex flex-wrap items-center justify-between gap-2">
-            <span className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-green-500" />
-              Tableau de Bord Validation
-            </span>
-            <Button onClick={runValidation} className="bg-green-600 text-white hover:bg-green-700">
-              <CheckCircle className="h-4 w-4 mr-1" />
-              Lancer Validation
-            </Button>
+          <CardTitle className="flex items-center gap-2">
+            <Shield className="h-5 w-5 text-green-500" />
+            Un rapport de validation, calculé
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {validationResults && (
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-3 py-2">
-                Rapport d'exemple : aucune donnée n'est analysée ici, ces chiffres illustrent
-                à quoi ressemble un rapport de validation.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-white rounded-lg border">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">{validationResults.overallScore}%</div>
-                  <div className="text-sm text-muted-foreground">Score Global</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">{validationResults.passed}</div>
-                  <div className="text-sm text-muted-foreground">Tests Réussis</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-yellow-600">{validationResults.warnings}</div>
-                  <div className="text-sm text-muted-foreground">Avertissements</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-red-600">{validationResults.errors}</div>
-                  <div className="text-sm text-muted-foreground">Erreurs</div>
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Valider, c'est écrire chaque règle sous forme de test, l'appliquer à toutes les lignes, puis compter les violations.
+              L'exemple ci-dessous fabrique vingt commandes inventées, avec quelques défauts glissés exprès, et produit le rapport
+              à partir de ces données : le code s'exécute dans votre navigateur et chaque nombre est calculé.
+              Modifiez une règle ou une valeur, puis cliquez sur « Exécuter ».
+            </p>
+            <RunnableCode
+              language="python"
+              code={VALIDATION_RAPPORT}
+              label="Rapport de validation sur des commandes inventées, modifiable"
+              caption="Sept règles, vingt commandes. Le statut dépend d'un seuil (SEUIL_ERREUR) qui est un choix à faire avec les personnes qui connaissent les données. La somme des violations dépasse le nombre de lignes concernées, car une même ligne peut enfreindre plusieurs règles : ne pas additionner les violations pour compter les lignes défectueuses."
+            />
+          </div>
+
+          <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-3 py-2">
+            Les onglets suivants montrent d'autres façons de présenter un rapport de validation. Leurs chiffres sont inventés
+            et ne sont pas calculés : seul le rapport ci-dessus l'est.
+          </p>
 
           <Tabs value={activeTest} onValueChange={setActiveTest}>
             <TabsList className="grid w-full grid-cols-4">

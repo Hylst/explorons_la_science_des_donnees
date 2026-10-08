@@ -10,6 +10,7 @@ const PracticalExercises = lazy(() => import("./programming/PracticalExercises")
 const AdvancedConcepts = lazy(() => import("./programming/AdvancedConcepts"));
 const InteractiveChallenges = lazy(() => import("./programming/InteractiveChallenges"));
 const CodeEditor = lazy(() => import("./programming/CodeEditor"));
+const ToolingSection = lazy(() => import("./programming/ToolingSection"));
 const ResourcesSection = lazy(() => import("./programming/ResourcesSection"));
 
 const ProgrammingSection = () => {
@@ -29,6 +30,7 @@ const ProgrammingSection = () => {
         <div id="code-editor">
           <CodeEditor />
         </div>
+        <ToolingSection />
         <ResourcesSection />
       </ProgressiveSections>
     </div>

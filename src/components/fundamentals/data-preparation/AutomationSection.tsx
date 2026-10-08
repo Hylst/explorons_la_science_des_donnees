@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import { dataPreparationEnhancedDefinitions } from '../../../data/data-preparation-enhanced-definitions';
@@ -21,15 +20,8 @@ import {
   Zap
 } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-
-interface MonitoringData {
-  timestamp: string;
-  dataQuality: number;
-  throughput: string;
-  errorRate: number;
-  latency: string;
-  alerts: number;
-}
+import RunnableCode from "@/components/courses/lessons/RunnableCode";
+import { MONITORING_SIMULATION } from "@/data/data-quality-demos";
 
 /**
  * Automation Section Component
@@ -37,7 +29,6 @@ interface MonitoringData {
  */
 export const AutomationSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("etl");
-  const [monitoringData, setMonitoringData] = useState<MonitoringData | null>(null);
 
   /**
    * Automation categories
@@ -160,20 +151,6 @@ export const AutomationSection: React.FC = () => {
       default:
         return { icon: <Pause className="h-4 w-4 text-gray-500" />, color: "gray", bg: "bg-gray-50" };
     }
-  };
-
-  /**
-   * Start monitoring simulation
-   */
-  const startMonitoring = () => {
-    setMonitoringData({
-      timestamp: new Date().toLocaleString(),
-      dataQuality: 94.2,
-      throughput: "1.2M records/hour",
-      errorRate: 0.8,
-      latency: "125ms",
-      alerts: 3
-    });
   };
 
   return (
@@ -409,105 +386,33 @@ export const AutomationSection: React.FC = () => {
             </TabsContent>
 
             <TabsContent value="monitoring" className="space-y-4">
-              <div className="bg-white p-6 rounded-lg border">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold">📊 Monitoring de la Qualité</h4>
-                  <Button onClick={startMonitoring} size="sm">
-                    <Monitor className="h-4 w-4 mr-1" />
-                    Démarrer Monitoring
-                  </Button>
+              <div className="bg-white p-6 rounded-lg border space-y-4">
+                <h4 className="font-semibold">Monitoring de la qualité</h4>
+                <p className="text-sm text-muted-foreground">
+                  Surveiller un pipeline, c'est calculer à chaque exécution quelques indicateurs (lignes reçues, lignes rejetées par les contrôles, durée),
+                  puis les comparer à ce qui est habituel pour déclencher une alerte quand l'écart devient trop grand.
+                  L'exemple ci-dessous <strong>simule</strong> une semaine d'exécutions quotidiennes avec un générateur à graine fixe :
+                  aucun pipeline réel n'a tourné, mais les indicateurs et les alertes sont bien calculés par le code, dans votre navigateur.
+                  Modifiez un seuil, puis cliquez sur « Exécuter ».
+                </p>
+                <RunnableCode
+                  language="python"
+                  code={MONITORING_SIMULATION}
+                  label="Simulation d'une semaine d'exécutions d'un pipeline et alertes calculées, modifiable"
+                  caption="Deux incidents sont glissés exprès dans la simulation : le jeudi la source n'envoie qu'une partie des lignes, le samedi un format change et les contrôles rejettent beaucoup. Le jeudi, le taux de rejet reste normal (1,1 %) : seule l'alerte de volume détecte le problème. Un pipeline peut paraître sain alors qu'il a reçu bien moins de lignes que d'habitude. Les seuils sont des choix, à ajuster d'après l'historique de chaque pipeline."
+                />
+
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h5 className="font-medium text-blue-800 mb-3">Indicateurs souvent surveillés</h5>
+                  <ul className="text-sm text-blue-700 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                    <li>• <strong>Volume reçu</strong> : comparé à la médiane des jours précédents</li>
+                    <li>• <strong>Taux de rejet</strong> : part des lignes refusées par les contrôles</li>
+                    <li>• <strong>Durée d'exécution</strong> : comparée à la durée habituelle</li>
+                    <li>• <strong>Fraîcheur</strong> : âge de la dernière donnée reçue</li>
+                    <li>• <strong>Schéma</strong> : colonnes et types attendus</li>
+                    <li>• <strong>Distribution</strong> : valeurs qui changent de nature d'un jour à l'autre</li>
+                  </ul>
                 </div>
-
-                {monitoringData && (
-                  <div className="space-y-6">
-                    <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-3 py-2">
-                      Exemple illustratif : ce tableau de bord montre à quoi ressemble un monitoring de pipeline.
-                      Les chiffres sont fictifs, aucune mesure réelle n'est effectuée.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {[
-                        { label: "Qualité Données", value: `${monitoringData.dataQuality}%`, color: "green" },
-                        { label: "Débit", value: monitoringData.throughput, color: "blue" },
-                        { label: "Taux d'Erreur", value: `${monitoringData.errorRate}%`, color: "red" },
-                        { label: "Latence", value: monitoringData.latency, color: "purple" }
-                      ].map((metric, index) => (
-                        <Card key={index} className={`bg-${metric.color}-50 border-${metric.color}-200`}>
-                          <CardContent className="p-4 text-center">
-                            <div className={`text-2xl font-bold text-${metric.color}-600`}>{metric.value}</div>
-                            <div className={`text-sm text-${metric.color}-700`}>{metric.label}</div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle className="text-base">🚨 Alertes Actives</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-3">
-                          {[
-                            { type: "warning", message: "Latence élevée sur pipeline ventes", time: "Il y a 5m" },
-                            { type: "error", message: "Échec validation données inventaire", time: "Il y a 12m" },
-                            { type: "info", message: "Maintenance programmée à 02:00", time: "Il y a 1h" }
-                          ].map((alert, index) => (
-                            <div key={index} className={`p-3 rounded border-l-4 ${
-                              alert.type === 'error' ? 'bg-red-50 border-red-400' :
-                              alert.type === 'warning' ? 'bg-yellow-50 border-yellow-400' :
-                              'bg-blue-50 border-blue-400'
-                            }`}>
-                              <div className="text-sm font-medium">{alert.message}</div>
-                              <div className="text-xs text-muted-foreground">{alert.time}</div>
-                            </div>
-                          ))}
-                        </CardContent>
-                      </Card>
-
-                      <Card>
-                        <CardHeader>
-                          <CardTitle className="text-base">📈 Métriques d'infrastructure (exemple)</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <div>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span>CPU Usage</span>
-                              <span>67%</span>
-                            </div>
-                            <Progress value={67} className="h-2" />
-                          </div>
-                          <div>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span>Memory Usage</span>
-                              <span>84%</span>
-                            </div>
-                            <Progress value={84} className="h-2" />
-                          </div>
-                          <div>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span>Disk I/O</span>
-                              <span>23%</span>
-                            </div>
-                            <Progress value={23} className="h-2" />
-                          </div>
-                          <div>
-                            <div className="flex justify-between text-sm mb-1">
-                              <span>Network</span>
-                              <span>45%</span>
-                            </div>
-                            <Progress value={45} className="h-2" />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </div>
-                )}
-
-                {!monitoringData && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Monitor className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                    <p>Cliquez sur "Démarrer Monitoring" pour afficher un exemple de tableau de bord</p>
-                  </div>
-                )}
               </div>
             </TabsContent>
 

@@ -6,6 +6,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import CourseHighlight from '@/components/courses/CourseHighlight';
+import RunnableCode from '@/components/courses/lessons/RunnableCode';
+import {
+  HOPITAL_INDICATEURS,
+  HOPITAL_INDICATEURS_PREAMBULE,
+  HOPITAL_MESURER,
+  HOPITAL_NETTOYER,
+  HOPITAL_NETTOYER_PREAMBULE,
+} from '@/data/data-quality-demos';
 import { typedDataPreparationDefinitions as dataPreparationEnhancedDefinitions } from '@/data/data-preparation-enhanced-definitions';
 import { 
   ChefHat, 
@@ -616,271 +624,228 @@ const EnhancedDataQualitySection: React.FC = () => {
 
         {/* Case Study Tab */}
         <TabsContent value="case-study" className="space-y-8">
-          <CourseHighlight type="example" title="Cas Pratique Complet">
+          <CourseHighlight type="example" title="Cas pratique complet">
             <p className="text-muted-foreground">
-              Suivez pas à pas la transformation complète d'un jeu de données fictif inspiré d'un hôpital, 
-              de l'audit initial à l'analyse finale. L'établissement, les données et tous les chiffres de ce cas sont inventés 
-              pour illustrer la démarche : ils ne proviennent d'aucun hôpital réel.
+              Suivez pas à pas la préparation d'un petit jeu de données fictif inspiré d'un hôpital, de la mesure des défauts
+              jusqu'aux premiers indicateurs. Les séjours sont inventés et fabriqués par le code, dans votre navigateur :
+              chaque nombre affiché est calculé par ce code, aucun n'est écrit à la main. Rien ne provient d'un hôpital réel.
             </p>
           </CourseHighlight>
 
           {/* Complete Hospital Case Study */}
           <Card className="bg-gradient-to-br from-blue-50 to-green-50 border-blue-200">
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <CardTitle className="text-blue-700 flex items-center gap-2">
                   <Heart className="h-6 w-6" />
-                  Cas pratique fictif : données patients d'un hôpital
+                  Cas pratique fictif : séjours d'un hôpital
                 </CardTitle>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => setShowCaseStudy(!showCaseStudy)}
                 >
                   {showCaseStudy ? 'Masquer' : 'Voir'} le cas complet
                 </Button>
               </div>
             </CardHeader>
-            
+
             {showCaseStudy && (
               <CardContent className="space-y-8">
                 {/* Context */}
                 <div className="bg-white p-6 rounded-lg border">
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                     <Activity className="h-5 w-5 text-blue-500" />
-                    Contexte du Projet
+                    Contexte du projet
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold mb-2">🏥 Situation :</h4>
+                      <h4 className="font-semibold mb-2">Situation</h4>
                       <p className="text-sm text-muted-foreground mb-4">
-                        Un hôpital fictif souhaite analyser les réadmissions pour réduire les coûts 
-                        et améliorer la qualité des soins. Les données proviennent de 3 systèmes différents.
+                        Un hôpital fictif souhaite étudier les réadmissions pour mieux comprendre les parcours de soins.
+                        Ses données proviennent de trois systèmes différents, que l'on ne peut pas utiliser telles quelles.
                       </p>
-                      <h4 className="font-semibold mb-2">🎯 Objectifs :</h4>
+                      <h4 className="font-semibold mb-2">Objectifs du projet complet</h4>
                       <ul className="text-sm text-muted-foreground space-y-1">
                         <li>• Identifier les facteurs de réadmission</li>
-                        <li>• Prédire les patients à risque</li>
-                        <li>• Optimiser la durée de séjour</li>
+                        <li>• Repérer les patients à risque</li>
+                        <li>• Comprendre les durées de séjour</li>
                         <li>• Analyser les coûts par service</li>
                       </ul>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Ces analyses viennent après la préparation. Ce cas s'arrête aux premiers indicateurs.
+                      </p>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2">📊 Sources de données :</h4>
+                      <h4 className="font-semibold mb-2">Sources de données (à titre de contexte)</h4>
                       <ul className="text-sm text-muted-foreground space-y-1">
-                        <li>• <strong>SIH</strong> : Admissions/sorties (15,000 lignes)</li>
-                        <li>• <strong>LAB</strong> : Résultats biologiques (45,000 lignes)</li>
-                        <li>• <strong>PMSI</strong> : Codage médical (12,000 lignes)</li>
+                        <li>• <strong>SIH</strong> : admissions et sorties</li>
+                        <li>• <strong>LAB</strong> : résultats biologiques</li>
+                        <li>• <strong>PMSI</strong> : codage médical des séjours</li>
                       </ul>
-                      <h4 className="font-semibold mb-2 mt-4">⚠️ Défis identifiés :</h4>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Les exemples ci-dessous ne manipulent qu'un petit extrait de type SIH, complété d'un diagnostic et d'un coût.
+                      </p>
+                      <h4 className="font-semibold mb-2 mt-4">Défauts glissés dans l'extrait</h4>
                       <ul className="text-sm text-red-600 space-y-1">
-                        <li>• Formats de dates incohérents</li>
-                        <li>• Doublons patients (variantes noms)</li>
-                        <li>• 23% de données manquantes</li>
-                        <li>• Codes diagnostics obsolètes</li>
+                        <li>• Plusieurs formats de dates</li>
+                        <li>• Doublons dont le nom s'écrit de plusieurs façons</li>
+                        <li>• Âges impossibles et valeurs manquantes</li>
+                        <li>• Diagnostics écrits avec une casse incohérente</li>
+                        <li>• Coûts négatifs, en texte ou absents</li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                {/* Before/After Comparison */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card className="border-red-200">
-                    <CardHeader>
-                      <CardTitle className="text-red-700 flex items-center gap-2">
-                        <AlertTriangle className="h-5 w-5" />
-                        Avant Nettoyage - Données Brutes
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-red-50 p-4 rounded-lg space-y-4">
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-xs">
-                            <thead>
-                              <tr className="border-b border-red-200">
-                                <th className="text-left p-1">ID</th>
-                                <th className="text-left p-1">Nom</th>
-                                <th className="text-left p-1">Âge</th>
-                                <th className="text-left p-1">Admission</th>
-                                <th className="text-left p-1">Diagnostic</th>
-                                <th className="text-left p-1">Coût</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {[
-                                ["P001", "Jean DUPONT", "45", "01/03/2024", "I21.9", "2500.50"],
-                                ["P001", "J. Dupont", "45", "2024-03-01", "i21.9", "NULL"],
-                                ["P002", "Marie Martin", "NULL", "03/01/24", "K59.0", "-150"],
-                                ["P003", "Paul DURAND", "150", "01-MAR-24", "Z51.1", "abc"],
-                                ["P004", "", "67", "", "", "3200"]
-                              ].map((row, index) => (
-                                <tr key={index} className="border-b border-red-100">
-                                  {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className={`p-1 ${
-                                      cell === "NULL" || cell === "" || cell === "150" || 
-                                      cell === "-150" || cell === "abc" || cell === "i21.9"
-                                        ? "text-red-600 font-semibold" : ""
-                                    }`}>
-                                      {cell || "(vide)"}
-                                    </td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <h5 className="font-semibold text-red-700">🚨 Problèmes critiques détectés :</h5>
-                          <ul className="text-sm text-red-600 space-y-1">
-                            <li>• <strong>Doublons</strong> : P001 présent 2 fois (formats différents)</li>
-                            <li>• <strong>Âges aberrants</strong> : P003 (150 ans), P002 (manquant)</li>
-                            <li>• <strong>Dates incohérentes</strong> : 4 formats différents</li>
-                            <li>• <strong>Codes diagnostics</strong> : Casse incohérente</li>
-                            <li>• <strong>Coûts invalides</strong> : Négatifs, texte, manquants</li>
-                            <li>• <strong>Données manquantes</strong> : 23% des champs vides</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                {/* Runnable examples */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Code className="h-5 w-5 text-blue-500" />
+                      Le cas en trois exemples exécutables
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <p className="text-sm text-muted-foreground">
+                      Le code s'exécute dans votre navigateur (Python et pandas), sans rien envoyer nulle part. Les exemples sont modifiables :
+                      changez une valeur ou une règle, puis cliquez sur « Exécuter ». La première exécution est plus longue, le temps de charger le moteur.
+                    </p>
 
-                  <Card className="border-green-200">
-                    <CardHeader>
-                      <CardTitle className="text-green-700 flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5" />
-                        Après Nettoyage - Données Qualité
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="bg-green-50 p-4 rounded-lg space-y-4">
-                        <div className="overflow-x-auto">
-                          <table className="w-full text-xs">
-                            <thead>
-                              <tr className="border-b border-green-200">
-                                <th className="text-left p-1">ID</th>
-                                <th className="text-left p-1">Nom Complet</th>
-                                <th className="text-left p-1">Âge</th>
-                                <th className="text-left p-1">Admission</th>
-                                <th className="text-left p-1">Diagnostic</th>
-                                <th className="text-left p-1">Coût €</th>
-                                <th className="text-left p-1">Service</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {[
-                                ["P001", "Jean Dupont", "45", "2024-03-01", "I21.9", "2500.50", "Cardiologie"],
-                                ["P002", "Marie Martin", "52", "2024-03-01", "K59.0", "1850.00", "Gastro"],
-                                ["P003", "Paul Durand", "67", "2024-03-01", "Z51.1", "3200.00", "Oncologie"]
-                              ].map((row, index) => (
-                                <tr key={index} className="border-b border-green-100">
-                                  {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className="p-1 text-green-700">
-                                      {cell}
-                                    </td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                        
-                        <div className="space-y-2">
-                          <h5 className="font-semibold text-green-700">✅ Améliorations apportées :</h5>
-                          <ul className="text-sm text-green-600 space-y-1">
-                            <li>• <strong>Déduplication</strong> : Fusion intelligente des doublons</li>
-                            <li>• <strong>Validation âges</strong> : Correction P003, imputation P002</li>
-                            <li>• <strong>Standardisation dates</strong> : Format ISO uniforme</li>
-                            <li>• <strong>Normalisation codes</strong> : CIM-10 validés</li>
-                            <li>• <strong>Enrichissement</strong> : Service ajouté via mapping</li>
-                            <li>• <strong>Qualité</strong> : 97% de complétude atteinte</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">1. Fabriquer des données sales, puis mesurer les défauts</h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Avant de corriger quoi que ce soit, on compte. Chaque ligne affichée est calculée sur les quatorze lignes inventées du tableau.
+                      </p>
+                      <RunnableCode
+                        language="python"
+                        code={HOPITAL_MESURER}
+                        label="Exemple 1 du cas hospitalier : fabriquer des séjours inventés et mesurer leurs défauts, modifiable"
+                        caption="Trois formats de date, un âge de 150 ans, un coût négatif et un coût en texte. Aucun doublon exact : les deux paires de doublons ne se verront qu'une fois les noms et les diagnostics normalisés."
+                      />
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">2. Nettoyer étape par étape, puis comparer</h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Chaque étape est une ligne de code. Le tableau brut et la fonction de lecture des dates viennent de l'exemple précédent
+                        (leur code est exécuté avant celui-ci, sans être affiché).
+                      </p>
+                      <RunnableCode
+                        language="python"
+                        setup={HOPITAL_NETTOYER_PREAMBULE}
+                        code={HOPITAL_NETTOYER}
+                        label="Exemple 2 du cas hospitalier : nettoyer les séjours et comparer la complétude avant et après, modifiable"
+                        caption="Les quatorze lignes deviennent douze. La complétude de l'âge baisse (de 92,9 % à 83,3 %) : un âge impossible, devenu valeur manquante, rend la colonne moins complète mais plus fiable. Nettoyer n'augmente pas toujours la complétude."
+                      />
+                      <Alert className="mt-3">
+                        <Lightbulb className="h-4 w-4" />
+                        <AlertDescription>
+                          <strong>Pourquoi lire les dates format par format ?</strong> Avec la version de pandas utilisée par ce site, l'appel{" "}
+                          <code className="rounded bg-muted px-1 text-xs">pd.to_datetime(..., format="mixed", dayfirst=True)</code>{" "}
+                          lit « 2024-03-01 » comme le 3 janvier 2024. Le résultat est faux sans qu'aucune erreur ne soit signalée :
+                          seul un contrôle du résultat, comme celui des exemples, permet de s'en apercevoir.
+                        </AlertDescription>
+                      </Alert>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">3. Premiers indicateurs, avec et sans les doublons</h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Une réadmission est ici une admission qui survient au plus 30 jours après la sortie précédente du même patient.
+                        Les indicateurs sont calculés deux fois : sur le tableau avant la suppression des doublons, puis après.
+                      </p>
+                      <RunnableCode
+                        language="python"
+                        setup={HOPITAL_INDICATEURS_PREAMBULE}
+                        code={HOPITAL_INDICATEURS}
+                        label="Exemple 3 du cas hospitalier : taux de réadmission et durée moyenne de séjour avec et sans doublons, modifiable"
+                        caption="Onze séjours seulement sont comptés (celui dont la date d'admission est illisible est écarté) : ces indicateurs montrent un calcul, ils ne sont pas une statistique. On voit en revanche que les doublons changent le résultat : treize séjours au lieu de onze, un taux de 15,4 % au lieu de 18,2 %."
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
 
                 {/* Detailed Pipeline */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <TrendingUp className="h-5 w-5 text-blue-500" />
-                      Pipeline de Nettoyage Détaillé
+                      Les étapes d'une préparation, et ce que les exemples en font
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-6">
                       {[
                         {
-                          step: "1. Audit Initial",
-                          description: "Évaluation complète de la qualité",
+                          step: "1. Audit initial",
+                          description: "Évaluation de la qualité avant toute correction",
                           actions: [
-                            "Profiling automatisé (fg-data-profiling, ex pandas-profiling)",
+                            "Profilage automatisé (fg-data-profiling, ex pandas-profiling)",
                             "Calcul des 6 dimensions de qualité",
-                            "Identification des patterns d'erreurs",
+                            "Repérage des motifs d'erreurs",
                             "Estimation de l'effort de nettoyage"
                           ],
-                          metrics: "Complétude: 77%, Exactitude: 65%, Cohérence: 45%",
+                          inExample: "Premier exemple : nombre de lignes, doublons, formats de date, âges hors bornes, coûts invalides et valeurs manquantes.",
                           color: "red"
                         },
                         {
                           step: "2. Déduplication",
                           description: "Identification et fusion des doublons",
                           actions: [
-                            "Matching exact sur ID patient",
-                            "Fuzzy matching sur nom/prénom (ratio >90%)",
+                            "Rapprochement exact sur l'identifiant patient",
+                            "Rapprochement approximatif sur nom et prénom, avec un seuil de similarité à choisir",
                             "Validation manuelle des cas ambigus",
                             "Fusion avec priorité aux données les plus récentes"
                           ],
-                          metrics: "2,150 doublons détectés, 1,987 fusionnés automatiquement",
+                          inExample: "Deuxième exemple : normalisation des noms et des diagnostics, puis suppression des lignes devenues identiques. Pas de rapprochement approximatif.",
                           color: "orange"
                         },
                         {
-                          step: "3. Validation Métier",
+                          step: "3. Validation métier",
                           description: "Application des règles de cohérence",
                           actions: [
                             "Âge entre 0 et 120 ans",
-                            "Date sortie ≥ date admission",
-                            "Codes CIM-10 dans référentiel officiel",
-                            "Coûts positifs et dans fourchettes réalistes"
+                            "Date de sortie postérieure ou égale à la date d'admission",
+                            "Codes CIM-10 présents dans le référentiel officiel",
+                            "Coûts positifs et dans des fourchettes réalistes"
                           ],
-                          metrics: "347 violations corrigées, 89 escaladées",
+                          inExample: "Deuxième exemple : seules les règles sur l'âge et sur le signe du coût sont codées. Les deux autres ne sont pas vérifiées.",
                           color: "yellow"
                         },
                         {
-                          step: "4. Imputation Intelligente",
-                          description: "Traitement des valeurs manquantes",
+                          step: "4. Traitement des valeurs manquantes",
+                          description: "Décider quoi faire de ce qui manque",
                           actions: [
-                            "Âge : Régression basée sur diagnostic + service",
-                            "Coûts : Médiane par service + durée séjour",
-                            "Codes postaux : Géocodage inverse",
-                            "Diagnostics secondaires : Modèle prédictif"
+                            "Âge : régression à partir du diagnostic et du service",
+                            "Coûts : médiane par service et durée de séjour",
+                            "Codes postaux : géocodage inverse",
+                            "Diagnostics secondaires : modèle prédictif"
                           ],
-                          metrics: "3,456 valeurs imputées, précision estimée 87%",
+                          inExample: "Pas d'imputation dans les exemples : les valeurs impossibles deviennent manquantes et le restent. Imputer demande de savoir pourquoi elles manquent.",
                           color: "blue"
                         },
                         {
                           step: "5. Enrichissement",
-                          description: "Ajout de données de valeur",
+                          description: "Ajout de variables utiles à l'analyse",
                           actions: [
-                            "Mapping codes CIM-10 → services hospitaliers",
-                            "Calcul durée séjour et coût/jour",
-                            "Géocodage adresses → régions",
-                            "Historique patient → score de risque"
+                            "Correspondance entre codes CIM-10 et services hospitaliers",
+                            "Calcul de la durée de séjour et du coût par jour",
+                            "Géocodage des adresses vers des régions",
+                            "Historique du patient vers un score de risque"
                           ],
-                          metrics: "12 nouvelles variables créées, 100% de couverture",
+                          inExample: "Troisième exemple : durée de séjour et délai depuis la sortie précédente. Pas de correspondance avec les services.",
                           color: "green"
                         },
                         {
-                          step: "6. Validation Finale",
-                          description: "Contrôle qualité et certification",
+                          step: "6. Validation finale",
+                          description: "Contrôle de la qualité avant usage",
                           actions: [
-                            "Tests automatisés Great Expectations",
-                            "Validation croisée avec échantillon manuel",
-                            "Génération rapport qualité",
-                            "Certification pour usage analytique"
+                            "Tests automatisés (par exemple avec Great Expectations)",
+                            "Comparaison avec un échantillon vérifié à la main",
+                            "Production d'un rapport de qualité",
+                            "Accord des personnes du métier avant usage"
                           ],
-                          metrics: "Qualité finale: 97% complétude, 94% exactitude",
+                          inExample: "Deuxième exemple : le bilan de complétude avant et après, calculé colonne par colonne.",
                           color: "green"
                         }
                       ].map((phase, index) => (
@@ -888,14 +853,14 @@ const EnhancedDataQualitySection: React.FC = () => {
                           <div className={`w-8 h-8 rounded-full bg-${phase.color}-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0 mt-1`}>
                             {index + 1}
                           </div>
-                          <div className="flex-1 space-y-2">
+                          <div className="flex-1 min-w-0 space-y-2">
                             <div>
                               <h4 className="font-semibold text-lg">{phase.step}</h4>
                               <p className="text-muted-foreground">{phase.description}</p>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className={`bg-${phase.color}-50 p-3 rounded-lg`}>
-                                <h5 className={`font-semibold text-${phase.color}-700 mb-2`}>Actions réalisées :</h5>
+                                <h5 className={`font-semibold text-${phase.color}-700 mb-2`}>Actions typiques :</h5>
                                 <ul className={`text-sm text-${phase.color}-600 space-y-1`}>
                                   {phase.actions.map((action, aIndex) => (
                                     <li key={aIndex}>• {action}</li>
@@ -903,8 +868,8 @@ const EnhancedDataQualitySection: React.FC = () => {
                                 </ul>
                               </div>
                               <div className="bg-gray-50 p-3 rounded-lg">
-                                <h5 className="font-semibold text-gray-700 mb-2">Résultats (fictifs) :</h5>
-                                <p className="text-sm text-gray-600">{phase.metrics}</p>
+                                <h5 className="font-semibold text-gray-700 mb-2">Dans les exemples :</h5>
+                                <p className="text-sm text-gray-600">{phase.inExample}</p>
                               </div>
                             </div>
                           </div>
@@ -914,58 +879,45 @@ const EnhancedDataQualitySection: React.FC = () => {
                   </CardContent>
                 </Card>
 
-                {/* Results and Impact */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Why no business results, and method points */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-blue-50 border-blue-200">
                     <CardHeader>
                       <CardTitle className="text-blue-700 flex items-center gap-2">
                         <BarChart3 className="h-5 w-5" />
-                        Résultats analytiques (fictifs)
+                        Pourquoi aucun résultat métier ici
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <ul className="text-sm text-blue-600 space-y-2">
-                        <li>• <strong>Taux de réadmission</strong> : 12.3% (valeur fictive)</li>
-                        <li>• <strong>Durée séjour moyenne</strong> : 4.2 jours</li>
-                        <li>• <strong>Coût moyen</strong> : 2,847€ par séjour</li>
-                        <li>• <strong>Prédiction risque</strong> : AUC = 0.84</li>
-                        <li>• <strong>Facteurs clés</strong> : Âge, comorbidités, service</li>
-                      </ul>
+                    <CardContent className="space-y-3 text-sm text-blue-600">
+                      <p>
+                        Ce cas ne donne ni économies, ni retour sur investissement, ni score de modèle, ni nombre de réadmissions évitées.
+                        Ces résultats demandent de vraies données, un indicateur défini avec précision et un échantillon assez grand.
+                      </p>
+                      <p>
+                        Calculés sur quelques séjours inventés, ils ne voudraient rien dire : ils auraient seulement l'air sérieux.
+                        Le taux de réadmission et la durée moyenne du troisième exemple servent à montrer un calcul, pas à conclure.
+                      </p>
+                      <p>
+                        Ce que le cas montre vraiment : la préparation modifie les indicateurs, comme l'écart entre « avec doublons » et « sans doublons ».
+                      </p>
                     </CardContent>
                   </Card>
-                  
-                  <Card className="bg-green-50 border-green-200">
-                    <CardHeader>
-                      <CardTitle className="text-green-700 flex items-center gap-2">
-                        <TrendingUp className="h-5 w-5" />
-                        Impact (fictif)
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="text-sm text-green-600 space-y-2">
-                        <li>• <strong>Économies</strong> : 1.2M€/an (réduction réadmissions)</li>
-                        <li>• <strong>Efficacité</strong> : -15% durée séjour évitable</li>
-                        <li>• <strong>Qualité soins</strong> : +23% satisfaction patients</li>
-                        <li>• <strong>Prévention</strong> : 340 réadmissions évitées</li>
-                        <li>• <strong>ROI projet</strong> : 450% sur 2 ans</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                  
+
                   <Card className="bg-purple-50 border-purple-200">
                     <CardHeader>
                       <CardTitle className="text-purple-700 flex items-center gap-2">
                         <Eye className="h-5 w-5" />
-                        Leçons apprises (cas fictif)
+                        Points de méthode
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <ul className="text-sm text-purple-600 space-y-2">
-                        <li>• <strong>Temps investi</strong> : 60% nettoyage, 40% analyse</li>
-                        <li>• <strong>Expertise métier</strong> : Cruciale pour validation</li>
-                        <li>• <strong>Automatisation</strong> : ROI élevé sur répétabilité</li>
-                        <li>• <strong>Documentation</strong> : Essentielle pour maintenance</li>
-                        <li>• <strong>Formation équipes</strong> : Clé du succès long terme</li>
+                        <li>• <strong>Mesurer avant et après</strong> : sans bilan, on ne sait pas ce que le nettoyage a changé</li>
+                        <li>• <strong>Expertise métier</strong> : indispensable pour valider les règles (âge plausible, codes valides, délai de réadmission)</li>
+                        <li>• <strong>Défaut devenu valeur manquante</strong> : il n'est pas réglé pour autant, il reste à décider quoi en faire</li>
+                        <li>• <strong>Automatisation</strong> : utile surtout quand le traitement se répète</li>
+                        <li>• <strong>Documentation</strong> : noter chaque règle et chaque seuil pour que quelqu'un d'autre puisse refaire et comprendre</li>
+                        <li>• <strong>Remonter à la source</strong> : prévenir les équipes qui saisissent les données, c'est là que les défauts se corrigent le mieux</li>
                       </ul>
                     </CardContent>
                   </Card>

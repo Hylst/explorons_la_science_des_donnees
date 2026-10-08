@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw, ChevronRight, Grid3X3, Calculator, Layers, Zap } from 'lucide-react';
@@ -16,6 +16,11 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
   const [activeElement, setActiveElement] = useState<number | null>(null);
   const [animationStep, setAnimationStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const timer = useRef<number | null>(null);
+  // minuteur arrêté si le schéma disparaît pendant l'animation
+  useEffect(() => () => {
+    if (timer.current !== null) window.clearInterval(timer.current);
+  }, []);
 
   const schemas = {
     'numpy-array-structure': (
@@ -156,16 +161,17 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
                   size="sm"
                   variant="outline"
                   onClick={() => {
-                    setIsAnimating(!isAnimating);
-                    if (!isAnimating) {
-                      const interval = setInterval(() => {
-                        setAnimationStep(prev => (prev + 1) % 4);
-                      }, 1500);
-                      setTimeout(() => {
-                        clearInterval(interval);
-                        setIsAnimating(false);
-                      }, 6000);
+                    // Pause : on arrête le minuteur en cours (avant, il tournait jusqu'à 6 s quoi qu'on fasse)
+                    if (timer.current !== null) {
+                      window.clearInterval(timer.current);
+                      timer.current = null;
+                      setIsAnimating(false);
+                      return;
                     }
+                    setIsAnimating(true);
+                    timer.current = window.setInterval(() => {
+                      setAnimationStep((prev) => (prev + 1) % 4);
+                    }, 1500);
                   }}
                 >
                   {isAnimating ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
@@ -174,10 +180,15 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => setAnimationStep(0)}
+                  onClick={() => {
+                    if (timer.current !== null) window.clearInterval(timer.current);
+                    timer.current = null;
+                    setIsAnimating(false);
+                    setAnimationStep(0);
+                  }}
                 >
                   <RotateCcw className="h-4 w-4" />
-                  Reset
+                  Revenir au début
                 </Button>
               </div>
 
@@ -343,10 +354,7 @@ end = time.time()
 print(f"Temps: {end-start:.3f}s")`}
                   </pre>
                   <div className="bg-red-100 p-2 rounded">
-                    <div className="text-sm font-semibold text-red-800">Temps d'exécution : de l'ordre de 0,1 s (à mesurer)</div>
-                    <div className="w-full bg-red-200 rounded-full h-2 mt-1">
-                      <div className="bg-red-600 h-2 rounded-full" style={{ width: '100%' }}></div>
-                    </div>
+                    <div className="text-sm font-semibold text-red-800">Une opération Python par élément, dans une boucle</div>
                   </div>
                 </div>
 
@@ -370,10 +378,7 @@ end = time.time()
 print(f"Temps: {end-start:.3f}s")`}
                   </pre>
                   <div className="bg-blue-100 p-2 rounded">
-                    <div className="text-sm font-semibold text-blue-800">Temps d'exécution : de l'ordre de la milliseconde (à mesurer)</div>
-                    <div className="w-full bg-blue-200 rounded-full h-2 mt-1">
-                      <div className="bg-blue-600 h-2 rounded-full" style={{ width: '1%' }}></div>
-                    </div>
+                    <div className="text-sm font-semibold text-blue-800">Une seule opération sur tout le tableau, exécutée en code compilé</div>
                   </div>
                 </div>
               </div>
@@ -383,8 +388,8 @@ print(f"Temps: {end-start:.3f}s")`}
                 <h5 className="font-semibold mb-3 text-gray-800">📊 Métriques de Performance</h5>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-3 bg-green-50 rounded">
-                    <div className="text-2xl font-bold text-green-600">10 à 100x</div>
-                    <div className="text-sm text-green-700">Plus rapide, selon l'opération (à mesurer)</div>
+                    <div className="text-2xl font-bold text-green-600">Bien plus rapide</div>
+                    <div className="text-sm text-green-700">L'écart dépend de l'opération et de la machine : le banc d'essai du module le mesure chez vous</div>
                   </div>
                   <div className="text-center p-3 bg-blue-50 rounded">
                     <div className="text-2xl font-bold text-blue-600">Compact</div>
@@ -739,10 +744,10 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
                   <h5 className="font-semibold mb-2">Entiers NumPy</h5>
                   <p className="text-sm mb-2">NumPy offre différentes tailles d'entiers pour optimiser l'utilisation mémoire :</p>
                   <ul className="text-sm space-y-1">
-                    <li>• <code className="bg-gray-100 px-1 rounded">int8</code>: -128 à 127 (1 byte)</li>
-                    <li>• <code className="bg-gray-100 px-1 rounded">int16</code>: -32,768 à 32,767 (2 bytes)</li>
-                    <li>• <code className="bg-gray-100 px-1 rounded">int32</code>: ~±2 milliards (4 bytes)</li>
-                    <li>• <code className="bg-gray-100 px-1 rounded">int64</code>: ~±9,2 × 10^18 (8 bytes)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">int8</code>: -128 à 127 (1 octet)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">int16</code>: -32 768 à 32 767 (2 octets)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">int32</code>: environ ±2,1 milliards (4 octets)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">int64</code>: environ ±9,2 × 10^18 (8 octets)</li>
                   </ul>
                 </div>
               )}
@@ -751,9 +756,9 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
                   <h5 className="font-semibold mb-2">Flottants NumPy</h5>
                   <p className="text-sm mb-2">Différentes précisions selon les besoins :</p>
                   <ul className="text-sm space-y-1">
-                    <li>• <code className="bg-gray-100 px-1 rounded">float16</code>: Demi-précision (2 bytes) - ML/GPU</li>
-                    <li>• <code className="bg-gray-100 px-1 rounded">float32</code>: Simple précision (4 bytes) - Standard</li>
-                    <li>• <code className="bg-gray-100 px-1 rounded">float64</code>: Double précision (8 bytes) - Scientifique</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">float16</code>: demi-précision (2 octets)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">float32</code>: simple précision (4 octets)</li>
+                    <li>• <code className="bg-gray-100 px-1 rounded">float64</code>: double précision (8 octets), le type par défaut</li>
                   </ul>
                 </div>
               )}
@@ -770,20 +775,20 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
 data = list(range(1000000))
 liste = sys.getsizeof(data)                    # le tableau de pointeurs seulement
 entiers = sum(sys.getsizeof(x) for x in data)  # les objets int eux-mêmes
-print(f"Mémoire: {liste + entiers} bytes")
+print(f"Mémoire : {liste + entiers} octets")
 # Résultat typique (système 64 bits): ~36 Mo, soit ~8 Mo de pointeurs + ~28 Mo d'entiers`}
                   </pre>
-                  <div className="text-xs text-red-600">Chaque int Python = 28 bytes (64 bits) + un pointeur de 8 bytes</div>
+                  <div className="text-xs text-red-600">Chaque entier Python : 28 octets (Python 64 bits), plus un pointeur de 8 octets dans la liste</div>
                 </div>
                 <div className="bg-white p-3 rounded border">
                   <h5 className="font-semibold text-blue-700 mb-2">Array NumPy (1M entiers)</h5>
                   <pre className="bg-gray-800 text-green-400 p-2 rounded text-xs mb-2">
 {`import numpy as np
 data = np.arange(1000000, dtype=np.int32)
-print(f"Mémoire: {data.nbytes} bytes")
-# Résultat: 4MB exactement`}
+print(f"Mémoire : {data.nbytes} octets")
+# Résultat : 4000000 octets exactement (environ 4 Mo)`}
                   </pre>
-                  <div className="text-xs text-blue-600">Chaque int32 = 4 bytes, pas d'overhead</div>
+                  <div className="text-xs text-blue-600">4 octets par valeur, sans surcoût par élément</div>
                 </div>
               </div>
             </div>
