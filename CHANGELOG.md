@@ -1,6 +1,24 @@
 
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-08] - Deux projets guidés de plus, glossaire réécrit sobrement
+
+- **Projet guidé « prévoir une fréquentation »** (`src/data/lessons/projects/time-series.ts`, premier contenu du site sur les séries temporelles) : deux ans de visites quotidiennes fictives d'une médiathèque, saisonnalités de la semaine et de l'année, découpage dans le temps, référence puis régression sur le calendrier. Mesuré : sur les huit semaines de l'été 2025, la dernière semaine répétée se trompe de 24 visites par jour, le modèle de 14 ; la référence « même jour la semaine précédente » (12) est écartée parce qu'elle utilise des valeurs inconnues à la date de prévision.
+- **Projet guidé « segmenter des clients »** (`customer-segmentation.ts`, rédigé par un sous-agent puis relu et vérifié) : 300 clients fictifs, effet de la mise à l'échelle sur KMeans (accord avec les profils cachés 0,33 puis 0,79), inertie et silhouette, groupes décrits en unités d'origine, limites (initialisation, méthode de Ward, deux croissants, stabilité). Les deux projets ont leur fiche dans `projects.ts` (12 projets, 5 guidés) ; le nombre de projets guidés de la page est désormais calculé.
+- **Glossaire réécrit dans un ton sobre** (sous-agents, chaque lot relu) : 153 définitions sans émoji ni formule publicitaire (il y en avait environ 450 et 80), chiffres inventés retirés (disponibilités, latences, gains, taux d'adoption, une affirmation sur Google Ads), vraies erreurs corrigées (R² présenté comme toujours entre 0 et 1, réseaux convolutifs « invariants par rotation », convergence « garantie » de k-means, bayésien naïf « bien calibré », PageRank attribué à Google plutôt qu'à Brin et Page, interprétation des intervalles de confiance). Deux notions en double fusionnées (validation croisée, AutoML).
+- **Traitement du langage dans le glossaire** : 13 entrées ajoutées (tokenisation, sous-mots, mots vides, racinisation, lemmatisation, sac de mots, similarité cosinus, entités nommées, annotation BIO, word2vec, température, hallucination, RAG), cohérentes avec le cours ; extraits de code exécutés sur le moteur du site.
+- **Tests** : le glossaire refuse désormais émojis, tirets cadratins, formules publicitaires et notions en double (noms entre parenthèses compris), chaque test vérifié par mutation ; le test du découpage des longues définitions utilise un texte construit (plus aucune définition ne dépasse 500 mots).
+- **Courbe de Gauss** (probabilités) : graduations entières de -4 à 4 au lieu de valeurs prises dans les données (-3.84, -2.22...).
+- `todo.md` remis à jour (barre latérale, cours « plan » et projets déjà traités).
+
+## [2026-10-07] - Performances : les 56 pages mesurées, les plus lentes accélérées
+
+- **Mesure de toutes les routes** (Lighthouse mobile, une passe chacune, build local avec gzip) : 41 pages à 87 ou plus, les plus lentes étaient les fondamentaux (53), la programmation (60), le machine learning (70), les pages d'outils (78 à 83).
+- **Diagnostic d'abord** : sur les fondamentaux, l'élément principal était la description du bandeau, encore retardée par une apparition animée (1,2 s) ; la page téléchargeait aussi les 127 Ko du glossaire technique, replié par défaut. La section Programmation (environ 9 000 lignes de composants) bloquait le navigateur 2,3 s (processeur ralenti 4 fois). Chaque page d'outils chargeait les cinq sections d'outils et leurs graphiques.
+- **Corrections** : description du bandeau affichée tout de suite (comme le titre) ; `LazyBlock`, attente commune des blocs chargés à la demande ; glossaire technique chargé seulement s'il est ouvert ; sections des fondamentaux et sous-sections de la programmation affichées par morceaux ; une seule section chargée par page d'outils ; tous les graphiques Recharts du site (26 de plus) dessinés à l'approche de l'écran.
+- **Résultats** : fondamentaux 53 → 75, programmation 60 → 77, machine learning 70 → 77, outils 90 à 95, statistiques inférentielles 74 → 82, transformers 81 → 88. Retour, suivant, rechargement et ancres vérifiés dans Chrome sur les cinq pages modifiées.
+- **Débordement corrigé** : à 768 px, une pastille « Avancé » des exercices pratiques de machine learning dépassait de 3 px (titre et pastille sans retour à la ligne dans une grille à trois colonnes). Je ne sais pas dire depuis quand : le contrôle du 5 octobre n'avait rien vu.
+
 ## [2026-10-06, nuit] - Performances : graphiques à la demande, titre sans attente
 
 - **Mesuré d'abord** (Chrome, processeur ralenti 4 fois) : le temps de blocage restant des probabilités venait du dessin des graphiques Recharts (environ 1 s pour la section des variables aléatoires, 1,4 s pour la loi normale), et l'introduction attendait la deuxième section, dessinée dans la même tâche.

@@ -1,19 +1,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { BrainCircuit, Check, BookOpen, ExternalLink } from "lucide-react";
 import { SourceNote } from "@/components/ui/source-note";
 
@@ -59,7 +48,7 @@ const MLFrameworks = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={frameworkData}
                   layout="vertical"
@@ -72,7 +61,7 @@ const MLFrameworks = () => {
                   <Legend />
                   <Bar dataKey="users" name="% des répondants" fill="#8884d8" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <SourceNote
                 className="text-center mt-4"
                 consulted="1er octobre 2026"
@@ -91,7 +80,7 @@ const MLFrameworks = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={mlApplicationData}
@@ -109,7 +98,7 @@ const MLFrameworks = () => {
                   </Pie>
                   <Tooltip formatter={(value: number) => [`${value} %`, 'Proportion illustrative']} />
                 </PieChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mt-4">
                 Les frameworks ML s'adaptent à différents domaines d'application, 
                 certains étant spécialisés pour des tâches spécifiques. Les proportions ci-dessus sont illustratives.

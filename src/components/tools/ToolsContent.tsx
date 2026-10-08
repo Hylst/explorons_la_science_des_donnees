@@ -1,18 +1,20 @@
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 
-import ProgrammingTools from "./sections/ProgrammingTools";
-import DataProcessingTools from "./sections/DataProcessingTools";
-import MLFrameworks from "./sections/MLFrameworks";
-import VisualizationTools from "./sections/VisualizationTools";
-import ToolsOverview from "./sections/ToolsOverview";
+// Chaque page d'outils n'affiche qu'une section : on ne charge que celle-là
+// (avant le 6 octobre 2026, toutes étaient importées, graphiques Recharts compris, sur chaque page)
+const ProgrammingTools = lazy(() => import("./sections/ProgrammingTools"));
+const DataProcessingTools = lazy(() => import("./sections/DataProcessingTools"));
+const MLFrameworks = lazy(() => import("./sections/MLFrameworks"));
+const VisualizationTools = lazy(() => import("./sections/VisualizationTools"));
+const ToolsOverview = lazy(() => import("./sections/ToolsOverview"));
 
 interface ToolsContentProps {
   section: "overview" | "programming" | "data" | "ml" | "visualization";
 }
 
-const ToolsContent: React.FC<ToolsContentProps> = ({ section }) => {
+const sectionFor = (section: ToolsContentProps["section"]) => {
   switch (section) {
-    case "overview":
-      return <ToolsOverview />;
     case "programming":
       return <ProgrammingTools />;
     case "data":
@@ -25,5 +27,7 @@ const ToolsContent: React.FC<ToolsContentProps> = ({ section }) => {
       return <ToolsOverview />;
   }
 };
+
+const ToolsContent: React.FC<ToolsContentProps> = ({ section }) => <LazyBlock>{sectionFor(section)}</LazyBlock>;
 
 export default ToolsContent;

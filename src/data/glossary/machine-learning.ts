@@ -8,207 +8,1075 @@ import { GlossaryEntry } from './types';
 export const machineLearningTerms: GlossaryEntry[] = [
   {
     term: "Machine Learning",
-    description: "Le Machine Learning est comme enseigner à un ordinateur à reconnaître des patterns, à la manière dont un enfant apprend à distinguer les chiens des chats en voyant de nombreux exemples. Contrairement à la programmation traditionnelle où nous écrivons des règles explicites, le ML permet aux machines de **découvrir automatiquement** ces règles à partir des données. **Définition formelle** : sous-domaine de l'IA qui développe des algorithmes capables d'améliorer leurs performances sur une tâche spécifique grâce à l'expérience (données). **Les trois piliers** : 1) **Données** (le carburant), 2) **Algorithmes** (le moteur), 3) **Puissance de calcul** (l'accélérateur). **Applications omniprésentes** : recommandations de films ou de produits, reconnaissance vocale, détection de spam, voitures autonomes, diagnostic médical. **Révolution historique** : passage de 'programmer des solutions' à 'apprendre des solutions'. **Types principaux** : supervisé (avec exemples étiquetés), non-supervisé (découverte de structures cachées), par renforcement (apprentissage par essai-erreur). Le ML transforme notre rapport à la résolution de problèmes complexes en automatisant la découverte de patterns dans des volumes de données impossibles à traiter manuellement.",
+    description: `Le machine learning (apprentissage automatique) regroupe les méthodes qui permettent à un programme d'améliorer ses performances sur une tâche à partir de données, plutôt que par des règles écrites à la main. Définition classique de Tom Mitchell (1997) : un programme apprend d'une expérience E pour une tâche T et une mesure de performance P si sa performance sur T, mesurée par P, s'améliore avec E.
+
+**Principe :** au lieu de programmer « si ceci, alors cela », on fournit des exemples et un algorithme ajuste les paramètres d'un modèle pour qu'il généralise à des cas nouveaux.
+
+**Grands types :**
+• Supervisé : exemples étiquetés (entrée, sortie attendue) ; classification et régression.
+• Non supervisé : données sans étiquette ; clustering, réduction de dimension, détection d'anomalies.
+• Par renforcement : un agent apprend par essais, guidé par des récompenses.
+• Semi-supervisé et auto-supervisé : peu d'étiquettes, ou étiquettes déduites des données elles-mêmes.
+
+**Démarche usuelle :** formuler le problème, collecter et préparer les données, séparer entraînement, validation et test, choisir un modèle et une métrique, entraîner, évaluer, déployer et surveiller. Exemples : filtre anti-spam, prévision de la demande, recommandation.
+
+**Limites :**
+• La qualité des données conditionne celle du modèle : des données biaisées donnent des résultats biaisés.
+• Un modèle bon sur le passé peut échouer si le contexte change.
+• Une corrélation apprise n'est pas une cause.
+• Le risque central est le surapprentissage : évaluer sur des données que le modèle n'a pas vues.`,
     category: "machine-learning",
     icon: "Cpu"
   },
   {
     term: "Classification",
-    description: "La classification est comme un système de tri automatique qui apprend à catégoriser des éléments, à l'image d'un bibliothécaire qui range les livres par genre après avoir appris les caractéristiques de chaque catégorie. **Objectif** : prédire la classe ou catégorie d'appartenance d'une nouvelle observation basée sur ses caractéristiques. **Types** : binaire (2 classes : spam/non-spam), multi-classe (plusieurs catégories : chien/chat/oiseau), multi-label (plusieurs étiquettes simultanées). **Processus** : 1) Entraînement sur des exemples étiquetés, 2) Apprentissage des frontières de décision, 3) Prédiction sur nouvelles données. **Algorithmes populaires** : arbres de décision (interprétables), SVM (efficaces haute dimension), Random Forest (robustes), réseaux de neurones (patterns complexes), Naive Bayes (texte). **Applications concrètes** : diagnostic médical (maladie/sain), reconnaissance d'images (objets), analyse de sentiment (positif/négatif), détection de fraude. **Métriques d'évaluation** : accuracy, précision, rappel, F1-score. **Défis** : classes déséquilibrées, overfitting, interprétabilité. La classification transforme des données brutes en décisions catégorielles exploitables.",
+    description: `La classification est une tâche d'apprentissage supervisé qui consiste à prédire la catégorie (la classe) d'une observation à partir de ses caractéristiques.
+
+**Types :**
+• Binaire : deux classes (spam ou non).
+• Multiclasse : une classe parmi plusieurs (chien, chat, oiseau).
+• Multi-étiquette : plusieurs étiquettes possibles à la fois (les thèmes d'un article).
+
+**Principe :** le modèle apprend, sur des exemples étiquetés, une frontière de décision. Beaucoup de classifieurs produisent d'abord un score ou une probabilité par classe ; un seuil (0,5 par défaut en binaire) donne la classe. Ce seuil se règle selon le coût des erreurs.
+
+**Algorithmes courants :** régression logistique, k plus proches voisins, arbres de décision, forêts aléatoires, boosting de gradient, SVM, Naive Bayes, réseaux de neurones.
+
+**Évaluation :** matrice de confusion, exactitude, précision, rappel, F1, AUC. Le choix dépend du coût des erreurs et des proportions de classes.
+
+**Défis :**
+• Classes déséquilibrées : l'exactitude trompe ; rééchantillonnage, poids de classe, métriques adaptées.
+• Frontières complexes : modèles non linéaires.
+• Interprétabilité : arbres et modèles linéaires sont plus lisibles.
+• Probabilités mal calibrées : les calibrer si on les utilise comme telles.
+
+**À ne pas confondre :** la régression prédit une valeur numérique, la classification une catégorie, le clustering regroupe sans classes connues.`,
     category: "machine-learning",
     icon: "Target"
   },
   {
     term: "Apprentissage Supervisé",
-    description: "L'apprentissage supervisé fonctionne comme un étudiant qui apprend avec un professeur : l'algorithme dispose d'exemples avec les 'bonnes réponses' pour apprendre à généraliser. **Principe fondamental** : utiliser des données étiquetées (input-output pairs) pour entraîner un modèle capable de prédire les sorties pour de nouvelles entrées. **Analogie** : apprendre les mathématiques avec un manuel de corrections - on voit le problème ET la solution. **Deux grandes familles** : 1) **Classification** (prédire des catégories discrètes), 2) **Régression** (prédire des valeurs continues). **Processus d'apprentissage** : 1) Entraînement (learning phase), 2) Validation (tuning phase), 3) Test (evaluation phase). **Avantages** : performance généralement élevée, métriques d'évaluation claires, large choix d'algorithmes. **Inconvénients** : nécessite des données étiquetées (coûteuses), risque d'overfitting, biais des labels. **Applications** : reconnaissance d'images, traduction automatique, prédiction de prix, diagnostic médical. **Différence clé** : contrairement à l'apprentissage non-supervisé, on connaît la 'vérité terrain' pendant l'entraînement, permettant une optimisation dirigée vers un objectif précis.",
+    description: `L'apprentissage supervisé entraîne un modèle à partir d'exemples dont la réponse attendue est connue (les étiquettes), afin de prédire la réponse pour de nouvelles entrées.
+
+**Principe :** à partir de paires (x, y), on cherche une fonction f telle que f(x) soit proche de y, en minimisant une fonction de perte sur les données d'entraînement. Le but réel est la généralisation : bien prédire sur des données jamais vues.
+
+**Deux familles :**
+• Classification : y est une catégorie.
+• Régression : y est une valeur numérique.
+
+**Démarche :** séparer entraînement, validation et test ; choisir le modèle et les hyperparamètres avec la validation ; mesurer la performance finale sur le test.
+
+**Avantages :** objectif clair, métriques d'évaluation bien définies, large choix d'algorithmes.
+
+**Limites :**
+• Les étiquettes coûtent cher à produire (expertise, temps) et peuvent être bruitées ou subjectives.
+• Les biais présents dans les étiquettes se retrouvent dans le modèle.
+• Le surapprentissage guette quand les données sont peu nombreuses.
+• Le modèle ne prédit bien que ce qui ressemble à ses données d'entraînement.
+
+**Exemples :** prédire le prix d'un logement, détecter un courriel indésirable, reconnaître des chiffres manuscrits.
+
+**Variantes proches :** apprentissage semi-supervisé (peu d'étiquettes), auto-supervisé (étiquettes déduites des données) et faiblement supervisé (étiquettes approximatives).`,
     category: "machine-learning",
     icon: "Users"
   },
   {
     term: "Apprentissage Non Supervisé",
-    description: "L'apprentissage non supervisé fonctionne comme un explorateur qui découvre des territoires inconnus sans carte ni guide : l'algorithme doit identifier des structures et patterns cachés dans des données sans 'bonnes réponses' préalables. **Principe fondamental** : extraire des informations significatives de données brutes non étiquetées pour révéler l'organisation naturelle sous-jacente. **Analogie** : un archéologue qui classe des artefacts par similarité sans connaître leur époque - il découvre des groupes naturels par observation. **Trois missions principales** : 1) **Clustering** (regrouper les similaires), 2) **Réduction de dimensionnalité** (simplifier la complexité), 3) **Détection d'anomalies** (identifier l'inhabituel). **Avantages** : pas besoin de données étiquetées (coûteuses), découverte de patterns inattendus, exploration de données massives. **Défis** : évaluation difficile (pas de vérité terrain), interprétation subjective, choix du nombre de clusters. **Applications concrètes** : segmentation client (marketing), compression d'images, détection de fraudes, analyse génomique. **Algorithmes populaires** : K-means (partitionnement), PCA (réduction dimensionnelle), DBSCAN (densité), t-SNE (visualisation). **Différence clé** : contrairement au supervisé, on ne sait pas ce qu'on cherche - on laisse les données révéler leurs secrets naturels.",
+    description: `L'apprentissage non supervisé cherche des structures dans des données sans étiquette : groupes, axes principaux de variation, observations atypiques.
+
+**Principales tâches :**
+• Clustering : regrouper des observations similaires (k-means, hiérarchique, DBSCAN).
+• Réduction de dimension : résumer les variables en moins de dimensions (ACP, t-SNE, UMAP, autoencodeurs).
+• Détection d'anomalies : repérer ce qui s'écarte de la norme.
+• Estimation de densité et règles d'association (paniers d'achats).
+
+**Exemples :** segmenter des clients, visualiser des données de grande dimension, compresser des images, repérer des transactions inhabituelles.
+
+**Avantages :** pas besoin d'étiquettes, exploration de données inconnues, utile en prétraitement.
+
+**Difficultés :**
+• Pas de bonne réponse connue : l'évaluation est plus subjective. On s'appuie sur des critères internes (silhouette), des vérifications sur des cas connus et l'avis d'experts.
+• Les résultats dépendent des choix : distance, nombre de groupes, échelle des variables.
+• Un groupe trouvé n'est pas forcément utile ni réel.
+
+**Différence avec le supervisé :** aucune variable cible n'est donnée ; on ne sait pas à l'avance ce que l'on cherche.
+
+**En pratique :** mettre les variables à l'échelle, essayer plusieurs réglages, vérifier la stabilité des groupes et les interpréter avec des spécialistes du domaine.`,
     category: "machine-learning",
     icon: "Search"
   },
   {
     term: "Clustering",
-    description: "Le clustering fonctionne comme un organisateur de fête qui regroupe les invités par affinités naturelles sans connaître leurs relations à l'avance : l'algorithme identifie automatiquement des groupes homogènes dans des données non étiquetées. **Objectif** : partitionner un ensemble de données en clusters où les éléments intra-cluster sont similaires et les éléments inter-clusters sont différents. **Analogie** : trier automatiquement une bibliothèque désorganisée en regroupant les livres par thème sans lire les étiquettes. **Types principaux** : 1) **Partitionnement** (K-means, K-medoids), 2) **Hiérarchique** (agglomératif, divisif), 3) **Basé sur la densité** (DBSCAN, OPTICS), 4) **Basé sur la distribution** (Gaussian Mixture). **Métriques de distance** : euclidienne (géométrique), Manhattan (grille urbaine), cosinus (orientation), Jaccard (ensembles). **Applications concrètes** : segmentation client (marketing), compression d'images, analyse génomique, détection de communautés sociales, organisation de documents. **Défis** : choix du nombre de clusters (K), sensibilité aux outliers, formes non-sphériques, dimensionnalité élevée. **Évaluation** : silhouette score, inertie intra-cluster, Davies-Bouldin index. **Avantage clé** : révèle la structure naturelle des données sans supervision préalable, permettant des insights inattendus.",
+    description: `Le clustering (partitionnement) regroupe des observations en clusters de sorte que les éléments d'un même groupe se ressemblent plus entre eux qu'avec ceux des autres groupes. C'est une tâche non supervisée.
+
+**Familles :**
+• Partitionnement : k-means, k-medoids (nombre de groupes fixé à l'avance).
+• Hiérarchique : arbre de fusions ou de divisions (agglomératif, divisif).
+• Densité : DBSCAN, OPTICS (groupes de forme quelconque, points isolés).
+• Modèles de mélange : mélanges de gaussiennes (appartenance probabiliste).
+
+**Notion de ressemblance :** une distance (euclidienne, Manhattan) ou une similarité (cosinus, Jaccard). Mettre les variables à l'échelle auparavant, sinon une variable de grande amplitude domine la distance.
+
+**Évaluation :** il n'existe en général pas de partition « vraie ». Critères internes (silhouette, inertie, Davies-Bouldin), externes si des étiquettes existent (indice de Rand ajusté), stabilité aux rééchantillonnages, utilité pour la décision.
+
+**Défis :**
+• Choisir le nombre de groupes.
+• Sensibilité aux valeurs aberrantes et à l'échelle.
+• Groupes de formes, tailles ou densités différentes.
+• Dimension élevée : les distances perdent de leur sens.
+
+**Usages :** segmentation de clientèle, regroupement de documents, compression d'images, détection d'anomalies, exploration de données.`,
     category: "machine-learning",
     icon: "Layers"
   },
   {
     term: "Overfitting (Surapprentissage)",
-    description: "L'overfitting est comme un étudiant qui mémorise par cœur les exercices du manuel sans comprendre les concepts : excellent sur les exercices connus, mais incapable de résoudre de nouveaux problèmes. **Définition** : le modèle apprend trop spécifiquement les détails et le bruit des données d'entraînement, perdant sa capacité de généralisation. **Symptômes** : performance excellente sur l'entraînement (>95%) mais médiocre sur la validation (<70%). **Causes principales** : modèle trop complexe, données d'entraînement insuffisantes, entraînement trop long, absence de régularisation. **Analogie visuelle** : une courbe qui passe exactement par tous les points d'entraînement, y compris les aberrations. **Solutions** : 1) **Régularisation** (L1, L2, Dropout), 2) **Early stopping**, 3) **Cross-validation**, 4) **Plus de données**, 5) **Réduction de complexité**. **Détection** : courbes d'apprentissage divergentes (train vs validation). **Impact** : modèles inutilisables en production car non-généralisables. **Équilibre crucial** : trouver le sweet spot entre sous-apprentissage et sur-apprentissage via le bias-variance tradeoff.",
+    description: `Le surapprentissage (overfitting) se produit quand un modèle s'ajuste si bien aux données d'entraînement, bruit compris, qu'il généralise mal à de nouvelles données.
+
+**Symptôme :** un grand écart entre le score d'entraînement (très bon) et le score de validation ou de test (nettement plus faible). Colonnes ci-dessous : profondeur de l'arbre, score d'entraînement, score de test.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_ent, X_test, y_ent, y_test = train_test_split(X, y, random_state=0)
+for profondeur in [None, 3]:
+    arbre = DecisionTreeClassifier(max_depth=profondeur, random_state=0).fit(X_ent, y_ent)
+    print(profondeur, round(arbre.score(X_ent, y_ent), 3), round(arbre.score(X_test, y_test), 3))
+# Affichage :
+# None 1.0 0.881
+# 3 0.977 0.937
+\`\`\`
+L'arbre non limité apprend l'entraînement par cœur (1,0) mais chute sur le test ; limité à une profondeur de 3, il perd un peu à l'entraînement et gagne en test.
+
+**Causes :**
+• Modèle trop complexe pour la quantité de données.
+• Peu de données, ou données bruitées.
+• Entraînement trop long (réseaux de neurones).
+• Trop de variables candidates, ou fuite de données qui donne l'illusion d'un bon score.
+
+**Remèdes :**
+• Plus de données, augmentation de données.
+• Modèle plus simple (profondeur d'arbre, nombre de neurones).
+• Régularisation : pénalité L2 (somme des carrés des coefficients) ou L1 (somme des valeurs absolues, qui annule certains coefficients), dropout.
+• Arrêt précoce (early stopping), élagage d'arbres, méthodes d'ensemble (bagging).
+
+**Détection :** jeu de validation séparé, validation croisée, courbe d'apprentissage. La validation croisée détecte le surapprentissage mais ne le corrige pas.
+
+**À l'opposé :** le sous-apprentissage. L'équilibre entre les deux est le compromis biais-variance.`,
     category: "machine-learning",
     icon: "AlertTriangle"
   },
   {
     term: "Underfitting (Sous-apprentissage)",
-    description: "L'underfitting est comme un étudiant qui n'a pas assez étudié : il échoue aussi bien aux exercices du manuel qu'aux nouveaux problèmes par manque de compréhension fondamentale. **Définition** : le modèle est trop simple pour capturer la structure sous-jacente et les patterns complexes des données. **Symptômes** : performances médiocres tant sur l'entraînement que sur la validation (toutes deux faibles et similaires). **Causes principales** : modèle trop simple, features insuffisantes, régularisation excessive, entraînement insuffisant. **Analogie visuelle** : une ligne droite tentant de modéliser une courbe complexe. **Diagnostic** : 1) Accuracy faible sur train ET test, 2) Courbes d'apprentissage plates, 3) Résidus avec patterns visibles. **Solutions** : 1) **Augmenter la complexité** (plus de paramètres, couches), 2) **Feature engineering** (nouvelles variables), 3) **Réduire la régularisation**, 4) **Algorithmes plus sophistiqués**, 5) **Entraînement plus long**. **Paradoxe** : plus facile à détecter que l'overfitting mais parfois négligé. **Équilibre** : l'underfitting est le point de départ - on augmente progressivement la complexité jusqu'à atteindre l'optimum avant l'overfitting.",
+    description: `Le sous-apprentissage (underfitting) se produit quand un modèle est trop simple pour capturer la structure des données : il se trompe déjà sur les données d'entraînement.
+
+**Symptôme :** scores d'entraînement et de validation tous deux médiocres et proches l'un de l'autre. Les résidus montrent une structure visible (courbe, tendance).
+\`\`\`python
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+x = np.linspace(0, 6, 50).reshape(-1, 1)
+y = np.sin(x).ravel()                       # relation non linéaire
+modele = LinearRegression().fit(x, y)
+print(round(modele.score(x, y), 2))         # R² sur les données d'entraînement
+# Affichage :
+# 0.64
+\`\`\`
+Une droite ajustée sur une sinusoïde n'explique que 64 % de la variance, même sur les données qui ont servi à l'ajuster.
+
+**Causes :**
+• Modèle trop simple (relation non linéaire modélisée par une droite).
+• Variables insuffisantes ou mal choisies.
+• Régularisation trop forte.
+• Entraînement trop court (réseaux de neurones) ou hyperparamètres trop contraignants (arbre trop peu profond).
+
+**Remèdes :**
+• Modèle plus expressif : polynômes, arbres plus profonds, réseau plus grand.
+• Nouvelles variables (interactions, transformations).
+• Réduire la régularisation.
+• Entraîner plus longtemps, ajuster le pas d'apprentissage.
+
+**Diagnostic :** des courbes d'apprentissage qui plafonnent à un score faible indiquent qu'ajouter des données n'aidera pas : il faut changer de modèle ou de variables.
+
+**À l'opposé :** le surapprentissage. On part souvent d'un modèle simple (référence), puis on le complexifie jusqu'à ce que le score de validation cesse de progresser (voir Biais-Variance Tradeoff).`,
     category: "machine-learning",
     icon: "TrendingDown"
   },
   {
-    term: "Cross-Validation",
-    description: "La cross-validation fonctionne comme un examen médical complet où plusieurs spécialistes examinent le patient sous différents angles pour obtenir un diagnostic fiable : l'algorithme teste le modèle sur plusieurs échantillons différents pour évaluer sa performance réelle. **Principe** : diviser les données en k 'plis' (folds), utiliser k-1 plis pour l'entraînement et 1 pli pour la validation, répéter k fois en changeant le pli de validation. **Analogie** : comme tester un étudiant sur 5 examens différents plutôt qu'un seul pour évaluer son niveau réel. **Types principaux** : 1) **K-fold** (division équitable), 2) **Stratified** (préserve les proportions de classes), 3) **Leave-One-Out** (LOOCV, k=n), 4) **Time Series** (respecte l'ordre temporel). **Avantages** : estimation robuste des performances, détection d'overfitting, utilisation optimale des données, réduction de la variance. **Métriques** : moyenne et écart-type des scores sur les k plis. **Applications** : sélection de modèles, tuning d'hyperparamètres, estimation de performance en production. **Coût** : k fois plus d'entraînements, mais investissement crucial pour la fiabilité. **Règle d'or** : k=5 ou k=10 pour un bon compromis biais-variance-coût computationnel.",
-    category: "machine-learning",
-    icon: "CheckCircle"
-  },
-  {
     term: "Random Forest",
-    description: "Random Forest fonctionne comme un conseil de sages où chaque expert (arbre) donne son avis sur une partie différente du problème, et la décision finale émerge du consensus collectif. **Principe** : construire une 'forêt' de nombreux arbres de décision entraînés sur des échantillons différents des données, puis agréger leurs prédictions. **Double randomisation** : 1) **Bootstrap sampling** (échantillons aléatoires avec remise), 2) **Feature bagging** (sous-ensemble aléatoire de variables à chaque nœud). **Avantages majeurs** : résistance à l'overfitting, gestion des valeurs manquantes, importance des variables, parallélisation naturelle, performance robuste sans tuning intensif. **Mécanisme de vote** : classification (majorité), régression (moyenne). **Applications** : finance (scoring crédit), médecine (diagnostic), écologie (prédiction espèces), e-commerce (recommandations). **Hyperparamètres clés** : nombre d'arbres (n_estimators), profondeur max, features par split. **Interprétabilité** : feature importance, partial dependence plots, SHAP values. **Comparaison** : plus robuste qu'un arbre unique, plus interprétable que les réseaux de neurones, souvent baseline de référence. **Inventeur** : Leo Breiman (2001), révolution dans l'apprentissage d'ensemble.",
+    description: `Une forêt aléatoire (Random Forest, Breiman, 2001) est un ensemble de nombreux arbres de décision entraînés sur des variantes des données, dont les prédictions sont agrégées : vote majoritaire en classification, moyenne en régression.
+
+**Deux sources d'aléa :**
+• Bagging : chaque arbre est entraîné sur un échantillon bootstrap (tirage avec remise) des observations.
+• Sous-ensemble de variables : à chaque nœud, seul un sous-ensemble aléatoire de variables est examiné pour la coupure (max_features), ce qui décorrèle les arbres.
+
+Moyenner des arbres peu corrélés réduit fortement la variance sans augmenter beaucoup le biais.
+
+**Estimation hors sac (OOB) :** environ 37 % des observations ne figurent pas dans l'échantillon d'un arbre donné ; leur prédiction par les arbres qui ne les ont pas vues donne une estimation de la performance sans jeu de validation séparé.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.ensemble import RandomForestClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+foret = RandomForestClassifier(n_estimators=200, oob_score=True, random_state=0).fit(X, y)
+print(round(foret.oob_score_, 3))   # exactitude estimée sur les observations « hors sac »
+# Affichage :
+# 0.965
+\`\`\`
+
+**Hyperparamètres principaux :** n_estimators (plus d'arbres est rarement nuisible, avec un coût de calcul croissant), max_depth, min_samples_leaf, max_features.
+
+**Atouts :** bonne performance sans réglage poussé, peu sensible à l'échelle des variables, relations non linéaires et interactions gérées, parallélisable.
+
+**Limites :**
+• Moins interprétable qu'un arbre seul. L'importance par impureté favorise les variables à nombreuses valeurs : préférer l'importance par permutation.
+• Modèle volumineux (mémoire, temps de prédiction).
+• En régression, pas d'extrapolation hors de la plage des valeurs vues.`,
     category: "machine-learning",
     icon: "TreePine"
   },
   {
     term: "Support Vector Machine (SVM)",
-    description: "SVM fonctionne comme un arbitre qui trace la ligne de démarcation la plus équitable entre deux équipes sur un terrain : il trouve l'hyperplan optimal qui sépare les classes en maximisant la 'zone de sécurité' (marge). **Principe géométrique** : identifier la frontière de décision qui maximise la distance aux points les plus proches de chaque classe (support vectors). **Analogie** : construire une autoroute avec la bande d'arrêt d'urgence la plus large possible entre deux villes. **Innovation clé** : le **kernel trick** transforme des problèmes non-linéaires en problèmes linéaires dans un espace de dimension supérieure. **Types de kernels** : linéaire (séparation droite), polynomial (courbes), RBF/Gaussien (formes complexes), sigmoïde (réseaux de neurones). **Avantages** : efficace en haute dimension, mémoire économique (seuls les support vectors), versatile (kernels), robuste aux outliers. **Applications** : classification de texte, reconnaissance d'images, bioinformatique, détection de fraudes. **Hyperparamètres** : C (régularisation), gamma (influence des points), kernel choice. **Défis** : sensible à l'échelle des features, pas de probabilités directes, choix du kernel. **Inventeurs** : Vapnik & Cortes (1995), fondement théorique solide (théorie de Vapnik-Chervonenkis).",
+    description: `Une machine à vecteurs de support (SVM, Cortes et Vapnik, 1995) sépare deux classes par l'hyperplan de marge maximale : la frontière qui laisse le plus grand écart entre elle et les points les plus proches de chaque classe, les vecteurs de support.
+
+**Principe :**
+• Marge dure si les classes sont séparables, marge souple sinon. Le paramètre C arbitre entre une marge large et peu d'erreurs de classement : C petit tolère plus d'erreurs, C grand en tolère peu et risque le surapprentissage.
+• Astuce du noyau (kernel trick) : un noyau calcule des produits scalaires dans un espace de dimension supérieure sans y aller explicitement, ce qui donne des frontières non linéaires. Noyaux courants : linéaire, polynomial, RBF avec son paramètre gamma (grand : influence locale, risque de surapprentissage).
+• Seuls les vecteurs de support définissent la frontière.
+
+**Sensible à l'échelle des variables :** normaliser est indispensable.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import cross_val_score
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+X, y = load_breast_cancer(return_X_y=True)
+print(cross_val_score(SVC(), X, y, cv=5).mean().round(3))
+print(cross_val_score(make_pipeline(StandardScaler(), SVC()), X, y, cv=5).mean().round(3))
+# Affichage :
+# 0.912
+# 0.974
+\`\`\`
+L'exactitude estimée passe de 0,912 sans normalisation à 0,974 avec.
+
+**Atouts :** efficace en grande dimension, frontières non linéaires possibles, bon sur des jeux de taille petite à moyenne.
+
+**Limites :**
+• Le temps d'entraînement croît plus vite que le carré du nombre d'exemples : peu adapté aux très gros jeux.
+• Pas de probabilités directes (probability=True ajoute un étalonnage de Platt, plus lent).
+• Choix du noyau, de C et de gamma par validation croisée.
+• Moins lisible qu'un arbre ou qu'un modèle linéaire.`,
     category: "machine-learning",
     icon: "Divide"
   },
   {
     term: "Hyperparameter Tuning",
-    description: "L'hyperparameter tuning fonctionne comme un chef cuisinier qui ajuste la température du four, le temps de cuisson et les épices pour perfectionner sa recette : on optimise les 'réglages' de l'algorithme qui ne sont pas appris automatiquement. **Différence clé** : contrairement aux paramètres (appris des données), les hyperparamètres sont des configurations externes qui contrôlent l'apprentissage. **Analogie** : régler une radio pour capter la meilleure fréquence - les stations (patterns) existent, mais il faut trouver les bons réglages. **Exemples d'hyperparamètres** : learning rate (vitesse d'apprentissage), nombre d'arbres (Random Forest), profondeur max (arbres), regularization strength (pénalité). **Techniques d'optimisation** : 1) **Grid Search** (exhaustif mais coûteux), 2) **Random Search** (efficace, exploration large), 3) **Bayesian Optimization** (intelligent, utilise l'historique), 4) **Hyperband** (early stopping adaptatif). **Processus** : définir l'espace de recherche → évaluer via cross-validation → sélectionner la meilleure combinaison. **Défis** : explosion combinatoire, coût computationnel, overfitting sur la validation. **Impact** : différence entre un modèle médiocre et excellent, parfois une amélioration sensible des performances. **Automatisation** : AutoML révolutionne ce processus fastidieux mais crucial.",
+    description: `Le réglage des hyperparamètres consiste à choisir les paramètres de configuration d'un algorithme, fixés avant l'entraînement et non appris à partir des données : profondeur d'un arbre, pas d'apprentissage, force de régularisation.
+
+**Paramètres et hyperparamètres :** les paramètres (coefficients, poids) sont appris pendant l'entraînement ; les hyperparamètres sont choisis par l'utilisateur et contrôlent l'apprentissage.
+
+**Méthodes de recherche :**
+• Grid search : toutes les combinaisons d'une grille ; exhaustive mais coûteuse.
+• Random search : combinaisons tirées au hasard ; souvent plus efficace à budget égal, car quelques hyperparamètres comptent beaucoup (Bergstra et Bengio, 2012).
+• Optimisation bayésienne : un modèle de la performance guide les essais suivants.
+• Successive halving et Hyperband : abandonnent tôt les configurations peu prometteuses.
+\`\`\`python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+
+X, y = load_iris(return_X_y=True)
+grille = {"C": [0.1, 1, 10], "gamma": [0.01, 0.1, 1]}
+recherche = GridSearchCV(SVC(), grille, cv=5).fit(X, y)
+print(recherche.best_params_, round(recherche.best_score_, 3))
+# Affichage :
+# {'C': 1, 'gamma': 0.1} 0.98
+\`\`\`
+
+**Démarche :** définir l'espace de recherche (souvent en échelle logarithmique pour C, alpha ou le pas d'apprentissage), évaluer chaque configuration par validation croisée, retenir la meilleure.
+
+**Pièges :**
+• Plus on essaie de combinaisons, plus le meilleur score est optimiste : garder un jeu de test final, ou utiliser une validation croisée imbriquée.
+• Les étapes apprises (normalisation...) doivent être dans le Pipeline, pour éviter une fuite de données.
+• Coût : paralléliser, chercher grossièrement puis finement.
+
+**En pratique :** partir des réglages par défaut, repérer les hyperparamètres influents avec les courbes de validation, puis affiner. Un réglage fin apporte souvent moins que de meilleures données ou de meilleures variables.`,
     category: "machine-learning",
     icon: "Settings"
   },
   {
     term: "Ensemble Methods",
-    description: "Les méthodes d'ensemble fonctionnent comme un jury de spécialistes où chaque expert apporte son expertise unique, et la décision collective surpasse celle de n'importe quel expert individuel. **Principe fondamental** : 'la sagesse des foules' - combiner plusieurs modèles faibles pour créer un prédicteur fort et robuste. **Analogie** : un orchestre symphonique où chaque musicien (modèle) joue sa partition, créant une harmonie (prédiction) plus riche que tout solo. **Trois stratégies principales** : 1) **Bagging** (Bootstrap Aggregating) - entraîner en parallèle sur différents échantillons, 2) **Boosting** - entraîner séquentiellement en corrigeant les erreurs, 3) **Stacking** - méta-modèle qui apprend à combiner les prédictions. **Algorithmes populaires** : Random Forest (bagging), XGBoost/AdaBoost (boosting), Voting Classifier (combinaison simple). **Avantages** : réduction de l'overfitting, amélioration de la généralisation, robustesse aux outliers, capture de patterns complémentaires. **Applications** : compétitions Kaggle (dominance), systèmes critiques (médecine, finance), recommandations (Netflix). **Théorie** : réduction simultanée du biais et de la variance. **Défis** : complexité computationnelle, interprétabilité réduite, risque de sur-complexification. **Impact** : révolution dans les performances ML, standard dans l'industrie.",
+    description: `Les méthodes d'ensemble combinent les prédictions de plusieurs modèles pour obtenir un modèle plus précis ou plus stable que chacun d'eux.
+
+**Pourquoi ça marche :** si les modèles font des erreurs en partie différentes, leur combinaison les compense. Il faut des modèles raisonnablement bons et diversifiés.
+
+**Trois stratégies :**
+• Bagging (Breiman, 1996) : modèles entraînés en parallèle sur des échantillons bootstrap, prédictions moyennées ou votées. Réduit surtout la variance. Exemple : la forêt aléatoire.
+• Boosting : modèles entraînés l'un après l'autre, chacun se concentrant sur les erreurs des précédents (AdaBoost, Freund et Schapire, 1997 ; boosting de gradient). Réduit surtout le biais.
+• Stacking (Wolpert, 1992) : un méta-modèle apprend à combiner les prédictions de modèles de natures différentes.
+
+Le vote simple (VotingClassifier) en est la forme la plus élémentaire.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+for modele in [DecisionTreeClassifier(random_state=0), RandomForestClassifier(random_state=0), GradientBoostingClassifier(random_state=0)]:
+    print(type(modele).__name__, cross_val_score(modele, X, y, cv=5).mean().round(3))
+# Affichage :
+# DecisionTreeClassifier 0.917
+# RandomForestClassifier 0.963
+# GradientBoostingClassifier 0.963
+\`\`\`
+Exactitude moyenne en validation croisée : un arbre seul fait moins bien que les deux ensembles.
+
+**Atouts :** meilleure généralisation, robustesse, souvent parmi les meilleures méthodes sur données tabulaires.
+
+**Limites :**
+• Coût de calcul et de mémoire, prédiction plus lente.
+• Interprétabilité réduite (on garde l'importance des variables et SHAP).
+• Le stacking demande une validation soignée : le méta-modèle doit être entraîné sur des prédictions hors échantillon, sinon il y a fuite de données.
+• Gain limité si les modèles se ressemblent trop.`,
     category: "machine-learning",
     icon: "Layers"
   },
   {
-    term: "AutoML",
-    description: "AutoML fonctionne comme un chef cuisinier expert qui automatise toute la préparation d'un repas : de la sélection des ingrédients (features) à la cuisson optimale (hyperparamètres), libérant le client de la complexité technique. **Vision** : démocratiser le Machine Learning en automatisant les tâches expertes traditionnellement réservées aux data scientists. **Analogie** : passer de la cuisine manuelle (ML traditionnel) à un robot culinaire intelligent qui optimise automatiquement chaque étape. **Processus automatisé** : 1) **Data preprocessing** (nettoyage, encodage), 2) **Feature engineering** (création, sélection), 3) **Model selection** (algorithmes), 4) **Hyperparameter tuning** (optimisation), 5) **Model evaluation** (validation). **Technologies clés** : Neural Architecture Search (NAS), Bayesian Optimization, Genetic Algorithms, Meta-learning. **Plateformes populaires** : Google AutoML, H2O.ai, Auto-sklearn, TPOT, DataRobot. **Avantages** : accessibilité (non-experts), rapidité (prototypage), performance (optimisation exhaustive), reproductibilité. **Limitations** : boîte noire, coût computationnel, manque de contrôle fin, domaines spécialisés. **Impact** : révolution de l'accessibilité ML, accélération du time-to-market, démocratisation de l'IA pour les entreprises.",
-    category: "machine-learning",
-    icon: "Settings"
-  },
-  {
     term: "Explainable AI (XAI)",
-    description: "L'Explainable AI fonctionne comme un médecin qui doit justifier son diagnostic : au lieu de dire simplement 'vous êtes malade', il explique les symptômes, analyses et raisonnements qui l'ont mené à cette conclusion. **Enjeu crucial** : transformer les 'boîtes noires' de l'IA en systèmes transparents et compréhensibles pour les humains. **Analogie** : passer d'un oracle mystérieux qui donne des réponses sans explication à un professeur qui détaille sa démarche. **Motivations** : 1) **Confiance** (acceptation utilisateur), 2) **Réglementation** (RGPD, secteurs critiques), 3) **Débogage** (amélioration modèles), 4) **Éthique** (biais, équité), 5) **Responsabilité** (décisions critiques). **Techniques principales** : LIME (approximation locale), SHAP (valeurs de Shapley), attention mechanisms (réseaux de neurones), feature importance (arbres), counterfactuals (scénarios alternatifs). **Types d'explications** : globales (comportement général), locales (prédiction spécifique), par exemple (cas similaires). **Applications critiques** : médecine (diagnostic), justice (sentences), finance (crédit), recrutement (sélection). **Défi** : équilibre entre performance et interprétabilité - les modèles les plus précis sont souvent les moins explicables. **Impact** : démocratisation de l'IA, acceptation sociale, conformité réglementaire.",
+    description: `L'IA explicable (XAI) regroupe les méthodes qui rendent compréhensibles les décisions d'un modèle, en particulier quand c'est une « boîte noire » comme un réseau profond ou un ensemble d'arbres.
+
+**Pourquoi expliquer :** vérifier que le modèle s'appuie sur des raisons valables, déboguer, détecter des biais, informer les personnes concernées, répondre à des exigences réglementaires (RGPD, règlement européen sur l'IA) et gagner la confiance des utilisateurs.
+
+**Deux approches :**
+• Modèles interprétables par construction : régression linéaire ou logistique, arbres de faible profondeur, règles.
+• Explications a posteriori d'un modèle opaque : importance par permutation, dépendance partielle, LIME (explication locale), SHAP (contributions de Shapley), contrefactuels (« quel changement minimal inverserait la décision ? »).
+
+**Portée :** explication globale (comportement général) ou locale (une prédiction).
+
+**Limites :**
+• Une explication approche le modèle sans le reproduire : elle peut être instable ou trompeuse.
+• Les variables corrélées compliquent l'attribution.
+• Les cartes d'attention ou de saillance ne prouvent pas que le modèle « raisonne » ainsi.
+• Une explication plausible peut donner une confiance injustifiée.
+• Le compromis entre performance et interprétabilité n'est pas systématique : sur des données tabulaires, un modèle simple égale parfois un modèle complexe.
+
+**En pratique :** prendre un modèle simple pour référence, tester les explications (cohérence, stabilité) et les confronter à l'avis d'experts du domaine.`,
     category: "machine-learning",
     icon: "Lightbulb"
   },
   {
     term: "Reinforcement Learning",
-    description: "Le Reinforcement Learning fonctionne comme l'apprentissage d'un enfant qui découvre le monde par essais-erreurs : l'agent apprend les meilleures actions en recevant des récompenses ou punitions de son environnement. **Paradigme** : pas de données étiquetées, mais un système de feedback (reward/penalty) qui guide l'apprentissage optimal. **Analogie** : dresser un animal avec des friandises - l'animal apprend quels comportements maximisent les récompenses. **Composants clés** : 1) **Agent** (apprenant), 2) **Environnement** (monde), 3) **Actions** (choix possibles), 4) **États** (situations), 5) **Récompenses** (feedback). **Processus** : observation → action → récompense → mise à jour de la politique → répétition. **Algorithmes majeurs** : Q-Learning (valeurs d'actions), Policy Gradient (politiques directes), Actor-Critic (hybride), Deep Q-Networks (DQN). **Applications révolutionnaires** : jeux (AlphaGo, StarCraft), robotique (manipulation), finance (trading), véhicules autonomes, recommandations personnalisées. **Défis** : exploration vs exploitation, récompenses parses, stabilité d'entraînement, généralisation. **Avantage unique** : apprend des stratégies optimales sans exemples préalables, juste par interaction et expérimentation. **Impact** : révolution dans l'IA autonome et la prise de décision séquentielle.",
+    description: `L'apprentissage par renforcement regroupe les méthodes où un agent apprend à agir dans un environnement par essais et erreurs, en cherchant à maximiser la somme des récompenses reçues.
+
+**Éléments :**
+• Agent, environnement, états, actions.
+• Récompense : signal numérique reçu après chaque action.
+• Politique π(s) : la façon dont l'agent choisit son action selon l'état.
+• Fonction de valeur : récompense cumulée attendue (actualisée par un facteur γ entre 0 et 1) à partir d'un état ou d'un couple état-action.
+
+**Exemple :** le Q-learning met à jour Q(s, a) ← Q(s, a) + α [r + γ max Q(s', a') − Q(s, a)]. Dans un couloir de 5 cases dont la dernière rapporte 1 (α = 0,5, γ = 0,9, exploration ε = 0,3), l'agent apprend à aller à droite, et les valeurs sont multipliées par γ à chaque case en s'éloignant de la sortie.
+\`\`\`python
+import numpy as np
+
+rng = np.random.default_rng(0)
+Q = np.zeros((5, 2))                  # 5 cases ; actions : 0 = gauche, 1 = droite
+for episode in range(200):
+    s = 0
+    while s != 4:                     # la case 4 rapporte 1
+        a = rng.integers(2) if rng.random() < 0.3 else Q[s].argmax()
+        s2 = min(s + 1, 4) if a else max(s - 1, 0)
+        r = float(s2 == 4)
+        Q[s, a] += 0.5 * (r + 0.9 * Q[s2].max() - Q[s, a])
+        s = s2
+print(Q[:4].argmax(axis=1), Q[:4, 1].round(2))
+# Affichage :
+# [1 1 1 1] [0.73 0.81 0.9  1.  ]
+\`\`\`
+
+**Familles d'algorithmes :**
+• Fondés sur les valeurs : Q-learning, DQN (Mnih et al., 2015, jeux Atari).
+• Fondés sur la politique : gradient de politique, PPO ; acteur-critique, qui combine les deux.
+• AlphaGo (Silver et al., 2016) associe apprentissage par renforcement, réseaux profonds et recherche arborescente.
+
+**Défis :**
+• Compromis exploration/exploitation (par exemple la stratégie ε-greedy).
+• Récompenses rares ou mal conçues : l'agent peut exploiter la règle sans atteindre l'objectif voulu.
+• Beaucoup d'interactions, souvent en simulation ; entraînement instable.
+
+**Usages :** jeux, robotique, optimisation de ressources, adaptation de modèles de langage (RLHF).`,
     category: "machine-learning",
     icon: "Target"
   },
   // Specific Algorithms
   {
     term: "Régression linéaire (Linear Regression)",
-    description: "La régression linéaire fonctionne comme tracer la meilleure ligne droite à travers un nuage de points pour prédire de nouvelles valeurs : elle modélise la relation entre variables par une équation mathématique simple. **Principe** : trouver la droite y = ax + b qui minimise l'erreur entre les prédictions et les vraies valeurs. **Analogie** : comme estimer le prix d'une maison selon sa surface - plus elle est grande, plus elle coûte cher, selon une relation approximativement linéaire. **Méthode des moindres carrés** : minimise la somme des carrés des résidus (distances verticales aux points). **Hypothèses clés** : 1) **Linéarité** (relation droite), 2) **Indépendance** (observations non corrélées), 3) **Homoscédasticité** (variance constante), 4) **Normalité** des résidus. **Extensions** : régression multiple (plusieurs variables), polynomiale (courbes), régularisée (Ridge, Lasso). **Avantages** : simplicité, interprétabilité, rapidité, pas d'hyperparamètres. **Limitations** : relations non-linéaires, sensibilité aux outliers, multicolinéarité. **Applications** : prédiction de prix, analyse de tendances, économétrie, sciences sociales. **Évaluation** : R², RMSE, MAE. **Fondement** : base de nombreux algorithmes plus complexes, premier modèle à prendre en main.",
+    description: `La régression linéaire modélise une variable numérique comme une combinaison linéaire de variables explicatives : y = β₀ + β₁ x₁ + ... + β_p x_p + erreur.
+
+**Estimation :** la méthode des moindres carrés ordinaires choisit les coefficients qui minimisent la somme des carrés des résidus (écarts entre valeurs observées et ajustées). Elle a une solution explicite, β = (XᵀX)⁻¹ Xᵀ y, quand XᵀX est inversible.
+\`\`\`python
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+x = np.array([[1], [2], [3], [4], [5]])
+y = np.array([3.1, 4.9, 7.2, 8.8, 11.1])
+modele = LinearRegression().fit(x, y)
+print(modele.coef_[0].round(2), modele.intercept_.round(2), round(modele.score(x, y), 3))
+print(modele.predict([[6]]).round(2))
+# Affichage :
+# 1.99 1.05 0.997
+# [12.99]
+\`\`\`
+La pente vaut environ 2 : chaque unité de x ajoute environ 2 à y.
+
+**Hypothèses (pour les inférences : intervalles, tests) :** relation linéaire, erreurs indépendantes et de variance constante (homoscédasticité), approximativement normales pour les tests exacts. Les prédictions n'exigent pas la normalité.
+
+**Interprétation :** chaque coefficient est l'effet moyen d'une unité de la variable sur y, les autres variables restant constantes. Corrélation n'est pas causalité.
+
+**Extensions :** régression multiple, polynomiale (variables transformées), régularisée (Ridge : pénalité L2 ; Lasso : pénalité L1, qui annule certains coefficients).
+
+**Limites :**
+• Relations non linéaires non captées sans transformation.
+• Sensible aux valeurs aberrantes et aux points à fort levier.
+• Multicolinéarité : coefficients instables.
+• Extrapolation hasardeuse hors de la plage observée.
+
+**Évaluation :** RMSE, MAE, R² sur des données de test, et examen des résidus. C'est un modèle de référence simple et lisible, à essayer avant les méthodes complexes.`,
     category: "machine-learning",
     icon: "LineChart"
   },
   {
     term: "Régression logistique (Logistic Regression)",
-    description: "La régression logistique fonctionne comme un interrupteur intelligent qui calcule la probabilité qu'un événement se produise : au lieu de prédire une valeur continue, elle estime la chance qu'une observation appartienne à une classe. **Principe** : utilise la fonction sigmoïde pour transformer n'importe quelle valeur en probabilité entre 0 et 1. **Analogie** : comme un médecin qui évalue la probabilité qu'un patient ait une maladie selon ses symptômes - pas juste 'oui/non' mais '75% de chances'. **Fonction logistique** : courbe en S qui 'écrase' les valeurs extrêmes vers 0 ou 1, évitant les prédictions impossibles (<0 ou >1). **Processus** : 1) Combinaison linéaire des features, 2) Transformation par sigmoïde, 3) Seuil de décision (généralement 0.5). **Avantages** : probabilités calibrées, pas d'hypothèses sur la distribution, robuste aux outliers, interprétable (odds ratios). **Extensions** : multinomiale (>2 classes), ordinale (classes ordonnées), régularisée (L1/L2). **Applications** : diagnostic médical, marketing (achat/non-achat), spam detection, A/B testing. **Évaluation** : accuracy, précision/rappel, AUC-ROC, log-loss. **Différence clé** : contrairement à la régression linéaire, prédit des probabilités, pas des valeurs continues. **Fondement** : base de nombreux algorithmes de classification modernes.",
+    description: `La régression logistique est un modèle de classification qui estime la probabilité d'appartenir à une classe. Malgré son nom, elle ne sert pas à prédire une valeur continue.
+
+**Principe :** elle calcule une combinaison linéaire z = β₀ + β₁ x₁ + ... des variables, puis la transforme en probabilité par la fonction sigmoïde : p = 1 / (1 + e^(−z)). De façon équivalente, le logarithme des cotes, log(p / (1 − p)), est linéaire en les variables.
+
+**Interprétation :** exp(β_j) est le facteur par lequel les cotes (odds) sont multipliées quand la variable j augmente d'une unité, les autres restant constantes.
+\`\`\`python
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+heures = np.array([[0.5], [1], [1.5], [2], [2.5], [3], [3.5], [4], [4.5], [5]])
+reussi = np.array([0, 0, 0, 0, 1, 0, 1, 1, 1, 1])
+modele = LogisticRegression().fit(heures, reussi)
+print(modele.predict_proba([[1], [3], [4.5]])[:, 1].round(2))
+print(np.exp(modele.coef_[0, 0]).round(2))
+# Affichage :
+# [0.11 0.58 0.89]
+# 3.4
+\`\`\`
+La probabilité de réussite passe de 0,11 à 0,89 selon le nombre d'heures ; chaque heure supplémentaire multiplie les cotes par 3,4 environ.
+
+**Ajustement :** par maximum de vraisemblance, donc en minimisant la perte logistique (entropie croisée). scikit-learn applique par défaut une régularisation L2 (paramètre C).
+
+**Décision :** on compare p à un seuil (0,5 par convention), à régler selon les coûts des erreurs.
+
+**Extensions :** multinomiale (softmax) pour plusieurs classes, régularisations L1 et L2.
+
+**Atouts :** rapide, lisible, probabilités souvent correctes, bonne référence.
+
+**Limites :**
+• Frontière de décision linéaire : ajouter des interactions ou des transformations, sinon sous-apprentissage.
+• Variables corrélées : coefficients instables.
+• Classes parfaitement séparables : les coefficients divergent sans régularisation.
+• Normaliser les variables quand on régularise.`,
     category: "machine-learning",
     icon: "Target"
   },
   {
     term: "k-plus proches voisins (k-Nearest Neighbors - k-NN)",
-    description: "k-NN fonctionne comme demander conseil à ses voisins les plus proches : pour prendre une décision, on regarde ce que font les k personnes les plus similaires dans notre entourage et on suit la majorité. **Principe** : 'dis-moi qui sont tes voisins, je te dirai qui tu es' - classification basée sur la proximité dans l'espace des features. **Analogie** : déménager dans un nouveau quartier et deviner le parti politique dominant en regardant les panneaux des 5 maisons les plus proches. **Processus** : 1) Calculer la distance à tous les points d'entraînement, 2) Sélectionner les k plus proches, 3) Vote majoritaire (classification) ou moyenne (régression). **Métriques de distance** : euclidienne (géométrique), Manhattan (grille urbaine), Minkowski (généralisation), Hamming (catégorielles). **Choix de k** : k petit (sensible au bruit), k grand (lisse mais peut ignorer les patterns locaux). **Avantages** : simplicité conceptuelle, pas d'hypothèses sur les données, adaptatif aux patterns locaux, fonctionne avec données non-linéaires. **Inconvénients** : coûteux en prédiction (O(n)), sensible à la dimensionnalité (curse of dimensionality), nécessite normalisation des features. **Applications** : systèmes de recommandation, reconnaissance de formes, détection d'anomalies. **Optimisations** : structures d'indexation (KD-tree, Ball-tree), approximations (LSH).",
+    description: `La méthode des k plus proches voisins (k-NN) prédit la classe ou la valeur d'une observation à partir des k observations d'entraînement les plus proches d'elle : vote majoritaire en classification, moyenne en régression.
+
+**Principe :**
+1. Calculer la distance de la nouvelle observation à tous les points d'entraînement.
+2. Retenir les k plus proches.
+3. Voter (classification) ou moyenner (régression), éventuellement avec des poids selon la distance.
+
+Il n'y a pas d'entraînement au sens strict : le modèle mémorise les données (apprentissage « paresseux »).
+
+**Choix de k :** k petit donne une frontière irrégulière, sensible au bruit (variance élevée) ; k grand une frontière lisse, avec plus de biais. On choisit k par validation croisée ; en binaire, un k impair évite les égalités.
+
+**Distances :** euclidienne (par défaut), Manhattan, Minkowski, cosinus, Hamming pour des variables catégorielles.
+
+**Mettre les variables à l'échelle :** une variable de grande amplitude domine la distance. Sur le jeu « wine », exactitude moyenne en validation croisée sans, puis avec normalisation :
+\`\`\`python
+from sklearn.datasets import load_wine
+from sklearn.model_selection import cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_wine(return_X_y=True)
+brut = KNeighborsClassifier(n_neighbors=5)
+normalise = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5))
+print(cross_val_score(brut, X, y, cv=5).mean().round(3), cross_val_score(normalise, X, y, cv=5).mean().round(3))
+# Affichage :
+# 0.691 0.949
+\`\`\`
+
+**Atouts :** simple, aucune hypothèse sur la forme des données, frontières non linéaires.
+
+**Limites :**
+• Prédiction lente sur de grands jeux, sauf avec un index (KD-tree, Ball tree).
+• Fléau de la dimension : en grande dimension, les distances perdent leur sens.
+• Il faut conserver tout le jeu d'entraînement.
+• Sensible aux variables non pertinentes.`,
     category: "machine-learning",
     icon: "Users"
   },
   {
     term: "Arbres de décision (Decision Trees)",
-    description: "Les arbres de décision fonctionnent comme un questionnaire médical où chaque question mène à la suivante selon la réponse, jusqu'à arriver au diagnostic final : l'algorithme pose une série de questions binaires pour classifier ou prédire. **Structure** : racine (première question), nœuds internes (questions), feuilles (décisions finales). **Analogie** : comme le jeu '20 questions' où on devine un objet en posant des questions oui/non optimales. **Construction** : 1) Choisir la meilleure question (feature + seuil), 2) Diviser les données, 3) Répéter récursivement sur chaque branche. **Critères de division** : Gini impurity (classification), entropie (information gain), MSE (régression) - on cherche à maximiser la 'pureté' des groupes. **Avantages majeurs** : interprétabilité totale (règles if-then), gestion automatique des interactions, pas de preprocessing, robuste aux outliers, gère les données manquantes. **Inconvénients** : instabilité (petits changements → arbres différents), overfitting facile, biais vers features avec plus de valeurs. **Techniques de régularisation** : profondeur max, nombre min d'échantillons par feuille, pruning (élagage). **Applications** : diagnostic médical, scoring crédit, systèmes experts, analyse exploratoire. **Extensions** : Random Forest (ensemble), Gradient Boosting (séquentiel). **Visualisation** : graphiques intuitifs, règles explicites.",
+    description: `Un arbre de décision prédit en posant une suite de questions simples sur les variables (« largeur du pétale ≤ 0,8 cm ? »). Chaque nœud interne teste une variable, chaque branche une réponse, chaque feuille donne la prédiction.
+
+**Construction (CART, Breiman et al., 1984) :** à chaque nœud, on cherche la variable et le seuil qui rendent les deux sous-groupes les plus homogènes possible, puis on recommence sur chaque sous-groupe jusqu'à un critère d'arrêt. Critères d'impureté : Gini (1 − Σ p_k²) ou entropie (−Σ p_k log₂ p_k) en classification, variance (MSE) en régression.
+\`\`\`python
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, export_text
+
+iris = load_iris()
+arbre = DecisionTreeClassifier(max_depth=2, random_state=0).fit(iris.data, iris.target)
+print(export_text(arbre, feature_names=list(iris.feature_names)))
+# Affichage :
+# |--- petal width (cm) <= 0.80
+# |   |--- class: 0
+# |--- petal width (cm) >  0.80
+# |   |--- petal width (cm) <= 1.75
+# |   |   |--- class: 1
+# |   |--- petal width (cm) >  1.75
+# |   |   |--- class: 2
+\`\`\`
+
+**Atouts :**
+• Très lisible : des règles « si... alors ».
+• Pas de normalisation des variables ; relations non linéaires et interactions captées.
+• Peu sensible aux valeurs aberrantes dans les variables explicatives.
+
+**Limites :**
+• Instable : un petit changement dans les données peut changer l'arbre.
+• Surapprentissage facile quand l'arbre est profond.
+• Coupures par paliers : approximation grossière des relations lisses, pas d'extrapolation.
+• L'importance par impureté favorise les variables à nombreuses valeurs.
+
+**Régularisation :** limiter max_depth, imposer min_samples_leaf, élaguer (ccp_alpha).
+
+**Extensions :** forêts aléatoires et boosting de gradient, qui combinent de nombreux arbres.`,
     category: "machine-learning",
     icon: "TreePine"
   },
   {
     term: "Boosting de gradient (Gradient Boosting)",
-    description: "Le Gradient Boosting fonctionne comme une équipe de correcteurs qui travaillent en séquence : chaque nouveau correcteur se concentre spécifiquement sur les erreurs laissées par ses prédécesseurs, créant progressivement une solution de plus en plus précise. **Principe révolutionnaire** : au lieu d'entraîner des modèles indépendamment (comme Random Forest), on construit une chaîne de modèles faibles où chacun apprend des erreurs du précédent. **Analogie** : comme un étudiant qui refait un examen en se concentrant uniquement sur les questions qu'il a ratées la première fois. **Processus itératif** : 1) Modèle initial (souvent une simple moyenne), 2) Calcul des résidus (erreurs), 3) Nouveau modèle pour prédire ces résidus, 4) Ajout pondéré à l'ensemble, 5) Répétition. **Gradient descent** : optimise une fonction de perte en suivant la direction de plus forte diminution de l'erreur. **Algorithmes populaires** : XGBoost (eXtreme), LightGBM (Microsoft), CatBoost (Yandex), scikit-learn GradientBoosting. **Avantages** : performance exceptionnelle, gestion des données manquantes, feature importance, flexibilité (classification/régression). **Hyperparamètres clés** : learning rate (vitesse d'apprentissage), n_estimators (nombre d'itérations), max_depth (complexité des arbres). **Applications dominantes** : compétitions Kaggle, finance (scoring), publicité (CTR), e-commerce. **Risques** : overfitting (contrôlé par early stopping), sensibilité aux hyperparamètres, temps d'entraînement. **Impact** : révolution des performances ML, standard industriel pour les données tabulaires.",
+    description: `Le boosting de gradient (Friedman, 2001) construit un modèle en ajoutant, l'un après l'autre, de petits modèles (en général des arbres peu profonds), chacun entraîné à corriger les erreurs de l'ensemble actuel.
+
+**Principe :** on part d'une prédiction simple (la moyenne). À chaque étape, on calcule les résidus (pour la perte quadratique, l'opposé du gradient de la perte), on entraîne un petit arbre à les prédire, puis on l'ajoute au modèle multiplié par un pas d'apprentissage (shrinkage). Pour d'autres pertes, l'arbre ajuste l'opposé du gradient.
+\`\`\`python
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor
+
+x = np.linspace(-3, 3, 60).reshape(-1, 1)
+y = x.ravel() ** 2
+prediction = np.full_like(y, y.mean())                 # modèle initial : la moyenne
+print(0, round(np.mean((y - prediction) ** 2), 2))
+for etape in range(1, 4):
+    arbre = DecisionTreeRegressor(max_depth=2).fit(x, y - prediction)   # on prédit les résidus
+    prediction = prediction + 0.5 * arbre.predict(x)                    # pas d'apprentissage 0,5
+    print(etape, round(np.mean((y - prediction) ** 2), 2))
+# Affichage :
+# 0 7.69
+# 1 3.11
+# 2 1.46
+# 3 0.65
+\`\`\`
+L'erreur quadratique moyenne passe de 7,69 à 0,65 en trois étapes (colonnes : étape, erreur).
+
+**Différence avec la forêt aléatoire :** les arbres sont construits en série pour réduire le biais, au lieu d'être moyennés en parallèle pour réduire la variance.
+
+**Hyperparamètres clés :** learning_rate (petit, avec davantage d'arbres), n_estimators (avec arrêt précoce sur un jeu de validation), max_depth (arbres peu profonds), sous-échantillonnage.
+
+**Implémentations :** GradientBoosting et HistGradientBoosting (scikit-learn), XGBoost (Chen et Guestrin, 2016), LightGBM (Ke et al., 2017), CatBoost (Prokhorenkova et al., 2018).
+
+**Atouts :** sur des données tabulaires de taille moyenne, les modèles à base d'arbres surpassent souvent les réseaux de neurones (Grinsztajn et al., 2022).
+
+**Limites :** surapprentissage si trop d'arbres (arrêt précoce, régularisation) ; sensibilité aux hyperparamètres ; moins interprétable (SHAP, importance par permutation) ; étiquettes bruitées nuisibles, car chaque arbre corrige aussi le bruit.`,
     category: "machine-learning",
     icon: "TrendingUp"
   },
   {
     term: "Clustering k-moyennes (k-Means Clustering)",
-    description: "K-Means fonctionne comme un organisateur de soirée qui doit répartir les invités en k groupes de tables où chaque personne se sent le plus à l'aise possible avec ses voisins de table. **Principe** : partitionner n observations en k clusters où chaque observation appartient au cluster dont le centroïde (centre) est le plus proche. **Analogie géographique** : comme diviser une ville en k quartiers où chaque maison est rattachée au centre commercial le plus proche. **Algorithme itératif** : 1) **Initialisation** (placer k centroïdes aléatoirement), 2) **Assignation** (chaque point rejoint le centroïde le plus proche), 3) **Mise à jour** (recalculer les centroïdes comme moyenne des points assignés), 4) **Répétition** jusqu'à convergence. **Fonction objectif** : minimiser la somme des carrés intra-cluster (WCSS - Within-Cluster Sum of Squares). **Choix de k** : méthode du coude (elbow method), silhouette score, gap statistic. **Avantages** : simplicité conceptuelle, efficacité computationnelle O(nkt), garantie de convergence, parallélisable. **Limitations** : nécessite de spécifier k à l'avance, sensible à l'initialisation (k-means++), assume des clusters sphériques, sensible aux outliers et à l'échelle des variables. **Applications** : segmentation client, compression d'images, préprocessing, analyse de marché. **Variantes** : k-means++, mini-batch k-means, fuzzy c-means. **Preprocessing crucial** : normalisation des features, gestion des outliers.",
+    description: `L'algorithme k-means partitionne n observations en k groupes en associant chacune au centre (centroïde) le plus proche. Il minimise l'inertie : la somme des carrés des distances de chaque point au centre de son groupe.
+
+**Algorithme de Lloyd :**
+1. Choisir k centres initiaux (k-means++ les espace, Arthur et Vassilvitskii, 2007).
+2. Affecter chaque point au centre le plus proche.
+3. Recalculer chaque centre comme la moyenne de ses points.
+4. Répéter 2 et 3 jusqu'à stabilité.
+
+L'inertie diminue à chaque itération : l'algorithme converge, mais vers un minimum local qui dépend de l'initialisation (d'où n_init, plusieurs initialisations).
+\`\`\`python
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.datasets import load_iris
+
+X, _ = load_iris(return_X_y=True)
+km = KMeans(n_clusters=3, n_init=10, random_state=0).fit(X)
+print(np.bincount(km.labels_), round(km.inertia_, 1))
+# Affichage :
+# [62 50 38] 78.9
+\`\`\`
+Les effectifs des trois groupes d'iris trouvés sont 62, 50 et 38 (l'ordre des groupes est arbitraire), pour une inertie de 78,9.
+
+**Choix de k :** méthode du coude sur l'inertie (qui baisse toujours quand k augmente), coefficient de silhouette, besoin métier.
+
+**Atouts :** simple, rapide (coût proportionnel à n × k × d par itération), adapté aux gros jeux avec la variante mini-batch.
+
+**Limites :**
+• Il faut fixer k.
+• Groupes supposés compacts, de tailles proches et de forme sphérique : échec sur des formes allongées ou en croissant (voir DBSCAN).
+• Sensible aux valeurs aberrantes et à l'échelle des variables : normaliser.
+• Distances euclidiennes : peu adapté aux variables catégorielles (variante k-modes) et à la grande dimension.`,
     category: "machine-learning",
     icon: "Layers"
   },
   {
     term: "Clustering hiérarchique (Hierarchical Clustering)",
-    description: "**L'arbre généalogique des données !** Comme construire un arbre familial qui montre comment les individus se regroupent en familles, puis en clans, puis en tribus - le clustering hiérarchique révèle la structure naturelle d'imbrication des groupes dans les données.\n\n**🌳 Analogie Généalogique :**\nImaginez reconstituer l'arbre généalogique de l'humanité : on peut partir des individus et les regrouper progressivement (agglomératif) ou partir de l'humanité entière et la diviser progressivement (divisif).\n\n**🎯 Deux Approches Fondamentales :**\n\n**🔼 Agglomératif (Bottom-Up) - Le Plus Populaire :**\n• **Départ** : Chaque point = un cluster individuel\n• **Processus** : Fusionner itérativement les clusters les plus proches\n• **Fin** : Un seul cluster contenant tous les points\n• **Avantage** : Plus stable et déterministe\n\n**🔽 Divisif (Top-Down) - Plus Rare :**\n• **Départ** : Tous les points dans un seul cluster\n• **Processus** : Diviser itérativement les clusters les plus hétérogènes\n• **Fin** : Chaque point dans son propre cluster\n• **Avantage** : Efficace si on veut peu de clusters\n\n**📏 Métriques de Distance :**\n\n**Entre Points :**\n- **Euclidienne** : Distance géométrique classique\n- **Manhattan** : Distance en 'blocs de ville'\n- **Cosinus** : Angle entre vecteurs (orientation)\n- **Hamming** : Différences pour données catégorielles\n\n**Entre Clusters (Linkage) :**\n- **Single** : Distance minimale entre points des clusters\n- **Complete** : Distance maximale entre points des clusters\n- **Average** : Distance moyenne entre tous les points\n- **Ward** : Minimise la variance intra-cluster\n\n**🌲 Le Dendrogramme - Visualisation Magique :**\n\n```\n    Dendrogramme\n        │\n    ┌───┴───┐\n    │       │\n  ┌─┴─┐   ┌─┴─┐\n  │   │   │   │\n  A   B   C   D\n```\n\n**Lecture** : Plus la fusion est haute, plus les clusters sont différents\n**Coupe** : Ligne horizontale = nombre de clusters souhaité\n**Hauteur** : Indique la dissimilarité au moment de la fusion\n\n**⚡ Avantages Uniques :**\n\n**Pas de K Prédéfini :**\n- **Flexibilité** : Explore tous les nombres de clusters possibles\n- **Dendrogramme** : Visualisation complète de la structure\n- **Décision Post-hoc** : Choix du nombre optimal après analyse\n\n**Structure Révélée :**\n- **Hiérarchie Naturelle** : Groupes, sous-groupes, sous-sous-groupes\n- **Clusters Imbriqués** : Relations entre différents niveaux\n- **Stabilité** : Résultats reproductibles (agglomératif)\n\n**Interprétabilité :**\n- **Processus Transparent** : Chaque étape de fusion visible\n- **Justification** : Pourquoi certains points sont groupés\n- **Exploration** : Navigation dans différents niveaux de granularité\n\n**⚠️ Limitations et Défis :**\n\n**Complexité Computationnelle :**\n- **Temps** : O(n³) pour l'algorithme naïf\n- **Mémoire** : O(n²) pour stocker la matrice de distances\n- **Scalabilité** : Difficile avec >10,000 points\n\n**Sensibilités :**\n- **Outliers** : Points aberrants peuvent créer des clusters artificiels\n- **Échelle** : Variables avec grandes valeurs dominent\n- **Forme** : Assume des clusters compacts (sauf single linkage)\n\n**Choix Critiques :**\n- **Métrique de Distance** : Impact majeur sur les résultats\n- **Linkage Criterion** : Détermine la forme des clusters\n- **Nombre de Clusters** : Subjectif malgré les métriques\n\n**🛠️ Implémentation Pratique :**\n\n```python\nfrom scipy.cluster.hierarchy import dendrogram, linkage, fcluster\nfrom sklearn.cluster import AgglomerativeClustering\nimport matplotlib.pyplot as plt\n\n# Clustering hiérarchique\nlinkage_matrix = linkage(data, method='ward')\n\n# Visualisation du dendrogramme\ndendrogram(linkage_matrix)\nplt.show()\n\n# Extraction des clusters\nclusters = fcluster(linkage_matrix, t=3, criterion='maxclust')\n```\n\n**🎯 Applications Optimales :**\n\n**Biologie et Médecine :**\n- **Phylogénie** : Arbres évolutionnaires des espèces\n- **Génomique** : Classification des gènes par fonction\n- **Épidémiologie** : Propagation de maladies\n\n**Sciences Sociales :**\n- **Sociologie** : Groupes sociaux et communautés\n- **Psychologie** : Classification des personnalités\n- **Linguistique** : Familles de langues\n\n**Business et Marketing :**\n- **Segmentation Client** : Hiérarchie de segments\n- **Analyse Concurrentielle** : Groupes de concurrents\n- **Organisation** : Structure hiérarchique optimale\n\n**📊 Métriques d'Évaluation :**\n\n**Cohésion Interne :**\n- **Silhouette Score** : Qualité globale du clustering\n- **Calinski-Harabasz** : Ratio variance inter/intra\n- **Davies-Bouldin** : Compacité et séparation\n\n**Stabilité :**\n- **Cophenetic Correlation** : Fidélité du dendrogramme\n- **Bootstrap** : Robustesse aux variations d'échantillon\n\n**💡 Stratégies d'Optimisation :**\n\n**Preprocessing :**\n- **Normalisation** : StandardScaler, MinMaxScaler\n- **Réduction Dimensionnelle** : PCA avant clustering\n- **Outlier Detection** : Isolation Forest, Z-score\n\n**Choix Algorithmiques :**\n- **Ward** : Clusters compacts et équilibrés\n- **Complete** : Clusters compacts mais peut créer des chaînes\n- **Average** : Compromis entre single et complete\n- **Single** : Détecte les formes allongées mais sensible au bruit\n\n**🚀 Variantes Avancées :**\n\n**BIRCH (Balanced Iterative Reducing and Clustering using Hierarchies) :**\n- **Scalabilité** : Gère de très gros datasets\n- **Mémoire** : Structure d'arbre compacte\n- **Streaming** : Traitement de données en flux\n\n**Clustering Hiérarchique Flou :**\n- **Appartenance Partielle** : Points peuvent appartenir à plusieurs clusters\n- **Incertitude** : Quantification de l'ambiguïté\n\n**📈 Exemple Concret - E-commerce :**\n\n**Contexte** : Segmentation de 50,000 clients d'un site e-commerce\n\n**Variables** : Fréquence d'achat, montant moyen, ancienneté, catégories préférées\n\n**Processus** :\n1. **Preprocessing** : Normalisation, gestion des outliers\n2. **Clustering** : Ward linkage sur distance euclidienne\n3. **Dendrogramme** : Révèle 5 segments naturels\n4. **Validation** : Silhouette score = 0.73\n\n**Résultats** :\n- **VIP** (2%) : Gros acheteurs fidèles\n- **Réguliers** (15%) : Achats fréquents, montants moyens\n- **Occasionnels** (35%) : Achats saisonniers\n- **Nouveaux** (25%) : Récents, potentiel incertain\n- **Dormants** (23%) : Inactifs, à réactiver\n\n**Intérêt** : adapter l'action marketing à chaque segment (exemple illustratif, chiffres fictifs)\n\n**🎯 Règles de Décision :**\n- **< 1,000 points** → Hiérarchique (exploration complète)\n- **> 10,000 points** → K-means puis hiérarchique sur centroïdes\n- **Structure inconnue** → Hiérarchique pour découverte\n- **K connu** → K-means plus efficace\n- **Interprétabilité cruciale** → Hiérarchique obligatoire",
+    description: `Le clustering hiérarchique construit une hiérarchie de groupes emboîtés, représentée par un arbre appelé dendrogramme.
+
+**Deux approches :**
+• Agglomératif (ascendant) : chaque point forme d'abord un groupe, puis on fusionne à chaque étape les deux groupes les plus proches. C'est la forme la plus courante.
+• Divisif (descendant) : on part d'un seul groupe et on le divise.
+
+**Distance entre groupes (linkage) :**
+• Single : distance minimale entre deux points des groupes (peut former des chaînes).
+• Complete : distance maximale (groupes compacts).
+• Average : moyenne des distances entre paires de points.
+• Ward : fusionne les groupes qui augmentent le moins la variance intra-groupe (distances euclidiennes).
+
+**Dendrogramme :** la hauteur d'une fusion est la distance à laquelle elle a lieu. On coupe l'arbre à une hauteur pour obtenir un nombre de groupes ; un grand saut de hauteur suggère un bon point de coupe.
+\`\`\`python
+import numpy as np
+from scipy.cluster.hierarchy import fcluster, linkage
+
+points = np.array([[1.0], [2.0], [6.0], [7.0], [15.0]])
+fusions = linkage(points, method="average")   # colonnes : cluster a, cluster b, distance, taille
+print(fusions.round(2))
+print(fcluster(fusions, t=3, criterion="maxclust"))
+# Affichage :
+# [[ 0.  1.  1.  2.]
+#  [ 2.  3.  1.  2.]
+#  [ 5.  6.  5.  4.]
+#  [ 4.  7. 11.  5.]]
+# [1 1 2 2 3]
+\`\`\`
+Chaque ligne de la matrice décrit une fusion (groupes a et b, distance, taille). Les deux paires de points proches fusionnent à la distance 1 ; le point isolé 15 est rattaché en dernier.
+
+**Atouts :** pas de nombre de groupes à fixer d'avance, structure à plusieurs échelles.
+
+**Limites :**
+• Mémoire de l'ordre de n² (matrice des distances) et temps d'au moins n² : peu adapté aux très gros jeux.
+• Une fusion ne se défait pas.
+• Sensible aux valeurs aberrantes et au choix de la distance et du linkage.`,
     category: "machine-learning",
     icon: "Layers"
   },
   {
     term: "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
-    description: "DBSCAN fonctionne comme un **détective urbain** qui identifie les quartiers densément peuplés d'une ville en ignorant les maisons isolées - il découvre automatiquement des clusters de forme arbitraire en se basant uniquement sur la densité locale des points. **Principe révolutionnaire** : contrairement à K-means qui impose des formes sphériques, DBSCAN peut détecter des clusters en forme de croissant, spirale, ou toute forme complexe. **Analogie géographique** : imaginez identifier les centres-villes (zones denses) vs les banlieues (zones éparses) vs les maisons isolées (bruit) sans connaître à l'avance le nombre de villes. **Deux paramètres critiques** : 1) **ε (epsilon)** - rayon de voisinage (distance maximale entre points voisins), 2) **MinPts** - nombre minimum de points pour former un cluster dense. **Classification des points** : **Core points** (≥ MinPts voisins dans rayon ε), **Border points** (< MinPts voisins mais dans le voisinage d'un core point), **Noise points** (outliers isolés). **Algorithme** : 1) Pour chaque point non visité, 2) Si c'est un core point, créer un nouveau cluster et ajouter tous ses voisins densément connectés, 3) Marquer les points isolés comme bruit. **Avantages uniques** : pas besoin de spécifier le nombre de clusters K, détecte automatiquement les outliers, gère les formes complexes, robuste au bruit, déterministe. **Défis** : sensible au choix d'ε et MinPts, difficulté avec des densités variables, complexité O(n log n) avec index spatial. **Applications optimales** : détection d'anomalies (fraude, intrusion), analyse d'images (segmentation), géolocalisation (zones d'activité), bioinformatique (analyse de séquences), réseaux sociaux (communautés). **Choix des paramètres** : k-distance plot pour ε optimal, MinPts ≈ 2×dimensions comme règle empirique. **Variantes** : OPTICS (densités multiples), HDBSCAN (hiérarchique), ST-DBSCAN (spatio-temporel). **Cas d'usage parfait** : quand la forme des clusters est inconnue et que la détection d'outliers est cruciale.",
+    description: `DBSCAN (Ester et al., 1996) est un algorithme de clustering fondé sur la densité : un groupe est une région dense de points, séparée des autres par des zones peu denses. Les points isolés sont étiquetés comme bruit.
+
+**Paramètres :**
+• eps (ε) : rayon du voisinage.
+• min_samples (MinPts) : nombre minimal de points dans ce voisinage pour qu'un point soit « dense ».
+
+**Types de points :**
+• Point central (core) : au moins min_samples points dans son voisinage ε.
+• Point de bordure : dans le voisinage d'un point central, sans être central.
+• Bruit : ni l'un ni l'autre (étiquette −1 dans scikit-learn).
+
+Un groupe rassemble des points centraux voisins les uns des autres et leurs points de bordure.
+
+**Atouts :** pas de nombre de groupes à fixer, formes quelconques, détection du bruit, coût de l'ordre de n log n avec un index spatial.
+\`\`\`python
+from sklearn.cluster import DBSCAN, KMeans
+from sklearn.datasets import make_moons
+from sklearn.metrics import adjusted_rand_score
+
+X, y = make_moons(n_samples=300, noise=0.05, random_state=0)
+db = DBSCAN(eps=0.2, min_samples=5).fit(X)
+km = KMeans(n_clusters=2, n_init=10, random_state=0).fit(X)
+print(len(set(db.labels_) - {-1}), (db.labels_ == -1).sum())
+print(round(adjusted_rand_score(y, db.labels_), 2), round(adjusted_rand_score(y, km.labels_), 2))
+# Affichage :
+# 2 0
+# 1.0 0.24
+\`\`\`
+Sur deux croissants de lune, DBSCAN retrouve les deux groupes sans bruit (indice de Rand ajusté 1,0), alors que k-means les coupe mal (0,24).
+
+**Choix des paramètres :** pour eps, tracer la distance au k-ième plus proche voisin, triée, et chercher le coude. Pour min_samples, règle empirique : au moins le nombre de dimensions + 1.
+
+**Limites :**
+• Sensible à eps et à min_samples.
+• Difficulté quand les densités des groupes diffèrent (OPTICS et HDBSCAN s'y prêtent mieux).
+• Normaliser les variables ; la dimension élevée dégrade les distances.`,
     category: "machine-learning",
     icon: "Layers"
   },
   {
     term: "Naive Bayes",
-    description: "Naive Bayes fonctionne comme un détective qui évalue la probabilité qu'un suspect soit coupable en combinant tous les indices disponibles, en supposant (naïvement) que chaque indice est indépendant des autres. **Fondement mathématique** : applique le théorème de Bayes P(A|B) = P(B|A) × P(A) / P(B) pour calculer la probabilité d'appartenance à chaque classe. **Hypothèse 'naïve'** : toutes les features sont conditionnellement indépendantes - c'est pourquoi il est 'naïf', mais cette simplification fonctionne étonnamment bien en pratique. **Analogie médicale** : un médecin qui diagnostique en considérant chaque symptôme indépendamment (fièvre, toux, fatigue) pour calculer la probabilité de chaque maladie. **Processus** : 1) Calculer les probabilités a priori de chaque classe, 2) Calculer les vraisemblances de chaque feature, 3) Appliquer Bayes pour obtenir les probabilités a posteriori, 4) Choisir la classe avec la plus haute probabilité. **Variantes** : Gaussian (features continues), Multinomial (comptages), Bernoulli (binaire), Complement (classes déséquilibrées). **Avantages** : simplicité, rapidité, fonctionne avec peu de données, gère naturellement les classes multiples, probabilités calibrées, robuste au bruit. **Applications stars** : classification de texte (spam, sentiment), diagnostic médical, filtrage de contenu, reconnaissance de formes. **Limitations** : hypothèse d'indépendance souvent violée, sensible aux features corrélées, nécessite un lissage pour les probabilités nulles. **Performance surprenante** : malgré sa simplicité, souvent compétitif avec des algorithmes plus sophistiqués, surtout en NLP.",
+    description: `Naive Bayes est une famille de classifieurs probabilistes fondés sur le théorème de Bayes avec une hypothèse « naïve » : les variables sont indépendantes entre elles, conditionnellement à la classe.
+
+**Principe :** P(classe | x) ∝ P(classe) × Π P(x_i | classe). On calcule ce score pour chaque classe et on retient la plus probable. P(classe) est la fréquence de la classe ; P(x_i | classe) est estimée par comptage ou par une loi.
+
+**Variantes :**
+• Gaussien : variables continues, supposées gaussiennes dans chaque classe.
+• Multinomial : comptages (occurrences de mots).
+• Bernoulli : variables binaires (mot présent ou non).
+• Complement : adapté aux classes déséquilibrées.
+
+**Lissage de Laplace :** on ajoute un petit compte (alpha = 1 par défaut en scikit-learn) pour qu'un mot jamais vu dans une classe n'annule pas toute la probabilité.
+\`\`\`python
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+textes = ["gagnez un prix maintenant", "prix gratuit cliquez", "réunion demain à dix heures",
+          "ordre du jour de la réunion", "cliquez pour gagner"]
+etiquettes = ["spam", "spam", "normal", "normal", "spam"]
+vec = CountVectorizer()
+modele = MultinomialNB().fit(vec.fit_transform(textes), etiquettes)
+print(modele.classes_, modele.predict_proba(vec.transform(["gagnez un prix gratuit"])).round(2))
+# Affichage :
+# ['normal' 'spam'] [[0.03 0.97]]
+\`\`\`
+Le message « gagnez un prix gratuit » est classé spam avec une probabilité de 0,97.
+
+**Atouts :** très rapide, fonctionne avec peu de données et en grande dimension, bonne référence pour le texte (voir Sac de mots).
+
+**Limites :**
+• L'indépendance est rarement vraie : avec des variables corrélées, une même information est comptée plusieurs fois.
+• Les probabilités sont en général mal calibrées (trop proches de 0 ou de 1) : il classe souvent bien, mais ses probabilités ne se lisent pas au pied de la lettre.
+• Il ne capte pas les interactions entre variables.`,
     category: "machine-learning",
     icon: "Brain"
   },
   // Advanced ML Concepts
   {
     term: "Détection d'anomalies (Anomaly Detection)",
-    description: "Identification des éléments ou événements rares qui diffèrent significativement de la majorité des données. Utilisée pour la détection de fraudes, surveillance système, et contrôle qualité.",
+    description: `La détection d'anomalies identifie les observations rares qui s'écartent nettement du comportement habituel des données : fraudes, pannes, intrusions, défauts de fabrication.
+
+**Contextes d'apprentissage :**
+• Non supervisé : aucune étiquette, on suppose que les anomalies sont rares.
+• Semi-supervisé : apprentissage sur des données normales seulement (détection de nouveauté).
+• Supervisé : des anomalies étiquetées existent ; c'est alors une classification très déséquilibrée.
+
+**Méthodes courantes :**
+• Statistiques : écart à la moyenne (score z), à la médiane (MAD), distance de Mahalanobis.
+• Isolation Forest (Liu et al., 2008) : des arbres aléatoires isolent plus vite les points atypiques.
+• Local Outlier Factor (Breunig et al., 2000) : compare la densité locale d'un point à celle de ses voisins.
+• One-class SVM, autoencodeurs (forte erreur de reconstruction), modèles de séries temporelles.
+\`\`\`python
+import numpy as np
+from sklearn.ensemble import IsolationForest
+
+rng = np.random.default_rng(0)
+X = np.concatenate([rng.normal(0, 1, (200, 2)), [[6, 6], [-7, 5]]])   # 200 points normaux + 2 aberrants
+modele = IsolationForest(contamination=0.005, random_state=0).fit(X)
+print(np.where(modele.predict(X) == -1)[0])
+# Affichage :
+# [200 201]
+\`\`\`
+Isolation Forest repère ici les deux points aberrants ajoutés (indices 200 et 201) parmi 200 points normaux.
+
+**Difficultés :**
+• Peu ou pas d'étiquettes ; la notion d'« anormal » dépend du contexte (une valeur extrême peut être légitime).
+• Le taux de contamination est une hypothèse à régler.
+• Évaluation : l'exactitude trompe ; utiliser précision, rappel et courbe précision-rappel.
+• Dérive : le « normal » évolue avec le temps.
+
+**En pratique :** coupler le score d'anomalie à une vérification humaine et suivre le taux de fausses alertes.`,
     category: "machine-learning",
     icon: "AlertTriangle"
   },
   {
     term: "Processus Gaussiens (Gaussian Processes)",
-    description: "Approche non paramétrique de l'apprentissage supervisé, particulièrement puissante pour les problèmes de régression avec quantification de l'incertitude. Fournit des intervalles de confiance pour les prédictions.",
+    description: `Un processus gaussien est un modèle bayésien non paramétrique qui définit une loi de probabilité sur des fonctions. En régression, il prédit une valeur et une incertitude associée pour chaque nouveau point (Rasmussen et Williams, 2006).
+
+**Principe :**
+• On choisit un noyau (par exemple RBF), qui exprime l'idée que des entrées proches ont des sorties proches.
+• Après observation des données, la loi a posteriori en un nouveau point est gaussienne : sa moyenne est la prédiction, son écart type quantifie l'incertitude.
+• Loin des données, l'écart type revient vers celui de l'a priori.
+\`\`\`python
+import numpy as np
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import RBF
+
+x = np.array([[1.0], [3.0], [5.0]])
+y = np.sin(x).ravel()
+gp = GaussianProcessRegressor(kernel=RBF(length_scale=1.0), optimizer=None).fit(x, y)
+moyenne, ecart = gp.predict([[3.0], [4.0], [7.0]], return_std=True)
+print(moyenne.round(2), ecart.round(2))   # x = 3 est observé, x = 7 est loin des données
+# Affichage :
+# [ 0.14 -0.49 -0.13] [0.   0.59 0.99]
+\`\`\`
+En x = 3 (point observé), l'écart type est nul. En x = 7, loin des données, il est voisin de 1 : le modèle indique qu'il ne sait pas.
+
+**Intérêts :** bonnes prédictions sur de petits jeux de données, incertitude intégrée (intervalles de crédibilité), hyperparamètres du noyau appris par maximum de vraisemblance, base de l'optimisation bayésienne.
+
+**Limites :**
+• Coût en O(n³) en temps et O(n²) en mémoire : de l'ordre de quelques milliers de points sans approximation.
+• Le choix du noyau encode des hypothèses (régularité, périodicité).
+• Moins adapté à la grande dimension.
+
+**Usages :** modélisation de simulations coûteuses, optimisation bayésienne d'hyperparamètres, géostatistique (krigeage).`,
     category: "machine-learning",
     icon: "TrendingUp"
   },
   {
     term: "Apprentissage Few-shot (Few-shot Learning)",
-    description: "**L'art d'apprendre avec presque rien !** Comme un étudiant brillant qui comprend un concept entier après avoir vu seulement quelques exemples, l'apprentissage few-shot permet aux modèles de maîtriser de nouvelles tâches avec un minimum de données d'entraînement.\n\n**🎯 Analogie Pédagogique :**\nImaginez apprendre à reconnaître une nouvelle race de chien après avoir vu seulement 3 photos - c'est exactement ce que fait le few-shot learning ! Contrairement à l'apprentissage traditionnel qui nécessite des milliers d'exemples.\n\n**📊 Spectre d'Apprentissage :**\n• **Zero-shot** : 0 exemple (pure généralisation)\n• **One-shot** : 1 seul exemple par classe\n• **Few-shot** : 2-10 exemples par classe\n• **Traditional** : 1000+ exemples par classe\n\n**🧠 Mécanismes Fondamentaux :**\n\n**Meta-Learning (\"Apprendre à apprendre\") :**\n- Entraînement sur de multiples tâches similaires\n- Extraction de stratégies d'apprentissage généralisables\n- Adaptation rapide aux nouvelles tâches\n\n**Transfer Learning Avancé :**\n- Réutilisation de représentations pré-entraînées\n- Fine-tuning avec régularisation forte\n- Adaptation de domaine intelligente\n\n**Metric Learning :**\n- Apprentissage d'espaces de similarité\n- Comparaison directe entre exemples\n- Classification par proximité\n\n**🛠️ Architectures Populaires :**\n- **Siamese Networks** : Comparaison de paires d'exemples\n- **Prototypical Networks** : Classification par prototype de classe\n- **MAML** : Model-Agnostic Meta-Learning\n- **Matching Networks** : Attention sur exemples de support\n\n**🎯 Applications Révolutionnaires :**\n- **Vision** : Reconnaissance d'objets rares (espèces animales)\n- **NLP** : Classification de textes dans nouveaux domaines\n- **Médecine** : Diagnostic de maladies rares\n- **Robotique** : Adaptation rapide à nouveaux environnements\n\n**⚡ Avantages Stratégiques :**\n- **Réduction drastique** des besoins en données\n- **Déploiement rapide** sur nouveaux cas d'usage\n- **Coût réduit** de collecte et annotation\n- **Adaptabilité** aux domaines spécialisés\n\n**🚨 Défis Techniques :**\n- **Overfitting** sur peu d'exemples\n- **Biais de sélection** des exemples\n- **Généralisation** limitée hors distribution\n- **Évaluation** complexe et méthodologie rigoureuse\n\n**📈 Impact Mesurable :**\nLe modèle GPT-3 (Brown et al., 2020) a montré qu'un grand modèle de langage peut réaliser de nombreuses tâches à partir de quelques exemples donnés dans la consigne, sans réentraînement. Le modèle CLIP (OpenAI, Radford et al., 2021) classe des images selon des catégories jamais vues à l'entraînement (« zero-shot ») ; ses auteurs rapportent 76,2 % de précision sur ImageNet.",
+    description: `L'apprentissage few-shot vise à apprendre une nouvelle tâche à partir de très peu d'exemples par classe, parfois un seul (one-shot) ou aucun (zero-shot).
+
+**Cadre :** une tâche « N classes, K exemples par classe » (N-way K-shot) est présentée avec un petit ensemble de support (les exemples étiquetés), puis on prédit sur un ensemble de requêtes.
+
+**Approches :**
+• Méta-apprentissage (« apprendre à apprendre ») : entraînement sur de nombreuses petites tâches pour s'adapter vite à une nouvelle. Exemples : MAML (Finn et al., 2017), réseaux prototypiques (Snell et al., 2017), matching networks (Vinyals et al., 2016).
+• Apprentissage de métrique : apprendre un espace où la distance reflète la ressemblance (réseaux siamois), puis classer par proximité avec les exemples connus.
+• Transfert d'apprentissage : réutiliser un modèle pré-entraîné et ne réajuster que peu de paramètres.
+• Apprentissage en contexte des grands modèles de langage : quelques exemples placés dans la consigne suffisent, sans réentraînement (Brown et al., 2020).
+
+**Zero-shot :** le modèle dispose d'une description de la classe plutôt que d'exemples. CLIP (Radford et al., 2021) classe des images selon des catégories décrites en texte ; ses auteurs rapportent 76,2 % de précision top-1 sur ImageNet sans exemple d'entraînement de ce jeu.
+
+**Usages :** espèces ou maladies rares, nouveaux produits ou langues, personnalisation.
+
+**Limites :**
+• Peu d'exemples : forte variance, résultats sensibles au choix des exemples.
+• Surapprentissage possible, généralisation limitée hors du domaine d'entraînement.
+• L'évaluation demande de nombreuses tâches tirées au hasard, avec intervalles de confiance.`,
     category: "machine-learning",
     icon: "Zap"
   },
   {
     term: "LIME (Local Interpretable Model-agnostic Explanations)",
-    description: "Technique qui explique les prédictions de n'importe quel classifieur en l'approximant localement avec un modèle interprétable. Essentiel pour l'IA explicable.",
+    description: `LIME (Ribeiro, Singh et Guestrin, 2016) explique une prédiction individuelle de n'importe quel modèle en l'approchant, au voisinage de cet exemple, par un modèle simple et interprétable, souvent linéaire.
+
+**Principe :**
+1. Perturber l'exemple à expliquer (masquer des mots d'un texte, des zones d'une image, modifier des valeurs).
+2. Interroger le modèle sur ces variantes.
+3. Pondérer les variantes selon leur proximité avec l'exemple.
+4. Ajuster un modèle linéaire parcimonieux : ses coefficients indiquent les variables qui ont le plus pesé sur cette prédiction.
+
+**Caractéristiques :** indépendant du modèle (model-agnostic), local (valable autour d'un exemple), applicable aux données tabulaires, au texte et aux images.
+
+**Exemple :** pour un classifieur de textes, LIME peut montrer que les mots « gratuit » et « gagnez » ont poussé la prédiction vers « spam ».
+
+**Limites :**
+• Instabilité : le tirage aléatoire des perturbations peut changer l'explication d'une exécution à l'autre.
+• Le résultat dépend de la définition du voisinage et de la pondération, difficiles à choisir.
+• Fidélité locale seulement : l'explication ne vaut pas pour le modèle entier.
+• Perturbations irréalistes si les variables sont corrélées.
+
+**Alternative :** SHAP, aux propriétés théoriques plus solides mais plus coûteux. Dans les deux cas, confronter les explications à l'avis d'un expert du domaine.`,
     category: "machine-learning",
     icon: "Lightbulb"
   },
   {
     term: "SHAP (SHapley Additive exPlanations)",
-    description: "Approche basée sur la théorie des jeux pour expliquer la sortie de n'importe quel modèle de machine learning, en calculant la contribution de chaque caractéristique à la prédiction.",
+    description: `SHAP (Lundberg et Lee, 2017) explique une prédiction en attribuant à chaque variable une contribution, calculée à partir des valeurs de Shapley de la théorie des jeux coopératifs (Shapley, 1953).
+
+**Principe :** la contribution d'une variable est son apport marginal moyen à la prédiction, sur tous les ordres possibles d'ajout des variables. Les contributions sont additives : prédiction = valeur de base + Σ contributions.
+\`\`\`python
+from itertools import permutations
+
+f = lambda a, b: a + 2 * b + a * b          # le « modèle »
+x, base = (1, 2), (0, 0)                     # exemple à expliquer, référence
+v = lambda S: f(*[x[i] if i in S else base[i] for i in range(2)])
+
+phi = [0.0, 0.0]
+for ordre in permutations(range(2)):         # tous les ordres d'arrivée des variables
+    S = set()
+    for i in ordre:
+        phi[i] += (v(S | {i}) - v(S)) / 2
+        S.add(i)
+print(phi)
+# Affichage :
+# [2.0, 5.0]
+\`\`\`
+Avec f = x₁ + 2x₂ + x₁x₂, l'exemple (1, 2) et la référence (0, 0), les contributions sont 2 et 5 ; leur somme, 7, est l'écart entre la prédiction et la référence. Le terme d'interaction x₁x₂ = 2 est partagé à parts égales entre les deux variables.
+
+**Usages :** explication locale (décomposition d'une prédiction) ou globale (moyenne des valeurs absolues, distribution par variable).
+
+**Variantes :** TreeSHAP (calcul exact et rapide pour les arbres et les forêts, Lundberg et al., 2020), KernelSHAP (approximation valable pour tout modèle), DeepSHAP.
+
+**Limites :**
+• Le calcul exact est exponentiel en nombre de variables : on utilise des approximations.
+• Le résultat dépend de la référence choisie ; avec des variables corrélées, il peut s'appuyer sur des combinaisons irréalistes.
+• Attribution n'est pas causalité : elle décrit le modèle, pas le monde.`,
     category: "machine-learning",
     icon: "BarChart3"
   },
   {
     term: "Théorie des graphes (Graph Theory)",
-    description: "Étude des graphes, structures mathématiques utilisées pour modéliser les relations par paires entre les objets. Fondamentale pour l'analyse de réseaux sociaux, recommandations et optimisation.",
+    description: `Un graphe est formé de sommets (nœuds) reliés par des arêtes (liens). La théorie des graphes étudie ces structures, qui modélisent des relations par paires : amitiés, routes, liens entre pages, interactions entre molécules.
+
+**Vocabulaire :**
+• Orienté ou non, selon que les liens ont un sens (suivre quelqu'un) ou non (être amis).
+• Pondéré si les liens portent une valeur (distance, force).
+• Degré d'un sommet : nombre de ses liens (entrants et sortants dans un graphe orienté).
+• Chemin, cycle, composante connexe, arbre (graphe connexe sans cycle).
+
+**Représentations :** matrice d'adjacence M (M[i, j] = 1 s'il existe un lien de i vers j) ou liste d'adjacence, plus économe pour les graphes creux.
+\`\`\`python
+import numpy as np
+
+# Pages A, B, C, D ; liens A→B, A→C, B→C, C→A, D→C
+liens = [(0, 1), (0, 2), (1, 2), (2, 0), (3, 2)]
+M = np.zeros((4, 4))
+for source, cible in liens:
+    M[source, cible] = 1
+print(M.sum(axis=1), M.sum(axis=0))   # degrés sortants, degrés entrants
+# Affichage :
+# [2. 1. 1. 1.] [1. 1. 3. 0.]
+\`\`\`
+
+**Mesures de centralité :** degré, intermédiarité (passage par les plus courts chemins), proximité, PageRank. Elles repèrent les sommets importants.
+
+**Algorithmes classiques :** parcours en largeur et en profondeur, plus court chemin (Dijkstra), arbre couvrant minimal, détection de communautés.
+
+**En science des données :** analyse de réseaux sociaux, recommandation, détection de fraude, graphes de connaissances, chimie. Les réseaux de neurones sur graphes (GNN, comme les GCN de Kipf et Welling, 2017) apprennent sur ces structures. En Python : NetworkX.`,
     category: "machine-learning",
     icon: "Network"
   },
   {
     term: "PageRank",
-    description: "Algorithme de centralité développé par Google qui attribue un score d'importance à chaque nœud d'un graphe. Révolutionnaire pour les moteurs de recherche et l'analyse de réseaux.",
+    description: `PageRank (Brin et Page, 1998) est un algorithme de centralité qui attribue un score d'importance à chaque nœud d'un graphe orienté : un nœud est important s'il est pointé par des nœuds importants. Il a été conçu pour classer les pages web.
+
+**Surfeur aléatoire :** un internaute suit un lien au hasard parmi ceux de sa page et, avec la probabilité 1 − d, saute vers une page quelconque. Le score d'une page est la probabilité de s'y trouver à long terme.
+
+**Formule :** PR(p) = (1 − d) / N + d × Σ PR(q) / L(q), la somme portant sur les pages q qui pointent vers p, avec L(q) le nombre de liens sortants de q, N le nombre de pages et d le facteur d'amortissement, classiquement 0,85.
+
+**Calcul :** par itération de puissance (on répète la formule jusqu'à stabilité) ou comme vecteur propre principal de la matrice de transition.
+\`\`\`python
+import numpy as np
+
+# Liens A→B, A→C, B→C, C→A, D→C ; chaque ligne répartit le score d'une page entre ses liens
+P = np.array([[0, .5, .5, 0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 1, 0]])
+pr = np.full(4, 1 / 4)
+for _ in range(50):
+    pr = 0.15 / 4 + 0.85 * P.T @ pr   # facteur d'amortissement d = 0,85
+print(pr.round(3))                    # scores de A, B, C, D
+# Affichage :
+# [0.373 0.196 0.394 0.038]
+\`\`\`
+La page C, pointée par A, B et D, a le plus fort score ; D, que personne ne pointe, a le plus faible.
+
+**Usages :** classement de pages web (parmi de nombreux signaux), importance dans des réseaux sociaux ou de citations.
+
+**Limites :** il ne mesure que la structure des liens, pas la qualité du contenu ; il peut être manipulé par des fermes de liens ; les pages sans lien sortant demandent un traitement particulier.`,
     category: "machine-learning",
     icon: "Star"
   },
   {
     term: "Attaques adverses (Adversarial Attacks)",
-    description: "**L'art de tromper l'intelligence artificielle !** Comme un magicien qui utilise des illusions d'optique pour duper notre cerveau, les attaques adverses exploitent les failles des modèles ML avec des modifications invisibles à l'œil humain mais dévastatrices pour l'IA.\n\n**🎭 Analogie Visuelle :**\nImaginez un panneau STOP modifié avec des autocollants quasi-invisibles qui font qu'une voiture autonome le perçoit comme un panneau de limitation de vitesse - c'est le principe des attaques adverses !\n\n**🔍 Mécanismes d'Attaque :**\n\n**Perturbations Imperceptibles :**\n- Modification de pixels individuels (±1-5 sur 255)\n- Bruit structuré calculé mathématiquement\n- Optimisation pour maximiser l'erreur du modèle\n\n**Types d'Attaques :**\n• **White-box** : Accès complet au modèle et ses paramètres\n• **Black-box** : Accès uniquement aux prédictions\n• **Targeted** : Forcer une classe spécifique\n• **Untargeted** : Causer n'importe quelle erreur\n\n**⚔️ Techniques Populaires :**\n\n**FGSM (Fast Gradient Sign Method) :**\n- Perturbation dans la direction du gradient\n- Rapide mais moins sophistiqué\n- Efficace contre modèles linéaires\n\n**PGD (Projected Gradient Descent) :**\n- Attaque itérative plus puissante\n- Optimisation contrainte par norme L∞\n- Standard pour évaluation robustesse\n\n**C&W (Carlini & Wagner) :**\n- Optimisation sophistiquée\n- Perturbations minimales\n- Contournement des défenses\n\n**🎯 Domaines d'Impact :**\n\n**Vision par Ordinateur :**\n- Classification d'images (ImageNet)\n- Détection d'objets (YOLO, R-CNN)\n- Reconnaissance faciale\n- Conduite autonome\n\n**Traitement du Langage :**\n- Substitution de mots synonymes\n- Modification de ponctuation\n- Paraphrasing malveillant\n\n**Audio :**\n- Commandes vocales cachées\n- Transcription erronée\n- Reconnaissance de locuteur\n\n**🛡️ Méthodes de Défense :**\n\n**Adversarial Training :**\n- Entraînement avec exemples adverses\n- Amélioration de la robustesse\n- Coût computationnel élevé\n\n**Détection :**\n- Analyse statistique des entrées\n- Réseaux de neurones détecteurs\n- Métriques de confiance\n\n**Preprocessing :**\n- Débruitage des entrées\n- Compression/décompression\n- Transformations aléatoires\n\n**🚨 Implications Sécuritaires :**\n- **Véhicules autonomes** : Panneaux modifiés\n- **Sécurité** : Contournement biométrie\n- **Médical** : Diagnostic erroné\n- **Finance** : Fraude sophistiquée\n\n**📊 Constats :**\n- Des perturbations imperceptibles suffisent souvent à tromper un modèle non protégé\n- Les exemples adverses se transfèrent souvent d'un modèle à un autre\n\n**🔬 Recherche Active :**\n- **Certified Defenses** : Garanties mathématiques\n- **Randomized Smoothing** : Robustesse probabiliste\n- **Adversarial Patches** : Attaques physiques\n- **Universal Perturbations** : Une perturbation, tous modèles\n\n**💡 Paradoxe Fondamental :**\nPlus un modèle est précis sur données normales, plus il peut être vulnérable aux attaques adverses - un compromis fondamental entre performance et robustesse.",
+    description: `Une attaque adverse modifie légèrement une entrée, souvent de façon imperceptible pour un humain, afin de provoquer une erreur d'un modèle d'apprentissage. Les premiers exemples sur des réseaux profonds datent de Szegedy et al. (2013).
+
+**Principe, avec FGSM (Goodfellow, Shlens et Szegedy, 2014) :** on déplace l'entrée de ε dans la direction du signe du gradient de la perte : x' = x + ε × signe(∇ₓ L).
+\`\`\`python
+import numpy as np
+
+sigmoide = lambda z: 1 / (1 + np.exp(-z))
+w, b = np.array([2.0, -1.0]), 0.0         # modèle logistique
+x, y = np.array([1.0, 1.0]), 1            # exemple de classe positive
+p = sigmoide(w @ x + b)
+print(p.round(2))
+
+# FGSM : x' = x + ε × signe(gradient de la perte par rapport à x)
+gradient = (p - y) * w
+x_adv = x + 0.5 * np.sign(gradient)
+print(x_adv, sigmoide(w @ x_adv + b).round(2))
+# Affichage :
+# 0.73
+# [0.5 1.5] 0.38
+\`\`\`
+Un petit déplacement de chaque variable (0,5) fait passer la probabilité de la classe positive de 0,73 à 0,38 : la prédiction s'inverse.
+
+**Types :**
+• Boîte blanche : l'attaquant connaît le modèle et ses gradients (FGSM, PGD de Madry et al., 2017, Carlini-Wagner).
+• Boîte noire : seules les prédictions sont accessibles ; les exemples adverses se transfèrent souvent d'un modèle à un autre.
+• Ciblée (forcer une classe donnée) ou non ciblée.
+• Physique : des autocollants sur un panneau STOP ont trompé un classifieur d'images (Eykholt et al., 2018).
+
+**Défenses :**
+• Entraînement adverse : inclure des exemples adverses dans l'entraînement, efficace mais coûteux.
+• Défenses certifiées, lissage aléatoire (Cohen et al., 2019).
+• Détection d'entrées suspectes, prétraitement : beaucoup se sont révélés contournables, d'où l'évaluation contre des attaques adaptatives.
+
+**Constat :** robustesse et exactitude standard peuvent être en tension (Tsipras et al., 2019).
+
+**Domaines :** images, texte, audio, logiciels malveillants. D'autres menaces existent (empoisonnement des données, extraction de modèle). Tester la robustesse avant un usage sensible (voir Robustness Testing).`,
     category: "machine-learning",
     icon: "Shield"
   },
   {
     term: "Systèmes de recommandation (Recommender Systems)",
-    description: "Les systèmes de recommandation fonctionnent comme un **conseiller personnel ultra-intelligent** qui connaît vos goûts mieux que vous-même - ils analysent vos comportements passés et ceux d'utilisateurs similaires pour prédire ce que vous aimerez découvrir ensuite. **Analogie du libraire expert** : imaginez un libraire qui, après avoir observé vos achats et ceux de milliers d'autres clients, peut instantanément vous suggérer le livre parfait que vous n'auriez jamais trouvé seul. **Mission fondamentale** : résoudre le problème de surcharge informationnelle en filtrant intelligemment des millions d'options pour présenter les plus pertinentes. **Trois approches principales** : 1) **Filtrage collaboratif** (comportements utilisateurs similaires), 2) **Filtrage basé contenu** (caractéristiques des items), 3) **Approches hybrides** (combinaison des deux). **Algorithmes populaires** : Matrix Factorization (SVD, NMF), Deep Learning (autoencodeurs, réseaux de neurones), k-NN collaboratif, algorithmes basés règles. **Métriques d'évaluation** : RMSE (précision), Precision@K/Recall@K (pertinence), diversité, nouveauté, couverture catalogue. **Défis techniques** : problème de démarrage à froid (nouveaux utilisateurs/items), sparsité des données (peu d'interactions), scalabilité (millions d'utilisateurs), biais de popularité. **Applications révolutionnaires** : Netflix (films), Amazon (produits), Spotify (musique), YouTube (vidéos), LinkedIn (connexions), Tinder (rencontres). **Impact business** : les recommandations pèsent lourd dans la consommation des services concernés. Les chiffres publiés les plus cités sont datés : Netflix estimait en 2015 que la recommandation lui faisait économiser plus d'un milliard de dollars par an (Gomez-Uribe et Hunt, 2015) ; voir les sources du cours Bases de données. **Techniques avancées** : apprentissage par renforcement (optimisation long terme), recommandations contextuelles (lieu, temps), recommandations explicables (transparence), recommandations de groupe. **Enjeux éthiques** : bulles de filtres, biais algorithmiques, manipulation comportementale, vie privée. **Évolution moderne** : intégration de données multimodales (texte, image, audio), recommandations temps réel, personnalisation extrême avec IA générative.",
+    description: `Un système de recommandation suggère à chaque utilisateur des éléments (films, produits, articles, musiques) susceptibles de l'intéresser, à partir de ses comportements, de ceux des autres utilisateurs et des caractéristiques des éléments.
+
+**Approches :**
+• Filtrage collaboratif : exploite les interactions (notes, achats, clics) ; des utilisateurs aux goûts proches apprécient des éléments proches.
+• Filtrage par contenu : recommande des éléments proches de ceux déjà appréciés, selon leurs caractéristiques (genre, texte, image).
+• Hybride : combine les deux et traite mieux les nouveaux éléments.
+• Modèles séquentiels et réseaux profonds, qui tiennent compte du contexte (heure, appareil).
+
+**Techniques :** voisinage (k-NN), factorisation de matrices (Koren, Bell et Volinsky, 2009), modèles de facteurs latents pour retours implicites, réseaux de neurones, apprentissage par renforcement ou bandits pour explorer.
+
+**Évaluation :**
+• Hors ligne : RMSE sur les notes, Precision@K, Recall@K, NDCG pour la qualité du classement.
+• Au-delà de la précision : diversité, nouveauté, couverture du catalogue.
+• En ligne : tests A/B sur des indicateurs d'usage.
+
+**Défis :**
+• Démarrage à froid : nouveaux utilisateurs ou éléments sans historique.
+• Matrice d'interactions très creuse.
+• Biais de popularité et boucles de rétroaction : on recommande ce qui est déjà populaire.
+• Passage à l'échelle.
+
+**Enjeux éthiques :** bulles de filtres, manipulation de l'attention, protection de la vie privée, transparence et choix laissé à l'utilisateur.`,
     category: "machine-learning",
     icon: "Star"
   },
   {
     term: "Filtrage collaboratif (Collaborative Filtering)",
-    description: "Le filtrage collaboratif fonctionne comme un **réseau social de recommandations** où chaque utilisateur devient un conseiller pour les autres - il exploite la sagesse collective en supposant que si vous avez aimé les mêmes choses que quelqu'un dans le passé, vous aimerez probablement ce qu'il apprécie maintenant. **Analogie du bouche-à-oreille** : imaginez un groupe d'amis aux goûts similaires qui se recommandent mutuellement des films - le système automatise ce processus à l'échelle de millions d'utilisateurs. **Principe fondamental** : 'les utilisateurs qui ont eu des comportements similaires dans le passé auront des préférences similaires dans le futur'. **Deux approches principales** : 1) **User-based** (trouver des utilisateurs similaires et recommander leurs préférences), 2) **Item-based** (recommander des items similaires à ceux déjà appréciés). **Processus User-based** : calculer la similarité entre utilisateurs (corrélation de Pearson, cosinus), identifier les k plus proches voisins, prédire les notes basées sur leurs évaluations pondérées. **Processus Item-based** : calculer la similarité entre items, pour chaque item non évalué, prédire la note basée sur les items similaires déjà évalués par l'utilisateur. **Matrix Factorization** : décomposer la matrice utilisateur-item sparse en matrices de facteurs latents (SVD, NMF, ALS) pour capturer les patterns cachés. **Métriques de similarité** : corrélation de Pearson (relations linéaires), similarité cosinus (vecteurs), distance euclidienne, coefficient de Jaccard. **Avantages** : pas besoin de connaître le contenu des items, découvre des patterns complexes, effet de sérendipité (découvertes inattendues), améliore avec plus d'utilisateurs. **Défis majeurs** : **Cold start** (nouveaux utilisateurs/items sans historique), **sparsité** (matrice très creuse avec peu d'interactions), **scalabilité** (complexité O(n²) pour similarités), **biais de popularité** (items populaires sur-recommandés). **Techniques avancées** : Deep Learning (autoencodeurs, réseaux de neurones), factorisation tensorielle (données multi-dimensionnelles), apprentissage par renforcement (optimisation long terme). **Applications emblématiques** : Amazon ('Les clients qui ont acheté cet article ont aussi acheté'), Netflix (recommandations de films), Spotify (playlists collaboratives), LinkedIn (connexions suggérées). **Variantes modernes** : filtrage collaboratif implicite (clics, temps passé), session-based (recommandations temps réel), multi-critères (plusieurs types de feedback). **Impact révolutionnaire** : a transformé le e-commerce et le streaming en permettant la personnalisation de masse et la découverte de contenu de niche.",
+    description: `Le filtrage collaboratif recommande des éléments en s'appuyant sur les évaluations ou comportements d'un grand nombre d'utilisateurs, sans connaître le contenu des éléments. Principe : des utilisateurs qui ont aimé les mêmes éléments ont des goûts proches.
+
+**Données :** une matrice utilisateurs × éléments (notes, achats, clics), très creuse.
+
+**Approches par voisinage :**
+• Utilisateur-utilisateur : trouver les utilisateurs similaires à la personne ciblée et agréger leurs notes.
+• Élément-élément : prédire à partir des éléments semblables à ceux qu'elle a déjà notés ; plus stable quand il y a plus d'utilisateurs que d'éléments.
+• Similarités : cosinus, corrélation de Pearson, Jaccard.
+\`\`\`python
+import numpy as np
+
+# Notes de 4 utilisateurs sur 4 films (0 = pas de note)
+R = np.array([[5, 4, 0, 1], [4, 5, 1, 0], [1, 0, 5, 4], [0, 1, 4, 5]], dtype=float)
+cos = lambda a, b: a @ b / (np.linalg.norm(a) * np.linalg.norm(b))
+
+sims = np.array([cos(R[0], R[u]) for u in range(1, 4)])   # similarité de l'utilisateur 0 avec les autres
+notes = R[1:, 2]                                           # leurs notes pour le film 2
+print(sims.round(2), round((sims * notes).sum() / sims.sum(), 2))
+# Affichage :
+# [0.95 0.21 0.21] 2.09
+\`\`\`
+Les similarités de l'utilisateur 0 avec les trois autres sont 0,95, 0,21 et 0,21. Pour le film 2, ils ont mis 1, 5 et 4 : la prédiction, tirée vers la note 1 de l'utilisateur au goût proche, est de 2,09 (une note manquante compte ici pour 0, par simplification).
+
+**Factorisation de matrices :** la matrice est approchée par un produit de facteurs latents, r̂ = p_u · q_i, appris par descente de gradient ou par moindres carrés alternés (ALS). Elle gère mieux la creusité et passe à l'échelle.
+
+**Atouts :** aucune connaissance du contenu, découvertes inattendues (sérendipité).
+
+**Limites :**
+• Démarrage à froid pour les nouveaux utilisateurs et éléments.
+• Données creuses ; coût des similarités avec beaucoup d'utilisateurs.
+• Biais de popularité.
+• Retours implicites (clics) : l'absence d'interaction n'est pas un rejet.
+
+L'évaluation est décrite dans l'entrée Systèmes de recommandation.`,
     category: "machine-learning",
     icon: "Users"
   }

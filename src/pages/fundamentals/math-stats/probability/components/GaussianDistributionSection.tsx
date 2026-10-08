@@ -128,17 +128,18 @@ const GaussianDistributionSection = () => {
               <DeferredResponsiveContainer width="100%" height={300}>
                 <AreaChart data={standardNormalData}>
                   <CartesianGrid strokeDasharray="3 3" />
+                  {/* Abscisse numérique (xNum) et graduations entières : la clé texte « x » donnait des graduations prises dans les données (-3.84, -2.22...) */}
                   <XAxis 
-                    dataKey="x" 
+                    dataKey="xNum" 
                     type="number" 
                     scale="linear"
                     domain={[-4, 4]}
-                    tickFormatter={(value) => value.toString()}
+                    ticks={[-4, -3, -2, -1, 0, 1, 2, 3, 4]}
                   />
                   <YAxis tickFormatter={(value) => value.toFixed(2)} />
                   <Tooltip 
                     formatter={(value, _) => [parseFloat(value.toString()).toFixed(4), 'Densité']}
-                    labelFormatter={(label) => `x = ${label}`}
+                    labelFormatter={(label) => `x = ${Number(label).toFixed(2)}`}
                   />
                   <Area 
                     type="monotone" 
@@ -200,15 +201,16 @@ const GaussianDistributionSection = () => {
                 <LineChart data={normalComparisons}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
-                    dataKey="x" 
+                    dataKey="xNum" 
                     type="number" 
                     scale="linear"
                     domain={[-6, 6]}
+                    ticks={[-6, -4, -2, 0, 2, 4, 6]}
                   />
                   <YAxis tickFormatter={(value) => value.toFixed(2)} />
                   <Tooltip 
                     formatter={(value, name) => [parseFloat(value.toString()).toFixed(4), name]}
-                    labelFormatter={(label) => `x = ${label}`}
+                    labelFormatter={(label) => `x = ${Number(label).toFixed(2)}`}
                   />
                   <Line 
                     type="monotone" 

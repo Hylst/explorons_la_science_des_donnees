@@ -1100,14 +1100,14 @@ print("🎯 Vos segments clients sont prêts pour les actions marketing!")`,
               <button
                 key={index}
                 onClick={() => setActiveCode(index)}
-                className={`p-6 rounded-xl text-left transition-all duration-500 border-2 hover:scale-105 ${
+                className={`min-w-0 p-6 rounded-xl text-left transition-all duration-500 border-2 hover:scale-105 ${
                   activeCode === index
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl border-blue-500"
                     : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200 hover:border-gray-300 hover:shadow-lg"
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-bold text-lg">{example.title}</h4>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h4 className="font-bold text-lg min-w-0 break-words">{example.title}</h4>
                   <Badge className={`${activeCode === index ? 'bg-white text-blue-600' : 'bg-gray-100 text-gray-700'}`}>
                     {example.difficulty}
                   </Badge>

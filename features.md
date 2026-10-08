@@ -20,7 +20,7 @@ Le site est une application 100 % statique : pas de serveur applicatif, pas de b
 | Cours sous `/courses/` | 10 | tous avec contenu rédigé (voir « Cours ») |
 | Questions de quiz | 165 | 8 catégories : Programmation 25, puis 20 pour chacune des 7 autres ; 10 questions tirées au hasard par tentative |
 | Termes du glossaire | 179 | 7 catégories effectivement utilisées (fondamentaux 23, statistiques 20, machine learning 34, deep learning 31, NLP 3, MLOps 34, évaluation 34) ; aucun doublon de nom |
-| Projets | 10 | 4 débutant, 3 intermédiaire, 3 avancé ; 9 catégories, 31 technologies distinctes |
+| Projets | 12 | 4 débutant, 5 intermédiaire, 3 avancé ; 11 catégories, 30 technologies distinctes ; 5 guidés pas à pas |
 | Articles de blog | 5 | tous signés Geoffroy Streit, datés de mars à mai 2024 |
 | Articles d'actualité (Communauté) | 20 | instantané du 2 octobre 2026, 5 flux sur les 6 déclarés dans `rss-sources.json` ; articles publiés du 23 juin au 30 septembre 2026 |
 | Modèles de code de l'éditeur | 6 | 3 Python, 2 JavaScript, 1 SQL |
@@ -123,7 +123,7 @@ Les cinq cours rédigés le 6 octobre 2026 partagent `LessonCoursePage` (`src/co
 
 | Fonctionnalité | État | Détail vérifié |
 | --- | --- | --- |
-| 10 projets à réaliser | Partiel | `src/data/projects.ts` : énoncés avec description, niveau, technologies, durée, difficulté de 1 à 5, prérequis, objectifs. La page précise elle-même qu'aucun jeu de données ni corrigé n'est fourni |
+| 12 projets | Partiel | `src/data/projects.ts` : fiches avec description, niveau, technologies, durée, difficulté de 1 à 5, prérequis, objectifs. 5 sont guidés pas à pas dans la section « Projets guidés » (`src/data/lessons/projects/`, format des cours : données fournies, exercices vérifiés par le moteur Python, corrigés) : ventes, iris, sentiment, segmentation de clients (KMeans), prévision de fréquentation (série temporelle). Les 7 autres restent des sujets sans jeu de données ni corrigé, ce que la page dit |
 | Recherche et filtres | Disponible | Texte, niveau, durée, catégorie, technologies, progression ; tous les compteurs de la page sont calculés sur les données |
 | Suivi par projet | Disponible | Commencé ou terminé, notes (`useCourseProgress("projects")`), enregistrés dans le navigateur |
 

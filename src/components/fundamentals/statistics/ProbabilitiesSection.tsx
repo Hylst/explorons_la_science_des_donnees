@@ -1,13 +1,8 @@
 
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  PieChart, 
-  Pie, 
-  Cell, 
-  ResponsiveContainer,
-  Tooltip
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { statisticsDefinitions } from "../definitions/statistics-definitions";
 
@@ -56,7 +51,7 @@ const ProbabilitiesSection = () => {
         <div className="mt-6 h-64 chart-container">
           <p className="text-sm text-gray-500 mb-2 chart-description">Visualisation : Distribution de probabilité</p>
           <div className="flex justify-center h-full">
-            <ResponsiveContainer width="70%" height="100%">
+            <DeferredResponsiveContainer width="70%" height="100%">
               <PieChart>
                 <Pie
                   data={probabilityData}
@@ -74,7 +69,7 @@ const ProbabilitiesSection = () => {
                 </Pie>
                 <Tooltip />
               </PieChart>
-            </ResponsiveContainer>
+            </DeferredResponsiveContainer>
           </div>
           <p className="text-xs text-gray-500 mt-1 text-center chart-legend-container">
             Les probabilités nous permettent de quantifier l'incertitude dans nos prédictions.

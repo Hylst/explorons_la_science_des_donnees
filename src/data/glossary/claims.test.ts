@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { glossaryTerms } from "./index";
+import { termKeys } from "./from-definition";
 
 /**
  * Le glossaire est du texte pédagogique : il ne doit pas attribuer de chiffres inventés à des organisations réelles
@@ -27,5 +28,38 @@ describe("glossaire : pas de chiffre inventé attribué à une organisation", ()
   it("n'annonce pas de ROI ou de gain en pourcentage sous forme de puce d'impact", () => {
     const hits = glossaryTerms.filter((t) => /^\s*- \*\*[^*]+\*\* :\s*[+\-−]\d+ ?%/m.test(text(t))).map((t) => t.term);
     expect(hits).toEqual([]);
+  });
+});
+
+/**
+ * Ton du site : sobre, jamais publicitaire. Le glossaire a été réécrit dans ce sens le 8 octobre 2026
+ * (il comptait des centaines d'émojis et des « révolutionne », « magie ») ; ce test l'empêche de revenir.
+ */
+describe("glossaire : ton sobre", () => {
+  const EMOJI = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u;
+
+  it("ne contient ni émoji ni tiret cadratin", () => {
+    const hits = glossaryTerms.filter((t) => EMOJI.test(text(t)) || text(t).includes("—")).map((t) => t.term);
+    expect(hits).toEqual([]);
+  });
+
+  it("ne contient pas de formules publicitaires", () => {
+    const hits = glossaryTerms.filter((t) => /révolution|magie|magique|démocratis|incroyable|ultime|game.?changer/i.test(text(t))).map((t) => t.term);
+    expect(hits).toEqual([]);
+  });
+
+  // Régression du 8 octobre 2026 : « Cross-Validation » et « Validation croisée (Cross-Validation) », « AutoML » et
+  // « Automated Machine Learning (AutoML) » s'affichaient deux fois. On compare aussi les noms entre parenthèses et anglais.
+  it("ne contient pas deux fois la même notion", () => {
+    const vus = new Map<string, string>();
+    const doublons: string[] = [];
+    for (const t of glossaryTerms) {
+      for (const cle of termKeys(t.term, t.englishTerm)) {
+        const deja = vus.get(cle);
+        if (deja && deja !== t.term) doublons.push(`${deja} / ${t.term}`);
+        vus.set(cle, t.term);
+      }
+    }
+    expect([...new Set(doublons)]).toEqual([]);
   });
 });

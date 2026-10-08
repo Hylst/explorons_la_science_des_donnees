@@ -1,5 +1,6 @@
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { mlDefinitions } from "@/data/glossary/ml-definitions";
 
@@ -114,7 +115,7 @@ const EvaluationSection = () => {
       <div className="mb-10 mt-10 p-6 bg-slate-50 dark:bg-slate-900 rounded-xl">
         <h3 className="text-xl font-semibold mb-6">Visualisation : Matrice de confusion</h3>
         <div className="flex justify-center mb-8 mt-2">
-          <ResponsiveContainer width="100%" height={300}>
+          <DeferredResponsiveContainer width="100%" height={300}>
             <BarChart data={confusionMatrixData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
@@ -127,7 +128,7 @@ const EvaluationSection = () => {
                 ))}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          </DeferredResponsiveContainer>
         </div>
         <p className="text-xs text-muted-foreground text-center">
           Exemple illustratif : 295 prédictions fictives (exactitude ≈ 88 %, précision ≈ 89 %, rappel ≈ 86 %), pas un résultat mesuré.
@@ -141,7 +142,7 @@ const EvaluationSection = () => {
           en fonction du nombre d'échantillons d'apprentissage.
         </p>
         <div className="flex justify-center mt-6">
-          <ResponsiveContainer width="100%" height={300}>
+          <DeferredResponsiveContainer width="100%" height={300}>
             <LineChart data={learningCurveData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="samples" label={{ value: 'Nombre d\'échantillons', position: 'insideBottom', offset: -5 }} />
@@ -151,7 +152,7 @@ const EvaluationSection = () => {
               <Line type="monotone" dataKey="trainingError" name="Erreur d'entraînement" stroke="#8884d8" activeDot={{ r: 8 }} />
               <Line type="monotone" dataKey="validationError" name="Erreur de validation" stroke="#82ca9d" />
             </LineChart>
-          </ResponsiveContainer>
+          </DeferredResponsiveContainer>
         </div>
         <p className="text-xs text-muted-foreground text-center mt-2">
           Courbes illustratives (valeurs inventées pour montrer la forme typique) : l'erreur d'entraînement augmente avec le nombre d'exemples, l'erreur de validation diminue, et les deux se rapprochent.

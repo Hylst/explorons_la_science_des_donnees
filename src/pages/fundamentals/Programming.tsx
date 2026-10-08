@@ -1,11 +1,15 @@
 
 import ContentLayout from "@/components/layout/ContentLayout";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
-import ProgrammingSection from "@/components/fundamentals/ProgrammingSection";
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 import { createStandardSidebar } from "@/components/layout/StandardSidebar";
 import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { Code, BookOpen, Cpu, Zap, Users, Rocket, Trophy, Terminal } from "lucide-react";
+
+// Contenu (84 Ko, graphiques Recharts) chargé après le bandeau, qui s'affiche sans l'attendre
+const ProgrammingSection = lazy(() => import("@/components/fundamentals/ProgrammingSection"));
 
 // Identifiants présents dans ProgrammingSection et ses composants : le suivi de section les observe au défilement
 const SECTIONS = [
@@ -53,7 +57,9 @@ const Programming = () => {
         description="Les langages et outils qui forment le socle technique de la data science, de l'analyse exploratoire au déploiement de modèles."
       />
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <ProgrammingSection />
+        <LazyBlock>
+          <ProgrammingSection />
+        </LazyBlock>
       </div>
     </ContentLayout>
   );

@@ -15,18 +15,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ResponsiveContainer,
-  BarChart,
-  Bar
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const ProgrammingTools = () => {
   // Stack Overflow Developer Survey, question « langages utilisés », part de TOUS les répondants (pas seulement des
@@ -68,7 +58,7 @@ const ProgrammingTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-80 mb-8">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={languageUsageData}
                   margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
@@ -83,7 +73,7 @@ const ProgrammingTools = () => {
                   <Line type="monotone" dataKey="SQL" stroke="#f59e0b" strokeWidth={2} />
                   <Line type="monotone" dataKey="Julia" stroke="#8b5cf6" strokeWidth={2} />
                 </LineChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <SourceNote
                 className="text-center mb-4 pb-4"
                 consulted="1er octobre 2026"
@@ -112,7 +102,7 @@ const ProgrammingTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-80 mb-8">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={packageEcosystemData}
                   margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
@@ -123,7 +113,7 @@ const ProgrammingTools = () => {
                   <Tooltip formatter={(value: number) => [value.toLocaleString('fr-FR'), 'Paquets']} />
                   <Bar dataKey="packages" name="Paquets" fill="#3b82f6" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <SourceNote
                 className="text-center mb-4 pb-4"
                 consulted="1er octobre 2026"

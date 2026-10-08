@@ -1,17 +1,8 @@
 
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend,
-  Cell,
-  ResponsiveContainer 
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const InferentialStatistics = () => {
   // Data for hypothesis testing visualization
@@ -51,7 +42,7 @@ const InferentialStatistics = () => {
         
         <div className="mt-6 mb-8 h-64 chart-container">
           <p className="text-sm text-gray-500 mb-8 chart-description">Visualisation : Comparaison entre deux groupes (Test A/B)</p>
-          <ResponsiveContainer width="100%" height="100%">
+          <DeferredResponsiveContainer width="100%" height="100%">
             <BarChart
               data={hypothesisData}
               margin={{ top: 20, right: 30, left: 30, bottom: 25 }}
@@ -67,7 +58,7 @@ const InferentialStatistics = () => {
                 ))}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          </DeferredResponsiveContainer>
           <p className="text-xs text-gray-500 mt-4 text-center chart-legend-container">
             Les tests statistiques nous aident à déterminer si les différences observées sont dues au hasard ou significatives.
           </p>

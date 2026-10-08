@@ -2,23 +2,8 @@ import { asset } from "@/lib/asset";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  LineChart, 
-  Line, 
-  BarChart,
-  Bar,
-  ScatterChart,
-  Scatter,
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
+import { LineChart, Line, BarChart, Bar, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { Check, ExternalLink } from "lucide-react";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { datavizDefinitions } from "@/components/fundamentals/definitions/dataviz-definitions";
@@ -89,7 +74,7 @@ const VisualizationTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-72 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={lineChartData}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -116,7 +101,7 @@ const VisualizationTools = () => {
                     name="Précipitations (mm)"
                   />
                 </LineChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
                 Graphique linéaire sur des données fictives : température et précipitations mensuelles
               </p>
@@ -131,7 +116,7 @@ const VisualizationTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-72 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={barChartData}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -143,7 +128,7 @@ const VisualizationTools = () => {
                   <Legend />
                   <Bar dataKey="value" fill="#8884d8" name="Valeur" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
                 Diagramme à barres sur des données fictives, comparant des valeurs entre différentes catégories
               </p>
@@ -158,7 +143,7 @@ const VisualizationTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-72 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={pieChartData}
@@ -176,7 +161,7 @@ const VisualizationTools = () => {
                   </Pie>
                   <Tooltip />
                 </PieChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
                 Graphique circulaire sur des données fictives : cinq catégories dont les parts totalisent 100 %
               </p>
@@ -191,7 +176,7 @@ const VisualizationTools = () => {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-72 mb-4">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <ScatterChart
                   margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 >
@@ -208,7 +193,7 @@ const VisualizationTools = () => {
                     ))}
                   </Scatter>
                 </ScatterChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mb-4">
                 Nuage de points sur des données fictives, illustrant la relation entre deux variables
               </p>

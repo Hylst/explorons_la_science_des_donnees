@@ -1,16 +1,8 @@
 
 import { ExternalLink, BookOpen, Lightbulb, CirclePercent } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ResponsiveContainer 
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const AdvancedStatistics = () => {
   // Data for regression example chart
@@ -47,7 +39,7 @@ const AdvancedStatistics = () => {
               
               <div className="mt-4 mb-6 h-64 chart-container">
                 <p className="text-sm text-gray-500 mb-2 chart-description">Visualisation : Régression linéaire simple</p>
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <LineChart data={regressionData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="x" />
@@ -57,7 +49,7 @@ const AdvancedStatistics = () => {
                     <Line type="monotone" dataKey="y" name="Données" stroke="#8884d8" fill="#8884d8" dot={{ r: 5 }} />
                     <Line type="monotone" dataKey="yhat" name="Prédiction" stroke="#ff7300" dot={false} activeDot={false} />
                   </LineChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
                 <p className="text-xs text-gray-500 mt-1 text-center chart-legend-container">
                   La régression linéaire trouve la meilleure droite ajustant un ensemble de points.
                 </p>

@@ -17,7 +17,7 @@ export interface Project {
 }
 
 /**
- * Les projets proposés. Trois sont guidés pas à pas (src/data/lessons/projects : données, exercices vérifiés, corrigés) ;
+ * Les projets proposés. Certains sont guidés pas à pas (src/data/lessons/projects : données, exercices vérifiés, corrigés) ;
  * les autres sont des sujets à réaliser soi-même, sans jeu de données ni corrigé fournis. Aucune
  * statistique de fréquentation n'est affichée : le site est statique, il ne compte ni participants ni notes.
  */
@@ -144,6 +144,40 @@ export const projects: Project[] = [
       "Systèmes temps réel"
     ]
   },
+  {
+    id: "intermediate-4",
+    title: "Segmenter les clients d'un café-médiathèque",
+    description: "300 clients fictifs décrits par leur dernière visite, leur fréquence et leur panier : mise à l'échelle, KMeans, choix du nombre de groupes, lecture prudente des groupes, puis limites (initialisation, autre méthode, forme, stabilité).",
+    level: "intermediate",
+    technologies: ["Python", "scikit-learn", "pandas", "Matplotlib"],
+    category: "clustering",
+    duration: "3-4 heures",
+    difficulty: 3,
+    prerequisites: ["pandas de base", "Notions de distance et d'écart-type"],
+    learningObjectives: [
+      "Comprendre l'effet de la mise à l'échelle sur KMeans",
+      "Choisir un nombre de groupes avec l'inertie et la silhouette",
+      "Décrire des groupes en unités d'origine",
+      "Éprouver la stabilité d'une segmentation"
+    ]
+  },
+  {
+    id: "intermediate-5",
+    title: "Prévoir la fréquentation d'une médiathèque",
+    description: "Deux ans de visites quotidiennes (données fictives) : saisonnalités de la semaine et de l'année, découpage dans le temps, prévision de référence puis régression sur le calendrier, comparées au même horizon.",
+    level: "intermediate",
+    technologies: ["Python", "pandas", "scikit-learn", "Matplotlib"],
+    category: "series-temporelles",
+    duration: "3-4 heures",
+    difficulty: 3,
+    prerequisites: ["pandas de base", "Régression linéaire"],
+    learningObjectives: [
+      "Manipuler une série temporelle avec pandas",
+      "Découper les données dans le temps",
+      "Comparer un modèle à une prévision de référence",
+      "Raisonner sur l'horizon de prévision"
+    ]
+  },
 
   // PROJETS AVANCÉS
   {
@@ -217,7 +251,9 @@ export const CATEGORY_LABELS: Record<string, string> = {
   "regression": "Régression",
   "anomaly-detection": "Détection d'anomalies",
   "computer-vision": "Vision par ordinateur",
-  "finance": "Finance quantitative"
+  "finance": "Finance quantitative",
+  "series-temporelles": "Séries temporelles",
+  "clustering": "Segmentation (clustering)"
 };
 
 export const categoryLabel = (category: string) => CATEGORY_LABELS[category] ?? category;

@@ -28,6 +28,10 @@ import {
 import { Rocket, Target, Trophy, TrendingUp, BookOpen, Code, Search } from "lucide-react";
 
 /** Les technologies les plus utilisées par les projets, calculées sur les données */
+/** Nombre de projets guidés, écrit en toutes lettres en début de phrase */
+const NOMBRES = ["Aucun", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"];
+const nombreGuides = NOMBRES[guidedProjects.modules.length] ?? String(guidedProjects.modules.length);
+
 const topTechnologies = (() => {
   const counts = new Map<string, number>();
   projects.forEach((project) => project.technologies.forEach((tech) => counts.set(tech, (counts.get(tech) ?? 0) + 1)));
@@ -162,7 +166,7 @@ const Projects = () => {
           </div>
 
           <p className="text-sm text-muted-foreground bg-muted/50 rounded-md px-4 py-3 mb-12">
-            Trois projets sont guidés pas à pas, avec leurs données et des exercices vérifiés dans votre navigateur ; les autres sont des sujets à réaliser vous-même, sans jeu de données ni corrigé fournis ici.
+            {nombreGuides} projets sont guidés pas à pas, avec leurs données et des exercices vérifiés dans votre navigateur ; les autres sont des sujets à réaliser vous-même, sans jeu de données ni corrigé fournis ici.
             Pour contribuer à de vrais projets open source, consultez la section « Contribuer » de la{" "}
             <Link to="/community#contribute" className="underline text-primary">page Communauté</Link>.
           </p>
@@ -172,8 +176,8 @@ const Projects = () => {
           <section id="guided" aria-labelledby="projets-guides-titre" className="scroll-mt-24 space-y-4">
             <h2 id="projets-guides-titre" className="text-2xl font-bold">Projets guidés</h2>
             <p className="text-muted-foreground">
-              Trois projets complets, de l'énoncé à la conclusion : les données sont fournies, chaque étape a son exercice vérifié et son corrigé,
-              et tout s'exécute dans votre navigateur. Les données de ventes et les avis sont fictifs ; les fleurs d'iris sont un jeu réel.
+              {nombreGuides} projets complets, de l'énoncé à la conclusion : les données sont fournies, chaque étape a son exercice vérifié et son corrigé,
+              et tout s'exécute dans votre navigateur. Les fleurs d'iris sont un jeu réel ; les ventes, les avis, les clients et la fréquentation sont inventés pour l'exercice.
             </p>
             {guidedProjects.modules.map((module, index) => (
               <LessonModuleView key={module.id} courseId="projects" module={module} number={index + 1} />

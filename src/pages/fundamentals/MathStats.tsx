@@ -2,7 +2,8 @@
 import Layout from "@/components/layout/Layout";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { Brain, Calculator, ChartBar, Trophy, Target, TrendingUp, Lightbulb } from "lucide-react";
-import MathVisualsSection from "@/components/fundamentals/MathVisualsSection";
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 import BackToTop from "@/components/ui/back-to-top";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -11,6 +12,9 @@ import MathLearningPaths from "@/components/fundamentals/math/MathLearningPaths"
 import PracticalApplicationsEnriched from "@/components/fundamentals/math/PracticalApplicationsEnriched";
 import MathResourcesTools from "@/components/fundamentals/math/MathResourcesTools";
 import UnifiedMathCourses from "@/components/fundamentals/math/UnifiedMathCourses";
+
+// Visualisations (graphiques Recharts) en bas de page : chargées à la demande
+const MathVisualsSection = lazy(() => import("@/components/fundamentals/MathVisualsSection"));
 
 const MathStats = () => {
 
@@ -223,7 +227,9 @@ const MathStats = () => {
 
       {/* Visualisations mathématiques */}
       <div id="math-visuals" className="space-y-12">
-        <MathVisualsSection />
+        <LazyBlock>
+          <MathVisualsSection />
+        </LazyBlock>
       </div>
 
           <BackToTop />

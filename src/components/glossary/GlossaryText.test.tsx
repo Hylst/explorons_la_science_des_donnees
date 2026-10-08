@@ -93,8 +93,11 @@ describe("rendu des définitions du glossaire", () => {
   });
 
   it("les définitions de plus de 500 mots se découpent en sections qui gardent le texte", () => {
-    const longues = glossaryTerms.filter((term) => countWords(term.description) > 500);
-    expect(longues.length).toBeGreaterThan(10);
+    // Depuis la réécriture sobre du 8 octobre 2026, aucune définition réelle ne dépasse 500 mots : texte construit pour le test
+    const paragraphe = "Un modèle apprend des exemples, puis on vérifie sur des données qu'il n'a pas vues. ".repeat(12);
+    const longue = ["Définition de départ.", "**Principe :**", paragraphe, "**Exemple :**", paragraphe, "- premier point", "- second point", "**Limites :**", paragraphe, "**En pratique :**", paragraphe, "**Pièges :**", paragraphe].join("\n");
+    const longues = [{ term: "Texte de test", description: longue }];
+    expect(countWords(longue)).toBeGreaterThan(500);
     for (const term of longues) {
       const sections = splitSections(term.description);
       expect(sections.length, `${term.term} : aucune section`).toBeGreaterThanOrEqual(3);

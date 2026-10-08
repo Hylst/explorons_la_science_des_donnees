@@ -1,11 +1,15 @@
 
 import ContentLayout from "@/components/layout/ContentLayout";
-import MachineLearningContentRefactored from "@/components/machinelearning/MachineLearningContentRefactored";
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 import { MachineLearningContextProvider } from "@/components/machinelearning/MachineLearningContext";
 import { BrainCircuit, Network, GitBranch, BarChart3, Cpu, Code, GraduationCap } from "lucide-react";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+
+// Contenu (graphiques Recharts) chargé après le bandeau, qui s'affiche sans l'attendre
+const MachineLearningContentRefactored = lazy(() => import("@/components/machinelearning/MachineLearningContentRefactored"));
 
 type MLSectionType = "introduction" | "advanced-courses" | "supervised" | "unsupervised" | "evaluation" | "deep-learning" | "practical-exercises";
 
@@ -75,7 +79,9 @@ const MachineLearning = () => {
             description="Explorez l'art de l'apprentissage automatique avec des cours interactifs, des exercices pratiques et des projets concrets."
             icon={BrainCircuit}
           />
-          <MachineLearningContentRefactored />
+          <LazyBlock>
+            <MachineLearningContentRefactored />
+          </LazyBlock>
         </section>
       </ContentLayout>
     </MachineLearningContextProvider>

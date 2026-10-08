@@ -7,10 +7,13 @@ import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { Link } from "react-router-dom";
 import { Brain, Code, Database } from "lucide-react";
-import GlossaryTermsBank from "@/components/fundamentals/GlossaryTermsBank";
+import LazyBlock from "@/components/layout/LazyBlock";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { lazy, useState } from "react";
+
+// Le glossaire technique (127 Ko de définitions) n'est chargé que s'il est ouvert
+const GlossaryTermsBank = lazy(() => import("@/components/fundamentals/GlossaryTermsBank"));
 
 const Fundamentals = () => {
   const sections: FundamentalsSectionType[] = ["statistics", "mathvisuals", "programming", "dataviz", "dataprocessing"];
@@ -106,7 +109,9 @@ const Fundamentals = () => {
             </CollapsibleTrigger>
           </div>
           <CollapsibleContent>
-            <GlossaryTermsBank />
+            <LazyBlock>
+              <GlossaryTermsBank />
+            </LazyBlock>
           </CollapsibleContent>
         </Collapsible>
 

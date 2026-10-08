@@ -199,15 +199,15 @@ const UnifiedHeroSection = ({
             </AnimatedEntrance>
           )}
 
-          {/* Enhanced Description */}
-          <AnimatedEntrance animation="fade-in-up" delay={1000}>
+          {/* Description : affichée dès le premier rendu, comme le titre (souvent le plus grand élément sur mobile) */}
+          <div>
             <div className="relative">
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl leading-relaxed font-light">
                 {description}
               </p>
               <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary to-transparent opacity-30"></div>
             </div>
-          </AnimatedEntrance>
+          </div>
 
           {/* Enhanced Course Info Badges */}
           {courseInfo && (

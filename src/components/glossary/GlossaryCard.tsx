@@ -265,7 +265,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
         ],
         relatedTerms: ["Underfitting", "Régularisation", "Validation", "Généralisation"]
       },
-      "Cross-Validation": {
+      "Validation croisée (Cross-Validation)": {
         explanation: "Technique d'évaluation robuste divisant les données en k plis pour entraîner et tester le modèle plusieurs fois, réduisant la variance de l'estimation.",
         diagram: "cross-validation",
         keyPoints: [

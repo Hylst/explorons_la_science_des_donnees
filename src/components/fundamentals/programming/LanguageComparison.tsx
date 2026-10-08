@@ -3,7 +3,8 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, LineChart, Line, Area, AreaChart } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, LineChart, Line, Area, AreaChart } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -710,7 +711,7 @@ first(result, 10)`
             </CardHeader>
             <CardContent>
               <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <LineChart data={trendData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" />
@@ -722,7 +723,7 @@ first(result, 10)`
                     <Line type="monotone" dataKey="Julia" stroke="#9558b2" strokeWidth={3} dot={{ r: 6 }} />
                     <Legend />
                   </LineChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
               <p className="mt-3 text-sm text-gray-600">
                 Part des répondants de l'enquête Stack Overflow qui déclarent utiliser le langage. L'échantillon réunit tous les développeurs,
@@ -752,7 +753,7 @@ first(result, 10)`
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <BarChart data={languageData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="name" />
@@ -762,7 +763,7 @@ first(result, 10)`
                       <Bar dataKey="ecosystem" name="Écosystème (appréciation)" fill="#10B981" />
                       <Bar dataKey="jobMarket" name="Emploi (appréciation)" fill="#F59E0B" />
                     </BarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
@@ -776,7 +777,7 @@ first(result, 10)`
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <RadarChart data={languageData}>
                       <PolarGrid />
                       <PolarAngleAxis dataKey="name" />
@@ -787,7 +788,7 @@ first(result, 10)`
                       <Radar name="Emploi (appréciation)" dataKey="jobMarket" stroke="#F59E0B" fill="#F59E0B" fillOpacity={0.1} />
                       <Legend />
                     </RadarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
@@ -1479,7 +1480,7 @@ class DataDashboard {
             </CardHeader>
             <CardContent>
               <div className="h-96">
-                <ResponsiveContainer width="100%" height="100%">
+                <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={useCaseData} layout="horizontal">
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" domain={[0, 10]} />
@@ -1497,7 +1498,7 @@ class DataDashboard {
                     <Bar dataKey="Julia" fill="#9558b2" name="Julia ⚡" />
                     <Legend />
                   </BarChart>
-                </ResponsiveContainer>
+                </DeferredResponsiveContainer>
               </div>
             </CardContent>
           </Card>
@@ -1586,7 +1587,7 @@ class DataDashboard {
                   <div>
                     <h4 className="font-semibold mb-3">Appréciations de l'auteur par domaine (sur 10)</h4>
                     <div className="h-64">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <DeferredResponsiveContainer width="100%" height="100%">
                         <AreaChart data={useCaseData.slice(0, 6)}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="useCase" angle={-45} textAnchor="end" height={80} />
@@ -1597,7 +1598,7 @@ class DataDashboard {
                           <Area type="monotone" dataKey="SQL" stroke="#f29111" fill="#f29111" fillOpacity={0.6} />
                           <Area type="monotone" dataKey="Julia" stroke="#9558b2" fill="#9558b2" fillOpacity={0.6} />
                         </AreaChart>
-                      </ResponsiveContainer>
+                      </DeferredResponsiveContainer>
                     </div>
                   </div>
 

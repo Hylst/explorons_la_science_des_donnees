@@ -1,25 +1,8 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  LineChart, 
-  Line, 
-  BarChart, 
-  Bar, 
-  PieChart, 
-  Pie, 
-  Cell, 
-  ResponsiveContainer, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ComposedChart, 
-  Area, 
-  Scatter,
-  AreaChart 
-} from "recharts";
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Scatter, AreaChart } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle } from "lucide-react";
@@ -90,7 +73,7 @@ const DataVizSection = () => {
           <Card className="hover:shadow-lg transition-all duration-300">
             <CardContent className="p-4">
               <h4 className="text-lg font-semibold mb-4 text-center">Données temporelles</h4>
-              <ResponsiveContainer width="100%" height={200}>
+              <DeferredResponsiveContainer width="100%" height={200}>
                 <LineChart data={sampleData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -98,14 +81,14 @@ const DataVizSection = () => {
                   <Tooltip />
                   <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
                 </LineChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </CardContent>
           </Card>
           
           <Card className="hover:shadow-lg transition-all duration-300">
             <CardContent className="p-4">
               <h4 className="text-lg font-semibold mb-4 text-center">Données catégorielles</h4>
-              <ResponsiveContainer width="100%" height={200}>
+              <DeferredResponsiveContainer width="100%" height={200}>
                 <BarChart data={sampleData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -113,7 +96,7 @@ const DataVizSection = () => {
                   <Tooltip />
                   <Bar dataKey="value" fill="#82ca9d" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </CardContent>
           </Card>
         </div>
@@ -142,7 +125,7 @@ const DataVizSection = () => {
                   </li>
                 </ul>
               </div>
-              <ResponsiveContainer width="100%" height={200}>
+              <DeferredResponsiveContainer width="100%" height={200}>
                 <PieChart>
                   <Pie
                     data={pieData}
@@ -159,7 +142,7 @@ const DataVizSection = () => {
                   </Pie>
                   <Tooltip />
                 </PieChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </div>
           </CardContent>
         </Card>
@@ -200,7 +183,7 @@ const DataVizSection = () => {
               
               <div className="h-[400px] mt-6">
                 <TabsContent value="line" className="h-full mt-0">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <LineChart data={interactiveData} margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                       <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                       <XAxis dataKey="month" />
@@ -211,11 +194,11 @@ const DataVizSection = () => {
                       <Line yAxisId="left" type="monotone" dataKey="sales" name="Ventes (€)" stroke="#8884d8" strokeWidth={2} />
                       <Line yAxisId="right" type="monotone" dataKey="visits" name="Visites" stroke="#82ca9d" strokeWidth={2} />
                     </LineChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </TabsContent>
                 
                 <TabsContent value="bar" className="h-full mt-0">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <BarChart data={interactiveData} margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                       <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                       <XAxis dataKey="month" />
@@ -225,11 +208,11 @@ const DataVizSection = () => {
                       <Bar dataKey="sales" name="Ventes (€)" fill="#8884d8" />
                       <Bar dataKey="visits" name="Visites" fill="#82ca9d" />
                     </BarChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </TabsContent>
                 
                 <TabsContent value="area" className="h-full mt-0">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <AreaChart data={interactiveData} margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                       <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                       <XAxis dataKey="month" />
@@ -239,11 +222,11 @@ const DataVizSection = () => {
                       <Area type="monotone" dataKey="sales" name="Ventes (€)" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
                       <Area type="monotone" dataKey="visits" name="Visites" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
                     </AreaChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </TabsContent>
                 
                 <TabsContent value="composed" className="h-full mt-0">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <DeferredResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={interactiveData} margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                       <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                       <XAxis dataKey="month" />
@@ -255,7 +238,7 @@ const DataVizSection = () => {
                       <Line yAxisId="left" type="monotone" dataKey="visits" name="Visites" stroke="#82ca9d" strokeWidth={2} />
                       <Scatter yAxisId="right" dataKey="revenuParVisite" name="Revenu par visite (€)" fill="#ff7300" />
                     </ComposedChart>
-                  </ResponsiveContainer>
+                  </DeferredResponsiveContainer>
                 </TabsContent>
               </div>
               

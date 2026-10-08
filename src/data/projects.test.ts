@@ -38,8 +38,8 @@ const sample = (overrides: Partial<Project> = {}): Project => ({
 });
 
 describe("données des projets", () => {
-  it("propose exactement 10 projets", () => {
-    expect(projects).toHaveLength(10);
+  it("propose exactement 12 projets", () => {
+    expect(projects).toHaveLength(12);
   });
 
   it("donne un identifiant unique à chaque projet", () => {
@@ -124,7 +124,7 @@ describe("matchesFilters", () => {
   describe("niveau", () => {
     it.each([
       ["beginner", 4],
-      ["intermediate", 3],
+      ["intermediate", 5],
       ["advanced", 3],
     ] as const)("le niveau %s retient %i projets", (level, count) => {
       const result = select({ level });
@@ -296,7 +296,7 @@ describe("valeurs dérivées des données", () => {
 
   it("levelSummary : nombre de projets et fourchette de durée calculés sur les données", () => {
     expect(levelSummary("beginner")).toEqual({ count: 4, minHours: 3, maxHours: 7 });
-    expect(levelSummary("intermediate")).toEqual({ count: 3, minHours: 10, maxHours: 18 });
+    expect(levelSummary("intermediate")).toEqual({ count: 5, minHours: 3, maxHours: 18 });
     expect(levelSummary("advanced")).toEqual({ count: 3, minHours: 20, maxHours: 35 });
   });
 

@@ -1,8 +1,12 @@
 import ContentLayout from "@/components/layout/ContentLayout";
-import VisualizationTools from "@/components/tools/sections/VisualizationTools";
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 import { useToolsSidebar } from "@/components/tools/ToolsSidebar";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { LineChart } from "lucide-react";
+
+// Section (graphiques Recharts) chargée après le bandeau, qui s'affiche sans l'attendre
+const VisualizationTools = lazy(() => import("@/components/tools/sections/VisualizationTools"));
 
 const DataVisualizationTools = () => {
   const sidebar = useToolsSidebar();
@@ -21,7 +25,9 @@ const DataVisualizationTools = () => {
           icon={LineChart}
         />
         <div className="container mx-auto px-4 py-8">
-          <VisualizationTools />
+          <LazyBlock>
+            <VisualizationTools />
+          </LazyBlock>
         </div>
       </section>
     </ContentLayout>

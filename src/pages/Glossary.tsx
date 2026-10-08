@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
+import LazyBlock from "@/components/layout/LazyBlock";
 import Layout from "@/components/layout/Layout";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 
@@ -15,9 +16,9 @@ const Glossary = () => (
         title="Glossaire Data Science"
         description="Un glossaire interactif des concepts de la data science"
       />
-      <Suspense fallback={<div data-sections-pending="" aria-hidden="true" className="min-h-[50vh]" />}>
+      <LazyBlock>
         <GlossaryExplorer />
-      </Suspense>
+      </LazyBlock>
     </div>
   </Layout>
 );

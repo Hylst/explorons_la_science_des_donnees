@@ -8,122 +8,439 @@ import { GlossaryEntry } from './types';
 export const statisticsTerms: GlossaryEntry[] = [
   {
     term: "Statistiques",
-    description: "Les Statistiques constituent la science fondamentale qui transforme les données brutes en connaissances exploitables. Imaginez un traducteur universel : les statistiques traduisent le **langage** des données en insights compréhensibles pour la prise de décision. Cette discipline englobe quatre piliers essentiels : la **collecte** (comment obtenir des données représentatives), l'**analyse** (application de méthodes mathématiques), l'**interprétation** (donner du sens aux résultats), et la **présentation** (communiquer efficacement les findings). Les statistiques nous permettent de naviguer dans l'incertitude, de distinguer les signaux du bruit, et de faire des prédictions fiables. Elles constituent le socle mathématique de la data science, fournissant les outils pour tester des hypothèses, quantifier la confiance dans nos conclusions, et généraliser des observations d'échantillons à des populations entières. Des sondages d'opinion aux essais cliniques, des analyses de marché aux prévisions météorologiques, les statistiques sont omniprésentes dans notre société moderne.",
+    description: `Les statistiques sont la discipline qui recueille, résume et interprète des données afin de décrire une situation ou de décider malgré l'incertitude.
+
+**Principe :**
+- Collecter : définir ce que l'on veut mesurer et sur qui (plan d'étude, échantillonnage).
+- Décrire : résumer les données observées (moyenne, médiane, écart-type, graphiques).
+- Analyser : estimer, tester des hypothèses, modéliser.
+- Communiquer : présenter les résultats avec leur incertitude.
+
+**Deux grandes branches :**
+- La statistique descriptive résume les données dont on dispose.
+- La statistique inférentielle généralise d'un échantillon à une population, avec une marge d'erreur chiffrée (intervalles de confiance, tests).
+
+**Exemple :** un sondage auprès de 1 000 personnes donne un pourcentage observé (description), puis un intervalle de confiance pour l'ensemble de la population (inférence).
+
+**Limites :**
+- Un résultat ne vaut que par la qualité des données : un échantillon biaisé reste biaisé, même s'il est grand.
+- Une association observée n'établit pas à elle seule une relation de cause à effet.
+- Un résultat « statistiquement significatif » n'est pas forcément important en pratique.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Population vs Échantillon",
-    description: "Cette distinction fondamentale est comme la différence entre photographier une foule entière versus prendre un instantané représentatif. La **Population** représente l'ensemble complet et exhaustif de tous les éléments, individus, ou observations qui nous intéressent dans notre étude (par exemple, tous les citoyens français, toutes les entreprises du CAC 40, ou tous les patients atteints d'une maladie spécifique). L'**Échantillon** est un sous-ensemble soigneusement sélectionné de cette population, choisi pour être représentatif et permettre des inférences valides. La qualité de l'échantillonnage est cruciale : un échantillon biaisé peut conduire à des conclusions erronées. Les méthodes d'échantillonnage incluent l'échantillonnage aléatoire simple, stratifié, ou par grappes. La **taille d'échantillon** influence directement la précision des estimations : plus l'échantillon est grand, plus nos conclusions sont fiables, mais les coûts augmentent. Cette distinction est essentielle car étudier une population entière est souvent impossible (coût, temps, accessibilité), d'où l'importance de bien comprendre les techniques d'échantillonnage pour généraliser nos résultats.",
+    description: `La population est l'ensemble des unités sur lesquelles porte la question (tous les clients d'une entreprise, tous les patients atteints d'une maladie) ; l'échantillon est le sous-ensemble de cette population que l'on observe réellement.
+
+**Principe :**
+- Une grandeur calculée sur la population s'appelle un paramètre (moyenne μ, écart-type σ, proportion p). Calculée sur l'échantillon, c'est une statistique (x̄, s, p̂) qui sert à estimer le paramètre.
+- Observer toute la population est souvent impossible ou trop coûteux, d'où l'échantillonnage.
+
+**Méthodes d'échantillonnage :**
+- Aléatoire simple : chaque unité a la même chance d'être tirée.
+- Stratifié : on tire dans chaque sous-groupe (âge, région) pour le représenter.
+- Par grappes : on tire des groupes entiers (écoles, magasins), puis on observe leurs membres.
+
+**Exemple :** pour connaître la taille moyenne des adultes d'un pays, on mesure quelques milliers de personnes tirées au sort plutôt que tout le pays.
+
+**Limites :**
+- L'erreur due au hasard d'échantillonnage diminue quand la taille n augmente (de l'ordre de 1/√n), mais un biais de sélection ne disparaît pas en augmentant n.
+- Un sondage auquel seules répondent les personnes motivées (biais d'auto-sélection) ne représente pas la population.`,
     category: "statistiques",
     icon: "Users"
   },
   {
     term: "Moyenne (Mean)",
-    description: "La moyenne arithmétique est comme le 'centre de gravité' de vos données. Calculée en additionnant toutes les valeurs et en divisant par le nombre d'observations (Σx/n), elle représente la valeur typique autour de laquelle les données gravitent. **Avantages** : facile à calculer, utilise toutes les données, base de nombreux tests statistiques. **Inconvénients** : très sensible aux valeurs aberrantes (outliers). Par exemple, si 9 personnes gagnent 30k€ et une 10ème gagne 300k€, la moyenne (57k€) ne représente pas bien le groupe. **Applications** : calcul de performances moyennes, analyses financières, contrôle qualité. **Variantes** : moyenne pondérée (certaines valeurs comptent plus), moyenne géométrique (pour les taux de croissance), moyenne harmonique (pour les vitesses). La moyenne est la mesure de tendance centrale la plus utilisée en statistiques inférentielles et constitue la base de concepts avancés comme la variance et l'écart-type.",
+    description: `La moyenne arithmétique est la somme des valeurs divisée par leur nombre : x̄ = (x₁ + x₂ + … + xₙ) / n. C'est le « point d'équilibre » des données.
+
+**Propriétés :**
+- Elle utilise toutes les valeurs.
+- La somme des écarts à la moyenne est nulle.
+- C'est la valeur qui minimise la somme des carrés des écarts, ce qui explique son rôle dans la variance et la régression.
+
+**Exemple :** neuf personnes gagnent 30 k€ et une dixième 300 k€. La moyenne est (9 × 30 + 300) / 10 = 57 k€, un montant que presque personne ne gagne. La médiane, 30 k€, décrit mieux le groupe.
+
+**Limites :**
+- Elle est sensible aux valeurs extrêmes.
+- Elle est peu parlante pour une distribution très asymétrique.
+
+**Variantes :**
+- Moyenne pondérée : certaines valeurs comptent davantage (notes avec coefficients).
+- Moyenne géométrique : adaptée aux taux de croissance successifs.
+- Moyenne harmonique : adaptée aux rapports, par exemple une vitesse moyenne sur des distances égales.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Médiane (Median)",
-    description: "La médiane est la 'valeur du milieu' qui divise vos données en deux moitiés égales, comme un médiateur qui sépare équitablement deux groupes. Pour la calculer : triez les données par ordre croissant, puis prenez la valeur centrale (si n impair) ou la moyenne des deux valeurs centrales (si n pair). **Avantage majeur** : robuste aux valeurs aberrantes - elle résiste aux extrêmes. Dans l'exemple précédent (9 personnes à 30k€, 1 à 300k€), la médiane reste 30k€, plus représentative. **Applications pratiques** : salaires (médiane plus représentative que moyenne), prix immobiliers, scores de satisfaction. **Interprétation** : 50% des observations sont inférieures à la médiane, 50% supérieures. **Comparaison avec la moyenne** : si médiane < moyenne, distribution asymétrique vers la droite (queue positive) ; si médiane > moyenne, asymétrie vers la gauche. La médiane est essentielle en statistiques descriptives et particulièrement utile pour les données économiques et sociales.",
+    description: `La médiane est la valeur qui partage les observations ordonnées en deux moitiés de même effectif : la moitié des valeurs lui est inférieure ou égale, l'autre moitié supérieure ou égale.
+
+**Calcul :**
+- On trie les valeurs par ordre croissant.
+- Si n est impair, c'est la valeur centrale.
+- Si n est pair, c'est la moyenne des deux valeurs centrales.
+
+**Exemple :** avec neuf valeurs à 30 k€ et une à 300 k€, la médiane vaut 30 k€ alors que la moyenne vaut 57 k€. Ajouter un revenu extrême ne la déplace presque pas.
+
+**En pratique :**
+- On la préfère à la moyenne pour les données asymétriques ou comportant des valeurs extrêmes : salaires, prix immobiliers, temps de réponse.
+- Pour une distribution étirée vers la droite, la moyenne est en général supérieure à la médiane ; l'inverse pour une distribution étirée vers la gauche. C'est une tendance, pas une règle absolue.
+
+**Limites :**
+- Elle ignore la valeur exacte des observations situées hors du centre.
+- Elle se prête moins bien aux calculs théoriques que la moyenne.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Mode",
-    description: "Le mode est la 'star' de vos données - la valeur qui apparaît le plus fréquemment, comme la chanson la plus jouée sur une playlist. **Identification** : comptez la fréquence de chaque valeur, le mode est celle avec le maximum d'occurrences. **Types de distributions** : unimodale (un seul mode), bimodale (deux modes), multimodale (plusieurs modes), ou amodale (pas de mode clair). **Particularités** : seule mesure de tendance centrale applicable aux données qualitatives (couleur préférée, marque favorite). **Applications** : études de marché (produit le plus vendu), contrôle qualité (défaut le plus fréquent), analyses démographiques (âge modal). **Avantages** : facile à identifier visuellement, résistant aux valeurs aberrantes, applicable à tous types de données. **Limites** : peut ne pas exister ou être multiple, moins utilisé en statistiques inférentielles. **Exemple pratique** : dans une enquête sur les tailles de chaussures, si la taille 42 revient 15 fois (plus que toute autre), c'est le mode. Le mode complète utilement la moyenne et la médiane pour une description complète de la distribution.",
+    description: `Le mode est la valeur (ou la modalité) la plus fréquente d'une série d'observations.
+
+**Principe :**
+- On compte les occurrences de chaque valeur ; le mode est celle qui apparaît le plus souvent.
+- Pour une variable continue, on regroupe les valeurs en classes et l'on parle de classe modale.
+- Une distribution est unimodale (un mode), bimodale (deux) ou multimodale. Plusieurs modes peuvent signaler le mélange de plusieurs sous-populations.
+
+**Exemple :** dans une enquête sur les pointures, si la 42 apparaît 15 fois et aucune autre pointure davantage, le mode est 42. Pour une variable nominale comme la couleur préférée, le mode est le seul résumé central possible : il n'existe ni moyenne ni médiane.
+
+**Limites :**
+- Il peut ne pas être unique, ou être instable sur un petit échantillon.
+- Il ne tient pas compte de l'ensemble de la distribution.
+- Il est peu utilisé en statistique inférentielle.
+
+**En pratique :** on l'utilise en complément de la moyenne et de la médiane, par exemple pour repérer le produit le plus vendu ou le défaut le plus fréquent.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Variance",
-    description: "La variance mesure à quel point vos données sont 'dispersées' autour de la moyenne, comme mesurer l'étalement d'un groupe de personnes autour d'un point de rassemblement. **Calcul** : moyenne des carrés des écarts à la moyenne : Var(X) = Σ(xi - μ)²/n (population) ou Σ(xi - x̄)²/(n-1) (échantillon). **Pourquoi élever au carré ?** Cela évite que les écarts positifs et négatifs s'annulent, et donne plus de poids aux grandes déviations. **Interprétation** : variance faible = données concentrées près de la moyenne (groupe homogène) ; variance élevée = données très dispersées (groupe hétérogène). **Problème pratique** : l'unité est le carré de l'unité originale (si les données sont en euros, la variance est en euros²), ce qui complique l'interprétation. **Applications** : finance (mesure du risque d'un investissement), contrôle qualité (consistance d'un processus), recherche (variabilité entre sujets). La variance est fondamentale en statistiques car elle quantifie l'incertitude et sert de base à de nombreux tests statistiques et modèles prédictifs.",
+    description: `La variance mesure la dispersion des données autour de leur moyenne : c'est la moyenne des carrés des écarts à la moyenne.
+
+**Formules :**
+- Population : σ² = Σ(xᵢ − μ)² / N
+- Échantillon : s² = Σ(xᵢ − x̄)² / (n − 1). Le diviseur n − 1 (correction de Bessel) évite de sous-estimer la variance de la population.
+
+**Exemple :** pour 2, 4, 4, 4, 5, 5, 7, 9, la moyenne est 5 et la somme des carrés des écarts vaut 32. La variance de population est 32 / 8 = 4 ; la variance d'échantillon est 32 / 7 ≈ 4,57.
+
+**Pourquoi des carrés ?** Les écarts positifs et négatifs ne s'annulent plus, et les grands écarts pèsent davantage.
+
+**Limites :**
+- L'unité est le carré de l'unité des données (des euros², par exemple), d'où l'usage de l'écart-type pour l'interprétation.
+- Elle est sensible aux valeurs extrêmes.
+
+**En pratique :** la variance intervient dans l'écart-type, la régression, l'ANOVA et la plupart des tests.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Écart-type (Standard Deviation)",
-    description: "L'écart-type est la 'version lisible' de la variance - sa racine carrée qui remet les unités dans leur forme originale. Si la variance est comme mesurer une surface, l'écart-type est comme mesurer une distance. **Calcul** : σ = √Variance. **Avantage majeur** : même unité que les données originales, donc directement interprétable. **Règle empirique (loi normale)** : environ 68% des données se trouvent à ±1σ de la moyenne, 95% à ±2σ, 99.7% à ±3σ. **Applications pratiques** : en finance, un écart-type de 15% sur les rendements d'une action indique sa volatilité ; en production, un écart-type faible indique un processus stable. **Comparaisons** : permet de comparer la variabilité entre différents datasets ou variables. **Écart-type vs étendue** : l'écart-type utilise toutes les données (plus robuste) tandis que l'étendue ne considère que min et max (sensible aux outliers). **Standardisation** : l'écart-type permet de créer des scores Z pour comparer des valeurs de distributions différentes. C'est l'une des mesures les plus importantes en statistiques descriptives et inférentielles.",
+    description: `L'écart-type est la racine carrée de la variance : σ = √σ² (ou s = √s² pour un échantillon). Il mesure la dispersion dans la même unité que les données.
+
+**Exemple :** pour 2, 4, 4, 4, 5, 5, 7, 9 (moyenne 5), la variance de population vaut 4 et l'écart-type 2 : les valeurs s'écartent typiquement de 2 unités de la moyenne.
+
+**Règle empirique (loi normale) :** environ 68 % des valeurs se trouvent à moins de 1 écart-type de la moyenne, 95 % à moins de 2 et 99,7 % à moins de 3. Cette règle ne vaut que pour des données à peu près normales.
+
+**En pratique :**
+- Il permet de comparer la variabilité de deux séries exprimées dans la même unité.
+- Il sert à standardiser : le score z = (x − x̄) / s indique de combien d'écarts-types une valeur s'éloigne de la moyenne.
+- En finance, l'écart-type des rendements est une mesure courante de la volatilité.
+
+**Limites :**
+- Il est sensible aux valeurs extrêmes ; pour une distribution asymétrique, l'écart interquartile est plus robuste.
+- Pour comparer des séries d'unités ou d'ordres de grandeur différents, on utilise le coefficient de variation (écart-type divisé par la moyenne, pour des valeurs positives).`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Distribution normale (Gaussian)",
-    description: "La distribution normale est la 'reine' des distributions statistiques, ressemblant à une cloche parfaitement symétrique où la plupart des valeurs se concentrent au centre et diminuent graduellement vers les extrêmes. **Analogie** : la répartition des tailles dans une population - peu de personnes très petites ou très grandes, la majorité autour de la moyenne. **Paramètres** : entièrement définie par sa moyenne μ (centre) et son écart-type σ (largeur). **Propriétés remarquables** : symétrie parfaite, moyenne = médiane = mode, aires sous la courbe définies (68-95-99.7 rule). **Ubiquité naturelle** : erreurs de mesure, caractéristiques biologiques, phénomènes sociaux - le **Théorème Central Limite** explique pourquoi tant de phénomènes suivent cette loi. **Applications** : tests statistiques (t-test, ANOVA), intervalles de confiance, contrôle qualité (Six Sigma), finance (modèles de risque). **Standardisation** : toute normale peut être transformée en normale standard (μ=0, σ=1) via Z = (X-μ)/σ. **Importance historique** : découverte par Gauss et Laplace, fondement de la statistique moderne. **Reconnaissance** : si vos données forment une courbe en cloche, vous pouvez appliquer de puissants outils statistiques paramétriques.",
+    description: `La distribution normale (ou loi de Laplace-Gauss) est une loi de probabilité continue, symétrique, dont la densité a la forme d'une cloche. Elle est entièrement définie par sa moyenne μ (position du centre) et son écart-type σ (largeur).
+
+**Propriétés :**
+- Moyenne, médiane et mode sont égaux à μ.
+- Environ 68 % des valeurs sont à moins de 1σ de μ, 95 % à moins de 2σ, 99,7 % à moins de 3σ.
+- Toute variable normale X se ramène à la loi normale centrée réduite (μ = 0, σ = 1) par Z = (X − μ) / σ.
+
+**Pourquoi est-elle si présente ?** Le théorème central limite montre que la moyenne (ou la somme) d'un grand nombre de variables indépendantes, de variance finie, est approximativement normale, quelle que soit leur loi d'origine. C'est pourquoi les erreurs de mesure ou certaines grandeurs biologiques s'en approchent.
+
+**Exemple :** la taille des adultes d'une population donnée est souvent bien approchée par une loi normale.
+
+**Limites :**
+- Beaucoup de phénomènes ne sont pas normaux : revenus, durées, nombres de visites sont asymétriques.
+- Les queues de la loi normale sont fines : elle sous-estime parfois la fréquence des valeurs extrêmes.
+- Il faut vérifier l'hypothèse (histogramme, diagramme quantile-quantile) avant d'employer des méthodes qui la supposent.`,
     category: "statistiques",
     icon: "TrendingUp"
   },
   {
     term: "Probabilité",
-    description: "La probabilité quantifie l'incertitude et mesure nos 'chances' qu'un événement se réalise, comme un baromètre de la vraisemblance qui oscille entre l'impossible (0) et le certain (1). **Analogie** : prédire la météo - 0% = soleil garanti, 100% = pluie certaine, 70% = probablement pluvieux. **Échelle** : toujours entre 0 et 1 (ou 0% et 100%), où 0.5 = équiprobable (pile ou face). **Interprétations** : 1) **Fréquentiste** (répétition infinie d'expériences), 2) **Subjective** (degré de croyance personnel), 3) **Classique** (cas favorables/cas possibles). **Règles fondamentales** : P(A) + P(non-A) = 1, P(A ou B) = P(A) + P(B) - P(A et B), P(A et B) = P(A) × P(B|A). **Applications** : jeux de hasard, assurance (calcul des primes), médecine (diagnostic), finance (gestion des risques), machine learning (classification probabiliste). **Distributions** : uniforme (dé équilibré), binomiale (succès/échec), normale (phénomènes naturels). **Théorème de Bayes** : mise à jour des probabilités avec nouvelles informations. **Impact** : fondement de la statistique inférentielle, de l'IA probabiliste, et de la prise de décision sous incertitude.",
+    description: `La probabilité est un nombre compris entre 0 et 1 qui quantifie la plausibilité qu'un événement se produise : 0 pour l'impossible, 1 pour le certain.
+
+**Interprétations :**
+- Classique : cas favorables divisés par cas possibles, quand tous les cas sont équiprobables (un dé équilibré donne 1/6 pour chaque face).
+- Fréquentiste : limite de la fréquence observée quand l'expérience est répétée un grand nombre de fois.
+- Bayésienne : degré de croyance, mis à jour avec les données.
+
+**Règles de base :**
+- P(non A) = 1 − P(A)
+- P(A ou B) = P(A) + P(B) − P(A et B)
+- P(A et B) = P(A) × P(B | A) ; si A et B sont indépendants, P(A et B) = P(A) × P(B)
+- Théorème de Bayes : P(A | B) = P(B | A) × P(A) / P(B)
+
+**Exemple :** la probabilité d'obtenir au moins un six en deux lancers de dé est 1 − (5/6)² = 11/36 ≈ 0,31.
+
+**En pratique :** les probabilités fondent l'inférence statistique, les modèles probabilistes (régression logistique, classification) et la décision sous incertitude. Les lois usuelles (uniforme, binomiale, normale, Poisson) en sont les modèles de référence.`,
     category: "statistiques",
-    icon: "Percent"
+    icon: "Shuffle"
   },
   {
     term: "Test d'hypothèse",
-    description: "Le test d'hypothèse est comme un **procès judiciaire** pour vos données - une procédure rigoureuse qui détermine si une affirmation sur une population est crédible ou doit être rejetée. **Processus** : 1) Formuler l'**hypothèse nulle H₀** (status quo, 'pas d'effet') et l'**hypothèse alternative H₁** (ce qu'on veut prouver), 2) Choisir un **seuil de signification α** (généralement 5%), 3) Calculer une **statistique de test** à partir des données, 4) Déterminer la **p-value**, 5) **Décision** : rejeter H₀ si p < α. **Analogie juridique** : H₀ = 'innocent jusqu'à preuve du contraire', les données sont les preuves, α est le niveau de preuve requis, la p-value mesure la force des preuves contre l'innocence. **Types courants** : test t (comparaison de moyennes), test du χ² (indépendance), ANOVA (comparaison multiple). **Erreurs possibles** : Type I (faux positif - condamner un innocent), Type II (faux négatif - acquitter un coupable). **Applications** : essais cliniques (efficacité d'un médicament), A/B testing (performance de versions), contrôle qualité (conformité aux standards). **Puissance** : probabilité de détecter un effet réel. Les tests d'hypothèse sont le pilier de la recherche scientifique et de la prise de décision basée sur les données.",
+    description: `Un test d'hypothèse est une procédure qui confronte une hypothèse de départ (l'hypothèse nulle H₀, souvent « pas d'effet ») aux données, pour décider si l'écart observé est plausible sous le seul effet du hasard.
+
+**Démarche :**
+1. Formuler H₀ et l'hypothèse alternative H₁.
+2. Fixer le seuil de signification α avant de regarder les données (souvent 0,05).
+3. Calculer une statistique de test à partir de l'échantillon.
+4. En déduire la p-value.
+5. Décider : si p < α, on rejette H₀ ; sinon on ne la rejette pas. Ne pas rejeter H₀ ne démontre pas qu'elle est vraie, seulement que les données ne suffisent pas à la contredire.
+
+**Tests courants :** test t de Student (comparer des moyennes), test du χ² (indépendance de deux variables qualitatives), ANOVA (comparer plusieurs moyennes).
+
+**Analogie :** comme dans un procès, H₀ est maintenue tant que les données ne la contredisent pas assez. Les deux erreurs possibles sont décrites à l'entrée « Erreurs de type I et de type II ».
+
+**Exemple :** dans un test A/B, H₀ dit que deux versions d'une page ont le même taux de conversion ; on la rejette si l'écart observé serait très improbable dans ce cas.
+
+**Limites :**
+- Un résultat significatif n'implique pas un effet important : on regarde aussi la taille d'effet et l'intervalle de confiance.
+- Chaque test suppose des conditions (indépendance, forme de la distribution, taille d'échantillon) à vérifier.
+- Multiplier les tests augmente le risque de faux positifs.`,
     category: "statistiques",
     icon: "CheckCircle"
   },
   {
     term: "P-value",
-    description: "La p-value est le **'niveau de surprise'** de vos données - elle mesure à quel point vos résultats observés seraient improbables si l'hypothèse nulle était vraie. **Analogie** : imaginez que vous soupçonnez qu'une pièce est truquée. Vous la lancez 100 fois et obtenez 70 faces. La p-value répond à : 'Si la pièce était équitable, quelle est la probabilité d'obtenir 70 faces ou plus par pur hasard ?' **Interprétation** : p-value faible (< 0.05) = résultats très surprenants sous H₀, donc on rejette H₀ ; p-value élevée = résultats pas surprenants, on ne rejette pas H₀. **Malentendus courants** : la p-value N'EST PAS la probabilité que H₀ soit vraie, ni la probabilité de se tromper. **Calcul** : aire sous la courbe de distribution de la statistique de test, au-delà de la valeur observée. **Seuils conventionnels** : p < 0.05 (significatif), p < 0.01 (très significatif), p < 0.001 (hautement significatif). **Critiques** : problème des comparaisons multiples, p-hacking (manipulation des analyses pour obtenir p < 0.05), sur-interprétation des seuils arbitraires. **Alternatives** : intervalles de confiance, approche bayésienne, taille d'effet. La p-value reste un outil central mais doit être interprétée avec prudence et contexte.",
+    description: `La p-value est la probabilité, calculée en supposant l'hypothèse nulle H₀ vraie, d'obtenir un résultat au moins aussi extrême que celui observé.
+
+**Exemple :** on lance 100 fois une pièce et l'on obtient 70 faces. Si la pièce est équilibrée, la probabilité d'obtenir 70 faces ou plus est d'environ 0,00004 (0,00008 en bilatéral, en comptant aussi 70 piles ou plus). Ce résultat serait très surprenant sous H₀, ce qui incite à douter que la pièce soit équilibrée.
+
+**Lecture :**
+- Une p-value petite indique que les données sont peu compatibles avec H₀.
+- On rejette H₀ si p est inférieure au seuil α fixé à l'avance (0,05 par convention, sans justification théorique particulière).
+
+**Ce que la p-value n'est pas :**
+- Ce n'est pas la probabilité que H₀ soit vraie.
+- Ce n'est pas la probabilité de se tromper.
+- Elle ne mesure ni la taille ni l'importance d'un effet.
+
+**Pièges :** tester de nombreuses hypothèses jusqu'à en trouver une avec p < 0,05 (« p-hacking ») produit des faux positifs, et la p-value dépend aussi de la taille de l'échantillon. En 2016, l'American Statistical Association a publié une mise au point sur son usage (Wasserstein et Lazar, 2016).
+
+**En pratique :** on l'accompagne d'une taille d'effet et d'un intervalle de confiance.`,
     category: "statistiques",
-    icon: "Percent"
+    icon: "Divide"
   },
   {
     term: "Intervalle de confiance",
-    description: "L'intervalle de confiance est comme un **'filet de sécurité statistique'** - une plage de valeurs qui a de bonnes chances de capturer le vrai paramètre de population que nous cherchons à estimer. **Analogie** : imaginez que vous essayez d'attraper un poisson (le vrai paramètre) avec un filet (l'intervalle). Un filet plus large (niveau de confiance plus élevé) a plus de chances d'attraper le poisson, mais est moins précis. **Construction** : Estimation ± Marge d'erreur, où la marge d'erreur dépend du niveau de confiance souhaité et de la variabilité des données. **Interprétation correcte** : 'Si nous répétions cette étude 100 fois, environ 95 intervalles sur 100 contiendraient le vrai paramètre' (pour un IC à 95%). **Malentendu fréquent** : ce n'est PAS 'il y a 95% de chances que le vrai paramètre soit dans cet intervalle' - le paramètre est fixe, c'est l'intervalle qui varie d'échantillon en échantillon. **Niveaux courants** : 90% (±1.645σ), 95% (±1.96σ), 99% (±2.576σ). **Applications** : sondages politiques ('candidat X : 52% ±3%'), essais cliniques (efficacité d'un traitement), contrôle qualité (limites de tolérance). **Largeur** : dépend de la taille d'échantillon (plus grand échantillon = intervalle plus étroit) et de la variabilité des données. Les intervalles de confiance fournissent plus d'information que les tests d'hypothèse car ils quantifient l'incertitude.",
+    description: `Un intervalle de confiance est une plage de valeurs, calculée à partir d'un échantillon, qui vise à encadrer un paramètre inconnu de la population (une moyenne, une proportion) avec un niveau de confiance donné, par exemple 95 %.
+
+**Construction :** estimation ± marge d'erreur. Pour une moyenne et un grand échantillon, x̄ ± 1,96 × s / √n au niveau de 95 % (le coefficient vaut 1,645 pour 90 % et 2,576 pour 99 %). Pour un petit échantillon, on remplace 1,96 par un quantile de la loi de Student.
+
+**Interprétation correcte :** si l'on répétait l'étude un grand nombre de fois, environ 95 % des intervalles ainsi construits contiendraient la vraie valeur. Le paramètre est fixe ; c'est l'intervalle qui varie d'un échantillon à l'autre. Dire « il y a 95 % de chances que la vraie valeur soit dans cet intervalle déjà calculé » relève d'une lecture bayésienne, pas de l'intervalle de confiance classique.
+
+**Exemple :** un sondage de 1 000 personnes donne 52 % d'intentions de vote. La marge d'erreur à 95 % est d'environ 1,96 × √(0,52 × 0,48 / 1000) ≈ 3,1 points : l'intervalle va d'environ 49 % à 55 %.
+
+**Largeur :**
+- Elle diminue quand la taille de l'échantillon augmente (en 1/√n).
+- Elle augmente avec la variabilité des données et avec le niveau de confiance exigé.
+
+**Limites :** l'intervalle ne corrige ni un biais d'échantillonnage ni un modèle inadapté ; il ne couvre que l'incertitude due au hasard d'échantillonnage.`,
     category: "statistiques",
     icon: "Target"
   },
   {
     term: "Corrélation",
-    description: "La corrélation mesure à quel point deux variables 'dansent ensemble' - si elles bougent dans la même direction, en opposition, ou de manière indépendante. **Analogie** : observer deux danseurs - parfaitement synchronisés (corrélation +1), en opposition parfaite (-1), ou dansant indépendamment (0). **Coefficient de Pearson** : mesure standard entre -1 et +1, où |r| proche de 1 indique une relation linéaire forte. **Interprétation** : r > 0 (relation positive - quand X augmente, Y augmente), r < 0 (relation négative - quand X augmente, Y diminue), r ≈ 0 (pas de relation linéaire). **Règles empiriques** : |r| < 0.3 (faible), 0.3-0.7 (modérée), > 0.7 (forte). **Types** : Pearson (linéaire), Spearman (monotone), Kendall (rang). **Applications** : finance (diversification de portefeuille), marketing (prix vs demande), santé (facteurs de risque), météo (température vs pression). **Pièges** : corrélation ≠ causalité ! Deux variables peuvent être corrélées par hasard ou via une troisième variable cachée. **Visualisation** : nuage de points (scatter plot) révèle la nature de la relation. **Importance** : base de la régression, analyse factorielle, et détection de multicolinéarité.",
+    description: `La corrélation mesure l'intensité et le sens de l'association entre deux variables. Le coefficient de Pearson, noté r, mesure plus précisément leur association linéaire.
+
+**Coefficient de Pearson :** r = covariance(X, Y) / (σₓ × σᵧ), compris entre −1 et +1.
+- r proche de +1 : quand X augmente, Y tend à augmenter.
+- r proche de −1 : quand X augmente, Y tend à diminuer.
+- r proche de 0 : pas d'association linéaire. Cela n'exclut pas une relation non linéaire, par exemple en forme de U.
+
+**Autres coefficients :** Spearman (corrélation des rangs, adaptée aux relations monotones et peu sensible aux valeurs extrêmes) et Kendall (concordance des paires de rangs).
+
+**Lecture :** les seuils « faible », « modérée », « forte » sont des conventions qui dépendent du domaine. Il vaut mieux regarder le nuage de points : les quatre jeux de données du quartet d'Anscombe (Anscombe, 1973) ont presque la même corrélation (environ 0,82) pour des graphiques très différents.
+
+**Pièges :**
+- Corrélation n'est pas causalité : une troisième variable (facteur de confusion) ou le hasard peuvent expliquer l'association.
+- Quelques valeurs extrêmes peuvent créer ou masquer une corrélation.
+- Une corrélation observée sur des moyennes de groupes ne s'applique pas forcément aux individus.
+
+**En pratique :** une matrice de corrélation sert à explorer un jeu de données et à repérer des variables redondantes (multicolinéarité) avant une régression.`,
     category: "statistiques",
     icon: "GitBranch"
   },
   {
     term: "Régression",
-    description: "La régression est comme **'dessiner la meilleure ligne'** à travers un nuage de points pour capturer la relation entre variables et faire des prédictions. **Analogie** : imaginez que vous essayez de prédire le prix d'une maison (Y) basé sur sa superficie (X). La régression trouve la ligne qui passe 'au plus près' de tous les points (maisons) pour minimiser les erreurs de prédiction. **Types principaux** : **Linéaire simple** (Y = a + bX, une seule variable explicative), **Multiple** (plusieurs variables : prix = f(superficie, chambres, quartier)), **Polynomiale** (relations courbes), **Logistique** (pour variables binaires). **Méthode des moindres carrés** : trouve la ligne qui minimise la somme des carrés des résidus (erreurs de prédiction). **Hypothèses clés** : linéarité, indépendance des erreurs, homoscédasticité (variance constante), normalité des résidus. **Évaluation** : R² (pourcentage de variance expliquée), RMSE (erreur moyenne), analyse des résidus. **Applications** : finance (modèles de pricing), marketing (impact publicitaire), économie (élasticité prix-demande), sciences (relations dose-effet). **Interprétation** : les coefficients indiquent l'impact d'une unité d'augmentation de X sur Y. **Extensions** : régression ridge/lasso (régularisation), régression robuste (résistante aux outliers). La régression est l'un des outils les plus utilisés en data science pour comprendre et prédire.",
+    description: `La régression regroupe les méthodes qui modélisent une variable à expliquer (Y) en fonction d'une ou plusieurs variables explicatives (X), pour décrire la relation ou prédire Y.
+
+**Régression linéaire :** Y = a + b·X + erreur. Les coefficients sont choisis par les moindres carrés ordinaires : on minimise la somme des carrés des résidus, c'est-à-dire des écarts entre valeurs observées et valeurs prédites.
+
+**Variantes :**
+- Multiple : plusieurs variables explicatives.
+- Polynomiale : termes en X², X³… (encore linéaire en ses coefficients).
+- Logistique : cible binaire, le modèle estime une probabilité ; elle sert à classer malgré son nom.
+- Ridge et lasso : régularisation pour limiter le surapprentissage.
+
+**Exemple :** prédire le prix d'un logement d'après sa surface. Le coefficient de la surface s'interprète comme la variation moyenne de prix associée à 1 m² de plus, les autres variables restant fixes.
+
+**Évaluation :** R² (part de la variance de Y expliquée), RMSE (erreur typique), graphique des résidus, validation sur des données non utilisées pour l'ajustement.
+
+**Limites :**
+- Le modèle linéaire classique suppose une relation linéaire, des erreurs indépendantes, une variance constante et des résidus à peu près normaux (pour les tests et les intervalles).
+- Une association n'est pas une causalité.
+- Extrapoler hors de l'étendue des données est risqué.`,
     category: "statistiques",
     icon: "TrendingUp"
   },
   {
     term: "Statistiques bayésiennes (Bayesian Statistics)",
-    description: "Les statistiques bayésiennes fonctionnent comme un **détective qui met à jour ses hypothèses** à chaque nouvel indice découvert - elles permettent d'incorporer systématiquement de nouvelles preuves pour affiner nos croyances. **Philosophie révolutionnaire** : contrairement à l'approche fréquentiste (probabilité = fréquence à long terme), l'approche bayésienne traite la probabilité comme un **degré de croyance** qui évolue avec l'information. **Théorème de Bayes** : P(H|E) = P(E|H) × P(H) / P(E), où P(H|E) est la probabilité a posteriori (croyance mise à jour), P(H) la probabilité a priori (croyance initiale), P(E|H) la vraisemblance (compatibilité des données avec l'hypothèse). **Analogie médicale** : un médecin commence avec une probabilité a priori qu'un patient ait une maladie (basée sur l'âge, antécédents), puis met à jour cette probabilité après chaque test (symptômes, analyses). **Processus itératif** : Prior → Données → Posterior, où le posterior d'aujourd'hui devient le prior de demain. **Avantages** : incorporation naturelle de connaissances préalables, quantification complète de l'incertitude, prédictions probabilistes, gestion élégante de petits échantillons. **Applications** : diagnostic médical, spam filtering, recommandations personnalisées, A/B testing, finance (gestion de risque). **Outils** : MCMC (échantillonnage), Stan/PyMC (logiciels), réseaux bayésiens. **Défis** : choix du prior (subjectivité), complexité computationnelle, courbe d'apprentissage. **Renaissance moderne** : avec la puissance de calcul actuelle, les méthodes bayésiennes connaissent un essor majeur en IA et data science.",
+    description: `Les statistiques bayésiennes traitent la probabilité comme un degré de croyance, que l'on met à jour avec les données grâce au théorème de Bayes. Elles s'opposent à l'approche fréquentiste, où la probabilité est la fréquence à long terme d'un événement.
+
+**Principe :** P(H | D) = P(D | H) × P(H) / P(D)
+- P(H) : probabilité a priori, ce que l'on pense avant les données.
+- P(D | H) : vraisemblance, probabilité des données si H est vraie.
+- P(H | D) : probabilité a posteriori, croyance mise à jour.
+
+L'a posteriori d'une analyse peut servir d'a priori à la suivante.
+
+**Exemple :** une maladie touche 1 % de la population. Un test la détecte dans 90 % des cas (sensibilité) et donne un faux positif dans 5 % des cas sains. Après un test positif, la probabilité d'être malade est 0,9 × 0,01 / (0,9 × 0,01 + 0,05 × 0,99) ≈ 15 %, bien moins que ce que l'intuition suggère, parce que la maladie est rare.
+
+**Atouts :**
+- L'incertitude est résumée par une distribution complète (intervalles crédibles).
+- On peut intégrer une connaissance préalable, utile quand les données sont peu nombreuses.
+
+**Limites :**
+- Le choix de l'a priori influence le résultat : on teste la sensibilité à ce choix.
+- Les calculs passent souvent par des méthodes numériques (MCMC), parfois lentes.
+
+**Outils :** Stan, PyMC.`,
     category: "statistiques",
     icon: "RefreshCw"
   },
   {
     term: "Quantiles/Percentiles/Quartiles",
-    description: "Les quantiles fonctionnent comme des **'lignes de démarcation'** qui divisent vos données en tranches égales, à la manière d'un couteau qui découpe un gâteau en parts de taille identique. **Principe** : au lieu de regarder les valeurs absolues, on s'intéresse aux positions relatives dans la distribution. **Percentiles** : divisent les données en 100 parts égales - le 75ème percentile signifie que 75% des observations sont inférieures à cette valeur. **Analogie scolaire** : si vous êtes au 90ème percentile d'un examen, vous avez fait mieux que 90% des étudiants. **Quartiles** : cas spécial qui divise en 4 parts égales : Q1 (25ème percentile), Q2 (médiane, 50ème percentile), Q3 (75ème percentile). **Calcul pratique** : triez les données, puis trouvez les valeurs aux positions k×(n+1)/100 pour le kème percentile. **Applications cruciales** : 1) **Boxplots** (visualisation des quartiles et outliers), 2) **Benchmarking** (performance relative), 3) **Détection d'anomalies** (valeurs au-delà de Q3 + 1.5×IQR), 4) **Segmentation** (diviser clients en groupes). **Espace interquartile (IQR)** : Q3 - Q1, mesure robuste de dispersion résistante aux outliers. **Avantages** : interprétation intuitive, robustesse aux valeurs extrêmes, applicable à toute distribution. **Exemples concrets** : salaires (médiane plus représentative), temps de réponse web (95ème percentile pour SLA), croissance d'enfants (courbes de percentiles). **Différence clé** : contrairement à la moyenne/écart-type, les quantiles ne font aucune hypothèse sur la forme de la distribution.",
+    description: `Un quantile d'ordre p est une valeur en dessous de laquelle se trouve une proportion p des observations. Les quantiles décrivent la position d'une valeur dans la distribution, sans hypothèse sur sa forme.
+
+**Cas particuliers :**
+- Percentiles : 99 valeurs qui découpent les données en 100 parts ; le 90ᵉ percentile est dépassé par environ 10 % des observations.
+- Quartiles : Q1 (25ᵉ percentile), Q2 (médiane, 50ᵉ) et Q3 (75ᵉ).
+- Déciles : 9 valeurs qui découpent les données en 10 parts.
+
+**Écart interquartile (IQR) :** Q3 − Q1. Il mesure la dispersion du centre des données et résiste aux valeurs extrêmes. La règle de Tukey signale comme atypiques les valeurs situées hors de [Q1 − 1,5 × IQR ; Q3 + 1,5 × IQR], ce que montre une boîte à moustaches.
+
+**Exemple :** un temps de réponse de 200 ms au 95ᵉ percentile signifie que 95 % des requêtes sont traitées en 200 ms ou moins. C'est plus informatif que la moyenne quand quelques requêtes sont très lentes.
+
+**Limites :** il existe plusieurs conventions de calcul (interpolation entre deux valeurs voisines). Selon la méthode choisie, les résultats peuvent différer légèrement sur de petits échantillons.`,
     category: "statistiques",
     icon: "BarChart3"
   },
   {
     term: "Erreurs de type I et de type II (Type I & II Errors)",
-    description: "Les erreurs de Type I et II sont comme les **'erreurs judiciaires'** des statistiques - elles représentent les deux façons dont nous pouvons nous tromper lors d'un test d'hypothèse. **Analogie juridique** : imaginez un procès où l'accusé est soit innocent (H₀ vraie) soit coupable (H₀ fausse). **Erreur de Type I (α)** : condamner un innocent - rejeter H₀ alors qu'elle est vraie (faux positif). C'est comme déclarer qu'un médicament est efficace alors qu'il ne l'est pas. **Probabilité** : α = P(rejeter H₀ | H₀ vraie), généralement fixée à 5%. **Erreur de Type II (β)** : acquitter un coupable - accepter H₀ alors qu'elle est fausse (faux négatif). C'est comme ne pas détecter l'efficacité d'un médicament qui fonctionne réellement. **Probabilité** : β = P(accepter H₀ | H₀ fausse). **Puissance statistique** : 1-β, probabilité de détecter un effet réel. **Trade-off fondamental** : réduire α augmente β et vice-versa - on ne peut pas minimiser les deux simultanément sans augmenter la taille d'échantillon. **Applications critiques** : médecine (diagnostic), contrôle qualité (défauts), sécurité (détection de menaces). **Conséquences** : Type I peut conduire à des décisions coûteuses basées sur de fausses preuves ; Type II peut faire rater des opportunités importantes. **Facteurs d'influence** : taille d'échantillon (plus grand = moins d'erreurs), taille d'effet (effet plus grand = moins d'erreur Type II), variabilité des données. **Stratégies de mitigation** : calcul de puissance a priori, tests adaptatifs, approches bayésiennes. **Contexte moderne** : avec le Big Data, l'erreur Type I devient critique (problème des comparaisons multiples), nécessitant des corrections comme Bonferroni ou FDR (False Discovery Rate).",
+    description: `Lors d'un test d'hypothèse, deux erreurs sont possibles.
+
+**Erreur de type I (faux positif) :** rejeter H₀ alors qu'elle est vraie. Sa probabilité est le seuil α, fixé à l'avance (souvent 0,05).
+
+**Erreur de type II (faux négatif) :** ne pas rejeter H₀ alors qu'elle est fausse. Sa probabilité est β. La puissance du test, 1 − β, est la probabilité de détecter un effet réel.
+
+**Résumé :**
+- H₀ vraie et rejetée : erreur de type I.
+- H₀ fausse et non rejetée : erreur de type II.
+- Les deux autres cas sont des décisions correctes.
+
+**Compromis :** pour une taille d'échantillon donnée, diminuer α augmente β. La puissance augmente avec la taille d'échantillon, la taille de l'effet à détecter et α, et diminue avec la variabilité des données. Un calcul de puissance avant l'étude permet de choisir la taille d'échantillon.
+
+**Exemple :** pour un médicament, un faux positif conduit à adopter un traitement sans effet ; un faux négatif conduit à abandonner un traitement utile.
+
+**Tests multiples :** avec 20 tests indépendants au seuil de 5 % et aucun effet réel, la probabilité d'obtenir au moins un faux positif est 1 − 0,95²⁰ ≈ 64 %. On corrige par la méthode de Bonferroni (seuil α/m pour m tests) ou en contrôlant le taux de fausses découvertes (Benjamini et Hochberg, 1995).`,
     category: "statistiques",
     icon: "AlertTriangle"
   },
   {
     term: "Chaînes de Markov Monte Carlo (MCMC)",
-    description: "**🎲 L'Art de l'Exploration Probabiliste !**\n\nComme un explorateur méthodique qui découvre un territoire inconnu en suivant des règles précises, MCMC révolutionne l'échantillonnage de distributions complexes en créant une chaîne d'états où chaque étape dépend uniquement de la précédente, permettant d'explorer efficacement des espaces probabilistes de haute dimension.\n\n**🗺️ Analogie de l'Explorateur :**\nImaginez un explorateur dans une région montagneuse brumeuse. Il ne peut voir que sa position actuelle et les environs immédiats. Pour cartographier la région, il suit une règle simple : à chaque étape, il propose un nouveau lieu à visiter basé sur sa position actuelle, et décide d'y aller selon certains critères. Après des milliers d'étapes, son parcours révèle la topographie complète !\n\n**⚙️ Fondements Théoriques :**\n\n**Propriété de Markov :**\n```\nP(X_{t+1} | X_t, X_{t-1}, ..., X_0) = P(X_{t+1} | X_t)\n```\n*L'avenir ne dépend que du présent, pas du passé*\n\n**Chaîne de Markov :**\n- **États** : Valeurs possibles des paramètres\n- **Transitions** : Probabilités de passage entre états\n- **Stationnarité** : Distribution limite invariante\n- **Ergodicité** : Convergence vers la distribution cible\n\n**Théorème Fondamental :**\nSi la chaîne est irréductible et apériodique, alors :\n```\nlim_{n→∞} (1/n) Σ f(X_i) = E_π[f(X)]\n```\n*La moyenne empirique converge vers l'espérance théorique*\n\n**🎯 Algorithmes Principaux :**\n\n**Metropolis-Hastings :**\n```\nAlgorithme Metropolis-Hastings:\n1. État actuel : x_t\n2. Proposer : x' ~ q(x'|x_t)\n3. Calculer ratio : α = min(1, [π(x')q(x_t|x')] / [π(x_t)q(x'|x_t)])\n4. Accepter x' avec probabilité α\n5. Sinon garder x_t\n```\n\n**Avantages :**\n- **Universalité** : Fonctionne pour toute distribution\n- **Simplicité** : Facile à implémenter\n- **Flexibilité** : Nombreuses variantes possibles\n\n**Gibbs Sampling :**\n```\nAlgorithme de Gibbs:\nPour chaque variable X_i:\n  X_i^{(t+1)} ~ P(X_i | X_{-i}^{(t+1)}, X_{-i}^{(t)})\n```\n\n**Conditions d'Application :**\n- **Conditionnelles Connues** : Distributions conditionnelles calculables\n- **Sampling Direct** : Échantillonnage direct possible\n- **Efficacité** : Convergence souvent plus rapide\n\n**Hamiltonian Monte Carlo (HMC) :**\n```\nDynamique Hamiltonienne:\ndq/dt = ∂H/∂p\ndp/dt = -∂H/∂q\n\nH(q,p) = U(q) + K(p)\nU(q) = -log π(q)  # Énergie potentielle\nK(p) = p²/2m      # Énergie cinétique\n```\n\n**Révolution HMC :**\n- **Gradient Information** : Utilise les gradients de la log-densité\n- **Exploration Efficace** : Évite la marche aléatoire\n- **Haute Dimension** : Excellent pour espaces complexes\n- **Stan/PyMC** : Implémentations modernes\n\n**🔬 Applications en Machine Learning :**\n\n**Inférence Bayésienne :**\n```\nModèle Bayésien:\nP(θ|D) ∝ P(D|θ) × P(θ)\n\nÉchantillonnage MCMC:\nθ^{(1)}, θ^{(2)}, ..., θ^{(N)} ~ P(θ|D)\n\nEstimation:\nE[θ|D] ≈ (1/N) Σ θ^{(i)}\n```\n\n**Réseaux de Neurones Bayésiens :**\n- **Incertitude** : Distribution sur les poids\n- **Regularization** : Priors sur les paramètres\n- **Calibration** : Prédictions avec intervalles de confiance\n- **Robustesse** : Résistance à l'overfitting\n\n**Modèles Graphiques :**\n- **Variables Latentes** : Échantillonnage des états cachés\n- **Topic Models** : LDA, allocation de sujets\n- **Collaborative Filtering** : Factorisation matricielle\n- **Social Networks** : Modèles de communautés\n\n**🧠 Deep Learning et MCMC :**\n\n**Bayesian Neural Networks :**\n```python\n# PyMC3 Example\nwith pm.Model() as model:\n    # Priors sur les poids\n    w1 = pm.Normal('w1', 0, 1, shape=(input_dim, hidden_dim))\n    w2 = pm.Normal('w2', 0, 1, shape=(hidden_dim, output_dim))\n    \n    # Forward pass\n    hidden = pm.math.tanh(pm.math.dot(X, w1))\n    output = pm.math.dot(hidden, w2)\n    \n    # Likelihood\n    y_obs = pm.Normal('y_obs', output, sigma, observed=y)\n    \n    # MCMC Sampling\n    trace = pm.sample(2000, tune=1000)\n```\n\n**Variational Inference vs MCMC :**\n- **VI** : Approximation rapide mais biaisée\n- **MCMC** : Échantillonnage exact mais coûteux\n- **Hybrid** : VI pour initialisation, MCMC pour raffinement\n\n**🎨 Variantes Avancées :**\n\n**Parallel Tempering :**\n```\nTempératures : T₁ < T₂ < ... < Tₖ\nDistributions : π_i(x) ∝ [π(x)]^{1/T_i}\n\nÉchanges entre chaînes :\nα = min(1, exp[(1/T_i - 1/T_j)(U(x_j) - U(x_i))])\n```\n\n**Avantages :**\n- **Multimodalité** : Exploration de modes multiples\n- **Convergence** : Plus rapide vers stationnarité\n- **Robustesse** : Moins sensible à l'initialisation\n\n**Adaptive MCMC :**\n- **Covariance Adaptation** : Ajustement automatique des propositions\n- **Step Size Tuning** : Optimisation du taux d'acceptation\n- **Dual Averaging** : Algorithmes d'adaptation robustes\n\n**Reversible Jump MCMC :**\n- **Model Selection** : Saut entre modèles de dimensions différentes\n- **Variable Selection** : Inclusion/exclusion de variables\n- **Complexity Control** : Balance biais-variance automatique\n\n**📊 Diagnostics et Convergence :**\n\n**Trace Plots :**\n- **Mixing** : Exploration efficace de l'espace\n- **Stationarity** : Stabilité de la distribution\n- **Autocorrelation** : Indépendance des échantillons\n\n**Gelman-Rubin Statistic (R̂) :**\n```\nR̂ = √[(n-1)/n + (1/n)(B/W)]\n\nB = Variance entre chaînes\nW = Variance intra-chaînes\n\nConvergence si R̂ < 1.1\n```\n\n**Effective Sample Size (ESS) :**\n```\nESS = N / (1 + 2Σρₖ)\n\nρₖ = Autocorrélation au lag k\nN = Nombre total d'échantillons\n```\n\n**🚀 Applications Sectorielles :**\n\n**Finance Quantitative :**\n- **Risk Management** : Modèles de volatilité stochastique\n- **Portfolio Optimization** : Incertitude sur les paramètres\n- **Credit Risk** : Modèles de défaut hiérarchiques\n- **Derivatives Pricing** : Modèles complexes multi-facteurs\n\n**Bioinformatique :**\n- **Phylogénétique** : Reconstruction d'arbres évolutifs\n- **Génomique** : Association génotype-phénotype\n- **Épidémiologie** : Modèles de propagation\n- **Drug Discovery** : Modélisation moléculaire\n\n**Sciences Sociales :**\n- **Économétrie** : Modèles hiérarchiques\n- **Psychométrie** : Théorie de réponse à l'item\n- **Démographie** : Projections de population\n- **Marketing** : Modèles de choix discret\n\n**🔧 Implémentation Moderne :**\n\n**Stan (C++) :**\n```stan\ndata {\n  int<lower=0> N;\n  vector[N] x;\n  vector[N] y;\n}\nparameters {\n  real alpha;\n  real beta;\n  real<lower=0> sigma;\n}\nmodel {\n  y ~ normal(alpha + beta * x, sigma);\n}\n```\n\n**PyMC (Python) :**\n```python\nwith pm.Model() as model:\n    alpha = pm.Normal('alpha', 0, 10)\n    beta = pm.Normal('beta', 0, 10)\n    sigma = pm.HalfNormal('sigma', 5)\n    \n    mu = alpha + beta * x\n    y_obs = pm.Normal('y_obs', mu, sigma, observed=y)\n    \n    trace = pm.sample(2000, return_inferencedata=True)\n```\n\n**JAGS (R) :**\n```r\nlibrary(rjags)\n\nmodel_string <- \"\n  model {\n    for (i in 1:N) {\n      y[i] ~ dnorm(mu[i], tau)\n      mu[i] <- alpha + beta * x[i]\n    }\n    alpha ~ dnorm(0, 0.01)\n    beta ~ dnorm(0, 0.01)\n    tau ~ dgamma(0.01, 0.01)\n  }\"\n```\n\n**⚡ Optimisations Modernes :**\n\n**GPU Acceleration :**\n- **CuPy/JAX** : Calculs parallèles massifs\n- **TensorFlow Probability** : Intégration deep learning\n- **Numpyro** : MCMC sur GPU avec JAX\n\n**Automatic Differentiation :**\n- **Gradients Exacts** : Plus de dérivées numériques\n- **HMC Efficace** : Exploration optimale\n- **NUTS** : No-U-Turn Sampler automatique\n\n**🚨 Défis et Solutions :**\n\n**Haute Dimension :**\n- **Curse of Dimensionality** : Exploration inefficace\n- **Solution** : HMC, Riemannian MCMC\n- **Preconditioning** : Transformation d'espace\n\n**Multimodalité :**\n- **Mode Switching** : Difficulté à changer de mode\n- **Solution** : Parallel Tempering, Annealed Importance\n- **Initialization** : Démarrage multiple\n\n**Computational Cost :**\n- **Likelihood Evaluation** : Coût par itération\n- **Solution** : Approximate Bayesian Computation\n- **Subsampling** : Mini-batch MCMC\n\n**🌟 Révolution et Impact :**\nMCMC a révolutionné la statistique bayésienne en rendant praticable l'inférence sur des modèles complexes impossibles à résoudre analytiquement. Avec l'essor du machine learning, MCMC devient essentiel pour quantifier l'incertitude, permettant une IA plus robuste et interprétable. L'intégration avec l'automatic differentiation et le calcul GPU ouvre de nouvelles frontières pour l'inférence bayésienne à grande échelle.",
+    description: `Les méthodes de Monte-Carlo par chaînes de Markov (MCMC) sont des algorithmes qui tirent des échantillons d'une loi de probabilité connue seulement à une constante près, typiquement la loi a posteriori d'un modèle bayésien dont le calcul exact est impossible.
+
+**Principe :**
+- On construit une chaîne de Markov : chaque nouvel état ne dépend que de l'état précédent.
+- La chaîne est conçue pour que sa loi stationnaire soit la loi cible.
+- Après une période de chauffe (burn-in), les états visités sont des tirages corrélés de la loi cible : on estime une espérance par une moyenne, E[f(θ)] ≈ (1/N) Σ f(θ⁽ⁱ⁾).
+
+**Algorithmes courants :**
+- Metropolis-Hastings : on propose un état à partir de l'état courant et on l'accepte avec une probabilité fondée sur le rapport des densités, sinon on reste sur place.
+- Échantillonneur de Gibbs : on tire chaque variable selon sa loi conditionnelle aux autres.
+- Hamiltonian Monte Carlo et sa variante NUTS : ils utilisent le gradient de la log-densité pour explorer les espaces de grande dimension. NUTS est l'algorithme par défaut de Stan et, pour les variables continues, de PyMC.
+
+**Exemple :** une régression avec PyMC (code non exécuté ici).
+
+\`\`\`python
+import pymc as pm
+
+with pm.Model():
+    alpha = pm.Normal("alpha", 0, 10)
+    beta = pm.Normal("beta", 0, 10)
+    sigma = pm.HalfNormal("sigma", 5)
+    pm.Normal("y", mu=alpha + beta * x, sigma=sigma, observed=y)
+    idata = pm.sample(1000)
+\`\`\`
+
+**Diagnostics :** tracés des chaînes, statistique R̂ de Gelman-Rubin (comparaison de plusieurs chaînes, valeur attendue proche de 1), taille d'échantillon effective.
+
+**Limites :** la convergence n'est jamais garantie en pratique, les lois à plusieurs modes sont difficiles à explorer et le coût de calcul peut être élevé. L'inférence variationnelle est plus rapide mais approchée.`,
     category: "statistiques",
     icon: "GitBranch"
   },
   {
     term: "Modèles de Markov cachés (Hidden Markov Models - HMM)",
-    description: "Modèle statistique dans lequel le système modélisé est supposé être un processus de Markov avec des états non observés (cachés). Utilisé en reconnaissance vocale, bioinformatique et finance.",
+    description: `Un modèle de Markov caché (HMM) est un modèle probabiliste dans lequel une suite d'observations est produite par un système qui passe d'un état à un autre selon une chaîne de Markov, mais dont les états ne sont pas observables directement.
+
+**Composants :**
+- Les états cachés (par exemple la catégorie grammaticale d'un mot).
+- Les probabilités de transition entre états.
+- Les probabilités d'émission : probabilité d'observer chaque valeur dans chaque état.
+- La distribution initiale des états.
+
+**Hypothèses :** l'état à l'instant t ne dépend que de l'état à l'instant t − 1, et chaque observation ne dépend que de l'état courant.
+
+**Trois problèmes classiques :**
+- Évaluation : probabilité d'une séquence d'observations (algorithme forward).
+- Décodage : séquence d'états cachés la plus probable (algorithme de Viterbi).
+- Apprentissage : estimer les paramètres à partir des observations (algorithme de Baum-Welch, cas particulier de l'algorithme EM).
+
+**Exemple :** étiqueter chaque mot d'une phrase par sa catégorie grammaticale, ou retrouver les phonèmes d'un signal de parole. Les HMM ont aussi servi en bioinformatique (séquences d'ADN) et pour détecter des régimes dans des séries financières.
+
+**Limites :** la mémoire d'un seul pas et le nombre d'états, à fixer à l'avance, sont des hypothèses fortes. Les réseaux de neurones ont largement remplacé les HMM en reconnaissance vocale et en traitement du langage. En Python, la bibliothèque hmmlearn permet de les ajuster.`,
     category: "statistiques",
     icon: "Eye"
   },
   {
     term: "Analyse de survie (Survival Analysis)",
-    description: "**La science du temps qui reste !** Comme un médecin qui prédit l'espérance de vie d'un patient ou un ingénieur qui estime la durée de vie d'une machine, l'analyse de survie modélise le temps jusqu'à ce qu'un événement critique se produise.\n\n**⏰ Analogie Médicale :**\nImaginez suivre 1000 patients atteints d'une maladie : certains guérissent rapidement, d'autres vivent des années, quelques-uns quittent l'étude. L'analyse de survie extrait des insights même avec ces données 'incomplètes'.\n\n**🎯 Concepts Fondamentaux :**\n\n**Fonction de Survie S(t) :**\n- Probabilité de survivre au-delà du temps t\n- S(t) = P(T > t) où T = temps de survie\n- Décroissante de 1 (t=0) vers 0 (t=∞)\n\n**Fonction de Risque h(t) :**\n- Taux instantané de défaillance au temps t\n- h(t) = lim[P(t ≤ T < t+Δt | T ≥ t)] / Δt\n- Peut augmenter, diminuer, ou rester constant\n\n**🚨 Défi de la Censure :**\n\n**Types de Censure :**\n• **Droite** : Événement non observé à la fin de l'étude\n• **Gauche** : Événement déjà survenu au début\n• **Intervalle** : Événement dans une période connue\n• **Informative** : Censure liée au risque d'événement\n\n**Impact Critique :**\n- Ignorer la censure → Biais majeurs\n- Sous-estimation des temps de survie\n- Conclusions erronées sur l'efficacité\n\n**📊 Méthodes Classiques :**\n\n**Estimateur de Kaplan-Meier :**\n- Estimation non-paramétrique de S(t)\n- Courbes de survie en escalier\n- Intervalles de confiance\n- Test du log-rank pour comparaisons\n\n**Modèle de Cox (Proportional Hazards) :**\n- h(t|x) = h₀(t) × exp(βx)\n- Semi-paramétrique (pas d'hypothèse sur h₀)\n- Hazard Ratios pour interpréter les effets\n- Standard en recherche médicale\n\n**Modèles Paramétriques :**\n- **Weibull** : Risque monotone (croissant/décroissant)\n- **Exponentiel** : Risque constant\n- **Log-normal** : Risque en cloche\n- **Gamma généralisé** : Très flexible\n\n**🎯 Applications Diversifiées :**\n\n**Médecine & Santé :**\n- Essais cliniques (survie patients)\n- Épidémiologie (progression maladie)\n- Pharmacovigilance (effets secondaires)\n\n**Business & Marketing :**\n- **Customer Churn** : Temps avant désabonnement\n- **CLV** : Customer Lifetime Value\n- **Rétention** : Durée d'engagement client\n\n**Ingénierie & Fiabilité :**\n- Durée de vie des composants\n- Maintenance prédictive\n- Analyse des pannes système\n\n**Finance :**\n- Défaut de crédit\n- Durée des investissements\n- Risque de marché\n\n**🛠️ Outils Modernes :**\n\n**Packages R :**\n- `survival` : Fonctions de base\n- `survminer` : Visualisations élégantes\n- `flexsurv` : Modèles flexibles\n\n**Python :**\n- `lifelines` : Complet et intuitif\n- `scikit-survival` : Intégration sklearn\n- `pycox` : Deep learning pour survie\n\n**📈 Extensions Avancées :**\n\n**Modèles Multi-états :**\n- Transitions entre états multiples\n- Maladie → Rémission → Rechute → Décès\n\n**Survie Concurrente :**\n- Risques compétitifs multiples\n- Décès par cancer vs autres causes\n\n**Machine Learning :**\n- **Random Survival Forest** : Ensembles d'arbres\n- **DeepSurv** : Réseaux de neurones\n- **DeepHit** : Risques concurrents\n\n**⚡ Métriques d'Évaluation :**\n- **C-index** : Concordance (équivalent AUC)\n- **Brier Score** : Erreur de prédiction temporelle\n- **IBS** : Integrated Brier Score\n- **Time-dependent AUC** : Performance temporelle\n\n**💡 Usages :**\nL'analyse de survie sert à estimer le temps avant un événement : désabonnement d'un client (churn), panne d'une machine, rechute d'un patient. Elle est très employée en recherche médicale, notamment en oncologie (courbes de Kaplan-Meier).",
+    description: `L'analyse de survie regroupe les méthodes qui étudient le temps écoulé avant la survenue d'un événement (décès, panne d'une machine, désabonnement d'un client) en tenant compte des observations censurées.
+
+**Notions de base :**
+- Fonction de survie S(t) = P(T > t) : probabilité que l'événement ne se soit pas produit avant l'instant t.
+- Fonction de risque h(t) : taux instantané de survenue de l'événement à l'instant t, sachant qu'il n'a pas encore eu lieu.
+
+**Censure :** pour certains individus, la date de l'événement est inconnue : ils étaient encore sans événement à la fin du suivi (censure à droite), ou l'événement a eu lieu avant le début de l'observation (censure à gauche). Les ignorer, ou les traiter comme des événements, fausse les estimations.
+
+**Méthodes :**
+- Estimateur de Kaplan-Meier (1958) : estimation non paramétrique de S(t), en escalier ; le test du log-rank compare des groupes.
+- Modèle de Cox (1972), à risques proportionnels : h(t | x) = h₀(t) × exp(β·x). On interprète les rapports de risque (hazard ratios) sans avoir à spécifier h₀.
+- Modèles paramétriques : exponentiel (risque constant), Weibull (risque monotone).
+
+**Exemple :** pour étudier le désabonnement, les clients encore abonnés à la date d'extraction sont censurés à droite : on sait seulement qu'ils sont restés au moins jusque-là.
+
+**Outils :** survival (R) ; lifelines et scikit-survival (Python).
+
+**Limites :** l'hypothèse de risques proportionnels doit être vérifiée, et une censure liée au risque d'événement (censure informative) biaise les résultats.`,
     category: "statistiques",
-    icon: "Clock"
+    icon: "Calendar"
   }
 ];

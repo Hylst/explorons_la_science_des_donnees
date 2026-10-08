@@ -8,188 +8,864 @@ import { GlossaryEntry } from './types';
 export const deepLearningTerms: GlossaryEntry[] = [
   {
     term: "Deep Learning",
-    description: "Le Deep Learning est comme construire une cathédrale de la connaissance : chaque couche de neurones ajoute un niveau d'abstraction plus sophistiqué, transformant progressivement des pixels bruts en concepts complexes. **Révolution conceptuelle** : contrairement au ML traditionnel où nous devons manuellement extraire les caractéristiques (feature engineering), le deep learning **apprend automatiquement** les représentations optimales à partir des données brutes. **Architecture hiérarchique** : les premières couches détectent des patterns simples (contours, couleurs), les couches intermédiaires combinent ces éléments (formes, textures), et les couches profondes reconnaissent des concepts abstraits (visages, objets, émotions). **Breakthrough historique** : 2012 avec AlexNet (ImageNet), puis explosion avec GPT, BERT, et les modèles génératifs. **Applications transformatrices** : reconnaissance d'images (diagnostic médical), traitement du langage (ChatGPT), génération créative (DALL-E), conduite autonome, découverte de médicaments. **Exigences** : grandes quantités de données, puissance de calcul GPU/TPU, expertise technique. **Analogie biologique** : imite (très approximativement) le cortex visuel humain avec ses couches de traitement hiérarchique. Le deep learning a démocratisé l'IA en automatisant l'extraction de features, rendant possible des applications autrefois impensables.",
+    description: `Le deep learning (apprentissage profond) est une famille de méthodes d'apprentissage automatique fondée sur des réseaux de neurones à nombreuses couches, qui apprennent eux-mêmes les représentations utiles à partir de données brutes.
+
+**Principe :**
+• Chaque couche transforme la sortie de la précédente. Dans un réseau de vision, les premières couches réagissent à des contours et à des couleurs, les suivantes à des motifs et à des parties d'objets, les dernières à des objets entiers.
+• Cette hiérarchie remplace une grande part de l'ingénierie manuelle des variables (feature engineering) des méthodes classiques.
+• L'entraînement ajuste des millions de paramètres par descente de gradient, grâce à la rétropropagation.
+
+**Repères :** perceptron (Rosenblatt, 1958), rétropropagation (Rumelhart, Hinton et Williams, 1986), réseau convolutif LeNet (1998), AlexNet qui remporte le concours ImageNet en 2012 en s'appuyant sur des GPU, Transformer (Vaswani et al., 2017).
+
+**Domaines :** images, son, texte, séries temporelles, jeux, génération de contenu.
+
+**Conditions et limites :**
+• Il demande en général beaucoup de données et de calcul (GPU ou TPU) ; le transfert d'apprentissage réduit ce besoin.
+• Sur des données tabulaires, les méthodes à base d'arbres restent souvent compétitives (voir Boosting de gradient).
+• Les modèles sont difficiles à interpréter et sensibles aux changements de distribution des données.
+• Le lien avec le cortex visuel ou les neurones biologiques est une inspiration lointaine, pas une imitation.`,
     category: "deep-learning",
     icon: "Brain"
   },
   {
     term: "Réseaux de neurones (Neural Networks)",
-    description: "Imaginez un orchestre symphonique où chaque musicien (neurone) écoute ses voisins et ajuste sa performance : c'est l'essence des réseaux de neurones ! **Architecture fondamentale** : des neurones artificiels interconnectés, organisés en couches (input → hidden layers → output), où chaque connexion a un 'poids' qui détermine l'influence d'un neurone sur un autre. **Fonctionnement** : chaque neurone reçoit des signaux pondérés, les additionne, applique une fonction d'activation (comme un interrupteur intelligent), puis transmet le résultat. **Analogie biologique** : très inspiré des neurones biologiques (dendrites → soma → axone), mais beaucoup plus simple. **Types principaux** : perceptron (1 couche), MLP (multicouches), CNN (convolutionnels pour images), RNN (récurrents pour séquences), Transformers (attention pour langage). **Apprentissage** : ajustement itératif des poids via rétropropagation pour minimiser l'erreur. **Révolution historique** : des premiers perceptrons (1950s) aux réseaux profonds modernes. **Applications universelles** : reconnaissance d'images, traduction automatique, recommandations, jeux (AlphaGo), art génératif. **Magie conceptuelle** : capacité d'approximation universelle - théoriquement, un réseau suffisamment large peut apprendre n'importe quelle fonction ! Les réseaux de neurones sont les 'Lego' de l'IA moderne.",
+    description: `Un réseau de neurones artificiels est un modèle composé d'unités simples, les neurones, organisées en couches et reliées par des poids ajustables. Il apprend une fonction à partir d'exemples.
+
+**Le neurone artificiel :** il calcule une somme pondérée de ses entrées plus un biais, z = Σ w_i x_i + b, puis applique une fonction d'activation non linéaire : a = φ(z). Les poids w et le biais b sont les paramètres appris.
+
+**Architecture :** une couche d'entrée, une ou plusieurs couches cachées et une couche de sortie. Chaque couche calcule φ(W x + b) à partir de la précédente.
+
+**Apprentissage :** une fonction de perte mesure l'écart entre prédictions et réalité ; la rétropropagation calcule son gradient par rapport aux poids ; la descente de gradient ajuste les poids.
+
+**Familles principales :** perceptron multicouche (MLP), réseaux convolutifs (images), récurrents (séquences), Transformers (texte et bien d'autres données), autoencodeurs, GAN.
+
+**Approximation universelle :** un réseau à une couche cachée assez large peut approcher n'importe quelle fonction continue sur un domaine borné (Cybenko, 1989 ; Hornik, 1991). C'est un résultat d'existence : il ne dit ni combien de neurones il faut, ni que l'entraînement trouvera ces poids.
+
+**Précision :** un neurone artificiel est une formule simple, pas un modèle fidèle de la cellule nerveuse. L'analogie biologique est une source d'inspiration.`,
     category: "deep-learning",
     icon: "Network"
   },
   {
     term: "Perceptron multicouche (Multi-Layer Perceptron - MLP)",
-    description: "Le MLP fonctionne comme une chaîne de montage intelligente où chaque étape (couche) transforme et raffine l'information avant de la passer à la suivante : c'est l'architecture fondamentale des réseaux de neurones modernes. **Evolution historique** : du perceptron simple (1 couche, limitations linéaires) au MLP (multicouches, capacités non-linéaires révolutionnaires). **Architecture** : couche d'entrée → couches cachées (hidden layers) → couche de sortie, avec connexions complètes (fully connected) entre couches adjacentes. **Analogie culinaire** : comme une recette complexe où chaque chef (couche) transforme les ingrédients selon sa spécialité avant de passer le plat au suivant. **Théorème d'approximation universelle** : un MLP avec suffisamment de neurones cachés peut théoriquement approximer n'importe quelle fonction continue - c'est sa 'superpuissance' mathématique ! **Apprentissage** : rétropropagation ajuste les poids pour minimiser l'erreur, transformant l'expérience en expertise. **Applications** : classification d'images, prédiction de prix, reconnaissance de patterns, diagnostic médical. **Avantages** : flexibilité, capacité d'apprentissage non-linéaire, base solide pour architectures plus complexes. **Limitations** : peut nécessiter beaucoup de données, risque d'overfitting, 'boîte noire'. **Fondement** : pierre angulaire du deep learning, ancêtre des CNN, RNN, et Transformers.",
+    description: `Le perceptron multicouche (MLP) est un réseau de neurones « avant » (feedforward) : une couche d'entrée, une ou plusieurs couches cachées entièrement connectées, et une couche de sortie. L'information circule dans un seul sens, sans boucle.
+
+**Architecture :** chaque neurone reçoit toutes les sorties de la couche précédente (couches denses, ou fully connected). Les activations non linéaires des couches cachées sont indispensables : sans elles, empiler des couches reviendrait à une seule transformation linéaire.
+
+**Pourquoi plusieurs couches :** un perceptron à une seule couche (Rosenblatt, 1958) ne sépare que des classes linéairement séparables et ne peut pas représenter le XOR (Minsky et Papert, 1969). Une couche cachée suffit. Voici un réseau à deux neurones cachés dont les poids sont choisis à la main :
+\`\`\`python
+import numpy as np
+
+relu = lambda z: np.maximum(0, z)
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+
+# Deux neurones cachés aux poids choisis à la main, puis un neurone de sortie
+cachee = relu(X @ np.array([[1, 1], [1, 1]]) + np.array([0, -1]))
+print(cachee @ np.array([1, -2]))
+# Affichage :
+# [0 1 1 0]
+\`\`\`
+Le résultat est bien le XOR des entrées (0,0), (0,1), (1,0), (1,1).
+
+**Entraînement :** rétropropagation et descente de gradient. Avec scikit-learn : MLPClassifier et MLPRegressor.
+
+**Usages et limites :**
+• Adapté aux données tabulaires et comme brique finale d'architectures plus larges.
+• Ignore la structure spatiale ou séquentielle des entrées : une image aplatie perd ses voisinages.
+• Beaucoup de paramètres : risque de surapprentissage, d'où la régularisation (dropout, pénalité L2, arrêt précoce).`,
     category: "deep-learning",
     icon: "Layers"
   },
   {
     term: "Rétropropagation (Backpropagation)",
-    description: "La rétropropagation est comme un professeur qui corrige une copie : elle remonte de la note finale vers chaque erreur pour expliquer comment s'améliorer ! **Principe fondamental** : algorithme qui propage l'erreur de la sortie vers l'entrée, calculant la responsabilité de chaque poids dans l'erreur totale. **Processus en 4 étapes** : 1) Forward pass (calcul des prédictions), 2) Calcul de l'erreur (loss function), 3) Backward pass (calcul des gradients via dérivées partielles), 4) Mise à jour des poids (gradient descent). **Analogie pédagogique** : comme apprendre à jouer au billard - après chaque coup raté, vous analysez rétrospectivement chaque angle et force pour ajuster le prochain tir. **Mathématiques** : utilise la règle de dérivation en chaîne (chain rule) pour calculer ∂Loss/∂weight à travers toutes les couches. **Révolution historique** : formalisée par Rumelhart, Hinton & Williams (1986), elle a rendu possible l'entraînement de réseaux multicouches. **Défis** : vanishing gradients (gradients qui s'estompent), exploding gradients, choix du learning rate. **Optimisations modernes** : Adam, RMSprop, batch normalization. **Impact** : sans rétropropagation, pas de deep learning moderne ! C'est l'algorithme qui 'enseigne' aux réseaux de neurones, transformant l'erreur en sagesse.",
+    description: `La rétropropagation (backpropagation) est l'algorithme qui calcule le gradient de la fonction de perte par rapport à tous les poids d'un réseau de neurones. C'est la règle de dérivation en chaîne appliquée dans l'ordre inverse du calcul.
+
+**Une itération d'entraînement :**
+1. Passe avant : calcul des sorties couche par couche, puis de la perte.
+2. Passe arrière : on part de la dérivée de la perte par rapport à la sortie et on remonte couche par couche, en multipliant par les dérivées locales.
+3. Mise à jour : un optimiseur (SGD, Adam...) ajuste les poids avec ce gradient.
+
+La rétropropagation ne fait que calculer les gradients ; la mise à jour revient à l'optimiseur.
+
+**Exemple :** un neurone sigmoïde avec la perte (y − cible)². La règle de la chaîne donne ∂L/∂w = 2 (y − cible) × y (1 − y) × x, que l'on vérifie par une différence finie.
+\`\`\`python
+import numpy as np
+
+sigmoide = lambda z: 1 / (1 + np.exp(-z))
+x, cible, w, b = 2.0, 1.0, 0.3, -0.1
+perte = lambda w: (sigmoide(w * x + b) - cible) ** 2
+
+y = sigmoide(w * x + b)
+gradient = 2 * (y - cible) * y * (1 - y) * x                 # règle de dérivation en chaîne
+numerique = (perte(w + 1e-6) - perte(w - 1e-6)) / 2e-6       # différence finie
+print(round(gradient, 6), round(numerique, 6))
+# Affichage :
+# -0.354894 -0.354894
+\`\`\`
+
+**Historique :** c'est une forme de différentiation automatique en mode inverse, popularisée pour les réseaux par Rumelhart, Hinton et Williams (1986).
+
+**Difficultés :**
+• Les gradients s'évanouissent ou explosent dans les réseaux profonds. Remèdes : activation ReLU, initialisation soignée, normalisation par lots, connexions résiduelles, gradient clipping.
+• Les valeurs intermédiaires de la passe avant sont gardées en mémoire pour la passe arrière.
+
+PyTorch et TensorFlow calculent ces gradients automatiquement (autograd).`,
     category: "deep-learning",
-    icon: "ArrowLeft"
+    icon: "RefreshCw"
   },
   {
     term: "Fonctions d'activation (Activation Functions)",
-    description: "Les fonctions d'activation sont comme des interrupteurs intelligents qui décident si un neurone doit 's'allumer' ou rester éteint : elles introduisent la non-linéarité essentielle qui permet aux réseaux d'apprendre des patterns complexes. **Rôle crucial** : sans elles, un réseau multicouche ne serait qu'une régression linéaire glorifiée ! **Analogie biologique** : comme le potentiel d'action des neurones biologiques - seuil de déclenchement pour transmettre l'information. **Fonctions populaires** : 1) **ReLU** (Rectified Linear Unit) - simple et efficace, f(x) = max(0,x), résout le vanishing gradient, 2) **Sigmoid** - courbe en S, sortie entre 0 et 1, historique mais problématique pour réseaux profonds, 3) **Tanh** - version centrée de sigmoid (-1 à 1), 4) **Leaky ReLU** - évite les 'neurones morts', 5) **Swish/GELU** - versions modernes plus lisses. **Propriétés désirables** : non-linéarité (essentiel), dérivabilité (backpropagation), efficacité computationnelle, éviter vanishing/exploding gradients. **Impact historique** : ReLU (2010) a révolutionné le deep learning en permettant l'entraînement de réseaux très profonds. **Choix pratique** : ReLU par défaut, Tanh pour RNN, Sigmoid pour couche de sortie binaire. **Analogie électronique** : comme des transistors qui amplifient ou bloquent le signal selon des règles précises.",
+    description: `Une fonction d'activation est la fonction non linéaire appliquée à la sortie pondérée de chaque neurone. Sans elle, un réseau de plusieurs couches resterait une simple transformation linéaire.
+
+**Fonctions courantes :**
+• ReLU : max(0, x). Simple, peu coûteuse, sans saturation pour x > 0, c'est le choix par défaut des couches cachées. Limite : un neurone dont l'entrée reste négative a un gradient nul et peut « mourir ».
+• Leaky ReLU : une petite pente (par exemple 0,01 x) pour x < 0, qui évite les neurones morts.
+• Sigmoïde : 1 / (1 + e^(−x)), sortie dans ]0, 1[. Utile en sortie pour une probabilité binaire ; elle sature aux extrêmes, ce qui ralentit l'apprentissage des couches profondes.
+• Tanh : sortie dans ]−1, 1[, centrée en 0 ; sature aussi.
+• Softmax : transforme un vecteur de scores en probabilités de somme 1 ; sortie des classifieurs multiclasses.
+• GELU et Swish (SiLU) : variantes lisses utilisées dans les Transformers.
+\`\`\`python
+import numpy as np
+
+x = np.array([-2.0, 0.0, 2.0])
+print("ReLU    ", np.maximum(0, x))
+print("sigmoïde", (1 / (1 + np.exp(-x))).round(3))
+print("tanh    ", np.tanh(x).round(3))
+# Affichage :
+# ReLU     [0. 0. 2.]
+# sigmoïde [0.119 0.5   0.881]
+# tanh     [-0.964  0.     0.964]
+\`\`\`
+
+**Choisir :**
+• Couches cachées : ReLU ou une variante pour commencer.
+• Couche de sortie, selon la tâche : aucune activation (régression), sigmoïde (binaire), softmax (multiclasse).
+• Éviter la saturation limite l'évanouissement des gradients.`,
     category: "deep-learning",
     icon: "Zap"
   },
   {
     term: "Réseaux de neurones convolutifs (CNN)",
-    description: "Les CNN sont comme des détectives visuels qui examinent une image avec une loupe, balayant systématiquement chaque zone pour détecter des indices ! **Révolution conceptuelle** : inspirés du cortex visuel (champs récepteurs de Hubel & Wiesel), ils traitent les images en préservant les relations spatiales, contrairement aux réseaux classiques qui 'aplatissent' tout. **Architecture en 3 couches clés** : 1) **Convolution** (filtres/kernels qui détectent features comme contours, textures), 2) **Pooling** (réduction dimensionnelle, invariance aux translations), 3) **Fully Connected** (classification finale). **Analogie photographique** : comme développer une photo - les premières couches révèlent les contours, les suivantes les formes, puis les objets complexes. **Breakthrough historique** : LeNet (1998) → AlexNet (2012) → ResNet, VGG, Inception. **Superpouvoir** : invariance (rotation, translation, échelle), hiérarchie de features (pixels → contours → formes → objets), partage de paramètres (même filtre réutilisé partout). **Applications révolutionnaires** : reconnaissance faciale, diagnostic médical (radiologie), conduite autonome, art génératif (StyleGAN), réalité augmentée. **Variantes modernes** : ResNet (skip connections), U-Net (segmentation), Vision Transformers. Les CNN ont démocratisé la vision par ordinateur, transformant des pixels en compréhension visuelle intelligente.",
+    description: `Un réseau de neurones convolutif (CNN) est un réseau conçu pour des données en grille, surtout des images : il applique des filtres appris qui balaient l'entrée en partageant leurs poids.
+
+**Composants typiques :**
+• Couches de convolution : de petits filtres détectent des motifs locaux (contours, textures) et produisent des cartes de caractéristiques.
+• Une activation (souvent ReLU), puis parfois un pooling qui réduit la taille spatiale.
+• En fin de réseau, des couches denses ou un pooling global produisent la classe ou la valeur prédite.
+
+**Pourquoi c'est adapté aux images :**
+• Connexions locales : chaque neurone ne regarde qu'une petite zone, comme les champs récepteurs décrits par Hubel et Wiesel dans le cortex visuel.
+• Partage des poids : le même filtre sert partout, d'où bien moins de paramètres.
+• Équivariance à la translation : un motif déplacé donne une réponse déplacée. Le pooling ajoute une invariance partielle. Un CNN n'est pas invariant par défaut à la rotation ni à l'échelle : on recourt à l'augmentation de données.
+
+**Hiérarchie :** les premières couches repèrent des contours, les suivantes des formes, les dernières des parties d'objets.
+
+**Repères :** LeNet (LeCun et al., 1998), AlexNet (2012), VGG, Inception, ResNet (He et al., 2015) ; U-Net (Ronneberger et al., 2015) pour la segmentation.
+
+**Limites :** besoin de grandes bases d'images annotées (ou de transfert d'apprentissage), sensibilité à des perturbations imperceptibles, concurrence des Vision Transformers.`,
     category: "deep-learning",
-    icon: "Grid3x3"
+    icon: "Eye"
   },
   {
     term: "Couches convolutives (Convolutional Layers)",
-    description: "Les couches convolutives fonctionnent comme des détectives spécialisés qui examinent une scène de crime avec différentes loupes : chaque filtre recherche un type spécifique d'indice (contour, texture, forme) en balayant systématiquement toute l'image. **Principe fondamental** : au lieu de regarder l'image entière d'un coup, elles analysent de petites zones locales (réceptive fields) avec des filtres apprenables qui détectent des patterns spécifiques. **Analogie photographique** : comme appliquer différents filtres Instagram - chaque filtre révèle certains aspects (contours, couleurs, textures) tout en en masquant d'autres. **Mécanisme** : convolution mathématique entre un filtre (kernel) et l'image - multiplication élément par élément puis sommation, créant une 'carte de caractéristiques' (feature map). **Hiérarchie d'apprentissage** : premières couches détectent des features simples (lignes, contours), couches profondes combinent ces éléments en concepts complexes (yeux, roues, visages). **Avantages révolutionnaires** : 1) **Invariance spatiale** (détecte un chat partout dans l'image), 2) **Partage de paramètres** (même filtre réutilisé, économie de mémoire), 3) **Connectivité locale** (chaque neurone ne 'voit' qu'une petite zone). **Applications** : reconnaissance d'objets, diagnostic médical, art génératif, conduite autonome. **Innovation** : transforme des pixels bruts en compréhension visuelle intelligente.",
+    description: `Une couche convolutive applique plusieurs filtres (noyaux) appris qui glissent sur l'entrée et calculent, à chaque position, une somme pondérée des valeurs de la zone couverte. Chaque filtre produit une carte de caractéristiques.
+
+**Fonctionnement :**
+• Un filtre 3 × 3 couvre 9 pixels (par canal) et multiplie chaque valeur par un poids.
+• Le pas (stride) règle le déplacement du filtre ; le remplissage (padding) ajoute des bordures pour conserver la taille.
+• Taille de sortie par dimension : ⌊(n + 2p − k) / s⌋ + 1, avec n la taille de l'entrée, k celle du filtre, p le remplissage et s le pas.
+• En apprentissage profond, l'opération est en fait une corrélation croisée (le filtre n'est pas retourné), sans conséquence puisque les poids sont appris.
+
+**Exemple :** un filtre [−1, 1] réagit à une hausse de gauche à droite, donc à un bord vertical.
+\`\`\`python
+import numpy as np
+from numpy.lib.stride_tricks import sliding_window_view
+
+image = np.array([[0, 0, 0, 1, 1, 1]] * 4)   # un bord vertical au milieu
+filtre = np.array([[-1, 1]])                  # réagit à une hausse de gauche à droite
+fenetres = sliding_window_view(image, filtre.shape)
+print((fenetres * filtre).sum(axis=(2, 3)))
+# Affichage :
+# [[0 0 1 0 0]
+#  [0 0 1 0 0]
+#  [0 0 1 0 0]
+#  [0 0 1 0 0]]
+\`\`\`
+
+**Paramètres :** k × k × C_in × C_out + C_out pour C_in canaux d'entrée et C_out filtres. Avec 3 canaux d'entrée et 16 filtres 3 × 3 : 3 × 3 × 3 × 16 + 16 = 448, quelle que soit la taille de l'image.
+
+**Hiérarchie :** dans un réseau empilé, les premières couches captent des motifs simples, les suivantes les combinent en motifs plus complexes, car le champ réceptif d'un neurone grandit avec la profondeur.`,
     category: "deep-learning",
-    icon: "Filter"
+    icon: "Search"
   },
   {
     term: "Couches de pooling (Pooling Layers)",
-    description: "Les couches de pooling fonctionnent comme un résumé intelligent qui extrait l'essentiel d'un texte long : elles réduisent la taille des données tout en préservant les informations les plus importantes. **Objectif double** : 1) **Réduction dimensionnelle** (moins de paramètres, calculs plus rapides), 2) **Invariance** (robustesse aux petites translations et déformations). **Analogie photographique** : comme passer d'une photo haute résolution à une miniature - on perd les détails fins mais garde l'information principale. **Types principaux** : 1) **Max Pooling** (garde la valeur maximale de chaque région - 'le plus fort survit'), 2) **Average Pooling** (moyenne des valeurs - 'consensus démocratique'), 3) **Global Average Pooling** (une seule valeur par carte de features). **Mécanisme** : divise l'image en régions non-chevauchantes (ex: 2x2), applique l'opération de pooling, produit une sortie plus petite. **Avantages** : réduction de l'overfitting, invariance aux translations, efficacité computationnelle, hiérarchie de représentations (du détaillé au général). **Effet sur l'apprentissage** : force le réseau à apprendre des représentations plus robustes et généralisables. **Evolution moderne** : parfois remplacé par des convolutions avec stride, mais reste fondamental. **Analogie biologique** : comme la vision périphérique humaine qui sacrifie la résolution pour une vue d'ensemble.",
+    description: `Une couche de pooling résume chaque petite région d'une carte de caractéristiques par une seule valeur. Elle réduit la taille spatiale, sans paramètre à apprendre.
+
+**Types :**
+• Max pooling : garde la valeur maximale de chaque région.
+• Average pooling : garde la moyenne.
+• Global average pooling : une moyenne par carte entière, souvent avant la couche de sortie.
+
+**Exemple :** un max pooling 2 × 2 de pas 2 réduit une carte 4 × 4 à 2 × 2 en gardant le maximum de chaque bloc.
+\`\`\`python
+import numpy as np
+
+carte = np.array([[1, 3, 2, 0], [4, 2, 1, 5], [0, 1, 7, 2], [3, 2, 1, 4]])
+blocs = carte.reshape(2, 2, 2, 2).swapaxes(1, 2)   # quatre blocs de 2 × 2
+print(blocs.max(axis=(2, 3)))
+# Affichage :
+# [[4 5]
+#  [3 7]]
+\`\`\`
+
+**Effets :**
+• Moins de valeurs à traiter : calculs plus rapides et moins de paramètres dans les couches suivantes. Avec une fenêtre 2 × 2 et un pas de 2, chaque carte compte 4 fois moins de valeurs.
+• Insensibilité aux petits déplacements : un motif décalé d'un pixel dans sa région donne le même maximum.
+• Champ réceptif élargi : les couches suivantes voient une zone plus grande.
+
+**Limites :**
+• Le pooling perd de l'information de position précise, gênante pour la segmentation ou la détection fine.
+• Certaines architectures le remplacent par une convolution de pas 2, apprise.`,
     category: "deep-learning",
-    icon: "Minimize2"
+    icon: "TrendingDown"
   },
   {
     term: "Réseaux de neurones récurrents (RNN)",
-    description: "Les RNN sont comme des conteurs qui se souviennent de chaque mot pour donner du sens à l'histoire complète ! **Innovation conceptuelle** : contrairement aux réseaux classiques qui traitent chaque input indépendamment, les RNN ont une **mémoire** - ils gardent trace du contexte précédent via des connexions récurrentes. **Architecture unique** : boucles internes où la sortie d'un neurone à l'instant t devient input à t+1, créant une 'mémoire à court terme'. **Analogie narrative** : comme lire un livre - chaque phrase dépend des précédentes pour être comprise. **Applications naturelles** : traduction automatique, reconnaissance vocale, prédiction de séries temporelles, génération de texte, analyse de sentiments. **Variantes évoluées** : LSTM (Long Short-Term Memory) et GRU (Gated Recurrent Unit) qui résolvent le problème du **vanishing gradient** et permettent une mémoire à long terme. **Processus d'entraînement** : Backpropagation Through Time (BPTT) - dérouler le réseau dans le temps pour calculer les gradients. **Défis historiques** : difficulté à capturer les dépendances lointaines, instabilité d'entraînement. **Révolution moderne** : largement remplacés par les Transformers (attention mechanism) pour le NLP, mais restent pertinents pour certaines tâches séquentielles. Les RNN ont ouvert la voie à l'IA conversationnelle moderne.",
+    description: `Un réseau de neurones récurrent (RNN) traite une séquence élément par élément en conservant un état caché qui résume ce qu'il a déjà lu. Il convient aux données ordonnées : texte, son, séries temporelles.
+
+**Fonctionnement :** à chaque pas t, le réseau combine l'entrée x_t et l'état précédent h_(t−1) : h_t = tanh(W_h h_(t−1) + W_x x_t + b). Les mêmes poids servent à chaque pas, ce qui permet de traiter des séquences de longueurs variables.
+
+**Entraînement :** rétropropagation à travers le temps (BPTT) : on déroule le réseau sur la séquence et on rétropropage dans ce réseau déroulé.
+
+**Difficultés :**
+• Les gradients s'évanouissent ou explosent sur de longues séquences : un RNN simple retient mal les dépendances lointaines. Le gradient clipping limite l'explosion ; les portes des LSTM et des GRU atténuent l'évanouissement.
+• Le calcul est séquentiel : l'entraînement se parallélise mal.
+
+**Variantes :** RNN bidirectionnels (lecture dans les deux sens), architectures encodeur-décodeur pour la traduction, empilement de plusieurs couches récurrentes.
+
+**Aujourd'hui :** en traitement du langage, les Transformers ont largement remplacé les RNN. Ceux-ci restent employés sur des séquences courtes ou avec des ressources limitées.`,
     category: "deep-learning",
-    icon: "RotateCcw"
+    icon: "RefreshCw"
   },
   {
     term: "LSTM (Long Short-Term Memory)",
-    description: "Les LSTM sont comme des bibliothécaires super-organisés avec une mémoire sélective : ils décident intelligemment quoi retenir, quoi oublier, et quoi transmettre pour comprendre de longues séquences. **Problème résolu** : les RNN classiques 'oublient' rapidement (vanishing gradient) - impossible d'apprendre que 'le chat' au début de la phrase est le sujet du verbe à la fin. **Architecture géniale** : 3 portes intelligentes : 1) **Porte d'oubli** (forget gate) - décide quoi effacer de la mémoire, 2) **Porte d'entrée** (input gate) - choisit quelles nouvelles infos stocker, 3) **Porte de sortie** (output gate) - contrôle quoi révéler. **Analogie cognitive** : comme votre cerveau qui filtre les informations - vous retenez les détails importants d'une conversation tout en oubliant les bruits de fond. **État cellulaire** : 'autoroute de l'information' qui traverse le réseau, permettant aux gradients de circuler sans s'affaiblir. **Applications révolutionnaires** : traduction automatique (Google Translate 2016), reconnaissance vocale, prédiction de séries temporelles, génération de texte. **Avantage clé** : peut apprendre des dépendances sur des centaines d'étapes temporelles. **Impact historique** : a rendu possible l'IA conversationnelle moderne. **Analogie mécanique** : comme un système hydraulique avec des vannes intelligentes qui régulent le débit d'information.",
+    description: `Le LSTM (Long Short-Term Memory, Hochreiter et Schmidhuber, 1997) est un réseau récurrent doté d'une cellule mémoire et de portes qui contrôlent ce qui est conservé, oublié et lu. Il a été conçu pour atténuer l'évanouissement du gradient.
+
+**Éléments, à chaque pas t :**
+• État de cellule c_t : la mémoire à long terme, mise à jour surtout par addition, ce qui laisse passer le gradient sur de longues durées.
+• Porte d'oubli f_t : part de c_(t−1) conservée.
+• Porte d'entrée i_t : part de l'information candidate ajoutée.
+• Porte de sortie o_t : part de la cellule exposée dans l'état caché h_t.
+
+**Équations :** c_t = f_t ⊙ c_(t−1) + i_t ⊙ c̃_t et h_t = o_t ⊙ tanh(c_t). Chaque porte est une sigmoïde de (x_t, h_(t−1)) et c̃_t un candidat en tanh.
+
+**Remarques :**
+• La porte d'oubli a été ajoutée après l'article d'origine (Gers, Schmidhuber et Cummins, 2000).
+• Quatre blocs de poids contre un pour un RNN simple : plus coûteux, mais les dépendances longues sont mieux apprises.
+• Usages : texte, parole, capteurs, séries temporelles.
+• Limites : calcul séquentiel, contextes très longs difficiles ; pour le texte, les Transformers l'ont largement supplanté.
+• Variante plus légère : le GRU.`,
     category: "deep-learning",
-    icon: "Clock"
+    icon: "Calendar"
   },
   {
     term: "GRU (Gated Recurrent Unit)",
-    description: "Les GRU sont comme la version 'épurée' d'un smartphone : ils gardent les fonctionnalités essentielles des LSTM tout en éliminant la complexité superflue, offrant des performances souvent comparables avec moins de paramètres. **Philosophie design** : 'moins c'est plus' - pourquoi 3 portes quand 2 suffisent ? **Architecture simplifiée** : 2 portes intelligentes : 1) **Porte de mise à jour** (update gate) - décide combien du passé conserver vs. nouvelles infos, 2) **Porte de reset** (reset gate) - contrôle l'accès aux informations passées. **Avantages pratiques** : moins de paramètres (entraînement plus rapide), moins de mémoire, moins de risque d'overfitting, convergence souvent plus rapide. **Analogie mécanique** : comme passer d'une montre suisse complexe à une montre digitale - même fonction, mécanisme plus simple. **Performance** : souvent équivalente aux LSTM sur de nombreuses tâches, parfois supérieure sur des séquences plus courtes. **Choix pragmatique** : commencer par GRU, passer à LSTM si nécessaire. **Applications** : traduction, reconnaissance vocale, analyse de sentiment, prédiction de séries temporelles. **Innovation** : prouve qu'en deep learning, la simplicité élégante peut rivaliser avec la complexité. **Analogie culinaire** : comme une recette qui garde les ingrédients essentiels tout en simplifiant la préparation.",
+    description: `Le GRU (Gated Recurrent Unit, Cho et al., 2014) est un réseau récurrent à portes plus simple que le LSTM : il fusionne mémoire et état caché et n'utilise que deux portes.
+
+**Portes :**
+• Porte de mise à jour z_t : plus elle est proche de 1, plus l'ancien état est conservé.
+• Porte de réinitialisation r_t : décide quelle part de l'état précédent sert à calculer le candidat.
+
+**Équations (forme courante) :** h_t = z_t ⊙ h_(t−1) + (1 − z_t) ⊙ h̃_t, avec h̃_t = tanh(W x_t + U (r_t ⊙ h_(t−1))). Les conventions varient selon les bibliothèques.
+
+**Par rapport au LSTM :**
+• Moins de paramètres (trois blocs de poids au lieu de quatre) et calcul un peu plus rapide.
+• Pas d'état de cellule séparé.
+• Performances souvent comparables, sans que l'un l'emporte systématiquement : on essaie les deux sur la tâche.
+
+**Usages :** séquences de longueur moyenne, séries temporelles, parole, ressources limitées.
+
+**Limites :** comme tous les réseaux récurrents, calcul séquentiel et dépendances très longues difficiles ; pour le texte, les Transformers dominent.`,
     category: "deep-learning",
-    icon: "Lock"
+    icon: "Settings"
   },
   {
     term: "Architecture Transformer",
-    description: "Les Transformers sont comme des traducteurs simultanés ultra-performants qui peuvent écouter tous les mots d'une phrase en même temps au lieu de les traiter un par un : révolution qui a rendu possible ChatGPT, BERT et l'IA moderne. **Innovation révolutionnaire** : 'Attention is All You Need' (2017) - abandonne la récurrence séquentielle au profit du parallélisme massif. **Mécanisme clé** : **Self-Attention** - chaque mot 'regarde' tous les autres mots simultanément pour comprendre le contexte global. **Analogie orchestrale** : comme un chef d'orchestre qui entend tous les instruments en même temps et comprend leurs interactions, vs. écouter chaque instrument séquentiellement. **Architecture** : Encoder-Decoder avec couches d'attention multi-têtes, réseaux feed-forward, normalisation, connexions résiduelles. **Avantages révolutionnaires** : 1) **Parallélisation** (entraînement bien plus parallélisable que celui des RNN), 2) **Dépendances longues** (comprend des textes entiers), 3) **Interprétabilité** (visualisation de l'attention). **Impact historique** : a déclenché l'explosion de l'IA générative - GPT, BERT, T5, DALL-E, tous basés sur Transformers. **Applications** : traduction, résumé, génération de code, création d'images, conversation. **Analogie cognitive** : comme passer de la lecture séquentielle à la compréhension globale instantanée d'un texte.",
+    description: `Le Transformer (Vaswani et al., 2017, « Attention Is All You Need ») est une architecture fondée sur le mécanisme d'attention, sans récurrence ni convolution. Il traite tous les éléments d'une séquence en parallèle.
+
+**Composants d'un bloc :**
+• Attention multi-têtes : chaque position pondère toutes les autres (auto-attention).
+• Réseau feed-forward appliqué à chaque position.
+• Connexions résiduelles et normalisation par couche (layer normalization) autour de ces sous-couches.
+• Encodage de position ajouté aux entrées : l'attention seule ne connaît pas l'ordre.
+
+**Variantes :**
+• Encodeur-décodeur (architecture d'origine, T5) : traduction, résumé.
+• Encodeur seul (BERT) : représentations de textes, classification.
+• Décodeur seul (famille GPT) : génération, avec un masque qui interdit de regarder les positions futures.
+
+Le principe a aussi été étendu aux images (Vision Transformer), à l'audio et aux données multimodales.
+
+**Atouts :**
+• Calcul parallélisable sur GPU, contrairement aux réseaux récurrents.
+• Accès direct entre positions éloignées.
+
+**Limites :**
+• Le coût de l'auto-attention croît comme le carré de la longueur de la séquence, d'où des variantes à attention creuse ou approchée.
+• Le pré-entraînement exige beaucoup de données et de calcul.
+• Lire les poids d'attention comme une explication des décisions est discutable.`,
     category: "deep-learning",
     icon: "Cpu"
   },
   {
     term: "Mécanisme d'attention (Attention Mechanism)",
-    description: "Le mécanisme d'attention fonctionne comme un projecteur intelligent dans un théâtre : il éclaire automatiquement les acteurs importants sur scène selon le contexte de la pièce, permettant au public (le modèle) de se concentrer sur ce qui compte vraiment. **Problème résolu** : les modèles séquentiels 'oublient' le début quand ils arrivent à la fin - comme essayer de résumer un livre en ne gardant que la dernière phrase en mémoire. **Principe révolutionnaire** : au lieu de compresser toute l'information en un vecteur fixe, le modèle peut 'regarder en arrière' et accéder à toutes les informations passées avec des poids d'importance variables. **Analogie cognitive** : comme votre attention sélective en conversation - vous vous concentrez sur certains mots clés tout en gardant le contexte global. **Mécanisme** : calcule des scores d'attention (Query × Key), applique softmax pour obtenir des poids, pondère les valeurs (Values). **Types** : 1) **Self-attention** (mots d'une phrase s'observent mutuellement), 2) **Cross-attention** (traduction : mots source vers cible), 3) **Multi-head** (plusieurs 'projecteurs' simultanés). **Impact transformateur** : a révolutionné la traduction automatique (2015), puis tout le NLP avec les Transformers. **Applications** : traduction, résumé, question-réponse, génération d'images. **Analogie visuelle** : comme un système de caméras de sécurité qui zoome automatiquement sur les zones d'activité importante.",
+    description: `Le mécanisme d'attention permet à un modèle de calculer chaque sortie comme une moyenne pondérée d'éléments d'entrée, avec des poids appris qui dépendent du contexte. Il décide ainsi sur quelles parties de l'entrée « regarder ».
+
+**Origine :** proposé pour la traduction automatique (Bahdanau et al., 2014), afin d'éviter de compresser toute la phrase source dans un seul vecteur de taille fixe.
+
+**Attention par produit scalaire normalisé (Vaswani et al., 2017) :** Attention(Q, K, V) = softmax(Q Kᵀ / √d_k) V.
+• Q (requêtes), K (clés) et V (valeurs) sont obtenues par des projections linéaires de l'entrée.
+• Q Kᵀ mesure la similarité entre chaque requête et chaque clé ; la division par √d_k évite des produits trop grands.
+• Le softmax transforme les scores en poids positifs de somme 1 ; la sortie est la moyenne pondérée des valeurs.
+\`\`\`python
+import numpy as np
+
+def softmax(z):
+    e = np.exp(z - z.max(axis=-1, keepdims=True))
+    return e / e.sum(axis=-1, keepdims=True)
+
+V = np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 1.0]])   # 3 mots, dimension 2
+Q = K = V                                             # simplification : une seule séquence
+poids = softmax(Q @ K.T / np.sqrt(K.shape[1]))
+print(poids.round(2))
+print((poids @ V).round(2))
+# Affichage :
+# [[0.4  0.2  0.4 ]
+#  [0.2  0.4  0.4 ]
+#  [0.25 0.25 0.5 ]]
+# [[0.8  0.6 ]
+#  [0.6  0.8 ]
+#  [0.75 0.75]]
+\`\`\`
+Le troisième mot accorde la moitié de son attention à lui-même et un quart à chacun des deux autres.
+
+**Types :**
+• Auto-attention : Q, K et V viennent de la même séquence.
+• Attention croisée : Q vient d'une séquence (décodeur), K et V d'une autre (encodeur).
+• Attention causale : un masque interdit de regarder le futur (génération de texte).
+• Attention multi-têtes : voir l'entrée suivante.
+
+**Limite :** coût quadratique en la longueur de la séquence.`,
     category: "deep-learning",
     icon: "Eye"
   },
   {
     term: "Dropout",
-    description: "Le Dropout fonctionne comme un entraîneur de sport qui fait s'entraîner ses joueurs avec des handicaps aléatoires : en privant temporairement l'équipe de certains joueurs, il force chacun à devenir plus polyvalent et résilient. **Problème résolu** : l'overfitting - quand un réseau devient trop dépendant de neurones spécifiques et mémorise au lieu d'apprendre des patterns généraux. **Mécanisme simple mais génial** : pendant l'entraînement, désactive aléatoirement un pourcentage de neurones (ex: 50%) à chaque itération, forçant le réseau à ne pas dépendre d'un neurone particulier. **Analogie éducative** : comme étudier avec des amis différents - si vous ne pouvez compter que sur une personne, vous êtes vulnérable ; si vous apprenez avec plusieurs, vous devenez plus robuste. **Effet psychologique sur le réseau** : chaque neurone doit apprendre à être utile même quand ses 'collègues' sont absents, créant des représentations plus distribuées et robustes. **Paramètre clé** : taux de dropout (0.2-0.5 typique) - équilibre entre régularisation et capacité d'apprentissage. **Phase d'inférence** : tous les neurones actifs mais pondérés par le taux de dropout. **Impact historique** : technique simple qui a considérablement amélioré les performances des réseaux profonds. **Applications** : quasi-universel en deep learning, particulièrement efficace sur les couches denses. **Analogie militaire** : comme entraîner une armée à fonctionner même si certaines unités sont hors service.",
+    description: `Le dropout est une technique de régularisation qui éteint au hasard une fraction des neurones à chaque itération d'entraînement (Srivastava et al., 2014). Il réduit le surapprentissage.
+
+**Principe :**
+• Pendant l'entraînement, chaque neurone est mis à zéro avec une probabilité p, indépendamment des autres et à chaque lot de données.
+• Le réseau ne peut plus compter sur un neurone précis : il apprend des représentations redondantes. On peut aussi y voir l'entraînement d'un grand nombre de sous-réseaux qui partagent leurs poids.
+• À l'inférence, tous les neurones sont actifs. Pour garder la même échelle moyenne, la version « inversée » des bibliothèques divise les valeurs conservées par (1 − p) pendant l'entraînement.
+\`\`\`python
+import numpy as np
+
+rng = np.random.default_rng(0)
+p = 0.5                                   # probabilité d'éteindre un neurone
+activations = np.ones(8)
+masque = rng.random(8) >= p
+print(activations * masque / (1 - p))     # dropout « inversé » : rééchelonnage pendant l'entraînement
+# Affichage :
+# [2. 0. 0. 0. 2. 2. 2. 2.]
+\`\`\`
+Huit activations égales à 1 : les unités éteintes passent à 0, les autres à 1 / (1 − p) = 2.
+
+**Valeurs usuelles :** p entre 0,1 et 0,5 selon la couche et la taille du réseau, à régler comme un hyperparamètre.
+
+**En pratique :** nn.Dropout(p) en PyTorch, désactivé à l'évaluation par model.eval().
+
+**Limites :**
+• Il ralentit la convergence et ajoute du bruit à l'entraînement.
+• Moins utile avec beaucoup de données ou avec la normalisation par lots.
+• Dans les réseaux récurrents, il demande des précautions (même masque à chaque pas de temps).`,
     category: "deep-learning",
-    icon: "Minus"
+    icon: "TrendingDown"
   },
   {
     term: "Batch Normalization",
-    description: "La Batch Normalization fonctionne comme un chef d'orchestre qui s'assure que tous les instruments jouent dans la même gamme : elle harmonise les activations de chaque couche pour que l'entraînement soit fluide et stable. **Problème résolu** : 'Internal Covariate Shift' - quand les distributions d'activations changent constamment pendant l'entraînement, rendant l'apprentissage chaotique et lent. **Analogie scolaire** : comme standardiser les notes de différents professeurs (certains notent sur 10, d'autres sur 20) pour avoir une évaluation cohérente. **Mécanisme** : pour chaque mini-batch, calcule moyenne et variance, normalise (moyenne=0, variance=1), puis applique transformation affine apprise (γ, β) pour restaurer la capacité d'expression. **Bénéfices révolutionnaires** : 1) **Entraînement plus rapide** (learning rates plus élevés), 2) **Moins sensible à l'initialisation**, 3) **Effet régularisant** (réduit overfitting), 4) **Gradients plus stables**. **Impact pratique** : permet d'entraîner des réseaux très profonds (ResNet, etc.) qui étaient impossibles avant. **Placement** : généralement après couche linéaire, avant activation. **Analogie industrielle** : comme un système de contrôle qualité qui maintient des standards constants dans une chaîne de production. **Innovation** : a révolutionné l'entraînement des réseaux profonds, rendu possible l'ère moderne du deep learning. **Variantes** : Layer Norm, Group Norm, Instance Norm pour différents contextes.",
+    description: `La normalisation par lots (batch normalization, Ioffe et Szegedy, 2015) normalise les activations d'une couche sur chaque mini-lot, puis les remet à l'échelle avec deux paramètres appris. Elle stabilise et accélère l'entraînement.
+
+**Calcul, pour une variable et un mini-lot :** x̂ = (x − μ_lot) / √(σ²_lot + ε), puis y = γ x̂ + β. Les paramètres γ (échelle) et β (décalage) sont appris. À l'inférence, on utilise des moyennes et variances calculées pendant l'entraînement (moyennes mobiles).
+\`\`\`python
+import numpy as np
+
+lot = np.array([[1.0, 200.0], [2.0, 220.0], [3.0, 180.0]])   # 3 exemples, 2 variables
+x_hat = (lot - lot.mean(axis=0)) / np.sqrt(lot.var(axis=0) + 1e-5)
+print(x_hat.round(2))
+print(x_hat.mean(axis=0).round(2), x_hat.std(axis=0).round(2))
+# Affichage :
+# [[-1.22  0.  ]
+#  [ 0.    1.22]
+#  [ 1.22 -1.22]]
+# [0. 0.] [1. 1.]
+\`\`\`
+
+**Effets constatés :** entraînement plus rapide avec des pas d'apprentissage plus grands, moindre sensibilité à l'initialisation, léger effet régularisant (bruit lié aux statistiques du lot).
+
+**Explication :** l'article d'origine invoquait la réduction du « décalage de covariables interne ». Cette explication est discutée : Santurkar et al. (2018) montrent que la normalisation rend surtout la surface de perte plus lisse.
+
+**Placement :** souvent entre la couche linéaire ou convolutive et l'activation ; l'ordre est discuté.
+
+**Limites et alternatives :**
+• Dépend de la taille du lot : peu fiable avec de très petits lots.
+• Comportement différent à l'entraînement et à l'inférence, source d'erreurs.
+• La normalisation par couche (Ba et al., 2016) normalise sur les variables d'un même exemple : standard dans les Transformers. La normalisation par groupes (Wu et He, 2018) convient aux petits lots.`,
     category: "deep-learning",
     icon: "BarChart3"
   },
   {
     term: "Optimiseurs (Optimizers)",
-    description: "Algorithmes qui ajustent les poids du réseau pour minimiser la fonction de coût. Exemples : SGD, Adam, RMSprop, chacun avec ses avantages pour différents types de problèmes.",
+    description: `Un optimiseur est l'algorithme qui utilise le gradient de la perte pour mettre à jour les poids d'un réseau et la faire diminuer.
+
+**Descente de gradient :** w ← w − η ∇L(w), où η est le pas d'apprentissage (learning rate). En variante stochastique (SGD), le gradient est estimé sur un mini-lot plutôt que sur tout le jeu de données.
+
+**Optimiseurs courants :**
+• SGD avec momentum : ajoute une inertie qui lisse les oscillations et accélère dans les directions stables.
+• RMSprop : divise le pas de chaque paramètre par une moyenne mobile de ses gradients récents.
+• Adam (Kingma et Ba, 2014) : combine momentum et pas adapté à chaque paramètre ; très répandu car il demande peu de réglages.
+• AdamW (Loshchilov et Hutter) : sépare la décroissance des poids (weight decay) de la mise à jour adaptative.
+
+**Le pas d'apprentissage est le réglage le plus important.** Sur f(w) = w², dont le gradient est 2w, en partant de w = 1 et après 5 itérations :
+\`\`\`python
+# Descente de gradient sur f(w) = w², dont le gradient est 2w, en partant de w = 1
+for pas in [0.1, 0.5, 1.1]:
+    w = 1.0
+    for _ in range(5):
+        w = w - pas * 2 * w
+    print(pas, round(w, 4))
+# Affichage :
+# 0.1 0.3277
+# 0.5 0.0
+# 1.1 -2.4883
+\`\`\`
+Un pas de 0,1 converge lentement, 0,5 converge d'un coup, 1,1 diverge.
+
+**Pratiques :**
+• Planifier le pas : décroissance, échauffement (warm-up), cosinus.
+• SGD avec momentum reste compétitif en vision ; Adam ou AdamW est le choix courant pour les Transformers.
+• Il n'existe pas d'optimiseur universel : comparer sur la tâche.`,
     category: "deep-learning",
     icon: "TrendingUp"
   },
   {
     term: "Tenseurs (Tensors)",
-    description: "Structures de données multidimensionnelles utilisées pour représenter les données dans les frameworks de deep learning. Généralisent les scalaires, vecteurs, et matrices à n dimensions.",
+    description: `En apprentissage profond, un tenseur est un tableau de nombres à un nombre quelconque de dimensions (les axes). C'est la structure de données de base de PyTorch, TensorFlow et JAX.
+
+**Ordre (nombre d'axes) :**
+• 0 : scalaire, un nombre.
+• 1 : vecteur.
+• 2 : matrice.
+• 3 ou plus : par exemple une image couleur (hauteur, largeur, canaux), un lot d'images, une séquence de vecteurs.
+\`\`\`python
+import numpy as np
+
+print(np.array(3.0).shape)              # scalaire
+print(np.zeros(5).shape)                # vecteur
+print(np.zeros((28, 28)).shape)         # image en niveaux de gris
+print(np.zeros((32, 28, 28, 3)).shape)  # lot de 32 images couleur
+# Affichage :
+# ()
+# (5,)
+# (28, 28)
+# (32, 28, 28, 3)
+\`\`\`
+
+**Conventions :** la forme (shape) donne la taille de chaque axe. L'ordre des axes dépend de la bibliothèque : (lot, hauteur, largeur, canaux) dans TensorFlow, (lot, canaux, hauteur, largeur) dans PyTorch.
+
+**Ce que les bibliothèques ajoutent aux tableaux NumPy :**
+• Calcul sur GPU ou TPU.
+• Différentiation automatique : le suivi des opérations permet de calculer les gradients.
+• Types de données adaptés (float32, float16, bfloat16).
+
+**Vocabulaire :** en mathématiques, un tenseur est un objet qui se transforme d'une manière précise lors d'un changement de repère. En apprentissage profond, le terme désigne simplement un tableau multidimensionnel.
+
+**Erreurs fréquentes :** formes incompatibles dans un produit matriciel, axes lot et canaux mélangés, types entiers et flottants confondus.`,
     category: "deep-learning",
-    icon: "Box"
+    icon: "Layers"
   },
   {
     term: "Transfer Learning",
-    description: "Technique qui utilise un modèle pré-entraîné sur une tâche comme point de départ pour une nouvelle tâche similaire. Permet d'obtenir de bons résultats avec moins de données et de temps d'entraînement.",
+    description: `Le transfert d'apprentissage (transfer learning) réutilise un modèle déjà entraîné sur une tâche source comme point de départ pour une tâche cible. Il réduit les données et le calcul nécessaires.
+
+**Principe :** les premières couches d'un réseau apprennent des caractéristiques générales (contours et textures en vision, structure de la langue en texte) qui servent à d'autres tâches. On les conserve et on adapte le reste.
+
+**Deux approches :**
+• Extraction de caractéristiques : on gèle le modèle pré-entraîné et on entraîne seulement une nouvelle tête (couche de sortie) sur ses représentations.
+• Ajustement fin (fine-tuning) : on poursuit l'entraînement de tout ou partie du modèle, avec un pas d'apprentissage faible.
+
+**Exemple** (PyTorch et torchvision, non exécuté ici) :
+\`\`\`python
+import torch.nn as nn
+from torchvision import models
+
+modele = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)   # pré-entraîné sur ImageNet
+for p in modele.parameters():
+    p.requires_grad = False                                         # on gèle le corps du réseau
+modele.fc = nn.Linear(modele.fc.in_features, 3)                      # nouvelle tête, 3 classes
+\`\`\`
+
+**Quand c'est utile :** peu de données étiquetées, tâche proche de la source (photographies, texte courant).
+
+**Limites :**
+• Transfert négatif possible si les domaines sont trop différents.
+• Les biais et les défauts du modèle source sont hérités.
+• Vérifier la licence du modèle et des données d'origine.`,
     category: "deep-learning",
-    icon: "ArrowRight"
+    icon: "GitBranch"
   },
   {
     term: "Fine-tuning",
-    description: "Processus d'ajustement d'un modèle pré-entraîné pour une tâche spécifique en continuant l'entraînement avec un taux d'apprentissage plus faible sur de nouvelles données.",
+    description: `L'ajustement fin (fine-tuning) poursuit l'entraînement d'un modèle pré-entraîné sur les données d'une tâche précise, avec un pas d'apprentissage en général nettement plus faible que lors du pré-entraînement.
+
+**Démarche :**
+• Remplacer ou ajouter la couche de sortie adaptée à la nouvelle tâche.
+• Éventuellement geler les premières couches (caractéristiques générales), entraîner d'abord la nouvelle tête, puis dégeler progressivement.
+• Utiliser un pas d'apprentissage faible, parfois différent selon les couches, et surveiller la validation.
+
+**Risques :**
+• Oubli catastrophique : le modèle perd des capacités acquises au pré-entraînement si l'ajustement est trop long ou trop fort.
+• Surapprentissage sur un petit jeu de données.
+• Changement du comportement d'un modèle de langage après ajustement, y compris de ses garde-fous.
+
+**Pour les grands modèles :** les méthodes économes en paramètres n'entraînent qu'une petite part des poids ou des matrices ajoutées. LoRA (Hu et al., 2021) ajoute des matrices de faible rang aux poids existants. L'ajustement sur des instructions et l'apprentissage par renforcement à partir de retours humains (RLHF) servent à adapter les modèles de langage au dialogue.
+
+**Quand l'éviter :** si une simple extraction de caractéristiques suffit, ou, pour un modèle de langage, si quelques exemples donnés dans la consigne suffisent.`,
     category: "deep-learning",
     icon: "Settings"
   },
   {
     term: "Réseaux antagonistes génératifs (GAN)",
-    description: "Architecture composée de deux réseaux en compétition : un générateur qui crée de fausses données et un discriminateur qui tente de les distinguer des vraies données. Révolutionnaire pour la génération d'images.",
+    description: `Un réseau antagoniste génératif (GAN, Goodfellow et al., 2014) associe deux réseaux entraînés l'un contre l'autre : un générateur qui produit de fausses données et un discriminateur qui apprend à les distinguer des vraies.
+
+**Principe :** c'est un jeu à deux joueurs. Le générateur G transforme un bruit aléatoire z en échantillon ; le discriminateur D estime la probabilité qu'un échantillon soit réel. On cherche min_G max_D E[log D(x)] + E[log(1 − D(G(z)))]. À l'équilibre, G produit des échantillons que D ne distingue plus des vrais.
+
+**Entraînement :** on alterne des mises à jour de D (distinguer le réel du faux) et de G (tromper D).
+
+**Difficultés :**
+• Entraînement instable : les deux réseaux doivent progresser de façon équilibrée.
+• Effondrement de modes (mode collapse) : G ne produit que quelques types d'échantillons.
+• Pas de mesure unique de la qualité : on utilise des métriques comme le FID, complétées par un examen visuel.
+
+**Variantes :** DCGAN (convolutif), GAN conditionnel (génération guidée par une étiquette), CycleGAN (traduction d'images sans paires), StyleGAN.
+
+**Place actuelle :** pour la génération d'images, les modèles de diffusion (Ho et al., 2020) ont largement pris le relais. Les GAN servent encore pour la génération rapide, la super-résolution et les données synthétiques.
+
+**Précaution :** les images générées posent des questions d'usage (hypertrucages, droits).`,
     category: "deep-learning",
     icon: "Shuffle"
   },
   {
     term: "Autoencodeurs (Autoencoders)",
-    description: "**Les maîtres de la compression intelligente !** Comme un artiste qui dessine un portrait, puis le résume en quelques traits essentiels avant de le reconstruire dans tous ses détails, l'autoencodeur apprend à capturer l'essence des données dans un espace compact.\n\n**🎨 Analogie Artistique :**\nImaginez un peintre qui regarde une photo complexe, identifie les éléments essentiels (couleurs dominantes, formes principales), puis recrée l'image à partir de ces éléments clés. L'autoencodeur fait exactement cela avec les données !\n\n**🏗️ Architecture Fondamentale :**\n\n**Structure en Sablier :**\n```\nEntrée → Encodeur → Goulot d'étranglement → Décodeur → Sortie\n  784  →   256   →        64         →   256   →  784\n```\n\n**Composants Essentiels :**\n- **Encodeur** : Compression progressive (f: X → Z)\n- **Code latent** : Représentation compacte (bottleneck)\n- **Décodeur** : Reconstruction (g: Z → X')\n- **Fonction de perte** : L(X, X') = ||X - X'||²\n\n**🧠 Principe d'Apprentissage :**\n\n**Objectif Paradoxal :**\n- Apprendre l'identité : X → X\n- Avec contrainte : passer par un espace réduit\n- Force l'extraction des caractéristiques importantes\n\n**Processus d'Optimisation :**\n1. **Compression** : Réduction de dimensionnalité\n2. **Reconstruction** : Tentative de récupération\n3. **Erreur** : Mesure de la perte d'information\n4. **Backpropagation** : Amélioration itérative\n\n**🎯 Types d'Autoencodeurs :**\n\n**Autoencodeur Vanilla :**\n- Architecture simple feedforward\n- Couches fully connected\n- Fonction d'activation non-linéaire\n- Baseline pour comparaisons\n\n**Autoencodeur Convolutif :**\n- Encodeur : Convolutions + Pooling\n- Décodeur : Déconvolutions + Upsampling\n- Préservation des structures spatiales\n- Idéal pour images\n\n**Autoencodeur Débruité :**\n- Entrée : Données + bruit artificiel\n- Sortie : Données originales propres\n- Robustesse aux perturbations\n- Régularisation naturelle\n\n**Autoencodeur Variationnel (VAE) :**\n- Code latent probabiliste (μ, σ)\n- Échantillonnage stochastique\n- Génération de nouvelles données\n- Régularisation KL-divergence\n\n**Autoencodeur Sparse :**\n- Contrainte de parcimonie sur le code\n- Activation de peu de neurones\n- Représentations interprétables\n- Régularisation L1\n\n**⚡ Applications Révolutionnaires :**\n\n**Réduction de Dimensionnalité :**\n- Alternative non-linéaire à PCA\n- Préservation des structures complexes\n- Visualisation de données haute dimension\n- Preprocessing pour autres modèles\n\n**Détection d'Anomalies :**\n- Entraînement sur données normales\n- Anomalies = forte erreur de reconstruction\n- Surveillance industrielle, cybersécurité\n- Détection de fraudes financières\n\n**Génération de Contenu :**\n- **Images** : Visages, œuvres d'art\n- **Musique** : Compositions originales\n- **Texte** : Génération de phrases\n- **Molécules** : Découverte de médicaments\n\n**Débruitage et Restauration :**\n- Suppression de bruit dans images\n- Restauration de photos anciennes\n- Amélioration de qualité audio\n- Inpainting (reconstruction de zones manquantes)\n\n**🛠️ Architectures Avancées :**\n\n**β-VAE :**\n- Contrôle du facteur β dans la perte\n- Balance reconstruction/régularisation\n- Disentanglement des facteurs latents\n\n**WAE (Wasserstein Autoencoder) :**\n- Distance de Wasserstein\n- Stabilité d'entraînement améliorée\n- Qualité de génération supérieure\n\n**AAE (Adversarial Autoencoder) :**\n- Discriminateur sur l'espace latent\n- Distribution latente imposée\n- Hybride VAE + GAN\n\n**🔍 Métriques d'Évaluation :**\n\n**Reconstruction :**\n- **MSE** : Erreur quadratique moyenne\n- **SSIM** : Similarité structurelle (images)\n- **PSNR** : Rapport signal/bruit\n\n**Qualité Latente :**\n- **Disentanglement** : Séparation des facteurs\n- **Interpolation** : Transitions fluides\n- **Completeness** : Couverture de l'espace\n\n**📊 Défis Techniques :**\n\n**Posterior Collapse :**\n- Décodeur ignore l'encodeur\n- Solutions : β-scheduling, skip connections\n\n**Mode Collapse :**\n- Génération limitée à quelques modes\n- Diversité réduite des outputs\n\n**Blurriness :**\n- Reconstructions floues (MSE loss)\n- Solutions : Perceptual loss, adversarial training\n\n**🎯 Cas d'Usage Industriels :**\n\n**Compression d'images :**\n- Représentations compactes apprises\n- Qualité perceptuelle à contrôler\n\n**Photothèques :**\n- Recherche par similarité visuelle\n- Regroupement automatique de photos\n- Détection de doublons\n\n**Industrie 4.0 :**\n- Maintenance prédictive\n- Détection d'anomalies en temps réel\n- Optimisation de processus\n\n**💡 Innovations Récentes :**\n\n**Transformers Autoencoders :**\n- Attention pour reconstruction\n- Gestion de séquences longues\n- Applications NLP avancées\n\n**Neural ODEs :**\n- Dynamiques continues\n- Efficacité mémoire\n- Résolution adaptative\n\n**🚀 Impact Futur :**\nLes autoencodeurs révolutionnent la compression : la norme JPEG AI (ISO/IEC 6048, première partie publiée en 2025) compresse les images par réseaux de neurones. En médecine, ils servent à repérer des anomalies : une image que le modèle reconstruit mal s'écarte de ce qu'il a appris.",
+    description: `Un autoencodeur est un réseau de neurones entraîné à reconstruire son entrée après l'avoir fait passer par une représentation compressée, le code latent. Il apprend sans étiquettes.
+
+**Architecture :** un encodeur compresse l'entrée x en un code z de dimension réduite, un décodeur reconstruit x̂ à partir de z. La perte mesure l'écart de reconstruction, par exemple ‖x − x̂‖². Le goulot d'étranglement oblige le réseau à garder l'essentiel.
+• Exemple pour des images de 28 × 28 pixels : 784 → 256 → 64 → 256 → 784.
+• Un autoencodeur linéaire entraîné avec la perte quadratique retrouve le sous-espace de l'analyse en composantes principales ; avec des activations non linéaires, il apprend des représentations plus riches.
+
+**Variantes :**
+• Débruiteur (denoising) : entrée bruitée, sortie propre.
+• Parcimonieux (sparse) : pénalité pour n'activer que peu d'unités.
+• Variationnel (VAE, Kingma et Welling, 2013) : le code est une distribution, et la perte ajoute un terme de divergence de Kullback-Leibler. On peut tirer z au hasard et décoder pour générer de nouvelles données.
+• Convolutif : pour les images.
+
+**Usages :**
+• Réduction de dimension et visualisation.
+• Détection d'anomalies : une entrée mal reconstruite s'écarte de ce que le modèle a appris.
+• Débruitage, génération (VAE), pré-entraînement de représentations.
+
+**Limites :** reconstructions floues avec la perte quadratique ; effondrement a posteriori des VAE (le décodeur ignore le code) ; un autoencodeur trop puissant peut recopier l'entrée sans rien apprendre d'utile.`,
     category: "deep-learning",
-    icon: "Repeat"
+    icon: "RefreshCw"
   },
   {
     term: "Réseaux de neurones convolutifs génératifs (DCGAN)",
-    description: "Extension des GAN utilisant des couches convolutives, particulièrement efficace pour générer des images haute résolution avec des détails réalistes.",
+    description: `DCGAN (Deep Convolutional GAN, Radford, Metz et Chintala, 2015) est un GAN dont le générateur et le discriminateur sont des réseaux convolutifs, avec des choix d'architecture qui ont rendu l'entraînement plus stable.
+
+**Principales recommandations de l'article :**
+• Remplacer le pooling par des convolutions à pas (strided) dans le discriminateur et des convolutions transposées dans le générateur : le sous- et le sur-échantillonnage sont appris.
+• Utiliser la normalisation par lots dans les deux réseaux, sauf en sortie du générateur et en entrée du discriminateur.
+• Supprimer les couches entièrement connectées cachées.
+• ReLU dans le générateur (tanh en sortie), LeakyReLU dans le discriminateur.
+
+**Fonctionnement :** le générateur part d'un vecteur de bruit, l'étend en une petite carte de caractéristiques, puis augmente la résolution par des convolutions transposées jusqu'à l'image. Le discriminateur fait le chemin inverse jusqu'à une probabilité « réel ou faux ».
+
+**Résultats de l'article :** des images de petite taille (64 × 64 pixels) et un espace latent exploitable : des opérations arithmétiques sur les vecteurs latents correspondent à des changements de contenu, par exemple de pose ou d'accessoire.
+
+**Limites :** celles des GAN (instabilité, effondrement de modes), avec une résolution limitée. Pour des images de haute qualité, on préfère aujourd'hui des architectures plus récentes (StyleGAN, modèles de diffusion).`,
     category: "deep-learning",
-    icon: "Image"
+    icon: "Eye"
   },
   {
     term: "Réseaux siamois (Siamese Networks)",
-    description: "Architecture utilisant deux réseaux identiques pour comparer des paires d'entrées. Utilisée pour la vérification d'identité, détection de similarité, et apprentissage métrique.",
+    description: `Un réseau siamois est formé de deux branches identiques, qui partagent les mêmes poids, appliquées à deux entrées. Leurs sorties sont comparées pour dire si les entrées se ressemblent. Le principe remonte à la vérification de signatures (Bromley et al., 1993).
+
+**Fonctionnement :**
+• Chaque entrée passe par le même réseau, qui produit un plongement (embedding).
+• Une distance (euclidienne, cosinus) entre les deux plongements mesure la similarité.
+• On entraîne pour rapprocher les paires similaires et éloigner les paires différentes.
+
+**Fonctions de perte :**
+• Contrastive (Hadsell, Chopra et LeCun, 2006) : pénalise les paires similaires éloignées et les paires différentes plus proches qu'une marge.
+• Triplet : avec une ancre, un exemple positif et un exemple négatif, impose d(ancre, positif) + marge < d(ancre, négatif) (FaceNet, Schroff et al., 2015).
+
+**Usages :**
+• Vérification d'identité (visage, signature).
+• Recherche par similarité, détection de doublons.
+• Classification avec très peu d'exemples par classe (few-shot) : on compare un nouvel exemple aux exemples connus, sans réentraîner.
+
+**Atouts et limites :**
+• Pas besoin de nombreux exemples par classe, ni de classes connues à l'avance.
+• Le choix des paires ou des triplets (surtout les « négatifs difficiles ») conditionne la qualité.
+• La qualité dépend de la représentation apprise, donc des données d'entraînement.`,
     category: "deep-learning",
-    icon: "Copy"
+    icon: "Users"
   },
   {
     term: "Distillation de connaissances (Knowledge Distillation)",
-    description: "Technique de compression de modèle où un modèle plus petit (étudiant) apprend à imiter un modèle plus grand et complexe (enseignant), permettant de déployer des modèles efficaces.",
+    description: `La distillation de connaissances (Hinton, Vinyals et Dean, 2015) entraîne un petit modèle, l'élève, à imiter un grand modèle, le professeur, pour obtenir un modèle plus léger et plus rapide qui garde une grande partie de la performance.
+
+**Principe :** l'élève apprend à partir des probabilités produites par le professeur, plus riches que les étiquettes dures : elles indiquent quelles classes il juge proches. On les adoucit avec une température T > 1 dans le softmax.
+\`\`\`python
+import numpy as np
+
+def softmax(z, T=1.0):
+    e = np.exp(np.array(z) / T)
+    return e / e.sum()
+
+logits = [4.0, 1.0, 0.0]
+print(softmax(logits).round(3))
+print(softmax(logits, T=4).round(3))
+# Affichage :
+# [0.936 0.047 0.017]
+# [0.543 0.257 0.2  ]
+\`\`\`
+Avec T = 4, la distribution est plus étalée et les classes secondaires deviennent informatives.
+
+**Perte typique :** α × perte avec les étiquettes réelles + (1 − α) × T² × divergence de Kullback-Leibler entre les sorties adoucies du professeur et de l'élève.
+
+**Exemple :** DistilBERT (Sanh et al., 2019) est, selon ses auteurs, 40 % plus petit que BERT et 60 % plus rapide, pour 97 % de ses performances de compréhension du langage.
+
+**Usages :** déploiement sur mobile ou sur un serveur à budget limité, réduction du coût d'inférence, transfert des capacités d'un grand modèle vers un modèle spécialisé.
+
+**Limites :**
+• L'élève reste en général un peu moins bon que le professeur.
+• Il hérite des biais et des erreurs du professeur.
+• Les conditions d'utilisation du professeur peuvent restreindre la distillation de ses sorties.
+
+Autres techniques de compression : quantification, élagage (pruning).`,
     category: "deep-learning",
-    icon: "Download"
+    icon: "TrendingDown"
   },
   {
     term: "Gradient Clipping",
-    description: "Technique pour prévenir l'explosion des gradients en limitant leur magnitude pendant l'entraînement, particulièrement importante pour les RNN et les réseaux très profonds.",
+    description: `Le gradient clipping (écrêtage du gradient) limite la taille du gradient avant la mise à jour des poids, pour qu'un pas trop grand ne déstabilise pas l'entraînement (explosion du gradient).
+
+**Deux formes :**
+• Par norme : si ‖g‖ dépasse un seuil s, on remplace g par g × s / ‖g‖. La direction est conservée, seule la longueur diminue.
+• Par valeur : chaque composante est bornée à l'intervalle [−s, s]. La direction peut changer.
+\`\`\`python
+import numpy as np
+
+gradient = np.array([30.0, 40.0])    # norme 50
+seuil = 5.0
+norme = np.linalg.norm(gradient)
+if norme > seuil:
+    gradient = gradient * seuil / norme
+print(gradient, np.linalg.norm(gradient))
+# Affichage :
+# [3. 4.] 5.0
+\`\`\`
+
+**Quand l'utiliser :**
+• Réseaux récurrents, où les gradients peuvent exploser sur de longues séquences (Pascanu et al., 2013).
+• Entraînement de grands modèles, souvent avec une norme maximale de l'ordre de 1.
+• Pics de perte ou valeurs NaN pendant l'entraînement.
+
+**En PyTorch :** torch.nn.utils.clip_grad_norm_(modele.parameters(), max_norm=1.0), appelé après loss.backward() et avant optimizer.step().
+
+**Limites :**
+• Il traite l'explosion du gradient, pas son évanouissement.
+• Un seuil trop bas ralentit l'apprentissage : observer la norme du gradient avant écrêtage pour le choisir.`,
     category: "deep-learning",
-    icon: "Scissors"
+    icon: "Gauge"
   },
   {
     term: "Residual Networks (ResNet)",
-    description: "Architecture utilisant des connexions résiduelles (skip connections) pour permettre l'entraînement de réseaux très profonds en résolvant le problème de dégradation des gradients.",
+    description: `Un réseau résiduel (ResNet, He et al., 2015) ajoute à chaque bloc une connexion de saut (skip connection) qui additionne l'entrée du bloc à sa sortie : y = F(x) + x. Le bloc n'a plus qu'à apprendre la correction F(x) = y − x.
+
+**Problème résolu :** en augmentant la profondeur d'un réseau classique, l'erreur d'entraînement finissait par augmenter : c'est le problème de dégradation, une difficulté d'optimisation et non du surapprentissage. Avec une connexion résiduelle, un bloc peut facilement se comporter comme l'identité (F = 0), et les gradients se propagent directement par le chemin de saut.
+
+**Architecture :**
+• Blocs de deux convolutions 3 × 3 (ResNet-18 et 34) ou de trois convolutions dont des 1 × 1, dites « bottleneck » (ResNet-50, 101, 152).
+• Normalisation par lots dans chaque bloc.
+• Quand les dimensions changent, une convolution 1 × 1 adapte le chemin de saut.
+
+**Résultats :** des réseaux résiduels allant jusqu'à 152 couches ont remporté la classification d'ILSVRC 2015.
+
+**Influence :** les connexions résiduelles se retrouvent partout : Transformers (autour de l'attention et du feed-forward), U-Net, réseaux de diffusion. Variantes : ResNeXt, DenseNet (concaténation au lieu d'addition).
+
+**Utilisation :** un ResNet pré-entraîné sur ImageNet est une base courante pour le transfert d'apprentissage.`,
     category: "deep-learning",
-    icon: "Link"
+    icon: "GitBranch"
   },
   {
     term: "Attention multi-têtes (Multi-Head Attention)",
-    description: "**Le cerveau multitâche de l'IA !** Comme un chef d'orchestre qui écoute simultanément chaque section musicale tout en gardant une vision globale de la symphonie, l'attention multi-têtes permet au modèle de se concentrer sur plusieurs aspects différents de l'information en parallèle.\n\n**🎼 Analogie Orchestrale :**\nImaginez un chef d'orchestre avec plusieurs paires d'oreilles : une paire écoute les cordes, une autre les cuivres, une troisième le rythme. Chaque 'tête d'attention' se spécialise dans un aspect différent, puis toutes les informations sont combinées pour une compréhension complète.\n\n**🧠 Mécanisme Fondamental :**\n\n**Attention Simple vs Multi-têtes :**\n- **Simple** : Une seule perspective sur les relations\n- **Multi-têtes** : Multiples perspectives complémentaires\n- **Parallélisation** : Calculs simultanés, pas séquentiels\n\n**Architecture Mathématique :**\n```\nMultiHead(Q,K,V) = Concat(head₁,...,headₕ)W^O\noù head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)\n```\n\n**🔍 Composants Détaillés :**\n\n**Matrices de Projection :**\n- **W^Q, W^K, W^V** : Transformations linéaires par tête\n- **W^O** : Projection finale de concaténation\n- **Dimensions** : d_model / h pour chaque tête\n\n**Mécanisme d'Attention :**\n```\nAttention(Q,K,V) = softmax(QK^T/√d_k)V\n```\n- **Scores** : Produit scalaire Query-Key\n- **Normalisation** : Division par √d_k (stabilité)\n- **Pondération** : Softmax pour probabilités\n- **Agrégation** : Somme pondérée des Values\n\n**⚡ Avantages Révolutionnaires :**\n\n**Spécialisation des Têtes :**\n- **Syntaxe** : Relations grammaticales\n- **Sémantique** : Sens et concepts\n- **Position** : Relations spatiales/temporelles\n- **Long-range** : Dépendances distantes\n\n**Parallélisation Massive :**\n- Calculs simultanés sur GPU\n- Efficacité computationnelle\n- Scalabilité avec le hardware\n\n**🎯 Patterns d'Attention Découverts :**\n\n**En NLP :**\n- **Tête 1** : Relations sujet-verbe\n- **Tête 2** : Modificateurs et adjectifs\n- **Tête 3** : Coréférences et anaphores\n- **Tête 4** : Structure syntaxique globale\n\n**En Vision :**\n- **Tête 1** : Contours et edges\n- **Tête 2** : Textures et patterns\n- **Tête 3** : Relations spatiales\n- **Tête 4** : Objets et formes globales\n\n**🛠️ Implémentation Pratique :**\n\n**Hyperparamètres Clés :**\n- **Nombre de têtes (h)** : Typiquement 8, 12, ou 16\n- **Dimension par tête** : d_model / h\n- **Dimension du modèle** : 512, 768, 1024\n\n**Optimisations :**\n- **Grouped Query Attention** : Partage de Keys/Values\n- **Sparse Attention** : Attention sur sous-ensembles\n- **Linear Attention** : Complexité réduite\n\n**📊 Complexité Computationnelle :**\n\n**Temps :** O(n² × d_model)\n**Espace :** O(n² × h)\n\n**Défis pour Longues Séquences :**\n- Croissance quadratique avec la longueur\n- Solutions : Attention locale, sparse, linéaire\n\n**🎯 Applications Transformatrices :**\n\n**Traduction Automatique :**\n- Alignement source-cible sophistiqué\n- Gestion des structures syntaxiques différentes\n- Qualité proche de traducteurs humains\n\n**Génération de Texte :**\n- Cohérence long-terme\n- Style et ton consistants\n- Créativité contrôlée\n\n**Vision par Ordinateur :**\n- **Vision Transformers (ViT)** : Classification d'images\n- **DETR** : Détection d'objets\n- **Segmentation** : Masques précis\n\n**🔬 Variantes Avancées :**\n\n**Cross-Attention :**\n- Queries d'une séquence, Keys/Values d'une autre\n- Fusion d'informations multimodales\n- Traduction et résumé\n\n**Self-Attention :**\n- Queries, Keys, Values de la même séquence\n- Compréhension interne des relations\n- Modélisation de séquences\n\n**Causal Attention :**\n- Masquage des positions futures\n- Génération autoregressive\n- Modèles de langage (GPT)\n\n**📈 Évolutions Récentes :**\n\n**Attention Efficace :**\n- **Linformer** : Projection linéaire\n- **Performer** : Approximation par features aléatoires\n- **Longformer** : Attention locale + globale\n\n**Attention Adaptative :**\n- Nombre de têtes dynamique\n- Allocation de ressources intelligente\n- Optimisation automatique\n\n**💡 Insights de Recherche :**\n\n**Redondance des Têtes :**\n- Certaines têtes apprennent des patterns similaires\n- Pruning possible sans perte de performance\n- Optimisation de l'efficacité\n\n**Émergence de Spécialisations :**\n- Spécialisation non supervisée\n- Patterns linguistiques découverts automatiquement\n- Interprétabilité améliorée\n\n**🚀 Impact Révolutionnaire :**\nL'attention multi-têtes a révolutionné l'IA : GPT-3 utilise 96 têtes d'attention, BERT en utilise 144. Cette architecture permet à ChatGPT de maintenir la cohérence sur des conversations de milliers de mots, transformant l'interaction homme-machine.",
+    description: `L'attention multi-têtes exécute plusieurs attentions en parallèle, chacune avec ses propres projections, puis concatène leurs résultats. Chaque tête peut ainsi capter un type de relation différent (Vaswani et al., 2017).
+
+**Formule :** MultiHead(Q, K, V) = Concat(tête_1, ..., tête_h) W^O, avec tête_i = Attention(Q W_i^Q, K W_i^K, V W_i^V). Les matrices W sont apprises.
+
+**Dimensions :** avec h têtes et un modèle de dimension d_model, chaque tête travaille sur d_k = d_model / h dimensions. Le coût total reste voisin de celui d'une seule attention de dimension d_model.
+\`\`\`python
+import numpy as np
+
+sequence, d_model, tetes = 4, 8, 2
+x = np.zeros((sequence, d_model))
+par_tete = x.reshape(sequence, tetes, d_model // tetes).transpose(1, 0, 2)
+print(par_tete.shape)   # (têtes, séquence, d_k) avec d_k = d_model / têtes
+# Affichage :
+# (2, 4, 4)
+\`\`\`
+Dans le Transformer d'origine, d_model = 512 et h = 8, soit d_k = 64. BERT-base utilise 12 têtes par couche (d_model = 768).
+
+**Pourquoi plusieurs têtes :** une seule moyenne pondérée mélange tous les types de relation. Avec plusieurs sous-espaces, le modèle peut suivre plusieurs dépendances en parallèle.
+
+**Ce qu'on observe :**
+• Certaines têtes semblent suivre des relations syntaxiques ou la position relative.
+• D'autres sont redondantes : une partie des têtes peut être supprimée avec peu de perte (Michel et al., 2019 ; Voita et al., 2019).
+• Attribuer un rôle précis à une tête reste une interprétation à manier avec prudence.
+
+**Coût et variantes :** le calcul de l'attention est quadratique en la longueur de la séquence. Multi-Query et Grouped-Query Attention partagent clés et valeurs entre têtes pour accélérer l'inférence ; FlashAttention calcule la même attention en optimisant les accès mémoire.`,
     category: "deep-learning",
     icon: "Eye"
   },
   {
     term: "Embeddings",
-    description: "Représentations vectorielles denses de données discrètes (mots, utilisateurs, produits) dans un espace continu de dimension réduite, capturant les relations sémantiques.",
+    description: `Un embedding (plongement) représente un objet discret (mot, utilisateur, produit, catégorie) par un vecteur dense de nombres réels, appris de sorte que des objets proches par le sens ou le comportement aient des vecteurs proches.
+
+**Fonctionnement :**
+• Une table (matrice) de poids associe à chaque identifiant un vecteur de dimension d, de quelques dizaines à quelques milliers.
+• Les vecteurs sont des paramètres appris avec le reste du réseau, ou pré-entraînés (Word2Vec, GloVe) puis réutilisés.
+• La similarité se mesure en général par le cosinus.
+\`\`\`python
+import numpy as np
+
+# Vecteurs choisis à la main pour l'exemple (dimension 3)
+E = {"roi": [0.9, 0.8, 0.1], "reine": [0.9, 0.7, 0.2], "pomme": [0.1, 0.0, 0.9]}
+cos = lambda a, b: np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+print(round(cos(E["roi"], E["reine"]), 2), round(cos(E["roi"], E["pomme"]), 2))
+# Affichage :
+# 0.99 0.16
+\`\`\`
+Les vecteurs « roi » et « reine » sont proches, « pomme » est loin (vecteurs choisis à la main pour l'exemple).
+
+**Pourquoi c'est utile :**
+• Un vecteur compact remplace un encodage one-hot de très grande dimension, presque vide.
+• Des directions peuvent encoder des relations : l'exemple classique est roi − homme + femme ≈ reine (Mikolov et al., 2013), observé plus ou moins nettement selon les modèles.
+• Permet de comparer, regrouper et rechercher des objets.
+
+**Usages :** recherche sémantique, recommandation, classification de texte, entrée des modèles de langage.
+
+**Limites :**
+• Un embedding statique donne un seul vecteur par mot ; les modèles contextuels (BERT) en donnent un par occurrence.
+• Les biais des données d'entraînement (stéréotypes) se retrouvent dans les vecteurs.
+• Le sens de chaque dimension n'est pas directement interprétable.`,
     category: "deep-learning",
-    icon: "Map"
+    icon: "Network"
   },
   {
     term: "Modèles de langage (Language Models)",
-    description: "Modèles qui apprennent la distribution de probabilité des séquences de mots, permettant la génération de texte, traduction, et compréhension du langage naturel.",
+    description: `Un modèle de langage attribue une probabilité à des séquences de mots (ou de sous-mots, les tokens). Il prédit le mot suivant en fonction du contexte, ce qui permet de générer, compléter ou évaluer du texte.
+
+**Principe :** P(w_1, ..., w_n) = Π P(w_t | w_1, ..., w_(t−1)). En comptant les paires de mots d'un corpus minuscule, on estime la probabilité du mot qui suit « le ».
+\`\`\`python
+from collections import Counter
+
+texte = "le chat dort . le chat mange . le chien dort .".split()
+suites = Counter(zip(texte, texte[1:]))
+total = sum(n for (a, _), n in suites.items() if a == "le")
+for (a, b), n in suites.items():
+    if a == "le":
+        print(f"P({b} | le) = {n}/{total}")
+# Affichage :
+# P(chat | le) = 2/3
+# P(chien | le) = 1/3
+\`\`\`
+
+**Familles :**
+• Modèles n-grammes : comptent les suites de n mots ; simples, mais limités à un contexte court.
+• Modèles neuronaux : réseaux récurrents, puis Transformers ; contexte long, représentations apprises.
+• Modèles autorégressifs (famille GPT) : prédisent le mot suivant. Modèles masqués (BERT) : prédisent des mots cachés à partir de tout le contexte.
+
+**Évaluation :** perplexité (plus elle est basse, mieux le modèle prédit le texte), puis évaluation sur des tâches (questions-réponses, traduction, résumé).
+
+**Grands modèles de langage (LLM) :** Transformers de plusieurs milliards de paramètres, pré-entraînés sur de très grands corpus, puis ajustés (instructions, retours humains) pour dialoguer.
+
+**Limites :**
+• Ils produisent des textes plausibles, pas forcément vrais : on parle d'hallucinations.
+• Ils reflètent les biais de leurs données.
+• Leur fiabilité doit être contrôlée sur chaque cas d'usage, avec des sources vérifiables pour les faits.`,
     category: "deep-learning",
     icon: "MessageSquare"
   },
   {
     term: "BERT (Bidirectional Encoder Representations from Transformers)",
-    description: "**Le révolutionnaire de la compréhension du langage !** Comme un lecteur expert qui comprend chaque mot en tenant compte de tout le contexte qui l'entoure (avant ET après), BERT a transformé la façon dont les machines comprennent le langage humain.\n\n**📚 Analogie de Lecture :**\nImaginez lire une phrase avec des mots manqués : \"Le chat ___ sur le tapis\". Un humain devine \"dort\" en regardant tout le contexte. BERT fait exactement cela, mais pour chaque mot simultanément !\n\n**🧠 Innovation Révolutionnaire :**\n\n**Bidirectionnalité :**\n- **Avant BERT** : Lecture séquentielle (gauche → droite)\n- **BERT** : Compréhension contextuelle complète (← → simultané)\n- **Breakthrough** : Chaque mot \"voit\" toute la phrase\n\n**Architecture Transformer Encodeur :**\n```\nEntrée → Embeddings → 12 Couches Transformer → Représentations\n         (Token + Position + Segment)\n```\n\n**🎯 Mécanismes Fondamentaux :**\n\n**Masked Language Modeling (MLM) :**\n- 15% des tokens masqués aléatoirement\n- Prédiction basée sur contexte bidirectionnel\n- Apprentissage de représentations riches\n- Exemple : \"Paris est la [MASK] de la France\" → \"capitale\"\n\n**Next Sentence Prediction (NSP) :**\n- Prédiction si deux phrases se suivent logiquement\n- Compréhension des relations inter-phrases\n- Utile pour QA et inférence textuelle\n\n**🏗️ Architecture Détaillée :**\n\n**Embeddings Multicouches :**\n- **Token Embeddings** : Représentation des mots\n- **Position Embeddings** : Information positionnelle\n- **Segment Embeddings** : Distinction des phrases\n\n**Transformer Layers :**\n- **Multi-Head Attention** : 12 têtes d'attention\n- **Feed-Forward Networks** : Transformation non-linéaire\n- **Layer Normalization** : Stabilisation d'entraînement\n- **Residual Connections** : Gradient flow amélioré\n\n**⚡ Variantes et Évolutions :**\n\n**BERT Base vs Large :**\n- **Base** : 12 couches, 768 dim, 110M paramètres\n- **Large** : 24 couches, 1024 dim, 340M paramètres\n- **Performance** : Large > Base mais plus coûteux\n\n**Optimisations Modernes :**\n- **RoBERTa** : Suppression NSP, plus de données\n- **ALBERT** : Partage de paramètres, factorisation\n- **DeBERTa** : Attention disentangled améliorée\n- **ELECTRA** : Détection de tokens remplacés\n\n**🎯 Applications Transformatrices :**\n\n**Question-Answering :**\n- Compréhension de texte contextuelle\n- Extraction de réponses précises\n- SQuAD : 93.2% F1-score (niveau humain)\n\n**Classification de Texte :**\n- Analyse de sentiment\n- Détection de spam\n- Classification de documents\n- Fine-tuning sur tâches spécifiques\n\n**Named Entity Recognition :**\n- Identification d'entités (personnes, lieux)\n- Compréhension contextuelle fine\n- Désambiguïsation automatique\n\n**Inférence Textuelle :**\n- Relations logiques entre phrases\n- Détection de contradictions\n- Raisonnement sur texte\n\n**🛠️ Processus de Fine-tuning :**\n\n**Étapes Pratiques :**\n1. **Modèle pré-entraîné** : BERT général\n2. **Ajout couche spécifique** : Classification, régression\n3. **Fine-tuning** : Entraînement sur tâche cible\n4. **Optimisation** : Learning rate faible (2e-5)\n\n**Stratégies d'Adaptation :**\n- **Feature-based** : BERT comme extracteur de features\n- **Fine-tuning** : Adaptation complète du modèle\n- **Gradual unfreezing** : Dégel progressif des couches\n\n**📊 Performance Révolutionnaire :**\n\n**GLUE Benchmark :**\n- Score global : 80.5% (vs 68.9% précédent)\n- Amélioration sur 9 tâches NLP\n- Nouveau standard de l'industrie\n\n**Tâches Spécifiques :**\n- **CoLA** : 60.5% → 52.1% (acceptabilité grammaticale)\n- **SST-2** : 94.9% (analyse sentiment)\n- **MRPC** : 89.3% (paraphrase)\n- **STS-B** : 87.1% (similarité sémantique)\n\n**🚀 Impact Industriel :**\n\n**Moteurs de recherche :**\n- Google a annoncé en octobre 2019 utiliser BERT pour mieux comprendre environ une recherche sur dix en anglais aux États-Unis\n- Compréhension contextuelle des questions\n- Meilleure pertinence des résultats\n\n**Assistants Virtuels :**\n- Compréhension d'intentions complexes\n- Dialogue plus naturel\n- Réponses contextuellement appropriées\n\n**🔬 Recherche et Développements :**\n\n**Limitations Identifiées :**\n- **Coût computationnel** : Inférence lente\n- **Taille mémoire** : Modèles volumineux\n- **Biais** : Reproduction de biais des données\n\n**Solutions Émergentes :**\n- **DistilBERT** : 40% plus petit, 60% plus rapide, 97% des performances de compréhension (Sanh et al., 2019)\n- **MobileBERT** : Optimisé pour mobile\n- **TinyBERT** : Compression extrême\n\n**📈 Métriques d'Évaluation :**\n\n**Intrinsèques :**\n- **Perplexité** : Qualité du modèle de langage\n- **MLM Accuracy** : Précision de prédiction masquée\n\n**Extrinsèques :**\n- **Downstream Tasks** : Performance sur tâches finales\n- **Transfer Learning** : Efficacité d'adaptation\n- **Few-shot Learning** : Généralisation rapide\n\n**💡 Bonnes Pratiques :**\n\n**Preprocessing :**\n- **Tokenization** : WordPiece avec vocabulaire 30K\n- **Sequence Length** : Maximum 512 tokens\n- **Special Tokens** : [CLS], [SEP], [MASK]\n\n**Training :**\n- **Learning Rate** : 2e-5 pour fine-tuning\n- **Batch Size** : 16-32 selon GPU\n- **Epochs** : 2-4 pour éviter overfitting\n\n**🌟 Héritage et Influence :**\nBERT a inspiré une génération entière de modèles : GPT, T5, RoBERTa, ALBERT. Son approche bidirectionnelle est devenue le standard pour la compréhension de texte, influençant de nombreuses applications, de la recherche à la traduction.",
+    description: `BERT (Devlin et al., 2018) est un modèle de langage fondé sur l'encodeur du Transformer, pré-entraîné pour produire des représentations de textes qui tiennent compte du contexte à gauche et à droite de chaque mot.
+
+**Pré-entraînement :**
+• Masked Language Modeling : environ 15 % des tokens sont masqués et le modèle les prédit à partir du contexte complet. Exemple : « Paris est la [MASK] de la France » doit donner « capitale ».
+• Next Sentence Prediction : prédire si deux phrases se suivent. Des travaux ultérieurs (RoBERTa) ont montré que cette tâche n'est pas nécessaire.
+
+**Architecture :** BERT-base compte 12 couches, 12 têtes d'attention et 110 millions de paramètres ; BERT-large 24 couches et 340 millions. Le texte est découpé en sous-mots (WordPiece), en séquences d'au plus 512 tokens, avec des jetons spéciaux [CLS], [SEP] et [MASK].
+
+**Utilisation, en trois étapes :**
+1. Charger le modèle pré-entraîné.
+2. Ajouter une petite couche de sortie adaptée à la tâche.
+3. Ajuster le modèle (fine-tuning) sur les données de la tâche, avec un pas d'apprentissage faible.
+
+Tâches typiques : classification de textes, reconnaissance d'entités nommées, questions-réponses extractives, similarité de phrases.
+
+**Variantes :** RoBERTa (sans NSP, pré-entraînement plus long), ALBERT, DistilBERT (distillé), ELECTRA, DeBERTa ; versions françaises (CamemBERT, FlauBERT).
+
+**Limites :**
+• Ce n'est pas un modèle génératif : il sert à comprendre du texte, pas à en produire.
+• Contexte limité à 512 tokens, coût de calcul élevé.
+• Il reproduit les biais de ses données.`,
     category: "deep-learning",
-    icon: "ArrowLeftRight"
+    icon: "MessageSquare"
   },
   {
     term: "GPT (Generative Pre-trained Transformer)",
-    description: "Famille de modèles de langage génératifs basés sur l'architecture Transformer, capables de générer du texte cohérent et de réaliser diverses tâches de NLP.",
+    description: `GPT (Generative Pre-trained Transformer) désigne une famille de modèles de langage d'OpenAI, apparue en 2018 (Radford et al.), fondée sur la partie décodeur du Transformer et entraînée à prédire le mot suivant.
+
+**Principe :**
+• Un masque causal empêche chaque position de voir les suivantes : le modèle est autorégressif et génère le texte mot après mot.
+• Pré-entraînement sur de très grands corpus de texte, puis adaptation éventuelle.
+• Génération : à chaque pas, on tire le token suivant dans la distribution prédite (réglages de température, top-k, top-p).
+
+**Évolution :**
+• GPT-2 (2019) puis GPT-3 (2020, 175 milliards de paramètres) montrent qu'un grand modèle peut accomplir de nombreuses tâches à partir de quelques exemples donnés dans la consigne, sans réentraînement (apprentissage en contexte, Brown et al., 2020).
+• InstructGPT (Ouyang et al., 2022) ajoute l'ajustement sur des instructions et l'apprentissage par renforcement à partir de retours humains, ce qui rend le modèle plus utile en dialogue.
+
+Le principe du décodeur seul est repris par de nombreux autres modèles, ouverts ou non.
+
+**Différence avec BERT :** GPT lit de gauche à droite et génère ; BERT lit dans les deux sens et sert à comprendre.
+
+**Limites :**
+• Hallucinations : le texte est plausible mais peut être faux.
+• Biais hérités des données, sensibilité à la formulation de la consigne.
+• Coût d'entraînement et d'inférence élevé.
+• Les faits doivent être vérifiés, et les décisions sensibles ne doivent pas reposer sur ses seules sorties.`,
     category: "deep-learning",
-    icon: "PenTool"
+    icon: "MessageSquare"
   }
 ];

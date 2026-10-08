@@ -194,7 +194,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
   "transformers": {
     term: "Transformers",
     shortDefinition: "Architecture de deep learning basée sur le mécanisme d'attention, qui excelle dans le traitement du langage naturel.",
-    longDefinition: "Les Transformers sont une architecture de réseaux de neurones introduite en 2017 qui a révolutionné le traitement du langage naturel. Contrairement aux RNN, les Transformers traitent l'ensemble de la séquence simultanément grâce au mécanisme d'auto-attention, ce qui leur permet de modéliser les dépendances à longue distance plus efficacement et de se prêter à la parallélisation pendant l'entraînement.",
+    longDefinition: "Les Transformers sont une architecture de réseaux de neurones introduite en 2017 (Vaswani et al.), devenue la base de la plupart des modèles récents de traitement du langage naturel. Contrairement aux RNN, les Transformers traitent l'ensemble de la séquence simultanément grâce au mécanisme d'auto-attention, ce qui leur permet de modéliser les dépendances à longue distance plus efficacement et de se prêter à la parallélisation pendant l'entraînement.",
     examples: [
       "Modèles BERT pour la compréhension du langage",
       "GPT pour la génération de texte",

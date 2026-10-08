@@ -8,205 +8,993 @@ import { GlossaryEntry } from './types';
 export const evaluationTerms: GlossaryEntry[] = [
   {
     term: "Évaluation de modèles (Model Evaluation)",
-    description: "Processus d'assessment des performances d'un modèle ML en utilisant diverses métriques et techniques de validation pour déterminer sa qualité et capacité de généralisation.",
+    description: `L'évaluation d'un modèle consiste à mesurer la qualité de ses prédictions avec des métriques adaptées, sur des données qu'il n'a pas vues pendant l'entraînement, afin d'estimer sa capacité de généralisation.
+
+**Principe :**
+• Séparer les données : entraînement pour ajuster le modèle, validation pour choisir les réglages, test pour une estimation finale, consulté une seule fois.
+• Choisir une métrique qui reflète l'objectif réel : exactitude, rappel, AUC, MAE, R²... selon la tâche et le coût des erreurs.
+• Se comparer à une référence simple (voir Baseline Models) avant de conclure.
+• Chiffrer l'incertitude : un score sur un jeu de test fini est une estimation, pas une valeur exacte (validation croisée, intervalles de confiance).
+
+**Exemple :** un filtre anti-spam affiche 95 % d'exactitude. Si 95 % des messages sont légitimes, un modèle qui ne détecte jamais de spam fait aussi bien : la matrice de confusion, la précision et le rappel montrent ce que l'exactitude cache.
+
+**Pièges :**
+• La fuite de données : toute information du jeu de test utilisée à l'entraînement (normalisation calculée sur l'ensemble des données, doublons) rend le score trop optimiste.
+• Tester plusieurs modèles sur le même jeu de test et garder le meilleur revient à utiliser ce jeu pour choisir.
+• Un bon score hors ligne ne garantit pas la même performance en production, car les données évoluent (voir Robustness Testing).
+• Un score moyen peut masquer de grands écarts selon les sous-groupes : évaluer aussi par tranche de données.`,
     category: "evaluation",
     icon: "BarChart3"
   },
   {
     term: "Matrice de confusion (Confusion Matrix)",
-    description: "La matrice de confusion est comme le bulletin scolaire détaillé d'un modèle de classification - elle révèle exactement où il excelle et où il échoue ! **Anatomie visuelle** : tableau 2x2 (binaire) ou n×n (multiclasse) croisant prédictions vs réalité. **Les 4 cases magiques** (binaire) : **TP** (Vrais Positifs) = 'Bravo, bien vu !', **TN** (Vrais Négatifs) = 'Correct, rien à signaler', **FP** (Faux Positifs) = 'Fausse alerte !', **FN** (Faux Négatifs) = 'Raté, c'était important !'. **Analogie médicale** : diagnostic de maladie - FP = patient sain diagnostiqué malade (stress inutile), FN = patient malade non détecté (danger !). **Lecture intuitive** : diagonale = succès, hors-diagonale = erreurs. Plus la diagonale est 'chaude' et les côtés 'froids', mieux c'est ! **Insights précieux** : révèle les **confusions spécifiques** (classe A confondue avec B), **déséquilibres** de performance, **patterns d'erreurs**. **Calculs dérivés** : toutes les métriques importantes (précision, rappel, F1, accuracy) se calculent à partir d'elle. **Visualisation** : heatmap colorée pour identifier rapidement les problèmes. **Cas multiclasse** : matrice n×n révélant les confusions entre toutes les paires de classes. La matrice de confusion transforme des chiffres abstraits en diagnostic visuel actionnable !",
+    description: `La matrice de confusion est un tableau qui croise les classes réelles et les classes prédites par un modèle de classification. Elle montre quelles erreurs le modèle commet, pas seulement combien.
+
+**Cas binaire :** quatre cases.
+• VP (vrais positifs) : positifs correctement prédits.
+• VN (vrais négatifs) : négatifs correctement prédits.
+• FP (faux positifs) : négatifs prédits positifs, une fausse alerte.
+• FN (faux négatifs) : positifs prédits négatifs, un cas manqué.
+
+**Lecture :** la diagonale contient les bonnes prédictions, le reste les erreurs. En multiclasse, c'est un tableau n × n qui montre quelles classes sont confondues entre elles. Exactitude, précision, rappel, spécificité et F1 s'en déduisent.
+
+**Exemple :** sur 10 messages dont 4 spams, un filtre en classe 5 comme spams, dont 3 le sont réellement : VP = 3, FP = 2, FN = 1, VN = 4.
+\`\`\`python
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
+
+# 1 = spam. Lignes : classe réelle, colonnes : classe prédite
+y_reel = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+y_pred = [1, 1, 1, 0, 1, 1, 0, 0, 0, 0]
+
+print(confusion_matrix(y_reel, y_pred))
+print(precision_score(y_reel, y_pred), recall_score(y_reel, y_pred))
+# Affichage :
+# [[4 2]
+#  [1 3]]
+# 0.6 0.75
+\`\`\`
+
+**À vérifier :** scikit-learn place les classes réelles en lignes et les classes prédites en colonnes ; d'autres sources inversent les axes. Avec des classes déséquilibrées, normalize="true" donne des taux par classe réelle, plus lisibles que des effectifs.`,
     category: "evaluation",
-    icon: "Grid3x3"
+    icon: "Hash"
   },
   {
     term: "Précision (Precision)",
-    description: "La précision répond à la question cruciale : 'Quand mon modèle dit OUI, à quelle fréquence a-t-il raison ?' - c'est la mesure de la fiabilité de ses prédictions positives ! **Formule simple** : Précision = TP/(TP+FP) = Vrais Positifs / Tous les Positifs prédits. **Analogie médicale** : sur 100 patients diagnostiqués 'malades', combien le sont vraiment ? Une précision de 90% = 90 vrais malades, 10 fausses alertes. **Analogie spam** : sur 100 emails classés 'spam', combien sont vraiment du spam ? **Quand privilégier la précision** : coût élevé des **faux positifs** - diagnostic médical grave, recommandations produits, détection de fraude (éviter d'embêter les clients honnêtes). **Trade-off fondamental** : augmenter la précision (être plus sélectif) peut réduire le rappel (rater des vrais cas). **Exemple concret** : détecteur de tumeurs avec précision 95% = sur 100 'tumeurs détectées', 95 sont réelles, 5 sont des fausses alertes (stress inutile). **Interprétation business** : précision élevée = confiance dans les alertes, moins de 'bruit', mais risque de rater des cas. **Piège classique** : précision parfaite (100%) facile à obtenir en étant ultra-conservateur, mais au détriment du rappel. **Contexte décisionnel** : préférer précision quand l'action suite à une prédiction positive est coûteuse ou irréversible.",
+    description: `La précision est la part des prédictions positives qui sont correctes : parmi tous les cas que le modèle a signalés, combien étaient réellement positifs.
+
+**Formule :** précision = VP / (VP + FP).
+
+**Exemple :** un filtre signale 5 messages comme spams et 3 le sont réellement : précision = 3/5 = 0,6. Deux messages légitimes ont été écartés à tort.
+
+**Quand la privilégier :** quand une fausse alerte coûte cher : bloquer un message légitime, accuser à tort un client, déclencher une intervention inutile.
+
+**Limites :**
+• Elle ignore les positifs que le modèle n'a pas signalés : un modèle qui ne signale qu'un seul cas, certain, atteint 100 % de précision en manquant presque tous les autres. Il faut la lire avec le rappel.
+• Relever le seuil de décision rend le modèle plus sélectif : la précision a tendance à monter et le rappel à baisser (voir Courbe Précision-Rappel).
+• Elle dépend de la proportion de positifs : à qualité égale, elle est plus faible quand la classe positive est rare.
+• Elle n'est pas définie si le modèle ne prédit aucun positif (0/0) : scikit-learn renvoie alors 0 avec un avertissement, réglable par zero_division.
+
+**Multiclasse :** précision par classe, puis moyenne simple (macro), pondérée par les effectifs (weighted) ou calculée sur l'ensemble des prédictions (micro).`,
     category: "evaluation",
     icon: "Target"
   },
   {
     term: "Rappel (Recall/Sensitivity)",
-    description: "Le rappel répond à la question vitale : 'De tous les vrais cas positifs, combien mon modèle en a-t-il détectés ?' - c'est la mesure de sa capacité à ne rien laisser passer ! **Formule essentielle** : Rappel = TP/(TP+FN) = Vrais Positifs / Tous les Positifs réels. **Analogie sécuritaire** : sur 100 vrais criminels, combien le système de surveillance en a-t-il repérés ? Rappel 80% = 80 détectés, 20 échappent ! **Analogie médicale** : sur 100 patients réellement malades, combien le test en détecte-t-il ? **Quand privilégier le rappel** : coût catastrophique des **faux négatifs** - détection de cancer, systèmes de sécurité, alertes d'urgence (mieux vaut trop d'alertes que rater un danger). **Trade-off inévitable** : augmenter le rappel (être moins sélectif) génère souvent plus de faux positifs, réduisant la précision. **Exemple critique** : détecteur d'incendie avec rappel 95% = détecte 95% des vrais incendies, mais rate 5% (potentiellement catastrophique). **Synonymes** : Sensibilité, Taux de Vrais Positifs (TPR). **Interprétation business** : rappel élevé = sécurité maximale, aucun cas important raté, mais plus de 'bruit'. **Contexte décisionnel** : privilégier rappel quand rater un cas positif a des conséquences graves ou irréversibles. **Analogie filet** : rappel = taille des mailles du filet - plus fines (rappel élevé) attrapent plus de poissons mais aussi plus de déchets.",
+    description: `Le rappel (ou sensibilité, taux de vrais positifs) est la part des cas réellement positifs que le modèle a détectés.
+
+**Formule :** rappel = VP / (VP + FN).
+
+**Exemple :** sur 4 spams, le filtre en détecte 3 : rappel = 3/4 = 0,75. Un spam est passé.
+
+**Quand le privilégier :** quand manquer un cas coûte cher : dépistage médical, détection d'incident ou de fraude suivie d'une vérification humaine. On accepte alors davantage de fausses alertes.
+
+**Compromis avec la précision :**
+• Abaisser le seuil de décision détecte plus de positifs (rappel en hausse), mais déclenche aussi plus de fausses alertes (précision en baisse).
+• Un modèle qui répond « positif » pour tous les exemples atteint 100 % de rappel sans aucune valeur : le rappel se lit toujours avec la précision ou la spécificité.
+
+**Noms et liens :** sensibilité en médecine, TPR (True Positive Rate) en ROC, où il forme l'axe vertical. Contrairement à la précision, il ne dépend pas de la proportion de positifs dans les données.
+
+**Multiclasse :** rappel par classe, puis moyenne macro, pondérée ou micro.`,
     category: "evaluation",
     icon: "Search"
   },
   {
     term: "F1-Score",
-    description: "Le F1-Score est comme un diplomate qui négocie la paix entre Précision et Rappel : il trouve le compromis parfait quand ces deux métriques rivales se disputent ! **Formule magique** : F1 = 2 × (Précision × Rappel) / (Précision + Rappel) = moyenne harmonique (plus stricte que moyenne arithmétique). **Pourquoi harmonique ?** : punit sévèrement les déséquilibres - si Précision=90% et Rappel=10%, F1=18% (pas 50% !). Force l'équilibre ! **Analogie sportive** : comme noter un athlète sur sprint ET endurance - exceller dans un seul domaine ne suffit pas, il faut être bon partout. **Cas d'usage parfait** : datasets déséquilibrés où l'accuracy est trompeuse (99% de classe majoritaire). **Exemple concret** : détection de fraude - F1 élevé = bon équilibre entre 'attraper les fraudeurs' (rappel) et 'éviter les fausses accusations' (précision). **Interprétation** : F1=1.0 (parfait), F1=0.0 (catastrophique), F1>0.8 (généralement bon). **Avantage clé** : métrique unique qui résume la performance globale sur la classe positive. **Limitation** : ignore les vrais négatifs (pas toujours problématique). **Variantes** : F2-Score (favorise rappel), F0.5-Score (favorise précision). **Analogie culinaire** : comme équilibrer sucré-salé - trop de l'un gâche le plat, l'harmonie fait la perfection. **Usage pratique** : métrique de référence pour comparer des modèles sur tâches de classification binaire déséquilibrées.",
+    description: `Le score F1 est la moyenne harmonique de la précision et du rappel : un seul nombre entre 0 et 1, élevé seulement si les deux le sont.
+
+**Formule :** F1 = 2 × P × R / (P + R) = 2 VP / (2 VP + FP + FN).
+
+**Pourquoi harmonique :** cette moyenne est tirée vers la plus petite des deux valeurs. Avec une précision de 0,9 et un rappel de 0,1, la moyenne arithmétique vaut 0,5 mais F1 = 2 × 0,9 × 0,1 / (0,9 + 0,1) = 0,18.
+
+**Exemple :** précision 0,6 et rappel 0,75 donnent F1 = 2 × 0,6 × 0,75 / 1,35 ≈ 0,67.
+
+**Variante :** le score Fβ donne au rappel β fois plus d'importance qu'à la précision. F2 favorise le rappel, F0,5 la précision.
+
+**Limites :**
+• Il ignore les vrais négatifs : deux modèles ayant les mêmes VP, FP et FN ont le même F1, quel que soit le nombre de négatifs.
+• Il suppose que précision et rappel comptent autant, ce qui n'est pas toujours le cas.
+• Il dépend du seuil de décision, comme les deux métriques qu'il résume.
+• En multiclasse, il faut choisir la moyenne : macro (classes à poids égal), pondérée ou micro.
+
+**En pratique :** il est utile quand les classes sont déséquilibrées et que l'exactitude est trompeuse, mais il ne remplace pas la lecture de la matrice de confusion.`,
     category: "evaluation",
     icon: "BarChart3"
   },
   {
     term: "Exactitude (Accuracy)",
-    description: "**La métrique la plus intuitive mais la plus traître !** L'exactitude est comme un thermomètre qui mesure la 'température générale' de votre modèle - simple à comprendre, mais qui peut masquer des problèmes graves.\n\n**🎯 Formule Ultra-Simple :**\nAccuracy = (TP + TN) / (TP + TN + FP + FN) = Prédictions Correctes / Total des Prédictions\n\n**🏫 Analogie Scolaire :**\nComme un pourcentage de bonnes réponses à un QCM : 85/100 questions correctes = 85% d'exactitude. Facile à comprendre, rassurant... mais attention aux pièges !\n\n**⚠️ Le Piège Mortel des Classes Déséquilibrées :**\nImaginez détecter une maladie rare (1% de la population) : un modèle 'idiot' qui dit toujours 'pas malade' aura 99% d'exactitude ! Impressionnant sur le papier, catastrophique en réalité.\n\n**🚨 Exemple Concret du Piège :**\n- Dataset : 1000 emails (950 normaux, 50 spams)\n- Modèle paresseux : 'tout est normal' → 95% d'exactitude\n- Problème : 0% des spams détectés !\n\n**✅ Quand Utiliser l'Accuracy :**\n- Classes **équilibrées** (50/50 ou proche)\n- Coût égal des erreurs (FP = FN)\n- Vue d'ensemble rapide des performances\n- Communication avec non-experts\n\n**❌ Quand l'Éviter :**\n- Classes très déséquilibrées\n- Coût différent des types d'erreurs\n- Détection d'événements rares\n- Applications critiques (médical, sécurité)\n\n**🔍 Alternatives Plus Robustes :**\n- **F1-Score** : équilibre précision/rappel\n- **Balanced Accuracy** : moyenne des sensibilités par classe\n- **Cohen's Kappa** : accord corrigé du hasard\n- **AUC-ROC** : performance indépendante du seuil\n\n**💡 Règle d'Or :**\nL'accuracy seule ne suffit JAMAIS - toujours l'accompagner d'autres métriques pour un diagnostic complet. C'est la métrique 'grand public' qui cache souvent la complexité réelle !",
+    description: `L'exactitude (accuracy) est la proportion de prédictions correctes parmi toutes les prédictions d'un modèle de classification.
+
+**Formule :** exactitude = (VP + VN) / (VP + VN + FP + FN).
+
+**Exemple :** 85 bonnes réponses sur 100 exemples donnent une exactitude de 85 %.
+
+**Le piège des classes déséquilibrées :** sur 1 000 messages dont 950 légitimes et 50 spams, un modèle qui répond toujours « légitime » obtient 95 % d'exactitude et ne détecte aucun spam. Ce 95 % est le niveau à dépasser, pas un succès.
+
+**Quand elle convient :**
+• Les classes sont à peu près équilibrées.
+• Les deux types d'erreur coûtent autant.
+• On veut un chiffre de synthèse simple à communiquer.
+
+**Quand la compléter :**
+• Classes déséquilibrées ou événements rares.
+• Coûts d'erreur différents (médecine, sécurité, fraude).
+
+**Alternatives :**
+• Précision, rappel et F1 (voir ces entrées).
+• Exactitude équilibrée (balanced accuracy) : moyenne des rappels de chaque classe.
+• Kappa de Cohen : accord corrigé de celui qu'on attend du hasard.
+• AUC : qualité du classement des scores, indépendante du seuil.
+
+**En pratique :** donner l'exactitude avec la proportion de la classe majoritaire et la matrice de confusion.`,
     category: "evaluation",
     icon: "CheckCircle"
   },
   {
     term: "Spécificité (Specificity)",
-    description: "**Le gardien vigilant contre les fausses alertes !** La spécificité mesure à quel point votre modèle est doué pour dire 'NON' quand c'est vraiment NON - c'est l'art d'éviter les faux positifs.\n\n**🎯 Formule Essentielle :**\nSpécificité = TN / (TN + FP) = Vrais Négatifs / Tous les Négatifs Réels\n\n**🚨 Question Clé :**\n'De tous les cas qui sont vraiment négatifs, combien mon modèle les identifie-t-il correctement comme négatifs ?'\n\n**🏥 Analogie Médicale Parfaite :**\nTest de grossesse : sur 100 femmes NON enceintes, combien le test indique-t-il correctement 'négatif' ? Spécificité 95% = 95 résultats corrects, 5 faux positifs (stress inutile !).\n\n**🔍 Synonymes Importants :**\n- **Taux de Vrais Négatifs (TNR)**\n- **Sélectivité**\n- **1 - Taux de Faux Positifs**\n\n**⚖️ Dualité avec la Sensibilité :**\n- **Sensibilité (Rappel)** : 'Ne rien rater d'important'\n- **Spécificité** : 'Ne pas crier au loup'\n- Trade-off inévitable : améliorer l'un dégrade souvent l'autre\n\n**🎯 Cas d'Usage Critiques :**\n- **Screening médical** : éviter les fausses alertes coûteuses\n- **Détection de spam** : ne pas bloquer d'emails importants\n- **Systèmes de sécurité** : réduire les fausses alarmes\n- **Contrôle qualité** : ne pas rejeter de bons produits\n\n**📊 Interprétation Pratique :**\n- **Spécificité > 95%** : Excellent, très peu de fausses alertes\n- **Spécificité 80-95%** : Bon, acceptable pour la plupart des cas\n- **Spécificité < 80%** : Problématique, trop de faux positifs\n\n**⚠️ Piège Classique :**\nSpécificité parfaite (100%) facile à obtenir en étant ultra-conservateur (tout classer négatif), mais au détriment de la sensibilité !\n\n**🔄 Relation avec ROC :**\nAxe X de la courbe ROC = 1 - Spécificité = Taux de Faux Positifs. Plus la spécificité est élevée, plus on est à gauche sur la courbe.\n\n**💡 Règle Pratique :**\nPrivilégier la spécificité quand le coût d'une fausse alerte est élevé (temps, argent, stress, ressources). C'est la métrique de la prudence et de la précision !",
+    description: `La spécificité (taux de vrais négatifs) est la part des cas réellement négatifs que le modèle identifie comme tels : sa capacité à ne pas donner de fausse alerte.
+
+**Formule :** spécificité = VN / (VN + FP) = 1 − taux de faux positifs (FPR).
+
+**Exemple :** sur 6 messages légitimes, le filtre en reconnaît 4 comme légitimes et en classe 2 à tort comme spams : spécificité = 4/6 ≈ 0,67.
+
+**Lien avec la sensibilité :** la sensibilité (rappel) porte sur les cas positifs, la spécificité sur les cas négatifs. Quand on déplace le seuil de décision, l'une monte et l'autre baisse. La courbe ROC représente ce compromis : abscisse = 1 − spécificité, ordonnée = sensibilité.
+
+**Usage :** très employée en médecine pour les tests de diagnostic, avec la sensibilité. Un test très spécifique produit peu de faux positifs ; un test très sensible manque peu de malades.
+
+**Spécificité et précision sont deux notions différentes :** la précision, VP / (VP + FP), dépend de la proportion de positifs dans la population ; la spécificité n'en dépend pas. Pour une maladie rare, même un test de spécificité 95 % peut donner une majorité de faux positifs parmi ses résultats positifs.
+
+**Limite :** une spécificité de 100 % s'obtient en prédisant toujours « négatif ». Elle se lit avec la sensibilité.`,
     category: "evaluation",
     icon: "Shield"
   },
   {
     term: "Courbe ROC (ROC Curve)",
-    description: "**📈 Le Tableau de Bord Universel de Classification !**\n\nComme un pilote qui surveille simultanément vitesse et altitude, la courbe ROC révèle l'équilibre parfait entre sensibilité (détecter les vrais positifs) et spécificité (éviter les faux positifs) à travers tous les seuils possibles, offrant une vision panoramique des performances de votre modèle.\n\n**✈️ Analogie du Pilote :**\nImaginez un pilote ajustant ses instruments : trop sensible aux alertes (haute sensibilité) = beaucoup de fausses alarmes, pas assez sensible (haute spécificité) = risque de rater des dangers réels. La courbe ROC cartographie ce dilemme à chaque niveau de vigilance !\n\n**📊 Fondements Mathématiques :**\n\n**Axes Fondamentaux :**\n```\nAxe X : Taux de Faux Positifs (FPR)\n      = FP / (FP + TN)\n      = 1 - Spécificité\n      = \"Fausses Alarmes\"\n\nAxe Y : Taux de Vrais Positifs (TPR)\n      = TP / (TP + FN)\n      = Sensibilité = Rappel\n      = \"Détections Réussies\"\n```\n\n**Construction de la Courbe :**\n1. **Scores de Probabilité** : Modèle produit P(classe=1) ∈ [0,1]\n2. **Seuils Décroissants** : τ ∈ [1, 0] par pas fins\n3. **Classification Binaire** : ŷ = 1 si P(y=1) ≥ τ, sinon 0\n4. **Calcul Métriques** : (FPR_τ, TPR_τ) pour chaque τ\n5. **Tracé** : Points (FPR, TPR) reliés par segments\n\n**🎨 Anatomie Visuelle :**\n\n**Points de Référence :**\n- **Origine (0,0)** : Seuil = 1, tout classé négatif\n- **Coin (1,1)** : Seuil = 0, tout classé positif\n- **Diagonale** : Performance aléatoire (AUC = 0.5)\n- **Coin (0,1)** : Classificateur parfait (AUC = 1.0)\n\n**Forme Idéale :**\n```\nCaractéristiques :\n- Montée rapide vers TPR = 1\n- Progression lente de FPR\n- Coude marqué vers (0,1)\n- Aire sous courbe maximale\n\nInterprétation :\n- Excellent pouvoir discriminant\n- Séparation claire des classes\n- Seuils optimaux évidents\n```\n\n**🔍 Patterns d'Interprétation :**\n\n**Courbe Concave (Bonne) :**\n```\nCaractéristiques :\n- Courbure vers le coin supérieur gauche\n- Pente décroissante\n- AUC > 0.7\n\nInterprétation :\n- Modèle discriminant\n- Trade-off favorable\n- Seuils exploitables\n```\n\n**Courbe Linéaire (Aléatoire) :**\n```\nCaractéristiques :\n- Droite de (0,0) à (1,1)\n- Pente constante = 1\n- AUC ≈ 0.5\n\nInterprétation :\n- Aucun pouvoir prédictif\n- Performance aléatoire\n- Modèle inutile\n```\n\n**Courbe Convexe (Problématique) :**\n```\nCaractéristiques :\n- Courbure vers le coin inférieur droit\n- AUC < 0.5\n- Performance inversée\n\nInterprétation :\n- Modèle \"anti-prédictif\"\n- Inverser les prédictions améliore\n- Erreur de labellisation possible\n```\n\n**📐 Métriques Dérivées :**\n\n**AUC (Area Under Curve) :**\n```\nAUC = ∫₀¹ TPR(FPR) d(FPR)\n    = P(score(+) > score(-))\n    = Probabilité de ranking correct\n\nInterprétation :\n- AUC = 1.0 : Classificateur parfait\n- AUC = 0.5 : Performance aléatoire\n- AUC = 0.0 : Parfait mais inversé\n```\n\n**Point Optimal (Youden's J) :**\n```\nJ = TPR - FPR = Sensibilité + Spécificité - 1\nPoint Optimal = argmax_τ (TPR_τ - FPR_τ)\n\nDistance à (0,1) :\nd = √[(1-TPR)² + FPR²]\nPoint Optimal = argmin_τ d_τ\n```\n\n**Partial AUC :**\n```\npAUC = ∫₀^{FPR_max} TPR(FPR) d(FPR)\n     = AUC dans région spécifique\n     = Utile pour contraintes métier\n\nExemple :\npAUC₀.₁ = Performance pour FPR ≤ 10%\n```\n\n**🚀 Applications Critiques :**\n\n**Diagnostic Médical :**\n```\nContexte :\n- Équilibrer sensibilité/spécificité\n- Coûts différents FN vs FP\n- Seuils adaptatifs par pathologie\n\nOptimisation ROC :\n- Maximiser AUC globale\n- Contraintes sur FPR (< 5%)\n- Points opérationnels multiples\n```\n\n**Détection de Fraude :**\n```\nObjectifs :\n- Détecter fraudes (haute sensibilité)\n- Limiter fausses alertes (coût opérationnel)\n- Adaptation temps réel\n\nStratégie ROC :\n- pAUC pour FPR faible\n- Seuils dynamiques\n- Monitoring continu\n```\n\n**Systèmes de Recommandation :**\n```\nDéfis :\n- Prédire préférences utilisateur\n- Éviter recommandations inadéquates\n- Personnalisation massive\n\nUsage ROC :\n- AUC par segment utilisateur\n- Calibration des scores\n- A/B testing des seuils\n```\n\n**🔧 Implémentation Pratique :**\n\n**Scikit-learn Complet :**\n```python\nfrom sklearn.metrics import roc_curve, auc, RocCurveDisplay\nfrom sklearn.model_selection import cross_val_score\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Calcul de la courbe ROC\nfpr, tpr, thresholds = roc_curve(y_true, y_scores)\nroc_auc = auc(fpr, tpr)\n\n# Visualisation avancée\nfig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))\n\n# 1. Courbe ROC principale\nRocCurveDisplay.from_predictions(\n    y_true, y_scores, ax=ax1, name=f'ROC (AUC = {roc_auc:.3f})'\n)\nax1.plot([0, 1], [0, 1], 'k--', label='Random (AUC = 0.5)')\nax1.set_title('ROC Curve')\nax1.legend()\nax1.grid(True, alpha=0.3)\n\n# 2. Point optimal (Youden's J)\nyouden_j = tpr - fpr\noptimal_idx = np.argmax(youden_j)\noptimal_threshold = thresholds[optimal_idx]\noptimal_fpr = fpr[optimal_idx]\noptimal_tpr = tpr[optimal_idx]\n\nax1.plot(optimal_fpr, optimal_tpr, 'ro', markersize=10, \n         label=f'Optimal (τ={optimal_threshold:.3f})')\nax1.legend()\n\n# 3. Distribution des scores\nscores_pos = y_scores[y_true == 1]\nscores_neg = y_scores[y_true == 0]\n\nax2.hist(scores_neg, bins=50, alpha=0.7, label='Negative', color='red')\nax2.hist(scores_pos, bins=50, alpha=0.7, label='Positive', color='blue')\nax2.axvline(optimal_threshold, color='green', linestyle='--', \n           label=f'Optimal Threshold')\nax2.set_xlabel('Prediction Score')\nax2.set_ylabel('Frequency')\nax2.set_title('Score Distributions')\nax2.legend()\nax2.grid(True, alpha=0.3)\n\n# 4. Métriques vs Seuil\nfrom sklearn.metrics import precision_score, recall_score, f1_score\n\nprecisions = []\nrecalls = []\nf1_scores = []\nspecificities = []\n\nfor threshold in thresholds:\n    y_pred = (y_scores >= threshold).astype(int)\n    precisions.append(precision_score(y_true, y_pred, zero_division=0))\n    recalls.append(recall_score(y_true, y_pred, zero_division=0))\n    f1_scores.append(f1_score(y_true, y_pred, zero_division=0))\n    specificities.append(1 - fpr[np.where(thresholds == threshold)[0][0]])\n\nax3.plot(thresholds, precisions, label='Precision', color='blue')\nax3.plot(thresholds, recalls, label='Recall (TPR)', color='red')\nax3.plot(thresholds, f1_scores, label='F1-Score', color='green')\nax3.plot(thresholds, specificities, label='Specificity', color='orange')\nax3.axvline(optimal_threshold, color='black', linestyle='--', alpha=0.7)\nax3.set_xlabel('Threshold')\nax3.set_ylabel('Metric Value')\nax3.set_title('Metrics vs Threshold')\nax3.legend()\nax3.grid(True, alpha=0.3)\n\n# 5. Courbe ROC zoomée (région intéressante)\ninteresting_region = fpr <= 0.2  # Focus sur FPR faible\nax4.plot(fpr[interesting_region], tpr[interesting_region], 'b-', linewidth=2)\nax4.plot(optimal_fpr, optimal_tpr, 'ro', markersize=8)\nax4.set_xlim(0, 0.2)\nax4.set_ylim(0.8, 1.0)\nax4.set_xlabel('False Positive Rate')\nax4.set_ylabel('True Positive Rate')\nax4.set_title('ROC Curve - High Specificity Region')\nax4.grid(True, alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n# Statistiques détaillées\nprint(f\"\"\"\nROC Analysis Summary:\n{'='*50}\nAUC Score: {roc_auc:.4f}\nOptimal Threshold: {optimal_threshold:.4f}\nOptimal TPR: {optimal_tpr:.4f}\nOptimal FPR: {optimal_fpr:.4f}\nYouden's J: {youden_j[optimal_idx]:.4f}\n\nAt Optimal Threshold:\nPrecision: {precisions[optimal_idx]:.4f}\nRecall: {recalls[optimal_idx]:.4f}\nF1-Score: {f1_scores[optimal_idx]:.4f}\nSpecificity: {specificities[optimal_idx]:.4f}\n\"\"\")\n```\n\n**Analyse Multi-Classes :**\n```python\nfrom sklearn.preprocessing import label_binarize\nfrom sklearn.metrics import roc_curve, auc\nfrom itertools import cycle\n\n# Binarisation One-vs-Rest\ny_bin = label_binarize(y_true, classes=np.unique(y_true))\nn_classes = y_bin.shape[1]\n\n# Calcul ROC pour chaque classe\nfpr = dict()\ntpr = dict()\nroc_auc = dict()\n\nfor i in range(n_classes):\n    fpr[i], tpr[i], _ = roc_curve(y_bin[:, i], y_scores[:, i])\n    roc_auc[i] = auc(fpr[i], tpr[i])\n\n# ROC micro-average\nfpr[\"micro\"], tpr[\"micro\"], _ = roc_curve(y_bin.ravel(), y_scores.ravel())\nroc_auc[\"micro\"] = auc(fpr[\"micro\"], tpr[\"micro\"])\n\n# ROC macro-average\nall_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))\nmean_tpr = np.zeros_like(all_fpr)\nfor i in range(n_classes):\n    mean_tpr += np.interp(all_fpr, fpr[i], tpr[i])\nmean_tpr /= n_classes\n\nfpr[\"macro\"] = all_fpr\ntpr[\"macro\"] = mean_tpr\nroc_auc[\"macro\"] = auc(fpr[\"macro\"], tpr[\"macro\"])\n\n# Visualisation\nfig, ax = plt.subplots(figsize=(10, 8))\ncolors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'red', 'green'])\n\nfor i, color in zip(range(n_classes), colors):\n    ax.plot(fpr[i], tpr[i], color=color, lw=2,\n            label=f'Class {i} (AUC = {roc_auc[i]:.2f})')\n\nax.plot(fpr[\"micro\"], tpr[\"micro\"], color='deeppink', linestyle=':', lw=4,\n        label=f'Micro-avg (AUC = {roc_auc[\"micro\"]:.2f})')\n\nax.plot(fpr[\"macro\"], tpr[\"macro\"], color='navy', linestyle=':', lw=4,\n        label=f'Macro-avg (AUC = {roc_auc[\"macro\"]:.2f})')\n\nax.plot([0, 1], [0, 1], 'k--', lw=2, label='Random')\nax.set_xlabel('False Positive Rate')\nax.set_ylabel('True Positive Rate')\nax.set_title('Multi-class ROC Curves')\nax.legend()\nax.grid(True, alpha=0.3)\nplt.show()\n```\n\n**🎯 Optimisation Avancée :**\n\n**Seuil Métier-Orienté :**\n```python\ndef business_optimal_threshold(y_true, y_scores, cost_fp=1, cost_fn=5):\n    \"\"\"\n    Trouve le seuil optimal basé sur les coûts métier\n    cost_fp: coût d'un faux positif\n    cost_fn: coût d'un faux négatif\n    \"\"\"\n    fpr, tpr, thresholds = roc_curve(y_true, y_scores)\n    \n    # Calcul du coût total pour chaque seuil\n    costs = []\n    for i, threshold in enumerate(thresholds):\n        y_pred = (y_scores >= threshold).astype(int)\n        \n        # Matrice de confusion\n        tn = np.sum((y_true == 0) & (y_pred == 0))\n        fp = np.sum((y_true == 0) & (y_pred == 1))\n        fn = np.sum((y_true == 1) & (y_pred == 0))\n        tp = np.sum((y_true == 1) & (y_pred == 1))\n        \n        # Coût total\n        total_cost = cost_fp * fp + cost_fn * fn\n        costs.append(total_cost)\n    \n    # Seuil optimal = coût minimal\n    optimal_idx = np.argmin(costs)\n    optimal_threshold = thresholds[optimal_idx]\n    \n    return optimal_threshold, costs[optimal_idx], costs\n\n# Usage\noptimal_thresh, min_cost, all_costs = business_optimal_threshold(\n    y_true, y_scores, cost_fp=1, cost_fn=10\n)\n\nprint(f\"Seuil optimal métier: {optimal_thresh:.3f}\")\nprint(f\"Coût minimal: {min_cost}\")\n\n# Visualisation\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))\n\n# ROC avec point optimal métier\nfpr, tpr, thresholds = roc_curve(y_true, y_scores)\noptimal_idx = np.where(thresholds == optimal_thresh)[0][0]\n\nax1.plot(fpr, tpr, 'b-', label=f'ROC (AUC = {auc(fpr, tpr):.3f})')\nax1.plot(fpr[optimal_idx], tpr[optimal_idx], 'ro', markersize=10,\n         label=f'Business Optimal')\nax1.plot([0, 1], [0, 1], 'k--', alpha=0.5)\nax1.set_xlabel('False Positive Rate')\nax1.set_ylabel('True Positive Rate')\nax1.set_title('ROC with Business Optimal Point')\nax1.legend()\nax1.grid(True, alpha=0.3)\n\n# Coût vs Seuil\nax2.plot(thresholds, all_costs, 'g-', linewidth=2)\nax2.axvline(optimal_thresh, color='red', linestyle='--',\n           label=f'Optimal = {optimal_thresh:.3f}')\nax2.set_xlabel('Threshold')\nax2.set_ylabel('Total Business Cost')\nax2.set_title('Business Cost vs Threshold')\nax2.legend()\nax2.grid(True, alpha=0.3)\n\nplt.tight_layout()\n```\n\n**Analyse de Stabilité :**\n```python\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.utils import resample\n\ndef roc_stability_analysis(X, y, model, n_bootstrap=100, cv_folds=5):\n    \"\"\"\n    Analyse la stabilité de la courbe ROC\n    \"\"\"\n    # Bootstrap AUC\n    bootstrap_aucs = []\n    for i in range(n_bootstrap):\n        X_boot, y_boot = resample(X, y, random_state=i)\n        model.fit(X_boot, y_boot)\n        y_scores = model.predict_proba(X)[:, 1]\n        fpr, tpr, _ = roc_curve(y, y_scores)\n        bootstrap_aucs.append(auc(fpr, tpr))\n    \n    # Cross-validation AUC\n    cv_aucs = cross_val_score(model, X, y, cv=StratifiedKFold(cv_folds), \n                             scoring='roc_auc')\n    \n    # Statistiques\n    results = {\n        'bootstrap_mean': np.mean(bootstrap_aucs),\n        'bootstrap_std': np.std(bootstrap_aucs),\n        'bootstrap_ci': np.percentile(bootstrap_aucs, [2.5, 97.5]),\n        'cv_mean': np.mean(cv_aucs),\n        'cv_std': np.std(cv_aucs),\n        'stability_score': 1 - np.std(bootstrap_aucs)  # Plus proche de 1 = plus stable\n    }\n    \n    return results, bootstrap_aucs, cv_aucs\n\n# Usage\nstability_results, boot_aucs, cv_aucs = roc_stability_analysis(\n    X, y, RandomForestClassifier(random_state=42)\n)\n\nprint(f\"\"\"\nStability Analysis:\n{'='*30}\nBootstrap AUC: {stability_results['bootstrap_mean']:.4f} ± {stability_results['bootstrap_std']:.4f}\nBootstrap 95% CI: [{stability_results['bootstrap_ci'][0]:.4f}, {stability_results['bootstrap_ci'][1]:.4f}]\nCV AUC: {stability_results['cv_mean']:.4f} ± {stability_results['cv_std']:.4f}\nStability Score: {stability_results['stability_score']:.4f}\n\"\"\")\n\n# Visualisation\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))\n\n# Distribution Bootstrap\nax1.hist(boot_aucs, bins=30, alpha=0.7, color='skyblue', edgecolor='black')\nax1.axvline(stability_results['bootstrap_mean'], color='red', linestyle='--',\n           label=f\"Mean = {stability_results['bootstrap_mean']:.3f}\")\nax1.axvline(stability_results['bootstrap_ci'][0], color='orange', linestyle=':',\n           label=f\"95% CI\")\nax1.axvline(stability_results['bootstrap_ci'][1], color='orange', linestyle=':')\nax1.set_xlabel('AUC Score')\nax1.set_ylabel('Frequency')\nax1.set_title('Bootstrap AUC Distribution')\nax1.legend()\nax1.grid(True, alpha=0.3)\n\n# Comparaison Bootstrap vs CV\nax2.boxplot([boot_aucs, cv_aucs], labels=['Bootstrap', 'Cross-Validation'])\nax2.set_ylabel('AUC Score')\nax2.set_title('AUC Stability Comparison')\nax2.grid(True, alpha=0.3)\n\nplt.tight_layout()\n```\n\n**📊 Visualisations Avancées :**\n\n**ROC Interactive avec Plotly :**\n```python\nimport plotly.graph_objects as go\nfrom plotly.subplots import make_subplots\n\n# Données\nfpr, tpr, thresholds = roc_curve(y_true, y_scores)\nroc_auc = auc(fpr, tpr)\n\n# Subplot interactif\nfig = make_subplots(\n    rows=2, cols=2,\n    subplot_titles=('ROC Curve', 'Threshold Analysis', \n                   'Score Distribution', 'Confusion Matrix Heatmap'),\n    specs=[[{'type': 'scatter'}, {'type': 'scatter'}],\n           [{'type': 'histogram'}, {'type': 'heatmap'}]]\n)\n\n# ROC Curve\nfig.add_trace(\n    go.Scatter(\n        x=fpr, y=tpr,\n        mode='lines+markers',\n        name=f'ROC (AUC = {roc_auc:.3f})',\n        hovertemplate='FPR: %{x:.3f}<br>TPR: %{y:.3f}<extra></extra>',\n        line=dict(color='blue', width=3)\n    ),\n    row=1, col=1\n)\n\n# Ligne aléatoire\nfig.add_trace(\n    go.Scatter(\n        x=[0, 1], y=[0, 1],\n        mode='lines',\n        name='Random',\n        line=dict(color='red', dash='dash'),\n        showlegend=False\n    ),\n    row=1, col=1\n)\n\n# Point optimal\nyouden_j = tpr - fpr\noptimal_idx = np.argmax(youden_j)\nfig.add_trace(\n    go.Scatter(\n        x=[fpr[optimal_idx]], y=[tpr[optimal_idx]],\n        mode='markers',\n        name='Optimal Point',\n        marker=dict(size=12, color='red', symbol='star'),\n        hovertemplate=f'Optimal<br>FPR: {fpr[optimal_idx]:.3f}<br>TPR: {tpr[optimal_idx]:.3f}<extra></extra>'\n    ),\n    row=1, col=1\n)\n\n# Métriques vs Seuil\nfig.add_trace(\n    go.Scatter(\n        x=thresholds, y=tpr,\n        mode='lines',\n        name='TPR (Sensitivity)',\n        line=dict(color='green')\n    ),\n    row=1, col=2\n)\n\nfig.add_trace(\n    go.Scatter(\n        x=thresholds, y=1-fpr,\n        mode='lines',\n        name='TNR (Specificity)',\n        line=dict(color='orange')\n    ),\n    row=1, col=2\n)\n\n# Distribution des scores\nscores_pos = y_scores[y_true == 1]\nscores_neg = y_scores[y_true == 0]\n\nfig.add_trace(\n    go.Histogram(\n        x=scores_neg,\n        name='Negative Class',\n        opacity=0.7,\n        nbinsx=50,\n        marker_color='red'\n    ),\n    row=2, col=1\n)\n\nfig.add_trace(\n    go.Histogram(\n        x=scores_pos,\n        name='Positive Class',\n        opacity=0.7,\n        nbinsx=50,\n        marker_color='blue'\n    ),\n    row=2, col=1\n)\n\n# Matrice de confusion au seuil optimal\ny_pred_optimal = (y_scores >= thresholds[optimal_idx]).astype(int)\nfrom sklearn.metrics import confusion_matrix\ncm = confusion_matrix(y_true, y_pred_optimal)\n\nfig.add_trace(\n    go.Heatmap(\n        z=cm,\n        x=['Predicted Neg', 'Predicted Pos'],\n        y=['Actual Neg', 'Actual Pos'],\n        colorscale='Blues',\n        showscale=True,\n        text=cm,\n        texttemplate=\"%{text}\",\n        textfont={\"size\":16}\n    ),\n    row=2, col=2\n)\n\n# Mise à jour des axes\nfig.update_xaxes(title_text=\"False Positive Rate\", row=1, col=1)\nfig.update_yaxes(title_text=\"True Positive Rate\", row=1, col=1)\nfig.update_xaxes(title_text=\"Threshold\", row=1, col=2)\nfig.update_yaxes(title_text=\"Rate\", row=1, col=2)\nfig.update_xaxes(title_text=\"Prediction Score\", row=2, col=1)\nfig.update_yaxes(title_text=\"Frequency\", row=2, col=1)\n\nfig.update_layout(\n    title='Interactive ROC Analysis Dashboard',\n    height=800,\n    showlegend=True\n)\n\nfig.show()\n```\n\n**🌟 Impact et Applications Modernes :**\nLa courbe ROC reste l'outil de référence pour évaluer les classificateurs binaires dans des contextes équilibrés. Elle guide les systèmes de scoring de crédit (banques), la détection de malwares (cybersécurité), les tests diagnostiques (médecine), et l'optimisation des campagnes marketing (e-commerce). Son universalité et son interprétation intuitive en font un standard très utilisé, complétée par la courbe Précision-Rappel pour les cas déséquilibrés.",
+    description: `La courbe ROC (Receiver Operating Characteristic) montre, pour un classifieur qui produit un score, le compromis entre détections et fausses alertes quand on fait varier le seuil de décision.
+
+**Construction :** pour chaque seuil, on classe comme positifs les exemples dont le score atteint ce seuil, puis on calcule :
+• en ordonnée, le taux de vrais positifs TPR = VP / (VP + FN), la sensibilité ;
+• en abscisse, le taux de faux positifs FPR = FP / (FP + VN) = 1 − spécificité.
+
+Un seuil très haut classe tout en négatif (point (0, 0)), un seuil très bas tout en positif (point (1, 1)).
+\`\`\`python
+from sklearn.metrics import roc_curve
+
+y_reel = [0, 0, 0, 0, 1, 1, 1, 1]
+score = [0.1, 0.3, 0.35, 0.8, 0.4, 0.6, 0.7, 0.9]
+fpr, tpr, seuils = roc_curve(y_reel, score)
+print(fpr)
+print(tpr)
+# Affichage :
+# [0.   0.   0.25 0.25 1.  ]
+# [0.   0.25 0.25 1.   1.  ]
+\`\`\`
+
+**Lecture :**
+• La diagonale correspond à un classement au hasard.
+• Plus la courbe s'approche du coin supérieur gauche (0, 1), mieux le score sépare les classes.
+• Une courbe sous la diagonale signale un score inversé.
+• Choisir un point revient à choisir un seuil, de préférence selon le coût des erreurs (l'indice de Youden J = TPR − FPR est un critère courant).
+
+**Limites :**
+• Elle ne dépend pas du seuil, mais ne dit pas lequel retenir.
+• Quand les positifs sont très rares, un FPR faible peut cacher beaucoup de fausses alertes : compléter par la courbe précision-rappel.
+• Multiclasse : une courbe par classe (un contre tous).
+
+Son résumé numérique est l'AUC.`,
     category: "evaluation",
     icon: "TrendingUp"
   },
   {
     term: "AUC (Area Under Curve)",
-    description: "**La mesure ultime de discrimination !** Comme un test médical qui doit parfaitement séparer les malades des bien-portants, l'AUC quantifie la capacité d'un modèle à distinguer entre les classes positives et négatives sur l'ensemble du spectre de seuils possibles.\n\n**📊 Analogie Géométrique :**\nImaginez la courbe ROC comme le profil d'une montagne : plus l'aire sous cette courbe est grande (proche de 1.0), plus le modèle est performant. Une AUC de 0.5 ressemble à une ligne droite (performance aléatoire), tandis qu'une AUC de 1.0 forme un carré parfait.\n\n**🎯 Interprétation Intuitive :**\n\n**Signification Probabiliste :**\nL'AUC représente la probabilité qu'un modèle classe correctement un exemple positif choisi aléatoirement plus haut qu'un exemple négatif choisi aléatoirement.\n\n**Échelle de Performance :**\n• **0.9 - 1.0** : Excellence (diagnostic médical)\n• **0.8 - 0.9** : Très bon (détection fraude)\n• **0.7 - 0.8** : Bon (marketing prédictif)\n• **0.6 - 0.7** : Moyen (amélioration nécessaire)\n• **0.5 - 0.6** : Faible (à peine mieux que le hasard)\n• **< 0.5** : Pire que le hasard (inverser les prédictions !)\n\n**🔍 Construction Mathématique :**\n\n**Courbe ROC :**\n- **Axe X** : Taux de Faux Positifs (1 - Spécificité)\n- **Axe Y** : Taux de Vrais Positifs (Sensibilité)\n- **Points** : Performance à différents seuils\n\n**Calcul de l'AUC :**\n```\nAUC = ∫₀¹ TPR(FPR) d(FPR)\n```\n\n**Méthode Trapézoïdale :**\n- Approximation numérique par trapèzes\n- Précision dépendante du nombre de seuils\n- Implémentation standard dans sklearn\n\n**⚡ Avantages Distinctifs :**\n\n**Invariance au Seuil :**\n- Évalue toutes les performances possibles\n- Pas besoin de choisir un seuil optimal\n- Vision globale du modèle\n\n**Invariance à l'Échelle :**\n- Mesure qualité du ranking, pas valeurs absolues\n- Robuste aux transformations monotones\n- Comparable entre modèles différents\n\n**🚨 Limitations Critiques :**\n\n**Classes Déséquilibrées :**\n- AUC peut être optimiste\n- Privilégie la classe majoritaire\n- Préférer AUC-PR (Precision-Recall)\n\n**Interprétation Métier :**\n- Pas directement liée aux coûts business\n- Ne reflète pas l'impact des erreurs\n- Complément nécessaire avec métriques métier\n\n**🎯 Applications Sectorielles :**\n\n**Médecine :**\n- **Diagnostic** : AUC > 0.95 pour tests critiques\n- **Screening** : Balance sensibilité/spécificité\n- **Biomarqueurs** : Validation de nouveaux tests\n\n**Finance :**\n- **Crédit** : Scoring de risque de défaut\n- **Fraude** : Détection transactions suspectes\n- **Trading** : Signaux d'achat/vente\n\n**Marketing :**\n- **Churn** : Prédiction désabonnement\n- **Conversion** : Probabilité d'achat\n- **Segmentation** : Classification clients\n\n**🛠️ Variantes Spécialisées :**\n\n**AUC-PR (Precision-Recall) :**\n- Meilleure pour classes déséquilibrées\n- Focus sur la classe positive\n- Moins sensible aux vrais négatifs\n\n**Partial AUC :**\n- AUC dans une région spécifique\n- Utile pour contraintes métier\n- Ex: FPR < 0.1 pour applications critiques\n\n**Multi-class AUC :**\n- **One-vs-Rest** : AUC moyenne par classe\n- **One-vs-One** : AUC pour chaque paire\n- **Macro/Micro averaging** : Stratégies d'agrégation\n\n**📈 Optimisation Pratique :**\n\n**Feature Engineering :**\n- Sélection basée sur AUC individuelle\n- Interactions augmentant la séparabilité\n- Transformations non-linéaires\n\n**Hyperparameter Tuning :**\n- Validation croisée avec AUC\n- Optimisation bayésienne\n- Early stopping basé sur AUC validation\n\n**🔬 Tests Statistiques :**\n\n**Comparaison de Modèles :**\n- Test de DeLong pour AUC\n- Bootstrap pour intervalles de confiance\n- Correction de Bonferroni pour tests multiples\n\n**Significativité :**\n- p-value < 0.05 pour différence significative\n- Taille d'effet (différence d'AUC)\n- Puissance statistique du test\n\n**💡 Bonnes Pratiques :**\n- **Validation croisée** stratifiée\n- **Intervalles de confiance** systématiques\n- **Comparaison** avec baseline simple\n- **Analyse** des courbes ROC complètes\n- **Contexte métier** toujours considéré\n\n**📊 Impact Mesurable :**\nGoogle améliore ses modèles publicitaires de 0.001 AUC par trimestre, générant des millions de revenus supplémentaires. En médecine, une amélioration d'AUC de 0.05 peut sauver des milliers de vies.",
+    description: `L'AUC (Area Under the Curve) est l'aire sous la courbe ROC. Elle résume en un nombre entre 0 et 1 la capacité d'un score à séparer les positifs des négatifs, quel que soit le seuil.
+
+**Interprétation :** c'est la probabilité qu'un positif tiré au hasard reçoive un score plus élevé qu'un négatif tiré au hasard (une égalité compte pour 1/2). Elle ne dépend que de l'ordre des scores.
+\`\`\`python
+from sklearn.metrics import roc_auc_score
+
+y_reel = [0, 0, 0, 0, 1, 1, 1, 1]
+score = [0.1, 0.3, 0.35, 0.8, 0.4, 0.6, 0.7, 0.9]
+pos, neg = score[4:], score[:4]
+paires = [p > n for p in pos for n in neg]   # 16 paires (positif, négatif)
+print(roc_auc_score(y_reel, score), sum(paires) / len(paires))
+# Affichage :
+# 0.8125 0.8125
+\`\`\`
+
+**Repères :** 0,5 correspond au hasard, 1 à une séparation parfaite ; sous 0,5, le score est inversé. Les niveaux de « bon » ou « excellent » sont des conventions qui varient selon le domaine.
+
+**Limites :**
+• Elle ne dit rien de la calibration : des probabilités peu fiables peuvent avoir une bonne AUC.
+• Elle ne tient compte ni des coûts des erreurs ni du seuil retenu en production.
+• Quand les positifs sont très rares, elle peut flatter le modèle : ajouter la précision moyenne.
+• Pour comparer deux AUC sur le même jeu de test, utiliser le test de DeLong ou le bootstrap.
+
+**Multiclasse :** moyenne des AUC un contre tous ou un contre un (roc_auc_score, paramètre multi_class).`,
     category: "evaluation",
     icon: "BarChart3"
   },
   {
     term: "Courbe Précision-Rappel",
-    description: "**🎯 Le Radar de Performance pour Classes Déséquilibrées !**\n\nComme un radar qui révèle les objets cachés dans le brouillard, la courbe Précision-Rappel illumine les performances réelles de votre modèle sur les classes minoritaires, là où la courbe ROC peut être trompeusement optimiste.\n\n**🔍 Analogie du Détective :**\nImaginez un détective recherchant des criminels dans une foule. La **précision** mesure : \"Parmi tous ceux que j'ai arrêtés, combien sont vraiment coupables ?\" Le **rappel** demande : \"Parmi tous les vrais criminels, combien ai-je réussi à attraper ?\" La courbe révèle ce dilemme à chaque niveau de vigilance !\n\n**📊 Fondements Mathématiques :**\n\n**Définitions Fondamentales :**\n```\nPrécision = TP / (TP + FP)\n          = Vrais Positifs / Prédictions Positives\n          = \"Qualité des détections\"\n\nRappel = TP / (TP + FN)\n       = Vrais Positifs / Positifs Réels\n       = \"Complétude des détections\"\n```\n\n**Construction de la Courbe :**\n1. **Scores de Probabilité** : Modèle produit P(classe=1)\n2. **Seuils Variables** : τ ∈ [0, 1] par pas fins\n3. **Classification** : ŷ = 1 si P(y=1) ≥ τ, sinon 0\n4. **Calcul Métriques** : (Précision_τ, Rappel_τ) pour chaque τ\n5. **Tracé** : Rappel en X, Précision en Y\n\n**🎨 Anatomie Visuelle :**\n\n**Forme Caractéristique :**\n- **Début** : (Rappel=0, Précision=1) - Seuil très élevé\n- **Fin** : (Rappel=1, Précision=baseline) - Seuil très bas\n- **Tendance** : Décroissance générale (trade-off)\n- **Aire** : Average Precision (AP)\n\n**Points Critiques :**\n```\nPoint Optimal : Maximum F1-Score\nF1 = 2 × (Précision × Rappel) / (Précision + Rappel)\n\nPoint d'Équilibre : Précision = Rappel\nBreak-Even Point (BEP)\n\nSeuil Métier : Selon contraintes opérationnelles\n```\n\n**🔍 Patterns d'Interprétation :**\n\n**Courbe Idéale :**\n```\nCaractéristiques :\n- Reste proche de Précision = 1\n- Couvre tout l'espace Rappel [0,1]\n- Aire sous courbe (AP) proche de 1\n- Déclin tardif et progressif\n\nInterprétation :\n- Modèle excellent\n- Séparation claire des classes\n- Peu de faux positifs\n```\n\n**Courbe Dégradée :**\n```\nCaractéristiques :\n- Chute rapide de précision\n- Aire sous courbe faible\n- Proche de la ligne baseline\n- Oscillations importantes\n\nInterprétation :\n- Modèle peu discriminant\n- Classes mal séparées\n- Beaucoup de faux positifs\n```\n\n**Courbe en Dents de Scie :**\n```\nCaractéristiques :\n- Variations abruptes\n- Pics et chutes alternés\n- Instabilité locale\n\nInterprétation :\n- Dataset petit ou bruité\n- Modèle instable\n- Besoin de lissage\n```\n\n**📐 Métriques Dérivées :**\n\n**Average Precision (AP) :**\n```\nAP = Σ(Rappel_n - Rappel_{n-1}) × Précision_n\n   = Aire sous la courbe PR\n   = Résumé en un nombre [0,1]\n\nInterprétation :\n- AP = 1 : Modèle parfait\n- AP = baseline : Modèle aléatoire\n- AP > baseline : Modèle utile\n```\n\n**F1-Score Optimal :**\n```\nF1_max = max_τ [2 × P(τ) × R(τ) / (P(τ) + R(τ))]\n\nSeuil Optimal :\nτ_opt = argmax_τ F1(τ)\n\nÉquilibre Harmonique :\nMoyenne harmonique de Précision et Rappel\n```\n\n**Precision at K :**\n```\nP@K = Précision parmi les K premières prédictions\n    = Métrique de ranking\n    = Important pour recommandations\n\nExemple :\nP@10 = 0.8 → 8 vrais positifs dans le top 10\n```\n\n**🚀 Applications Critiques :**\n\n**Détection d'Anomalies :**\n```\nContexte :\n- Classes très déséquilibrées (0.1% anomalies)\n- Coût élevé des faux négatifs\n- ROC trompeusement optimiste\n\nStratégie PR :\n- Focus sur le rappel élevé\n- Précision acceptable selon coût\n- Seuil adapté aux contraintes métier\n```\n\n**Recherche d'Information :**\n```\nObjectif :\n- Retrouver documents pertinents\n- Minimiser documents non-pertinents\n- Équilibrer exhaustivité et qualité\n\nMétriques Clés :\n- P@10, P@100 : Précision top résultats\n- Rappel global : Couverture totale\n- F1 : Équilibre optimal\n```\n\n**Diagnostic Médical :**\n```\nEnjeux :\n- Détecter maladies rares\n- Éviter faux négatifs (danger)\n- Limiter faux positifs (coût)\n\nOptimisation :\n- Rappel prioritaire (sécurité)\n- Précision selon ressources\n- Seuils adaptatifs par pathologie\n```\n\n**🔧 Implémentation Pratique :**\n\n**Scikit-learn :**\n```python\nfrom sklearn.metrics import precision_recall_curve, average_precision_score\nfrom sklearn.metrics import PrecisionRecallDisplay\nimport matplotlib.pyplot as plt\n\n# Calcul de la courbe\nprecision, recall, thresholds = precision_recall_curve(y_true, y_scores)\nap_score = average_precision_score(y_true, y_scores)\n\n# Visualisation avancée\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))\n\n# Courbe PR\nPrecisionRecallDisplay.from_predictions(\n    y_true, y_scores, ax=ax1, name=f'AP = {ap_score:.3f}'\n)\nax1.axhline(y=y_true.mean(), color='r', linestyle='--', \n           label=f'Baseline = {y_true.mean():.3f}')\nax1.set_title('Precision-Recall Curve')\nax1.legend()\n\n# F1-Score vs Seuil\nf1_scores = 2 * (precision[:-1] * recall[:-1]) / (precision[:-1] + recall[:-1])\noptimal_idx = np.argmax(f1_scores)\noptimal_threshold = thresholds[optimal_idx]\n\nax2.plot(thresholds, f1_scores, 'b-', label='F1-Score')\nax2.axvline(x=optimal_threshold, color='r', linestyle='--', \n           label=f'Optimal τ = {optimal_threshold:.3f}')\nax2.axhline(y=f1_scores[optimal_idx], color='g', linestyle=':', \n           label=f'Max F1 = {f1_scores[optimal_idx]:.3f}')\nax2.set_xlabel('Threshold')\nax2.set_ylabel('F1-Score')\nax2.set_title('F1-Score vs Threshold')\nax2.legend()\n\nplt.tight_layout()\nplt.show()\n```\n\n**Analyse Multi-Classes :**\n```python\nfrom sklearn.metrics import classification_report\nfrom sklearn.preprocessing import label_binarize\n\n# Binarisation pour multi-classes\ny_bin = label_binarize(y_true, classes=np.unique(y_true))\nn_classes = y_bin.shape[1]\n\n# Courbe PR par classe\nfig, axes = plt.subplots(2, 2, figsize=(12, 10))\naxes = axes.ravel()\n\nfor i in range(min(n_classes, 4)):\n    precision, recall, _ = precision_recall_curve(y_bin[:, i], y_scores[:, i])\n    ap = average_precision_score(y_bin[:, i], y_scores[:, i])\n    \n    axes[i].plot(recall, precision, label=f'Class {i} (AP = {ap:.3f})')\n    axes[i].set_xlabel('Recall')\n    axes[i].set_ylabel('Precision')\n    axes[i].set_title(f'PR Curve - Class {i}')\n    axes[i].legend()\n    axes[i].grid(True)\n\nplt.tight_layout()\n```\n\n**🎯 Optimisation Avancée :**\n\n**Seuil Adaptatif :**\n```python\ndef find_optimal_threshold(y_true, y_scores, metric='f1'):\n    precision, recall, thresholds = precision_recall_curve(y_true, y_scores)\n    \n    if metric == 'f1':\n        f1_scores = 2 * (precision[:-1] * recall[:-1]) / (precision[:-1] + recall[:-1])\n        optimal_idx = np.argmax(f1_scores)\n        return thresholds[optimal_idx], f1_scores[optimal_idx]\n    \n    elif metric == 'precision_at_recall':\n        # Précision maximale pour rappel >= 0.8\n        target_recall = 0.8\n        valid_indices = recall[:-1] >= target_recall\n        if np.any(valid_indices):\n            best_idx = np.argmax(precision[:-1][valid_indices])\n            return thresholds[valid_indices][best_idx]\n    \n    elif metric == 'recall_at_precision':\n        # Rappel maximal pour précision >= 0.9\n        target_precision = 0.9\n        valid_indices = precision[:-1] >= target_precision\n        if np.any(valid_indices):\n            best_idx = np.argmax(recall[:-1][valid_indices])\n            return thresholds[valid_indices][best_idx]\n\n# Usage\noptimal_threshold, best_f1 = find_optimal_threshold(y_true, y_scores)\nprint(f\"Seuil optimal: {optimal_threshold:.3f}, F1: {best_f1:.3f}\")\n```\n\n**Calibration des Probabilités :**\n```python\nfrom sklearn.calibration import CalibratedClassifierCV\nfrom sklearn.isotonic import IsotonicRegression\n\n# Calibration isotonique\ncalibrated_clf = CalibratedClassifierCV(base_estimator, method='isotonic', cv=3)\ncalibrated_clf.fit(X_train, y_train)\n\n# Comparaison avant/après calibration\ny_scores_raw = base_estimator.predict_proba(X_test)[:, 1]\ny_scores_cal = calibrated_clf.predict_proba(X_test)[:, 1]\n\n# Courbes PR comparatives\nfig, ax = plt.subplots(figsize=(10, 6))\n\nPrecisionRecallDisplay.from_predictions(\n    y_test, y_scores_raw, ax=ax, name='Raw Scores'\n)\nPrecisionRecallDisplay.from_predictions(\n    y_test, y_scores_cal, ax=ax, name='Calibrated Scores'\n)\n\nax.set_title('Impact of Probability Calibration')\nax.legend()\n```\n\n**📊 Visualisations Avancées :**\n\n**Courbe PR Interactive :**\n```python\nimport plotly.graph_objects as go\nfrom plotly.subplots import make_subplots\n\n# Données pour la courbe\nprecision, recall, thresholds = precision_recall_curve(y_true, y_scores)\nf1_scores = 2 * (precision[:-1] * recall[:-1]) / (precision[:-1] + recall[:-1])\n\n# Subplot avec courbe PR et F1\nfig = make_subplots(\n    rows=1, cols=2,\n    subplot_titles=('Precision-Recall Curve', 'F1-Score vs Threshold'),\n    specs=[[{'secondary_y': False}, {'secondary_y': False}]]\n)\n\n# Courbe PR\nfig.add_trace(\n    go.Scatter(\n        x=recall, y=precision,\n        mode='lines+markers',\n        name=f'PR Curve (AP={ap_score:.3f})',\n        hovertemplate='Recall: %{x:.3f}<br>Precision: %{y:.3f}<extra></extra>'\n    ),\n    row=1, col=1\n)\n\n# Baseline\nfig.add_hline(\n    y=y_true.mean(), line_dash=\"dash\", line_color=\"red\",\n    annotation_text=f\"Baseline ({y_true.mean():.3f})\",\n    row=1, col=1\n)\n\n# F1-Score\nfig.add_trace(\n    go.Scatter(\n        x=thresholds, y=f1_scores,\n        mode='lines',\n        name='F1-Score',\n        hovertemplate='Threshold: %{x:.3f}<br>F1: %{y:.3f}<extra></extra>'\n    ),\n    row=1, col=2\n)\n\n# Seuil optimal\noptimal_idx = np.argmax(f1_scores)\nfig.add_vline(\n    x=thresholds[optimal_idx], line_dash=\"dash\", line_color=\"green\",\n    annotation_text=f\"Optimal ({thresholds[optimal_idx]:.3f})\",\n    row=1, col=2\n)\n\nfig.update_layout(\n    title='Interactive Precision-Recall Analysis',\n    showlegend=True,\n    height=500\n)\n\nfig.show()\n```\n\n**Heatmap de Performance :**\n```python\n# Grille de seuils pour analyse\nthreshold_grid = np.linspace(0.1, 0.9, 20)\nrecall_grid = np.linspace(0.1, 1.0, 20)\n\n# Matrice de F1-scores\nf1_matrix = np.zeros((len(threshold_grid), len(recall_grid)))\n\nfor i, thresh in enumerate(threshold_grid):\n    y_pred = (y_scores >= thresh).astype(int)\n    for j, target_recall in enumerate(recall_grid):\n        # Calculer F1 si rappel >= target\n        current_recall = recall_score(y_true, y_pred)\n        if current_recall >= target_recall:\n            f1_matrix[i, j] = f1_score(y_true, y_pred)\n        else:\n            f1_matrix[i, j] = np.nan\n\n# Visualisation\nfig, ax = plt.subplots(figsize=(10, 8))\nim = ax.imshow(f1_matrix, cmap='viridis', aspect='auto', origin='lower')\n\n# Contours\ncontours = ax.contour(f1_matrix, levels=10, colors='white', alpha=0.6)\nax.clabel(contours, inline=True, fontsize=8)\n\n# Labels\nax.set_xticks(range(0, len(recall_grid), 4))\nax.set_xticklabels([f'{r:.1f}' for r in recall_grid[::4]])\nax.set_yticks(range(0, len(threshold_grid), 4))\nax.set_yticklabels([f'{t:.1f}' for t in threshold_grid[::4]])\n\nax.set_xlabel('Target Recall')\nax.set_ylabel('Threshold')\nax.set_title('F1-Score Heatmap: Threshold vs Target Recall')\n\nplt.colorbar(im, label='F1-Score')\nplt.tight_layout()\n```\n\n**🎯 Applications Avancées :**\n\n**Détection d'Anomalies Multi-Seuils :**\n```python\nclass AdaptiveThresholdDetector:\n    def __init__(self, base_model, precision_target=0.8):\n        self.base_model = base_model\n        self.precision_target = precision_target\n        self.optimal_threshold = None\n        \n    def fit(self, X, y):\n        self.base_model.fit(X, y)\n        y_scores = self.base_model.predict_proba(X)[:, 1]\n        \n        # Trouver seuil pour précision cible\n        precision, recall, thresholds = precision_recall_curve(y, y_scores)\n        valid_idx = precision >= self.precision_target\n        \n        if np.any(valid_idx):\n            # Maximiser rappel sous contrainte précision\n            best_recall_idx = np.argmax(recall[valid_idx])\n            self.optimal_threshold = thresholds[valid_idx][best_recall_idx]\n        else:\n            # Fallback: maximiser F1\n            f1_scores = 2 * (precision[:-1] * recall[:-1]) / (precision[:-1] + recall[:-1])\n            self.optimal_threshold = thresholds[np.argmax(f1_scores)]\n            \n        return self\n    \n    def predict(self, X):\n        y_scores = self.base_model.predict_proba(X)[:, 1]\n        return (y_scores >= self.optimal_threshold).astype(int)\n    \n    def predict_proba(self, X):\n        return self.base_model.predict_proba(X)\n\n# Usage\ndetector = AdaptiveThresholdDetector(RandomForestClassifier(), precision_target=0.85)\ndetector.fit(X_train, y_train)\ny_pred = detector.predict(X_test)\n```\n\n**Optimisation Multi-Objectifs :**\n```python\nfrom scipy.optimize import minimize\n\ndef multi_objective_loss(threshold, y_true, y_scores, alpha=0.5):\n    \"\"\"\n    Fonction de coût combinant précision et rappel\n    alpha: poids relatif (0=rappel seul, 1=précision seule)\n    \"\"\"\n    y_pred = (y_scores >= threshold).astype(int)\n    \n    precision = precision_score(y_true, y_pred, zero_division=0)\n    recall = recall_score(y_true, y_pred, zero_division=0)\n    \n    # Maximiser moyenne pondérée (minimiser son opposé)\n    objective = -(alpha * precision + (1 - alpha) * recall)\n    \n    return objective\n\n# Optimisation\nresult = minimize(\n    multi_objective_loss,\n    x0=0.5,  # Seuil initial\n    args=(y_true, y_scores, 0.7),  # alpha=0.7 favorise précision\n    bounds=[(0.01, 0.99)],\n    method='L-BFGS-B'\n)\n\noptimal_threshold = result.x[0]\nprint(f\"Seuil optimal multi-objectifs: {optimal_threshold:.3f}\")\n```\n\n**🌟 Impact et Applications Modernes :**\nLa courbe Précision-Rappel est devenue l'étalon-or pour évaluer les modèles sur données déséquilibrées. Elle sert à évaluer les systèmes de recommandation, la détection de fraude (banques), le diagnostic médical (radiologie IA), et la modération de contenu (réseaux sociaux). Son évolution vers des métriques adaptatives et multi-objectifs reflète la complexité croissante des applications IA modernes.",
+    description: `La courbe précision-rappel trace la précision en fonction du rappel quand on fait varier le seuil de décision. Elle se concentre sur la classe positive, ce qui la rend plus informative que la courbe ROC quand les positifs sont rares.
+
+**Construction :** à chaque seuil, précision = VP / (VP + FP) et rappel = VP / (VP + FN). Quand le seuil baisse, le rappel augmente et la précision tend à diminuer, avec des variations en dents de scie.
+
+**Repère :** un modèle aléatoire a une précision constante égale à la proportion de positifs. La courbe doit passer nettement au-dessus.
+
+**Résumé :** la précision moyenne (average precision, AP) additionne les gains de rappel pondérés par la précision atteinte : AP = Σ (R_n − R_(n−1)) × P_n.
+
+**Exemple :** avec 1 % de positifs, une AUC ROC de 0,82 coexiste avec une précision moyenne de 0,16, à comparer à la base de 0,01.
+\`\`\`python
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, roc_auc_score
+from sklearn.model_selection import train_test_split
+
+X, y = make_classification(n_samples=40000, n_informative=5, n_redundant=0,
+                           weights=[0.99], class_sep=0.8, flip_y=0, random_state=0)
+X_ent, X_test, y_ent, y_test = train_test_split(X, y, stratify=y, random_state=0)
+score = LogisticRegression().fit(X_ent, y_ent).predict_proba(X_test)[:, 1]
+print(y_test.mean(), round(roc_auc_score(y_test, score), 3), round(average_precision_score(y_test, score), 3))
+# Affichage :
+# 0.01 0.819 0.163
+\`\`\`
+
+**Pourquoi la ROC peut rassurer à tort :** le FPR est rapporté à l'énorme nombre de négatifs, donc beaucoup de fausses alertes le laissent presque nul, alors qu'elles noient les quelques vrais positifs détectés. La précision, qui compare les fausses alertes aux détections, le montre.
+
+**Autres usages :** précision parmi les K premiers résultats (P@K) ; choix d'un seuil pour une précision ou un rappel imposés.`,
     category: "evaluation",
     icon: "LineChart"
   },
   {
     term: "Erreur quadratique moyenne (MSE)",
-    description: "Métrique de régression calculant la moyenne des carrés des erreurs entre prédictions et valeurs réelles. Pénalise fortement les grandes erreurs.",
+    description: `L'erreur quadratique moyenne (MSE, Mean Squared Error) est la moyenne des carrés des écarts entre valeurs prédites et valeurs réelles. C'est une métrique de régression très courante et la fonction de coût de nombreux modèles.
+
+**Formule :** MSE = (1/n) × Σ (y_i − ŷ_i)².
+
+**Exemple :** valeurs réelles 3, 5, 2, 7 et prédictions 2,5, 5, 4, 8 : écarts −0,5, 0, 2 et 1, carrés 0,25, 0, 4 et 1, donc MSE = 5,25 / 4 = 1,3125.
+
+**Propriétés :**
+• Elle pénalise fortement les grosses erreurs (un écart doublé compte quatre fois plus) : elle est sensible aux valeurs aberrantes.
+• Elle s'exprime dans le carré de l'unité de la cible (euros², mètres²), peu lisible : on lui préfère souvent sa racine, la RMSE.
+• Elle est dérivable partout, ce qui facilite l'optimisation par descente de gradient. Le modèle qui la minimise prédit la moyenne conditionnelle de la cible.
+• Elle vaut 0 pour des prédictions parfaites et n'a pas de borne supérieure : elle ne se compare qu'entre modèles évalués sur la même cible et les mêmes données.
+
+**Repère :** la MSE d'un modèle qui prédit toujours la moyenne est la variance de la cible. Comparer à ce repère est ce que fait le R².`,
     category: "evaluation",
-    icon: "Calculator"
+    icon: "Divide"
   },
   {
     term: "Erreur absolue moyenne (MAE)",
-    description: "Métrique de régression calculant la moyenne des valeurs absolues des erreurs. Moins sensible aux outliers que MSE.",
+    description: `L'erreur absolue moyenne (MAE, Mean Absolute Error) est la moyenne des valeurs absolues des écarts entre prédictions et valeurs réelles.
+
+**Formule :** MAE = (1/n) × Σ |y_i − ŷ_i|.
+
+**Exemple :** avec les écarts −0,5, 0, 2 et 1 de l'entrée MSE, MAE = (0,5 + 0 + 2 + 1) / 4 = 0,875.
+
+**Propriétés :**
+• Elle s'exprime dans l'unité de la cible : une MAE de 0,875 signifie que la prédiction s'écarte en moyenne de 0,875 unité.
+• Elle donne le même poids à toutes les erreurs : elle est moins sensible aux valeurs aberrantes que la MSE.
+• Le modèle qui la minimise prédit la médiane conditionnelle, pas la moyenne.
+• Elle n'est pas dérivable en 0, ce qui complique un peu l'optimisation : on l'emploie surtout pour évaluer, ou via la perte de Huber.
+
+**MAE ou RMSE :** on a toujours MAE ≤ RMSE, et un grand écart entre les deux indique quelques grosses erreurs. Le choix suit le coût réel : si une erreur de 10 est aussi grave que deux erreurs de 5, la MAE reflète ce coût ; si les grosses erreurs sont disproportionnellement graves, la RMSE.
+
+**Variante relative :** la MAPE (erreur absolue en pourcentage) est indéfinie quand la valeur réelle est nulle et asymétrique (elle pénalise davantage les surestimations).`,
     category: "evaluation",
-    icon: "Calculator"
+    icon: "Divide"
   },
   {
     term: "R² (Coefficient de détermination)",
-    description: "Mesure la proportion de variance dans la variable dépendante expliquée par les variables indépendantes. Varie de 0 à 1, 1 indiquant un ajustement parfait.",
+    description: `Le coefficient de détermination R² compare l'erreur d'un modèle de régression à celle du modèle le plus simple, qui prédit toujours la moyenne des valeurs observées.
+
+**Formule :** R² = 1 − SS_res / SS_tot, avec SS_res = Σ (y_i − ŷ_i)² (erreur du modèle) et SS_tot = Σ (y_i − ȳ)² (erreur de la moyenne).
+
+**Interprétation :** R² = 1 pour des prédictions parfaites, 0 pour un modèle qui ne fait pas mieux que la moyenne, et il devient négatif s'il fait pire (possible sur des données de test, ou sans constante). Pour une régression linéaire avec constante, évaluée sur ses données d'entraînement, c'est la part de la variance de la cible expliquée par le modèle.
+\`\`\`python
+import numpy as np
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+y = np.array([3.0, 5.0, 2.0, 7.0])
+pred = np.array([2.5, 5.0, 4.0, 8.0])
+print(mean_absolute_error(y, pred), mean_squared_error(y, pred), round(r2_score(y, pred), 3))
+print(round(r2_score(y, np.full(4, 10.0)), 3))   # toujours 10 : pire que la moyenne
+# Affichage :
+# 0.875 1.3125 0.644
+# -8.966
+\`\`\`
+
+**Limites :**
+• Sur l'entraînement, il ne peut qu'augmenter quand on ajoute une variable, même inutile : le R² ajusté pénalise le nombre de variables, et un jeu de test est préférable.
+• Il ne dit rien de la validité du modèle : quatre jeux de données très différents partagent le même R² (quartet d'Anscombe).
+• Il dépend de la variance de la cible et n'a pas d'unité : l'accompagner d'une erreur (RMSE, MAE).`,
     category: "evaluation",
     icon: "TrendingUp"
   },
   {
     term: "RMSE (Root Mean Square Error)",
-    description: "Racine carrée de MSE, exprimée dans les mêmes unités que la variable cible. Facilite l'interprétation de l'erreur moyenne.",
+    description: `La RMSE (Root Mean Square Error, racine de l'erreur quadratique moyenne) est la racine carrée de la MSE. Elle s'exprime dans la même unité que la variable cible.
+
+**Formule :** RMSE = √[(1/n) × Σ (y_i − ŷ_i)²].
+
+**Exemple :** pour les prédictions de l'entrée MSE, MSE = 1,3125 donc RMSE = √1,3125 ≈ 1,146 : l'erreur typique est d'environ 1,1 unité, avec un poids plus fort pour les grosses erreurs.
+
+**Propriétés :**
+• Elle garde la sensibilité de la MSE aux valeurs aberrantes, avec une unité interprétable.
+• On a toujours MAE ≤ RMSE ; plus l'écart est grand, plus les erreurs sont inégales.
+• Quand les erreurs sont centrées, c'est leur écart type.
+
+**Juger sa valeur :** il n'existe pas de bonne RMSE absolue. Une RMSE de 5 est excellente pour des prix de biens à plusieurs millions d'euros et mauvaise pour une température corporelle en degrés. On la compare à l'écart type de la cible, à la RMSE d'un modèle de référence (voir Baseline Models) et à l'erreur tolérable pour l'usage.
+
+**Comparer des cibles d'échelles différentes :** normaliser (RMSE divisée par la moyenne ou par l'écart type de la cible).
+
+**Pièges :** évaluer sur des données de test, pas sur l'entraînement ; ne pas la comparer entre jeux de données différents sans normalisation.`,
     category: "evaluation",
-    icon: "Calculator"
+    icon: "Divide"
   },
   {
     term: "Validation croisée (Cross-Validation)",
-    description: "La validation croisée est comme faire passer plusieurs examens différents à un étudiant pour avoir une note vraiment représentative ! **Principe d'or** : ne jamais faire confiance à une seule évaluation - multiplier les tests pour une estimation robuste des performances. **K-Fold classique** : diviser les données en k 'plis' égaux, entraîner sur k-1 plis, tester sur le pli restant, répéter k fois, moyenner les résultats. **Analogie pédagogique** : comme évaluer un étudiant avec 5 examens différents plutôt qu'un seul - plus fiable et moins dépendant du hasard ! **Variantes populaires** : **Stratified K-Fold** (préserve les proportions de classes), **Leave-One-Out** (k = n, très coûteux), **Time Series Split** (respecte l'ordre temporel). **Avantages magiques** : utilise **toutes** les données pour entraînement ET validation, réduit la variance de l'estimation, détecte l'instabilité du modèle. **Coût computationnel** : k fois plus cher qu'une validation simple, mais investissement rentable ! **Règle empirique** : k=5 ou k=10 sont des choix populaires (compromis biais-variance). **Piège à éviter** : data leakage entre plis (preprocessing sur tout le dataset). **Interprétation** : moyenne ± écart-type des k scores révèle performance ET stabilité. **Applications critiques** : sélection de modèles, tuning d'hyperparamètres, estimation finale de performance. La validation croisée transforme une évaluation fragile en diagnostic robuste !",
+    description: `La validation croisée (cross-validation) estime la performance d'un modèle sur des données non vues en l'entraînant et en l'évaluant plusieurs fois sur des découpages différents des mêmes données.
+
+**K-fold :** on découpe les données en k plis de taille égale ; pour chaque pli, on entraîne sur les k − 1 autres et on évalue sur celui-là. La moyenne des k scores estime la performance, leur écart type indique la stabilité.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import StratifiedKFold, cross_val_score
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+modele = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))   # normalisation refaite à chaque pli
+plis = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+scores = cross_val_score(modele, X, y, cv=plis)
+print(scores.round(3), scores.mean().round(3))
+# Affichage :
+# [0.956 0.974 0.982 1.    0.982] 0.979
+\`\`\`
+
+**Variantes :**
+• Stratified K-Fold : garde la proportion des classes dans chaque pli (classes déséquilibrées).
+• Group K-Fold : garde toutes les lignes d'un même groupe (patient, client) dans le même pli.
+• TimeSeriesSplit : l'entraînement précède toujours le test, pour les données temporelles.
+• Leave-One-Out : k = n, très coûteux, estimation parfois à forte variance.
+
+**Choix de k :** 5 ou 10 sont des valeurs courantes, un compromis entre biais de l'estimation, variance et coût (k entraînements). Usages : comparer des modèles, régler des hyperparamètres, estimer la performance finale.
+
+**Pièges :**
+• Toute étape apprise (normalisation, sélection de variables, imputation) doit être dans le Pipeline pour être refaite dans chaque pli : sinon, fuite de données.
+• Régler les hyperparamètres avec la validation croisée qui annonce aussi le score est optimiste : utiliser une validation croisée imbriquée ou un jeu de test final.
+• Les plis d'entraînement se recouvrent : l'écart type des scores n'est pas un intervalle de confiance exact.`,
     category: "evaluation",
     icon: "RefreshCw"
   },
   {
     term: "Validation holdout",
-    description: "Division simple des données en ensembles d'entraînement et de validation. Rapide mais peut être moins fiable que la validation croisée.",
+    description: `La validation holdout (« mise de côté ») consiste à découper les données une seule fois : une partie pour entraîner le modèle, l'autre, qu'il n'a jamais vue, pour l'évaluer.
+
+**Principe :**
+• Découpages courants : 70/30 ou 80/20 (des conventions, pas des règles).
+• Avec trois ensembles : entraînement pour ajuster, validation pour choisir (modèle, hyperparamètres), test pour l'évaluation finale, consulté une seule fois.
+• Mélanger avant de couper, stratifier pour garder les proportions de classes, couper dans le temps pour une série temporelle, et garder ensemble les lignes liées (même patient).
+
+**Exemple :** le même modèle évalué sur cinq découpages 80/20 donne des scores qui varient d'un découpage à l'autre.
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+modele = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
+
+# Le même modèle, cinq découpages différents : le score bouge
+for graine in range(5):
+    X_ent, X_test, y_ent, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=graine)
+    print(graine, round(modele.fit(X_ent, y_ent).score(X_test, y_test), 3))
+# Affichage :
+# 0 0.982
+# 1 0.991
+# 2 0.982
+# 3 0.974
+# 4 0.974
+\`\`\`
+
+**Avantages :** simple et rapide, un seul entraînement ; adapté aux très gros jeux de données.
+
+**Limites :**
+• L'estimation dépend du découpage, surtout sur un petit jeu de données : la validation croisée la stabilise.
+• Les données mises de côté ne servent pas à l'entraînement, ce qui coûte cher quand on en a peu.
+• Tester plusieurs modèles sur le même ensemble de test et garder le meilleur rend son score optimiste.`,
     category: "evaluation",
     icon: "Divide"
   },
   {
     term: "Bootstrap",
-    description: "**🎯 La Magie du Rééchantillonnage !**\n\nComme un magicien qui tire plusieurs lapins du même chapeau, le Bootstrap révolutionne l'estimation statistique en créant de multiples échantillons à partir d'un seul dataset original, permettant d'évaluer la variabilité et la fiabilité de nos modèles.\n\n**🎩 Analogie du Magicien :**\nImaginez un magicien avec un chapeau contenant 1000 boules numérotées. Au lieu de regarder une seule fois, il tire 1000 boules avec remise, note le résultat, remet tout, et répète l'opération 1000 fois. Chaque tirage donne une vision légèrement différente du contenu !\n\n**⚙️ Mécanisme Fondamental :**\n\n**Principe de Base :**\n```\nDataset Original (n échantillons)\n        ↓\nRééchantillonnage avec remise\n        ↓\nB échantillons Bootstrap (même taille n)\n        ↓\nCalcul de la statistique sur chaque échantillon\n        ↓\nDistribution empirique de la statistique\n```\n\n**Processus Détaillé :**\n1. **Échantillon Original** : Dataset de taille n\n2. **Génération Bootstrap** : Tirer n observations avec remise\n3. **Répétition** : Créer B échantillons (typiquement B = 1000-10000)\n4. **Calcul** : Statistique d'intérêt sur chaque échantillon\n5. **Agrégation** : Distribution empirique des résultats\n\n**🔢 Mathématiques du Bootstrap :**\n\n**Probabilité de Sélection :**\n- Probabilité qu'un élément soit sélectionné : 1 - (1-1/n)^n ≈ 0.632\n- Environ 63.2% des données originales dans chaque échantillon\n- Certaines observations répétées, d'autres absentes\n\n**Estimateur Bootstrap :**\n```\nθ̂* = (1/B) Σ θ̂*b\nSE(θ̂) = √[(1/(B-1)) Σ (θ̂*b - θ̂*)²]\n```\n\n**🎯 Applications en Machine Learning :**\n\n**Évaluation de Modèles :**\n- **Performance Metrics** : Distribution de l'accuracy, F1-score\n- **Intervalles de Confiance** : Plages de performance attendues\n- **Comparaison de Modèles** : Tests statistiques robustes\n- **Stabilité** : Variance des prédictions\n\n**Feature Importance :**\n- **Permutation Importance** : Stabilité des importances\n- **SHAP Values** : Distribution des contributions\n- **Coefficient Stability** : Robustesse des paramètres\n\n**Hyperparameter Tuning :**\n- **Cross-Validation** : Estimation robuste des performances\n- **Bayesian Optimization** : Incertitude sur les hyperparamètres\n- **Early Stopping** : Critères de convergence\n\n**🛠️ Variantes Spécialisées :**\n\n**Bootstrap Paramétrique :**\n- **Assumption** : Distribution connue des données\n- **Génération** : Échantillonnage depuis distribution estimée\n- **Avantage** : Plus efficace si assumptions correctes\n- **Usage** : Données suivant lois connues\n\n**Bootstrap Non-Paramétrique :**\n- **Assumption** : Aucune sur la distribution\n- **Génération** : Rééchantillonnage direct des données\n- **Robustesse** : Fonctionne sans assumptions\n- **Usage** : Cas général, données complexes\n\n**Block Bootstrap :**\n- **Données Temporelles** : Préservation de la structure temporelle\n- **Blocs** : Échantillonnage de séquences consécutives\n- **Taille de Bloc** : Paramètre critique à optimiser\n- **Applications** : Séries temporelles, données spatiales\n\n**Wild Bootstrap :**\n- **Hétéroscédasticité** : Variance non-constante\n- **Résidus** : Multiplication par variables aléatoires\n- **Robustesse** : Contre violations d'homoscédasticité\n\n**📊 Intervalles de Confiance :**\n\n**Percentile Method :**\n- **Simple** : Quantiles 2.5% et 97.5% des résultats Bootstrap\n- **IC 95%** : [θ̂*₀.₀₂₅, θ̂*₀.₉₇₅]\n- **Avantage** : Facile à calculer et interpréter\n- **Limitation** : Peut être biaisé\n\n**Bias-Corrected (BC) :**\n- **Correction** : Ajustement pour le biais de l'estimateur\n- **Formule** : Utilise la proportion de θ̂*b < θ̂\n- **Amélioration** : Meilleure couverture que percentile\n\n**Bias-Corrected and Accelerated (BCa) :**\n- **Gold Standard** : Correction biais + ajustement asymétrie\n- **Acceleration** : Correction pour la non-linéarité\n- **Performance** : Meilleure couverture, surtout petits échantillons\n\n**🚀 Applications Sectorielles :**\n\n**Finance :**\n- **Risk Metrics** : VaR, Expected Shortfall avec IC\n- **Portfolio Optimization** : Incertitude sur les rendements\n- **Backtesting** : Robustesse des stratégies\n- **Stress Testing** : Scénarios de crise\n\n**Médecine :**\n- **Clinical Trials** : Efficacité des traitements\n- **Biomarkers** : Validation de marqueurs\n- **Diagnostic Tests** : Performance des tests\n- **Meta-Analysis** : Synthèse d'études\n\n**Marketing :**\n- **A/B Testing** : Significativité des différences\n- **Customer Lifetime Value** : Incertitude sur les prédictions\n- **Churn Prediction** : Stabilité des modèles\n- **Price Elasticity** : Robustesse des estimations\n\n**⚡ Avantages Distinctifs :**\n\n**Non-Paramétrique :**\n- **Aucune Assumption** : Pas d'hypothèse sur la distribution\n- **Flexibilité** : Applicable à toute statistique\n- **Robustesse** : Résistant aux outliers\n\n**Simplicité Conceptuelle :**\n- **Intuition** : Facile à comprendre et expliquer\n- **Implémentation** : Simple à programmer\n- **Interprétation** : Résultats directement utilisables\n\n**Polyvalence :**\n- **Toute Statistique** : Moyenne, médiane, corrélation, etc.\n- **Modèles Complexes** : Réseaux de neurones, ensembles\n- **Métriques Custom** : Statistiques métier spécifiques\n\n**🚨 Limitations et Précautions :**\n\n**Assumptions Critiques :**\n- **Représentativité** : Échantillon original doit être représentatif\n- **Indépendance** : Observations indépendantes (sauf variantes spécialisées)\n- **Taille** : Échantillon suffisamment grand (n > 30 recommandé)\n\n**Coût Computationnel :**\n- **Temps** : B fois plus long que calcul simple\n- **Mémoire** : Stockage de B résultats\n- **Parallélisation** : Facilement parallélisable\n\n**Biais Potentiels :**\n- **Small Sample** : Biais dans petits échantillons\n- **Extreme Values** : Sensibilité aux valeurs extrêmes\n- **Model Assumptions** : Violations non détectées\n\n**🔧 Implémentation Pratique :**\n\n**Python (scikit-learn) :**\n```python\nfrom sklearn.utils import resample\nfrom sklearn.metrics import accuracy_score\n\n# Bootstrap sampling\nbootstrap_scores = []\nfor i in range(1000):\n    X_boot, y_boot = resample(X, y)\n    model.fit(X_boot, y_boot)\n    score = accuracy_score(y_test, model.predict(X_test))\n    bootstrap_scores.append(score)\n\n# Confidence interval\nci_lower = np.percentile(bootstrap_scores, 2.5)\nci_upper = np.percentile(bootstrap_scores, 97.5)\n```\n\n**R (boot package) :**\n```r\nlibrary(boot)\n\n# Bootstrap function\nboot_stat <- function(data, indices) {\n  return(mean(data[indices]))\n}\n\n# Bootstrap sampling\nboot_results <- boot(data, boot_stat, R=1000)\nboot.ci(boot_results, type=\"bca\")\n```\n\n**📈 Bonnes Pratiques :**\n\n**Nombre d'Échantillons :**\n- **B = 1000** : Minimum pour intervalles de confiance\n- **B = 10000** : Recommandé pour analyses critiques\n- **Trade-off** : Précision vs temps de calcul\n\n**Validation :**\n- **Convergence** : Vérifier stabilité avec B croissant\n- **Diagnostic Plots** : Histogrammes des résultats Bootstrap\n- **Comparison** : Avec méthodes analytiques quand disponibles\n\n**Stratification :**\n- **Classes Déséquilibrées** : Bootstrap stratifié\n- **Groupes** : Préservation des proportions\n- **Time Series** : Block bootstrap approprié\n\n**🌟 Impact et Révolution :**\nLe Bootstrap, introduit par Bradley Efron en 1979, a révolutionné la statistique moderne en rendant l'inférence statistique accessible sans assumptions distributionnelles. Avec l'avènement du machine learning, il devient l'outil de référence pour quantifier l'incertitude des modèles complexes, permettant une IA plus fiable et transparente.",
+    description: `Le bootstrap (Efron, 1979) estime l'incertitude d'une statistique en rééchantillonnant plusieurs fois, avec remise, les données observées.
+
+**Principe :**
+• On tire n observations avec remise dans un échantillon de taille n : certaines apparaissent plusieurs fois, d'autres pas du tout.
+• On calcule la statistique d'intérêt (moyenne, médiane, score d'un modèle) sur chacun des B rééchantillons.
+• La dispersion des B valeurs approche la variabilité de l'estimateur : son écart type donne l'erreur-type, ses quantiles un intervalle de confiance.
+\`\`\`python
+import numpy as np
+
+rng = np.random.default_rng(0)
+x = np.array([12, 15, 11, 18, 14, 16, 13, 17, 12, 19])
+
+# 2000 rééchantillons de même taille, tirés avec remise
+moyennes = [rng.choice(x, size=len(x), replace=True).mean() for _ in range(2000)]
+print(x.mean(), np.percentile(moyennes, [2.5, 97.5]).round(1))
+# Affichage :
+# 14.7 [13.1 16.3]
+\`\`\`
+
+**Part des observations tirées :** une observation donnée est tirée au moins une fois avec la probabilité 1 − (1 − 1/n)^n, qui tend vers 1 − 1/e ≈ 0,632. Chaque rééchantillon contient donc environ 63 % des observations distinctes ; les autres (≈ 37 %) forment l'échantillon « hors sac » (out-of-bag), utilisable comme jeu de validation.
+
+**Usages en apprentissage :**
+• Intervalle de confiance d'une métrique : on rééchantillonne le jeu de test et on recalcule le score.
+• Bagging et forêts aléatoires : chaque modèle est entraîné sur un rééchantillon.
+• Statistiques sans formule simple (médiane, AUC, rapports).
+
+**Variantes :** bootstrap paramétrique (tirage dans une loi ajustée), par blocs (séries temporelles), intervalles percentile ou BCa (corrigés du biais et de l'asymétrie).
+
+**Limites :** il suppose des observations indépendantes et un échantillon représentatif ; il est peu fiable pour de très petits échantillons et pour des statistiques d'extrêmes (maximum). B doit être assez grand pour que le résultat soit stable (plusieurs centaines à quelques milliers).`,
     category: "evaluation",
     icon: "Shuffle"
   },
   {
     term: "Biais-Variance Tradeoff",
-    description: "**Le dilemme fondamental du machine learning !** Comme un archer qui doit choisir entre viser toujours au même endroit (biais) ou avoir une visée variable mais centrée (variance), tout modèle ML navigue entre ces deux sources d'erreur antagonistes.\n\n**🎯 Analogie de l'Archer :**\n\n**Biais Élevé, Variance Faible :**\n- Flèches groupées mais loin du centre\n- Modèle simple, prédictions cohérentes mais fausses\n- Sous-apprentissage (underfitting)\n\n**Biais Faible, Variance Élevée :**\n- Flèches dispersées autour du centre\n- Modèle complexe, prédictions variables\n- Sur-apprentissage (overfitting)\n\n**Équilibre Optimal :**\n- Flèches groupées près du centre\n- Compromis entre simplicité et précision\n\n**📊 Décomposition Mathématique :**\n\n**Erreur Totale :**\n```\nE[Erreur] = Biais² + Variance + Bruit\n```\n\n**Biais :**\n```\nBiais = E[f̂(x)] - f(x)\n```\n- Différence entre prédiction moyenne et vraie valeur\n- Erreur systématique du modèle\n- Indépendant des données d'entraînement\n\n**Variance :**\n```\nVariance = E[(f̂(x) - E[f̂(x)])²]\n```\n- Variabilité des prédictions entre datasets\n- Sensibilité aux données d'entraînement\n- Instabilité du modèle\n\n**🔍 Sources et Manifestations :**\n\n**Biais Élevé (Underfitting) :**\n- **Modèles trop simples** : Régression linéaire sur données non-linéaires\n- **Features insuffisantes** : Variables explicatives manquantes\n- **Hypothèses fortes** : Assumptions incorrectes sur les données\n- **Régularisation excessive** : Pénalités trop importantes\n\n**Variance Élevée (Overfitting) :**\n- **Modèles trop complexes** : Réseaux profonds sur petits datasets\n- **Trop de paramètres** : Plus de paramètres que d'exemples\n- **Pas de régularisation** : Liberté totale d'apprentissage\n- **Données bruitées** : Apprentissage du bruit\n\n**⚖️ Stratégies d'Équilibrage :**\n\n**Réduction du Biais :**\n- **Complexité accrue** : Plus de couches, polynômes d'ordre supérieur\n- **Feature engineering** : Variables dérivées, interactions\n- **Ensembles** : Combinaison de modèles faibles\n- **Moins de régularisation** : Réduction des pénalités\n\n**Réduction de la Variance :**\n- **Régularisation** : L1, L2, Dropout, Early stopping\n- **Plus de données** : Datasets plus larges\n- **Validation croisée** : Évaluation robuste\n- **Bagging** : Moyennage de modèles\n\n**🛠️ Techniques Pratiques :**\n\n**Courbes d'Apprentissage :**\n- **Gap train/validation** : Indicateur de variance\n- **Plateau précoce** : Signe de biais élevé\n- **Convergence lente** : Besoin de plus de données\n\n**Validation Croisée :**\n- **Score moyen** : Estimation du biais\n- **Écart-type** : Mesure de la variance\n- **Stabilité** : Robustesse du modèle\n\n**📈 Modèles et Tradeoff :**\n\n**Biais Élevé, Variance Faible :**\n- **Régression linéaire** : Assumptions fortes\n- **Naive Bayes** : Indépendance des features\n- **k-NN avec k élevé** : Moyennage local important\n\n**Biais Faible, Variance Élevée :**\n- **Arbres de décision profonds** : Mémorisation possible\n- **k-NN avec k=1** : Sensible au bruit\n- **Réseaux de neurones** : Grande capacité\n\n**Équilibre Naturel :**\n- **Random Forest** : Bagging d'arbres\n- **SVM avec RBF** : Régularisation intégrée\n- **Gradient Boosting** : Correction itérative\n\n**🎯 Applications Sectorielles :**\n\n**Finance :**\n- **Trading** : Variance élevée = stratégies instables\n- **Crédit** : Biais élevé = discrimination systémique\n- **Risque** : Équilibre pour robustesse\n\n**Médecine :**\n- **Diagnostic** : Biais = erreurs systématiques dangereuses\n- **Pronostic** : Variance = prédictions incohérentes\n- **Essais cliniques** : Validation rigoureuse nécessaire\n\n**🔬 Méthodes d'Analyse :**\n\n**Bootstrap :**\n- Estimation empirique biais/variance\n- Rééchantillonnage avec remise\n- Intervalles de confiance\n\n**Simulation Monte Carlo :**\n- Génération de datasets multiples\n- Calcul exact des composantes\n- Validation théorique\n\n**💡 Insights Stratégiques :**\n\n**Règles Empiriques :**\n- **Petits datasets** : Privilégier modèles simples (biais acceptable)\n- **Gros datasets** : Modèles complexes viables (variance contrôlée)\n- **Données bruitées** : Régularisation forte nécessaire\n\n**Optimisation Pratique :**\n- **Commencer simple** : Baseline avec biais élevé\n- **Complexifier graduellement** : Monitoring de la variance\n- **Validation rigoureuse** : Éviter l'overfitting\n- **Ensembles** : Meilleur des deux mondes\n\n**📊 En pratique :**\nLe compromis biais-variance se pilote en comparant l'erreur d'entraînement et l'erreur de validation, et en jouant sur la complexité du modèle, la régularisation, la quantité de données ou les ensembles.",
+    description: `Le compromis biais-variance décrit les deux sources d'erreur d'un modèle, qui évoluent en sens contraire quand on fait varier sa complexité.
+
+**Décomposition (erreur quadratique, en un point x) :** erreur attendue = biais² + variance + bruit irréductible.
+• Biais : écart entre la prédiction moyenne du modèle (sur de nombreux jeux d'entraînement possibles) et la vraie valeur. Un biais élevé correspond au sous-apprentissage : le modèle est trop simple.
+• Variance : sensibilité de la prédiction au jeu d'entraînement. Une variance élevée correspond au sur-apprentissage : le modèle suit le bruit.
+• Bruit : variabilité propre aux données, qu'aucun modèle ne supprime.
+
+Comme des flèches : groupées mais loin de la cible, c'est un biais élevé ; dispersées autour de la cible, une variance élevée.
+
+**Exemple :** un polynôme ajusté à 15 points bruités (colonnes : degré, erreur d'entraînement, erreur de test). Degré 1 : deux erreurs élevées (biais). Degré 14 : erreur d'entraînement nulle, erreur de test énorme (variance).
+\`\`\`python
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
+
+rng = np.random.default_rng(2)
+x = np.linspace(0, 1, 30).reshape(-1, 1)
+y = np.sin(2 * np.pi * x).ravel() + rng.normal(0, 0.3, 30)
+ent, test = np.arange(0, 30, 2), np.arange(1, 29, 2)   # points d'entraînement et points intermédiaires
+
+for degre in [1, 3, 8, 14]:
+    modele = make_pipeline(PolynomialFeatures(degre), LinearRegression()).fit(x[ent], y[ent])
+    erreur_ent = mean_squared_error(y[ent], modele.predict(x[ent]))
+    erreur_test = mean_squared_error(y[test], modele.predict(x[test]))
+    print(degre, round(erreur_ent, 3), round(erreur_test, 3))
+# Affichage :
+# 1 0.273 0.296
+# 3 0.08 0.13
+# 8 0.041 0.153
+# 14 0.0 6.958
+\`\`\`
+
+**Agir :**
+• Biais trop élevé : modèle plus riche, variables supplémentaires, moins de régularisation, boosting.
+• Variance trop élevée : plus de données, régularisation, modèle plus simple, bagging.
+
+**Limite :** pour de très grands réseaux, l'erreur de test peut redescendre au-delà du seuil d'interpolation (double descente, Belkin et al., 2019) : la courbe en U n'est pas universelle.`,
     category: "evaluation",
-    icon: "Scale"
+    icon: "Gauge"
   },
   {
     term: "Courbe d'apprentissage (Learning Curve)",
-    description: "**📈 Le Diagnostic de l'Apprentissage !**\n\nComme un médecin qui suit l'évolution d'un patient grâce à des examens réguliers, la courbe d'apprentissage révèle la santé de votre modèle en traçant ses performances selon la quantité de données d'entraînement, permettant de diagnostiquer le sous-apprentissage, le sur-apprentissage, et d'estimer les bénéfices d'obtenir plus de données.\n\n**🏥 Analogie Médicale :**\nImaginez un étudiant en médecine qui passe des examens avec de plus en plus de matériel d'étude. Au début avec peu de livres, ses notes sont faibles (sous-apprentissage). Avec plus de ressources, ses performances s'améliorent. Mais à un moment, ajouter plus de livres n'améliore plus ses notes - il a atteint son potentiel d'apprentissage !\n\n**📊 Anatomie d'une Courbe d'Apprentissage :**\n\n**Axes Fondamentaux :**\n- **Axe X** : Taille de l'ensemble d'entraînement (nombre d'échantillons)\n- **Axe Y** : Performance du modèle (accuracy, F1-score, RMSE, etc.)\n- **Courbes** : Score d'entraînement vs Score de validation\n\n**Construction Méthodique :**\n```\nPour chaque taille d'entraînement t ∈ [t_min, t_max]:\n  1. Sélectionner t échantillons d'entraînement\n  2. Entraîner le modèle sur ces t échantillons\n  3. Évaluer sur l'ensemble d'entraînement → Score_train(t)\n  4. Évaluer sur l'ensemble de validation → Score_val(t)\n  5. Répéter k fois (cross-validation)\n  6. Moyenner les résultats\n```\n\n**🎭 Les Quatre Visages de l'Apprentissage :**\n\n**1. Sous-Apprentissage (Underfitting) :**\n```\nCaractéristiques :\n- Score_train faible et stable\n- Score_val faible et stable\n- Gap minimal entre train et val\n- Plateau précoce\n```\n\n**Diagnostic :**\n- **Modèle trop simple** pour capturer les patterns\n- **Features insuffisantes** ou mal choisies\n- **Hyperparamètres** trop restrictifs\n\n**Solutions :**\n- Augmenter la complexité du modèle\n- Ajouter des features ou interactions\n- Réduire la régularisation\n- Optimiser les hyperparamètres\n\n**2. Sur-Apprentissage (Overfitting) :**\n```\nCaractéristiques :\n- Score_train très élevé\n- Score_val plafonné ou décroissant\n- Gap important et croissant\n- Divergence des courbes\n```\n\n**Diagnostic :**\n- **Modèle trop complexe** pour les données disponibles\n- **Données insuffisantes** pour la complexité\n- **Bruit** dans les données d'entraînement\n\n**Solutions :**\n- Collecter plus de données\n- Réduire la complexité du modèle\n- Augmenter la régularisation\n- Early stopping, dropout\n\n**3. Apprentissage Optimal :**\n```\nCaractéristiques :\n- Score_train et Score_val convergent\n- Gap stable et minimal\n- Amélioration continue avec plus de données\n- Plateau à haute performance\n```\n\n**Diagnostic :**\n- **Équilibre parfait** complexité/données\n- **Généralisation** excellente\n- **Robustesse** du modèle\n\n**4. Données Insuffisantes :**\n```\nCaractéristiques :\n- Courbes encore croissantes\n- Pas de plateau atteint\n- Gap décroissant\n- Potentiel d'amélioration visible\n```\n\n**🔍 Analyse Avancée des Patterns :**\n\n**Convergence Analysis :**\n```python\n# Détection de convergence\ndef is_converged(scores, window=5, threshold=0.01):\n    if len(scores) < window:\n        return False\n    recent_scores = scores[-window:]\n    return np.std(recent_scores) < threshold\n\n# Estimation du plateau\ndef estimate_plateau(train_sizes, scores):\n    # Fit polynomial et dérivée\n    coeffs = np.polyfit(train_sizes, scores, 3)\n    derivative = np.polyder(coeffs)\n    # Plateau quand dérivée → 0\n    return np.roots(derivative)\n```\n\n**Gap Analysis :**\n```python\n# Analyse du gap train-validation\ndef analyze_gap(train_scores, val_scores):\n    gap = train_scores - val_scores\n    gap_trend = np.polyfit(range(len(gap)), gap, 1)[0]\n    \n    if gap_trend > 0.01:\n        return \"Overfitting croissant\"\n    elif gap_trend < -0.01:\n        return \"Amélioration de la généralisation\"\n    else:\n        return \"Gap stable\"\n```\n\n**📐 Métriques et Indicateurs :**\n\n**Learning Efficiency :**\n```\nEfficiency = (Score_final - Score_initial) / log(N_samples)\n```\n*Mesure la rapidité d'apprentissage*\n\n**Data Efficiency :**\n```\nData_Efficiency = Score_target / N_samples_needed\n```\n*Quantité de données nécessaire pour atteindre un objectif*\n\n**Generalization Gap :**\n```\nGap(t) = Score_train(t) - Score_val(t)\nStable_Gap = lim_{t→∞} Gap(t)\n```\n*Mesure de la capacité de généralisation*\n\n**🎯 Applications Stratégiques :**\n\n**Planification de Collecte de Données :**\n```python\n# Estimation ROI de nouvelles données\ndef estimate_data_roi(current_size, current_score, target_score):\n    # Fit learning curve\n    def learning_function(n, a, b, c):\n        return a - b * np.exp(-c * n)\n    \n    # Extrapolation\n    popt, _ = curve_fit(learning_function, sizes, scores)\n    needed_size = -np.log((popt[0] - target_score) / popt[1]) / popt[2]\n    \n    return max(0, needed_size - current_size)\n```\n\n**Optimisation des Ressources :**\n- **Budget Limité** : Trouver le sweet spot données/performance\n- **Temps Contraint** : Identifier le minimum viable\n- **Coût/Bénéfice** : Quantifier l'impact de données supplémentaires\n\n**🚀 Applications Sectorielles :**\n\n**Vision par Ordinateur :**\n- **ImageNet** : Millions d'images nécessaires\n- **Transfer Learning** : Réduction drastique des besoins\n- **Data Augmentation** : Augmentation artificielle\n- **Synthetic Data** : Génération de données\n\n**NLP (Natural Language Processing) :**\n- **BERT/GPT** : Scaling laws observés\n- **Few-Shot Learning** : Apprentissage avec peu d'exemples\n- **Domain Adaptation** : Transfert entre domaines\n- **Active Learning** : Sélection intelligente des données\n\n**Recommandation Systems :**\n- **Cold Start** : Nouveaux utilisateurs/items\n- **Sparsity** : Données éparses\n- **Temporal Dynamics** : Évolution des préférences\n- **Implicit Feedback** : Signaux indirects\n\n**🔧 Implémentation Pratique :**\n\n**Scikit-learn :**\n```python\nfrom sklearn.model_selection import learning_curve\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Génération de la courbe\ntrain_sizes, train_scores, val_scores = learning_curve(\n    RandomForestClassifier(),\n    X, y,\n    train_sizes=np.linspace(0.1, 1.0, 10),\n    cv=5,\n    scoring='accuracy',\n    n_jobs=-1\n)\n\n# Visualisation\nplt.figure(figsize=(10, 6))\nplt.plot(train_sizes, np.mean(train_scores, axis=1), 'o-', label='Training')\nplt.plot(train_sizes, np.mean(val_scores, axis=1), 'o-', label='Validation')\nplt.fill_between(train_sizes, \n                 np.mean(train_scores, axis=1) - np.std(train_scores, axis=1),\n                 np.mean(train_scores, axis=1) + np.std(train_scores, axis=1),\n                 alpha=0.1)\nplt.xlabel('Training Set Size')\nplt.ylabel('Accuracy Score')\nplt.legend()\nplt.title('Learning Curve')\n```\n\n**TensorFlow/Keras :**\n```python\nclass LearningCurveCallback(tf.keras.callbacks.Callback):\n    def __init__(self, X_val, y_val):\n        self.X_val = X_val\n        self.y_val = y_val\n        self.train_sizes = []\n        self.train_scores = []\n        self.val_scores = []\n    \n    def on_epoch_end(self, epoch, logs=None):\n        # Évaluation sur différentes tailles\n        for size in [0.2, 0.4, 0.6, 0.8, 1.0]:\n            subset_size = int(size * len(self.model.x))\n            # Entraînement sur subset\n            # Évaluation et stockage\n```\n\n**📊 Visualisations Avancées :**\n\n**Heatmap de Performance :**\n```python\n# Performance vs taille vs hyperparamètre\nfig, ax = plt.subplots(figsize=(12, 8))\nperformance_matrix = np.array([[score(size, param) \n                               for param in param_range] \n                               for size in size_range])\nsns.heatmap(performance_matrix, \n            xticklabels=param_range,\n            yticklabels=size_range,\n            annot=True, fmt='.3f')\n```\n\n**3D Learning Surface :**\n```python\n# Surface 3D : taille × complexité × performance\nfig = plt.figure(figsize=(12, 9))\nax = fig.add_subplot(111, projection='3d')\nX, Y = np.meshgrid(train_sizes, complexity_range)\nZ = performance_surface(X, Y)\nax.plot_surface(X, Y, Z, cmap='viridis')\n```\n\n**⚡ Optimisations et Bonnes Pratiques :**\n\n**Stratified Sampling :**\n- **Classes Équilibrées** : Préservation des proportions\n- **Temporal Splits** : Respect de l'ordre temporel\n- **Geographical Splits** : Éviter le data leakage spatial\n\n**Cross-Validation Robuste :**\n- **K-Fold Stratified** : Réduction de la variance\n- **Time Series CV** : Validation temporelle\n- **Group K-Fold** : Éviter le leakage par groupes\n\n**Computational Efficiency :**\n- **Incremental Learning** : Réutilisation des modèles\n- **Parallel Processing** : Entraînements simultanés\n- **Early Stopping** : Arrêt intelligent\n\n**🌟 Impact et Applications Modernes :**\nLes courbes d'apprentissage sont devenues essentielles dans l'ère du big data et du deep learning pour optimiser les investissements en données. Elles guident les décisions stratégiques sur la collecte de données, l'architecture des modèles, et la planification des ressources, permettant un développement d'IA plus efficace et économique.",
+    description: `La courbe d'apprentissage trace le score d'un modèle sur l'entraînement et sur la validation en fonction du nombre d'exemples d'entraînement. Elle sert à diagnostiquer le sous-apprentissage ou le sur-apprentissage et à juger l'intérêt de collecter plus de données.
+
+**Construction :** pour chaque taille t, on entraîne sur t exemples, puis on mesure le score sur ces exemples et sur un jeu de validation (moyenne sur plusieurs plis).
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import learning_curve
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+modele = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
+tailles, train, val = learning_curve(modele, X, y, train_sizes=[0.1, 0.3, 0.6, 1.0], cv=5)
+print(tailles)
+print(train.mean(axis=1).round(3))
+print(val.mean(axis=1).round(3))
+# Affichage :
+# [ 45 136 273 455]
+# [1.    0.987 0.984 0.989]
+# [0.793 0.944 0.967 0.981]
+\`\`\`
+
+**Lecture :**
+• Deux courbes proches et faibles : biais élevé (sous-apprentissage). Plus de données n'aidera pas ; il faut un modèle plus expressif ou de meilleures variables.
+• Score d'entraînement élevé, score de validation plus bas, écart qui se réduit lentement : variance élevée (sur-apprentissage). Plus de données, de la régularisation ou un modèle plus simple aident.
+• Courbes qui se rejoignent à un niveau satisfaisant : le modèle exploite bien les données disponibles.
+• Courbe de validation encore en hausse à la taille maximale : des données supplémentaires l'amélioreraient probablement.
+
+Dans l'exemple, le score de validation passe de 0,79 à 0,98 quand la taille augmente, et l'écart avec l'entraînement se resserre.
+
+**Précautions :** stratifier ou grouper les plis selon les données, fixer les graines, ne pas extrapoler loin au-delà des tailles mesurées.`,
     category: "evaluation",
     icon: "TrendingUp"
   },
   {
     term: "Courbe de validation (Validation Curve)",
-    description: "**⚙️ L'Art du Réglage Optimal !**\n\nComme un ingénieur qui ajuste finement les paramètres d'une machine pour obtenir les meilleures performances, la courbe de validation révèle l'impact de chaque hyperparamètre sur votre modèle, permettant de trouver le sweet spot entre sous-apprentissage et sur-apprentissage pour maximiser la généralisation.\n\n**🎛️ Analogie de l'Ingénieur :**\nImaginez régler une radio pour capter une station. Trop à gauche (sous-apprentissage) : signal faible et brouillé. Trop à droite (sur-apprentissage) : signal fort mais parasites. Il existe un point optimal où le signal est clair et fort - c'est exactement ce que trouve la courbe de validation !\n\n**📊 Anatomie d'une Courbe de Validation :**\n\n**Axes Fondamentaux :**\n- **Axe X** : Valeurs de l'hyperparamètre (complexité, régularisation, etc.)\n- **Axe Y** : Performance du modèle (accuracy, F1-score, RMSE, etc.)\n- **Courbes** : Score d'entraînement vs Score de validation\n\n**Construction Méthodique :**\n```\nPour chaque valeur d'hyperparamètre h ∈ [h_min, h_max]:\n  1. Configurer le modèle avec h\n  2. Entraîner sur l'ensemble d'entraînement\n  3. Évaluer sur l'ensemble d'entraînement → Score_train(h)\n  4. Évaluer sur l'ensemble de validation → Score_val(h)\n  5. Répéter k fois (cross-validation)\n  6. Moyenner les résultats\n```\n\n**🎯 Hyperparamètres Critiques :**\n\n**Paramètres de Régularisation :**\n\n**Ridge/Lasso (α) :**\n```\nα → 0 : Pas de régularisation (risque overfitting)\nα → ∞ : Régularisation maximale (risque underfitting)\nOptimal : Minimum de la courbe de validation\n```\n\n**Pattern Typique :**\n- **Score_train** : Décroît avec α croissant\n- **Score_val** : Forme en U inversé\n- **Optimum** : Minimum de l'erreur de validation\n\n**Random Forest (n_estimators) :**\n```\nn_estimators faible : Sous-apprentissage\nn_estimators élevé : Amélioration puis plateau\nOptimal : Début du plateau (efficacité computationnelle)\n```\n\n**SVM (C et γ) :**\n```\nC faible : Frontière simple (underfitting)\nC élevé : Frontière complexe (overfitting)\nγ faible : Influence globale\nγ élevé : Influence locale (overfitting)\n```\n\n**Neural Networks (learning_rate) :**\n```\nLR trop faible : Convergence lente\nLR trop élevé : Instabilité, divergence\nOptimal : Convergence rapide et stable\n```\n\n**🔍 Patterns d'Interprétation :**\n\n**1. Courbe en U (Régularisation) :**\n```\nCaractéristiques :\n- Score_val décroît puis croît\n- Minimum clair\n- Score_train décroît monotoniquement\n\nInterprétation :\n- Gauche : Underfitting (régularisation excessive)\n- Droite : Overfitting (régularisation insuffisante)\n- Minimum : Équilibre optimal\n```\n\n**2. Plateau Croissant (Capacité) :**\n```\nCaractéristiques :\n- Score_val croît puis plateau\n- Score_train croît continuellement\n- Gap stable après plateau\n\nInterprétation :\n- Début : Capacité insuffisante\n- Plateau : Capacité optimale atteinte\n- Après : Rendements décroissants\n```\n\n**3. Divergence Critique (Instabilité) :**\n```\nCaractéristiques :\n- Score_val chute brutalement\n- Score_train peut rester élevé\n- Variance élevée\n\nInterprétation :\n- Instabilité numérique\n- Hyperparamètre critique dépassé\n- Nécessité de contraintes\n```\n\n**📐 Métriques d'Analyse :**\n\n**Optimal Point Detection :**\n```python\ndef find_optimal_param(param_values, val_scores, strategy='min'):\n    if strategy == 'min':\n        optimal_idx = np.argmin(val_scores)\n    elif strategy == 'max':\n        optimal_idx = np.argmax(val_scores)\n    elif strategy == '1se':\n        # One Standard Error Rule\n        best_score = np.min(val_scores)\n        se = np.std(val_scores) / np.sqrt(len(val_scores))\n        threshold = best_score + se\n        optimal_idx = np.where(val_scores <= threshold)[0][0]\n    \n    return param_values[optimal_idx]\n```\n\n**Stability Analysis :**\n```python\ndef analyze_stability(param_values, val_scores, val_stds):\n    # Coefficient de variation\n    cv = val_stds / np.abs(val_scores)\n    \n    # Zone stable (CV < 0.1)\n    stable_zone = param_values[cv < 0.1]\n    \n    # Recommandation conservative\n    if len(stable_zone) > 0:\n        return stable_zone[np.argmax(val_scores[cv < 0.1])]\n    else:\n        return param_values[np.argmin(cv)]\n```\n\n**🎨 Visualisations Avancées :**\n\n**Multi-Parameter Heatmap :**\n```python\n# Validation curve 2D\ndef plot_2d_validation_curve(param1_range, param2_range, scores):\n    fig, ax = plt.subplots(figsize=(10, 8))\n    \n    # Heatmap des scores\n    im = ax.imshow(scores, cmap='viridis', aspect='auto')\n    \n    # Contours pour les iso-performances\n    contours = ax.contour(scores, levels=10, colors='white', alpha=0.6)\n    ax.clabel(contours, inline=True, fontsize=8)\n    \n    # Optimum\n    max_idx = np.unravel_index(np.argmax(scores), scores.shape)\n    ax.plot(max_idx[1], max_idx[0], 'r*', markersize=15)\n    \n    plt.colorbar(im)\n    plt.title('2D Validation Surface')\n```\n\n**Interactive Exploration :**\n```python\nimport plotly.graph_objects as go\nfrom plotly.subplots import make_subplots\n\n# Courbe interactive\nfig = go.Figure()\n\n# Courbe de validation\nfig.add_trace(go.Scatter(\n    x=param_values,\n    y=val_scores_mean,\n    error_y=dict(type='data', array=val_scores_std),\n    mode='lines+markers',\n    name='Validation',\n    line=dict(color='blue')\n))\n\n# Courbe d'entraînement\nfig.add_trace(go.Scatter(\n    x=param_values,\n    y=train_scores_mean,\n    error_y=dict(type='data', array=train_scores_std),\n    mode='lines+markers',\n    name='Training',\n    line=dict(color='red')\n))\n\n# Point optimal\noptimal_idx = np.argmax(val_scores_mean)\nfig.add_trace(go.Scatter(\n    x=[param_values[optimal_idx]],\n    y=[val_scores_mean[optimal_idx]],\n    mode='markers',\n    marker=dict(size=15, color='gold', symbol='star'),\n    name='Optimal'\n))\n```\n\n**🔧 Implémentation Pratique :**\n\n**Scikit-learn :**\n```python\nfrom sklearn.model_selection import validation_curve\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.svm import SVC\n\n# Random Forest - n_estimators\ntrain_scores, val_scores = validation_curve(\n    RandomForestClassifier(random_state=42),\n    X, y,\n    param_name='n_estimators',\n    param_range=np.logspace(1, 3, 10).astype(int),\n    cv=5,\n    scoring='accuracy',\n    n_jobs=-1\n)\n\n# SVM - Paramètre C\ntrain_scores_c, val_scores_c = validation_curve(\n    SVC(kernel='rbf'),\n    X, y,\n    param_name='C',\n    param_range=np.logspace(-3, 2, 10),\n    cv=5,\n    scoring='accuracy'\n)\n\n# Visualisation\nplt.figure(figsize=(12, 5))\n\n# Subplot 1: n_estimators\nplt.subplot(1, 2, 1)\ntrain_mean = np.mean(train_scores, axis=1)\ntrain_std = np.std(train_scores, axis=1)\nval_mean = np.mean(val_scores, axis=1)\nval_std = np.std(val_scores, axis=1)\n\nparam_range_rf = np.logspace(1, 3, 10).astype(int)\nplt.semilogx(param_range_rf, train_mean, 'o-', color='red', label='Training')\nplt.fill_between(param_range_rf, train_mean - train_std, train_mean + train_std, alpha=0.1, color='red')\nplt.semilogx(param_range_rf, val_mean, 'o-', color='blue', label='Validation')\nplt.fill_between(param_range_rf, val_mean - val_std, val_mean + val_std, alpha=0.1, color='blue')\nplt.xlabel('n_estimators')\nplt.ylabel('Accuracy')\nplt.legend()\nplt.title('Random Forest Validation Curve')\n```\n\n**Grid Search Integration :**\n```python\nfrom sklearn.model_selection import GridSearchCV\n\n# Recherche exhaustive\nparam_grid = {\n    'C': np.logspace(-3, 2, 20),\n    'gamma': np.logspace(-3, 1, 20)\n}\n\ngrid_search = GridSearchCV(\n    SVC(kernel='rbf'),\n    param_grid,\n    cv=5,\n    scoring='accuracy',\n    n_jobs=-1,\n    return_train_score=True\n)\n\ngrid_search.fit(X, y)\n\n# Extraction des résultats\nresults_df = pd.DataFrame(grid_search.cv_results_)\n\n# Validation curve pour chaque paramètre\nfor param in ['C', 'gamma']:\n    # Grouper par paramètre\n    grouped = results_df.groupby(f'param_{param}').agg({\n        'mean_train_score': 'mean',\n        'std_train_score': 'mean',\n        'mean_test_score': 'mean',\n        'std_test_score': 'mean'\n    })\n    \n    # Plot\n    plt.figure(figsize=(10, 6))\n    plt.errorbar(grouped.index, grouped['mean_train_score'], \n                 yerr=grouped['std_train_score'], label='Training')\n    plt.errorbar(grouped.index, grouped['mean_test_score'], \n                 yerr=grouped['std_test_score'], label='Validation')\n    plt.xscale('log')\n    plt.xlabel(param)\n    plt.ylabel('Accuracy')\n    plt.legend()\n    plt.title(f'Validation Curve - {param}')\n```\n\n**🚀 Applications Avancées :**\n\n**Bayesian Optimization :**\n```python\nfrom skopt import gp_minimize\nfrom skopt.space import Real, Integer\nfrom skopt.utils import use_named_args\n\n# Espace de recherche\ndimensions = [\n    Real(low=1e-6, high=1e1, prior='log-uniform', name='C'),\n    Real(low=1e-6, high=1e1, prior='log-uniform', name='gamma')\n]\n\n# Fonction objectif\n@use_named_args(dimensions)\ndef objective(**params):\n    model = SVC(**params)\n    scores = cross_val_score(model, X, y, cv=5)\n    return -np.mean(scores)  # Minimisation\n\n# Optimisation\nresult = gp_minimize(objective, dimensions, n_calls=50, random_state=42)\n\n# Validation curve basée sur l'exploration\nC_values = [x[0] for x in result.x_iters]\ngamma_values = [x[1] for x in result.x_iters]\nscores = [-y for y in result.func_vals]\n```\n\n**Multi-Objective Optimization :**\n```python\n# Optimisation Pareto (performance vs complexité)\ndef multi_objective_validation(param_range, model_class, X, y):\n    results = []\n    \n    for param in param_range:\n        model = model_class(**{param_name: param})\n        \n        # Performance\n        scores = cross_val_score(model, X, y, cv=5)\n        performance = np.mean(scores)\n        \n        # Complexité (temps d'entraînement)\n        start_time = time.time()\n        model.fit(X, y)\n        complexity = time.time() - start_time\n        \n        results.append({\n            'param': param,\n            'performance': performance,\n            'complexity': complexity\n        })\n    \n    return pd.DataFrame(results)\n\n# Front de Pareto\ndef pareto_front(df):\n    # Maximiser performance, minimiser complexité\n    pareto_points = []\n    for i, row in df.iterrows():\n        dominated = False\n        for j, other in df.iterrows():\n            if (other['performance'] >= row['performance'] and \n                other['complexity'] <= row['complexity'] and\n                (other['performance'] > row['performance'] or \n                 other['complexity'] < row['complexity'])):\n                dominated = True\n                break\n        if not dominated:\n            pareto_points.append(i)\n    \n    return df.iloc[pareto_points]\n```\n\n**🎯 Stratégies d'Optimisation :**\n\n**One Standard Error Rule :**\n```python\ndef one_se_rule(param_values, val_scores, val_stds):\n    \"\"\"\n    Sélectionne le modèle le plus simple dans la zone\n    d'une erreur standard du meilleur modèle\n    \"\"\"\n    best_score = np.max(val_scores)\n    best_idx = np.argmax(val_scores)\n    se_threshold = best_score - val_stds[best_idx]\n    \n    # Modèles dans la zone acceptable\n    acceptable = val_scores >= se_threshold\n    \n    # Le plus simple (paramètre le plus petit)\n    if np.any(acceptable):\n        acceptable_params = param_values[acceptable]\n        return np.min(acceptable_params)\n    else:\n        return param_values[best_idx]\n```\n\n**Early Stopping Integration :**\n```python\nclass ValidationCurveEarlyStopping:\n    def __init__(self, patience=5, min_delta=0.001):\n        self.patience = patience\n        self.min_delta = min_delta\n        self.best_score = -np.inf\n        self.wait = 0\n        self.best_params = None\n    \n    def should_stop(self, current_score, current_params):\n        if current_score > self.best_score + self.min_delta:\n            self.best_score = current_score\n            self.best_params = current_params\n            self.wait = 0\n        else:\n            self.wait += 1\n        \n        return self.wait >= self.patience\n```\n\n**🌟 Impact et Applications Modernes :**\nLes courbes de validation sont devenues essentielles dans l'optimisation automatique des hyperparamètres (AutoML). Elles guident les algorithmes d'optimisation bayésienne, permettent l'early stopping intelligent, et révèlent les trade-offs performance/complexité cruciaux pour le déploiement en production. Dans l'ère du deep learning, elles restent l'outil de référence pour comprendre et optimiser le comportement des modèles.",
+    description: `La courbe de validation trace le score d'un modèle sur l'entraînement et sur la validation en fonction d'un seul hyperparamètre. Elle montre où le modèle passe du sous-apprentissage au sur-apprentissage.
+
+**Exemple :** profondeur maximale d'un arbre de décision (validation croisée à 5 plis ; colonnes : profondeur, score d'entraînement, score de validation).
+\`\`\`python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import validation_curve
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+profondeurs = [1, 2, 3, 5, 8, 12]
+train, val = validation_curve(DecisionTreeClassifier(random_state=0), X, y,
+                              param_name="max_depth", param_range=profondeurs, cv=5)
+for p, a, b in zip(profondeurs, train.mean(axis=1), val.mean(axis=1)):
+    print(p, round(a, 3), round(b, 3))
+# Affichage :
+# 1 0.924 0.9
+# 2 0.952 0.928
+# 3 0.974 0.917
+# 5 0.991 0.916
+# 8 1.0 0.916
+# 12 1.0 0.917
+\`\`\`
+Le score d'entraînement monte jusqu'à 1 : l'arbre apprend les données par cœur. Le score de validation est maximal pour une profondeur de 2, puis stagne autour de 0,92.
+
+**Lecture, avec un score (plus haut = mieux) :**
+• À gauche (modèle trop contraint) : les deux scores sont bas, sous-apprentissage.
+• À droite (modèle trop libre) : le score d'entraînement reste haut, celui de validation baisse ou stagne, sur-apprentissage.
+• On retient la zone où le score de validation est maximal, ou le modèle le plus simple dont le score est à moins d'une erreur standard du meilleur.
+
+Avec une erreur plutôt qu'un score, la courbe prend la forme d'un U.
+
+**Hyperparamètres typiques :** profondeur d'un arbre, k de k-NN, force de régularisation (alpha de Ridge, C d'une SVM), gamma d'un noyau RBF, nombre d'arbres.
+
+**Limite :** un seul hyperparamètre varie, les autres restant fixes ; pour plusieurs, utiliser GridSearchCV ou RandomizedSearchCV. À ne pas confondre avec la courbe d'apprentissage, dont l'abscisse est le nombre d'exemples.`,
     category: "evaluation",
     icon: "Settings"
   },
   {
     term: "Test statistique",
-    description: "Méthodes pour déterminer si les différences de performance entre modèles sont statistiquement significatives (t-test, test de Wilcoxon, etc.).",
+    description: `Un test statistique évalue si une différence observée (entre deux modèles, deux groupes ou une valeur de référence) peut s'expliquer par le seul hasard de l'échantillonnage.
+
+**Principe :** on pose une hypothèse nulle H0 (pas de différence réelle), puis on calcule une statistique de test et la p-valeur : la probabilité d'observer un résultat au moins aussi extrême si H0 était vraie. Une p-valeur sous un seuil α fixé à l'avance (souvent 0,05) conduit à rejeter H0 (voir Significance Testing).
+
+**Comparer deux modèles :**
+• Mêmes données de test, classifieurs : test de McNemar, qui s'appuie sur les exemples où les deux modèles ne donnent pas la même réponse.
+• Scores par plis de validation croisée : test t apparié, mais les plis ne sont pas indépendants, ce qui rend le test trop optimiste (Dietterich, 1998) ; des corrections existent (Nadeau et Bengio, 2003).
+• Plusieurs jeux de données : test de Wilcoxon des rangs signés pour deux modèles, test de Friedman au-delà (Demšar, 2006).
+
+**À savoir :**
+• Une différence significative n'est pas forcément importante : donner aussi la taille de l'effet.
+• Comparer beaucoup de modèles multiplie les chances de faux positifs : corriger les comparaisons multiples (Bonferroni, Holm).
+• Ne pas rejeter H0 ne prouve pas l'absence de différence : l'échantillon peut manquer de puissance (voir Power Analysis).`,
     category: "evaluation",
     icon: "BarChart3"
   },
   {
     term: "Intervalles de confiance",
-    description: "Plages de valeurs qui contiennent probablement la vraie valeur d'une métrique de performance avec un niveau de confiance donné.",
+    description: `Un intervalle de confiance donne une plage de valeurs plausibles pour une quantité inconnue (par exemple la vraie exactitude d'un modèle) à partir d'un échantillon, avec un niveau de confiance fixé, souvent 95 %.
+
+**Interprétation correcte :** si l'on répétait l'expérience avec de nouveaux échantillons en construisant chaque fois l'intervalle de la même façon, environ 95 % de ces intervalles contiendraient la vraie valeur. Ce n'est pas la probabilité que la vraie valeur se trouve dans l'intervalle calculé une fois.
+
+**Exemple :** 180 bonnes réponses sur 200 exemples de test, soit une exactitude de 0,90. Intervalle approché à 95 % : p ± 1,96 × √(p (1 − p) / n).
+\`\`\`python
+from math import sqrt
+
+# 180 bonnes réponses sur 200 exemples de test : exactitude 0,90
+n, ok = 200, 180
+p = ok / n
+marge = 1.96 * sqrt(p * (1 - p) / n)
+print(round(p - marge, 3), round(p + marge, 3))
+# Affichage :
+# 0.858 0.942
+\`\`\`
+Avec dix fois plus d'exemples, la marge serait divisée par √10, soit environ 3.
+
+**Méthodes :**
+• Formule normale ci-dessus : correcte si n est assez grand et p pas trop proche de 0 ou de 1 ; sinon, intervalle de Wilson.
+• Bootstrap : rééchantillonner le jeu de test pour une métrique quelconque (F1, AUC).
+• Validation croisée : l'écart type des scores renseigne sur la variabilité, sans donner un intervalle exact.
+
+**Bon usage :** donner l'intervalle avec la métrique. Si les intervalles de deux modèles se recouvrent largement, la différence est probablement dans la marge d'erreur ; pour trancher, utiliser un test apparié sur les mêmes données.`,
     category: "evaluation",
     icon: "Target"
   },
   {
     term: "Métriques métier (Business Metrics)",
-    description: "Mesures alignées sur les objectifs commerciaux plutôt que purement techniques, comme le ROI, satisfaction client, ou réduction des coûts.",
+    description: `Les métriques métier mesurent l'effet d'un modèle sur l'objectif de l'organisation (coût évité, temps gagné, satisfaction, chiffre d'affaires) plutôt que sa qualité statistique seule.
+
+**Pourquoi :** une bonne métrique technique ne suffit pas. Un modèle précis peut ne rien changer à la décision, ou coûter plus cher qu'il ne rapporte.
+
+**Exemple (chiffres fictifs) :** dans une détection de fraude, un faux négatif (fraude manquée) coûte 10 fois plus qu'un faux positif (vérification manuelle inutile).
+• Modèle A : 20 FP et 5 FN, coût = 20 × 1 + 5 × 10 = 70.
+• Modèle B : 60 FP et 2 FN, coût = 60 × 1 + 2 × 10 = 80.
+
+B a le meilleur rappel, mais A coûte moins cher. Le seuil de décision se règle de la même façon : on retient celui qui minimise le coût total attendu.
+
+**Démarche :**
+• Traduire les erreurs en coûts ou en gains avec les équipes concernées (matrice de coûts).
+• Choisir une métrique technique corrélée au résultat métier, et suivre les deux.
+• Mesurer l'effet réel par une expérience contrôlée (voir A/B Testing), car un gain hors ligne ne garantit pas un gain en production.
+
+**Pièges :**
+• Des coûts estimés à la louche : montrer la sensibilité du résultat à ces hypothèses.
+• Un indicateur qui devient un objectif se déforme (loi de Goodhart).
+• Effets indirects : charge de travail de la vérification manuelle, équité, confiance des utilisateurs.`,
     category: "evaluation",
-    icon: "DollarSign"
+    icon: "Gauge"
   },
   {
     term: "A/B Testing",
-    description: "Méthode d'expérimentation comparant deux versions (A et B) pour déterminer laquelle performe mieux selon une métrique définie.",
+    description: `Un test A/B compare deux versions (A, le témoin, et B, la variante) en les présentant à des groupes d'utilisateurs tirés au hasard, pour savoir si la différence observée sur une métrique est réelle.
+
+**Étapes :**
+• Définir à l'avance la métrique principale (taux de conversion, temps passé) et l'effet minimal qui compte.
+• Calculer la taille d'échantillon nécessaire (voir Power Analysis).
+• Répartir les utilisateurs au hasard entre A et B : les groupes ne diffèrent alors que par la version.
+• Attendre la fin prévue, puis appliquer un test adapté (deux proportions, test t).
+
+**Exemple (chiffres fictifs) :** 120 achats sur 2 400 visiteurs avec A, 150 sur 2 400 avec B (taux de A, taux de B, z, p-valeur).
+\`\`\`python
+from math import sqrt
+from scipy.stats import norm
+
+# Exemple fictif : 120 achats sur 2400 visiteurs (A), 150 sur 2400 (B)
+a, b, n = 120, 150, 2400
+p_a, p_b, p = a / n, b / n, (a + b) / (2 * n)
+z = (p_b - p_a) / sqrt(p * (1 - p) * 2 / n)
+print(round(p_a, 4), round(p_b, 4), round(z, 2), round(2 * (1 - norm.cdf(abs(z))), 3))
+# Affichage :
+# 0.05 0.0625 1.88 0.06
+\`\`\`
+La variante gagne 1,25 point (5 % contre 6,25 %), mais p ≈ 0,06 : au seuil de 5 %, on ne peut pas écarter le hasard. Il faut plus de visiteurs.
+
+**Pièges :**
+• S'arrêter dès que p passe sous 0,05 en regardant les résultats en continu gonfle le taux de faux positifs.
+• Tester beaucoup de variantes ou de métriques : corriger les comparaisons multiples.
+• Effets de nouveauté, de saison, d'interférence entre utilisateurs.
+
+En apprentissage automatique, le test A/B compare un nouveau modèle à l'ancien en production, car les métriques hors ligne ne prédisent pas toujours l'effet réel.`,
     category: "evaluation",
-    icon: "GitCompare"
+    icon: "GitBranch"
   },
   {
     term: "Significance Testing",
-    description: "Tests statistiques pour déterminer si les résultats observés sont dus au hasard ou représentent une différence réelle entre les conditions.",
+    description: `Le test de significativité évalue si un résultat observé est compatible avec le seul hasard, en le comparant à ce qu'on obtiendrait si l'effet recherché n'existait pas.
+
+**Démarche :**
+• Hypothèse nulle H0 (pas d'effet, pas de différence) et hypothèse alternative H1.
+• Seuil α fixé avant l'analyse, par convention 0,05 : c'est le risque accepté de rejeter H0 à tort (erreur de type I).
+• p-valeur : probabilité, si H0 est vraie, d'obtenir un résultat au moins aussi extrême que celui observé.
+• Si p ≤ α, on rejette H0 : le résultat est dit statistiquement significatif.
+
+**Ce que la p-valeur n'est pas :**
+• Ce n'est pas la probabilité que H0 soit vraie.
+• Ce n'est pas la taille ni l'importance de l'effet : avec assez de données, une différence minuscule devient significative.
+• Une p-valeur supérieure à α ne prouve pas l'absence d'effet : le test peut manquer de puissance.
+
+**Erreurs :** type I (faux positif, probabilité α) et type II (faux négatif, probabilité β). La puissance vaut 1 − β.
+
+**Bonnes pratiques :**
+• Donner la taille d'effet et un intervalle de confiance avec la p-valeur.
+• Corriger les comparaisons multiples (Bonferroni, Holm, Benjamini-Hochberg).
+• Fixer l'analyse à l'avance : essayer plusieurs analyses et ne garder que la significative (p-hacking) invalide le test.
+• Choisir un test dont les hypothèses sont vérifiées (indépendance, normalité, ou test non paramétrique).`,
     category: "evaluation",
     icon: "CheckCircle"
   },
   {
     term: "Power Analysis",
-    description: "Calcul de la taille d'échantillon nécessaire pour détecter un effet de taille donnée avec une probabilité spécifiée.",
+    description: `L'analyse de puissance détermine, avant une expérience, le nombre d'observations nécessaire pour détecter un effet d'une taille donnée avec une probabilité fixée.
+
+**Quatre quantités liées** (en connaître trois donne la quatrième) :
+• la taille de l'effet à détecter (par exemple le d de Cohen, différence de moyennes divisée par l'écart type) ;
+• le seuil α (risque de faux positif), souvent 0,05 ;
+• la puissance 1 − β (probabilité de détecter l'effet s'il existe), souvent fixée à 0,80 par convention ;
+• la taille d'échantillon n.
+
+**Exemple :** pour comparer deux groupes avec un effet moyen (d = 0,5), α = 0,05 et une puissance de 0,80, il faut environ 63 observations par groupe (approximation normale).
+\`\`\`python
+from scipy.stats import norm
+
+# Deux groupes, comparaison de moyennes, effet d = différence / écart-type
+d, alpha, puissance = 0.5, 0.05, 0.80
+n = 2 * ((norm.ppf(1 - alpha / 2) + norm.ppf(puissance)) / d) ** 2
+print(round(n, 1))
+# Affichage :
+# 62.8
+\`\`\`
+Un effet deux fois plus petit (d = 0,25) demande environ quatre fois plus d'observations, soit près de 251 par groupe.
+
+**Pourquoi la faire :**
+• Un échantillon trop petit manque des effets réels, et les résultats « positifs » qu'il donne sont souvent surestimés.
+• Un échantillon trop grand gaspille du temps et des ressources.
+• Elle se calcule avant de collecter les données, pas après avec l'effet observé (la puissance a posteriori est peu informative).
+
+**Piège :** la taille d'effet attendue est une hypothèse. La fixer à partir de la plus petite différence qui compterait en pratique, ou d'études préalables, pas à partir de ce qui donne un n commode.
+
+**Outils :** statsmodels (TTestIndPower), G*Power, ou des formules pour deux proportions dans le cas d'un test A/B.`,
     category: "evaluation",
-    icon: "Calculator"
+    icon: "Zap"
   },
   {
     term: "Métriques de ranking",
-    description: "Mesures pour évaluer la qualité des systèmes de classement : NDCG, MAP, MRR. Importantes pour les moteurs de recherche et recommandations.",
+    description: `Les métriques de ranking évaluent la qualité d'un classement de résultats (moteur de recherche, recommandation) : il ne suffit pas de trouver les bons éléments, il faut les placer en tête.
+
+**Principales métriques :**
+• Precision@K et Recall@K : précision ou rappel parmi les K premiers résultats.
+• MRR (Mean Reciprocal Rank) : moyenne, sur les requêtes, de 1 / rang du premier résultat pertinent (rang 1 : 1 ; rang 4 : 0,25).
+• MAP (Mean Average Precision) : moyenne, sur les requêtes, de la précision moyenne de chaque classement.
+• NDCG (Normalized Discounted Cumulative Gain) : gère des niveaux de pertinence (0, 1, 2, 3...) et décote les résultats lointains. DCG = Σ pertinence_i / log2(i + 1), puis NDCG = DCG / DCG du classement idéal, entre 0 et 1.
+
+**Exemple :** cinq documents notés de 0 à 3. Les deux documents de pertinence 3 sont classés en 1re et en 5e position, loin du classement idéal.
+\`\`\`python
+import numpy as np
+from sklearn.metrics import ndcg_score
+
+pertinence = np.array([[3, 2, 3, 0, 1]])        # pertinence réelle de 5 documents
+score = np.array([[0.9, 0.8, 0.1, 0.7, 0.2]])   # score donné par le modèle
+print(round(ndcg_score(pertinence, score), 3))
+# Affichage :
+# 0.926
+\`\`\`
+
+**Choisir :** Precision@K ou MRR quand seul le début de la liste compte ; NDCG quand la pertinence est graduée ; MAP pour une pertinence binaire sur tout le classement.
+
+**Remarques :** les métriques de classification ordinaires ignorent l'ordre. Les jugements de pertinence (annotateurs, clics) sont bruités et sujets au biais de position. En production, on les complète par des tests A/B.`,
     category: "evaluation",
-    icon: "List"
+    icon: "Star"
   },
   {
     term: "Métriques de clustering",
-    description: "Mesures pour évaluer la qualité des clusters : silhouette score, inertie, indice de Davies-Bouldin. Aident à choisir le nombre optimal de clusters.",
+    description: `Les métriques de clustering évaluent la qualité d'un regroupement. Comme il n'existe généralement pas de vérité terrain, on distingue deux familles.
+
+**Métriques internes (sans étiquettes) :**
+• Inertie (somme des carrés intra-cluster) : somme des carrés des distances de chaque point au centre de son cluster. Elle baisse toujours quand k augmente : on cherche un « coude », mais elle ne suffit pas à choisir k.
+• Coefficient de silhouette : s = (b − a) / max(a, b), où a est la distance moyenne d'un point aux autres points de son cluster et b sa distance moyenne au cluster voisin le plus proche. Il va de −1 à 1 : près de 1, le point est bien classé, négatif, il est probablement mal placé.
+• Indices de Davies-Bouldin (plus bas = mieux) et de Calinski-Harabasz (plus haut = mieux).
+
+**Métriques externes (avec étiquettes connues) :** indice de Rand ajusté (ARI : 1 = partitions identiques, proche de 0 = hasard) et information mutuelle normalisée (NMI).
+
+**Exemple :** k-means sur les iris (colonnes : k, inertie, silhouette, ARI par rapport aux espèces).
+\`\`\`python
+from sklearn.cluster import KMeans
+from sklearn.datasets import load_iris
+from sklearn.metrics import adjusted_rand_score, silhouette_score
+
+X, y = load_iris(return_X_y=True)
+for k in range(2, 6):
+    km = KMeans(n_clusters=k, n_init=10, random_state=0).fit(X)
+    print(k, round(km.inertia_, 1), round(silhouette_score(X, km.labels_), 3), round(adjusted_rand_score(y, km.labels_), 3))
+# Affichage :
+# 2 152.3 0.681 0.54
+# 3 78.9 0.553 0.73
+# 4 57.2 0.498 0.65
+# 5 46.4 0.489 0.608
+\`\`\`
+La silhouette est maximale pour k = 2 (les setosa sont bien séparées des deux autres espèces), l'ARI pour k = 3, le nombre d'espèces : elles ne mesurent pas la même chose.
+
+**Précautions :** ces métriques favorisent les clusters compacts et sphériques. Elles ne remplacent pas l'interprétation des groupes par un connaisseur du domaine.`,
     category: "evaluation",
     icon: "Layers"
   },
   {
     term: "Métriques de génération de texte",
-    description: "Mesures spécialisées pour évaluer la qualité du texte généré : BLEU, ROUGE, perplexité, cohérence sémantique.",
+    description: `Les métriques de génération de texte comparent un texte produit par un modèle (traduction, résumé, réponse) à une ou plusieurs références, ou mesurent la qualité du modèle de langage lui-même.
+
+**Avec références :**
+• BLEU (Papineni et al., 2002) : part des n-grammes du texte généré présents dans les références, avec une pénalité de brièveté. Conçue pour la traduction, elle se calcule sur un corpus plus que sur une phrase.
+• ROUGE (Lin, 2004) : orientée rappel, elle compte les n-grammes (ROUGE-N) ou la plus longue sous-séquence commune (ROUGE-L) de la référence retrouvés dans le résumé généré.
+• BERTScore (Zhang et al., 2020) : compare des représentations de mots issues d'un modèle, ce qui reconnaît des reformulations.
+
+**Pour le modèle de langage :** la perplexité est l'exponentielle de l'entropie croisée moyenne par unité : exp(−(1/N) Σ log P(unité_i | contexte)). Plus elle est basse, mieux le modèle prédit un texte. Elle ne se compare qu'entre modèles qui utilisent le même découpage en unités (tokens) sur les mêmes textes.
+
+**Limites :**
+• Ces métriques mesurent un recouvrement de mots, pas la vérité, la cohérence ou l'utilité : un texte fluide et faux peut obtenir un bon score.
+• Une bonne réponse qui s'écarte de la référence est pénalisée.
+• Elles corrèlent imparfaitement avec le jugement humain, surtout en génération ouverte.
+• On les complète par une évaluation humaine (voir Human Evaluation), des vérifications factuelles et, avec prudence, un modèle utilisé comme juge.`,
     category: "evaluation",
     icon: "MessageSquare"
   },
   {
     term: "Fairness Metrics",
-    description: "Mesures pour évaluer l'équité des modèles ML : parité démographique, égalité des chances, calibration équitable.",
+    description: `Les métriques d'équité comparent le comportement d'un modèle selon des groupes de personnes définis par un attribut sensible (sexe, âge, origine...) pour repérer des écarts de traitement.
+
+**Principales définitions :**
+• Parité démographique : même taux de prédictions positives dans chaque groupe.
+• Égalité des chances (Hardt et al., 2016) : même taux de vrais positifs (rappel) dans chaque groupe.
+• Égalisation des cotes (equalized odds) : mêmes taux de vrais positifs et de faux positifs.
+• Calibration par groupe : à score égal, même probabilité réelle d'être positif.
+
+**Exemple (données fictives) :** taux de prédictions positives et rappel par groupe.
+\`\`\`python
+import numpy as np
+
+groupe = np.array(["A"] * 6 + ["B"] * 6)
+y_reel = np.array([1, 1, 1, 0, 0, 0,   1, 1, 0, 0, 0, 0])
+y_pred = np.array([1, 1, 0, 1, 0, 0,   1, 0, 0, 0, 0, 0])
+
+for g in ["A", "B"]:
+    m = groupe == g
+    print(g, y_pred[m].mean().round(2), y_pred[m & (y_reel == 1)].mean().round(2))
+# Affichage :
+# A 0.5 0.67
+# B 0.17 0.5
+\`\`\`
+Le groupe A reçoit 50 % de prédictions positives contre 17 % pour B, et son rappel est de 0,67 contre 0,5 : ni la parité démographique ni l'égalité des chances ne sont respectées.
+
+**Limites :**
+• Quand les taux de base diffèrent entre groupes, ces critères sont en général incompatibles entre eux (Kleinberg et al., 2016 ; Chouldechova, 2017). Choisir le critère adapté au contexte est une décision éthique et juridique autant que technique.
+• Un bon score n'établit pas l'absence de discrimination : les étiquettes peuvent elles-mêmes refléter des biais.
+• Mesurer suppose de disposer de l'attribut sensible, ce qui pose des questions de protection des données.
+• Les groupes, surtout croisés, peuvent être petits : donner des intervalles de confiance.
+
+Des bibliothèques comme Fairlearn ou AIF360 implémentent ces métriques.`,
     category: "evaluation",
-    icon: "Scale"
+    icon: "Users"
   },
   {
     term: "Robustness Testing",
-    description: "Évaluation de la stabilité du modèle face aux perturbations des données, changements de distribution, ou attaques adverses.",
+    description: `Le test de robustesse évalue si un modèle conserve ses performances quand les données s'écartent de celles de l'entraînement : bruit, valeurs manquantes, changement de distribution, entrées malveillantes.
+
+**Types de perturbations :**
+• Bruit et corruptions : bruit gaussien, flou, compression, fautes de frappe.
+• Changement de distribution : autre période, autre site, autre population, autre capteur.
+• Valeurs manquantes ou aberrantes.
+• Attaques adverses : perturbations calculées pour tromper le modèle.
+• Sous-groupes rares et cas limites.
+
+**Exemple :** on ajoute au jeu de test un bruit gaussien d'écart type croissant (en écarts types des variables) et on mesure l'exactitude (colonnes : bruit, exactitude).
+\`\`\`python
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+X = StandardScaler().fit_transform(X)
+X_ent, X_test, y_ent, y_test = train_test_split(X, y, stratify=y, random_state=0)
+modele = LogisticRegression(max_iter=1000).fit(X_ent, y_ent)
+
+rng = np.random.default_rng(0)
+for bruit in [0.0, 0.5, 1.0, 2.0]:
+    X_bruite = X_test + rng.normal(0, bruit, X_test.shape)
+    print(bruit, round(modele.score(X_bruite, y_test), 3))
+# Affichage :
+# 0.0 0.958
+# 0.5 0.958
+# 1.0 0.902
+# 2.0 0.797
+\`\`\`
+L'exactitude passe de 0,958 à 0,797 : le modèle est sensible à un bruit d'amplitude comparable à celle des variables.
+
+**Méthode :**
+• Définir les perturbations plausibles dans l'usage réel et la perte de performance acceptable.
+• Tracer le score en fonction de l'intensité de la perturbation.
+• Évaluer par sous-groupes, pas seulement en moyenne.
+• Surveiller en production la dérive des données.
+
+**Pour améliorer :** augmentation de données, entraînement avec bruit, régularisation, ensemble de modèles, entraînement adverse.`,
     category: "evaluation",
     icon: "Shield"
   },
   {
     term: "Ablation Study",
-    description: "Analyse systématique de l'impact de chaque composant du modèle en les retirant un par un pour comprendre leur contribution.",
+    description: `Une étude d'ablation mesure la contribution de chaque composant d'un système en le retirant, ou en le remplaçant par une version simple, puis en comparant les performances.
+
+**Principe :**
+• Partir du système complet et d'un protocole d'évaluation fixé (données, métrique, graines).
+• Retirer ou neutraliser un élément à la fois : une couche, un groupe de variables, une étape de prétraitement, une perte auxiliaire, un module d'attention.
+• Réentraîner dans les mêmes conditions et noter la variation du score.
+• Un élément dont le retrait ne change pas le score est peut-être inutile.
+
+**Exemple :** pour un modèle de classification de texte, on compare le modèle complet à trois variantes (sans lemmatisation, sans variables de longueur, sans couche d'attention) et on rapporte la baisse d'exactitude de chacune.
+
+**Précautions :**
+• Répéter avec plusieurs graines et donner l'écart type : de petites différences peuvent n'être que du hasard.
+• Les composants interagissent : retirer A puis B peut coûter plus ou moins que la somme des deux pertes. Tester aussi des retraits combinés.
+• Réajuster les hyperparamètres de chaque variante, sinon on mesure surtout un désajustement.
+• Une ablation faite sur un jeu de données ne se généralise pas automatiquement.
+
+**Origine du terme :** en neurosciences, l'ablation est le retrait d'une zone pour étudier sa fonction ; la démarche est la même, appliquée à un modèle.`,
     category: "evaluation",
-    icon: "Minus"
+    icon: "TrendingDown"
   },
   {
     term: "Baseline Models",
-    description: "Modèles simples utilisés comme référence pour évaluer si des approches plus complexes apportent une amélioration significative.",
+    description: `Un modèle de référence (baseline) est un modèle très simple dont le score sert de point de comparaison : un modèle plus complexe n'a d'intérêt que s'il fait nettement mieux.
+
+**Exemples de références :**
+• Classification : toujours prédire la classe majoritaire, ou une règle métier simple.
+• Régression : toujours prédire la moyenne ou la médiane de l'entraînement.
+• Série temporelle : répéter la dernière valeur (prévision naïve) ou la valeur de la même période l'an passé (naïve saisonnière).
+• Un modèle linéaire (régression linéaire ou logistique) avec peu de variables.
+• La pratique actuelle de l'organisation (règle, processus manuel).
+
+**Exemple :** 1 000 exemples dont 5 % de positifs, et un DummyClassifier qui prédit toujours « négatif ».
+\`\`\`python
+import numpy as np
+from sklearn.dummy import DummyClassifier
+from sklearn.metrics import accuracy_score, recall_score
+
+y = np.array([0] * 950 + [1] * 50)       # 5 % de cas positifs
+X = np.zeros((1000, 1))                  # aucune information utile
+modele = DummyClassifier(strategy="most_frequent").fit(X, y)
+pred = modele.predict(X)
+print(accuracy_score(y, pred), recall_score(y, pred))
+# Affichage :
+# 0.95 0.0
+\`\`\`
+Son exactitude est de 0,95 et son rappel de 0 : tout modèle qui n'atteint pas 95 % d'exactitude fait moins bien que ne rien faire.
+
+**Pourquoi c'est utile :**
+• Situer un score : 0,90 est excellent ou médiocre selon la base.
+• Détecter une erreur de mise en place (fuite de données, mauvaise cible) quand un modèle complexe ne bat pas la base.
+• Décider si la complexité (coût, délai, explicabilité) est justifiée.
+
+**En pratique :** scikit-learn propose DummyClassifier et DummyRegressor ; évaluer la base avec les mêmes découpages et les mêmes métriques que le modèle étudié.`,
     category: "evaluation",
     icon: "BarChart3"
   },
   {
     term: "Human Evaluation",
-    description: "Évaluation par des experts humains, particulièrement importante pour les tâches subjectives comme la génération de texte créatif.",
+    description: `L'évaluation humaine fait juger la qualité des sorties d'un modèle par des personnes. Elle est nécessaire quand l'objectif est subjectif ou difficile à mesurer automatiquement : fluidité, pertinence et utilité d'un texte généré, qualité d'une traduction ou d'une image, ton d'un assistant.
+
+**Formes courantes :**
+• Notation absolue : une échelle (par exemple de 1 à 5) par critère (fluidité, exactitude, utilité).
+• Comparaison par paires : l'évaluateur choisit la meilleure de deux sorties, souvent sans savoir quel modèle a produit laquelle (évaluation en aveugle). C'est plus facile à juger qu'une note.
+• Classement, ou annotation d'erreurs (erreurs factuelles, omissions, propos toxiques).
+
+**Qualité de l'évaluation :**
+• Consignes écrites, exemples d'étalonnage, plusieurs évaluateurs par sortie, ordre de présentation aléatoire.
+• Accord entre évaluateurs : kappa de Cohen (2 évaluateurs), kappa de Fleiss ou alpha de Krippendorff (plus de deux), qui retirent l'accord dû au hasard.
+\`\`\`python
+from sklearn.metrics import cohen_kappa_score
+
+a = [1, 1, 0, 1, 0, 0, 1, 0, 1, 1]
+b = [1, 0, 0, 1, 0, 1, 1, 0, 1, 1]
+accord = sum(x == y for x, y in zip(a, b)) / len(a)
+print(accord, round(cohen_kappa_score(a, b), 3))
+# Affichage :
+# 0.8 0.583
+\`\`\`
+Ici les évaluateurs sont d'accord dans 80 % des cas, mais le kappa n'est que de 0,583.
+
+**Limites :**
+• Coûteuse, lente, difficile à répéter à l'identique.
+• Subjective : biais de position, préférence pour les réponses longues ou assurées, fatigue.
+• Des évaluateurs non spécialistes jugent mal les erreurs factuelles dans les domaines techniques.
+• Un modèle de langage peut servir de juge pour réduire le coût, mais il a ses propres biais : le valider sur un échantillon noté par des humains.`,
     category: "evaluation",
     icon: "Users"
   }

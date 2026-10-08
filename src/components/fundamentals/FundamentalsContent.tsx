@@ -1,10 +1,12 @@
 
-import { useState } from "react";
-import DataVizSection from "./DataVizSection";
-import ProgrammingSection from "./ProgrammingSection";
-import DataProcessingSection from "./DataProcessingSection";
-import MathVisualsSection from "./MathVisualsSection";
-import StatisticsSection from "./statistics/StatisticsSection";
+import { lazy, useState } from "react";
+import ProgressiveSections from "@/components/layout/ProgressiveSections";
+// Sections (graphiques, formules) chargées à la demande : le bandeau de la page s'affiche sans les attendre
+const StatisticsSection = lazy(() => import("./statistics/StatisticsSection"));
+const MathVisualsSection = lazy(() => import("./MathVisualsSection"));
+const ProgrammingSection = lazy(() => import("./ProgrammingSection"));
+const DataVizSection = lazy(() => import("./DataVizSection"));
+const DataProcessingSection = lazy(() => import("./DataProcessingSection"));
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowUp, Book } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -148,11 +150,13 @@ const FundamentalsContent = () => {
         </div>
       </div>
 
-      <StatisticsSection />
-      <MathVisualsSection />
-      <ProgrammingSection />
-      <DataVizSection />
-      <DataProcessingSection />
+      <ProgressiveSections>
+        <StatisticsSection />
+        <MathVisualsSection />
+        <ProgrammingSection />
+        <DataVizSection />
+        <DataProcessingSection />
+      </ProgressiveSections>
 
       <div className="flex justify-between pt-6 border-t">
         <Button 

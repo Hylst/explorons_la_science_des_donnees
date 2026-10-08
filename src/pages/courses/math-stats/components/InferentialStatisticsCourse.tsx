@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, ErrorBar, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, ErrorBar, Cell } from "recharts";
+import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 // Couleurs des étapes du test : classes complètes, sinon Tailwind ne les génère pas au build
 const stepStyles: Record<string, { box: string; badge: string; title: string }> = {
@@ -295,7 +296,7 @@ const InferentialStatisticsCourse = () => {
               <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-red-500 align-middle" aria-hidden="true" />l'intervalle manque μ</span>
             </p>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
+              <DeferredResponsiveContainer width="100%" height="100%">
                 <BarChart data={confidenceIntervalData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="sample" />
@@ -315,7 +316,7 @@ const InferentialStatisticsCourse = () => {
                   {/* Après les barres : la ligne reste visible par-dessus */}
                   <ReferenceLine y={TRUE_MEAN} stroke="#4f46e5" strokeWidth={2} strokeDasharray="6 4" />
                 </BarChart>
-              </ResponsiveContainer>
+              </DeferredResponsiveContainer>
             </div>
             <p className="text-sm text-gray-600 mt-2">
               Chaque barre est la moyenne d'un échantillon, et la barre d'erreur son intervalle de confiance à 95 %.
