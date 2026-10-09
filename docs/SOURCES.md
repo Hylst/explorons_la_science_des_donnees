@@ -234,25 +234,9 @@ Les durées des cours du site sont des estimations éditoriales, à suivre à vo
 
 Là où aucun suffixe n'est affiché, le libellé est « Durée conseillée » (`src/components/resources/InitiationCoursesSection.tsx`, `src/pages/courses/MLModelsGuide.tsx`). Les durées de cours externes de la rubrique « Cours en ligne » sont, elles, relevées sur les pages des plateformes (section 10).
 
-### Estimations de l'auteur par niveau (salaires)
+### Estimations de l'auteur par niveau (salaires) : retirées
 
-`CareersSection.tsx`, rubrique « Estimations de l'auteur par niveau d'expérience » (`/introduction`), montants annuels bruts, « à titre indicatif et non issus d'une étude » :
-
-| Bloc affiché | Poste | Estimation |
-|---|---|---|
-| Premier bloc (junior) | Data Analyst | 35-45 k€ |
-| Premier bloc (junior) | Data Scientist | 45-60 k€ |
-| Premier bloc (junior) | Data Engineer | 45-55 k€ |
-| Premier bloc (junior) | ML Engineer | 50-65 k€ |
-| Deuxième bloc (postes « Senior ») | Data Analyst Senior | 50-70 k€ |
-| Deuxième bloc (postes « Senior ») | Data Scientist Senior | 65-85 k€ |
-| Deuxième bloc (postes « Senior ») | Data Engineer Senior | 60-80 k€ |
-| Deuxième bloc (postes « Senior ») | ML Engineer Senior | 70-90 k€ |
-| Troisième bloc (direction) | Lead Data Scientist | 80-110 k€ |
-| Troisième bloc (direction) | Head of Data | 90-130 k€ |
-| Troisième bloc (direction) | Chief Data Officer | 120 k€ et plus |
-
-Le site précise que ces montants varient selon la localisation, la taille de l'entreprise, le secteur et l'expérience. Ils ne proviennent d'aucune des sources de la section 8 et ne doivent pas être lus comme des chiffres sourcés.
+Retirées le 9 octobre 2026 à la demande de l'auteur : certaines fourchettes (juniors notamment) contredisaient les fiches Apec affichées juste au-dessus, et elles ne reposaient sur aucune étude. `CareersSection.tsx` (`/introduction`) ne garde que les fourchettes sourcées de l'Apec (section 8) et un paragraphe sans chiffre sur l'évolution avec l'expérience.
 
 ### Prix indicatifs des livres
 

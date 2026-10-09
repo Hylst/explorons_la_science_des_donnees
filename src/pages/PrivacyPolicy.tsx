@@ -68,6 +68,11 @@ const PrivacyPolicy = () => {
                   ou effacer les données du site les supprime.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
+                  Le site utilise aussi le stockage de session (sessionStorage), qui est vidé à la fermeture de
+                  l'onglet : il garde votre position de lecture pour la retrouver en revenant sur une page, et le nombre
+                  de fiches du glossaire déjà affichées. Ces informations ne quittent pas non plus votre appareil.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
                   Le site peut aussi être installé comme une application : un cache (service worker) garde alors une
                   copie des pages et des moteurs Python et SQL pour fonctionner sans connexion.
                 </p>

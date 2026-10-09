@@ -176,30 +176,12 @@ const CareersSection = () => {
             Ce sont des salaires proposés, non des salaires versés.
           </p>
 
-          <h4 className="font-semibold mb-2">Estimations de l'auteur par niveau d'expérience</h4>
-          <div className="space-y-2 mb-6">
-            <SalaryRangeItem role="Data Analyst" range="35-45 k€" level="junior" />
-            <SalaryRangeItem role="Data Scientist" range="45-60 k€" level="junior" />
-            <SalaryRangeItem role="Data Engineer" range="45-55 k€" level="junior" />
-            <SalaryRangeItem role="ML Engineer" range="50-65 k€" level="junior" />
-          </div>
-
-          <div className="space-y-2 mb-6">
-            <SalaryRangeItem role="Data Analyst Senior" range="50-70 k€" level="mid" />
-            <SalaryRangeItem role="Data Scientist Senior" range="65-85 k€" level="mid" />
-            <SalaryRangeItem role="Data Engineer Senior" range="60-80 k€" level="mid" />
-            <SalaryRangeItem role="ML Engineer Senior" range="70-90 k€" level="mid" />
-          </div>
-
-          <div className="space-y-2">
-            <SalaryRangeItem role="Lead Data Scientist" range="80-110 k€" level="senior" />
-            <SalaryRangeItem role="Head of Data" range="90-130 k€" level="senior" />
-            <SalaryRangeItem role="Chief Data Officer" range="120 k€ et plus" level="senior" />
-          </div>
-
-          <p className="text-xs text-gray-500 mt-4">
-            Note: les estimations par niveau d'expérience sont celles de l'auteur, données à titre indicatif et non issues d'une
-            étude ; elles varient selon la localisation, la taille de l'entreprise, le secteur d'activité et l'expérience spécifique.
+          <h4 className="font-semibold mb-2">Et avec l'expérience ?</h4>
+          <p className="text-sm text-gray-700">
+            Les rémunérations évoluent généralement avec l'expérience et l'étendue des responsabilités (poste senior,
+            encadrement d'une équipe, direction des données), mais elles varient aussi selon la région, la taille de
+            l'entreprise et le secteur. Le site ne donne pas de chiffre par niveau d'expérience, faute de source vérifiée.
+            Pour un ordre de grandeur plus précis, consultez les fiches de l'Apec ci-dessus et des offres d'emploi réelles.
           </p>
         </div>
         

@@ -9,7 +9,8 @@ Deux sous-agents Sonnet sur des périmètres séparés, lots vérifiés avant in
 - **Blog** : les quatre références vérifiées et exactes (cigognes 2004, Berkeley 1975, Anscombe 1973, Cleveland et McGill 1984), paragraphe sur les cigognes précisé d'après le résumé de l'étude (accouchements hors hôpital à Berlin), DOI ajoutés, temps de lecture recalculés (un article annoncé « 15 min » compte 523 mots).
 - **Accueil et pages** : la carte « Communauté » promettait un forum que le site n'a pas, trois liens de la carte de la data science visaient la mauvaise page, le catalogue affichait « 0 plans de modules », la page Machine learning renvoyait vers les outils, le formulaire de contact dit désormais qu'il écrit à l'auteur et mentionne le code source sur demande. Conditions d'utilisation : une phrase fausse sur les données d'exemple corrigée (date de mise à jour des pages légales passée au 9 octobre 2026).
 - **Adresses fictives** : les exemples calculés de la préparation des données utilisaient des adresses en @exemple.fr, un domaine non réservé ; elles passent sur example.org, domaine réservé aux exemples (RFC 2606).
-- **Gardé** : les estimations de salaires par niveau, décision éditoriale de l'auteur (la relecture proposait de les retirer : question posée à l'auteur).
+- **Salaires** : les estimations par niveau d'expérience sont retirées à la demande de l'auteur (certaines fourchettes contredisaient les fiches Apec affichées juste au-dessus) ; seules restent les fourchettes Apec sourcées.
+- **Confidentialité** : la politique cite désormais aussi le stockage de session (position de lecture, fiches du glossaire déjà affichées), vidé à la fermeture de l'onglet ; aucun engagement modifié.
 
 ## [2026-10-09, suite] - Relecture des pages machine learning, programmation, fondamentaux et quiz
 
