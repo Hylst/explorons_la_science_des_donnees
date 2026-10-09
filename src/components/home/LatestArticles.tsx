@@ -27,9 +27,9 @@ const LatestArticles = () => {
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-2">Articles Récents</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-2">Du côté du blog</h2>
             <p className="text-xl text-muted-foreground">
-              Les dernières actualités et tutoriels de notre blog
+              Des guides et des études de cas sur la méthode et les métiers de la data
             </p>
           </div>
           <Button asChild variant="outline" className="mt-4 md:mt-0">

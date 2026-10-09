@@ -36,7 +36,7 @@ const HistorySection = () => {
             <ul className="space-y-2">
               <HistoryEvent period="XVIIe siècle" event="Développement des premiers concepts statistiques" />
               <HistoryEvent period="1800-1900" event="Avancées majeures en probabilités et statistiques" />
-              <HistoryEvent period="1962" event="John Tukey publie 'The Future of Data Analysis' et défend l'analyse de données comme discipline à part entière" />
+              <HistoryEvent period="1962" event="John Tukey publie « The Future of Data Analysis » et défend l'analyse de données comme discipline à part entière" />
               <HistoryEvent period="1960-1970" event="Émergence de l'analyse de données assistée par ordinateur" />
             </ul>
           </div>
@@ -46,8 +46,8 @@ const HistorySection = () => {
             <ul className="space-y-2">
               <HistoryEvent period="Années 2000" event="L'essor du web fait exploser les volumes de données et prépare l'ère du Big Data" color="text-ds-blue-500" />
               <HistoryEvent period="2012" event="AlexNet (Krizhevsky, Sutskever et Hinton) remporte le concours ImageNet : l'apprentissage profond s'impose en vision par ordinateur" color="text-ds-blue-500" />
-              <HistoryEvent period="2015" event="Des bibliothèques libres (TensorFlow, puis PyTorch) diffusent l'apprentissage profond hors des laboratoires" color="text-ds-blue-500" />
-              <HistoryEvent period="Aujourd'hui" event="Intégration profonde dans tous les secteurs d'activité et développement de l'IA générative" color="text-ds-blue-500" />
+              <HistoryEvent period="2015-2016" event="Des bibliothèques libres (TensorFlow, puis PyTorch) diffusent l'apprentissage profond hors des laboratoires" color="text-ds-blue-500" />
+              <HistoryEvent period="Aujourd'hui" event="Présence dans de nombreux secteurs d'activité et essor de l'IA générative" color="text-ds-blue-500" />
             </ul>
           </div>
         </div>
@@ -56,11 +56,11 @@ const HistorySection = () => {
           <h3 className="text-xl font-semibold mb-3">Moments clés dans l'évolution de la Data Science</h3>
           <div className="relative border-l-2 border-ds-purple-300 pl-6 ml-4 space-y-10 py-4">
             {[
-              { year: "1974", event: "Peter Naur utilise le terme 'Data Science' dans son livre", highlight: false },
-              { year: "1996", event: "La conférence de l'IFCS à Kobe porte 'Data science, classification, and related methods' dans son titre", highlight: false },
-              { year: "2001", event: "William S. Cleveland publie 'Data Science: An Action Plan'", highlight: true },
-              { year: "2008", event: "DJ Patil et Jeff Hammerbacher revendiquent la création du titre 'Data Scientist'", highlight: false },
-              { year: "2011", event: "Le McKinsey Global Institute publie 'Big data: The next frontier for innovation, competition, and productivity', qui évoque une pénurie de profils analytiques", highlight: true },
+              { year: "1974", event: "Peter Naur utilise le terme « data science » dans son livre sur les méthodes informatiques", highlight: false },
+              { year: "1996", event: "La conférence de l'IFCS à Kobe porte « Data science, classification, and related methods » dans son titre", highlight: false },
+              { year: "2001", event: "William S. Cleveland publie « Data Science: An Action Plan for Expanding the Technical Areas of the Field of Statistics »", highlight: true },
+              { year: "2008", event: "DJ Patil et Jeff Hammerbacher revendiquent la création du titre « data scientist »", highlight: false },
+              { year: "2011", event: "Le McKinsey Global Institute publie « Big data: The next frontier for innovation, competition, and productivity », qui évoque une pénurie de profils analytiques", highlight: true },
               { year: "2015", event: "Google publie TensorFlow en open source (novembre 2015), ce qui contribue à populariser le Deep Learning auprès des développeurs", highlight: false },
               { year: "2020", event: "OpenAI présente GPT-3 (Brown et al., 2020), un modèle de langage de 175 milliards de paramètres", highlight: true }
             ].map((item, index) => (

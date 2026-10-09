@@ -16,7 +16,7 @@ const FeaturedCourses = () => {
           <div>
             <h2 className="text-3xl font-bold tracking-tight mb-2">Pour commencer</h2>
             <p className="text-xl text-muted-foreground">
-              Trois cours dont les leçons sont rédigées
+              {`Trois cours pour démarrer, parmi les ${COURSE_CATALOG.length} du catalogue`}
             </p>
           </div>
           <Button asChild variant="outline" className="mt-4 md:mt-0">

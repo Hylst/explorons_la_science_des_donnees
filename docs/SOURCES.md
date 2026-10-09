@@ -121,7 +121,7 @@ Remarques tirées de R1-e :
 | Keras | 4,3 % |
 
 - **Niveau : page lue.** Valeurs absentes de R1 et R2 ; les cinq pourcentages et l'effectif de 45 841 réponses ont été retrouvés dans la copie locale de la page, sans revérifier l'attribution de chaque valeur à sa bibliothèque.
-- Le camembert voisin « Domaines d'application du ML » est **illustratif** (voir la section « Éléments éditoriaux ») ; ce n'est pas une statistique. L'ancien graphique citait Kaggle 2023 avec des valeurs fausses.
+- Le camembert voisin « Domaines d'application du ML » ne mesure rien : depuis le 9 octobre 2026, ses parts sont égales, sans pourcentage, et le texte le dit (voir « Éléments éditoriaux »). L'ancien graphique citait Kaggle 2023 avec des valeurs fausses, puis des proportions inventées.
 
 ## 7. Part du temps consacrée à la préparation des données
 
@@ -219,8 +219,8 @@ Ces éléments sont des appréciations ou des estimations de l'auteur, **non iss
 
 - **Comparaison des langages** (`LanguageComparison.tsx`, `/fundamentals/programming`) : les notes de 0 à 100 (facilité d'apprentissage, marché de l'emploi, performance, écosystème), les notes de 0 à 10 par cas d'usage (« Débutant complet », « Machine Learning », « Big Data », etc.) et les notes de 0 à 10 de vitesse, lisibilité, écosystème et apprentissage sont des appréciations de l'auteur, destinées à situer les langages les uns par rapport aux autres. Le bandeau « Comment lire les notes de cette page » le dit. Les graphiques étiquettent ces séries « (appréciation) ». Le seul chiffre mesuré de cette comparaison est l'usage fréquent chez les praticiens (Anaconda 2021, section 4) et l'usage chez les développeurs (Stack Overflow, section 3). Les libellés de tendance de marché (« Croissance forte », « Stable », « Essentiel », « Émergent ») sont également éditoriaux. Les salaires moyens par langage, qui n'avaient aucune source, ont été supprimés.
 - **Notes sur 5 des algorithmes** (`src/components/ui/interactive-schema.tsx`, composant `AlgorithmComparison`, affiché sur `/machine-learning/unsupervised`) : la « Performance » de chaque algorithme est une échelle d'étoiles de 1 à 5, score éditorial et non une note d'utilisateurs.
-- **Difficulté des projets** (`src/components/projects/ProjectGrid.tsx`, donnée `difficulty` de `src/data/projects.ts`) : note de 1 à 5 attribuée par l'auteur aux 10 projets.
-- **Domaines d'application du ML** (`MLFrameworks.tsx`, `/tools/ml-frameworks`) : le camembert (vision par ordinateur 30, NLP 25, prédiction numérique 20, séries temporelles 12, recommandation 8, autres 5) est une répartition **illustrative**. Aucune enquête ne publie une telle ventilation ; les proportions servent seulement à montrer qu'il existe plusieurs grands domaines. Ne pas les citer comme des statistiques.
+- **Difficulté des projets** (`src/components/projects/ProjectGrid.tsx`, donnée `difficulty` de `src/data/projects.ts`) : note de 1 à 5 attribuée par l'auteur aux 12 projets.
+- **Domaines d'application du ML** (`MLFrameworks.tsx`, `/tools/ml-frameworks`) : le camembert montre six domaines à parts égales, sans pourcentage ni infobulle (9 octobre 2026). Les anciennes proportions (30, 25, 20, 12, 8, 5) étaient inventées : aucune enquête ne publie une telle ventilation.
 
 ### Durées de cours « indicatif »
 
@@ -281,3 +281,12 @@ Le site précise que ces montants varient selon la localisation, la taille de l'
 - WhyLabs : « WhyLabs, Inc. is discontinuing operations » (whylabs.ai, lu le 5 octobre 2026). Retiré (Evidently AI reste listé).
 - Cortex (déploiement) : dernière version en 2022 selon la relecture R7, non revérifié. Remplacé par KServe.
 - TorchText : développement arrêté en 2024 (dernière version 0.18). Remplacé par TorchAudio. TensorFlow Lite est devenu LiteRT (2024).
+
+## Outils retirés ou remplacés (9 octobre 2026, relecture des pages Outils)
+
+- Seldon Core (`MLFrameworks.tsx`) : passé sous licence BSL en janvier 2024, licence payante en production. Remplacé par Ray Serve. Niveau : connaissance de la relecture, non relu à la source pour cette page.
+- Auto-sklearn : dernière version 0.15.0, développement à l'arrêt. Remplacé par AutoGluon, FLAML ajouté. Niveau : non relu à la source.
+- Talend Open Studio : retiré par Qlik le 31 janvier 2024 ; la mention reste avec cette précision (`DataProcessingTools.tsx`). Niveau : source Qlik lue par la relecture.
+- Vegas (bibliothèque Scala) : sans publication récente, remplacé par Almond (noyau Jupyter). Niveau : non vérifié.
+- Towards Data Science : publication indépendante sur son propre site depuis le 3 février 2025, et non plus sur Medium (annonce sur towardsdatascience.com, lue le 9 octobre 2026). Description corrigée dans `WebsitesSection.tsx`.
+- Airflow : exemple réécrit pour Airflow 3 (`from airflow.sdk import DAG`, `schedule`), équivalent Airflow 2 en commentaire. Niveau : guide de mise à jour officiel lu par la relecture ; code non exécuté (Airflow absent du moteur du site).

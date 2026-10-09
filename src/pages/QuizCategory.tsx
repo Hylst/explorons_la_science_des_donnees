@@ -10,7 +10,7 @@ import ContentLayout from '@/components/layout/ContentLayout';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Clock, Target, Brain, ArrowLeft } from 'lucide-react';
+import { Clock, Target, Brain, ArrowLeft, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
 import { SITE_NAME } from "@/config/site";
@@ -146,7 +146,7 @@ const QuizCategory: React.FC = () => {
         sidebar={{ items: [] }}
       >
         <div className="text-center py-8">
-          <div className="text-red-600 text-xl mb-4">❌</div>
+          <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" aria-hidden="true" />
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Quiz introuvable</h2>
           <p className="text-gray-600 mb-4">{error || 'Cette catégorie de quiz n\'existe pas.'}</p>
           <Button asChild>

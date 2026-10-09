@@ -8,7 +8,7 @@ const BooksSection = () => {
     {
       title: "Python for Data Science Handbook",
       author: "Jake VanderPlas",
-      description: "Une exploration complète de l'écosystème Python pour la Data Science: NumPy, Pandas, Matplotlib et Scikit-Learn.",
+      description: "Parcours de l'écosystème Python pour la data science : NumPy, pandas, Matplotlib et scikit-learn. Livre de 2016, gratuit en ligne ; le code a été écrit pour Python 3.5 et certains extraits demandent des adaptations avec les versions actuelles des bibliothèques.",
       link: "https://jakevdp.github.io/PythonDataScienceHandbook/",
       level: "Débutant-Intermédiaire",
       tags: ["Python", "Data Science", "Open Source"]
@@ -16,7 +16,7 @@ const BooksSection = () => {
     {
       title: "Hands-On Machine Learning with Scikit-Learn and PyTorch",
       author: "Aurélien Géron",
-      description: "Concepts et outils pratiques pour construire des systèmes intelligents avec des exemples concrets.",
+      description: "Concepts et pratique du machine learning avec scikit-learn puis PyTorch (édition de 2025). Livre payant ; les notebooks qui l'accompagnent sont publiés par l'auteur sur GitHub.",
       link: "https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/",
       level: "Intermédiaire",
       tags: ["Machine Learning", "Python", "PyTorch"]
@@ -24,7 +24,7 @@ const BooksSection = () => {
     {
       title: "Deep Learning",
       author: "Ian Goodfellow, Yoshua Bengio, Aaron Courville",
-      description: "La référence théorique sur le deep learning, couvrant à la fois les concepts mathématiques et les applications.",
+      description: "Manuel théorique sur le deep learning, mathématiques comprises, gratuit en ligne. Publié en 2016, il ne couvre pas les évolutions plus récentes, comme les transformers.",
       link: "https://www.deeplearningbook.org/",
       level: "Avancé",
       tags: ["Deep Learning", "Intelligence Artificielle", "Mathématiques"]
@@ -36,8 +36,8 @@ const BooksSection = () => {
       <h2 className="text-3xl font-bold mb-6">Livres recommandés</h2>
       <div className="max-w-none mb-6">
         <p>
-          Une sélection de livres essentiels pour tous les niveaux, des fondamentaux aux techniques avancées.
-          Ces ouvrages constituent une base solide pour approfondir vos connaissances en Data Science.
+          Trois livres choisis par l'auteur, du plus pratique au plus théorique. Deux sont lisibles gratuitement
+          en ligne (VanderPlas ; Goodfellow, Bengio et Courville), celui de Géron est payant. Ils sont tous en anglais.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ const BooksSection = () => {
                 ))}
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-muted-foreground">Niveau: {book.level}</span>
+                <span className="text-xs text-muted-foreground">Niveau : {book.level}</span>
                 <Button variant="outline" size="sm" asChild>
                   <a href={book.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
                     <ExternalLink className="h-3 w-3" />

@@ -21,7 +21,7 @@ export const PLATFORM_URL = `${SITE_ORIGIN}/`;
 export const PLATFORM_LEGAL_URL = `${SITE_ORIGIN}/mentions-legales.html`;
 
 /** Date affichée en tête des pages légales : à modifier à chaque changement de leur contenu. */
-export const LEGAL_UPDATED = "30 septembre 2026";
+export const LEGAL_UPDATED = "9 octobre 2026";
 
 /** Licence du code et des contenus rédigés pour le site (même règle que la plateforme hylst.fr). */
 export const LICENSE_SPDX = "AGPL-3.0-or-later";

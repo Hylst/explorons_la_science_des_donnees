@@ -27,11 +27,11 @@ import {
 } from "@/data/projects";
 import { Rocket, Target, Trophy, TrendingUp, BookOpen, Code, Search } from "lucide-react";
 
-/** Les technologies les plus utilisées par les projets, calculées sur les données */
 /** Nombre de projets guidés, écrit en toutes lettres en début de phrase */
 const NOMBRES = ["Aucun", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"];
 const nombreGuides = NOMBRES[guidedProjects.modules.length] ?? String(guidedProjects.modules.length);
 
+/** Les technologies les plus utilisées par les projets, calculées sur les données */
 const topTechnologies = (() => {
   const counts = new Map<string, number>();
   projects.forEach((project) => project.technologies.forEach((tech) => counts.set(tech, (counts.get(tech) ?? 0) + 1)));
@@ -145,7 +145,7 @@ const Projects = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  {topTechnologies.join(", ")} et bien d'autres
+                  {topTechnologies.join(", ")} et d'autres
                 </p>
               </CardContent>
             </Card>

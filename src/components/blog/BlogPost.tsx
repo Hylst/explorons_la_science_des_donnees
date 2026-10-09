@@ -115,7 +115,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
       
       {/* Articles suggérés */}
       <div className="mt-16">
-        <h3 className="text-xl font-bold mb-6">Articles similaires</h3>
+        <h3 className="text-xl font-bold mb-6">Autres articles</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {blogPosts
             .filter(otherPost => otherPost.id !== post.id)
@@ -125,7 +125,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
                 <Link to={`/blog/${relatedPost.id}`} className="font-medium hover:text-ds-purple-600 transition-colors">
                   {relatedPost.title}
                 </Link>
-                <p className="text-sm text-gray-600 mt-2">{relatedPost.excerpt.substring(0, 100)}...</p>
+                <p className="text-sm text-gray-600 mt-2 line-clamp-3">{relatedPost.excerpt}</p>
               </div>
             ))}
         </div>

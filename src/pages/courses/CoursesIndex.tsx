@@ -32,11 +32,13 @@ const CoursesIndex = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <BookOpen className="h-10 w-10 text-blue-600" />
-              Catalogue des Cours
+              Catalogue des cours
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {COURSE_CATALOG.length} cours : {writtenCount} avec leçons rédigées et {planCount} qui ne sont encore que des plans de modules
-              (marqués « Plan du cours »). Votre progression reste dans votre navigateur.
+              {planCount === 0
+                ? `${COURSE_CATALOG.length} cours, tous avec leçons rédigées.`
+                : `${COURSE_CATALOG.length} cours : ${writtenCount} avec leçons rédigées et ${planCount} qui ne sont encore que des plans de modules (marqués « Plan du cours »).`}{" "}
+              Votre progression reste dans votre navigateur.
             </p>
           </div>
 
@@ -97,8 +99,9 @@ const CoursesIndex = () => {
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4">Autres points d'entrée</h3>
               <p className="text-gray-600 mb-6">
-                Les cours marqués « Plan du cours » n'ont pas encore de leçons rédigées. En attendant, les pages
-                Fondamentaux et Machine Learning contiennent du contenu complet, et les projets proposent des sujets à réaliser.
+                {planCount > 0
+                  ? "Les cours marqués « Plan du cours » n'ont pas encore de leçons rédigées. En attendant, les pages Fondamentaux et Machine Learning contiennent du contenu complet, et les projets proposent des sujets à réaliser."
+                  : "Les pages Fondamentaux et Machine Learning complètent les cours, et les projets proposent des sujets à réaliser, dont plusieurs guidés pas à pas."}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/fundamentals" className="text-blue-600 hover:underline">

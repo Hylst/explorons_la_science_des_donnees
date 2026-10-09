@@ -69,14 +69,14 @@ const MachineLearning = () => {
     <MachineLearningContextProvider>
       <ContentLayout 
         title="Machine Learning" 
-        backLink={{ href: "/tools", label: "Retour aux outils" }}
+        backLink={{ href: "/", label: "Retour à l'accueil" }}
         sidebar={{ items: sidebarItems }}
       >
         <section className="py-8">
           <UnifiedHeroSection
             variant="page"
             title="Machine Learning"
-            description="Explorez l'art de l'apprentissage automatique avec des cours interactifs, des exercices pratiques et des projets concrets."
+            description="L'apprentissage automatique pas à pas : cours, démonstrations interactives et exercices pratiques."
             icon={BrainCircuit}
           />
           <LazyBlock>

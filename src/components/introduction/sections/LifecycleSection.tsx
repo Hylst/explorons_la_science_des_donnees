@@ -79,7 +79,7 @@ const LifecycleSection = () => {
       <div className="max-w-none">
         <p className="text-lg mb-6">
           Un projet de Data Science suit généralement un processus itératif et cyclique. Chaque étape est essentielle 
-          et le processus est souvent non-linéaire, avec des allers-retours fréquents entre les différentes phases.
+          et le processus est souvent non linéaire, avec des allers-retours fréquents entre les différentes phases.
         </p>
         
         <div className="bg-white rounded-xl shadow-sm border p-6 my-6">

@@ -1,5 +1,16 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-09, fin] - Relecture du reste du site : outils, ressources, accueil, introduction, communauté, blog, pages
+
+Deux sous-agents Sonnet sur des périmètres séparés, lots vérifiés avant intégration.
+
+- **Outils** : exemple Airflow réécrit pour Airflow 3, exemple XGBoost qui réglait l'arrêt précoce sur le jeu de test (fuite d'information) corrigé, exemples scikit-learn qui utilisaient des variables non définies, Seldon Core (passé sous licence BSL en 2024) remplacé par Ray Serve, Auto-sklearn (à l'arrêt) par AutoGluon et FLAML, mention de la fin de Talend Open Studio (janvier 2024), camembert « domaines d'application » sans proportions inventées, grille qui créait des colonnes implicites sur mobile.
+- **Ressources** : Towards Data Science n'est plus une publication Medium (indépendante depuis le 3 février 2025, vérifié sur son annonce) ; la page Ressources écrivait l'adresse de contact en clair, alors qu'elle ne doit figurer que dans la configuration : lien vers la page Contact.
+- **Blog** : les quatre références vérifiées et exactes (cigognes 2004, Berkeley 1975, Anscombe 1973, Cleveland et McGill 1984), paragraphe sur les cigognes précisé d'après le résumé de l'étude (accouchements hors hôpital à Berlin), DOI ajoutés, temps de lecture recalculés (un article annoncé « 15 min » compte 523 mots).
+- **Accueil et pages** : la carte « Communauté » promettait un forum que le site n'a pas, trois liens de la carte de la data science visaient la mauvaise page, le catalogue affichait « 0 plans de modules », la page Machine learning renvoyait vers les outils, le formulaire de contact dit désormais qu'il écrit à l'auteur et mentionne le code source sur demande. Conditions d'utilisation : une phrase fausse sur les données d'exemple corrigée (date de mise à jour des pages légales passée au 9 octobre 2026).
+- **Adresses fictives** : les exemples calculés de la préparation des données utilisaient des adresses en @exemple.fr, un domaine non réservé ; elles passent sur example.org, domaine réservé aux exemples (RFC 2606).
+- **Gardé** : les estimations de salaires par niveau, décision éditoriale de l'auteur (la relecture proposait de les retirer : question posée à l'auteur).
+
 ## [2026-10-09, suite] - Relecture des pages machine learning, programmation, fondamentaux et quiz
 
 Relecture par quatre sous-agents Sonnet sur des périmètres séparés (environ 30 000 lignes), chaque lot vérifié avant intégration (tests, quelques faits revérifiés à la source).

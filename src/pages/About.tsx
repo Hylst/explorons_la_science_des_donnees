@@ -20,8 +20,8 @@ const About = () => {
             À propos de {SITE_NAME}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Un projet personnel et éducatif pour démocratiser l'apprentissage de la data science 
-            en français, créé avec passion par un apprenant pour d'autres apprenants.
+            Un projet personnel et éducatif pour apprendre la data science en français,
+            créé par un apprenant pour d'autres apprenants.
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const About = () => {
             <CardContent>
               <p className="text-muted-foreground">
                 Étudiants, personnes en reconversion, curieux : un espace d'apprentissage bienveillant 
-                où chacun peut progresser à son rythme dans l'univers de la data science.
+                où chacun peut progresser à son rythme en data science.
               </p>
             </CardContent>
           </Card>
@@ -101,8 +101,8 @@ const About = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      "Enseigner, c'est apprendre deux fois. En créant ce contenu, 
-                      je renforce ma propre compréhension tout en aidant d'autres apprenants."
+                      «&nbsp;Enseigner, c'est apprendre deux fois. En créant ce contenu,
+                      je renforce ma propre compréhension tout en aidant d'autres apprenants.&nbsp;»
                     </p>
                   </CardContent>
                 </Card>
@@ -116,7 +116,7 @@ const About = () => {
           <Card>
             <CardHeader>
               <BookOpen className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Contenu Éducatif</CardTitle>
+              <CardTitle>Contenu éducatif</CardTitle>
               <CardDescription>
                 Une approche structurée de l'apprentissage
               </CardDescription>
@@ -172,7 +172,7 @@ const About = () => {
 
         {/* Values Section */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-8">Nos valeurs</h2>
+          <h2 className="text-3xl font-bold mb-8">Les valeurs du site</h2>
           <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
             <div className="p-6">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -180,7 +180,7 @@ const About = () => {
               </div>
               <h3 className="font-semibold mb-2">Accessibilité</h3>
               <p className="text-sm text-muted-foreground">
-                Contenu gratuit et accessible à tous, sans barrières financières
+                Contenu gratuit et ouvert à tous, sans barrière financière
               </p>
             </div>
             <div className="p-6">
@@ -196,9 +196,9 @@ const About = () => {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Lightbulb className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">Innovation</h3>
+              <h3 className="font-semibold mb-2">Curiosité</h3>
               <p className="text-sm text-muted-foreground">
-                Utilisation de technologies modernes pour une expérience optimale
+                Essayer des techniques récentes quand elles aident à apprendre, par exemple le code exécuté dans le navigateur
               </p>
             </div>
           </div>

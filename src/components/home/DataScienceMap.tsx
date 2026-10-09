@@ -46,7 +46,7 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       color: "from-blue-500 to-blue-600",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/30",
-      description: "Base mathématique essentielle",
+      description: "Les bases mathématiques et statistiques",
       prerequisites: [],
       nextSteps: ["data-collection", "programming"],
       difficulty: "Débutant",
@@ -75,12 +75,12 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       position: { x: 50, y: 15 },
       icon: <Target className="w-6 h-6" />,
       title: "Programmation",
-      subtitle: "Python/R & Outils",
-      link: "/tools",
+      subtitle: "Python & Outils",
+      link: "/fundamentals/programming",
       color: "from-indigo-500 to-indigo-600",
       bgColor: "bg-indigo-500/10",
       borderColor: "border-indigo-500/30",
-      description: "Prise en main des outils de développement",
+      description: "Prise en main de Python et des outils de travail",
       prerequisites: ["foundations"],
       nextSteps: ["data-processing", "analysis"],
       difficulty: "Intermédiaire",
@@ -92,8 +92,8 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       position: { x: 50, y: 85 },
       icon: <Layers className="w-6 h-6" />,
       title: "Traitement",
-      subtitle: "ETL & Data Engineering",
-      link: "/tools",
+      subtitle: "Nettoyage & Préparation",
+      link: "/fundamentals/data-preparation",
       color: "from-rose-500 to-rose-600",
       bgColor: "bg-rose-500/10",
       borderColor: "border-rose-500/30",
@@ -110,7 +110,7 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       icon: <BarChart className="w-6 h-6" />,
       title: "Analyse",
       subtitle: "Exploration & Statistiques",
-      link: "/fundamentals/math-stats",
+      link: "/fundamentals/math-stats/descriptive-statistics",
       color: "from-purple-500 to-purple-600",
       bgColor: "bg-purple-500/10",
       borderColor: "border-purple-500/30",
@@ -126,12 +126,12 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       position: { x: 80, y: 65 },
       icon: <LayoutDashboard className="w-6 h-6" />,
       title: "Visualisation",
-      subtitle: "Dashboards & Storytelling",
+      subtitle: "Graphiques & Communication",
       link: "/courses/dataviz/data-visualization",
       color: "from-amber-500 to-amber-600",
       bgColor: "bg-amber-500/10",
       borderColor: "border-amber-500/30",
-      description: "Communication des insights",
+      description: "Présenter les résultats par des graphiques lisibles",
       prerequisites: ["data-processing", "analysis"],
       nextSteps: ["machine-learning"],
       difficulty: "Intermédiaire",
@@ -148,7 +148,7 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
       color: "from-gradient-start to-gradient-end",
       bgColor: "bg-gradient-to-br from-primary/10 to-secondary/10",
       borderColor: "border-primary/30",
-      description: "Intelligence artificielle et prédictions",
+      description: "Modèles qui apprennent à partir des données",
       prerequisites: ["analysis", "visualization"],
       nextSteps: [],
       difficulty: "Avancé",
@@ -259,7 +259,7 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
           <Zap className="w-5 h-5 text-primary" />
           Parcours d'apprentissage
         </h3>
-        <p className="text-sm text-muted-foreground">Suivez les étapes pour découvrir la Data Science</p>
+        <p className="text-sm text-muted-foreground">Un ordre possible pour découvrir la Data Science</p>
       </div>
 
       {/* Learning phase indicator */}

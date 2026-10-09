@@ -55,7 +55,7 @@ const ContributeSection = () => (
     <h2 className="text-3xl font-bold mb-6">Contribuer</h2>
     <div className="max-w-none mb-6">
       <p>
-        Comment contribuer à la communauté Data Science, que ce soit par du code open source ou du contenu éducatif.
+        Deux façons de contribuer : au code de projets open source de la data science, ou par du contenu éducatif.
       </p>
     </div>
 
@@ -78,8 +78,7 @@ const ContributeSection = () => (
             <div className="min-w-0">
               <h3 className="text-lg font-semibold mb-2">Comment contribuer à l'open source</h3>
               <p className="text-sm mb-4">
-                Contribuer à des projets open source est un excellent moyen d'améliorer vos compétences tout en aidant la communauté.
-                Voici comment commencer :
+                Contribuer à un projet open source aide ses utilisateurs et fait progresser. Voici comment commencer :
               </p>
               <ol className="text-sm space-y-2 list-decimal pl-5 mb-4">
                 <li>Trouvez un projet qui vous intéresse</li>
@@ -137,10 +136,10 @@ const ContributeSection = () => (
           <div className="flex items-start gap-4">
             <Edit className="h-6 w-6 text-gray-700 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-lg font-semibold mb-2">Partagez votre expertise</h3>
+              <h3 className="text-lg font-semibold mb-2">Partager ce que vous savez</h3>
               <p className="text-sm mb-4">
-                Le contenu éducatif est crucial pour aider les autres à apprendre et à progresser.
-                Voici quelques façons de partager vos connaissances :
+                Le contenu éducatif aide les autres à apprendre. Voici quelques façons de partager vos connaissances,
+                sur ce site ou ailleurs :
               </p>
               <ul className="text-sm space-y-2 list-disc pl-5 mb-4">
                 <li>Écrire des articles de blog</li>

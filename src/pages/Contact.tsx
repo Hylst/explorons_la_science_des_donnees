@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useFormErrorHandling } from "@/hooks/use-error-handling";
 import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL, HUB_URL, buildMailDraft } from "@/config/contact";
 import { Mail, MessageSquare, User, Send, Github, Linkedin, Globe, Copy } from "lucide-react";
-import { SITE_NAME } from "@/config/site";
+import { LICENSE_SPDX, SITE_NAME } from "@/config/site";
 
 const EMPTY_FORM = { name: "", email: "", subject: "", message: "" };
 
@@ -63,10 +63,10 @@ const Contact = () => {
     }
 
     if (!formData.email.trim()) {
-      formErrorHandling.setFieldError('email', 'L\'email est requis');
+      formErrorHandling.setFieldError('email', 'L\'adresse e-mail est requise');
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      formErrorHandling.setFieldError('email', 'Format d\'email invalide');
+      formErrorHandling.setFieldError('email', 'Format d\'adresse e-mail invalide');
       isValid = false;
     }
 
@@ -126,10 +126,10 @@ const Contact = () => {
         <div className="text-center mb-8">
           <Mail className="mx-auto h-16 w-16 text-blue-600 mb-4" />
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Contactez-nous
+            Écrire à l'auteur
           </h1>
           <p className="text-xl text-gray-600">
-            Une question, une suggestion ou envie de collaborer ?
+            Une question, une suggestion, une erreur à signaler ou une envie de collaborer ?
           </p>
         </div>
 
@@ -146,7 +146,7 @@ const Contact = () => {
               <CardContent>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Ancien ingénieur, développeur d'applications et autodidacte en data science, créateur de {SITE_NAME},
-                  je partage mes apprentissages et découvertes dans ce domaine fascinant.
+                  je partage mes apprentissages et mes découvertes dans ce domaine.
                   N'hésitez pas à me contacter pour échanger sur vos projets ou poser vos questions.
                 </p>
                 <div className="space-y-3">
@@ -233,6 +233,15 @@ const Contact = () => {
                       <p className="text-sm text-gray-600">Bugs, liens cassés, problèmes techniques</p>
                     </div>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-gray-600 rounded-full mt-2"></div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Code source</h3>
+                      <p className="text-sm text-gray-600">
+                        Le code du site est publié sous licence {LICENSE_SPDX} : vous pouvez en demander les sources ici
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -271,7 +280,7 @@ const Contact = () => {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email">Adresse e-mail *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -361,7 +370,7 @@ const Contact = () => {
                 <div className="mt-4 p-4 bg-blue-50 rounded-lg">
                   <p className="text-sm text-blue-800">
                     <strong>Temps de réponse :</strong> Je m'efforce de répondre à tous les messages
-                    dès que possible. Merci pour votre patience !
+                    dès que possible. Merci de votre patience.
                   </p>
                 </div>
               </CardContent>

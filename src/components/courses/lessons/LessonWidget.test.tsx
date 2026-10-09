@@ -20,7 +20,8 @@ const render = async (widget: LessonWidget) => {
     r.render(<LessonWidgetView widget={widget} />);
   });
   // composants chargés à la demande : on attend leur arrivée
-  for (let i = 0; i < 40 && div.querySelector(".animate-pulse"); i++) {
+  // jusqu'à 5 s : sous charge (tests en parallèle), le chargement à la demande peut être lent
+  for (let i = 0; i < 200 && div.querySelector(".animate-pulse"); i++) {
     await act(async () => {
       await wait(25);
     });

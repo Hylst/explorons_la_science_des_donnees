@@ -44,7 +44,7 @@ export const blogContents: Record<string, string> = {
           <li>Vous aimez construire des systèmes fiables : Data Engineer ou Machine Learning Engineer.</li>
         </ul>
 
-        <p>Les frontières sont poreuses, et les compétences communes (SQL, Python, statistiques, communication) servent dans tous ces métiers. Pour avancer, appuyez-vous sur des projets concrets : la page Projets du site propose dix idées, du niveau débutant au niveau avancé.</p>
+        <p>Les frontières sont poreuses, et les compétences communes (SQL, Python, statistiques, communication) servent dans tous ces métiers. Pour avancer, appuyez-vous sur des projets concrets : la page Projets du site propose des sujets du niveau débutant au niveau avancé, dont plusieurs guidés pas à pas.</p>
       `,
   "data-analysis-journey": `
 
@@ -115,7 +115,7 @@ print(df.isna().mean().sort_values(ascending=False))</code></pre>
 
         <h2>2. Une corrélation réelle mais sans lien direct</h2>
 
-        <p>Un article publié en 2004 dans la revue <em>Paediatric and Perinatal Epidemiology</em> (Höfer, Przyrembel et Verleger) a repris, sur un ton humoristique, la vieille « théorie de la cigogne » : les auteurs relèvent une corrélation entre la population de cigognes et le nombre d'accouchements : à Berlin, avec les naissances hors des hôpitaux ; en Basse-Saxe, avec l'ensemble des naissances entre 1970 et 1985. Cet article ironique rappelle qu'une corrélation significative ne prouve aucun mécanisme. Les cigognes ne livrent pas les bébés ; deux séries de données qui évoluent dans le temps peuvent simplement évoluer ensemble.</p>
+        <p>Un article publié en 2004 dans la revue <em>Paediatric and Perinatal Epidemiology</em> (Höfer, Przyrembel et Verleger) a repris, sur un ton humoristique, la vieille « théorie de la cigogne ». À Berlin, les auteurs relèvent une corrélation significative entre l'augmentation de la population de cigognes autour de la ville et celle des accouchements hors des hôpitaux (aucune avec les accouchements en clinique) ; en Basse-Saxe, le recul du nombre de couples de cigognes entre 1970 et 1985 va de pair avec la baisse des accouchements. Cet article ironique rappelle qu'une corrélation significative ne prouve aucun mécanisme. Les cigognes ne livrent pas les bébés ; deux séries de données qui évoluent dans le temps peuvent simplement évoluer ensemble.</p>
 
         <p>Quand on teste beaucoup de séries au hasard, on finit aussi par trouver des corrélations élevées sans aucun lien : le site « Spurious Correlations » de Tyler Vigen en fait une collection volontairement absurde.</p>
 
@@ -197,8 +197,8 @@ plt.show()</code></pre>
 
         <h2>Références</h2>
         <ul>
-          <li>Anscombe F. J. (1973), « Graphs in Statistical Analysis », <em>The American Statistician</em>, 27(1), 17-21.</li>
-          <li>Cleveland W. S., McGill R. (1984), « Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods », <em>Journal of the American Statistical Association</em>, 79(387), 531-554.</li>
+          <li>Anscombe F. J. (1973), « Graphs in Statistical Analysis », <em>The American Statistician</em>, 27(1), 17-21. <a href="https://doi.org/10.1080/00031305.1973.10478966">doi:10.1080/00031305.1973.10478966</a></li>
+          <li>Cleveland W. S., McGill R. (1984), « Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods », <em>Journal of the American Statistical Association</em>, 79(387), 531-554. <a href="https://doi.org/10.1080/01621459.1984.10478080">doi:10.1080/01621459.1984.10478080</a></li>
           <li>Tufte E. R. (1983), <em>The Visual Display of Quantitative Information</em>, Graphics Press.</li>
         </ul>
       `,

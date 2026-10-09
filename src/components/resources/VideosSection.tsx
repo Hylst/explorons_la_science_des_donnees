@@ -25,7 +25,7 @@ const VideosSection = () => {
       title: "Krish Naik",
       creator: "Krish Naik",
       url: "https://www.youtube.com/@krishnaik06",
-      description: "Tutoriels pratiques sur les projets de data science et les techniques de ML/DL.",
+      description: "Tutoriels et projets pratiques de data science, de machine learning et de deep learning.",
       topics: ["Projets", "Machine Learning", "Carrière"],
       thumbnailColor: "bg-gradient-to-r from-amber-400 to-orange-600"
     },
@@ -33,7 +33,7 @@ const VideosSection = () => {
       title: "Two Minute Papers",
       creator: "Károly Zsolnai-Fehér",
       url: "https://www.youtube.com/@TwoMinutePapers",
-      description: "Résumés de recherches récentes en IA et apprentissage automatique en seulement quelques minutes.",
+      description: "Courtes vidéos présentant des articles de recherche récents en IA, en infographie et en apprentissage automatique.",
       topics: ["IA", "Recherche", "Actualités"],
       thumbnailColor: "bg-gradient-to-r from-red-400 to-pink-600"
     }
@@ -44,8 +44,8 @@ const VideosSection = () => {
       <h2 className="text-3xl font-bold mb-6">Vidéos et chaînes</h2>
       <div className="max-w-none mb-6">
         <p>
-          Quelques chaînes YouTube et ressources vidéo pour apprendre visuellement.
-          Ces créateurs de contenu expliquent des concepts complexes de façon accessible.
+          Quelques chaînes YouTube pour apprendre en images. Elles sont toutes en anglais ; les liens ouvrent YouTube,
+          un service tiers qui a ses propres règles de confidentialité.
         </p>
       </div>
 

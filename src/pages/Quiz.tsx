@@ -14,7 +14,7 @@ const HERO_FEATURES = [
   "Quiz organisés par thèmes",
   "Explications détaillées",
   "Suivi de progression",
-  "Scores et recommandations"
+  "Score, points forts et points à revoir"
 ];
 
 /**
@@ -61,7 +61,7 @@ const QuizPage = () => {
         variant="page"
         title="Quiz & Évaluation"
         subtitle="Testez vos connaissances en data science"
-        description="Évaluez votre niveau dans tous les domaines de la data science avec nos quiz interactifs. Obtenez des scores détaillés et des explications pour progresser efficacement."
+        description="Évaluez votre niveau thème par thème avec des quiz interactifs : chaque réponse est expliquée et votre score s'accompagne des points forts et des points à revoir. Vos résultats restent dans votre navigateur."
         actions={[
           { label: "Commencer un Quiz", to: "#categories" },
           { label: "Voir mes Statistiques", to: "#stats", variant: "outline" }

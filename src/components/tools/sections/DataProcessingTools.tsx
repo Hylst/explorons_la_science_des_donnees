@@ -82,7 +82,7 @@ const DataProcessingTools = () => {
           <div className="text-sm flex items-center mt-4 bg-white p-3 rounded-lg border border-green-100">
             <AlertCircle className="h-5 w-5 text-green-600 mr-2 shrink-0" />
             <p>
-              <strong>Saviez-vous que :</strong> Selon les enquêtes Anaconda, les data scientists déclarent consacrer entre 38 % (2022) et 45 % (2020) de leur temps au chargement et au nettoyage des données, la plus grande part de toutes leurs activités.
+              <strong>À savoir :</strong> dans les enquêtes Anaconda (auto-sélectionnées, donc non représentatives), les personnes interrogées déclarent consacrer entre 38 % (2022) et 45 % (2020) de leur temps au chargement et au nettoyage des données, la plus grande part de leurs activités.
             </p>
           </div>
           <SourceNote
@@ -126,8 +126,8 @@ const DataProcessingTools = () => {
                   </div>
                   
                   <p className="text-sm">
-                    Pandas est une bibliothèque très utilisée qui permet de manipuler facilement des données
-                    structurées avec ses structures DataFrames et Series.
+                    Pandas est très répandue en Python pour manipuler des données tabulaires
+                    avec ses deux structures, DataFrame et Series.
                   </p>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 mt-4">
@@ -155,7 +155,7 @@ resume = df.groupby('categorie').agg({
                   
                   <div className="flex items-center gap-2 mt-4">
                     <Check className="h-5 w-5 text-green-500" />
-                    <span className="text-sm">Idéal pour l'analyse exploratoire et la préparation des données</span>
+                    <span className="text-sm">Adaptée à l'analyse exploratoire et à la préparation des données</span>
                   </div>
                 </div>
               </CardContent>
@@ -221,7 +221,7 @@ resultats <- donnees %>%
                   
                   <div className="flex items-center gap-2 mt-4">
                     <Check className="h-5 w-5 text-green-500" />
-                    <span className="text-sm">Puissant pour les analyses statistiques et le nettoyage de données</span>
+                    <span className="text-sm">Adaptés aux analyses statistiques et au nettoyage de données</span>
                   </div>
                 </div>
               </CardContent>
@@ -289,7 +289,7 @@ resultats <- donnees %>%
                   
                   <div className="flex items-center gap-2 mt-4">
                     <Check className="h-5 w-5 text-green-500" />
-                    <span className="text-sm">Idéal pour passer à l'échelle des analyses pandas sur des données volumineuses</span>
+                    <span className="text-sm">Utile pour étendre des analyses pandas à des données plus volumineuses</span>
                   </div>
                 </div>
               </CardContent>
@@ -337,8 +337,8 @@ resultats <- donnees %>%
                       <ul className="list-disc pl-5 space-y-1 text-sm">
                         <li>Structure en tables avec relations</li>
                         <li>ACID (Atomicité, Cohérence, Isolation, Durabilité)</li>
-                        <li>Requêtes SQL standardisées</li>
-                        <li>Excellentes pour les données structurées</li>
+                        <li>Langage SQL normalisé (avec des variantes selon le moteur)</li>
+                        <li>Adaptées aux données structurées</li>
                       </ul>
                     </div>
                   </div>
@@ -458,11 +458,11 @@ resultats <- donnees %>%
                     </li>
                     <li className="flex items-center gap-2">
                       <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-200">Talend</Badge>
-                      <span className="text-sm">Intégration de données d'entreprise</span>
+                      <span className="text-sm">Intégration de données (l'édition libre Open Studio est retirée depuis janvier 2024)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-200">Informatica</Badge>
-                      <span className="text-sm">Solution ETL complète et mature</span>
+                      <span className="text-sm">Plateforme d'intégration de données d'entreprise</span>
                     </li>
                   </ul>
                 </div>
@@ -485,7 +485,7 @@ resultats <- donnees %>%
                     </li>
                     <li className="flex items-center gap-2">
                       <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200">Prefect</Badge>
-                      <span className="text-sm">Orchestration de flux de données modernes</span>
+                      <span className="text-sm">Orchestration de flux de travail en Python</span>
                     </li>
                   </ul>
                 </div>
@@ -501,71 +501,64 @@ resultats <- donnees %>%
                 <CardContent className="pt-0">
                   <div className="space-y-4">
                     <p className="text-sm">
-                      Airflow est devenu un standard dans l'industrie pour l'orchestration de pipelines de données complexes 
-                      grâce à sa flexibilité et sa robustesse. Il permet de définir des workflows sous forme de graphes 
-                      acycliques dirigés (DAGs) en Python.
+                      Airflow est très répandu pour orchestrer des pipelines de données. Il permet de définir
+                      des workflows sous forme de graphes acycliques dirigés (DAG) écrits en Python.
                     </p>
                     
                     <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                       <h4 className="font-medium text-blue-700 mb-2">Exemple d'un DAG Airflow simple</h4>
                       <div className="bg-gray-900 text-gray-100 p-3 rounded-md font-mono text-xs overflow-x-auto">
                         <pre>{`from datetime import datetime, timedelta
-from airflow import DAG
-# Airflow 2.x ; en Airflow 3, ces opérateurs viennent du paquet apache-airflow-providers-standard
-# (airflow.providers.standard.operators.python et .bash)
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
 
-# Définition des arguments par défaut
-default_args = {
-    'owner': 'data_engineer',
-    'depends_on_past': False,
-    'start_date': datetime(2023, 1, 1),
-    'email_on_failure': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-}
+# Airflow 3. En Airflow 2.x : from airflow import DAG,
+# from airflow.operators.python import PythonOperator et
+# from airflow.operators.bash import BashOperator
+from airflow.sdk import DAG
+from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.python import PythonOperator
 
-# Création du DAG
-dag = DAG(
-    'traitement_donnees_quotidien',
-    default_args=default_args,
-    description='Pipeline ETL quotidien',
-    schedule=timedelta(days=1),  # remplace schedule_interval (retiré en Airflow 3)
-    catchup=False,
-)
-
-# Définition des tâches
-extraction = BashOperator(
-    task_id='extraction_donnees',
-    bash_command='python /scripts/extract_data.py',
-    dag=dag,
-)
 
 def transformer_donnees(**kwargs):
     # Code de transformation des données
     print("Transformation des données en cours...")
-    
-transformation = PythonOperator(
-    task_id='transformation_donnees',
-    python_callable=transformer_donnees,
-    dag=dag,
-)
 
-chargement = BashOperator(
-    task_id='chargement_donnees',
-    bash_command='python /scripts/load_data.py',
-    dag=dag,
-)
 
-# Définition des dépendances
-extraction >> transformation >> chargement`}</pre>
+# Définition du DAG et de ses tâches
+with DAG(
+    dag_id='traitement_donnees_quotidien',
+    description='Pipeline ETL quotidien',
+    start_date=datetime(2026, 1, 1),
+    schedule='@daily',  # remplace schedule_interval, retiré en Airflow 3
+    catchup=False,
+    default_args={
+        'owner': 'data_engineer',
+        'retries': 1,
+        'retry_delay': timedelta(minutes=5),
+    },
+) as dag:
+    extraction = BashOperator(
+        task_id='extraction_donnees',
+        bash_command='python /scripts/extract_data.py',
+    )
+
+    transformation = PythonOperator(
+        task_id='transformation_donnees',
+        python_callable=transformer_donnees,
+    )
+
+    chargement = BashOperator(
+        task_id='chargement_donnees',
+        bash_command='python /scripts/load_data.py',
+    )
+
+    # Définition des dépendances
+    extraction >> transformation >> chargement`}</pre>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-2 mt-4">
                       <Check className="h-5 w-5 text-green-500" />
-                      <span className="text-sm">Idéal pour les pipelines complexes avec de nombreuses dépendances</span>
+                      <span className="text-sm">Adapté aux pipelines avec de nombreuses dépendances entre tâches</span>
                     </div>
                   </div>
                 </CardContent>
@@ -579,9 +572,9 @@ extraction >> transformation >> chargement`}</pre>
                 <CardContent className="pt-0">
                   <div className="space-y-4">
                     <p className="text-sm">
-                      dbt transforme l'approche de transformation des données en permettant aux analystes 
-                      d'écrire des transformations en SQL directement dans l'entrepôt de données, 
-                      suivant la méthodologie ELT (Extract, Load, Transform).
+                      dbt permet d'écrire des transformations en SQL qui s'exécutent directement dans
+                      l'entrepôt de données, selon l'approche ELT (Extract, Load, Transform : les données
+                      sont chargées avant d'être transformées).
                     </p>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -593,7 +586,7 @@ extraction >> transformation >> chargement`}</pre>
                     
                     <div className="flex items-center gap-2 mt-4">
                       <Check className="h-5 w-5 text-green-500" />
-                      <span className="text-sm">Parfait pour les équipes analytiques travaillant avec des entrepôts SQL</span>
+                      <span className="text-sm">Adapté aux équipes qui travaillent avec un entrepôt de données SQL</span>
                     </div>
                   </div>
                 </CardContent>
@@ -653,7 +646,7 @@ extraction >> transformation >> chargement`}</pre>
                     <tr className="bg-gray-50 border-b">
                       <td className="px-6 py-4 font-medium">Étape 4</td>
                       <td className="px-6 py-4">Data Mesh & Temps réel</td>
-                      <td className="px-6 py-4">Kafka, Flink, Dagster</td>
+                      <td className="px-6 py-4">Kafka, Flink</td>
                       <td className="px-6 py-4">
                         <ul className="list-disc pl-5">
                           <li>Streaming temps réel</li>
@@ -730,8 +723,9 @@ extraction >> transformation >> chargement`}</pre>
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     <p className="text-sm">
-                      Spark est un moteur de traitement rapide avec des APIs en Scala, Java, Python et R,
-                      avec des gains pouvant atteindre 20 fois par rapport à Hadoop MapReduce pour des applications itératives. Le gain réel dépend beaucoup du traitement.
+                      Spark est un moteur de traitement distribué avec des API en Scala, Java, Python et R.
+                      Dans l'article de 2012 qui présente ses RDD, il est jusqu'à 20 fois plus rapide que Hadoop MapReduce
+                      sur des applications itératives ; le gain réel dépend beaucoup du traitement.
                     </p>
                     <SourceNote
                       consulted="5 octobre 2026"
@@ -761,7 +755,7 @@ extraction >> transformation >> chargement`}</pre>
                       <h4 className="font-medium text-orange-700 mb-2">Exemple de code PySpark</h4>
                       <div className="bg-gray-900 text-gray-100 p-3 rounded-md font-mono text-xs overflow-x-auto">
                         <pre>{`from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
+from pyspark.sql import functions as F
 
 # Initialiser une session Spark
 spark = (SparkSession.builder
@@ -772,11 +766,10 @@ spark = (SparkSession.builder
 df = spark.read.csv("donnees.csv", header=True, inferSchema=True)
 
 # Transformer les données
-resultats = (df.filter(col("montant") > 1000)
+resultats = (df.filter(F.col("montant") > 1000)
     .groupBy("categorie")
-    .agg({"montant": "sum", "id": "count"})
-    .withColumnRenamed("sum(montant)", "montant_total")
-    .withColumnRenamed("count(id)", "nombre_transactions"))
+    .agg(F.sum("montant").alias("montant_total"),
+         F.count("id").alias("nombre_transactions")))
 
 # Afficher les résultats
 resultats.show()
@@ -805,8 +798,8 @@ resultats.write.parquet("resultats.parquet")`}</pre>
                   <div className="space-y-4">
                     <p className="text-sm">
                       Kafka est une plateforme de streaming événementiel qui permet de publier, stocker et traiter
-                      des flux d'enregistrements en temps réel, idéale pour construire des pipelines de données
-                      en temps réel et des applications de streaming.
+                      des flux d'enregistrements en temps réel, notamment pour construire des pipelines de données
+                      en continu et des applications de streaming.
                     </p>
                     
                     <div className="p-3 bg-blue-50 rounded-lg">
@@ -838,8 +831,8 @@ resultats.write.parquet("resultats.parquet")`}</pre>
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     <p className="text-sm">
-                      Flink est un cadre de traitement de données distribué qui excelle dans le traitement
-                      de flux avec une sémantique exacte, des fenêtres flexibles et des garanties de cohérence.
+                      Flink est un cadre de traitement de données distribué conçu d'abord pour le traitement
+                      de flux, avec une sémantique exacte, des fenêtres flexibles et des garanties de cohérence.
                     </p>
                     
                     <div className="p-3 bg-green-50 rounded-lg">
@@ -906,7 +899,7 @@ resultats.write.parquet("resultats.parquet")`}</pre>
             <div className="p-4 bg-white rounded-lg border">
               <h4 className="font-medium text-blue-700 mb-2">Pour l'analyse exploratoire</h4>
               <ul className="list-disc pl-5 space-y-1 text-sm">
-                <li>Python avec pandas pour les données moyennes</li>
+                <li>Python avec pandas pour les données qui tiennent en mémoire</li>
                 <li>R pour l'analyse statistique approfondie</li>
                 <li>Dask pour les ensembles de données plus volumineux</li>
               </ul>

@@ -31,7 +31,7 @@ const ApplicationsSection = () => {
     {
       title: "Santé",
       icon: "🏥",
-      description: "Amélioration des diagnostics, personnalisation des traitements et optimisation des opérations hospitalières.",
+      description: "Aide au diagnostic, personnalisation des traitements et organisation des opérations hospitalières.",
       examples: ["Diagnostic assisté par IA", "Médecine personnalisée", "Prévention des épidémies", "Optimisation des parcours patients"]
     },
     {
@@ -43,7 +43,7 @@ const ApplicationsSection = () => {
     {
       title: "Marketing",
       icon: "📊",
-      description: "Ciblage précis des clients, optimisation des campagnes et prédiction des comportements consommateurs.",
+      description: "Ciblage des clients, optimisation des campagnes et prévision des comportements d'achat.",
       examples: ["Personnalisation", "Segmentation client", "Prévision des tendances", "Optimisation des prix"]
     },
     {
@@ -95,9 +95,8 @@ const ApplicationsSection = () => {
       
       <div className="max-w-none">
         <p className="text-lg mb-6">
-          La Data Science s'applique aujourd'hui dans presque tous les secteurs d'activité, et change peu à peu
-          la façon dont les organisations travaillent et décident. Voici comment
-          cette discipline est utilisée dans quelques domaines :
+          La Data Science est utilisée dans de nombreux secteurs d'activité. Voici quelques exemples
+          d'usages, à titre d'illustration :
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
@@ -116,7 +115,7 @@ const ApplicationsSection = () => {
               </div>
               <div className="rounded-lg bg-white p-4 border border-blue-50">
                 <h4 className="font-semibold text-ds-blue-600">Personnalisation à grande échelle</h4>
-                <p className="text-sm text-gray-700">Capacité à offrir des expériences et services sur mesure à des millions d'utilisateurs simultanément.</p>
+                <p className="text-sm text-gray-700">Possibilité d'adapter un service à chaque utilisateur, même lorsqu'ils sont très nombreux.</p>
               </div>
             </div>
             <div className="space-y-4">
@@ -125,8 +124,8 @@ const ApplicationsSection = () => {
                 <p className="text-sm text-gray-700">Appuyer les intuitions et les hypothèses sur des analyses de données, en gardant un regard critique sur leurs limites.</p>
               </div>
               <div className="rounded-lg bg-white p-4 border border-purple-50">
-                <h4 className="font-semibold text-ds-purple-600">Innovation de rupture</h4>
-                <p className="text-sm text-gray-700">Création de nouveaux produits, services et modèles économiques parfois rendus possibles par l'exploitation de grandes quantités de données.</p>
+                <h4 className="font-semibold text-ds-purple-600">Nouveaux produits et services</h4>
+                <p className="text-sm text-gray-700">Produits, services et modèles économiques que l'exploitation de grandes quantités de données rend parfois possibles.</p>
               </div>
             </div>
           </div>

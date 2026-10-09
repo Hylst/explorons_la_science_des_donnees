@@ -160,7 +160,7 @@ const TermsOfService = () => {
                   <p className="text-gray-700 leading-relaxed">
                     Le contenu est fourni à des fins éducatives. Malgré le soin apporté, nous ne garantissons pas son
                     exactitude, sa complétude ni son actualité ; il ne remplace pas un avis professionnel (juridique,
-                    financier, médical). Les données des exemples de code et des visualisations sont des jeux d'exemple générés.
+                    financier, médical). Sauf mention contraire, les données des exemples de code et des visualisations sont des jeux d'exemple générés ou des jeux publics fournis avec les bibliothèques (comme Iris dans scikit-learn).
                   </p>
                 </div>
                 <div>

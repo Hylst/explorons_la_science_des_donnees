@@ -13,8 +13,8 @@ const features = [
     description: "Parcours progressifs, des bases aux notions avancées"
   },
   {
-    title: "Contenu théorique approfondi",
-    description: "Concepts expliqués avec clarté et rigueur"
+    title: "Explications détaillées",
+    description: "Les concepts sont expliqués pas à pas, avec formules et figures"
   },
   {
     title: "Code exécuté dans votre navigateur",
@@ -22,7 +22,7 @@ const features = [
   },
   {
     title: "Projets pratiques",
-    description: "Des fiches de projets classées par niveau et par domaine"
+    description: "Des sujets de projets classés par niveau et par domaine, dont plusieurs guidés pas à pas"
   },
   {
     title: "Glossaire et ressources",
@@ -113,7 +113,7 @@ const FeatureHighlights = () => {
               Pourquoi apprendre avec <span className="gradient-heading">{SITE_NAME}</span> ?
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Ce site combine des explications théoriques rigoureuses avec des exemples de code
+              Ce site associe des explications théoriques à des exemples de code
               que vous pouvez exécuter vous-même, gratuitement et sans créer de compte.
             </p>
 

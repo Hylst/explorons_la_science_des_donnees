@@ -22,7 +22,7 @@ const CoursesSection = () => {
       title: "Deep Learning Specialization",
       platform: "DeepLearning.AI (aussi sur Coursera)",
       instructor: "Andrew Ng",
-      description: "Une spécialisation en 5 cours qui vous apprend les fondamentaux du deep learning et à construire des réseaux de neurones.",
+      description: "Spécialisation en 5 cours sur les fondamentaux du deep learning et la construction de réseaux de neurones.",
       link: "https://www.deeplearning.ai/specializations/deep-learning",
       duration: "Environ 127 h au total : 5 h par semaine, soit 5 semaines par cours (4 pour le cours 3)",
       access: "Conditions variables : voir le site de DeepLearning.AI ou la page Coursera du cours",
@@ -36,8 +36,9 @@ const CoursesSection = () => {
       <h2 className="text-3xl font-bold mb-6">Cours en ligne</h2>
       <div className="max-w-none mb-6">
         <p>
-          Quelques cours en ligne pour apprendre la data science, du niveau débutant au niveau avancé.
-          Ils proposent un contenu structuré et souvent des projets pratiques pour mettre en application ce qu'on apprend.
+          Deux parcours d'Andrew Ng, en anglais, pour aborder le machine learning puis le deep learning.
+          Ils proposent un contenu structuré et des exercices de programmation. Les conditions d'accès (gratuit, payant,
+          certificat) changent : la page de chaque cours fait foi.
         </p>
       </div>
 
@@ -64,16 +65,16 @@ const CoursesSection = () => {
               <div className="md:w-1/3 bg-gray-50 p-4 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center text-sm">
-                    <span className="font-medium mr-2">Durée:</span> {course.duration}
+                    <span className="font-medium mr-2">Durée :</span> {course.duration}
                   </div>
                   <div className="flex flex-wrap items-center text-sm">
-                    <span className="font-medium mr-2">Accès:</span> 
+                    <span className="font-medium mr-2">Accès :</span> 
                     <span className={course.accessTone === "free" ? "text-green-700" : "text-amber-700"}>
                       {course.access}
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center text-sm">
-                    <span className="font-medium mr-2">Certificat:</span> 
+                    <span className="font-medium mr-2">Certificat :</span> 
                     <span className="text-gray-700">{course.certificate}</span>
                   </div>
                 </div>

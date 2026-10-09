@@ -21,9 +21,9 @@ const NotFound = () => {
     
     if (path.includes('cours') || path.includes('course')) {
       return [
-        { title: "Catalogue des cours", href: "/courses", icon: BookOpen, description: "Explorez tous nos cours disponibles" },
+        { title: "Catalogue des cours", href: "/courses", icon: BookOpen, description: "Tous les cours du catalogue" },
         { title: "Bases de Python", href: "/courses/programming/python-basics", icon: Code, description: "Commencez par les bases de Python" },
-        { title: "Machine Learning", href: "/courses/machine-learning/supervised-learning", icon: Brain, description: "Découvrez l'apprentissage supervisé" }
+        { title: "Machine Learning", href: "/courses/machine-learning/supervised-learning", icon: Brain, description: "Le cours d'apprentissage supervisé" }
       ];
     }
     
@@ -36,7 +36,7 @@ const NotFound = () => {
     
     if (path.includes('ml') || path.includes('machine') || path.includes('learning')) {
       return [
-        { title: "Machine Learning", href: "/machine-learning", icon: Brain, description: "Section complète ML" },
+        { title: "Machine Learning", href: "/machine-learning", icon: Brain, description: "La section Machine Learning" },
         { title: "ML Supervisé", href: "/courses/machine-learning/supervised-learning", icon: Brain, description: "Cours d'apprentissage supervisé" }
       ];
     }
@@ -50,7 +50,7 @@ const NotFound = () => {
     
     if (path.includes('viz') || path.includes('visual') || path.includes('chart')) {
       return [
-        { title: "Visualisation", href: "/courses/dataviz/data-visualization", icon: BarChart3, description: "Créer des visualisations impactantes" },
+        { title: "Visualisation", href: "/courses/dataviz/data-visualization", icon: BarChart3, description: "Créer des visualisations lisibles" },
         { title: "Outils", href: "/tools", icon: BarChart3, description: "Outils de visualisation" }
       ];
     }
@@ -58,8 +58,8 @@ const NotFound = () => {
     // Default suggestions
     return [
       { title: "Accueil", href: "/", icon: Home, description: "Retourner à la page d'accueil" },
-      { title: "Catalogue des cours", href: "/courses", icon: BookOpen, description: "Explorez tous nos cours disponibles" },
-      { title: "Machine Learning", href: "/machine-learning", icon: Brain, description: "Section complète ML" }
+      { title: "Catalogue des cours", href: "/courses", icon: BookOpen, description: "Tous les cours du catalogue" },
+      { title: "Machine Learning", href: "/machine-learning", icon: Brain, description: "La section Machine Learning" }
     ];
   }, [location.pathname]);
 
@@ -69,7 +69,7 @@ const NotFound = () => {
         <div className="mb-8">
           <h1 className="text-6xl font-bold mb-4 gradient-heading">404</h1>
           <p className="text-xl text-muted-foreground mb-4">
-            Oups ! La page que vous recherchez semble introuvable.
+            Cette page est introuvable.
           </p>
           <p className="text-muted-foreground mb-2">
             URL demandée : <code className="bg-muted px-2 py-1 rounded text-sm">{location.pathname}</code>
@@ -80,7 +80,7 @@ const NotFound = () => {
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Suggestions pour vous :</h2>
+          <h2 className="text-2xl font-semibold mb-6">Quelques pages utiles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {suggestions.map((suggestion, index) => {
               const IconComponent = suggestion.icon;

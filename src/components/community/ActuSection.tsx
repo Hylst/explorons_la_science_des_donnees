@@ -62,7 +62,7 @@ const ActuSection = () => {
       <h2 className="text-3xl font-bold mb-6">Actualités Data Science</h2>
       <div className="max-w-none mb-6">
         <p>
-          Les derniers articles de plusieurs flux RSS publics, repris sans tri. Chaque article s'ouvre sur le site de sa source. Le flux « Le Big Data » n'apparaît pas ici : le script de récupération ne peut pas le lire.
+          Une sélection d'articles récents de plusieurs flux RSS publics, repris sans tri. Chaque article s'ouvre sur le site de sa source. Le flux « Le Big Data » n'apparaît pas ici : le script de récupération ne peut pas le lire.
           L'onglet « Sources RSS » donne les adresses des flux pour les suivre dans votre propre lecteur.
         </p>
       </div>

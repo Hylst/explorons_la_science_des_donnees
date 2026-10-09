@@ -21,7 +21,7 @@ const categories = [
   },
   {
     title: "Programmation",
-    description: "Python, R, et langages de la Data Science",
+    description: "Python, R et les autres langages de la data science",
     icon: <Code className="h-6 w-6 text-emerald-500" />,
     href: "/fundamentals/programming",
     color: "from-emerald-50 to-emerald-100",
@@ -45,7 +45,7 @@ const categories = [
   },
   {
     title: "Projets Pratiques",
-    description: "Tutoriels pas à pas et études de cas",
+    description: "Sujets de projets, dont plusieurs guidés pas à pas",
     icon: <FileText className="h-6 w-6 text-cyan-500" />,
     href: "/projects",
     color: "from-cyan-50 to-cyan-100",
@@ -53,7 +53,7 @@ const categories = [
   },
   {
     title: "Communauté",
-    description: "Forum, blog, et ressources collaboratives",
+    description: "Liens vers des forums, des événements, des comptes à suivre, le blog et des actualités",
     icon: <Users className="h-6 w-6 text-indigo-500" />,
     href: "/community",
     color: "from-indigo-50 to-indigo-100",
@@ -66,9 +66,9 @@ const FeaturedCategories = () => {
     <section className="py-16">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-2">Parcours d'Apprentissage</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-2">Explorer par thème</h2>
           <p className="text-xl text-muted-foreground">
-            Des parcours structurés pour apprendre la Data Science à votre rythme
+            Les grandes parties du site, à parcourir dans l'ordre de votre choix et à votre rythme
           </p>
         </div>
         

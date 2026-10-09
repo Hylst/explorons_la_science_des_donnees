@@ -2,8 +2,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Puzzle } from "lucide-react";
 
-// Supprimer PillarCardProps interface et PillarCard component
-
 const PillarsSection = () => {
   const pillars = [
     {
@@ -35,7 +33,7 @@ const PillarsSection = () => {
     {
       title: "Connaissance du Domaine",
       subtitle: "Le contexte d'application",
-      description: "Comprendre le contexte métier est crucial pour poser les bonnes questions et interpréter correctement les résultats d'analyse.",
+      description: "Comprendre le contexte métier est indispensable pour poser les bonnes questions et interpréter correctement les résultats d'analyse.",
       color: "border-t-ds-blue-300",
       titleColor: "text-ds-blue-500",
       skills: [
@@ -48,7 +46,7 @@ const PillarsSection = () => {
     {
       title: "Intelligence Artificielle",
       subtitle: "Les algorithmes avancés",
-      description: "Les techniques d'IA et d'apprentissage automatique permettent d'extraire des résultats complexes et de réaliser des prédictions.",
+      description: "Les techniques d'IA et d'apprentissage automatique permettent de construire des modèles qui apprennent à partir des données, par exemple pour prédire ou classer.",
       color: "border-t-ds-purple-300",
       titleColor: "text-ds-purple-500",
       skills: [
@@ -97,8 +95,8 @@ const PillarsSection = () => {
       
       <div className="max-w-none">
         <p className="text-lg mb-6">
-          La Data Science repose sur plusieurs disciplines complémentaires qui, ensemble, permettent d'extraire de la valeur des données. 
-          Chacun de ces piliers apporte des compétences et des perspectives essentielles au processus d'analyse et de découverte.
+          La Data Science repose sur plusieurs disciplines complémentaires qui, ensemble, permettent de tirer parti des données. 
+          Chacun de ces piliers apporte des compétences utiles au processus d'analyse.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">

@@ -274,7 +274,7 @@ plt.show()`}</pre>
                 
                 <div className="flex items-center gap-2 mt-4">
                   <Check className="h-5 w-5 text-green-500" />
-                  <span className="text-sm">Idéal pour les graphiques personnalisés de qualité publication</span>
+                  <span className="text-sm">Adaptée aux graphiques personnalisés destinés à la publication</span>
                 </div>
               </div>
             </CardContent>
@@ -303,7 +303,7 @@ plt.show()`}</pre>
                 
                 <p className="text-sm">
                   <GlossaryTerm definition={datavizDefinitions["seaborn"]}>Seaborn</GlossaryTerm> est bâti sur Matplotlib et offre une interface de plus haut niveau pour créer
-                  rapidement des visualisations statistiques élégantes avec moins de code.
+                  rapidement des visualisations statistiques avec moins de code.
                 </p>
                 
                 <div className="bg-green-50 p-4 rounded-lg border border-green-100 mt-4">
@@ -311,9 +311,8 @@ plt.show()`}</pre>
                   <div className="bg-gray-900 text-gray-100 p-3 rounded-md font-mono text-xs overflow-x-auto">
                     <pre>{`import seaborn as sns
 import matplotlib.pyplot as plt
-import pandas as pd
 
-# Charger un dataset d'exemple
+# Charger un jeu de données d'exemple (téléchargé au premier appel : connexion nécessaire)
 tips = sns.load_dataset("tips")
 
 # Définir le style
@@ -321,10 +320,10 @@ sns.set_theme(style="whitegrid")
 
 # Créer un graphique
 plt.figure(figsize=(10, 6))
-sns.boxplot(x="day", y="total_bill", hue="sex", data=tips, palette="pastel")
+sns.boxplot(data=tips, x="day", y="total_bill", hue="sex", palette="pastel")
 
 # Personnaliser le graphique
-plt.title("Distribution des additions par jour et par genre", fontsize=14)
+plt.title("Distribution des additions par jour et par sexe", fontsize=14)
 plt.xlabel("Jour", fontsize=12)
 plt.ylabel("Addition totale ($)", fontsize=12)
 
@@ -336,7 +335,7 @@ plt.show()`}</pre>
                 
                 <div className="flex items-center gap-2 mt-4">
                   <Check className="h-5 w-5 text-green-500" />
-                  <span className="text-sm">Parfait pour l'exploration de données et les visualisations statistiques</span>
+                  <span className="text-sm">Adapté à l'exploration de données et aux visualisations statistiques</span>
                 </div>
               </div>
             </CardContent>
@@ -364,14 +363,14 @@ plt.show()`}</pre>
                 </div>
                 
                 <p className="text-sm">
-                  Plotly permet de créer des visualisations interactives sophistiquées pour le web,
-                  avec des fonctionnalités de zoom, survol et animation. Il est disponible en Python,
+                  Plotly permet de créer des visualisations interactives pour le web,
+                  avec zoom, survol et animation. Il est disponible en Python,
                   R et JavaScript.
                 </p>
                 
                 <div className="flex items-center gap-2 mt-4">
                   <Check className="h-5 w-5 text-green-500" />
-                  <span className="text-sm">Excellent pour les dashboards interactifs et les visualisations web</span>
+                  <span className="text-sm">Adapté aux dashboards interactifs et aux visualisations web</span>
                 </div>
               </div>
             </CardContent>
@@ -401,7 +400,7 @@ plt.show()`}</pre>
                 <p className="text-sm">
                   ggplot2 implémente la « grammaire des graphiques », une approche cohérente et expressive
                   pour décrire et créer des visualisations complexes en R. C'est la bibliothèque de 
-                  visualisation de référence dans l'écosystème R.
+                  visualisation la plus répandue de l'écosystème R.
                 </p>
                 
                 <div className="bg-purple-50 p-4 rounded-lg border border-purple-100 mt-4">
@@ -454,7 +453,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             <CardContent>
               <p className="text-sm mb-3">
                 Bibliothèque Python basée sur Vega-Lite qui utilise une approche déclarative pour créer des 
-                visualisations interactives avec une API simple et intuitive.
+                visualisations interactives avec une API concise.
               </p>
               <div className="flex flex-wrap gap-1 mb-3">
                 <Badge variant="outline" className="text-xs">Déclaratif</Badge>
@@ -505,8 +504,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             </CardHeader>
             <CardContent>
               <p className="text-sm mb-3">
-                Bibliothèque JavaScript puissante pour manipuler des documents basés sur des données, 
-                permettant de créer des visualisations web hautement personnalisées.
+                Bibliothèque JavaScript pour manipuler des documents à partir de données (Data-Driven Documents), 
+                qui permet de créer des visualisations web très personnalisées.
               </p>
               <div className="flex flex-wrap gap-1 mb-3">
                 <Badge variant="outline" className="text-xs">JavaScript</Badge>
@@ -549,8 +548,8 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             <CardContent className="pt-4">
               <div className="space-y-4">
                 <p className="text-sm">
-                  <GlossaryTerm definition={datavizDefinitions["tableau"]}>Tableau</GlossaryTerm> est une plateforme puissante qui permet de créer facilement des visualisations
-                  interactives et des tableaux de bord sans coder, tout en offrant des fonctionnalités avancées.
+                  <GlossaryTerm definition={datavizDefinitions["tableau"]}>Tableau</GlossaryTerm> est une plateforme qui permet de créer des visualisations
+                  interactives et des tableaux de bord sans coder, avec des fonctionnalités d'analyse avancées.
                 </p>
                 
                 <div className="p-3 bg-gray-50 rounded-lg">
@@ -631,7 +630,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                     <li>Intégration avec Google Analytics, Sheets, BigQuery</li>
                     <li>Partage et collaboration faciles</li>
                     <li>Intégration web simple</li>
-                    <li>Interface familière pour les utilisateurs Google</li>
+                    <li>Fonctionne dans le navigateur, avec un compte Google</li>
                   </ul>
                 </div>
                 
@@ -671,7 +670,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                     <li>Interface simple pour les non-techniciens</li>
                     <li>SQL pour les utilisateurs avancés</li>
                     <li>Tableaux de bord partagés et interactifs</li>
-                    <li>Connecteurs pour la plupart des bases de données</li>
+                    <li>Connecteurs pour de nombreuses bases de données</li>
                   </ul>
                 </div>
                 
@@ -705,11 +704,11 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
                 <div className="p-3 bg-gray-50 rounded-lg">
                   <h4 className="font-medium mb-2">Points forts</h4>
                   <ul className="list-disc pl-5 space-y-1 text-sm">
-                    <li>Interface d'exploration de données puissante</li>
+                    <li>Interface d'exploration de données sans code</li>
                     <li>SQL Lab pour les requêtes directes</li>
                     <li>Visualisations avancées et personnalisables</li>
                     <li>Connecteurs pour de nombreuses bases de données (voir la documentation de Superset)</li>
-                    <li>Sécurité et gestion des accès granulaires</li>
+                    <li>Gestion des accès par rôles</li>
                   </ul>
                 </div>
                 

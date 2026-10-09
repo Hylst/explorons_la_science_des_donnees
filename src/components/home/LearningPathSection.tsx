@@ -12,11 +12,11 @@ const LearningPathSection: React.FC = () => {
         {/* Section header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Votre Parcours d'Apprentissage
+            Un parcours possible, étape par étape
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Découvrez un parcours structuré et progressif pour apprendre la data science.
-            Chaque étape s'appuie sur les précédentes pour construire des bases solides et pratiques.
+            Un ordre possible pour apprendre la data science : chaque étape s'appuie sur les précédentes.
+            Survolez ou touchez une étape pour voir son contenu, un ordre de grandeur de durée et ses prérequis.
           </p>
         </div>
         
@@ -28,9 +28,8 @@ const LearningPathSection: React.FC = () => {
         {/* Additional context */}
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            Ce parcours est conçu pour vous accompagner depuis les fondamentaux mathématiques 
-            jusqu'aux techniques avancées de machine learning, en passant par la prise en main des outils
-            et la pratique sur des projets concrets.
+            Ce parcours va des fondamentaux mathématiques au machine learning, en passant par la prise en main
+            des outils. Les durées sont indicatives et chacun peut suivre un autre ordre.
           </p>
         </div>
       </div>

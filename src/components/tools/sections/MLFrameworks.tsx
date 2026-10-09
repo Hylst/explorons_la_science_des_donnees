@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
 import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
-import { BrainCircuit, Check, BookOpen, ExternalLink } from "lucide-react";
+import { BrainCircuit, Check, BookOpen, ExternalLink, GitBranch } from "lucide-react";
 import { SourceNote } from "@/components/ui/source-note";
 
 const MLFrameworks = () => {
@@ -18,15 +18,15 @@ const MLFrameworks = () => {
     { name: 'Keras', users: 4.3 },
   ];
 
-  // Répartition ILLUSTRATIVE : aucune enquête ne publie une telle ventilation, les proportions servent seulement à
-  // illustrer qu'il existe plusieurs grands domaines d'application. Ne pas les citer comme des statistiques.
+  // Liste de domaines, à PARTS ÉGALES : aucune enquête ne publie de ventilation fiable, et les anciennes proportions
+  // (30 %, 25 %...) étaient inventées. Le graphique ne mesure rien, il nomme seulement les grands domaines.
   const mlApplicationData = [
-    { name: 'Vision par ordinateur', value: 30 },
-    { name: 'NLP', value: 25 },
-    { name: 'Prédiction numérique', value: 20 },
-    { name: 'Séries temporelles', value: 12 },
-    { name: 'Recommandation', value: 8 },
-    { name: 'Autres', value: 5 },
+    { name: 'Vision', value: 1 },
+    { name: 'Langage (NLP)', value: 1 },
+    { name: 'Données tabulaires', value: 1 },
+    { name: 'Séries temporelles', value: 1 },
+    { name: 'Recommandation', value: 1 },
+    { name: 'Autres', value: 1 },
   ];
   
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
@@ -76,7 +76,7 @@ const MLFrameworks = () => {
         <Card>
           <CardHeader>
             <CardTitle>Domaines d'application du ML</CardTitle>
-            <CardDescription>Répartition illustrative des grands domaines d'application (proportions indicatives, non issues d'une enquête)</CardDescription>
+            <CardDescription>Quelques grands domaines d'application, à parts égales : le graphique ne mesure rien, il les nomme seulement</CardDescription>
           </CardHeader>
           <CardContent className="pt-0">
             <div className="h-80">
@@ -89,19 +89,18 @@ const MLFrameworks = () => {
                     outerRadius={130}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)} %`}
+                    label={({ name }) => name}
                     labelLine={false}
                   >
                     {mlApplicationData.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value: number) => [`${value} %`, 'Proportion illustrative']} />
                 </PieChart>
               </DeferredResponsiveContainer>
               <p className="text-xs text-gray-500 text-center mt-4">
-                Les frameworks ML s'adaptent à différents domaines d'application, 
-                certains étant spécialisés pour des tâches spécifiques. Les proportions ci-dessus sont illustratives.
+                Les frameworks ML s'appliquent à différents domaines, 
+                certains étant spécialisés pour des tâches précises. Les parts sont égales par construction : aucune proportion réelle n'est représentée.
               </p>
             </div>
           </CardContent>
@@ -136,18 +135,22 @@ const MLFrameworks = () => {
               
               <p>
                 Scikit-learn est la bibliothèque de référence pour le Machine Learning classique en Python.
-                Elle propose une interface cohérente pour une grande variété d'algorithmes, facilitant
-                l'expérimentation et le déploiement de modèles.
+                Elle propose une interface cohérente (fit, predict, transform) pour une grande variété d'algorithmes,
+                ce qui facilite l'expérimentation.
               </p>
               
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 mt-4">
                 <h4 className="font-medium text-blue-700 mb-2">Exemple de code scikit-learn</h4>
                 <div className="bg-gray-900 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  <pre>{`from sklearn.ensemble import RandomForestClassifier
+                  <pre>{`from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
+
+# Charger un jeu de données fourni avec scikit-learn
+X, y = load_breast_cancer(return_X_y=True)
 
 # Préparer les données
 X_train, X_test, y_train, y_test = train_test_split(
@@ -157,7 +160,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Créer un pipeline
 pipeline = Pipeline([
     ('scaler', StandardScaler()),
-    ('classifier', RandomForestClassifier(n_estimators=100))
+    ('classifier', LogisticRegression(max_iter=1000))
 ])
 
 # Entraîner le modèle
@@ -168,13 +171,13 @@ y_pred = pipeline.predict(X_test)
 
 # Évaluer le modèle
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
+print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</pre>
                 </div>
               </div>
               
               <div className="flex items-center gap-2 mt-4">
                 <Check className="h-5 w-5 text-green-500" />
-                <span className="text-sm">Idéal pour démarrer en Machine Learning et pour de nombreux cas d'utilisation professionnels</span>
+                <span className="text-sm">Un bon point de départ en Machine Learning, aussi utilisé en contexte professionnel</span>
               </div>
             </div>
           </CardContent>
@@ -190,7 +193,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <h5 className="font-medium text-blue-700 mb-1">scikit-learn</h5>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Algorithmes classiques (arbres, SVM, etc.)</li>
-                  <li>Jeux de données de taille moyenne</li>
+                  <li>Jeux de données qui tiennent en mémoire</li>
                   <li>Prétraitement des données</li>
                   <li>Prototypage rapide</li>
                 </ul>
@@ -221,7 +224,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Compétitions et défis ML</li>
                   <li>Problèmes avec données tabulaires</li>
-                  <li>Souvent très performants sur ce type de données</li>
+                  <li>Souvent très performants sur ce type de données (à comparer à une base de référence)</li>
                   <li>Algorithmes à base d'arbres</li>
                 </ul>
               </div>
@@ -271,9 +274,8 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
               </div>
               
               <p className="text-sm">
-                TensorFlow est un framework complet développé par Google qui prend en charge la recherche,
-                le développement et le déploiement de modèles de machine learning, avec un accent particulier
-                sur les réseaux de neurones profonds.
+                TensorFlow est un framework développé par Google pour construire, entraîner et déployer
+                des modèles de machine learning, avec un accent particulier sur les réseaux de neurones profonds.
               </p>
               
               <div className="p-3 bg-red-50 rounded-lg">
@@ -281,9 +283,9 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
                 <ul className="list-disc pl-5 space-y-1 text-sm">
                   <li>Écosystème complet pour la production</li>
                   <li>TensorFlow Extended (TFX) pour les pipelines ML</li>
-                  <li>Keras comme API de haut niveau intuitive</li>
+                  <li>Keras comme API de haut niveau (Keras 3 fonctionne aussi avec JAX et PyTorch)</li>
                   <li>Déploiement cloud via Vertex AI (Google Cloud)</li>
-                  <li>Optimisé pour la performance et le déploiement</li>
+                  <li>Outils de déploiement : TensorFlow Serving, LiteRT, TensorFlow.js</li>
                 </ul>
               </div>
             </div>
@@ -338,10 +340,7 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
         <Card className="hover:shadow-md transition-all">
           <CardHeader className="bg-green-50 rounded-t-lg border-b">
             <CardTitle className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" viewBox="0 0 32 32">
-                <path fill="#346c9c" d="M17.1 2c-1.2.1-2.5.3-3.4.6-3.1.9-3.7 2.7-3.7 6.1v4.5h7.4v.9H6.9c-2.1 0-4 1.3-4.6 3.7-.7 2.7-.7 4.4 0 7.2.5 2.1 1.8 3.7 4 3.7h2.5v-5.3c0-2.4 2.1-4.5 4.6-4.5h7.4c2 0 3.7-1.7 3.7-3.7V8.7c0-2-1.7-3.5-3.7-3.8-1.3-.2-2.6-.3-3.7-.2zm-4 2.2c.8 0 1.4.6 1.4 1.4 0 .8-.6 1.4-1.4 1.4-.8 0-1.4-.6-1.4-1.4 0-.8.6-1.4 1.4-1.4z" />
-                <path fill="#fed941" d="M24.9 13.9v5.1c0 2.5-2.1 4.6-4.6 4.6h-7.4c-2 0-3.7 1.7-3.7 3.7v6.9c0 2 1.7 3.1 3.7 3.7 2.4.7 4.6.8 7.4 0 1.9-.5 3.7-1.6 3.7-3.7v-4.5h-7.4v-.9h11.1c2.1 0 2.9-1.5 3.7-3.7.8-2.3.8-4.4 0-7.2-.6-2-1.6-3.7-3.7-3.7h-2.8zm-4.2 27.7c.8 0 1.4.6 1.4 1.4 0 .8-.6 1.4-1.4 1.4-.8 0-1.4-.6-1.4-1.4 0-.8.7-1.4 1.4-1.4z" />
-              </svg>
+              <GitBranch className="h-6 w-6 mr-2 text-green-600" aria-hidden="true" />
               XGBoost et LightGBM
             </CardTitle>
             <CardDescription>
@@ -358,45 +357,50 @@ print(f"Précision du modèle : {accuracy:.2f}")`}</pre>
               </div>
               
               <p className="text-sm">
-                XGBoost et LightGBM sont des implémentations optimisées d'algorithmes de gradient boosting,
-                offrant souvent de très bonnes performances pour les problèmes de classification et de régression
-                sur des données tabulaires.
+                XGBoost et LightGBM sont des implémentations optimisées du gradient boosting d'arbres de décision,
+                souvent très performantes en classification et en régression sur des données tabulaires.
               </p>
               
               <div className="bg-green-50 p-4 rounded-lg border border-green-100 mt-4">
                 <h4 className="font-medium text-green-700 mb-2">Exemple de code XGBoost</h4>
                 <div className="bg-gray-900 text-gray-100 p-3 rounded-md font-mono text-xs overflow-x-auto">
                   <pre>{`import xgboost as xgb
+from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import root_mean_squared_error
 
-# Préparer les données
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+# Jeu de données fourni avec scikit-learn
+X, y = load_diabetes(return_X_y=True)
+
+# Trois ensembles : entraînement, validation (arrêt précoce), test (évaluation finale)
+X_tmp, X_test, y_tmp, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(X_tmp, y_tmp, test_size=0.25, random_state=42)
 
 # Convertir en DMatrix (format optimisé pour XGBoost)
 dtrain = xgb.DMatrix(X_train, label=y_train)
+dval = xgb.DMatrix(X_val, label=y_val)
 dtest = xgb.DMatrix(X_test, label=y_test)
 
 # Configurer les paramètres
 params = {
     'objective': 'reg:squarederror',
-    'max_depth': 6,
-    'eta': 0.1,
+    'max_depth': 3,
+    'eta': 0.05,
     'subsample': 0.8,
     'colsample_bytree': 0.8
 }
 
-# Entraîner le modèle
+# Entraîner le modèle (arrêt si la validation ne s'améliore plus)
 model = xgb.train(
     params,
     dtrain,
-    num_boost_round=100,
-    evals=[(dtest, 'test')],
-    early_stopping_rounds=10
+    num_boost_round=500,
+    evals=[(dval, 'validation')],
+    early_stopping_rounds=20
 )
 
-# Faire des prédictions
-preds = model.predict(dtest)
+# Prédire avec la meilleure itération, puis évaluer sur le test
+preds = model.predict(dtest, iteration_range=(0, model.best_iteration + 1))
 rmse = root_mean_squared_error(y_test, preds)
 print(f"RMSE : {rmse:.4f}")`}</pre>
                 </div>
@@ -433,7 +437,7 @@ print(f"RMSE : {rmse:.4f}")`}</pre>
               </div>
               
               <p className="text-sm">
-                Hugging Face Transformers est très utilisée pour le traitement du langage naturel : elle donne accès
+                Hugging Face Transformers est très utilisée pour le traitement du langage naturel, mais aussi pour la vision et l'audio : elle donne accès
                 à de nombreuses architectures (BERT, GPT-2, T5, CamemBERT...) et à des modèles préentraînés partagés sur le Hugging Face Hub.
               </p>
               
@@ -451,7 +455,7 @@ tokenizer = AutoTokenizer.from_pretrained("camembert-base")
 model = AutoModelForSequenceClassification.from_pretrained("camembert-base", num_labels=2)
 
 # Préparer le texte
-text = "J'adore les bibliothèques de machine learning!"
+text = "J'adore les bibliothèques de machine learning."
 inputs = tokenizer(text, return_tensors="pt")
 
 # Faire une prédiction
@@ -472,23 +476,24 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
       <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
         <h3 className="text-xl font-bold mb-4 flex items-center">
           <BrainCircuit className="h-6 w-6 mr-2 text-blue-700" />
-          AutoML et démocratisation du Machine Learning
+          AutoML : automatiser une partie du travail
         </h3>
         
         <p className="mb-6">
-          L'AutoML (Machine Learning automatisé) vise à rendre les techniques d'apprentissage automatique
-          accessibles aux non-spécialistes en automatisant les tâches complexes comme la sélection de modèles,
-          le réglage des hyperparamètres et la construction de variables (feature engineering).
+          L'AutoML (Machine Learning automatisé) automatise des tâches répétitives comme la sélection de modèles,
+          le réglage des hyperparamètres et une partie de la construction de variables (feature engineering).
+          Il ne remplace ni la compréhension des données ni l'évaluation soignée des résultats.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-700 mb-2">AutoML en Python</h4>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>Auto-sklearn</li>
+              <li>AutoGluon</li>
               <li>TPOT</li>
-              <li>AutoKeras</li>
+              <li>FLAML</li>
               <li>PyCaret</li>
+              <li>AutoKeras</li>
             </ul>
             <p className="text-xs mt-2 text-gray-600">
               Solutions programmatiques qui s'intègrent au flux de travail Python
@@ -497,10 +502,10 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-700 mb-2">Plateformes Cloud</h4>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>Google Cloud AutoML</li>
-              <li>Azure Automated ML</li>
+              <li>AutoML de Vertex AI (Google Cloud)</li>
+              <li>Automated ML d'Azure Machine Learning</li>
               <li>Amazon SageMaker Autopilot</li>
-              <li>IBM Watson AutoAI</li>
+              <li>AutoAI de watsonx.ai (IBM)</li>
             </ul>
             <p className="text-xs mt-2 text-gray-600">
               Solutions intégrées avec l'infrastructure cloud et les services associés
@@ -509,13 +514,12 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-700 mb-2">Plateformes spécialisées</h4>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>H2O.ai</li>
+              <li>H2O.ai (H2O AutoML)</li>
               <li>DataRobot</li>
               <li>Dataiku</li>
-              <li>Ludwig</li>
             </ul>
             <p className="text-xs mt-2 text-gray-600">
-              Solutions complètes avec interfaces visuelles et fonctionnalités avancées
+              Plateformes qui ajoutent une interface visuelle et le suivi des projets
             </p>
           </div>
         </div>
@@ -572,7 +576,7 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
               <ul className="list-disc pl-5 space-y-1 text-sm">
                 <li>BentoML</li>
                 <li>TensorFlow Serving</li>
-                <li>Seldon Core</li>
+                <li>Ray Serve</li>
                 <li>KServe</li>
               </ul>
               <div className="mt-2 text-xs text-gray-600">
@@ -629,9 +633,9 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
                 <span>Kaggle Learn</span>
                 <ExternalLink className="h-4 w-4 ml-auto text-gray-400" />
               </a>
-              <a href="https://www.fast.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center p-3 bg-white rounded-lg border hover:bg-blue-50 transition-colors">
+              <a href="https://course.fast.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center p-3 bg-white rounded-lg border hover:bg-blue-50 transition-colors">
                 <BookOpen className="h-5 w-5 mr-2 text-blue-600" />
-                <span>Cours fast.ai</span>
+                <span>Cours fast.ai (Practical Deep Learning)</span>
                 <ExternalLink className="h-4 w-4 ml-auto text-gray-400" />
               </a>
             </div>

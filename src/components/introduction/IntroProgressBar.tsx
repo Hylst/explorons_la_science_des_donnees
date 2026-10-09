@@ -22,6 +22,8 @@ const IntroProgressBar = ({ currentSection, sections, onClick }: IntroProgressPr
                 : "bg-gray-200 hover:bg-gray-300"
             )}
             title={section.title}
+            aria-label={section.title}
+            aria-current={currentSection === section.id ? "true" : undefined}
           />
         ))}
       </div>

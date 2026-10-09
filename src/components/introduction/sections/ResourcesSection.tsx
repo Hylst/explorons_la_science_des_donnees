@@ -59,9 +59,8 @@ const ResourcesSection = () => {
       
       <div className="max-w-none">
         <p className="text-lg mb-6">
-          Pour vous aider à débuter ou approfondir vos connaissances en Data Science, 
-          voici une petite sélection de ressources utiles. Ces outils, cours et références 
-          peuvent vous accompagner dans votre parcours d'apprentissage.
+          Pour débuter ou approfondir vos connaissances en Data Science, voici une petite sélection
+          de livres, de cours et de plateformes d'exercices.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -88,7 +87,7 @@ const ResourcesSection = () => {
               title="Machine Learning - Stanford"
               author="Andrew Ng (Coursera)"
               link="https://www.coursera.org/learn/machine-learning"
-              description="Le cours fondamental pour comprendre les bases du Machine Learning."
+              description="Un cours d'introduction au Machine Learning."
             />
             <ResourceItem
               title="Data Science Specialization"
@@ -131,7 +130,7 @@ const ResourcesSection = () => {
             <ResourceItem
               title="Towards Data Science"
               link="https://towardsdatascience.com"
-              description="Publication Medium regroupant des articles de qualité sur la Data Science."
+              description="Publication communautaire d'articles sur la Data Science, de niveaux variés."
             />
           </ResourceCategory>
         </div>
@@ -139,9 +138,9 @@ const ResourcesSection = () => {
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg my-8 border border-blue-100">
           <div className="flex flex-wrap justify-between items-center gap-4">
             <div>
-              <h3 className="text-xl font-semibold mb-2">Explorez notre page Ressources</h3>
+              <h3 className="text-xl font-semibold mb-2">La page Ressources</h3>
               <p className="text-gray-700">
-                Découvrez notre sélection complète de livres, cours, tutoriels et outils pour approfondir vos connaissances en Data Science.
+                Une sélection plus large de livres, de cours, de tutoriels et d'outils.
               </p>
             </div>
             <Button className="bg-ds-blue-500 hover:bg-ds-blue-600" asChild>

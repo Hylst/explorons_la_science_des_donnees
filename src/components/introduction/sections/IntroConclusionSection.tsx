@@ -14,12 +14,12 @@ const IntroConclusionSection = () => {
           nécessaires, vous pouvez approfondir vos connaissances dans les domaines qui vous intéressent.
         </p>
         <p className="mb-6">
-          Nous vous recommandons de continuer votre apprentissage avec les fondamentaux : mathématiques, statistiques, 
-          programmation et manipulation de données. Ces compétences de base sont essentielles pour progresser.
+          Une suite possible : les fondamentaux, c'est-à-dire les mathématiques, les statistiques, la programmation
+          et la manipulation de données. Ces bases servent ensuite dans tous les autres domaines.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded-lg border">
-            <h4 className="font-semibold mb-2">Étape suivante recommandée</h4>
+            <h4 className="font-semibold mb-2">Étape suivante possible</h4>
             <p className="text-sm text-gray-700 mb-3">
               Explorez les fondamentaux de la Data Science pour construire des bases solides.
             </p>

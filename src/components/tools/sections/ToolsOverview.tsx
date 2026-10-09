@@ -9,9 +9,9 @@ const ToolsOverview = () => {
     <div className="space-y-8">
       <div className="max-w-none">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          La data science s'appuie sur un écosystème riche et diversifié d'outils, chacun optimisé pour des tâches spécifiques.
-          De la collecte des données brutes à la communication des résultats, découvrez les technologies qui alimentent 
-          l'innovation en science des données et apprenez à choisir votre boîte à outils.
+          La data science s'appuie sur de nombreux outils, chacun adapté à des tâches précises.
+          De la collecte des données brutes à la communication des résultats, ces pages présentent les principaux
+          langages, bibliothèques et plateformes, et aident à choisir sa boîte à outils.
         </p>
       </div>
 
@@ -104,7 +104,7 @@ const ToolsOverview = () => {
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <Database className="h-3 w-3" />
-                  <span>Gestion de gros volumes</span>
+                  <span>Du stockage à la préparation des données</span>
                 </div>
               </div>
             </div>
@@ -264,7 +264,7 @@ const ToolsOverview = () => {
                   className="group flex items-center gap-2 hover:text-blue-600 transition-colors"
                 >
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                  Coursera - Spécialisation certifiante
+                  Coursera - Applied Data Science with Python (en anglais)
                 </a>
               </li>
             </ul>
@@ -280,7 +280,7 @@ const ToolsOverview = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <a 
-                  href="https://scikit-learn.org/stable/documentation.html" 
+                  href="https://scikit-learn.org/stable/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center gap-2 hover:text-purple-600 transition-colors"
@@ -336,7 +336,7 @@ const ToolsOverview = () => {
               <li>
                 <Link to="/community" className="group flex items-center gap-2 hover:text-green-600 transition-colors">
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                  Forums, actualités et liens de la communauté
+                  Page Communauté : liens vers des forums, des événements et des actualités
                 </Link>
               </li>
               <li>
@@ -366,16 +366,16 @@ const ToolsOverview = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <p className="text-sm leading-relaxed text-gray-700">
-              Le choix des outils dépend de plusieurs facteurs critiques : la taille et la nature des données, 
-              les contraintes techniques du projet, votre expertise et celle de votre équipe, ainsi que les 
-              exigences en termes de performance et de déploiement.
+              Le choix des outils dépend de plusieurs facteurs : la taille et la nature des données,
+              les contraintes techniques du projet, votre expérience et celle de votre équipe, ainsi que les
+              exigences de performance et de déploiement.
             </p>
             <div className="space-y-2">
               <h4 className="font-semibold text-gray-800">Facteurs clés :</h4>
               <ul className="space-y-1 text-sm text-gray-600 pl-4">
                 <li>• Volume et complexité des données</li>
                 <li>• Budget et contraintes de temps</li>
-                <li>• Niveau d'expertise de l'équipe</li>
+                <li>• Niveau d'expérience de l'équipe</li>
                 <li>• Besoins de collaboration</li>
                 <li>• Exigences de déploiement</li>
               </ul>

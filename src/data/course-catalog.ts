@@ -24,7 +24,7 @@ export const COURSE_CATEGORIES: { id: CourseCategoryId; title: string; descripti
   { id: "programming", title: "Programmation", description: "Langages et outils de développement pour la Data Science" },
   { id: "math-stats", title: "Mathématiques et statistiques", description: "Concepts mathématiques et statistiques essentiels" },
   { id: "databases", title: "Bases de données", description: "SQL, NoSQL et gestion de données pour la Data Science" },
-  { id: "dataviz", title: "Visualisation", description: "Créer des visualisations impactantes et interactives" },
+  { id: "dataviz", title: "Visualisation", description: "Construire des graphiques lisibles et honnêtes, du choix du graphique aux tableaux de bord" },
   { id: "machine-learning", title: "Machine Learning", description: "Algorithmes et techniques d'apprentissage automatique" },
   { id: "ai", title: "Intelligence Artificielle", description: "NLP et techniques avancées d'IA" },
 ];

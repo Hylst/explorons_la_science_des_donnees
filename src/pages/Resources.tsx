@@ -12,7 +12,7 @@ import InitiationCoursesSection from "@/components/resources/InitiationCoursesSe
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { useSectionTracker } from "@/hooks/use-section-tracker";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { CONTACT_EMAIL } from "@/config/contact";
+import { AUTHOR_CREDIT } from "@/config/site";
 
 
 type SectionType = "initiation-courses" | "books" | "courses" | "websites" | "videos";
@@ -112,7 +112,12 @@ const ResourcesPage = () => {
         </div>
         
         <div className="text-sm text-muted-foreground mt-12 text-right">
-          <p>Auteur: Geoffroy Streit - {CONTACT_EMAIL}</p>
+          <p>
+            Auteur : {AUTHOR_CREDIT} ·{" "}
+            <Link to="/contact" className="underline">
+              le contacter
+            </Link>
+          </p>
         </div>
       </section>
     </ContentLayout>

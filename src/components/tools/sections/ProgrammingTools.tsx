@@ -133,7 +133,7 @@ const ProgrammingTools = () => {
 
       {/* Python */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <Card className="col-span-3 md:col-span-2 hover:shadow-md transition-all">
+        <Card className="md:col-span-2 hover:shadow-md transition-all">
           <CardHeader className="bg-blue-50 rounded-t-lg border-b">
             <CardTitle className="flex items-center text-blue-800">
               <img src={asset("img/logos/python.svg")} alt="" className="h-6 w-6 mr-2" />
@@ -155,16 +155,16 @@ const ProgrammingTools = () => {
               </div>
               
               <p>
-                Python est devenu le langage de choix pour la Data Science grâce à sa simplicité, sa lisibilité
-                et son vaste écosystème de bibliothèques spécialisées.
+                Python est très répandu en data science, notamment grâce à sa syntaxe lisible
+                et à son vaste écosystème de bibliothèques spécialisées.
               </p>
               
               <div className="p-4 bg-gray-50 rounded-lg mt-4">
                 <h4 className="font-medium mb-2">Points forts</h4>
                 <ul className="list-disc pl-5 space-y-1 text-sm">
-                  <li>Syntaxe simple et intuitive, idéale pour les débutants</li>
+                  <li>Syntaxe lisible, souvent conseillée aux débutants</li>
                   <li>Écosystème riche avec des packages spécialisés (pandas, NumPy, scikit-learn)</li>
-                  <li>Excellente intégration avec les frameworks de deep learning</li>
+                  <li>Interface principale de TensorFlow et de PyTorch</li>
                   <li>Large communauté et documentation abondante</li>
                   <li>Notebooks Jupyter pour l'analyse interactive</li>
                 </ul>
@@ -182,7 +182,7 @@ const ProgrammingTools = () => {
                     <pre>{`import pandas as pd
 import numpy as np
 
-# Charger les données
+# Charger les données (un fichier CSV à vous)
 df = pd.read_csv('data.csv')
 
 # Afficher les premières lignes
@@ -211,7 +211,8 @@ grouped = df.groupby('category').agg({
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 
-# Préparation des données
+# Préparation des données (df : le DataFrame chargé dans l'onglet précédent,
+# avec une colonne 'target' à prédire et des colonnes numériques)
 X = df.drop('target', axis=1)
 y = df['target']
 
@@ -221,7 +222,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Entraînement du modèle
-model = RandomForestClassifier(n_estimators=100)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 # Évaluation
@@ -236,9 +237,9 @@ print(confusion_matrix(y_test, y_pred))`}</pre>
                     <pre>{`import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Configuration de base
-plt.figure(figsize=(12, 6))
+# Configuration de base (df : le même DataFrame)
 sns.set_theme(style="whitegrid")
+plt.figure(figsize=(12, 6))
 
 # Visualisation avec Seaborn
 sns.histplot(df['age'], kde=True)
@@ -250,7 +251,7 @@ plt.show()
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
 # Premier subplot: boxplot
-sns.boxplot(x='category', y='value', data=df, ax=axes[0])
+sns.boxplot(data=df, x='category', y='value', ax=axes[0])
 axes[0].set_title('Valeurs par catégorie')
 
 # Second subplot: heatmap de corrélation
@@ -381,17 +382,17 @@ plt.show()`}</pre>
               </div>
               
               <p className="text-sm">
-                R excelle dans les analyses statistiques avancées et la création de visualisations 
-                de qualité publication. Idéal pour le travail dans les domaines de la recherche,
-                de la biostatistique et de l'économétrie.
+                R a été conçu pour l'analyse statistique et offre de nombreux outils de visualisation 
+                de qualité publication. Il est courant en recherche, en biostatistique
+                et en économétrie.
               </p>
               
               <div className="p-3 bg-gray-50 rounded-lg mt-2">
                 <h4 className="font-medium mb-2 text-sm">Points forts</h4>
                 <ul className="list-disc pl-5 space-y-1 text-xs">
-                  <li>Excellente capacité pour l'analyse statistique</li>
-                  <li>Visualisations de haute qualité avec ggplot2</li>
-                  <li>Forte adoption dans la recherche et le milieu académique</li>
+                  <li>Large choix de méthodes statistiques</li>
+                  <li>Graphiques soignés avec ggplot2</li>
+                  <li>Très utilisé dans la recherche et le milieu académique</li>
                   <li>Nombreux packages pour des analyses spécialisées</li>
                 </ul>
               </div>
@@ -427,17 +428,17 @@ plt.show()`}</pre>
               </div>
               
               <p className="text-sm">
-                SQL reste essentiel pour tout data scientist, permettant d'interroger et de manipuler
-                efficacement des données stockées dans des bases de données relationnelles.
+                SQL est très utilisé en data science : il permet d'interroger et de manipuler
+                des données stockées dans des bases de données relationnelles.
               </p>
               
               <div className="p-3 bg-gray-50 rounded-lg mt-2">
                 <h4 className="font-medium mb-2 text-sm">Points forts</h4>
                 <ul className="list-disc pl-5 space-y-1 text-xs">
-                  <li>Standard pour les requêtes de bases de données</li>
-                  <li>Efficace pour manipuler de grands volumes de données</li>
-                  <li>Intégration avec pratiquement tous les outils de data science</li>
-                  <li>Optimisé pour les agrégations et jointures complexes</li>
+                  <li>Langage normalisé des bases de données relationnelles (avec des variantes selon le moteur)</li>
+                  <li>Le moteur de la base se charge d'optimiser les requêtes sur de grands volumes</li>
+                  <li>Pris en charge par la plupart des outils de data science</li>
+                  <li>Adapté aux agrégations et aux jointures</li>
                 </ul>
               </div>
             </div>
@@ -510,7 +511,7 @@ plt.show()`}</pre>
               <div className="flex flex-wrap gap-2 mb-3">
                 <Badge variant="outline" className="bg-blue-50">Apache Spark</Badge>
                 <Badge variant="outline" className="bg-blue-50">Spark MLlib</Badge>
-                <Badge variant="outline" className="bg-blue-50">Vegas</Badge>
+                <Badge variant="outline" className="bg-blue-50">Almond (noyau Jupyter)</Badge>
               </div>
               
               <p className="text-sm">
@@ -521,10 +522,10 @@ plt.show()`}</pre>
               <div className="p-3 bg-gray-50 rounded-lg mt-2">
                 <h4 className="font-medium mb-2 text-sm">Points forts</h4>
                 <ul className="list-disc pl-5 space-y-1 text-xs">
-                  <li>Parfaitement intégré avec Apache Spark</li>
+                  <li>Langage dans lequel Apache Spark est écrit</li>
                   <li>Combine programmation fonctionnelle et orientée objet</li>
                   <li>Performances élevées sur la JVM</li>
-                  <li>Idéal pour les applications big data</li>
+                  <li>Adapté aux applications de données massives</li>
                 </ul>
               </div>
             </div>
@@ -545,7 +546,7 @@ plt.show()`}</pre>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white/80 p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-800 mb-2">Jupyter Notebooks</h4>
-            <p className="text-sm">Environnement interactif idéal pour l'exploration de données et la visualisation.</p>
+            <p className="text-sm">Environnement interactif adapté à l'exploration de données et à la visualisation.</p>
             <div className="mt-3">
               <a 
                 href="https://jupyter.org/" 
@@ -559,7 +560,7 @@ plt.show()`}</pre>
           </div>
           <div className="bg-white/80 p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-800 mb-2">RStudio</h4>
-            <p className="text-sm">IDE complet pour le langage R, avec de nombreuses fonctionnalités pour l'analyse statistique.</p>
+            <p className="text-sm">Environnement de développement pour le langage R, conçu pour l'analyse statistique. Posit propose aussi Positron, un environnement plus récent pour R et Python.</p>
             <div className="mt-3">
               <a 
                 href="https://posit.co/products/open-source/rstudio/" 
@@ -573,7 +574,7 @@ plt.show()`}</pre>
           </div>
           <div className="bg-white/80 p-4 rounded-lg shadow-sm">
             <h4 className="font-semibold text-blue-800 mb-2">VS Code</h4>
-            <p className="text-sm">Éditeur polyvalent avec d'excellentes extensions pour Python, R, Julia et autres langages.</p>
+            <p className="text-sm">Éditeur polyvalent, avec des extensions pour Python, R, Julia et d'autres langages.</p>
             <div className="mt-3">
               <a 
                 href="https://code.visualstudio.com/docs/datascience/overview" 
@@ -629,14 +630,14 @@ plt.show()`}</pre>
           </summary>
           <div className="mt-3 text-sm space-y-4">
             <p>
-              Pour les débutants en data science, nous recommandons fortement de commencer par Python 
+              Pour les débutants en data science, nous suggérons de commencer par Python 
               pour plusieurs raisons :
             </p>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Syntaxe simple et intuitive facile à apprendre</li>
+              <li>Syntaxe lisible, assez facile à apprendre</li>
               <li>Vaste écosystème de bibliothèques pour tous les aspects de la data science</li>
               <li>Grande communauté et nombreuses ressources d'apprentissage</li>
-              <li>Applicable à pratiquement tous les domaines de la data science</li>
+              <li>Utilisable dans la plupart des domaines de la data science</li>
             </ul>
             <Alert className="bg-blue-50 border-blue-200">
               <AlertDescription className="text-blue-800">
@@ -678,7 +679,7 @@ plt.show()`}</pre>
                   rel="noopener noreferrer"
                   className="flex items-center p-2 rounded hover:bg-blue-100 transition-colors"
                 >
-                  <span className="flex-1">Spécialisation Data Science avec Python (Université du Michigan)</span>
+                  <span className="flex-1">Applied Data Science with Python, spécialisation de l'Université du Michigan sur Coursera (en anglais ; conditions d'accès sur la page du cours)</span>
                   <ExternalLink className="h-4 w-4 text-blue-500" />
                 </a>
               </li>

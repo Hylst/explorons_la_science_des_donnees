@@ -8,31 +8,31 @@ const WebsitesSection = () => {
     {
       title: "Kaggle",
       url: "https://www.kaggle.com",
-      description: "Plateforme de compétitions de Data Science, datasets, notebooks et communauté.",
+      description: "Plateforme de compétitions de data science, jeux de données, notebooks et communauté. Elle propose aussi des micro-cours gratuits (Kaggle Learn).",
       categories: ["Datasets", "Compétitions", "Notebooks"]
     },
     {
       title: "Towards Data Science",
       url: "https://towardsdatascience.com",
-      description: "Publication Medium dédiée à la Data Science avec des articles de qualité de data scientists.",
+      description: "Publication d'articles sur la data science rédigés par des contributeurs, hébergée sur son propre site depuis 2025 (elle était auparavant sur Medium). La qualité varie d'un article à l'autre.",
       categories: ["Articles", "Tutoriels", "Études de cas"]
     },
     {
       title: "Stack Overflow",
       url: "https://stackoverflow.com/questions/tagged/data-science",
-      description: "Questions et réponses de la communauté sur tous les aspects de la data science et programmation.",
+      description: "Questions et réponses de la communauté sur la data science et la programmation.",
       categories: ["Forum", "Q&A", "Support"]
     },
     {
       title: "GitHub",
       url: "https://github.com/topics/data-science",
-      description: "Projets open source, code et ressources dans le domaine de la data science.",
+      description: "Projets open source, code et ressources sur la data science (page du sujet « data-science »).",
       categories: ["Code", "Open Source", "Projets"]
     },
     {
       title: "Scikit-learn",
       url: "https://scikit-learn.org",
-      description: "Documentation officielle de scikit-learn avec exemples et tutoriels sur le machine learning.",
+      description: "Documentation officielle de scikit-learn, avec guide utilisateur, exemples et tutoriels.",
       categories: ["Documentation", "Tutoriels", "API"]
     }
   ];
@@ -42,8 +42,7 @@ const WebsitesSection = () => {
       <h2 className="text-3xl font-bold mb-6">Sites Web</h2>
       <div className="max-w-none mb-6">
         <p>
-          Sites de référence, blogs et forums pour rester à jour et approfondir vos connaissances.
-          Ces ressources en ligne peuvent aider à progresser, du débutant au professionnel.
+          Quelques sites pour s'entraîner, poser des questions et lire la documentation. La plupart sont en anglais.
         </p>
       </div>
 

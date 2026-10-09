@@ -67,7 +67,7 @@ const CareersSection = () => {
     {
       title: "Data Scientist",
       acronym: "DS",
-      description: "Expert en algorithmes de Machine Learning et statistiques avancées, le Data Scientist construit des modèles prédictifs et extrait des insights des données.",
+      description: "Expert en algorithmes de Machine Learning et statistiques avancées, le Data Scientist construit des modèles prédictifs et en tire des enseignements.",
       skills: "Statistiques avancées, ML, programmation (Python/R), visualisation",
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
@@ -78,7 +78,7 @@ const CareersSection = () => {
     {
       title: "Data Engineer",
       acronym: "DE",
-      description: "Spécialiste des infrastructures de données, le Data Engineer construit et maintient les pipelines qui permettent de collecter, stocker et prétraiter les données.",
+      description: "Spécialiste des infrastructures de données, le Data Engineer construit et maintient les chaînes de traitement qui permettent de collecter, stocker et préparer les données.",
       skills: "Bases de données, Big Data (Hadoop/Spark), cloud, programmation",
       fromColor: "from-ds-blue-50",
       toColor: "to-ds-purple-50",
@@ -183,20 +183,20 @@ const CareersSection = () => {
             <SalaryRangeItem role="Data Engineer" range="45-55 k€" level="junior" />
             <SalaryRangeItem role="ML Engineer" range="50-65 k€" level="junior" />
           </div>
-          
+
           <div className="space-y-2 mb-6">
             <SalaryRangeItem role="Data Analyst Senior" range="50-70 k€" level="mid" />
             <SalaryRangeItem role="Data Scientist Senior" range="65-85 k€" level="mid" />
             <SalaryRangeItem role="Data Engineer Senior" range="60-80 k€" level="mid" />
             <SalaryRangeItem role="ML Engineer Senior" range="70-90 k€" level="mid" />
           </div>
-          
+
           <div className="space-y-2">
             <SalaryRangeItem role="Lead Data Scientist" range="80-110 k€" level="senior" />
             <SalaryRangeItem role="Head of Data" range="90-130 k€" level="senior" />
             <SalaryRangeItem role="Chief Data Officer" range="120 k€ et plus" level="senior" />
           </div>
-          
+
           <p className="text-xs text-gray-500 mt-4">
             Note: les estimations par niveau d'expérience sont celles de l'auteur, données à titre indicatif et non issues d'une
             étude ; elles varient selon la localisation, la taille de l'entreprise, le secteur d'activité et l'expérience spécifique.
@@ -204,7 +204,7 @@ const CareersSection = () => {
         </div>
         
         <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-8">
-          <h3 className="text-xl font-semibold mb-4">Parcours de formation recommandés</h3>
+          <h3 className="text-xl font-semibold mb-4">Parcours de formation possibles</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-4 rounded-lg border">
