@@ -15,7 +15,7 @@ const IntroductionSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Eye className="h-8 w-8 text-blue-500" />
-          Introduction à la Préparation des Données
+          Introduction à la préparation des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           La préparation des données occupe une très grande part du travail d'un data scientist : 45 % du temps déclaré dans l'enquête Anaconda 2020 (chargement et nettoyage), 38 % dans celle de 2022. Les « 50 à 80 % » souvent cités viennent d'estimations d'experts rapportées par la presse en 2014, pas d'une mesure. 
@@ -46,27 +46,27 @@ const IntroductionSection: React.FC = () => {
               </GlossaryTerm>
             </h4>
             <p className="text-sm text-muted-foreground">
-              Des données de qualité garantissent des résultats fiables et des décisions éclairées.
+              Des données de qualité sont une condition nécessaire, mais pas suffisante, de résultats fiables et de décisions éclairées.
             </p>
           </div>
           <div className="text-center p-4">
             <TrendingUp className="h-12 w-12 mx-auto mb-3 text-green-500" />
             <h4 className="font-semibold mb-2">Performance des modèles</h4>
             <p className="text-sm text-muted-foreground">
-              Un <GlossaryTerm 
+              Une <GlossaryTerm 
                 definition={dataPreparationEnhancedDefinitions['nettoyage']}
                 variant="hover"
                 highlightStyle="underline"
               >
-                preprocessing
-              </GlossaryTerm> optimal améliore significativement les performances des algorithmes.
+                préparation
+              </GlossaryTerm> soignée (traitement des valeurs manquantes, mise à l'échelle, encodage) améliore souvent les performances des algorithmes.
             </p>
           </div>
           <div className="text-center p-4">
             <Eye className="h-12 w-12 mx-auto mb-3 text-purple-500" />
-            <h4 className="font-semibold mb-2">Insights cachés</h4>
+            <h4 className="font-semibold mb-2">Repérer ce qui se cache</h4>
             <p className="text-sm text-muted-foreground">
-              L'exploration révèle des patterns et anomalies invisibles dans les données brutes.
+              L'exploration permet de repérer des motifs et des anomalies qu'un simple coup d'œil sur les données brutes ne montre pas.
             </p>
           </div>
         </div>
@@ -111,7 +111,7 @@ const IntroductionSection: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>
-                  <span>Réduction des biais et erreurs d'interprétation</span>
+                  <span>Moins d'erreurs d'interprétation, et prise en compte de certains biais</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>

@@ -57,28 +57,28 @@ const EnhancedDataQualitySection: React.FC = () => {
     {
       title: "Le Chef Cuisinier",
       icon: <ChefHat className="h-8 w-8 text-orange-500" />,
-      description: "Comme un chef étoilé, le data scientist doit sélectionner les meilleurs ingrédients (données) pour créer un plat exceptionnel (analyse).",
+      description: "Comme un cuisinier, la personne qui analyse des données doit choisir de bons ingrédients (les données) pour réussir son plat (l'analyse).",
       parallels: [
         { cooking: "Sélection des ingrédients frais", data: "Collecte de données récentes et fiables" },
-        { cooking: "Nettoyage et préparation", data: "Suppression des valeurs aberrantes et manquantes" },
+        { cooking: "Nettoyage et préparation", data: "Traitement des valeurs aberrantes et manquantes" },
         { cooking: "Assaisonnement équilibré", data: "Normalisation et standardisation" },
         { cooking: "Présentation soignée", data: "Visualisation claire des résultats" },
         { cooking: "Goûter avant de servir", data: "Validation et tests de qualité" }
       ],
-      lesson: "Un plat raté avec de mauvais ingrédients = Une analyse faussée avec de mauvaises données"
+      lesson: "De mauvais ingrédients donnent rarement un bon plat, de mauvaises données donnent rarement une bonne analyse."
     },
     {
       title: "Le Détective",
       icon: <Search className="h-8 w-8 text-blue-500" />,
-      description: "Tel Sherlock Holmes, le data scientist mène l'enquête pour découvrir la vérité cachée dans les données.",
+      description: "Comme un enquêteur, on recoupe des indices pour établir ce que les données disent vraiment.",
       parallels: [
         { investigation: "Collecte d'indices", data: "Rassemblement des sources de données" },
         { investigation: "Vérification des témoignages", data: "Validation croisée des informations" },
-        { investigation: "Élimination des fausses pistes", data: "Suppression des données erronées" },
-        { investigation: "Reconstitution des faits", data: "Reconstruction des données manquantes" },
+        { investigation: "Élimination des fausses pistes", data: "Écart ou correction des données erronées" },
+        { investigation: "Reconstitution des faits", data: "Imputation prudente des données manquantes" },
         { investigation: "Présentation des preuves", data: "Rapport d'analyse avec conclusions" }
       ],
-      lesson: "Une enquête bâclée = Des conclusions erronées qui peuvent avoir de lourdes conséquences"
+      lesson: "Une enquête bâclée mène à des conclusions erronées, qui peuvent avoir des conséquences réelles."
     }
   ];
 
@@ -89,7 +89,7 @@ const EnhancedDataQualitySection: React.FC = () => {
       name: "Exactitude",
       icon: <Target className="h-6 w-6 text-red-500" />,
       shortDesc: "Les données correspondent-elles à la réalité ?",
-      detailedDesc: "L'exactitude mesure à quel point les données reflètent fidèlement la réalité qu'elles sont censées représenter. C'est la dimension la plus critique car des données inexactes conduisent inévitablement à des décisions erronées.",
+      detailedDesc: "L'exactitude mesure à quel point les données reflètent fidèlement la réalité qu'elles sont censées représenter. C'est souvent la dimension la plus critique : des données inexactes conduisent à des décisions erronées.",
       examples: [
         "❌ Âge de 150 ans pour un patient",
         "❌ Température corporelle de -10°C",
@@ -97,7 +97,7 @@ const EnhancedDataQualitySection: React.FC = () => {
         "✅ Validation par sources externes",
         "✅ Contrôles de cohérence métier"
       ],
-      impact: "Résultats d'analyse complètement faussés, décisions dangereuses",
+      impact: "Résultats d'analyse faussés, décisions erronées (parfois dangereuses dans un contexte médical ou industriel)",
       metrics: ["Taux d'erreur", "Validation croisée", "Audit manuel", "Feedback utilisateurs"],
       techniques: [
         "Validation par règles métier",
@@ -114,10 +114,10 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Toutes les données nécessaires sont-elles présentes ?",
       detailedDesc: "La complétude évalue si toutes les données requises pour l'analyse sont disponibles. Des données incomplètes peuvent créer des biais d'échantillonnage et fausser les conclusions.",
       examples: [
-        "❌ 30% des dates de naissance manquantes",
+        "❌ Un tiers des dates de naissance manquantes",
         "❌ Codes postaux vides pour l'analyse géographique",
         "❌ Revenus non renseignés pour l'étude socio-économique",
-        "✅ Stratégies d'imputation intelligentes",
+        "✅ Stratégie d'imputation choisie selon la cause du manque",
         "✅ Collecte de données complémentaires"
       ],
       impact: "Biais d'échantillonnage, conclusions non représentatives",
@@ -161,12 +161,12 @@ const EnhancedDataQualitySection: React.FC = () => {
       detailedDesc: "La fraîcheur évalue si les données sont suffisamment récentes pour l'usage prévu et si elles sont disponibles dans les délais requis. Des données obsolètes peuvent conduire à des décisions inadaptées.",
       examples: [
         "❌ Prix produits datant de 6 mois",
-        "❌ Données météo de la semaine dernière pour prédiction",
+        "❌ Données météo de la semaine dernière pour une prévision du jour",
         "❌ Informations client non mises à jour",
         "✅ Flux temps réel pour données critiques",
         "✅ Politiques de rafraîchissement définies"
       ],
-      impact: "Décisions basées sur des informations obsolètes, opportunités manquées",
+      impact: "Décisions fondées sur des informations dépassées",
       metrics: ["Âge des données", "Fréquence de mise à jour", "Latence de disponibilité"],
       techniques: [
         "Pipelines de données temps réel",
@@ -212,13 +212,13 @@ const EnhancedDataQualitySection: React.FC = () => {
         "✅ Clés primaires uniques",
         "✅ Algorithmes de déduplication"
       ],
-      impact: "Surestimation des volumes, biais statistiques, coûts gonflés",
+      impact: "Volumes surestimés, statistiques biaisées, coûts de traitement gonflés",
       metrics: ["Taux de doublons", "Clés en double", "Similarité d'entités"],
       techniques: [
         "Algorithmes de déduplication",
         "Fuzzy matching",
         "Record linkage",
-        "Clés de hachage"
+        "Clés d'identification stables (identifiant unique, empreinte)"
       ],
       color: "indigo"
     }
@@ -226,8 +226,8 @@ const EnhancedDataQualitySection: React.FC = () => {
 
   // SMART Framework for data collection
   const smartFramework = {
-    title: "Framework SMART pour la Collecte de Données",
-    description: "Adaptez les critères SMART aux projets data pour une collecte efficace",
+    title: "Les critères SMART appliqués à la collecte de données",
+    description: "Les critères SMART, connus en gestion de projet, adaptés à la collecte de données",
     criteria: [
       {
         letter: "S",
@@ -241,7 +241,7 @@ const EnhancedDataQualitySection: React.FC = () => {
         word: "Mesurable",
         description: "Établir des métriques de qualité quantifiables",
         questions: ["Comment mesurer la qualité ?", "Quels seuils acceptables ?", "Quels KPIs ?"],
-        example: "❌ 'Données de qualité' → ✅ 'Complétude >95%, exactitude >90%, fraîcheur <24h'"
+        example: "❌ 'Données de qualité' → ✅ 'Complétude au moins 95 %, fraîcheur de moins de 24 h' (seuils d'illustration, à fixer avec les utilisateurs des données)"
       },
       {
         letter: "A",
@@ -255,14 +255,14 @@ const EnhancedDataQualitySection: React.FC = () => {
         word: "Réaliste",
         description: "Fixer des objectifs de collecte atteignables",
         questions: ["Budget suffisant ?", "Délais réalistes ?", "Ressources disponibles ?"],
-        example: "❌ '1M de records en 1 jour' → ✅ '100K records/semaine avec équipe actuelle'"
+        example: "❌ 'Un million de lignes en une journée' → ✅ 'Cent mille lignes par semaine avec l'équipe actuelle' (chiffres d'illustration)"
       },
       {
         letter: "T",
         word: "Temporel",
         description: "Définir des échéances claires et une fréquence de mise à jour",
         questions: ["Quand collecter ?", "Quelle fréquence ?", "Date limite ?"],
-        example: "❌ 'Bientôt' → ✅ 'Collecte quotidienne à 2h du matin, livraison vendredi 15h'"
+        example: "❌ 'Bientôt' → ✅ 'Collecte quotidienne à 2 h du matin, livraison le vendredi à 15 h'"
       }
     ]
   };
@@ -283,18 +283,18 @@ const EnhancedDataQualitySection: React.FC = () => {
         {
           name: "Imputation par Régression",
           description: "Prédire les valeurs manquantes avec un modèle de régression",
-          pros: ["Utilise les relations entre variables", "Préserve la variance", "Statistiquement robuste"],
-          cons: ["Complexe à implémenter", "Risque de surajustement", "Suppose linéarité"],
-          when: "Relations fortes entre variables, MAR",
-          code: "from sklearn.linear_model import LinearRegression\nimputer = IterativeImputer(estimator=LinearRegression())"
+          pros: ["Utilise les relations entre variables", "Plus fine que la moyenne quand les relations sont réelles", "Garde toutes les lignes"],
+          cons: ["Sous-estime la variance : les valeurs imputées tombent exactement sur la droite", "Risque de surajustement", "Suppose une relation linéaire"],
+          when: "Relations fortes entre variables, valeurs manquantes au hasard compte tenu des autres variables (MAR)",
+          code: "from sklearn.experimental import enable_iterative_imputer  # noqa: F401\nfrom sklearn.impute import IterativeImputer\nfrom sklearn.linear_model import LinearRegression\n\nimputer = IterativeImputer(estimator=LinearRegression())\nX_impute = imputer.fit_transform(X)  # X : tableau numérique contenant des NaN"
         },
         {
           name: "Imputation Multiple (MICE)",
           description: "Créer plusieurs jeux de données imputés et combiner les résultats",
-          pros: ["Capture l'incertitude", "Statistiquement optimal", "Gère MAR et MNAR"],
-          cons: ["Très complexe", "Coûteux en calcul", "Difficile à interpréter"],
-          when: "Données critiques, budget temps/calcul suffisant",
-          code: "from sklearn.experimental import enable_iterative_imputer\nfrom sklearn.impute import IterativeImputer"
+          pros: ["Prend en compte l'incertitude de l'imputation", "Donne des erreurs types plus honnêtes qu'une imputation unique", "Adaptée aux valeurs manquantes au hasard (MAR)"],
+          cons: ["Plus complexe : il faut analyser chaque jeu, puis combiner (règles de Rubin)", "Coûteuse en calcul", "Ne règle pas le cas où le manque dépend de la valeur elle-même (MNAR)"],
+          when: "Analyse statistique où l'on veut des intervalles de confiance corrects, avec un temps de calcul suffisant",
+          code: "from sklearn.experimental import enable_iterative_imputer  # noqa: F401\nfrom sklearn.impute import IterativeImputer\n\n# Cinq jeux imputés : graines différentes, tirage dans la loi prédictive\njeux = [\n    IterativeImputer(sample_posterior=True, random_state=k).fit_transform(X)\n    for k in range(5)\n]\n# Il reste à analyser chaque jeu, puis à combiner les résultats"
         }
       ]
     },
@@ -302,28 +302,28 @@ const EnhancedDataQualitySection: React.FC = () => {
       category: "Valeurs Aberrantes",
       techniques: [
         {
-          name: "Méthode IQR Modifiée",
-          description: "IQR avec facteur ajustable selon la distribution",
-          pros: ["Adaptable aux données", "Robuste aux distributions", "Paramétrable"],
-          cons: ["Nécessite expertise", "Subjectif", "Peut manquer outliers légitimes"],
-          when: "Distributions non-normales, expertise disponible",
-          code: "factor = 1.5  # Ajustable\noutliers = (df < Q1 - factor*IQR) | (df > Q3 + factor*IQR)"
+          name: "Méthode de l'IQR à facteur ajustable",
+          description: "Écart interquartile avec un facteur qu'on règle selon la distribution (1,5 par convention, 3 pour ne garder que les valeurs très extrêmes)",
+          pros: ["Ne suppose pas de loi normale", "Peu influencée par les valeurs extrêmes elles-mêmes", "Un seul paramètre à régler"],
+          cons: ["Le choix du facteur est subjectif", "Convient mal aux distributions très asymétriques", "Peut signaler des valeurs légitimes"],
+          when: "Variable numérique à la distribution non normale, avec une personne du métier pour juger les valeurs signalées",
+          code: "Q1, Q3 = serie.quantile([0.25, 0.75])\nIQR = Q3 - Q1\nfacteur = 1.5  # ajustable\naberrantes = (serie < Q1 - facteur * IQR) | (serie > Q3 + facteur * IQR)"
         },
         {
           name: "Isolation Forest",
           description: "Algorithme ML pour détection d'anomalies multivariées",
-          pros: ["Multidimensionnel", "Pas d'hypothèse de distribution", "Efficace sur gros volumes"],
-          cons: ["Boîte noire", "Paramètres à ajuster", "Peut être instable"],
-          when: "Données multivariées, gros volumes, outliers complexes",
-          code: "from sklearn.ensemble import IsolationForest\niso = IsolationForest(contamination=0.1, random_state=42)"
+          pros: ["Regarde plusieurs variables à la fois", "Pas d'hypothèse sur la loi des données", "Rapide sur de gros volumes"],
+          cons: ["Résultat plus difficile à expliquer qu'un seuil", "Il faut fixer la part d'anomalies attendue (contamination)", "Dépend d'un tirage aléatoire : fixer random_state"],
+          when: "Données à plusieurs variables, gros volumes, anomalies qu'un seuil variable par variable ne voit pas",
+          code: "from sklearn.ensemble import IsolationForest\n\niso = IsolationForest(contamination=0.1, random_state=42)  # on suppose 10 % d'anomalies\netiquettes = iso.fit_predict(X)  # -1 : anomalie, 1 : point normal"
         },
         {
           name: "Winsorisation",
           description: "Remplacer les outliers par les valeurs aux percentiles extrêmes",
-          pros: ["Préserve la taille d'échantillon", "Réduit l'impact", "Simple"],
-          cons: ["Modifie la distribution", "Perte d'information", "Arbitraire"],
-          when: "Outliers dus à erreurs de mesure, analyses robustes requises",
-          code: "from scipy.stats.mstats import winsorize\nwinsorized = winsorize(data, limits=[0.05, 0.05])"
+          pros: ["Garde toutes les lignes", "Réduit l'influence des extrêmes sur la moyenne et la régression", "Simple à expliquer"],
+          cons: ["Modifie la distribution", "Perd l'information sur l'ampleur des extrêmes", "Les percentiles choisis sont arbitraires"],
+          when: "Valeurs extrêmes plausibles mais très influentes, quand on veut garder chaque observation",
+          code: "from scipy.stats.mstats import winsorize\n\n# les 5 % de valeurs les plus basses et les 5 % les plus hautes sont ramenées aux percentiles\nwinsorisees = winsorize(donnees, limits=[0.05, 0.05])"
         }
       ]
     }
@@ -356,7 +356,7 @@ const EnhancedDataQualitySection: React.FC = () => {
           <CourseHighlight type="info" title="Apprendre par l'Analogie">
             <p className="text-muted-foreground">
               Les meilleures leçons viennent souvent de comparaisons avec des domaines familiers. 
-              Découvrez la data science à travers les yeux d'un chef cuisinier et d'un détective.
+              Voyons la préparation des données à travers deux métiers : un chef cuisinier et un enquêteur.
             </p>
           </CourseHighlight>
 
@@ -403,7 +403,7 @@ const EnhancedDataQualitySection: React.FC = () => {
         <TabsContent value="dimensions" className="space-y-8">
           <CourseHighlight type="example" title="Les 6 Piliers de la Qualité">
             <p className="text-muted-foreground">
-              Un framework complet pour évaluer et améliorer la qualité de vos données selon des critères objectifs et mesurables.
+              Six questions à se poser pour évaluer la qualité d'un jeu de données et décider quoi améliorer. Cliquez sur une carte pour la déplier.
             </p>
           </CourseHighlight>
 
@@ -480,7 +480,7 @@ const EnhancedDataQualitySection: React.FC = () => {
         <TabsContent value="smart" className="space-y-8">
           <CourseHighlight type="warning" title="Framework SMART pour la Data">
             <p className="text-muted-foreground">
-              Adaptez la méthode SMART aux projets data pour une collecte de données efficace et structurée.
+              La méthode SMART sert à formuler un objectif précis. Appliquée à la collecte de données, elle oblige à répondre à cinq questions avant de commencer.
             </p>
           </CourseHighlight>
 
@@ -556,6 +556,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                           <h4 className="font-semibold text-lg">
                             <GlossaryTerm 
                               definition={dataPreparationEnhancedDefinitions[
+                                technique.name.toLowerCase().includes('suppression') ? 'suppression' :
                                 technique.name.toLowerCase().includes('imputation') ? 'imputation' :
                                 technique.name.toLowerCase().includes('iqr') ? 'iqr' :
                                 technique.name.toLowerCase().includes('z-score') ? 'zscore' :

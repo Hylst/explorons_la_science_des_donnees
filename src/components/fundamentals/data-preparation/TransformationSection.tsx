@@ -17,7 +17,7 @@ const TransformationSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Settings className="h-8 w-8 text-purple-500" />
-          Transformation des Données
+          Transformation des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Une fois nettoyées, les données doivent être transformées pour répondre aux besoins spécifiques 
@@ -25,7 +25,7 @@ const TransformationSection: React.FC = () => {
         </p>
       </div>
 
-      <CourseHighlight type="concept" title="Les 4 Types de Transformation">
+      <CourseHighlight type="concept" title="Quatre types de transformation">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {[
             {

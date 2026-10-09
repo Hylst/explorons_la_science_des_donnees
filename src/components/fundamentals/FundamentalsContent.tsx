@@ -28,8 +28,8 @@ const sections: SectionInfo[] = [
   },
   {
     id: "mathvisuals", 
-    title: "Visualisations Mathématiques",
-    description: "Comprendre les concepts mathématiques par des visualisations interactives"
+    title: "Visualisations mathématiques",
+    description: "Comprendre quelques concepts mathématiques à l'aide de figures"
   },
   {
     id: "programming", 
@@ -38,12 +38,12 @@ const sections: SectionInfo[] = [
   },
   {
     id: "dataviz", 
-    title: "Visualisation de Données",
+    title: "Visualisation de données",
     description: "Techniques et outils pour représenter visuellement les données"
   },
   {
     id: "dataprocessing", 
-    title: "Traitement des Données",
+    title: "Traitement des données",
     description: "Méthodes de préparation et de transformation des données"
   }
 ];

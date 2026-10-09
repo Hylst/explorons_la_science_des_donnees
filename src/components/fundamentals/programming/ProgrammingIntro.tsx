@@ -24,43 +24,43 @@ const ProgrammingIntro = () => {
       id: 'python',
       name: 'Python',
       emoji: '🐍',
-      description: 'Le couteau suisse polyvalent',
-      badge: { text: 'Débutant-friendly', color: 'bg-blue-100 text-blue-800' },
+      description: 'Un langage généraliste et lisible',
+      badge: { text: 'Accessible aux débutants', color: 'bg-blue-100 text-blue-800' },
       popularity: 63,
-      useCases: ['Machine Learning', 'Data Analysis', 'Web Scraping', 'Automation'],
+      useCases: ['Machine learning', 'Analyse de données', 'Collecte de pages web', 'Automatisation'],
       pros: ['Syntaxe simple', 'Écosystème riche', 'Communauté active'],
-      cons: ['Performance limitée', 'GIL pour le multithreading']
+      cons: ['Code Python pur plus lent que du code compilé', 'GIL pour le parallélisme par threads']
     },
     {
       id: 'r',
       name: 'R',
       emoji: '📊',
-      description: 'Le statisticien expert',
+      description: 'Un langage conçu pour les statistiques',
       badge: { text: 'Statistiques', color: 'bg-purple-100 text-purple-800' },
       popularity: 27,
-      useCases: ['Statistical Analysis', 'Data Visualization', 'Bioinformatics', 'Research'],
-      pros: ['Excellent pour stats', 'Visualisations avancées', 'Packages spécialisés'],
+      useCases: ['Analyses statistiques', 'Visualisation de données', 'Bio-informatique', 'Recherche'],
+      pros: ['Très riche en méthodes statistiques', 'Visualisations soignées', 'Packages spécialisés'],
       cons: ['Courbe d\'apprentissage', 'Syntaxe parfois complexe']
     },
     {
       id: 'sql',
       name: 'SQL',
       emoji: '🗃️',
-      description: 'Le maître des bases de données',
-      badge: { text: 'Essentiel', color: 'bg-amber-100 text-amber-800' },
+      description: 'Le langage des bases de données relationnelles',
+      badge: { text: 'Très répandu', color: 'bg-amber-100 text-amber-800' },
       popularity: 35,
-      useCases: ['Database Queries', 'Data Extraction', 'ETL Processes', 'Reporting'],
-      pros: ['Standard universel', 'Performance optimisée', 'Déclaratif'],
+      useCases: ['Requêtes sur des bases de données', 'Extraction de données', 'Processus ETL', 'Rapports'],
+      pros: ['Standard très répandu', 'Le moteur de la base optimise les requêtes', 'Déclaratif'],
       cons: ['Limité aux données relationnelles', 'Variations entre SGBD']
     },
     {
       id: 'julia',
       name: 'Julia',
       emoji: '⚡',
-      description: 'Le sprinter performant',
-      badge: { text: 'Haute performance', color: 'bg-green-100 text-green-800' },
+      description: 'Un langage pour le calcul scientifique rapide',
+      badge: { text: 'Calcul intensif', color: 'bg-green-100 text-green-800' },
       popularity: 11,
-      useCases: ['Scientific Computing', 'Numerical Analysis', 'HPC', 'Finance'],
+      useCases: ['Calcul scientifique', 'Analyse numérique', 'Calcul haute performance', 'Finance'],
       pros: ['Performance native', 'Syntaxe mathématique', 'Parallélisme'],
       cons: ['Écosystème jeune', 'Communauté plus petite']
     }
@@ -87,23 +87,23 @@ const ProgrammingIntro = () => {
   return (
     <section id="intro" className="mb-16">
       <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 p-8 rounded-xl border border-blue-100 mb-8">
-        <h2 className="text-3xl font-bold mb-6 text-blue-900">🚀 La Programmation : Votre Baguette Magique en Data Science</h2>
+        <h2 className="text-3xl font-bold mb-6 text-blue-900">La programmation en data science</h2>
         
         <div className="max-w-none text-gray-700 mb-8">
           <p className="text-xl leading-relaxed mb-6">
-            Imaginez que vous êtes un chef cuisinier dans un restaurant étoilé. Vos ingrédients ? 
-            Les données brutes. Vos ustensiles ? Les langages de programmation. Votre objectif ? 
-            Transformer ces ingrédients en insights délicieux qui nourrissent les décisions stratégiques !
+            Programmer permet d'importer, de nettoyer, d'analyser et de visualiser des données de façon répétable :
+            ce qu'on a fait une fois, on peut le refaire, le relire et le corriger. Quatre langages reviennent le plus
+            souvent : Python, R, SQL et Julia.
           </p>
           
           <div className="bg-white p-6 rounded-lg border-l-4 border-blue-500 my-6">
-            <h3 className="text-lg font-semibold text-blue-700 mb-3">🌟 Analogie : La programmation comme un langage universel</h3>
+            <h3 className="text-lg font-semibold text-blue-700 mb-3">Un langage par besoin</h3>
             <p>
-              Tout comme vous apprenez l'anglais pour voyager dans le monde, vous apprenez{" "}
+              Comme une langue étrangère, un langage de programmation s'apprend par la pratique. En data science, on apprend{" "}
               <GlossaryTerm definition={programmingDefinitions["python"]}>Python</GlossaryTerm>,{" "}
               <GlossaryTerm definition={programmingDefinitions["r"]}>R</GlossaryTerm> ou{" "}
               <GlossaryTerm definition={programmingDefinitions["sql"]}>SQL</GlossaryTerm>{" "}
-              pour voyager dans l'univers des données. Chaque langage a sa "culture" et ses spécialités !
+              parce que chacun a ses spécialités et ses habitudes, et qu'il est courant d'en combiner plusieurs.
             </p>
           </div>
         </div>
@@ -123,6 +123,15 @@ const ProgrammingIntro = () => {
                   ${isAnimated ? 'animate-pulse' : ''}
                 `}
                 onClick={() => handleLanguageSelect(language.id)}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isSelected}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleLanguageSelect(language.id);
+                  }
+                }}
               >
                 <div className="text-3xl mb-3 transition-transform duration-200 hover:scale-110">
                   {language.emoji}
@@ -208,22 +217,22 @@ const ProgrammingIntro = () => {
 
 
         {/* Enhanced knowledge section with ES6 features */}
-        <CourseHighlight title="💡 Le saviez-vous ?" type="concept">
+        <CourseHighlight title="Python en quelques repères" type="concept">
           <div className="space-y-4">
             <p>
               <strong>Python est le langage le plus cité dans les enquêtes auprès des praticiens de la data :</strong>{" "}
               75 % des répondants à l'enquête Anaconda 2020 (1 592 réponses, un échantillon surtout composé d'utilisateurs d'Anaconda) et 63 % de ceux de 2021 (3 104 réponses)
-              disaient l'utiliser souvent ou toujours, loin devant SQL (35 % en 2021) et R (27 % en 2021). Chez les
+              disaient l'utiliser souvent ou toujours, devant SQL (35 % en 2021) et R (27 % en 2021). Chez les
               développeurs en général, Python est utilisé par 57,9 % des répondants de Stack Overflow en 2025, 7 points
-              de plus qu'un an plus tôt. Mais ce n'est pas juste une question de popularité : Python a été conçu avec
-              une philosophie de simplicité et de lisibilité qui en fait un excellent langage pour débuter.
+              de plus qu'un an plus tôt. La popularité n'est pas la seule raison de l'apprendre : Python a été conçu pour
+              rester simple et lisible, ce qui en fait un bon langage pour débuter.
             </p>
             
             {/* ES6 Array with map for fun facts */}
             {[
               {
                 title: "Origine du nom Python",
-                content: "Python doit son nom aux 'Monty Python's Flying Circus', pas au serpent ! Son créateur, Guido van Rossum, voulait un nom court et mystérieux.",
+                content: "Python doit son nom à la série télévisée britannique Monty Python's Flying Circus, et non au serpent. Son créateur, Guido van Rossum, cherchait un nom court et un peu mystérieux.",
                 icon: "🐍"
               },
               {
@@ -282,11 +291,11 @@ const ProgrammingIntro = () => {
               {
                 icon: Brain,
                 title: "Reproductibilité",
-                description: "Votre code est comme une recette : quelqu'un d'autre peut suivre exactement vos étapes et obtenir les mêmes résultats. C'est la base de la science !",
+                description: "Un script décrit toutes les étapes d'une analyse : quelqu'un d'autre (ou vous-même, plus tard) peut les rejouer et obtenir les mêmes résultats. C'est une condition de la démarche scientifique.",
                 color: "text-purple-600",
                 bgColor: "bg-purple-50",
                 borderColor: "border-purple-200",
-                examples: ["Version control", "Documentation", "Tests unitaires"]
+                examples: ["Gestion de versions", "Documentation", "Tests unitaires"]
               },
               {
                 icon: Database,
@@ -295,12 +304,12 @@ const ProgrammingIntro = () => {
                 color: "text-blue-600",
                 bgColor: "bg-blue-50",
                 borderColor: "border-blue-200",
-                examples: ["Big Data", "Cloud computing", "Parallélisation"]
+                examples: ["Données volumineuses", "Calcul dans le nuage", "Parallélisation"]
               },
               {
                 icon: Globe,
                 title: "Collaboration",
-                description: "Partagez vos analyses avec des équipes mondiales. Git, notebooks, et APIs facilitent le travail collaboratif à distance.",
+                description: "Partagez vos analyses avec une équipe, même à distance. Git, les notebooks et les API facilitent le travail à plusieurs.",
                 color: "text-indigo-600",
                 bgColor: "bg-indigo-50",
                 borderColor: "border-indigo-200",
@@ -309,20 +318,20 @@ const ProgrammingIntro = () => {
               {
                 icon: Zap,
                 title: "Innovation",
-                description: "Créez de nouveaux algorithmes, explorez des techniques cutting-edge, et contribuez à l'avancement de la data science.",
+                description: "Écrire du code permet d'implémenter une méthode récente décrite dans un article, de tester une idée ou de bâtir un prototype, sans attendre qu'un outil prêt à l'emploi existe.",
                 color: "text-yellow-600",
                 bgColor: "bg-yellow-50",
                 borderColor: "border-yellow-200",
-                examples: ["ML custom", "Visualisations", "Prototypage"]
+                examples: ["Modèles sur mesure", "Visualisations", "Prototypage"]
               },
               {
                 icon: Cpu,
                 title: "Efficacité",
-                description: "Optimisez les performances, réduisez les coûts de calcul, et maximisez l'utilisation des ressources disponibles.",
+                description: "Mesurer où un programme passe son temps permet de l'accélérer là où cela compte, et d'éviter de calculer deux fois la même chose.",
                 color: "text-red-600",
                 bgColor: "bg-red-50",
                 borderColor: "border-red-200",
-                examples: ["Optimisation", "Caching", "Profiling"]
+                examples: ["Optimisation", "Mise en cache", "Profilage"]
               }
             ].map(({ icon: Icon, title, description, color, bgColor, borderColor, examples }, index) => (
               <Card key={index} className={`${bgColor} ${borderColor} border-2 hover:shadow-lg transition-all duration-300`}>
@@ -354,10 +363,10 @@ const ProgrammingIntro = () => {
             <h4 className="text-lg font-bold mb-4 text-indigo-800">🚀 Parcours d'apprentissage suggéré (durées indicatives)</h4>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[
-                { step: 1, title: "Bases Python", duration: "2-3 semaines", topics: ["Syntaxe", "Variables", "Fonctions"] },
-                { step: 2, title: "Data Manipulation", duration: "3-4 semaines", topics: ["Pandas", "NumPy", "Matplotlib"] },
+                { step: 1, title: "Bases de Python", duration: "2-3 semaines", topics: ["Syntaxe", "Variables", "Fonctions"] },
+                { step: 2, title: "Manipulation de données", duration: "3-4 semaines", topics: ["Pandas", "NumPy", "Matplotlib"] },
                 { step: 3, title: "Machine Learning", duration: "4-6 semaines", topics: ["Scikit-learn", "TensorFlow", "PyTorch"] },
-                { step: 4, title: "Production", duration: "2-3 semaines", topics: ["APIs", "Docker", "Cloud"] }
+                { step: 4, title: "Mise en production", duration: "2-3 semaines", topics: ["API", "Docker", "Cloud"] }
               ].map(({ step, title, duration, topics }) => (
                 <div key={step} className="bg-white p-4 rounded-lg border border-gray-200 text-center">
                   <div className="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-sm font-bold">

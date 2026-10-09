@@ -25,7 +25,7 @@ export const VisualExplorationSection: React.FC = () => {
       id: "distribution",
       name: "Distribution",
       icon: BarChart3,
-      description: "Histogrammes et densités"
+      description: "Histogramme et répartition par catégorie"
     },
     {
       id: "correlation",
@@ -35,13 +35,13 @@ export const VisualExplorationSection: React.FC = () => {
     },
     {
       id: "outliers",
-      name: "Outliers",
+      name: "Valeurs aberrantes",
       icon: TrendingUp,
       description: "Détection visuelle"
     },
     {
       id: "profiling",
-      name: "Profiling",
+      name: "Profilage",
       icon: Eye,
       description: "Analyse automatique"
     }
@@ -52,7 +52,7 @@ export const VisualExplorationSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <BarChart3 className="h-8 w-8 text-blue-500" />
-          Exploration Visuelle des Données
+          Exploration visuelle des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           L'exploration visuelle permet de comprendre rapidement la structure,
@@ -60,7 +60,7 @@ export const VisualExplorationSection: React.FC = () => {
         </p>
       </div>
 
-      <CourseHighlight type="concept" title="Les 4 Piliers de l'Exploration Visuelle">
+      <CourseHighlight type="concept" title="Quatre vues pour explorer un jeu de données">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {chartTypes.map((chart) => {
             const IconComponent = chart.icon;
@@ -89,7 +89,7 @@ export const VisualExplorationSection: React.FC = () => {
           <CardTitle className="flex flex-wrap items-center justify-between gap-2">
             <span className="flex items-center gap-2">
               <Eye className="h-5 w-5 text-blue-500" />
-              Visualisation Interactive
+              Visualisation interactive
             </span>
           </CardTitle>
         </CardHeader>
@@ -116,14 +116,14 @@ export const VisualExplorationSection: React.FC = () => {
 
             <TabsContent value="distribution" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">📊 Graphiques de Distribution</h4>
+                <h4 className="font-semibold mb-4">📊 Distribution des valeurs</h4>
                 <DistributionPanel ds={dataset} />
               </div>
             </TabsContent>
 
             <TabsContent value="correlation" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🔗 Matrice de Corrélation</h4>
+                <h4 className="font-semibold mb-4">🔗 Matrice de corrélation</h4>
                 <CorrelationHeatmap />
                 <p className="mt-3 text-xs text-muted-foreground">Cet onglet utilise son propre jeu à six variables numériques, indépendant du jeu choisi ci-dessus.</p>
               </div>
@@ -131,14 +131,14 @@ export const VisualExplorationSection: React.FC = () => {
 
             <TabsContent value="outliers" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🎯 Détection Visuelle d'Outliers</h4>
+                <h4 className="font-semibold mb-4">🎯 Détection visuelle des valeurs aberrantes</h4>
                 <OutliersPanel ds={dataset} />
               </div>
             </TabsContent>
 
             <TabsContent value="profiling" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🤖 Profiling Automatique des Datasets</h4>
+                <h4 className="font-semibold mb-4">🤖 Profilage automatique du jeu de données</h4>
                 <ProfilingPanel ds={dataset} />
               </div>
             </TabsContent>

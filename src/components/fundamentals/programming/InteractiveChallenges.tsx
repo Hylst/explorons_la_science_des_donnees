@@ -83,7 +83,7 @@ const parseUserProgress = (value: unknown): UserProgress | null => {
 const challenges: Challenge[] = [
   {
     id: 'python-basics-1',
-    title: 'Calculateur de Moyenne',
+    title: 'Calculateur de moyenne',
     description: 'Créez une fonction qui calcule la moyenne d\'une liste de nombres',
     difficulty: 'facile',
     category: 'Bases de Python',
@@ -103,7 +103,7 @@ Exemple:
 resultat = calculer_moyenne([1, 2, 3, 4, 5])
 print(f"Moyenne: {resultat}")`,
     solution: `def calculer_moyenne(nombres):
-    if not nombres:  # Vérifier si la liste est vide
+    if not nombres:  # Liste vide : la moyenne n'est pas définie, on renvoie 0 par convention ici
         return 0
     return sum(nombres) / len(nombres)
 
@@ -130,7 +130,7 @@ print(f"Moyenne: {resultat}")`,
     hints: [
       'Utilisez la fonction sum() pour additionner tous les éléments',
       'Utilisez len() pour obtenir le nombre d\'éléments',
-      'N\'oubliez pas de gérer le cas d\'une liste vide',
+      'N\'oubliez pas le cas d\'une liste vide (la moyenne n\'y est pas définie : choisissez une convention, par exemple renvoyer 0)',
       'La moyenne = somme / nombre d\'éléments'
     ],
     learningObjectives: [
@@ -143,8 +143,8 @@ print(f"Moyenne: {resultat}")`,
   },
   {
     id: 'python-data-1',
-    title: 'Analyse de Données Simples',
-    description: 'Analysez un dataset de ventes et trouvez les insights clés',
+    title: 'Analyse de ventes mensuelles',
+    description: 'Calculez des indicateurs simples sur un dictionnaire de ventes',
     difficulty: 'moyen',
     category: 'Analyse de données',
     points: 25,
@@ -155,7 +155,7 @@ print(f"Moyenne: {resultat}")`,
 - 'total': le total des ventes
 - 'moyenne': la moyenne mensuelle
 - 'meilleur_mois': le mois avec les meilleures ventes
-- 'croissance': True si les ventes augmentent globalement`,
+- 'croissance': True si les ventes du dernier mois dépassent celles du premier`,
     starterCode: `def analyser_ventes(ventes_mensuelles):
     # ventes_mensuelles = {'Jan': 1000, 'Feb': 1200, 'Mar': 1100, ...}
     # Votre code ici
@@ -196,7 +196,7 @@ print(resultat)`,
     hints: [
       'Utilisez sum() et len() pour calculer total et moyenne',
       'La fonction max() avec key peut trouver le meilleur mois',
-      'Comparez le premier et dernier mois pour la croissance',
+      'Comparez le premier et le dernier mois pour la croissance',
       'Les méthodes .keys() et .values() sont utiles pour les dictionnaires'
     ],
     learningObjectives: [
@@ -209,8 +209,8 @@ print(resultat)`,
   },
   {
     id: 'python-ml-1',
-    title: 'Classificateur Simple',
-    description: 'Implémentez un classificateur k-NN basique',
+    title: 'Classificateur des k plus proches voisins',
+    description: 'Implémentez un classificateur k-NN simple sur des points en deux dimensions',
     difficulty: 'difficile',
     category: 'Machine Learning',
     points: 50,
@@ -284,10 +284,10 @@ def knn_classifier(points_entrainement, nouveau_point, k=3):
   },
   {
     id: 'js-dom-1',
-    title: 'Gestionnaire de Tâches',
-    description: 'Créez un gestionnaire de tâches interactif en JavaScript',
+    title: 'Gestionnaire de tâches',
+    description: 'Écrivez une petite classe JavaScript qui gère une liste de tâches',
     difficulty: 'moyen',
-    category: 'JavaScript DOM',
+    category: 'JavaScript',
     points: 30,
     timeLimit: 25,
     language: 'javascript',
@@ -331,8 +331,7 @@ console.log(manager.getStats());`,
     addTask(task) {
         this.tasks.push({
             text: task.text,
-            completed: task.completed || false,
-            id: Date.now()
+            completed: task.completed || false
         });
     }
     
@@ -358,8 +357,8 @@ console.log(manager.getStats());`,
 }`,
     testCases: [
       {
-        input: 'Ajouter une tâche et vérifier les stats',
-        expectedOutput: '{total: 1, completed: 0, pending: 1}',
+        input: 'addTask({text: "Apprendre JavaScript", completed: false}) puis getStats()',
+        expectedOutput: '{ total: 1, completed: 0, pending: 1 }',
         description: 'Test des statistiques de base'
       }
     ],
@@ -370,12 +369,12 @@ console.log(manager.getStats());`,
       'filter() peut compter les tâches terminées'
     ],
     learningObjectives: [
-      'Classes JavaScript ES6',
+      'Classes JavaScript',
       'Manipulation de tableaux',
       'Méthodes d\'objet',
       'Gestion d\'état'
     ],
-    tags: ['javascript', 'classes', 'arrays', 'dom']
+    tags: ['javascript', 'classes', 'arrays']
   }
 ];
 
@@ -521,17 +520,17 @@ const InteractiveChallenges: React.FC = () => {
         <div className="flex items-center justify-center gap-2">
           <Trophy className="h-8 w-8 text-yellow-600" />
           <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
-            Défis de Programmation
+            Défis de programmation
           </h2>
         </div>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Relevez des défis de programmation progressifs et gagnez des points !
+          Quatre défis de programmation progressifs, en Python et en JavaScript.
           Écrivez votre solution, comparez-la aux cas de test et à la solution proposée, puis validez le défi vous-même.
         </p>
         <p className="text-sm text-muted-foreground max-w-3xl mx-auto">
           Les défis ne sont pas corrigés automatiquement : la validation repose sur votre auto-évaluation.
           Pour essayer votre solution, copiez-la dans l'éditeur de code de cette page (Python, SQL ou JavaScript, exécutés dans votre navigateur).
-          Votre progression reste enregistrée dans ce navigateur uniquement.
+          Les points et le niveau sont de simples repères personnels. Votre progression reste enregistrée dans ce navigateur uniquement.
         </p>
       </div>
 
@@ -540,7 +539,7 @@ const InteractiveChallenges: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
-            Votre Progression
+            Votre progression
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -555,7 +554,7 @@ const InteractiveChallenges: React.FC = () => {
             </div>
             <div className="text-center p-3 bg-green-50 rounded-lg">
               <div className="text-2xl font-bold text-green-600">{userProgress.completedChallenges.length}</div>
-              <div className="text-sm text-green-700">Défis réussis</div>
+              <div className="text-sm text-green-700">Défis validés</div>
             </div>
             <div className="text-center p-3 bg-purple-50 rounded-lg">
               <div className="text-2xl font-bold text-purple-600">{challenges.length - userProgress.completedChallenges.length}</div>
@@ -563,7 +562,7 @@ const InteractiveChallenges: React.FC = () => {
             </div>
             <div className="text-center p-3 bg-orange-50 rounded-lg">
               <div className="text-2xl font-bold text-orange-600">{userProgress.timeSpent}</div>
-              <div className="text-sm text-orange-700">Minutes codées</div>
+              <div className="text-sm text-orange-700">Minutes passées sur les défis</div>
             </div>
           </div>
           
@@ -585,15 +584,16 @@ const InteractiveChallenges: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5" />
-                Défis Disponibles
+                Défis disponibles
               </CardTitle>
             </CardHeader>
             <CardContent>
               {/* Filters */}
               <div className="space-y-3 mb-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Catégorie</label>
+                  <label htmlFor="challenge-category" className="text-sm font-medium mb-1 block">Catégorie</label>
                   <select 
+                    id="challenge-category"
                     value={selectedCategory} 
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="w-full p-2 border rounded-md text-sm"
@@ -606,8 +606,9 @@ const InteractiveChallenges: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Difficulté</label>
+                  <label htmlFor="challenge-difficulty" className="text-sm font-medium mb-1 block">Difficulté</label>
                   <select 
+                    id="challenge-difficulty"
                     value={selectedDifficulty} 
                     onChange={(e) => setSelectedDifficulty(e.target.value)}
                     className="w-full p-2 border rounded-md text-sm"
@@ -632,6 +633,15 @@ const InteractiveChallenges: React.FC = () => {
                         selectedChallenge?.id === challenge.id ? 'ring-2 ring-blue-500' : ''
                       } ${isCompleted ? 'bg-green-50 border-green-200' : ''}`}
                       onClick={() => startChallenge(challenge)}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={selectedChallenge?.id === challenge.id}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          startChallenge(challenge);
+                        }
+                      }}
                     >
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between mb-2">
@@ -703,7 +713,7 @@ const InteractiveChallenges: React.FC = () => {
                       </div>
                       {selectedChallenge.timeLimit && (
                         <div className="text-sm text-muted-foreground">
-                          / {selectedChallenge.timeLimit}:00
+                          durée indicative : {selectedChallenge.timeLimit} min
                         </div>
                       )}
                     </div>
@@ -735,11 +745,11 @@ const InteractiveChallenges: React.FC = () => {
               <Card>
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Votre Solution</CardTitle>
+                    <CardTitle className="text-lg">Votre solution</CardTitle>
                     <div className="flex items-center gap-2">
                       <Button size="sm" variant="outline" onClick={resetChallenge}>
                         <RotateCcw className="h-4 w-4 mr-1" />
-                        Reset
+                        Réinitialiser
                       </Button>
                       <Button
                         size="sm"
@@ -761,6 +771,7 @@ const InteractiveChallenges: React.FC = () => {
                     <Textarea
                       value={userCode}
                       onChange={(e) => setUserCode(e.target.value)}
+                      aria-label="Votre solution"
                       className="min-h-64 font-mono text-sm bg-gray-900 text-gray-100 border-0 resize-none"
                       placeholder="Écrivez votre code ici..."
                     />
@@ -796,7 +807,7 @@ const InteractiveChallenges: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Exécutez votre code dans votre propre environnement et vérifiez que vous obtenez ces résultats.
+                    Exécutez votre code (dans l'éditeur de code de cette page ou dans votre propre environnement) et vérifiez que vous obtenez ces résultats.
                   </p>
                   <div className="space-y-2">
                     {selectedChallenge.testCases.map((testCase, idx) => (
@@ -813,10 +824,10 @@ const InteractiveChallenges: React.FC = () => {
                     <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                       <div className="flex items-center gap-2 text-yellow-800">
                         <Trophy className="h-5 w-5" />
-                        <span className="font-semibold">Défi validé !</span>
+                        <span className="font-semibold">Défi validé</span>
                       </div>
                       <p className="text-sm text-yellow-700 mt-1">
-                        {selectedChallenge.points} points ajoutés à votre progression.
+                        {selectedChallenge.points} points ajoutés à votre progression (un simple repère personnel).
                       </p>
                       <Button size="sm" variant="ghost" className="mt-2" onClick={reopenChallenge}>
                         Annuler la validation
@@ -878,7 +889,7 @@ const InteractiveChallenges: React.FC = () => {
                 <Target className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Choisissez un défi</h3>
                 <p className="text-muted-foreground">
-                  Sélectionnez un défi dans la liste pour commencer à coder !
+                  Sélectionnez un défi dans la liste pour commencer.
                 </p>
               </CardContent>
             </Card>
@@ -887,7 +898,7 @@ const InteractiveChallenges: React.FC = () => {
       </div>
 
       {/* Tips */}
-      <CourseHighlight title="🎯 Conseils pour réussir les défis" type="tip">
+      <CourseHighlight title="Conseils pour aborder les défis" type="tip">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           <div>
             <h4 className="font-semibold mb-2 flex items-center gap-2">
@@ -904,7 +915,7 @@ const InteractiveChallenges: React.FC = () => {
           <div>
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <Zap className="h-4 w-4" />
-              Performance
+              Méthode
             </h4>
             <ul className="text-sm space-y-1 text-muted-foreground">
               <li>• Commencez par les défis faciles</li>
@@ -919,7 +930,7 @@ const InteractiveChallenges: React.FC = () => {
               Progression
             </h4>
             <ul className="text-sm space-y-1 text-muted-foreground">
-              <li>• Gagnez des points pour débloquer des niveaux</li>
+              <li>• Les points font monter le niveau affiché, sans rien débloquer</li>
               <li>• Explorez différentes catégories</li>
               <li>• Comparez votre solution à celle proposée</li>
               <li>• Rejouez un défi plus tard, sans indice</li>

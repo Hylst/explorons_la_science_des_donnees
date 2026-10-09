@@ -11,7 +11,7 @@ interface FundamentalsSidebarProps {
 const FundamentalsSidebar = ({ currentSection, onSectionChange }: FundamentalsSidebarProps) => {
   const sidebarItems = [
     { 
-      title: "Mathématiques et Statistiques", 
+      title: "Mathématiques et statistiques", 
       href: "#statistics", 
       isActive: currentSection === "statistics",
       icon: <Brain className="h-4 w-4" />,
@@ -19,7 +19,7 @@ const FundamentalsSidebar = ({ currentSection, onSectionChange }: FundamentalsSi
       onClick: () => onSectionChange("statistics" as FundamentalsSectionType)
     },
     { 
-      title: "Visualisations Mathématiques", 
+      title: "Visualisations mathématiques", 
       href: "#mathvisuals", 
       isActive: currentSection === "mathvisuals",
       icon: <ChartBar className="h-4 w-4" />,

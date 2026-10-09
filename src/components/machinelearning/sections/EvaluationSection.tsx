@@ -5,10 +5,10 @@ import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { mlDefinitions } from "@/data/glossary/ml-definitions";
 
 const confusionMatrixData = [
-  { name: 'True Positive', value: 120 },
-  { name: 'False Positive', value: 15 },
-  { name: 'False Negative', value: 20 },
-  { name: 'True Negative', value: 140 }
+  { name: 'Vrais positifs (TP)', value: 120 },
+  { name: 'Faux positifs (FP)', value: 15 },
+  { name: 'Faux négatifs (FN)', value: 20 },
+  { name: 'Vrais négatifs (TN)', value: 140 }
 ];
 
 const COLORS = ['#0088FE', '#FF8042', '#FFBB28', '#00C49F'];
@@ -26,7 +26,7 @@ const EvaluationSection = () => {
   return (
     <section id="evaluation" className="space-y-8">
       <h2 className="text-3xl font-bold mb-6">Évaluation des Modèles</h2>
-      
+
       <p className="text-lg mb-8">
         L'<GlossaryTerm definition={mlDefinitions["evaluation-modele"]}>évaluation</GlossaryTerm> permet de mesurer les performances d'un modèle de machine learning et de comparer
         différentes approches pour sélectionner la plus appropriée.
@@ -60,7 +60,7 @@ const EvaluationSection = () => {
                 <GlossaryTerm definition={mlDefinitions["f1-score"]}>F1-Score</GlossaryTerm>
               </p>
               <p className="text-sm text-muted-foreground">Moyenne harmonique de la précision et du rappel</p>
-              <p className="text-sm font-mono mt-1">F1 = 2 * (Precision * Recall) / (Precision + Recall)</p>
+              <p className="text-sm font-mono mt-1">F1 = 2 × (Precision × Recall) / (Precision + Recall)</p>
             </div>
             <div className="border p-3 rounded-md">
               <p className="font-medium">
@@ -113,7 +113,7 @@ const EvaluationSection = () => {
       </div>
 
       <div className="mb-10 mt-10 p-6 bg-slate-50 dark:bg-slate-900 rounded-xl">
-        <h3 className="text-xl font-semibold mb-6">Visualisation : Matrice de confusion</h3>
+        <h3 className="text-xl font-semibold mb-6">Les quatre cases d'une matrice de confusion</h3>
         <div className="flex justify-center mb-8 mt-2">
           <DeferredResponsiveContainer width="100%" height={300}>
             <BarChart data={confusionMatrixData}>
@@ -162,12 +162,12 @@ const EvaluationSection = () => {
           <ul className="list-disc pl-6 mt-2">
             <li>
               <span className="font-medium">
-                <GlossaryTerm definition={mlDefinitions["underfitting"]} highlightStyle="dotted">High Bias (sous-apprentissage)</GlossaryTerm>
+                <GlossaryTerm definition={mlDefinitions["underfitting"]} highlightStyle="dotted">Biais élevé (sous-apprentissage)</GlossaryTerm>
               </span> : Erreurs d'entraînement et de validation élevées
             </li>
             <li>
               <span className="font-medium">
-                <GlossaryTerm definition={mlDefinitions["overfitting"]} highlightStyle="dotted">High Variance (sur-apprentissage)</GlossaryTerm>
+                <GlossaryTerm definition={mlDefinitions["overfitting"]} highlightStyle="dotted">Variance élevée (sur-apprentissage)</GlossaryTerm>
               </span> : Erreur d'entraînement faible mais erreur de validation élevée
             </li>
             <li><span className="font-medium">Bon équilibre</span> : Erreurs d'entraînement et de validation proches et relativement faibles</li>

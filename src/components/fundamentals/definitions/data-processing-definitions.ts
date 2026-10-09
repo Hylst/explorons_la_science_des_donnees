@@ -11,7 +11,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Conversion de données textuelles en format numérique pour l'analyse"
     ],
     relatedTerms: ["Data cleaning", "ETL", "Data munging", "Data wrangling"],
-    source: "Principes de la Data Science"
   },
   
   "etl": {
@@ -23,7 +22,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Transformation de données brutes pour homogénéiser les formats et corriger les incohérences"
     ],
     relatedTerms: ["Data warehouse", "Data pipeline", "Data integration", "Batch processing"],
-    source: "Principes de l'intégration de données"
   },
   
   "data-cleaning": {
@@ -35,7 +33,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Détection et traitement des valeurs aberrantes (outliers)"
     ],
     relatedTerms: ["Data quality", "Outliers", "Missing values", "Data validation"],
-    source: "Méthodologies de préparation des données"
   },
   
   "feature-engineering": {
@@ -47,7 +44,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Extraction de caractéristiques textuelles comme la fréquence des mots ou la longueur des phrases"
     ],
     relatedTerms: ["Feature selection", "Dimensionality reduction", "Feature extraction", "One-hot encoding"],
-    source: "Applied Predictive Modeling"
   },
   
   "normalisation": {
@@ -59,7 +55,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Mise à l'échelle min-max des caractéristiques d'un dataset avant l'entraînement d'un modèle"
     ],
     relatedTerms: ["Standardisation", "Min-max scaling", "Feature scaling", "Z-score normalization"],
-    source: "Data Preprocessing Techniques"
   },
   
   "standardisation": {
@@ -71,7 +66,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Préparation des données pour un modèle de régression régularisée"
     ],
     relatedTerms: ["Z-score", "Normalisation", "Feature scaling", "Preprocessing"],
-    source: "Statistical Learning Theory"
   },
   
   "encodage-catégoriel": {
@@ -83,7 +77,6 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Convertir les niveaux d'éducation 'Primaire', 'Secondaire', 'Supérieur' en 1, 2, 3 (encodage ordinal)"
     ],
     relatedTerms: ["One-hot encoding", "Label encoding", "Dummy variables", "Target encoding"],
-    source: "Feature Engineering for Machine Learning"
   },
   
   "data-warehouse": {
@@ -95,6 +88,5 @@ export const dataProcessingDefinitions: Record<string, GlossaryTermDefinition> =
       "Système d'aide à la décision basé sur un data warehouse pour l'analyse des tendances"
     ],
     relatedTerms: ["OLAP", "ETL", "Data mart", "Business intelligence"],
-    source: "Data Warehousing Architecture"
   }
 };

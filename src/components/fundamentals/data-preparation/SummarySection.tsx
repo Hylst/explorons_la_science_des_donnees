@@ -16,7 +16,7 @@ const SummarySection: React.FC = () => {
       <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-green-200">
         <CardHeader>
           <CardTitle className="text-center text-green-700">
-            🎯 Récapitulatif : Les Clés du Succès
+            🎯 Récapitulatif : trois habitudes utiles
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -25,7 +25,7 @@ const SummarySection: React.FC = () => {
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto">
                 <Eye className="h-6 w-6 text-white" />
               </div>
-              <h4 className="font-semibold text-green-700">Comprendre avant d'Agir</h4>
+              <h4 className="font-semibold text-green-700">Comprendre avant d'agir</h4>
               <p className="text-sm text-green-600">
                 Toujours <GlossaryTerm 
                   definition={dataPreparationEnhancedDefinitions['pandasProfiling']}
@@ -46,7 +46,7 @@ const SummarySection: React.FC = () => {
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto">
                 <FileText className="h-6 w-6 text-white" />
               </div>
-              <h4 className="font-semibold text-blue-700">Documenter les Décisions</h4>
+              <h4 className="font-semibold text-blue-700">Documenter les décisions</h4>
               <p className="text-sm text-blue-600">
                 Tracer chaque transformation pour assurer la reproductibilité
               </p>
@@ -55,7 +55,7 @@ const SummarySection: React.FC = () => {
               <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto">
                 <Workflow className="h-6 w-6 text-white" />
               </div>
-              <h4 className="font-semibold text-purple-700">Automatiser les Processus</h4>
+              <h4 className="font-semibold text-purple-700">Automatiser ce qui se répète</h4>
               <p className="text-sm text-purple-600">
                 Créer des <GlossaryTerm 
                   definition={dataPreparationEnhancedDefinitions['etl']}
@@ -63,7 +63,7 @@ const SummarySection: React.FC = () => {
                   highlightStyle="underline"
                 >
                   pipelines
-                </GlossaryTerm> reproductibles pour industrialiser le traitement
+                </GlossaryTerm> reproductibles pour les traitements qui reviennent
               </p>
             </div>
           </div>
@@ -72,11 +72,11 @@ const SummarySection: React.FC = () => {
 
           <div className="text-center space-y-4">
             <h4 className="text-lg font-semibold text-slate-700">
-              Des données de qualité sont le carburant de l'intelligence artificielle
+              La qualité des résultats dépend de celle des données
             </h4>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Le temps investi dans le traitement des données n'est jamais perdu. 
-              C'est un investissement qui paie tout au long du projet et assure la fiabilité de vos résultats.
+              Le temps passé à préparer les données est rarement perdu : il évite des erreurs plus loin dans le projet
+              et rend les résultats plus fiables, sans pour autant les garantir.
             </p>
           </div>
         </CardContent>

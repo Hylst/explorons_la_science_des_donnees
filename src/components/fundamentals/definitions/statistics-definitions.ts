@@ -5,7 +5,7 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
   "statistiques": {
     term: "Statistiques",
     shortDefinition: "Science de la collecte, l'analyse, l'interprétation et la présentation des données.",
-    longDefinition: "Les statistiques constituent une branche des mathématiques appliquées qui se consacre à la collecte, l'organisation, l'analyse, l'interprétation et la présentation des données. Elles fournissent des méthodes pour quantifier l'incertitude et prendre des décisions en présence d'incertitude. En Data Science, les statistiques sont fondamentales car elles permettent d'extraire des connaissances significatives à partir de données brutes et de formuler des conclusions fiables.",
+    longDefinition: "Les statistiques constituent une branche des mathématiques appliquées qui se consacre à la collecte, l'organisation, l'analyse, l'interprétation et la présentation des données. Elles fournissent des méthodes pour quantifier l'incertitude et prendre des décisions en présence d'incertitude. En Data Science, les statistiques sont fondamentales car elles permettent d'extraire des connaissances à partir de données brutes et de formuler des conclusions assorties d'une mesure de leur incertitude.",
     examples: [
       "Calculer la moyenne d'âge d'une population pour déterminer des tendances démographiques",
       "Utiliser des tests statistiques pour vérifier si un nouveau médicament est significativement plus efficace qu'un placebo",
@@ -15,7 +15,7 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
     domain: "statistics",
     level: "beginner",
     englishTerm: "Statistics",
-    synonyms: ["Science des données", "Analyse statistique"]
+    synonyms: ["Analyse statistique"]
   },
   
   "statistiques-descriptives": {
@@ -28,7 +28,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "Créer un histogramme pour visualiser la distribution des âges dans une population"
     ],
     relatedTerms: ["Moyenne", "Médiane", "Écart-type", "Distribution", "Visualisation de données"],
-    source: "Foundations of Statistical Analysis",
     domain: "statistics",
     level: "beginner",
     englishTerm: "Descriptive Statistics"
@@ -37,14 +36,13 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
   "statistiques-inférentielles": {
     term: "Statistiques inférentielles",
     shortDefinition: "Méthodes permettant de tirer des conclusions sur une population à partir d'un échantillon.",
-    longDefinition: "Les statistiques inférentielles constituent un ensemble de méthodes permettant de généraliser les résultats obtenus à partir d'un échantillon à l'ensemble d'une population. Elles reposent sur la théorie des probabilités et permettent d'estimer des paramètres, de tester des hypothèses et de quantifier l'incertitude associée aux conclusions. C'est grâce aux statistiques inférentielles que nous pouvons prendre des décisions basées sur des données incomplètes mais représentatives.",
+    longDefinition: "Les statistiques inférentielles constituent un ensemble de méthodes permettant de généraliser les résultats obtenus à partir d'un échantillon à l'ensemble d'une population. Elles reposent sur la théorie des probabilités et permettent d'estimer des paramètres, de tester des hypothèses et de quantifier l'incertitude associée aux conclusions. C'est grâce aux statistiques inférentielles que l'on peut prendre des décisions à partir de données incomplètes, à condition que l'échantillon soit représentatif.",
     examples: [
       "Estimer la moyenne de la taille d'une population à partir d'un échantillon aléatoire",
       "Tester si deux groupes de traitement présentent des différences significatives dans leurs résultats",
       "Construire des intervalles de confiance pour déterminer la marge d'erreur d'un sondage électoral"
     ],
     relatedTerms: ["Test d'hypothèse", "Estimation", "Intervalle de confiance", "Valeur-p", "Inférence bayésienne"],
-    source: "Statistical Inference, 2nd Edition",
     domain: "statistics",
     level: "intermediate",
     englishTerm: "Inferential Statistics"
@@ -60,7 +58,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "La moyenne des notes d'un examen permet d'évaluer le niveau général de la classe"
     ],
     relatedTerms: ["Médiane", "Mode", "Mesures de tendance centrale", "Moyenne pondérée", "Moyenne géométrique"],
-    source: "Fundamentals of Statistics",
     domain: "statistics",
     level: "beginner",
     englishTerm: "Mean",
@@ -77,7 +74,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "La taille médiane des logements dans une ville représente mieux la taille typique qu'une moyenne qui pourrait être influencée par quelques très grands manoirs"
     ],
     relatedTerms: ["Moyenne", "Quartile", "Percentile", "Mesures de tendance centrale", "Boîte à moustaches"],
-    source: "Statistical Methods for Research",
     domain: "statistics",
     level: "beginner",
     englishTerm: "Median"
@@ -104,12 +100,11 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
     shortDefinition: "Distribution de probabilité symétrique en forme de cloche, définie par sa moyenne et son écart-type.",
     longDefinition: "La distribution normale, également appelée distribution gaussienne, est une distribution de probabilité continue qui suit une courbe en forme de cloche parfaitement symétrique. Elle est entièrement caractérisée par deux paramètres : sa moyenne (μ), qui définit le centre de la distribution, et son écart-type (σ), qui définit sa largeur. La distribution normale est omniprésente en statistiques en raison du théorème central limite, qui stipule que la somme (centrée et réduite) d'un grand nombre de variables aléatoires indépendantes, de même loi et de variance finie, tend vers une distribution normale, quelle que soit la loi des variables individuelles (sous ces conditions).",
     examples: [
-      "Les mesures de QI dans une large population suivent approximativement une distribution normale",
+      "Les scores de QI sont construits pour suivre une distribution normale (moyenne 100, écart-type 15)",
       "Les erreurs de mesure en sciences physiques sont souvent modélisées par une distribution normale",
       "La taille des adultes d'une population donnée (par sexe) est souvent approximée par une distribution normale"
     ],
     relatedTerms: ["Loi gaussienne", "Théorème central limite", "Écart-type", "Distribution de probabilité", "Test z"],
-    source: "Probability and Statistics for Engineering and the Sciences",
     domain: "statistics",
     level: "intermediate",
     englishTerm: "Normal Distribution",
@@ -126,7 +121,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "Vérifier si une pièce de monnaie est équilibrée en analysant les résultats d'une série de lancers"
     ],
     relatedTerms: ["Valeur p", "Niveau de signification", "Hypothèse nulle", "Hypothèse alternative", "Erreur de type I et II"],
-    source: "Statistical Inference",
     domain: "statistics",
     level: "intermediate",
     englishTerm: "Hypothesis Testing"
@@ -142,7 +136,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "Estimer l'impact de différents facteurs sur le rendement des cultures agricoles"
     ],
     relatedTerms: ["Moindres carrés ordinaires", "Coefficient de détermination (R²)", "Multicolinéarité", "Régression multiple", "Analyse résiduelle"],
-    source: "Introduction to Linear Regression Analysis",
     domain: "statistics",
     level: "intermediate",
     englishTerm: "Linear Regression"
@@ -158,7 +151,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "L'absence de corrélation attendue entre le jour du mois de naissance et la taille d'un adulte"
     ],
     relatedTerms: ["Coefficient de Pearson", "Covariance", "Causalité", "Régression", "Multicolinéarité"],
-    source: "Statistical Methods in Research and Production",
     domain: "statistics",
     level: "beginner",
     englishTerm: "Correlation"
@@ -174,7 +166,6 @@ export const statisticsDefinitions: Record<string, GlossaryTermDefinition> = {
       "Les probabilités de précipitations dans les prévisions météorologiques"
     ],
     relatedTerms: ["Distribution de probabilité", "Variable aléatoire", "Théorème de Bayes", "Indépendance", "Espérance mathématique"],
-    source: "Probability Theory: The Logic of Science",
     domain: "statistics",
     level: "beginner",
     englishTerm: "Probability"

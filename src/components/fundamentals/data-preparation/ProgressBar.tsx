@@ -17,9 +17,9 @@ interface ProgressBarProps {
 // Sections suivies par la barre : constante de module, donc référence stable pour l'effet de défilement
 const sections = [
   { id: 'introduction', name: 'Introduction', icon: '📚' },
-  { id: 'lifecycle', name: 'Cycle de Vie', icon: '🔄' },
-  { id: 'collection', name: 'Collection', icon: '📊' },
-  { id: 'audit', name: 'Audit Qualité', icon: '🔍' },
+  { id: 'lifecycle', name: 'Cycle de vie', icon: '🔄' },
+  { id: 'collection', name: 'Collecte', icon: '📊' },
+  { id: 'audit', name: 'Audit qualité', icon: '🔍' },
   { id: 'cleaning', name: 'Nettoyage', icon: '🧹' },
   { id: 'transformation', name: 'Transformation', icon: '⚙️' },
   { id: 'exploration', name: 'Exploration', icon: '📈' },
@@ -77,7 +77,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentSection }) => {
       <CardContent className="p-4">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-slate-700">Progression du Cours</h3>
+            <h3 className="font-semibold text-slate-700">Sections parcourues</h3>
             <Badge variant="outline" className="bg-blue-50">
               {completedSections.size}/{sections.length}
             </Badge>
@@ -115,7 +115,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentSection }) => {
           
           <div className="text-center">
             <p className="text-xs text-slate-500">
-              {Math.round(progress)}% terminé • Cliquez pour naviguer
+              {Math.round(progress)} % de la page parcouru • Cliquez pour naviguer
             </p>
           </div>
         </div>

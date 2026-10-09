@@ -17,13 +17,13 @@ const PracticalApplicationsEnriched = () => {
           description: "Prédiction de valeurs continues basée sur des relations linéaires",
           realWorldUse: "Prédiction des prix immobiliers, estimation des ventes",
           complexity: "Débutant",
-          tools: ["Python", "Scikit-learn", "R"],
+          tools: ["Python", "scikit-learn", "R"],
           dataset: "California Housing (le jeu Boston Housing a été retiré de scikit-learn 1.2 pour des raisons éthiques)"
         },
         {
           title: "Réseaux de Neurones",
           math: "f(x) = \\sigma(W \\cdot x + b)",
-          description: "Modélisation de fonctions complexes par composition de fonctions simples",
+          description: "Modélisation de fonctions complexes par composition de fonctions simples (la formule décrit une seule couche)",
           realWorldUse: "Reconnaissance d'images, traitement du langage naturel",
           complexity: "Avancé",
           tools: ["TensorFlow", "PyTorch", "Keras"],
@@ -51,7 +51,7 @@ const PracticalApplicationsEnriched = () => {
           description: "Classification basée sur l'indépendance conditionnelle des caractéristiques",
           realWorldUse: "Analyse de sentiment, classification de textes",
           complexity: "Intermédiaire",
-          tools: ["Scikit-learn", "NLTK", "SpaCy"],
+          tools: ["scikit-learn", "NLTK", "spaCy"],
           dataset: "Reviews Amazon, tweets, articles"
         }
       ]
@@ -65,7 +65,7 @@ const PracticalApplicationsEnriched = () => {
           title: "Descente de Gradient",
           math: "\\theta_{t+1} = \\theta_t - \\alpha \\nabla J(\\theta_t)",
           description: "Algorithme d'optimisation pour minimiser une fonction de coût",
-          realWorldUse: "Entraînement de modèles ML, optimisation de portefeuilles",
+          realWorldUse: "Entraînement de modèles de machine learning (minimisation d'une fonction de coût)",
           complexity: "Intermédiaire",
           tools: ["NumPy", "TensorFlow", "PyTorch"],
           dataset: "Tous types de données pour ML"
@@ -76,7 +76,7 @@ const PracticalApplicationsEnriched = () => {
           description: "Optimisation de fonctions linéaires sous contraintes linéaires",
           realWorldUse: "Planification de production, allocation de ressources",
           complexity: "Avancé",
-          tools: ["PuLP", "Gurobi", "CPLEX"],
+          tools: ["SciPy (linprog)", "PuLP", "OR-Tools"],
           dataset: "Données de production, inventaires"
         }
       ]
@@ -88,11 +88,11 @@ const PracticalApplicationsEnriched = () => {
       applications: [
         {
           title: "Analyse en Composantes Principales (PCA)",
-          math: "X = U\\Sigma V^T",
-          description: "Réduction de dimensionnalité par décomposition en valeurs singulières",
+          math: "X_c = U\\Sigma V^T",
+          description: "Réduction de dimensionnalité par décomposition en valeurs singulières de la matrice des données centrées X_c",
           realWorldUse: "Compression d'images, visualisation de données haute dimension",
           complexity: "Intermédiaire",
-          tools: ["Scikit-learn", "NumPy", "Pandas"],
+          tools: ["scikit-learn", "NumPy", "Pandas"],
           dataset: "Images, données génomiques, données financières"
         },
         {
@@ -131,10 +131,10 @@ const PracticalApplicationsEnriched = () => {
     <section className="mb-12">
       <div className="flex items-center gap-3 mb-6">
         <Zap className="h-8 w-8 text-orange-600" />
-        <h2 className="text-3xl font-bold">Applications Pratiques Enrichies</h2>
+        <h2 className="text-3xl font-bold">Applications pratiques</h2>
       </div>
       <p className="text-lg text-gray-600 mb-8">
-        Découvrez comment les concepts mathématiques se transforment en solutions concrètes pour résoudre des problèmes réels.
+        Où retrouve-t-on les concepts mathématiques de cette page ? Quelques exemples d'applications, avec la formule, les outils et les jeux de données qu'on utilise couramment.
       </p>
 
       <div className="space-y-8">
@@ -176,7 +176,7 @@ const PracticalApplicationsEnriched = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold text-xs mb-2">Outils recommandés :</h4>
+                        <h4 className="font-semibold text-xs mb-2">Outils courants :</h4>
                         <div className="flex flex-wrap gap-1">
                           {app.tools.map((tool, idx) => (
                             <Badge key={idx} variant="outline" className="text-xs">
@@ -186,7 +186,7 @@ const PracticalApplicationsEnriched = () => {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-xs mb-2">Datasets populaires :</h4>
+                        <h4 className="font-semibold text-xs mb-2">Jeux de données courants :</h4>
                         <p className="text-xs text-gray-600">{app.dataset}</p>
                       </div>
                     </div>
@@ -201,7 +201,7 @@ const PracticalApplicationsEnriched = () => {
       <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-100">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Database className="h-6 w-6 text-indigo-600" />
-          Méthodologie d'Apprentissage Pratique
+          Une méthode pour apprendre
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="text-center">
@@ -212,12 +212,12 @@ const PracticalApplicationsEnriched = () => {
           <div className="text-center">
             <div className="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">2</div>
             <h4 className="font-semibold text-sm">Implémentation</h4>
-            <p className="text-xs text-gray-600">Coder les algorithmes from scratch</p>
+            <p className="text-xs text-gray-600">Coder l'algorithme soi-même, sans bibliothèque</p>
           </div>
           <div className="text-center">
             <div className="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">3</div>
             <h4 className="font-semibold text-sm">Application</h4>
-            <p className="text-xs text-gray-600">Utiliser sur des données réelles</p>
+            <p className="text-xs text-gray-600">Appliquer à un jeu de données réel</p>
           </div>
           <div className="text-center">
             <div className="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">4</div>

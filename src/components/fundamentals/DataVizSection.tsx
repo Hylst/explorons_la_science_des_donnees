@@ -109,19 +109,19 @@ const DataVizSection = () => {
                 <ul className="space-y-2">
                   <li className="flex items-center">
                     <span className="w-3 h-3 bg-ds-blue-500 rounded-full mr-2"></span>
-                    <strong>Données catégorielles:</strong> Diagrammes à barres, camemberts, treemaps
+                    <strong>Données catégorielles :</strong> Diagrammes à barres, camemberts, treemaps
                   </li>
                   <li className="flex items-center">
                     <span className="w-3 h-3 bg-ds-purple-500 rounded-full mr-2"></span>
-                    <strong>Données temporelles:</strong> Graphiques linéaires, graphiques à bandes
+                    <strong>Données temporelles :</strong> Graphiques linéaires, graphiques en aires
                   </li>
                   <li className="flex items-center">
                     <span className="w-3 h-3 bg-ds-blue-300 rounded-full mr-2"></span>
-                    <strong>Distributions:</strong> Histogrammes, box plots, violin plots
+                    <strong>Distributions :</strong> Histogrammes, box plots, violin plots
                   </li>
                   <li className="flex items-center">
                     <span className="w-3 h-3 bg-ds-purple-300 rounded-full mr-2"></span>
-                    <strong>Relations:</strong> Nuages de points, matrices de corrélation, heatmaps
+                    <strong>Relations :</strong> Nuages de points, matrices de corrélation, heatmaps
                   </li>
                 </ul>
               </div>
@@ -134,7 +134,7 @@ const DataVizSection = () => {
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({name, percent}) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({name, percent}) => `${name}: ${(percent * 100).toFixed(0)} %`}
                   >
                     {pieData.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -147,7 +147,7 @@ const DataVizSection = () => {
           </CardContent>
         </Card>
         
-        <h3 className="text-xl font-semibold mt-10 mb-6">Exemple interactif: Analyse des ventes et visites</h3>
+        <h3 className="text-xl font-semibold mt-10 mb-6">Exemple interactif : ventes et visites (données fictives)</h3>
         
         <Alert className="mb-4 bg-blue-50 border-blue-200">
           <AlertCircle className="h-4 w-4 text-blue-600" />
@@ -170,14 +170,14 @@ const DataVizSection = () => {
                 <h4 className="text-lg font-semibold">
                   {activeChart === "line" && "Tendance des ventes et visites"}
                   {activeChart === "bar" && "Comparaison des ventes et visites par mois"}
-                  {activeChart === "area" && "Évolution cumulative au fil du temps"}
+                  {activeChart === "area" && "Évolution au fil du temps"}
                   {activeChart === "composed" && "Relation entre ventes, visites et revenu par visite (données fictives)"}
                 </h4>
                 <p className="text-sm text-gray-600 mt-1">
-                  {activeChart === "line" && "Visualisez l'évolution des métriques au fil du temps pour identifier les tendances saisonnières."}
-                  {activeChart === "bar" && "Comparez facilement les valeurs mois par mois pour repérer les périodes de performance."}
-                  {activeChart === "area" && "L'aire sous la courbe permet de visualiser l'accumulation et les proportions relatives."}
-                  {activeChart === "composed" && "Combinez plusieurs types de visualisations pour explorer des relations complexes."}
+                  {activeChart === "line" && "Visualisez l'évolution des valeurs au fil du temps pour repérer une tendance. Sur une seule année, on ne peut pas conclure à une saisonnalité."}
+                  {activeChart === "bar" && "Comparez les valeurs mois par mois : les barres côte à côte facilitent la comparaison directe."}
+                  {activeChart === "area" && "L'aire colorée met en avant l'ampleur des valeurs ; les deux séries se chevauchent sans s'additionner."}
+                  {activeChart === "composed" && "Barres, ligne et points sur un même graphique, avec deux axes : pratique pour rapprocher plusieurs mesures, mais plus difficile à lire."}
                 </p>
               </div>
               

@@ -38,16 +38,16 @@ const AdvancedConcepts = () => {
   // Advanced concepts data structure
   const advancedConcepts = useMemo(() => ({
     async: {
-      title: 'Programmation Asynchrone',
+      title: 'Programmation asynchrone',
       icon: <Clock className="h-6 w-6" />,
-      description: 'Découvrez async/await, Promises et la programmation non-bloquante',
+      description: 'async/await et asyncio : faire avancer plusieurs attentes en même temps, sans bloquer le programme',
       difficulty: 'Intermédiaire',
-      estimatedTime: '3-4 heures',
+      estimatedTime: '3-4 heures (indicatif)',
       concepts: [
         {
           id: 'promises-basics',
-          title: 'Promises et Callbacks',
-          description: 'Comprendre les bases de la programmation asynchrone',
+          title: 'async/await et asyncio',
+          description: 'Les bases de la programmation asynchrone en Python',
           code: `# Python - Programmation asynchrone avec asyncio
 # Les requêtes réseau sont simulées avec asyncio.sleep (aucun accès réseau ici)
 import asyncio
@@ -117,15 +117,15 @@ if __name__ == "__main__":
     asyncio.run(main())`,
           explanation: 'La programmation asynchrone permet de faire avancer plusieurs opérations d\'attente (réseau, disque) en même temps dans un seul thread, sans le bloquer. Ici la latence est simulée avec asyncio.sleep : comparez les temps mesurés du mode synchrone, séquentiel et concurrent (asyncio.gather).',
           benefits: [
-            'Performance améliorée pour les I/O',
-            'Meilleure utilisation des ressources',
-            'Interface utilisateur plus réactive'
+            'Meilleur débit quand le programme attend surtout le réseau ou le disque (I/O)',
+            'Les attentes se chevauchent au lieu de s\'additionner',
+            'Une attente ne bloque pas le reste du programme'
           ]
         },
         {
           id: 'async-patterns',
-          title: 'Patterns Asynchrones Avancés',
-          description: 'Techniques avancées pour gérer la complexité asynchrone',
+          title: 'Motifs asynchrones : sémaphore, file et retry',
+          description: 'Limiter la concurrence, récupérer les résultats au fil de l\'eau, relancer après une erreur',
           code: `# Patterns asynchrones avancés en Python
 import asyncio
 from asyncio import Queue, Semaphore
@@ -254,9 +254,9 @@ if __name__ == "__main__":
     asyncio.run(main())`,
           explanation: 'Les patterns asynchrones avancés permettent de gérer la complexité des applications concurrentes : sémaphore pour limiter la concurrence, file d\'attente, générateur asynchrone et retry avec backoff. Les fichiers sont simulés en mémoire ; en production, on utiliserait par exemple aiofiles.',
           benefits: [
-            'Gestion élégante des ressources',
-            'Contrôle de la concurrence',
-            'Streaming de données en temps réel'
+            'Libération des ressources garantie, même en cas d\'erreur',
+            'Concurrence limitée par un sémaphore',
+            'Résultats traités au fur et à mesure'
           ]
         }
       ]
@@ -266,13 +266,13 @@ if __name__ == "__main__":
       icon: <Package className="h-6 w-6" />,
       description: 'Organisation du code avec les modules, packages et imports',
       difficulty: 'Intermédiaire',
-      estimatedTime: '2-3 heures',
+      estimatedTime: '2-3 heures (indicatif)',
       concepts: [
         {
           id: 'module-structure',
-          title: 'Structure de Modules',
-          description: 'Organisation et création de modules réutilisables',
-          code: `# Structure d'un package Python professionnel
+          title: 'Structure d\'un package',
+          description: 'Organiser le code en modules réutilisables',
+          code: `# Exemple de structure d'un package Python
 # my_data_package/
 # ├── __init__.py
 # ├── core/
@@ -447,28 +447,27 @@ if __name__ == "__main__":
         },
         {
           id: 'import-strategies',
-          title: 'Stratégies d\'Import Avancées',
-          description: 'Techniques d\'importation dynamique et conditionnelle',
+          title: 'Imports dynamiques et optionnels',
+          description: 'Importer un module selon l\'environnement, avec une solution de repli',
           code: `# Stratégies d'import avancées en Python
 import importlib
 import sys
-from typing import Any, Dict, List, Optional, Type
-from functools import lru_cache
-import warnings
+from typing import Any, Dict, List, Optional
 
 class DynamicImporter:
     """Gestionnaire d'imports dynamiques avec cache et fallbacks"""
-    
+
     def __init__(self):
         self._cache: Dict[str, Any] = {}
         self._failed_imports: set = set()
-    
-    @lru_cache(maxsize=128)
+
     def safe_import(self, module_name: str, fallback: Optional[str] = None) -> Optional[Any]:
-        """Import sécurisé avec fallback"""
+        """Import sécurisé avec fallback (les résultats sont mémorisés dans un dictionnaire de l'objet)"""
+        if module_name in self._cache:
+            return self._cache[module_name]
         if module_name in self._failed_imports:
-            return None
-        
+            return self.safe_import(fallback) if fallback else None
+
         try:
             module = importlib.import_module(module_name)
             self._cache[module_name] = module
@@ -633,7 +632,7 @@ if __name__ == "__main__":
       icon: <Layers className="h-6 w-6" />,
       description: 'Programmation orientée objet avancée avec métaclasses et patterns',
       difficulty: 'Avancé',
-      estimatedTime: '4-5 heures',
+      estimatedTime: '4-5 heures (indicatif)',
       concepts: [
         {
           id: 'advanced-oop',
@@ -942,9 +941,9 @@ if __name__ == "__main__":
     advanced_oop_example()`,
           explanation: 'La POO avancée utilise des concepts comme les métaclasses, les décorateurs et les patterns de conception. Pour combiner ABC et une métaclasse personnalisée, celle-ci doit hériter de ABCMeta, sinon Python lève un conflit de métaclasses.',
           benefits: [
-            'Code plus maintenable et extensible',
-            'Réutilisabilité maximale',
-            'Patterns de conception robustes'
+            'Code plus facile à étendre',
+            'Réutilisabilité des classes de base',
+            'Patterns de conception courants (singleton, observateur, fabrique)'
           ]
         }
       ]
@@ -980,14 +979,16 @@ if __name__ == "__main__":
   const progressPercentage = (completedCount / totalConcepts) * 100;
 
   // Concept Card Component
-  const ConceptCard = ({ concept }: { concept: Concept }) => {
+  // Simple fonction de rendu (et non un composant défini ici) : un composant créé dans le rendu du parent est
+  // remplacé à chaque clic, ce qui détruit les boutons et fait perdre le focus clavier.
+  const renderConceptCard = (concept: Concept) => {
     const isCompleted = completedConcepts.has(concept.id);
     const isExecuting = codeExecution[concept.id];
     const showSolution = showSolutions[concept.id];
     const runResult = runResults[concept.id];
 
     return (
-      <Card className={`transition-all duration-300 ${
+      <Card key={concept.id} className={`transition-all duration-300 ${
         isCompleted ? 'border-green-500 bg-green-50' : 'hover:shadow-lg'
       }`}>
         <CardHeader>
@@ -1108,7 +1109,7 @@ if __name__ == "__main__":
             {isCompleted ? (
               <>
                 <CheckCircle className="h-4 w-4 mr-2" />
-                Concept maîtrisé
+                Concept terminé
               </>
             ) : (
               <>
@@ -1131,7 +1132,7 @@ if __name__ == "__main__":
             <Rocket className="h-8 w-8 text-white" />
           </div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            Concepts Avancés de Programmation
+            Concepts avancés de programmation
           </h2>
         </div>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -1149,7 +1150,7 @@ if __name__ == "__main__":
             <Trophy className="h-8 w-8 text-purple-600" />
             <div>
               <div className="text-2xl font-bold text-purple-700">{completedCount}</div>
-              <div className="text-sm text-purple-600">Concepts maîtrisés</div>
+              <div className="text-sm text-purple-600">Concepts terminés</div>
             </div>
           </div>
         </Card>
@@ -1224,12 +1225,7 @@ if __name__ == "__main__":
 
             {/* Concepts Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {category.concepts.map((concept) => (
-                <ConceptCard
-                  key={concept.id}
-                  concept={concept}
-                />
-              ))}
+              {category.concepts.map((concept) => renderConceptCard(concept))}
             </div>
           </TabsContent>
         ))}
@@ -1237,14 +1233,14 @@ if __name__ == "__main__":
 
       {/* Completion Message */}
       {completedCount === totalConcepts && (
-        <CourseHighlight title="🎉 Félicitations !" type="success">
+        <CourseHighlight title="Parcours terminé" type="success">
           <p className="mb-4">
-            Vous avez parcouru tous les concepts avancés de programmation !
-            Vous avez de bonnes bases pour aborder des défis plus complexes en data science.
+            Vous avez marqué tous les concepts avancés comme terminés. Relancer les exemples en modifiant
+            quelques lignes est une bonne façon de vérifier ce que vous en avez retenu.
           </p>
           <div className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-yellow-500" />
-            <span className="font-semibold">Bravo pour ce beau parcours !</span>
+            <Star className="h-5 w-5 text-yellow-600" />
+            <span className="font-semibold">Ce suivi reste dans la page et n'est pas enregistré.</span>
           </div>
         </CourseHighlight>
       )}

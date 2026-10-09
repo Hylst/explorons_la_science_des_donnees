@@ -7,10 +7,10 @@ const UnsupervisedSection = () => {
   return (
     <section id="unsupervised" className="space-y-8">
       <h2 className="text-3xl font-bold mb-6">Apprentissage Non Supervisé</h2>
-      
+
       <p className="text-lg mb-6">
-        L'<GlossaryTerm definition={mlDefinitions["apprentissage-non-supervise"]}>apprentissage non supervisé</GlossaryTerm> traite des données non étiquetées pour découvrir des structures
-        cachées, des patterns et des relations sans guidance externe.
+        L'<GlossaryTerm definition={mlDefinitions["apprentissage-non-supervise"]}>apprentissage non supervisé</GlossaryTerm> traite des données non étiquetées pour découvrir des structures,
+        des motifs et des relations sans réponse connue à imiter.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
@@ -26,7 +26,7 @@ const UnsupervisedSection = () => {
           <ul className="list-disc pl-6 space-y-1">
             <li><GlossaryTerm definition={mlDefinitions["k-means"]}>K-means</GlossaryTerm></li>
             <li><GlossaryTerm definition={mlDefinitions["dbscan"]}>DBSCAN</GlossaryTerm></li>
-            <li>Hierarchical Clustering</li>
+            <li>Clustering hiérarchique</li>
             <li>Mean Shift</li>
             <li>Mélanges gaussiens (GMM, algorithme EM)</li>
           </ul>
@@ -49,7 +49,7 @@ const UnsupervisedSection = () => {
         <Card>
           <CardHeader>
             <CardTitle>Exemple de code : K-means Clustering</CardTitle>
-            <CardDescription>Implémentation avec Scikit-learn</CardDescription>
+            <CardDescription>Implémentation avec scikit-learn</CardDescription>
           </CardHeader>
           <CardContent>
             <pre className="bg-slate-950 text-slate-50 p-4 rounded-md overflow-x-auto text-sm">
@@ -58,6 +58,7 @@ const UnsupervisedSection = () => {
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
+# X : tableau des variables numériques, à fournir.
 # Standardisation des données
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
@@ -77,14 +78,14 @@ plt.ylabel('Inertie')
 plt.title('Méthode du coude')
 plt.show()
 
-# Application du K-means avec k optimal
+# Application du K-means avec k choisi d'après le coude (ici 3, à adapter à vos données)
 kmeans = KMeans(n_clusters=3, random_state=42)
 clusters = kmeans.fit_predict(X_scaled)
 
 # Visualisation des clusters (dans l'espace standardisé, comme les centres)
 plt.figure(figsize=(10, 6))
 plt.scatter(X_scaled[:, 0], X_scaled[:, 1], c=clusters, cmap='viridis')
-plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], 
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1],
             s=300, c='red', marker='X')
 plt.title('K-means Clustering')
 plt.show()`}
@@ -111,11 +112,11 @@ plt.show()`}
             </div>
             <div className="border p-4 rounded-md">
               <h4 className="font-semibold mb-2">Systèmes de recommandation</h4>
-              <p className="text-sm">Recommandation de produits, films, ou contenus basée sur des patterns de similarité.</p>
+              <p className="text-sm">Recommandation de produits, de films ou de contenus fondée sur des similarités entre utilisateurs ou entre contenus.</p>
             </div>
             <div className="border p-4 rounded-md">
               <h4 className="font-semibold mb-2">Compression d'image</h4>
-              <p className="text-sm">Réduction de la dimensionnalité des images tout en préservant l'information principale.</p>
+              <p className="text-sm">Réduction de la dimensionnalité des images en conservant l'essentiel de l'information, au prix d'une perte.</p>
             </div>
             <div className="border p-4 rounded-md">
               <h4 className="font-semibold mb-2">Analyse de marché</h4>

@@ -9,7 +9,7 @@ const CourseAccessSection = () => {
   const courses = [
     {
       title: "Apprentissage Supervisé",
-      description: "Découvrez la classification et la régression avec des algorithmes comme Random Forest, SVM et les réseaux de neurones. Cours complet avec exemples pratiques et exercices interactifs.",
+      description: "La classification et la régression : types de problèmes, algorithmes usuels (régression logistique, forêts aléatoires, SVM, régression linéaire), mesures d'évaluation, applications et projets, avec quiz et exercices.",
       href: "/machine-learning/supervised",
       icon: <Network className="h-8 w-8" />,
       color: "bg-blue-500",
@@ -17,15 +17,15 @@ const CourseAccessSection = () => {
       level: "Intermédiaire",
       modules: "6 sections",
       highlights: [
-        "Classification binaire et multi-classe",
-        "Algorithmes de régression avancés",
-        "Évaluation et optimisation des modèles",
-        "Projets pratiques complets"
+        "Classification binaire, multi-classe et multi-label",
+        "Régression linéaire, polynomiale et multiple",
+        "Mesures d'évaluation (exactitude, rappel, MAE, RMSE, R²)",
+        "Trois projets avec solution"
       ]
     },
     {
       title: "Apprentissage Non Supervisé",
-      description: "Découvrez le clustering, la réduction de dimensionnalité et la détection d'anomalies. Explorez K-means, PCA, t-SNE et leurs applications concrètes.",
+      description: "Le clustering et la réduction de dimensionnalité (K-means, clustering hiérarchique, PCA, t-SNE, UMAP), puis la détection d'anomalies dans un projet, avec applications et quiz.",
       href: "/machine-learning/unsupervised",
       icon: <GitBranch className="h-8 w-8" />,
       color: "bg-purple-500",
@@ -33,15 +33,15 @@ const CourseAccessSection = () => {
       level: "Intermédiaire",
       modules: "6 sections",
       highlights: [
-        "Algorithmes de clustering avancés",
-        "Techniques de réduction de dimensionnalité",
-        "Détection d'anomalies et d'outliers",
-        "Visualisation de données complexes"
+        "K-means et clustering hiérarchique",
+        "PCA, t-SNE, UMAP et ICA : un comparatif",
+        "Détection d'anomalies (projet)",
+        "Projections 2D de données de grande dimension"
       ]
     },
     {
       title: "Apprentissage par Renforcement",
-      description: "Plongez dans l'IA qui apprend par l'interaction : Q-learning, Deep Q-Networks, et applications en robotique et jeux. Le futur de l'intelligence artificielle.",
+      description: "Un agent qui apprend par essais et erreurs : agent, environnement, récompenses, Q-learning et SARSA, puis un aperçu des méthodes profondes (DQN, PPO), avec des projets en simulation.",
       href: "/machine-learning/reinforcement",
       icon: <Zap className="h-8 w-8" />,
       color: "bg-orange-500",
@@ -49,10 +49,10 @@ const CourseAccessSection = () => {
       level: "Avancé",
       modules: "6 sections",
       highlights: [
-        "Processus de décision markoviens",
-        "Algorithmes Q-learning et SARSA",
-        "Deep Reinforcement Learning",
-        "Applications en robotique et jeux"
+        "Agent, environnement, récompenses, processus de décision markovien",
+        "Q-learning et SARSA",
+        "Aperçu du renforcement profond (DQN, PPO)",
+        "Trois projets en simulation (jeu, parking, trading)"
       ]
     }
   ];
@@ -62,7 +62,7 @@ const CourseAccessSection = () => {
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-bold">Cours Approfondis</h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Explorez en détail les trois grandes familles du Machine Learning : un cours par famille, avec 
+          Explorez en détail les trois grandes familles du Machine Learning : un cours par famille, avec
           théorie, exemples, projets et ressources.
         </p>
       </div>
@@ -72,7 +72,7 @@ const CourseAccessSection = () => {
           <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg relative overflow-hidden">
             {/* Gradient background */}
             <div className={`absolute top-0 left-0 right-0 h-1 ${course.color}`} />
-            
+
             <CardHeader className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className={`p-3 rounded-xl ${course.color} text-white`}>
@@ -82,7 +82,7 @@ const CourseAccessSection = () => {
                   {course.level}
                 </Badge>
               </div>
-              
+
               <div>
                 <CardTitle className="text-xl group-hover:text-primary transition-colors">
                   {course.title}
@@ -108,7 +108,7 @@ const CourseAccessSection = () => {
 
               {/* Highlights */}
               <div className="space-y-3">
-                <h4 className="font-semibold text-sm">Ce que vous apprendrez :</h4>
+                <h4 className="font-semibold text-sm">Au programme :</h4>
                 <ul className="space-y-1">
                   {course.highlights.slice(0, 3).map((highlight, idx) => (
                     <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
@@ -133,10 +133,10 @@ const CourseAccessSection = () => {
 
       {/* Call to action */}
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border text-center space-y-4">
-        <h3 className="text-2xl font-bold">Prêt à vous lancer ?</h3>
+        <h3 className="text-2xl font-bold">Par où commencer ?</h3>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Chaque cours combine théorie, exemples et pistes de projets, et se complète par un quiz. 
-          Tout est gratuit et sans compte ; votre progression reste dans votre navigateur.
+          Chaque cours combine théorie, exemples et projets, avec des quiz.
+          Tout est gratuit et sans compte.
         </p>
         <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">

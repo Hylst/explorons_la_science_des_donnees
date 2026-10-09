@@ -4,59 +4,55 @@ import ApplicationsSection from "../shared/ApplicationsSection";
 const applications = [
   {
     icon: <span className="text-2xl">🏥</span>,
-    title: "Diagnostic Médical Intelligent",
-    description: "Systèmes d'aide au diagnostic qui analysent symptômes, analyses biologiques et imagerie pour assister les médecins dans leurs décisions.",
+    title: "Aide au diagnostic médical",
+    description: "Systèmes d'aide au diagnostic qui analysent symptômes, analyses biologiques et imagerie pour assister les médecins, qui gardent la décision.",
     examples: [
-      "Détection précoce du cancer sur radiographies",
-      "Diagnostic de maladies rares par analyse génétique", 
+      "Aide à la détection de lésions suspectes sur des images (mammographie, radiographie)",
+      "Diagnostic de maladies rares par analyse génétique",
       "Prédiction des risques cardiovasculaires",
-      "Classification de lésions cutanées (dermatologie IA)"
+      "Classification de lésions cutanées sur photographies"
     ],
     industry: "Santé",
-    difficulty: "Avancé" as const,
-    impact: "Élevé" as const
+    difficulty: "Avancé" as const
   },
   {
     icon: <span className="text-2xl">🚗</span>,
-    title: "Véhicules Autonomes",
-    description: "Systèmes de vision et de décision pour véhicules autonomes : reconnaissance d'objets, prédiction de trajectoires, prise de décision en temps réel.",
+    title: "Véhicules autonomes",
+    description: "Briques de perception des véhicules autonomes : reconnaissance d'objets, prédiction de trajectoires.",
     examples: [
       "Détection de piétons et cyclistes en temps réel",
       "Classification des panneaux de signalisation",
       "Prédiction du comportement des autres véhicules",
-      "Navigation autonome en environnement urbain complexe"
+      "Compréhension de scènes urbaines (segmentation sémantique)"
     ],
     industry: "Transport",
-    difficulty: "Avancé" as const,
-    impact: "Élevé" as const
+    difficulty: "Avancé" as const
   },
   {
     icon: <span className="text-2xl">💰</span>,
-    title: "Finance et Trading",
-    description: "Analyse prédictive des marchés financiers, détection de fraudes, évaluation des risques de crédit et optimisation de portefeuilles.",
+    title: "Finance",
+    description: "Détection de fraudes, évaluation des risques de crédit, estimation de valeurs ; la prévision des marchés financiers reste un domaine où les gains sont très incertains.",
     examples: [
       "Détection de transactions frauduleuses en temps réel",
       "Prédiction de défauts de paiement (credit scoring)",
-      "Trading algorithmique haute fréquence",
+      "Prévision de volatilité ou de séries financières (avec beaucoup de prudence)",
       "Évaluation automatique de biens immobiliers"
     ],
     industry: "Finance",
-    difficulty: "Intermédiaire" as const,
-    impact: "Élevé" as const
+    difficulty: "Intermédiaire" as const
   },
   {
     icon: <span className="text-2xl">🛒</span>,
-    title: "E-commerce et Recommandations",
-    description: "Systèmes de recommandation personnalisés, optimisation des prix, prédiction de la demande et analyse du comportement client.",
+    title: "Commerce en ligne et recommandations",
+    description: "Recommandations personnalisées, prévision de la demande, optimisation des prix et analyse du comportement des clients.",
     examples: [
-      "Recommandations produits sur mesure (Amazon, Netflix)",
+      "Recommandations de produits ou de contenus selon l'historique",
       "Prédiction de la demande pour optimiser les stocks",
       "Tarification dynamique selon la demande",
-      "Chatbots de service client intelligents"
+      "Classement automatique des demandes du service client"
     ],
     industry: "Commerce",
-    difficulty: "Intermédiaire" as const,
-    impact: "Élevé" as const
+    difficulty: "Intermédiaire" as const
   },
   {
     icon: <span className="text-2xl">🏭</span>,
@@ -69,26 +65,24 @@ const applications = [
       "Planification intelligente de la production"
     ],
     industry: "Industrie",
-    difficulty: "Intermédiaire" as const,
-    impact: "Élevé" as const
+    difficulty: "Intermédiaire" as const
   },
   {
     icon: <span className="text-2xl">🎯</span>,
-    title: "Marketing Digital Intelligent",
-    description: "Ciblage publicitaire précis, analyse de sentiment des réseaux sociaux, optimisation des campagnes et prédiction du ROI.",
+    title: "Marketing digital",
+    description: "Ciblage publicitaire, analyse de sentiment sur les réseaux sociaux, optimisation des campagnes et prévision de leur retour.",
     examples: [
-      "Segmentation automatique de clientèle",
+      "Score de propension à répondre à une offre",
       "Prédiction du taux de conversion publicitaire",
       "Analyse de sentiment sur réseaux sociaux",
       "Optimisation du budget publicitaire multi-canal"
     ],
     industry: "Marketing",
-    difficulty: "Débutant" as const,
-    impact: "Moyen" as const
+    difficulty: "Débutant" as const
   },
   {
     icon: <span className="text-2xl">🌾</span>,
-    title: "Agriculture de Précision",
+    title: "Agriculture de précision",
     description: "Optimisation des rendements agricoles par analyse satellite, prédiction météo, gestion précise des ressources et détection précoce de maladies.",
     examples: [
       "Prédiction des rendements par analyse satellite",
@@ -97,8 +91,7 @@ const applications = [
       "Planification des semis selon prévisions météo"
     ],
     industry: "Agriculture",
-    difficulty: "Intermédiaire" as const,
-    impact: "Élevé" as const
+    difficulty: "Intermédiaire" as const
   },
   {
     icon: <span className="text-2xl">🎓</span>,
@@ -111,29 +104,27 @@ const applications = [
       "Recommandations de contenus pédagogiques"
     ],
     industry: "Éducation",
-    difficulty: "Débutant" as const,
-    impact: "Moyen" as const
+    difficulty: "Débutant" as const
   },
   {
     icon: <span className="text-2xl">🏘️</span>,
-    title: "Smart Cities",
-    description: "Gestion intelligente du trafic, optimisation de l'éclairage public, prédiction de la criminalité et gestion des déchets.",
+    title: "Villes intelligentes (smart cities)",
+    description: "Gestion du trafic, optimisation de l'éclairage public et de la collecte des déchets. La prédiction de la criminalité est controversée, car elle peut reproduire des biais des données.",
     examples: [
       "Optimisation des feux de circulation en temps réel",
-      "Prédiction des zones de criminalité potentielle",
+      "Prévision de la fréquentation des transports en commun",
       "Gestion intelligente de la collecte des déchets",
       "Planification urbaine basée sur les flux de population"
     ],
     industry: "Urbain",
-    difficulty: "Avancé" as const,
-    impact: "Élevé" as const
+    difficulty: "Avancé" as const
   }
 ];
 
 const SupervisedApplicationsSection = () => {
   return (
     <ApplicationsSection
-      title="🌍 Applications de l'Apprentissage Supervisé"
+      title="🌍 Applications de l'apprentissage supervisé"
       applications={applications}
       description="L'apprentissage supervisé sert dans de nombreux secteurs, de la santé à la finance en passant par l'industrie : des modèles apprennent à partir d'exemples étiquetés pour prédire ou classer."
     />

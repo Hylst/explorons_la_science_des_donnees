@@ -31,7 +31,7 @@ const SupervisedIntroSection = () => {
                 </div>
                 <h4 className="font-semibold mb-2">L'Élève (IA)</h4>
                 <p className="text-sm text-indigo-700">
-                  Apprend les patterns en étudiant les exemples fournis
+                  Cherche les régularités dans les exemples fournis
                 </p>
               </div>
               <div className="text-center">
@@ -53,11 +53,11 @@ const SupervisedIntroSection = () => {
                 Objectif principal
               </h4>
               <p className="text-green-700 text-sm">
-                Créer une fonction intelligente qui peut prédire des résultats pour de nouvelles données,
+                Apprendre une fonction capable de prédire un résultat pour de nouvelles données,
                 en s'appuyant sur des exemples d'entraînement où l'on connaît déjà les bonnes réponses.
               </p>
             </div>
-            
+
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
               <h4 className="font-semibold text-orange-800 mb-3 flex items-center gap-2">
                 <Lightbulb className="h-5 w-5" />
@@ -97,7 +97,7 @@ const SupervisedIntroSection = () => {
 
               {/* Flèche 1 */}
               <path d="M150 120 L190 120" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
-              
+
               {/* Algorithme */}
               <rect x="200" y="80" width="120" height="80" fill="#10B981" rx="8" />
               <text x="260" y="115" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
@@ -112,7 +112,7 @@ const SupervisedIntroSection = () => {
 
               {/* Flèche 2 */}
               <path d="M330 120 L370 120" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
-              
+
               {/* Modèle */}
               <rect x="380" y="80" width="120" height="80" fill="#8B5CF6" rx="8" />
               <text x="440" y="115" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
@@ -136,7 +136,7 @@ const SupervisedIntroSection = () => {
 
               {/* Flèche 3 */}
               <path d="M550 50 L480 80" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
-              
+
               {/* Prédictions */}
               <rect x="600" y="140" width="100" height="60" fill="#EF4444" rx="8" />
               <text x="650" y="165" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
@@ -151,7 +151,7 @@ const SupervisedIntroSection = () => {
 
               {/* Définition des marqueurs de flèches */}
               <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                <marker id="arrowhead" markerWidth="10" markerHeight="7"
                         refX="10" refY="3.5" orient="auto">
                   <polygon points="0 0, 10 3.5, 0 7" fill="#374151" />
                 </marker>
@@ -175,20 +175,20 @@ const SupervisedIntroSection = () => {
               <div className="flex items-center gap-2">
                 <span className="text-2xl">📧</span>
                 <div>
-                  <CardTitle className="text-lg">Email Spam</CardTitle>
+                  <CardTitle className="text-lg">Courriel indésirable</CardTitle>
                   <Badge variant="outline" className="text-xs">Classification</Badge>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-sm mb-3">
-                <strong>Situation :</strong> Votre boîte mail doit décider si un email est du spam.
+                <strong>Situation :</strong> Une messagerie doit décider si un courriel est un spam.
               </p>
               <p className="text-sm mb-3">
-                <strong>Données :</strong> Des milliers d'emails déjà classés "spam" ou "légitime".
+                <strong>Données :</strong> Un grand nombre de courriels déjà classés « spam » ou « légitime ».
               </p>
               <p className="text-sm text-blue-600">
-                <strong>Prédiction :</strong> Pour un nouvel email → Spam ou Non-spam ?
+                <strong>Prédiction :</strong> Pour un nouveau courriel → spam ou légitime ?
               </p>
             </CardContent>
           </Card>
@@ -198,7 +198,7 @@ const SupervisedIntroSection = () => {
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🏠</span>
                 <div>
-                  <CardTitle className="text-lg">Prix Immobilier</CardTitle>
+                  <CardTitle className="text-lg">Prix immobilier</CardTitle>
                   <Badge variant="outline" className="text-xs">Régression</Badge>
                 </div>
               </div>
@@ -221,20 +221,20 @@ const SupervisedIntroSection = () => {
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🩺</span>
                 <div>
-                  <CardTitle className="text-lg">Diagnostic Médical</CardTitle>
+                  <CardTitle className="text-lg">Aide au diagnostic</CardTitle>
                   <Badge variant="outline" className="text-xs">Classification</Badge>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-sm mb-3">
-                <strong>Situation :</strong> Détecter une maladie à partir de symptômes.
+                <strong>Situation :</strong> Aider à repérer une maladie à partir de symptômes (un outil d'aide, pas un substitut au médecin).
               </p>
               <p className="text-sm mb-3">
                 <strong>Données :</strong> Dossiers patients avec symptômes et diagnostics confirmés.
               </p>
               <p className="text-sm text-purple-600">
-                <strong>Prédiction :</strong> Pour nouveaux symptômes → Maladie probable
+                <strong>Prédiction :</strong> Pour de nouveaux symptômes → diagnostic probable
               </p>
             </CardContent>
           </Card>
@@ -256,11 +256,11 @@ const SupervisedIntroSection = () => {
                 <div>
                   <h4 className="font-semibold text-green-800">Données étiquetées</h4>
                   <p className="text-sm text-gray-600">
-                    Chaque exemple d'entraînement a une "réponse correcte" associée
+                    Chaque exemple d'entraînement a une « réponse correcte » associée (l'étiquette)
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-3">
                 <div className="bg-blue-100 rounded-full p-2 mt-1">
                   <Brain className="h-4 w-4 text-blue-600" />
@@ -273,7 +273,7 @@ const SupervisedIntroSection = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <div className="bg-purple-100 rounded-full p-2 mt-1">
@@ -286,7 +286,7 @@ const SupervisedIntroSection = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-3">
                 <div className="bg-orange-100 rounded-full p-2 mt-1">
                   <Lightbulb className="h-4 w-4 text-orange-600" />

@@ -7,7 +7,7 @@ const DeepLearningSection = () => {
   return (
     <section id="deep-learning" className="space-y-8">
       <h2 className="text-3xl font-bold mb-6">Deep Learning</h2>
-      
+
       <p className="text-lg mb-6">
         Le <GlossaryTerm definition={mlDefinitions["deep-learning"]}>Deep Learning</GlossaryTerm> est un sous-ensemble du Machine Learning qui utilise des réseaux de neurones
         artificiels à plusieurs couches pour apprendre des représentations hiérarchiques des données.
@@ -20,14 +20,14 @@ const DeepLearningSection = () => {
             <div>
               <h4 className="font-medium">Réseaux de neurones</h4>
               <p className="text-sm">
-                Systèmes inspirés du cerveau humain, composés de neurones artificiels organisés en couches
+                Modèles très librement inspirés du cerveau, composés de neurones artificiels organisés en couches
                 qui transforment les données d'entrée en sorties prédictives.
               </p>
             </div>
             <div>
               <h4 className="font-medium">Fonctions d'activation</h4>
               <p className="text-sm">
-                Fonctions non linéaires (ReLU, Sigmoid, Tanh) qui déterminent si un neurone doit être activé.
+                Fonctions non linéaires (ReLU, sigmoïde, tanh) appliquées à la sortie de chaque neurone : sans elles, le réseau ne saurait représenter que des relations linéaires.
               </p>
             </div>
             <div>
@@ -68,7 +68,7 @@ const DeepLearningSection = () => {
               <p className="font-medium">
                 <GlossaryTerm definition={mlDefinitions["transformers"]}>Transformers</GlossaryTerm>
               </p>
-              <p className="text-sm">Architecture basée sur le mécanisme d'attention, excellant dans les tâches de NLP.</p>
+              <p className="text-sm">Architecture fondée sur le mécanisme d'attention, devenue dominante en traitement du langage et très utilisée au-delà.</p>
             </div>
             <div className="border p-3 rounded-md">
               <p className="font-medium">Autoencodeurs</p>
@@ -92,6 +92,7 @@ from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
+# X : tableau des variables, y : cible binaire (0 ou 1), à fournir.
 # Séparation d'abord, normalisation ensuite : le scaler n'apprend que sur
 # l'entraînement (sinon des informations du test fuient dans l'entraînement)
 X_train, X_test, y_train, y_test = train_test_split(
@@ -130,7 +131,7 @@ history = model.fit(
 
 # Évaluation
 loss, accuracy = model.evaluate(X_test, y_test)
-print(f"Précision du test: {accuracy:.4f}")
+print(f"Exactitude (accuracy) sur le test : {accuracy:.4f}")
 
 # Prédictions
 y_pred = model.predict(X_test)
@@ -165,7 +166,7 @@ y_pred_classes = (y_pred > 0.5).astype(int)`}
               </div>
               <div className="border p-3 rounded-md">
                 <p className="font-medium">Aide à la décision médicale</p>
-                <p className="text-sm">Diagnostic basé sur les images médicales, prédiction de maladies.</p>
+                <p className="text-sm">Aide à l'analyse d'images médicales et à la prédiction de risques, toujours sous contrôle de professionnels de santé.</p>
               </div>
             </div>
           </div>

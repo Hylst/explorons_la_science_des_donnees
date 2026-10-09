@@ -60,33 +60,33 @@ const AuditSection: React.FC = () => {
     {
       tool: "fg-data-profiling (ex ydata-profiling, ex pandas-profiling)",
       language: "Python",
-      description: "Génère un rapport HTML complet",
+      description: "Génère un rapport HTML de profilage d'un tableau pandas",
       features: ["Statistiques descriptives", "Histogrammes", "Corrélations", "Valeurs manquantes"],
       code: "from data_profiling import ProfileReport\nProfileReport(df).to_file('report.html')"
     },
     {
       tool: "Great Expectations",
       language: "Python",
-      description: "Tests automatisés de qualité données",
-      features: ["Assertions sur les données", "Documentation auto", "Intégration CI/CD", "Alertes"],
+      description: "Tests automatisés de la qualité des données",
+      features: ["Assertions sur les données", "Documentation générée", "Intégration CI/CD", "Alertes"],
       code: "ExpectColumnValuesToBeBetween(column='age', min_value=0, max_value=120)  # l'API varie selon la version"
     },
     {
       tool: "Deequ (Amazon)",
       language: "Scala / Spark",
       description: "Bibliothèque Spark pour grands volumes (PyDeequ pour Python)",
-      features: ["Métriques qualité", "Contraintes", "Anomalie detection", "Suggestions"],
+      features: ["Métriques qualité", "Contraintes", "Détection d'anomalies", "Suggestions"],
       code: "VerificationSuite().onData(df).addCheck(check).run()  // Scala ; PyDeequ : VerificationSuite(spark)"
     }
   ];
 
   const qualityKPIs = [
-    { metric: "Complétude", value: "94.2%", trend: "up", target: "95%", color: "orange" },
-    { metric: "Exactitude", value: "87.5%", trend: "down", target: "90%", color: "orange" },
-    { metric: "Unicité", value: "99.1%", trend: "stable", target: "99%", color: "green" },
-    { metric: "Cohérence", value: "82.3%", trend: "up", target: "85%", color: "orange" },
-    { metric: "Fraîcheur", value: "91.8%", trend: "up", target: "90%", color: "green" },
-    { metric: "Validité", value: "96.4%", trend: "stable", target: "95%", color: "green" }
+    { metric: "Complétude", value: "94,2 %", trend: "up", target: "95 %", color: "orange" },
+    { metric: "Exactitude", value: "87,5 %", trend: "down", target: "90 %", color: "orange" },
+    { metric: "Unicité", value: "99,1 %", trend: "stable", target: "99 %", color: "green" },
+    { metric: "Cohérence", value: "82,3 %", trend: "up", target: "85 %", color: "orange" },
+    { metric: "Fraîcheur", value: "91,8 %", trend: "up", target: "90 %", color: "green" },
+    { metric: "Validité", value: "96,4 %", trend: "stable", target: "95 %", color: "green" }
   ];
 
   return (
@@ -94,7 +94,7 @@ const AuditSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Search className="h-8 w-8 text-orange-500" />
-          Audit de Qualité des Données
+          Audit de qualité des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Avant de nettoyer, il faut diagnostiquer. L'audit de qualité révèle les problèmes 
@@ -105,9 +105,9 @@ const AuditSection: React.FC = () => {
       {/* Dimensions de qualité */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">Les 6 Dimensions de la Qualité des Données</CardTitle>
+          <CardTitle className="text-center">Les six dimensions de la qualité des données</CardTitle>
           <p className="text-center text-muted-foreground">
-            Un framework complet pour évaluer la qualité de vos données selon des critères objectifs
+            Six questions pour évaluer la qualité d'un jeu de données, chacune avec des métriques qu'on peut calculer
           </p>
         </CardHeader>
         <CardContent>
@@ -165,7 +165,7 @@ const AuditSection: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Code className="h-5 w-5 text-purple-500" />
-              Outils d'Audit Automatisé
+              Outils d'audit automatisé
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -209,12 +209,12 @@ const AuditSection: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-green-500" />
-              Tableau de Bord Qualité
+              Tableau de bord qualité (exemple)
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm text-muted-foreground mb-4">
-              KPIs essentiels à surveiller en continu pour maintenir la qualité des données.
+              Indicateurs que l'on peut suivre à chaque exécution pour repérer une dégradation de la qualité.
               Les valeurs ci-dessous sont un exemple fictif, pas une mesure.
             </p>
             
@@ -250,8 +250,8 @@ const AuditSection: React.FC = () => {
             <Alert className="bg-blue-50 border-blue-200">
               <Lightbulb className="h-4 w-4 text-blue-500" />
               <AlertDescription className="text-blue-700">
-                <strong>Conseil :</strong> Automatisez ces métriques dans votre pipeline ETL 
-                pour détecter les dégradations de qualité en temps réel.
+                <strong>Conseil :</strong> calculez ces métriques dans votre pipeline à chaque exécution,
+                et fixez les seuils avec les personnes qui utilisent les données.
               </AlertDescription>
             </Alert>
           </CardContent>
@@ -263,7 +263,7 @@ const AuditSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="h-5 w-5 text-orange-500" />
-            Méthodologie d'Audit
+            Méthode d'audit
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -290,7 +290,7 @@ const AuditSection: React.FC = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-500 mt-1">•</span>
-                  <span>Profiling automatisé des données</span>
+                  <span>Profilage automatisé des données</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-orange-500 mt-1">•</span>

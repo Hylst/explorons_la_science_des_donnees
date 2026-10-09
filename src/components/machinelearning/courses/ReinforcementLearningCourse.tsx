@@ -26,8 +26,8 @@ const ReinforcementLearningCourse = () => {
             Apprentissage par Renforcement
           </CardTitle>
           <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-            Découvrez comment les machines apprennent à prendre des décisions optimales 
-            dans des environnements complexes, de la même façon qu'un enfant apprend à marcher !
+            Comment un agent apprend à prendre des décisions par essais et erreurs,
+            en cherchant à maximiser une récompense cumulée : des jeux simples à la simulation.
           </p>
           <div className="flex justify-center gap-3 mt-6 flex-wrap">
             <Badge className="bg-white text-purple-600 text-sm px-4 py-2">

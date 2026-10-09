@@ -5,7 +5,7 @@ export const programmingDefinitions: Record<string, GlossaryTermDefinition> = {
   "python": {
     term: "Python",
     shortDefinition: "Langage de programmation polyvalent et facile à apprendre, très utilisé en Data Science.",
-    longDefinition: "Python est un langage de programmation interprété, orienté objet et de haut niveau avec une syntaxe simple et lisible. Sa popularité en Data Science s'explique par son écosystème riche de bibliothèques spécialisées comme pandas, NumPy, scikit-learn et TensorFlow.",
+    longDefinition: "Python est un langage de programmation interprété, multi-paradigme (objet, impératif, fonctionnel) et de haut niveau, à la syntaxe simple et lisible. Sa popularité en Data Science s'explique par son écosystème riche de bibliothèques spécialisées comme pandas, NumPy, scikit-learn et TensorFlow.",
     examples: [
       "Analyse de données avec pandas et matplotlib",
       "Création de modèles de machine learning avec scikit-learn"
@@ -71,7 +71,6 @@ export const programmingDefinitions: Record<string, GlossaryTermDefinition> = {
       "Accéder à des données financières via l'API d'un fournisseur de données"
     ],
     relatedTerms: ["REST API", "JSON", "Endpoint", "Request", "Response"],
-    source: "Principes de l'architecture logicielle"
   },
   
   "github": {

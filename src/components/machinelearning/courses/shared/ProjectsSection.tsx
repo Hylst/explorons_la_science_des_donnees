@@ -36,17 +36,18 @@ const ProjectsSection = ({ title, projects, description }: ProjectsSectionProps)
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-center">{title}</h2>
-      
+
       {description && (
-        <EducationalCard title="🚀 Guide des projets pratiques" type="concept">
+        <EducationalCard title="🚀 Mode d'emploi des projets" type="concept">
           <p className="text-gray-700 leading-relaxed mb-4">{description}</p>
           <div className="bg-blue-50 p-4 rounded-lg">
-            <h4 className="font-semibold text-blue-800 mb-2">💡 Conseils pour réussir :</h4>
+            <h4 className="font-semibold text-blue-800 mb-2">💡 Conseils :</h4>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Commencez par comprendre le problème avant de coder</li>
               <li>• Testez votre solution sur des données simples d'abord</li>
               <li>• Documentez votre code et vos décisions</li>
               <li>• N'hésitez pas à consulter les indices si vous êtes bloqué</li>
+              <li>• La solution affichée est une façon de faire parmi d'autres : exécutez-la, puis comparez avec votre approche</li>
             </ul>
           </div>
         </EducationalCard>
@@ -63,7 +64,7 @@ const ProjectsSection = ({ title, projects, description }: ProjectsSectionProps)
               difficulty={project.difficulty}
               estimatedTime={project.estimatedTime}
             />
-            
+
             <Card className="mt-4 bg-gray-50">
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg">

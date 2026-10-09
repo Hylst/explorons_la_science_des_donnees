@@ -16,12 +16,12 @@ const ConceptsSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction aux concepts */}
-      <EducationalCard title="🧩 Les Pièces du Puzzle RL" type="concept">
+      <EducationalCard title="🧩 Les quatre éléments de base de l'apprentissage par renforcement" type="concept">
         <p className="mb-4">
-          Comme un jeu vidéo, l'apprentissage par renforcement a ses "règles du jeu". 
-          Découvrons les 4 éléments essentiels qui constituent ce monde fascinant !
+          Comme un jeu vidéo, l'apprentissage par renforcement a ses « règles du jeu ».
+          Voici les quatre éléments qui le constituent.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
             <h4 className="font-semibold text-blue-800 mb-2">🤖 Agent</h4>
@@ -42,6 +42,32 @@ const ConceptsSection = () => {
         </div>
       </EducationalCard>
 
+      {/* Cadre formel : processus de décision markovien */}
+      <EducationalCard title="📐 Le cadre formel : le processus de décision markovien (MDP)" type="zoom">
+        <div className="space-y-4">
+          <p className="text-sm">
+            La plupart des problèmes d'apprentissage par renforcement se décrivent comme un processus de décision
+            markovien, défini par cinq éléments :
+          </p>
+          <ul className="text-sm space-y-1">
+            <li>• <strong>S</strong> : l'ensemble des états possibles ;</li>
+            <li>• <strong>A</strong> : l'ensemble des actions possibles ;</li>
+            <li>• <strong>P(s' | s, a)</strong> : la probabilité d'arriver dans l'état s' après l'action a dans l'état s (les transitions) ;</li>
+            <li>• <strong>R(s, a)</strong> : la récompense reçue ;</li>
+            <li>• <strong>γ</strong> (entre 0 et 1) : le facteur d'escompte, qui pondère les récompenses futures.</li>
+          </ul>
+          <p className="text-sm">
+            <strong>Propriété de Markov :</strong> l'état actuel contient toute l'information utile pour la suite, l'avenir
+            ne dépend pas de la manière dont on y est arrivé. L'agent cherche une politique π qui maximise l'espérance
+            de la somme des récompenses escomptées.
+          </p>
+          <p className="text-xs text-gray-600">
+            Quand l'agent ne voit qu'une partie de l'état, on parle de processus de décision markovien partiellement
+            observable (POMDP).
+          </p>
+        </div>
+      </EducationalCard>
+
       {/* Schéma détaillé de l'Agent */}
       <Collapsible open={openSections.agent} onOpenChange={() => toggleSection('agent')}>
         <CollapsibleTrigger className="w-full">
@@ -50,7 +76,7 @@ const ConceptsSection = () => {
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span className="flex items-center gap-2">
                   <Brain className="h-6 w-6 text-blue-600" />
-                  L'Agent : Le Cerveau de l'Opération
+                  L'agent : celui qui décide et apprend
                 </span>
                 <ChevronDown className={`h-5 w-5 transition-transform ${openSections.agent ? 'rotate-180' : ''}`} />
               </CardTitle>
@@ -65,37 +91,37 @@ const ConceptsSection = () => {
                   {/* Agent central */}
                   <circle cx="250" cy="150" r="60" fill="#3b82f6" stroke="#1e40af" strokeWidth="3"/>
                   <text x="250" y="155" textAnchor="middle" className="font-bold text-white" fontSize="16">AGENT</text>
-                  
+
                   {/* Composants de l'agent */}
                   <rect x="100" y="50" width="80" height="40" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
                   <text x="140" y="75" textAnchor="middle" className="text-sm font-medium" fill="#1e40af">Perception</text>
-                  
+
                   <rect x="320" y="50" width="80" height="40" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
                   <text x="360" y="75" textAnchor="middle" className="text-sm font-medium" fill="#1e40af">Politique</text>
-                  
+
                   <rect x="100" y="230" width="80" height="40" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
                   <text x="140" y="255" textAnchor="middle" className="text-sm font-medium" fill="#1e40af">Mémoire</text>
-                  
+
                   <rect x="320" y="230" width="80" height="40" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
                   <text x="360" y="255" textAnchor="middle" className="text-sm font-medium" fill="#1e40af">Apprentissage</text>
-                  
+
                   {/* Flèches */}
                   <defs>
                     <marker id="blueArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                       <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
                     </marker>
                   </defs>
-                  
+
                   <line x1="180" y1="70" x2="220" y2="120" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#blueArrow)"/>
                   <line x1="280" y1="120" x2="320" y2="70" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#blueArrow)"/>
                   <line x1="220" y1="190" x2="180" y2="230" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#blueArrow)"/>
                   <line x1="280" y1="190" x2="320" y2="230" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#blueArrow)"/>
                 </svg>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-blue-800 mb-3">🧠 Composants de l'Agent</h4>
+                  <h4 className="font-semibold text-blue-800 mb-3">🧠 Composants d'un agent</h4>
                   <div className="space-y-3">
                     <div className="p-3 bg-white rounded-lg border">
                       <strong>Perception :</strong> Comment l'agent "voit" son environnement
@@ -127,12 +153,12 @@ const ConceptsSection = () => {
       </Collapsible>
 
       {/* Types d'environnements */}
-      <EducationalCard title="🌍 Safari des Environnements RL" type="saviez-vous">
+      <EducationalCard title="🌍 Types d'environnements" type="saviez-vous">
         <p className="mb-4">
-          Tous les environnements ne se ressemblent pas ! Comme les animaux s'adaptent à leur habitat, 
-          les agents RL doivent s'adapter à différents types d'environnements.
+          Tous les environnements ne se ressemblent pas, et le choix de l'algorithme en dépend :
+          deux critères classiques sont le caractère déterministe ou non, et l'observabilité.
         </p>
-        
+
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg">
@@ -146,17 +172,17 @@ const ConceptsSection = () => {
               <p className="text-sm"><strong>Partiel :</strong> Information limitée (Bataille navale)</p>
             </div>
           </div>
-          
+
           <div className="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300">
-            <h4 className="font-semibold mb-2">🏆 Challenge : Classez ces jeux !</h4>
+            <h4 className="font-semibold mb-2">🏆 À vous : classez ces situations</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
               <Badge variant="outline">🎮 Super Mario</Badge>
               <Badge variant="outline">♠️ Blackjack</Badge>
               <Badge variant="outline">🚗 Conduite autonome</Badge>
             </div>
             <p className="text-xs text-gray-600 mt-2">
-              Réponse : Mario (déterministe, observable), Blackjack (stochastique, partiel), 
-              Conduite (stochastique, partiel)
+              Réponse : Mario (déterministe, observable à l'écran), Blackjack (stochastique, partiellement observable :
+              la carte cachée du croupier), conduite autonome (stochastique, partiellement observable)
             </p>
           </div>
         </div>
@@ -167,18 +193,18 @@ const ConceptsSection = () => {
         question="Un robot aspirateur qui nettoie une maison inconnue évolue dans quel type d'environnement ?"
         options={[
           "Déterministe et complètement observable",
-          "Stochastique et partiellement observable", 
+          "Stochastique et partiellement observable",
           "Déterministe et partiellement observable",
           "Stochastique et complètement observable"
         ]}
         correctAnswer={1}
-        explanation="L'environnement est stochastique (objets qui bougent, efficacité variable du nettoyage) et partiellement observable (capteurs limités, ne peut pas voir derrière les meubles). Le robot doit composer avec l'incertitude sur deux niveaux !"
+        explanation="L'environnement est stochastique (objets qui bougent, efficacité variable du nettoyage) et partiellement observable (capteurs limités, ne peut pas voir derrière les meubles). Le robot doit composer avec l'incertitude sur deux plans."
         difficulty="difficile"
       />
 
       {/* Exercice pratique */}
       <ExerciseCard
-        title="🎮 Concevoir un Agent pour Frogger"
+        title="🎮 Concevoir un agent pour Frogger"
         problem="Vous devez créer un agent RL pour le jeu Frogger (la grenouille qui traverse la route). Définissez précisément : l'espace d'états, l'espace d'actions, la fonction de récompense, et le type d'environnement."
         solution={`**Espace d'états :**
 - Position (x, y) de la grenouille
@@ -195,6 +221,7 @@ const ConceptsSection = () => {
 - -1 : Chaque pas de temps (encourage la vitesse)
 - +10 : Avancer vers l'objectif
 - -10 : Reculer
+(les récompenses d'avancée et de recul se compensent : l'agent ne gagne rien à faire des allers-retours)
 
 **Type d'environnement :**
 - Déterministe (mouvements prévisibles)
@@ -207,7 +234,7 @@ const ConceptsSection = () => {
           "Observez un vrai jeu Frogger pour comprendre la prévisibilité"
         ]}
         difficulty="intermédiaire"
-        estimatedTime="20 min"
+        estimatedTime="20 min (indicatif)"
       />
 
       {/* Exploration vs Exploitation */}
@@ -218,7 +245,7 @@ const ConceptsSection = () => {
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span className="flex items-center gap-2">
                   <Target className="h-6 w-6 text-purple-600" />
-                  Le Dilemme Exploration vs Exploitation
+                  Le dilemme exploration / exploitation
                 </span>
                 <ChevronDown className={`h-5 w-5 transition-transform ${openSections.exploration ? 'rotate-180' : ''}`} />
               </CardTitle>
@@ -231,10 +258,10 @@ const ConceptsSection = () => {
               <EducationalCard title="🍕 Le Dilemme du Restaurant" type="exemple">
                 <div className="space-y-4">
                   <p>
-                    Imaginez que vous êtes dans une nouvelle ville avec plein de restaurants. 
+                    Imaginez que vous êtes dans une nouvelle ville avec plein de restaurants.
                     Vous avez trouvé une pizzeria correcte, mais devez-vous :
                   </p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
                       <h4 className="font-semibold text-green-800">🍕 EXPLOITER</h4>
@@ -247,40 +274,40 @@ const ConceptsSection = () => {
                       <p className="text-xs text-blue-600">Risqué mais potentiellement meilleur</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white p-4 rounded-lg border">
                     <h4 className="font-semibold mb-2">💡 Stratégies équilibrées :</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• <strong>ε-greedy :</strong> 90% pizzeria, 10% exploration</li>
+                      <li>• <strong>ε-greedy :</strong> 90 % pizzeria, 10 % d'exploration</li>
                       <li>• <strong>UCB :</strong> Essayer les restaurants peu testés</li>
                       <li>• <strong>Décroissant :</strong> Explorer beaucoup au début, puis se stabiliser</li>
                     </ul>
                   </div>
                 </div>
               </EducationalCard>
-              
+
               <div className="text-center">
                 <svg width="400" height="200" viewBox="0 0 400 200" className="max-w-full h-auto mx-auto">
                   {/* Balance */}
                   <line x1="200" y1="50" x2="200" y2="120" stroke="#374151" strokeWidth="4"/>
                   <circle cx="200" cy="120" r="8" fill="#374151"/>
-                  
+
                   {/* Plateaux */}
                   <line x1="120" y1="80" x2="280" y2="80" stroke="#374151" strokeWidth="3"/>
-                  
+
                   {/* Côté Exploration */}
                   <rect x="80" y="60" width="80" height="40" rx="8" fill="#3b82f6" stroke="#1e40af"/>
                   <text x="120" y="85" textAnchor="middle" className="font-bold text-white" fontSize="12">EXPLORER</text>
-                  
+
                   {/* Côté Exploitation */}
                   <rect x="240" y="60" width="80" height="40" rx="8" fill="#059669" stroke="#047857"/>
                   <text x="280" y="85" textAnchor="middle" className="font-bold text-white" fontSize="12">EXPLOITER</text>
-                  
+
                   {/* Labels */}
                   <text x="120" y="130" textAnchor="middle" className="text-sm" fill="#3b82f6">Découvrir</text>
                   <text x="120" y="145" textAnchor="middle" className="text-sm" fill="#3b82f6">de nouvelles</text>
                   <text x="120" y="160" textAnchor="middle" className="text-sm" fill="#3b82f6">stratégies</text>
-                  
+
                   <text x="280" y="130" textAnchor="middle" className="text-sm" fill="#059669">Utiliser les</text>
                   <text x="280" y="145" textAnchor="middle" className="text-sm" fill="#059669">meilleures</text>
                   <text x="280" y="160" textAnchor="middle" className="text-sm" fill="#059669">connues</text>

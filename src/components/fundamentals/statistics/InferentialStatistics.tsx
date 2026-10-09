@@ -5,10 +5,11 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } fro
 import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
 const InferentialStatistics = () => {
-  // Data for hypothesis testing visualization
+  // Exemple FICTIF : 3 000 visiteurs par version, 120 conversions pour A (4,0 %) et 156 pour B (5,2 %).
+  // Test z de deux proportions (ou khi-deux sans correction) : z = 2,22 et p = 0,027, vérifié avec scipy.
   const hypothesisData = [
-    { name: "Group A", value: 42 },
-    { name: "Group B", value: 58 }
+    { name: "Version A", value: 4.0 },
+    { name: "Version B", value: 5.2 }
   ];
   const COLORS = ["#0088FE", "#8884d8"];
 
@@ -29,19 +30,20 @@ const InferentialStatistics = () => {
               </span>
             </summary>
             <div className="mt-3 text-sm bg-purple-50 p-3 rounded-md">
-              <p className="mb-2"><strong>Exemple :</strong> Test A/B sur une page web</p>
+              <p className="mb-2"><strong>Exemple (données fictives) :</strong> test A/B sur une page web, 3 000 visiteurs par version</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>Hypothèse nulle (H₀) :</strong> Pas de différence de taux de conversion</li>
-                <li><strong>Résultat :</strong> p-value = 0.03 (inférieur à 0.05)</li>
-                <li><strong>Conclusion :</strong> On rejette H₀, la nouvelle version performe mieux</li>
+                <li><strong>Hypothèse nulle (H₀) :</strong> les deux versions ont le même taux de conversion</li>
+                <li><strong>Observé :</strong> 4,0 % pour la version A (120 conversions), 5,2 % pour la version B (156 conversions)</li>
+                <li><strong>Résultat :</strong> valeur p ≈ 0,03 (0,027), inférieure au seuil de 0,05 fixé à l'avance</li>
+                <li><strong>Conclusion :</strong> on rejette H₀ : un écart aussi grand serait peu probable si les deux versions étaient équivalentes</li>
               </ul>
-              <p className="mt-2">Les tests d'hypothèse permettent de déterminer si les différences observées sont statistiquement significatives.</p>
+              <p className="mt-2">Un test dit si un écart observé est compatible avec le hasard. Une valeur p n'est ni la probabilité que H₀ soit vraie, ni la taille de l'effet : il faut aussi regarder l'écart (ici 1,2 point) et son intervalle de confiance.</p>
             </div>
           </details>
         </div>
         
         <div className="mt-6 mb-8 h-64 chart-container">
-          <p className="text-sm text-gray-500 mb-8 chart-description">Visualisation : Comparaison entre deux groupes (Test A/B)</p>
+          <p className="text-sm text-gray-500 mb-8 chart-description">Visualisation : taux de conversion des deux versions du test A/B (données fictives)</p>
           <DeferredResponsiveContainer width="100%" height="100%">
             <BarChart
               data={hypothesisData}
@@ -49,8 +51,8 @@ const InferentialStatistics = () => {
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
-              <YAxis domain={[0, 100]} />
-              <Tooltip formatter={(value: number) => [`${value}%`, 'Taux de conversion']} />
+              <YAxis domain={[0, 8]} unit=" %" />
+              <Tooltip formatter={(value: number) => [`${String(value).replace(".", ",")} %`, 'Taux de conversion']} />
               <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: '20px' }} />
               <Bar dataKey="value" name="Taux de conversion (%)">
                 {hypothesisData.map((_, index) => (
@@ -60,7 +62,7 @@ const InferentialStatistics = () => {
             </BarChart>
           </DeferredResponsiveContainer>
           <p className="text-xs text-gray-500 mt-4 text-center chart-legend-container">
-            Les tests statistiques nous aident à déterminer si les différences observées sont dues au hasard ou significatives.
+            Un test statistique aide à juger si une différence observée est compatible avec le hasard.
           </p>
         </div>
       </CardContent>

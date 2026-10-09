@@ -9,7 +9,7 @@ const LinearAlgebraSection = () => {
         <CardTitle>Algèbre linéaire</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Vecteurs, matrices, décompositions matricielles et transformations linéaires essentiels pour de nombreux algorithmes de Machine Learning.</p>
+        <p>Vecteurs, matrices, décompositions matricielles et transformations linéaires : des outils présents dans de nombreux algorithmes de machine learning.</p>
         
         <div className="mt-4 pt-3 border-t border-gray-100">
           <details className="group">
@@ -22,13 +22,13 @@ const LinearAlgebraSection = () => {
               </span>
             </summary>
             <div className="mt-3 text-sm bg-purple-50 p-3 rounded-md">
-              <p className="mb-2"><strong>Exemple :</strong> Analyse en Composantes Principales (ACP)</p>
+              <p className="mb-2"><strong>Exemple (chiffres illustratifs) :</strong> Analyse en composantes principales (ACP)</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>Problème :</strong> Dataset avec 50 variables corrélées</li>
-                <li><strong>Solution :</strong> Décomposition en vecteurs propres pour trouver les directions de variance maximale</li>
-                <li><strong>Résultat :</strong> Réduction à 5 composantes principales expliquant 85% de la variance</li>
+                <li><strong>Problème :</strong> un jeu de données de 50 variables corrélées entre elles</li>
+                <li><strong>Solution :</strong> décomposition en vecteurs propres de la matrice de covariance pour trouver les directions de variance maximale</li>
+                <li><strong>Résultat possible :</strong> 5 composantes principales qui expliquent 85 % de la variance (le nombre à garder se lit sur les données, il n'est pas fixé d'avance)</li>
               </ul>
-              <p className="mt-2">L'algèbre linéaire permet de réduire la dimensionnalité tout en préservant l'information essentielle.</p>
+              <p className="mt-2">L'algèbre linéaire permet de réduire la dimension en gardant l'essentiel de la variation, au prix d'une perte d'information.</p>
             </div>
           </details>
         </div>
@@ -36,7 +36,7 @@ const LinearAlgebraSection = () => {
         <div className="mt-6 bg-purple-50 p-4 rounded-md">
           <h4 className="text-purple-700 font-medium mb-2 flex items-center gap-2">
             <Calculator className="h-4 w-4" />
-            Exemple de transformation matricielle
+            Exemple de produit matriciel
           </h4>
           <div className="grid grid-cols-3 gap-4 items-center justify-items-center">
             <div className="border border-purple-200 p-2 bg-white rounded text-center">

@@ -12,7 +12,7 @@ import CourseHighlight from '@/components/courses/CourseHighlight';
 const CollectionSection: React.FC = () => {
   const dataSources = [
     {
-      category: "Données Internes",
+      category: "Données internes",
       sources: [
         { name: "Bases de données transactionnelles", icon: "🗄️", example: "CRM, ERP, Comptabilité" },
         { name: "Logs et fichiers système", icon: "📜", example: "Serveurs web, applications" },
@@ -21,12 +21,12 @@ const CollectionSection: React.FC = () => {
       ]
     },
     {
-      category: "Données Externes",
+      category: "Données externes",
       sources: [
         { name: "APIs publiques", icon: "🔌", example: "Météo, réseaux sociaux, finance" },
         { name: "Open Data", icon: "🌍", example: "Gouvernement, INSEE, Banque Mondiale" },
         { name: "Données d'achat", icon: "💰", example: "Nielsen, Kantar, panels" },
-        { name: "Web scraping", icon: "🕷️", example: "Sites e-commerce, actualités" }
+        { name: "Web scraping", icon: "🕷️", example: "Sites e-commerce, actualités (après vérification des conditions d'utilisation et du droit applicable)" }
       ]
     }
   ];
@@ -47,7 +47,7 @@ const CollectionSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Database className="h-8 w-8 text-blue-500" />
-          Collecte et Acquisition des Données
+          Collecte et acquisition des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           La qualité de votre analyse commence dès la collecte. Une stratégie d'acquisition 
@@ -61,7 +61,7 @@ const CollectionSection: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Globe className="h-5 w-5 text-blue-500" />
-              Sources de Données Modernes
+              Sources de données courantes
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -96,7 +96,7 @@ const CollectionSection: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-green-500" />
-              Stratégie de Collecte
+              Stratégie de collecte
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -120,7 +120,7 @@ const CollectionSection: React.FC = () => {
             </CourseHighlight>
 
             <div className="space-y-4">
-              <h4 className="font-semibold">Checklist de Collecte</h4>
+              <h4 className="font-semibold">Liste de contrôle de la collecte</h4>
               {collectionChecklist.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
@@ -133,25 +133,25 @@ const CollectionSection: React.FC = () => {
       </div>
 
       {/* Exemple concret de stratégie */}
-      <CourseHighlight type="example" title="Cas Pratique : E-commerce Analysant le Comportement Client">
+      <CourseHighlight type="example" title="Cas pratique (fictif) : un site de vente en ligne étudie le comportement de ses clients">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">🎯 Objectif Business</h4>
-            <p className="text-sm mb-4">Réduire le taux d'abandon de panier de 70% à 50%</p>
+            <h4 className="font-semibold mb-3">🎯 Objectif métier</h4>
+            <p className="text-sm mb-4">Réduire le taux d'abandon de panier. L'objectif chiffré se fixe à partir du taux mesuré sur le site, pas d'une moyenne du secteur.</p>
             
-            <h4 className="font-semibold mb-3">📊 Données à Collecter</h4>
+            <h4 className="font-semibold mb-3">📊 Données à collecter</h4>
             <ul className="text-sm space-y-1">
               <li>• Pages visitées et temps passé</li>
               <li>• Produits ajoutés/supprimés du panier</li>
               <li>• Étapes d'abandon dans le tunnel</li>
-              <li>• Données démographiques client</li>
+              <li>• Données démographiques client (uniquement si elles sont nécessaires et déclarées)</li>
               <li>• Historique des commandes</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">🔧 Sources Identifiées</h4>
+            <h4 className="font-semibold mb-3">🔧 Sources identifiées</h4>
             <ul className="text-sm space-y-1">
-              <li>• Google Analytics (comportement web)</li>
+              <li>• Mesure d'audience du site (comportement web, avec le consentement requis par la réglementation)</li>
               <li>• Base CRM (profil client)</li>
               <li>• Logs serveur (performance technique)</li>
               <li>• Enquêtes satisfaction (feedback qualitatif)</li>
@@ -173,7 +173,7 @@ const CollectionSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5 text-blue-500" />
-            Bonnes Pratiques de Collecte
+            Bonnes pratiques de collecte
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -200,7 +200,7 @@ const CollectionSection: React.FC = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>
-                  <span>Respecter les réglementations (RGPD, etc.)</span>
+                  <span>Respecter les réglementations (RGPD, etc.) : ne collecter que ce qui est nécessaire, informer les personnes</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>

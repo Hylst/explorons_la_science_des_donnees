@@ -4,7 +4,7 @@ import ResourcesSection from "../shared/ResourcesSection";
 const resources = [
   {
     title: "Reinforcement Learning: An Introduction",
-    description: "Le livre de référence par Sutton et Barto, couvrant tous les fondamentaux théoriques et pratiques de l'apprentissage par renforcement.",
+    description: "Le livre de référence de Sutton et Barto (2e édition, 2018) sur les fondamentaux de l'apprentissage par renforcement.",
     type: "book" as const,
     difficulty: "Intermédiaire" as const,
     language: "Anglais",
@@ -12,8 +12,8 @@ const resources = [
     free: true
   },
   {
-    title: "Deep Reinforcement Learning Hands-On",
-    description: "Guide pratique pour implémenter des algorithmes de RL moderne avec PyTorch, incluant DQN, A3C, et PPO.",
+    title: "Deep Reinforcement Learning Hands-On (Maxim Lapan, Packt)",
+    description: "Guide pratique pour implémenter des algorithmes de RL avec PyTorch, dont DQN, A3C et PPO.",
     type: "book" as const,
     difficulty: "Avancé" as const,
     language: "Anglais",
@@ -21,7 +21,7 @@ const resources = [
   },
   {
     title: "CS285: Deep Reinforcement Learning",
-    description: "Cours complet de Berkeley couvrant la théorie et la pratique du deep RL, avec des devoirs et projets.",
+    description: "Cours de Berkeley (Sergey Levine) sur la théorie et la pratique du RL profond, avec des devoirs.",
     type: "video" as const,
     difficulty: "Avancé" as const,
     language: "Anglais",
@@ -30,7 +30,7 @@ const resources = [
   },
   {
     title: "OpenAI Spinning Up",
-    description: "Ressource éducative d'OpenAI avec des implémentations d'algorithmes RL et des explications détaillées.",
+    description: "Ressource pédagogique d'OpenAI sur le RL profond : notions clés, liste d'articles fondateurs et implémentations de référence.",
     type: "website" as const,
     difficulty: "Intermédiaire" as const,
     language: "Anglais",
@@ -39,7 +39,7 @@ const resources = [
   },
   {
     title: "Stable Baselines3",
-    description: "Bibliothèque Python fiable d'algorithmes RL avec documentation excellente et exemples pratiques.",
+    description: "Bibliothèque Python d'algorithmes de RL (PPO, DQN, A2C, SAC...), avec une documentation fournie et des exemples.",
     type: "code" as const,
     difficulty: "Débutant" as const,
     language: "Python",
@@ -57,7 +57,7 @@ const resources = [
   },
   {
     title: "Deep RL Bootcamp",
-    description: "Série de conférences intensives couvrant les dernières avancées en deep reinforcement learning.",
+    description: "Conférences intensives de 2017 sur le RL profond, utiles pour les bases même si des méthodes plus récentes existent.",
     type: "video" as const,
     difficulty: "Avancé" as const,
     language: "Anglais",
@@ -75,7 +75,7 @@ const resources = [
   },
   {
     title: "Ray RLlib",
-    description: "Framework distribué pour l'apprentissage par renforcement à grande échelle avec support multi-GPU.",
+    description: "Bibliothèque distribuée pour l'apprentissage par renforcement à grande échelle, avec prise en charge de plusieurs GPU.",
     type: "code" as const,
     difficulty: "Avancé" as const,
     language: "Python",
@@ -84,52 +84,43 @@ const resources = [
   },
   {
     title: "r/MachineLearning",
-    description: "Communauté Reddit active discutant des dernières recherches et applications en ML et RL.",
+    description: "Communauté Reddit où se discutent des recherches et applications en ML, dont le RL.",
     type: "community" as const,
     difficulty: "Intermédiaire" as const,
     language: "Anglais",
     url: "https://reddit.com/r/MachineLearning",
     free: true
   },
-  {
-    title: "Spinning Up in Deep RL (OpenAI)",
-    description: "Introduction pédagogique à l'apprentissage par renforcement profond : notions clés, liste d'articles fondateurs et implémentations de référence.",
-    type: "website" as const,
-    difficulty: "Avancé" as const,
-    language: "Anglais",
-    url: "https://spinningup.openai.com/en/latest/",
-    free: true
-  },
 ];
 
 const tips = [
-  "Commencez par comprendre la théorie avant de vous lancer dans les implémentations complexes",
+  "Commencez par comprendre les bases avant de vous lancer dans les implémentations complexes",
   "Pratiquez avec des environnements simples (CartPole, FrozenLake) avant d'attaquer des problèmes complexes",
   "Utilisez TensorBoard pour visualiser l'apprentissage et déboguer vos agents",
   "Rejoignez des communautés en ligne pour rester à jour sur les dernières avancées",
-  "Expérimentez avec différents hyperparamètres - ils sont cruciaux en RL"
+  "Essayez plusieurs hyperparamètres : le RL y est très sensible"
 ];
 
 const warnings = [
-  "Le RL peut être très instable - attendez-vous à des résultats variables",
-  "L'entraînement peut prendre beaucoup de temps - préparez-vous à des heures d'attente",
-  "Beaucoup de papers ne sont pas reproductibles - vérifiez les implémentations",
-  "Les environnements réels sont beaucoup plus complexes que les simulations",
-  "Ne négligez pas l'importance du preprocessing et de la conception des récompenses"
+  "Le RL peut être très instable : attendez-vous à des résultats variables d'une exécution à l'autre",
+  "L'entraînement peut prendre beaucoup de temps, parfois des heures",
+  "Des résultats de RL profond sont difficiles à reproduire (voir Henderson et al., « Deep Reinforcement Learning that Matters », AAAI 2018) : vérifiez les implémentations",
+  "Les environnements réels sont en général plus complexes que les simulations",
+  "Soignez le prétraitement des observations et la conception des récompenses"
 ];
 
 const bestPractices = [
-  "Toujours établir une baseline simple avant d'essayer des algorithmes complexes",
+  "Établissez d'abord une référence simple avant d'essayer des algorithmes complexes",
   "Utilisez des graines aléatoires fixes pour la reproductibilité",
-  "Loggez tout : récompenses, loss, exploration rate, etc.",
-  "Testez vos agents sur plusieurs environnements pour éviter l'overfitting",
+  "Enregistrez tout : récompenses, perte, taux d'exploration, etc.",
+  "Testez vos agents sur plusieurs graines et plusieurs variantes de l'environnement pour éviter le surapprentissage",
   "Documentez vos expériences et gardez trace de ce qui fonctionne"
 ];
 
 const ReinforcementResourcesSection = () => {
   return (
     <ResourcesSection
-      title="Ressources pour Approfondir l'Apprentissage par Renforcement"
+      title="Ressources pour approfondir l'apprentissage par renforcement"
       resources={resources}
       tips={tips}
       warnings={warnings}

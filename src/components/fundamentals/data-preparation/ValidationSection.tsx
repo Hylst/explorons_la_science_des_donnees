@@ -20,7 +20,7 @@ export const ValidationSection: React.FC = () => {
   const testCategories = [
     {
       id: "quality",
-      name: "Tests de Qualité",
+      name: "Tests de qualité",
       icon: CheckCircle,
       description: "Complétude, exactitude, cohérence"
     },
@@ -28,7 +28,7 @@ export const ValidationSection: React.FC = () => {
       id: "metrics",
       name: "Métriques",
       icon: BarChart3,
-      description: "KPIs et indicateurs de performance"
+      description: "Indicateurs de qualité et leur calcul"
     },
     {
       id: "compliance",
@@ -38,9 +38,9 @@ export const ValidationSection: React.FC = () => {
     },
     {
       id: "business",
-      name: "Cohérence Métier",
+      name: "Cohérence métier",
       icon: Settings,
-      description: "Règles business et logique métier"
+      description: "Règles métier et logique du domaine"
     }
   ];
 
@@ -110,16 +110,16 @@ export const ValidationSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Shield className="h-8 w-8 text-green-500" />
-          Validation des Données
+          Validation des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-          La validation garantit que vos données respectent les standards de qualité, 
+          La validation vérifie que vos données respectent les standards de qualité, 
           les règles métier et les exigences de conformité avant utilisation. Le rapport exécutable calcule ses chiffres sur un petit tableau inventé ;
           les onglets décrivent les familles de contrôles et la façon de les calculer.
         </p>
       </div>
 
-      <CourseHighlight type="concept" title="Framework de Validation Complet">
+      <CourseHighlight type="concept" title="Quatre familles de contrôles">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {testCategories.map((category) => {
             const IconComponent = category.icon;

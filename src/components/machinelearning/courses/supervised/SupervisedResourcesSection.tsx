@@ -9,7 +9,7 @@ const resources = {
     {
       title: "The Elements of Statistical Learning",
       authors: "Trevor Hastie, Robert Tibshirani, Jerome Friedman",
-      description: "LA référence académique en apprentissage statistique. Couvre tous les aspects théoriques et pratiques de l'apprentissage supervisé avec une approche mathématique rigoureuse.",
+      description: "Une référence académique en apprentissage statistique. Traite en profondeur la théorie de l'apprentissage supervisé, avec une approche mathématique rigoureuse.",
       difficulty: "Avancé" as const,
       language: "Anglais",
       url: "https://hastie.su.domains/ElemStatLearn/",
@@ -20,7 +20,7 @@ const resources = {
     {
       title: "Hands-On Machine Learning with Scikit-Learn and PyTorch",
       authors: "Aurélien Géron",
-      description: "Guide pratique complet avec implémentations Python. Excellent équilibre entre théorie et pratique, parfait pour débuter et progresser en apprentissage supervisé.",
+      description: "Guide pratique avec implémentations en Python, qui mêle théorie et pratique. Il suppose de connaître un peu Python.",
       difficulty: "Intermédiaire" as const,
       language: "Anglais",
       url: "https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/",
@@ -31,7 +31,7 @@ const resources = {
     {
       title: "Pattern Recognition and Machine Learning",
       authors: "Christopher Bishop",
-      description: "Approche bayésienne de l'apprentissage automatique. Excellent pour comprendre les fondements probabilistes de l'apprentissage supervisé.",
+      description: "Approche bayésienne de l'apprentissage automatique, utile pour comprendre les fondements probabilistes de l'apprentissage supervisé.",
       difficulty: "Avancé" as const,
       language: "Anglais",
       url: "https://www.microsoft.com/en-us/research/wp-content/uploads/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
@@ -42,7 +42,7 @@ const resources = {
     {
       title: "Machine Learning Yearning",
       authors: "Andrew Ng",
-      description: "Guide stratégique pour structurer vos projets ML. Focus sur les bonnes pratiques et les pièges à éviter en apprentissage supervisé.",
+      description: "Guide stratégique (2018) pour structurer un projet de ML : séparation des données, analyse des erreurs, choix des priorités.",
       difficulty: "Intermédiaire" as const,
       language: "Anglais",
       url: "https://info.deeplearning.ai/machine-learning-yearning-book",
@@ -52,12 +52,12 @@ const resources = {
     },
     {
       title: "Introduction to Statistical Learning",
-      authors: "Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani",
-      description: "Version accessible d'ESL. Parfait pour débuter avec une approche statistique de l'apprentissage supervisé. Exemples en R inclus.",
+      authors: "Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani (et Jonathan Taylor pour l'édition Python)",
+      description: "Version accessible d'ESL, adaptée à une première approche statistique de l'apprentissage supervisé. Existe avec des exemples en R et avec des exemples en Python.",
       difficulty: "Débutant" as const,
       language: "Anglais",
       url: "https://www.statlearning.com/",
-      topics: ["R", "Statistiques", "Introduction", "Exercices"],
+      topics: ["R", "Python", "Statistiques", "Exercices"],
       type: "book" as const,
       free: true
     }
@@ -65,7 +65,7 @@ const resources = {
   courses: [
     {
       title: "Machine Learning (Stanford CS229)",
-      description: "Un cours très connu d'apprentissage automatique. Couvre tous les algorithmes supervisés avec rigueur mathématique et implémentations pratiques.",
+      description: "Un cours très connu d'apprentissage automatique de Stanford. Couvre les principaux algorithmes supervisés avec rigueur mathématique.",
       difficulty: "Intermédiaire" as const,
       language: "Anglais",
       url: "http://cs229.stanford.edu/",
@@ -74,18 +74,18 @@ const resources = {
       free: true
     },
     {
-      title: "Coursera Machine Learning",
-      description: "Version accessible du cours Stanford. Excellente introduction pratique avec exercices guidés et projets concrets en apprentissage supervisé.",
+      title: "Machine Learning Specialization, cours 1 (Andrew Ng)",
+      description: "Premier cours de la spécialisation d'Andrew Ng sur Coursera : régression et classification supervisées, en Python. Il remplace l'ancien cours en Octave. Inscription gratuite d'après la page du cours ; exercices notés et certificat en option.",
       difficulty: "Débutant" as const,
       language: "Anglais",
       url: "https://www.coursera.org/learn/machine-learning",
-      topics: ["Octave/Matlab", "Projets", "Introduction", "Évaluation"],
+      topics: ["Python", "Régression", "Classification", "Introduction"],
       type: "video" as const,
       free: false
     },
     {
       title: "Fast.ai Practical Deep Learning",
-      description: "Approche top-down unique. Commence par des projets concrets puis explique la théorie. Excellent pour l'apprentissage supervisé avec deep learning.",
+      description: "Approche « de haut en bas » : on commence par des projets concrets, puis on explique la théorie. Centré sur le deep learning.",
       difficulty: "Intermédiaire" as const,
       language: "Anglais",
       url: "https://course.fast.ai/",
@@ -95,7 +95,7 @@ const resources = {
     },
     {
       title: "CS231n: Convolutional Neural Networks",
-      description: "Spécialisé en vision par ordinateur. Couvre l'apprentissage supervisé pour la classification et détection d'images avec CNNs.",
+      description: "Cours de Stanford spécialisé en vision par ordinateur : classification et détection d'images avec des réseaux de neurones convolutifs.",
       difficulty: "Avancé" as const,
       language: "Anglais",
       url: "http://cs231n.stanford.edu/",
@@ -107,7 +107,7 @@ const resources = {
   websites: [
     {
       title: "Scikit-learn Documentation",
-      description: "Documentation officielle de la bibliothèque Python très utilisée. Guides utilisateur, API complète et exemples pour tous les algorithmes supervisés.",
+      description: "Documentation officielle de la bibliothèque Python très utilisée : guide utilisateur, référence de l'API et exemples pour les algorithmes supervisés.",
       url: "https://scikit-learn.org/stable/",
       topics: ["Python", "API", "Exemples", "Tutoriels"],
       type: "website" as const,
@@ -127,7 +127,7 @@ const resources = {
     },
     {
       title: "Kaggle Learn",
-      description: "Micro-cours gratuits et pratiques. Excellente introduction hands-on aux techniques d'apprentissage supervisé avec datasets réels.",
+      description: "Micro-cours gratuits et pratiques, avec des jeux de données réels, qui introduisent les techniques d'apprentissage supervisé.",
       url: "https://www.kaggle.com/learn",
       topics: ["Pratique", "Datasets", "Compétitions", "Notebooks"],
       type: "website" as const,
@@ -137,7 +137,7 @@ const resources = {
     },
     {
       title: "Machine Learning Mastery",
-      description: "Blog de Jason Brownlee. Tutoriels pratiques, guides step-by-step et conseils pour progresser en apprentissage supervisé.",
+      description: "Blog de Jason Brownlee : tutoriels pratiques, guides pas à pas et conseils pour progresser en apprentissage supervisé.",
       url: "https://machinelearningmastery.com/",
       topics: ["Tutoriels", "Python", "Conseils pratiques", "Exemples"],
       type: "website" as const,
@@ -147,7 +147,7 @@ const resources = {
     },
     {
       title: "Towards Data Science",
-      description: "Publication Medium avec articles de qualité. Couvre tous les aspects de l'apprentissage supervisé avec retours d'expérience réels.",
+      description: "Publication en ligne d'articles écrits par des praticiens, avec des retours d'expérience. Qualité inégale : à lire avec esprit critique.",
       url: "https://towardsdatascience.com/",
       topics: ["Articles", "Expérience", "Théorie", "Pratique"],
       type: "website" as const,
@@ -198,21 +198,21 @@ const getDifficultyColor = (difficulty: string) => {
 
 const SupervisedResourcesSection = () => {
   const tips = [
-    "Commencez par 'Introduction to Statistical Learning' pour une base solide",
+    "Commencez par « Introduction to Statistical Learning » pour une base solide",
     "Pratiquez avec Scikit-learn avant de passer aux frameworks complexes",
     "Alternez théorie et pratique pour une meilleure compréhension",
     "Rejoignez des communautés pour échanger et progresser"
   ];
 
   const warnings = [
-    "Ne sautez pas les mathématiques : elles sont essentielles pour comprendre",
+    "Ne sautez pas les bases mathématiques (algèbre linéaire, probabilités, statistiques) : elles aident à comprendre ce que font les algorithmes",
     "Évitez de collectionner les cours sans pratiquer",
     "Attention aux cours obsolètes : vérifiez les dates de publication",
-    "Ne négligez pas la préparation des données : c'est souvent la plus grande part du travail !"
+    "Ne négligez pas la préparation des données : elle prend souvent beaucoup de temps"
   ];
 
   const bestPractices = [
-    "Implémentez chaque algorithme à la main au moins une fois",
+    "Implémentez à la main au moins une fois un algorithme simple (régression linéaire, k plus proches voisins, arbre de décision)",
     "Travaillez sur des projets personnels pour consolider",
     "Participez à des compétitions Kaggle pour vous challenger",
     "Documentez vos apprentissages dans un blog ou notebook"
@@ -220,10 +220,10 @@ const SupervisedResourcesSection = () => {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-center">📚 Ressources pour Découvrir l'Apprentissage Supervisé</h2>
+      <h2 className="text-3xl font-bold text-center">📚 Ressources pour découvrir l'apprentissage supervisé</h2>
       <p className="text-center text-gray-600 max-w-3xl mx-auto">
-        Sélection curée de ressources pour s'initier à l'apprentissage supervisé et progresser.
-        Des bases théoriques aux applications pratiques, de quoi avancer dans ce domaine fondamental du machine learning.
+        Sélection commentée de ressources pour s'initier à l'apprentissage supervisé et progresser,
+        des bases théoriques aux applications pratiques. Elles sont toutes en anglais.
       </p>
 
       {/* Conseils et avertissements */}

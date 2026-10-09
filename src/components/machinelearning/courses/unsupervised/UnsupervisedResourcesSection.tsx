@@ -4,7 +4,7 @@ import ResourcesSection from "../shared/ResourcesSection";
 const resources = [
   {
     title: "The Elements of Statistical Learning",
-    description: "Référence académique couvrant en profondeur le clustering, PCA, et autres techniques non supervisées avec une approche mathématique rigoureuse.",
+    description: "Référence académique dont un chapitre traite en profondeur le clustering, l'ACP et d'autres techniques non supervisées, avec une approche mathématique rigoureuse.",
     type: "book" as const,
     difficulty: "Avancé" as const,
     language: "Anglais",
@@ -13,7 +13,7 @@ const resources = [
   },
   {
     title: "Hands-On Unsupervised Learning Using Python (Ankur A. Patel, O'Reilly, 2019)",
-    description: "Guide pratique avec implémentations Python pour clustering, réduction de dimensionnalité, et détection d'anomalies.",
+    description: "Guide pratique avec implémentations Python du clustering, de la réduction de dimensionnalité et de la détection d'anomalies.",
     type: "book" as const,
     difficulty: "Intermédiaire" as const,
     language: "Anglais",
@@ -21,7 +21,7 @@ const resources = [
   },
   {
     title: "CS229: Machine Learning - Unsupervised Learning",
-    description: "Cours de Stanford couvrant K-means, PCA, ICA avec notes détaillées et exercices pratiques.",
+    description: "Cours de Stanford dont les notes couvrent notamment K-means, l'algorithme EM, l'ACP et l'ICA.",
     type: "video" as const,
     difficulty: "Intermédiaire" as const,
     language: "Anglais",
@@ -30,7 +30,7 @@ const resources = [
   },
   {
     title: "Scikit-learn Clustering Guide",
-    description: "Documentation complète avec exemples pratiques pour tous les algorithmes de clustering disponibles.",
+    description: "Documentation de scikit-learn sur les algorithmes de clustering, avec une comparaison et des exemples.",
     type: "website" as const,
     difficulty: "Débutant" as const,
     language: "Anglais",
@@ -39,7 +39,7 @@ const resources = [
   },
   {
     title: "UMAP: Uniform Manifold Approximation",
-    description: "Implémentation Python de UMAP pour la réduction de dimensionnalité non-linéaire avec documentation excellente.",
+    description: "Implémentation Python de UMAP pour la réduction de dimensionnalité non linéaire, avec une documentation détaillée.",
     type: "code" as const,
     difficulty: "Intermédiaire" as const,
     language: "Python",
@@ -57,7 +57,7 @@ const resources = [
   },
   {
     title: "Anomaly Detection: A Survey",
-    description: "Survey académique complet des techniques de détection d'anomalies avec comparaisons détaillées.",
+    description: "Article de synthèse sur les techniques de détection d'anomalies (Chandola, Banerjee et Kumar, ACM Computing Surveys, 2009).",
     type: "website" as const,
     difficulty: "Avancé" as const,
     language: "Anglais",
@@ -65,7 +65,7 @@ const resources = [
   },
   {
     title: "PyOD: Python Outlier Detection",
-    description: "Bibliothèque Python complète pour la détection d'anomalies avec de nombreux détecteurs implémentés (voir la documentation pour la liste à jour).",
+    description: "Bibliothèque Python pour la détection d'anomalies, qui regroupe de nombreux détecteurs (voir la documentation pour la liste à jour).",
     type: "code" as const,
     difficulty: "Intermédiaire" as const,
     language: "Python",
@@ -83,7 +83,7 @@ const resources = [
   },
   {
     title: "Kaggle Learn : Feature Engineering (leçon sur K-means)",
-    description: "Cours pratique et interactif sur Kaggle ; une leçon utilise K-means pour créer des variables.",
+    description: "Cours pratique sur Kaggle ; une leçon utilise K-means pour créer des variables.",
     type: "website" as const,
     difficulty: "Débutant" as const,
     language: "Anglais",
@@ -102,33 +102,33 @@ const resources = [
 ];
 
 const tips = [
-  "Commencez toujours par explorer vos données avec des visualisations",
-  "La standardisation des données est cruciale pour la plupart des algorithmes",
-  "Utilisez plusieurs métriques d'évaluation (silhouette, inertie, ARI) pour comparer les résultats",
-  "Expérimentez avec différents hyperparamètres - ils ont un impact majeur",
+  "Commencez par explorer vos données avec des visualisations",
+  "Standardisez les variables pour les algorithmes fondés sur des distances (K-means, clustering hiérarchique, DBSCAN)",
+  "Utilisez plusieurs mesures (silhouette, inertie, et l'indice de Rand ajusté quand on dispose d'une référence) pour comparer les résultats",
+  "Essayez plusieurs valeurs des hyperparamètres : elles changent beaucoup les résultats",
   "Validez vos clusters avec l'expertise métier, pas seulement les métriques"
 ];
 
 const warnings = [
-  "Les résultats peuvent varier selon l'initialisation - testez plusieurs runs",
-  "Attention à la malédiction de la dimensionnalité avec trop de features",
-  "t-SNE peut créer des clusters artificiels - ne sur-interprétez pas",
+  "Les résultats peuvent varier selon l'initialisation : testez plusieurs exécutions",
+  "Attention à la malédiction de la dimensionnalité quand il y a beaucoup de variables",
+  "t-SNE peut faire apparaître des groupes artificiels : n'interprétez pas les distances entre groupes",
   "DBSCAN est très sensible aux paramètres eps et min_samples",
-  "Les algorithmes de clustering assument souvent des formes sphériques"
+  "K-means suppose des groupes à peu près sphériques"
 ];
 
 const bestPractices = [
   "Toujours visualiser vos données avant et après clustering",
   "Documentez vos choix d'hyperparamètres et leurs justifications",
   "Évaluez les clusters par leur stabilité (sous-échantillonnage, graines différentes) plutôt que par une validation croisée classique",
-  "Combinez plusieurs techniques (PCA + clustering) pour de meilleurs résultats",
+  "Combiner plusieurs techniques est courant (ACP avant un clustering, ou avant t-SNE) ; vérifiez que cela aide vraiment",
   "Créez des métriques métier pour évaluer la qualité pratique de vos clusters"
 ];
 
 const UnsupervisedResourcesSection = () => {
   return (
     <ResourcesSection
-      title="Ressources pour Découvrir l'Apprentissage Non Supervisé"
+      title="Ressources pour découvrir l'apprentissage non supervisé"
       resources={resources}
       tips={tips}
       warnings={warnings}

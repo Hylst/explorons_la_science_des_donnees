@@ -38,18 +38,18 @@ const ProbabilitiesSection = () => {
             <div className="mt-3 text-sm bg-blue-50 p-3 rounded-md">
               <p className="mb-2"><strong>Exemple (chiffres illustratifs) :</strong> Modèle de fraude par carte de crédit</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><strong>Probabilité a priori :</strong> 0.1% de transactions frauduleuses</li>
-                <li><strong>Sensibilité :</strong> 85% des fraudes déclenchent une alerte</li>
-                <li><strong>Faux positifs :</strong> 5% des transactions légitimes déclenchent une alerte</li>
+                <li><strong>Probabilité a priori :</strong> 0,1 % de transactions frauduleuses</li>
+                <li><strong>Sensibilité :</strong> 85 % des fraudes déclenchent une alerte</li>
+                <li><strong>Faux positifs :</strong> 5 % des transactions légitimes déclenchent une alerte</li>
                 <li><strong>Application du théorème de Bayes :</strong> P(fraude | alerte) = (0,001 × 0,85) / (0,001 × 0,85 + 0,999 × 0,05) ≈ 1,7 % : malgré une bonne détection, la grande majorité des alertes sont de fausses alertes, car la fraude est très rare</li>
               </ul>
-              <p className="mt-2">Le théorème de Bayes est crucial pour les systèmes de détection d'anomalies.</p>
+              <p className="mt-2">Le théorème de Bayes aide à interpréter une alerte : sa fiabilité dépend autant de la rareté de l'événement que de la qualité du détecteur.</p>
             </div>
           </details>
         </div>
         
         <div className="mt-6 h-64 chart-container">
-          <p className="text-sm text-gray-500 mb-2 chart-description">Visualisation : Distribution de probabilité</p>
+          <p className="text-sm text-gray-500 mb-2 chart-description">Visualisation : une loi de Bernoulli de paramètre 0,3 (exemple)</p>
           <div className="flex justify-center h-full">
             <DeferredResponsiveContainer width="70%" height="100%">
               <PieChart>
@@ -61,7 +61,7 @@ const ProbabilitiesSection = () => {
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)} %`}
                 >
                   {probabilityData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -72,7 +72,7 @@ const ProbabilitiesSection = () => {
             </DeferredResponsiveContainer>
           </div>
           <p className="text-xs text-gray-500 mt-1 text-center chart-legend-container">
-            Les probabilités nous permettent de quantifier l'incertitude dans nos prédictions.
+            Les probabilités permettent de quantifier l'incertitude : ici, 30 % de chances de succès et 70 % d'échec.
           </p>
         </div>
       </CardContent>

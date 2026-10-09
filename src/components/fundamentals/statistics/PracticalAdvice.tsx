@@ -16,11 +16,11 @@ const PracticalAdvice = () => {
           </p>
           
           <div className="mt-4 p-3 bg-white rounded-md border border-blue-100">
-            <p className="font-medium text-blue-800 mb-2">Workflow recommandé :</p>
+            <p className="font-medium text-blue-800 mb-2">Une démarche possible :</p>
             <ol className="list-decimal pl-5 space-y-1">
               <li>Explorer les données (statistiques descriptives, visualisations)</li>
               <li>Formuler des hypothèses basées sur cette exploration</li>
-              <li>Tester ces hypothèses avec des méthodes statistiques appropriées</li>
+              <li>Tester ces hypothèses avec des méthodes statistiques appropriées, si possible sur de nouvelles données : une hypothèse suggérée par un jeu de données est trop facile à confirmer sur ce même jeu</li>
               <li>Interpréter les résultats en tenant compte des limites</li>
             </ol>
           </div>

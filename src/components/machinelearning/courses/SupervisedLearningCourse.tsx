@@ -27,8 +27,8 @@ const SupervisedLearningCourse = () => {
             Apprentissage Supervisé
           </CardTitle>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Explorez l'art de la prédiction : de la classification des emails aux prédictions de prix, 
-            découvrez comment les machines apprennent à partir d'exemples étiquetés !
+            Apprendre à prédire à partir d'exemples étiquetés : de la classification de courriels
+            à l'estimation de prix.
           </p>
           <div className="flex justify-center gap-3 mt-6 flex-wrap">
             <Badge className="bg-white text-blue-600 text-sm px-4 py-2">

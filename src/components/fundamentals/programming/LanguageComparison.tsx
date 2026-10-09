@@ -55,6 +55,39 @@ interface UseCaseData {
   [key: string]: string | number;
 }
 
+// Défini hors du composant principal : sinon il est recréé à chaque rendu (le composant se redessine toutes les 3 s
+// pour l'animation des cartes) et l'onglet choisi par le visiteur reviendrait à Python.
+const CodeComparison = ({ title, pythonCode, rCode, sqlCode }: { title: string, pythonCode: string, rCode: string, sqlCode: string }) => (
+  <div className="my-6">
+    <h4 className="font-semibold mb-4">{title}</h4>
+    <Tabs defaultValue="python" className="w-full">
+      <TabsList className="grid w-full grid-cols-3">
+        <TabsTrigger value="python">🐍 Python</TabsTrigger>
+        <TabsTrigger value="r">📊 R</TabsTrigger>
+        <TabsTrigger value="sql">🗃️ SQL</TabsTrigger>
+      </TabsList>
+      <TabsContent value="python">
+        <div className="bg-gray-900 rounded-md overflow-hidden">
+          <div className="px-4 py-2 bg-blue-800 text-white text-sm">Python</div>
+          <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{pythonCode}</code></pre>
+        </div>
+      </TabsContent>
+      <TabsContent value="r">
+        <div className="bg-gray-900 rounded-md overflow-hidden">
+          <div className="px-4 py-2 bg-blue-600 text-white text-sm">R</div>
+          <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{rCode}</code></pre>
+        </div>
+      </TabsContent>
+      <TabsContent value="sql">
+        <div className="bg-gray-900 rounded-md overflow-hidden">
+          <div className="px-4 py-2 bg-amber-600 text-white text-sm">SQL</div>
+          <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{sqlCode}</code></pre>
+        </div>
+      </TabsContent>
+    </Tabs>
+  </div>
+);
+
 /**
  * Enhanced Language Comparison Component with modern ES6 features
  * Provides comprehensive analysis of programming languages for data science
@@ -85,7 +118,7 @@ const LanguageComparison = () => {
       creator: "Guido van Rossum",
       paradigms: ["Orienté objet", "Fonctionnel", "Procédural"],
       strengths: ["Syntaxe claire", "Vaste écosystème", "Communauté active", "Polyvalence"],
-      weaknesses: ["Performance", "GIL (Global Interpreter Lock)", "Consommation mémoire"],
+      weaknesses: ["Vitesse d'exécution du code Python pur", "GIL (verrou global ; version sans GIL optionnelle depuis Python 3.13)", "Consommation mémoire"],
       useCases: ["Machine Learning", "Web Development", "Automatisation", "Data Analysis"],
       marketTrend: "📈 En croissance",
       difficulty: "Facile",
@@ -234,8 +267,8 @@ result <- df %>%
     sd_value = sd(value),
     count = n()
   )`,
-        SQL: `-- Analyse descriptive
-SELECT 
+        SQL: `-- Analyse descriptive (STDDEV existe dans PostgreSQL, MySQL et Oracle ; SQLite n'a pas de fonction d'écart-type)
+SELECT
   category,
   COUNT(*) as count,
   AVG(value) as mean_value,
@@ -266,8 +299,8 @@ import seaborn as sns
 sns.set_style("whitegrid")
 plt.figure(figsize=(10, 6))
 
-# Graphique en barres
-sns.barplot(data=df, x='category', y='value')
+# Graphique en boîtes
+sns.boxplot(data=df, x='category', y='value')
 plt.title('Distribution par Catégorie')
 plt.xticks(rotation=45)
 plt.tight_layout()
@@ -295,9 +328,6 @@ FROM data_table
 WHERE value IS NOT NULL
 ORDER BY category, value;`,
         Julia: `using Plots, StatsPlots
-
-# Configuration
-plotlyjs()
 
 # Graphique en boîtes
 boxplot(df.category, df.value,
@@ -364,7 +394,7 @@ WITH features AS (
 )
 SELECT * FROM features
 WHERE prev_feature1 IS NOT NULL;`,
-        Julia: `using MLJ, DataFrames
+        Julia: `using MLJ, DataFrames, Statistics
 
 # Chargement du modèle
 RandomForestClassifier = @load RandomForestClassifier pkg=DecisionTree
@@ -485,8 +515,8 @@ first(result, 10)`
         {
           language: 'Python',
           icon: '🐍',
-          pros: ['Syntaxe claire', 'Pandas très puissant', 'Grande communauté', 'Intégration facile'],
-          cons: ['Plus lent que Julia', 'GIL pour le parallélisme', 'Gestion mémoire']
+          pros: ['Syntaxe claire', 'pandas et NumPy très complets', 'Grande communauté', 'Intégration facile'],
+          cons: ['Code Python pur plus lent que Julia', 'GIL pour le parallélisme par threads', 'Gestion mémoire']
         },
         {
           language: 'R',
@@ -497,8 +527,8 @@ first(result, 10)`
         {
           language: 'SQL',
           icon: '🗃️',
-          pros: ['Optimisé pour les données', 'Standard universel', 'Performance excellente'],
-          cons: ['Limité aux requêtes', 'Pas de ML natif', 'Logique procédurale limitée']
+          pros: ['Conçu pour interroger les données', 'Standard très répandu', 'Le moteur de la base optimise les requêtes'],
+          cons: ['Limité aux requêtes', 'Pas d\'algorithmes de ML dans le standard', 'Logique procédurale limitée']
         },
         {
           language: 'Julia',
@@ -511,19 +541,19 @@ first(result, 10)`
         {
           language: 'Python',
           icon: '🐍',
-          pros: ['Matplotlib/Seaborn', 'Plotly interactif', 'Intégration web'],
-          cons: ['Configuration verbale', 'Syntaxe parfois lourde']
+          pros: ['Matplotlib et seaborn', 'Plotly interactif', 'Intégration web'],
+          cons: ['Configuration verbeuse', 'Syntaxe parfois lourde']
         },
         {
           language: 'R',
           icon: '📊',
-          pros: ['ggplot2 puissant', 'Grammaire des graphiques', 'Qualité publication'],
+          pros: ['ggplot2 et sa grammaire des graphiques', 'Graphiques prêts pour la publication'],
           cons: ['Courbe d\'apprentissage ggplot', 'Performance sur gros datasets']
         },
         {
           language: 'SQL',
           icon: '🗃️',
-          pros: ['Agrégations rapides', 'Données préparées'],
+          pros: ['Agrégations efficaces', 'Données préparées près de la source'],
           cons: ['Pas de visualisation native', 'Dépendant d\'outils externes']
         },
         {
@@ -543,14 +573,14 @@ first(result, 10)`
         {
           language: 'R',
           icon: '📊',
-          pros: ['Packages statistiques', 'Caret unifié', 'Validation croisée'],
+          pros: ['Packages statistiques', 'caret et tidymodels', 'Validation croisée'],
           cons: ['Performance limitée', 'Deep learning moins développé']
         },
         {
           language: 'SQL',
           icon: '🗃️',
-          pros: ['Feature engineering', 'Données à grande échelle'],
-          cons: ['Pas d\'algorithmes ML', 'Limité au preprocessing']
+          pros: ['Variables dérivées (feature engineering)', 'Données à grande échelle'],
+          cons: ['Pas d\'algorithmes de ML dans le standard (quelques SGBD en ajoutent)', 'Surtout utile pour préparer les données']
         },
         {
           language: 'Julia',
@@ -563,7 +593,7 @@ first(result, 10)`
         {
           language: 'Python',
           icon: '🐍',
-          pros: ['SQLAlchemy ORM', 'Pandas integration', 'Connecteurs multiples'],
+          pros: ['SQLAlchemy (ORM)', 'Intégration avec pandas', 'Nombreux connecteurs'],
           cons: ['Overhead ORM', 'Performance sur gros volumes']
         },
         {
@@ -575,14 +605,14 @@ first(result, 10)`
         {
           language: 'SQL',
           icon: '🗃️',
-          pros: ['Langage natif', 'Performance optimale', 'Fonctionnalités avancées'],
-          cons: ['Portabilité limitée', 'Logique métier complexe']
+          pros: ['Langage natif de la base', 'Le traitement se fait là où sont les données', 'Fonctions avancées (fenêtres, CTE)'],
+          cons: ['Variations entre SGBD (portabilité limitée)', 'Logique métier complexe']
         },
         {
           language: 'Julia',
           icon: '⚡',
-          pros: ['Performance native', 'Parallélisme', 'Intégration C/Fortran'],
-          cons: ['Drivers moins matures', 'Écosystème en développement']
+          pros: ['Paquets SQLite.jl, LibPQ.jl (PostgreSQL) et MySQL.jl', 'Résultats lisibles en DataFrame'],
+          cons: ['Moins de connecteurs que Python', 'Écosystème en développement']
         }
       ]
     };
@@ -608,7 +638,7 @@ first(result, 10)`
       ],
       'Machine Learning': [
         'Diviser les données (train/validation/test) avant toute analyse',
-        'Standardiser/normaliser les features numériques',
+        'Standardiser les variables numériques quand le modèle le demande (régression, k plus proches voisins, SVM), en ajustant la transformation sur l\'entraînement seulement',
         'Gérer les valeurs manquantes de manière cohérente',
         'Utiliser la validation croisée pour évaluer les modèles',
         'Surveiller l\'overfitting avec des métriques appropriées'
@@ -624,61 +654,30 @@ first(result, 10)`
     return practices[topic] || [];
   }, []);
 
-  const CodeComparison = ({ title, pythonCode, rCode, sqlCode }: { title: string, pythonCode: string, rCode: string, sqlCode: string }) => (
-    <div className="my-6">
-      <h4 className="font-semibold mb-4">{title}</h4>
-      <Tabs defaultValue="python" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="python">🐍 Python</TabsTrigger>
-          <TabsTrigger value="r">📊 R</TabsTrigger>
-          <TabsTrigger value="sql">🗃️ SQL</TabsTrigger>
-        </TabsList>
-        <TabsContent value="python">
-          <div className="bg-gray-900 rounded-md overflow-hidden">
-            <div className="px-4 py-2 bg-blue-800 text-white text-sm">Python</div>
-            <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{pythonCode}</code></pre>
-          </div>
-        </TabsContent>
-        <TabsContent value="r">
-          <div className="bg-gray-900 rounded-md overflow-hidden">
-            <div className="px-4 py-2 bg-blue-600 text-white text-sm">R</div>
-            <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{rCode}</code></pre>
-          </div>
-        </TabsContent>
-        <TabsContent value="sql">
-          <div className="bg-gray-900 rounded-md overflow-hidden">
-            <div className="px-4 py-2 bg-amber-600 text-white text-sm">SQL</div>
-            <pre className="p-4 text-sm text-gray-300 overflow-x-auto"><code>{sqlCode}</code></pre>
-          </div>
-        </TabsContent>
-      </Tabs>
-    </div>
-  );
-
   return (
     <section id="language-comparison" className="mb-16">
-      <h2 className="text-3xl font-bold mb-8">⚔️ Bataille des Langages : Qui Choisir ?</h2>
-      
-      <CourseHighlight title="🎭 Analogie : Les langages comme des super-héros" type="concept">
+      <h2 className="text-3xl font-bold mb-8">Comparer les langages : lequel choisir ?</h2>
+
+      <CourseHighlight title="Quatre langages, quatre rôles" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
             <p className="mb-2">
-              <strong>Python = Spider-Man :</strong> Polyvalent, accessible, populaire. 
-              Peut faire un peu de tout, parfait pour débuter.
+              <strong>Python :</strong> généraliste et lisible, très présent en analyse de données et en machine learning.
+              Un bon premier langage pour débuter.
             </p>
             <p className="mb-2">
-              <strong>R = Doctor Strange :</strong> Mystique mais puissant. 
-              Maître des statistiques et des sorts... euh, des analyses complexes !
+              <strong>R :</strong> conçu pour les statistiques et la visualisation, répandu dans la recherche
+              et la biostatistique.
             </p>
           </div>
           <div>
             <p className="mb-2">
-              <strong>SQL = Captain America :</strong> Fiable, indispensable, toujours là. 
-              Le fondement de toute équipe de data science.
+              <strong>SQL :</strong> langage d'interrogation des bases de données relationnelles. Presque toute chaîne
+              de traitement de données le rencontre à un moment.
             </p>
             <p>
-              <strong>Julia = Flash :</strong> Super rapide mais moins connu. 
-              Parfait quand la vitesse est cruciale.
+              <strong>Julia :</strong> conçu pour le calcul scientifique rapide. Sa communauté et son écosystème
+              sont plus petits que ceux de Python ou de R.
             </p>
           </div>
         </div>
@@ -690,6 +689,16 @@ first(result, 10)`
         d'enquêtes sont indiqués avec leur source : l'usage fréquent chez les praticiens de la data (Anaconda, State of Data Science 2021,
         3 104 réponses) et l'usage chez les développeurs (Stack Overflow, 2021 à 2025).
       </div>
+      <SourceNote
+        className="-mt-3 mb-6"
+        consulted="1er octobre 2026"
+        sources={[
+          {
+            label: "Anaconda, State of Data Science 2021 (usage « souvent » ou « toujours »)",
+            href: "https://know.anaconda.com/rs/387-XNW-688/images/Anaconda-2021-SODS-Report-Final.pdf",
+          },
+        ]}
+      />
 
       <Tabs value={selectedComparison} onValueChange={setSelectedComparison} className="space-y-6">
         <TabsList className="grid grid-cols-1 md:grid-cols-5 w-full">
@@ -697,7 +706,7 @@ first(result, 10)`
           <TabsTrigger value="code-comparison">💻 Comparaison code</TabsTrigger>
           <TabsTrigger value="use-cases">🎯 Cas d'usage</TabsTrigger>
           <TabsTrigger value="decision-guide">🧭 Guide de choix</TabsTrigger>
-          <TabsTrigger value="advanced-examples">🚀 Exemples Avancés</TabsTrigger>
+          <TabsTrigger value="advanced-examples">🚀 Exemples avancés</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -716,7 +725,7 @@ first(result, 10)`
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" />
                     <YAxis domain={[0, 70]} unit=" %" />
-                    <Tooltip formatter={(value) => [`${Number(value).toLocaleString('fr-FR')} %`, 'Usage']} />
+                    <Tooltip formatter={(value, name) => [`${Number(value).toLocaleString('fr-FR')} %`, name]} />
                     <Line type="monotone" dataKey="Python" stroke="#3776ab" strokeWidth={3} dot={{ r: 6 }} />
                     <Line type="monotone" dataKey="SQL" stroke="#f29111" strokeWidth={3} dot={{ r: 6 }} />
                     <Line type="monotone" dataKey="R" stroke="#276dc3" strokeWidth={3} dot={{ r: 6 }} />
@@ -748,7 +757,7 @@ first(result, 10)`
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5 text-green-600" />
-                  📊 Métriques Comparatives
+                  📊 Usage mesuré et appréciations
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -758,7 +767,7 @@ first(result, 10)`
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="name" />
                       <YAxis domain={[0, 100]} />
-                      <Tooltip formatter={(value) => [`${value} sur 100`, 'Valeur']} />
+                      <Tooltip formatter={(value, name) => [`${value} sur 100`, name]} />
                       <Bar dataKey="popularity" name="Usage fréquent (mesuré)" fill="#3B82F6" />
                       <Bar dataKey="ecosystem" name="Écosystème (appréciation)" fill="#10B981" />
                       <Bar dataKey="jobMarket" name="Emploi (appréciation)" fill="#F59E0B" />
@@ -772,7 +781,7 @@ first(result, 10)`
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-purple-600" />
-                  🎯 Profil Radar Complet
+                  🎯 Profils radar
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -815,7 +824,7 @@ first(result, 10)`
                       </div>
                     </div>
                     <Badge style={{ backgroundColor: lang.color, color: readableTextColor(lang.color) }} title="Part des praticiens qui l'utilisent souvent ou toujours (Anaconda 2021)">
-                      {lang.popularity} % d'usage
+                      {lang.popularity} % d'usage fréquent
                     </Badge>
                   </CardTitle>
                 </CardHeader>
@@ -858,7 +867,7 @@ first(result, 10)`
                     {/* Quick Stats */}
                     <div className="pt-2 border-t border-gray-200">
                       <div className="flex justify-between items-center text-xs">
-                        <span className="text-gray-600">Temps d'apprentissage (estimé) :</span>
+                        <span className="text-gray-600">Temps d'apprentissage (estimation de l'auteur) :</span>
                         <span className="font-medium">{lang.timeToLearn}</span>
                       </div>
                       <div className="text-xs mt-1 text-center">
@@ -879,7 +888,7 @@ first(result, 10)`
                   <span className="text-3xl">{selectedLanguage.icon}</span>
                   <div>
                     <div className="text-2xl font-bold" style={{ color: selectedLanguage.color }}>
-                      {selectedLanguage.name} - Analyse Détaillée
+                      {selectedLanguage.name} : analyse détaillée
                     </div>
                     <div className="text-sm text-gray-600">
                       Créé en {selectedLanguage.yearCreated} par {selectedLanguage.creator}
@@ -974,7 +983,7 @@ first(result, 10)`
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5 text-green-600" />
-                💻 Comparaison de Code Interactive
+                💻 Comparaison de code, thème par thème
               </CardTitle>
               <div className="flex flex-wrap gap-2 mt-2">
                 {['Analyse de Données', 'Visualisation', 'Machine Learning', 'Base de Données'].map((topic) => (
@@ -993,7 +1002,7 @@ first(result, 10)`
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Code Examples */}
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-lg">Exemples de Code - {selectedCodeTopic}</h4>
+                  <h4 className="font-semibold text-lg">Exemples de code : {selectedCodeTopic}</h4>
                   
                   {/* Python Example */}
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -1054,7 +1063,7 @@ first(result, 10)`
 
                 {/* Comparison Analysis */}
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-lg">Analyse Comparative</h4>
+                  <h4 className="font-semibold text-lg">Analyse comparative</h4>
                   
                   {/* Performance Metrics */}
                   <Card className="bg-gradient-to-r from-gray-50 to-blue-50">
@@ -1187,81 +1196,65 @@ first(result, 10)`
             </CardHeader>
             <CardContent>
               <CodeComparison 
-                  title="🤖 Machine Learning avec syntaxe moderne"
-                  pythonCode={`# Python avec syntaxe moderne
+                  title="Machine learning : classification avec une forêt aléatoire"
+                  pythonCode={`# Python : chargement, nettoyage, découpage, modèle, évaluation
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 import pandas as pd
 
-# Chargement et préparation des données (dictionnaire de fonctions)
-data_pipeline = {
-    'load': lambda file: pd.read_csv(file),
-    'clean': lambda df: df.dropna(),
-    'split': lambda df, target: train_test_split(
-        df.drop(target, axis=1), df[target], test_size=0.2
-    )
-}
+# Chargement et nettoyage (suppression des lignes incomplètes)
+df = pd.read_csv('data.csv').dropna()
 
-# Pipeline fonctionnel
-df = data_pipeline['load']('data.csv')
-df_clean = data_pipeline['clean'](df)
-X_train, X_test, y_train, y_test = data_pipeline['split'](df_clean, 'target')
+# Découpage entraînement / test
+X_train, X_test, y_train, y_test = train_test_split(
+    df.drop(columns='target'), df['target'], test_size=0.2, random_state=42
+)
 
-# Modèle avec paramètres par défaut
+# Modèle
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 # Prédictions et évaluation
 predictions = model.predict(X_test)
 print(classification_report(y_test, predictions))`}
-                  rCode={`# R avec une approche fonctionnelle
+                  rCode={`# R : les mêmes étapes
 library(randomForest)
-library(dplyr)
 library(caret)  # fournit confusionMatrix()
 
-# Pipeline : une liste de fonctions
-data_pipeline <- list(
-  load = function(file) read.csv(file),
-  clean = function(df) {
-    df <- na.omit(df)
-    df$target <- as.factor(df$target)  # classification : la cible doit être un facteur
-    df
-  },
-  split = function(df) {
-    set.seed(42)
-    sample_idx <- sample(nrow(df), 0.8 * nrow(df))
-    list(train = df[sample_idx, ], test = df[-sample_idx, ])
-  }
-)
+# Chargement et nettoyage
+df <- na.omit(read.csv("data.csv"))
+df$target <- as.factor(df$target)  # classification : la cible doit être un facteur
 
-# Application du pipeline
-result <- data_pipeline$load("data.csv") %>%
-  data_pipeline$clean() %>%
-  data_pipeline$split()
+# Découpage entraînement / test
+set.seed(42)
+sample_idx <- sample(nrow(df), 0.8 * nrow(df))
+train <- df[sample_idx, ]
+test <- df[-sample_idx, ]
 
 # Modèle Random Forest
 model <- randomForest(
-  target ~ ., 
-  data = result$train,
+  target ~ .,
+  data = train,
   ntree = 100
 )
 
-# Prédictions
-predictions <- predict(model, result$test)
-confusionMatrix(predictions, result$test$target)`}
-                  sqlCode={`-- SQL moderne avec CTE et fonctions analytiques
+# Prédictions et évaluation
+predictions <- predict(model, test)
+confusionMatrix(predictions, test$target)`}
+                  sqlCode={`-- SQL : préparation des variables avec des CTE et des fonctions de fenêtre (le SQL prépare les données, il n'entraîne pas de modèle)
 WITH data_preparation AS (
-  SELECT 
+  SELECT
     *,
-    -- Feature engineering
-    CASE 
+    -- Variable dérivée
+    CASE
       WHEN age < 30 THEN 'young'
       WHEN age < 50 THEN 'middle'
       ELSE 'senior'
     END as age_group,
-    
-    -- Normalisation
+
+    -- Standardisation (moyenne et écart-type calculés sur toute la table, jeu de test compris :
+    -- en vrai projet, on les calculerait sur l'entraînement seulement)
     (salary - AVG(salary) OVER()) / STDDEV(salary) OVER() as salary_normalized,
     
     -- Fenêtrage pour features temporelles
@@ -1305,31 +1298,32 @@ GROUP BY dataset_split;`}
             <CardContent className="space-y-8">
               {/* Python Advanced Examples */}
               <div className="border-l-4 border-blue-500 pl-6">
-                <h4 className="font-semibold text-blue-700 mb-4">🐍 Python - Machine Learning Pipeline</h4>
+                <h4 className="font-semibold text-blue-700 mb-4">🐍 Python : pipeline et validation croisée</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`# Pipeline ML complet avec validation croisée
+                  <pre>{`# Pipeline scikit-learn avec validation croisée
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 import pandas as pd
 
-# Création d'un pipeline automatisé
+# Un Pipeline enchaîne les étapes et les réajuste à chaque pli de la validation croisée
+# (la standardisation est inutile pour une forêt aléatoire : elle sert ici à montrer le principe)
 ml_pipeline = Pipeline([
     ('scaler', StandardScaler()),
-    ('classifier', RandomForestClassifier(n_estimators=100))
+    ('classifier', RandomForestClassifier(n_estimators=100, random_state=42))
 ])
 
-# Validation croisée avec métriques
-scores = cross_val_score(ml_pipeline, X_train, y_train, 
+# Validation croisée à 5 plis (X_train et y_train : voir l'exemple précédent)
+scores = cross_val_score(ml_pipeline, X_train, y_train,
                         cv=5, scoring='accuracy')
-print(f"Précision moyenne: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")`}</pre>
+print(f"Exactitude moyenne: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")`}</pre>
                 </div>
               </div>
 
               {/* R Advanced Examples */}
               <div className="border-l-4 border-purple-500 pl-6">
-                <h4 className="font-semibold text-purple-700 mb-4">📊 R - Analyse Statistique Avancée</h4>
+                <h4 className="font-semibold text-purple-700 mb-4">📊 R : un modèle mixte avec lme4</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
                   <pre>{`# Modèle mixte avec effets aléatoires
 library(lme4)
@@ -1352,9 +1346,9 @@ longitudinal_data %>%
 
               {/* SQL Advanced Examples */}
               <div className="border-l-4 border-green-500 pl-6">
-                <h4 className="font-semibold text-green-700 mb-4">🗄️ SQL - Requêtes Analytiques Complexes</h4>
+                <h4 className="font-semibold text-green-700 mb-4">🗄️ SQL : une analyse de cohortes</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`-- Analyse de cohorte avec fonctions fenêtre
+                  <pre>{`-- Analyse de cohorte avec fonctions de fenêtre (syntaxe PostgreSQL : DATE_TRUNC, AGE)
 WITH user_cohorts AS (
   SELECT 
     user_id,
@@ -1387,9 +1381,10 @@ ORDER BY cohort_month, period_number;`}</pre>
 
               {/* JavaScript Advanced Examples */}
               <div className="border-l-4 border-yellow-500 pl-6">
-                <h4 className="font-semibold text-yellow-700 mb-4">⚡ JavaScript - Visualisation Interactive</h4>
+                <h4 className="font-semibold text-yellow-700 mb-4">⚡ JavaScript : squelette d'un tableau de bord interactif</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                  <pre>{`// Dashboard interactif avec D3.js et observables
+                  <pre>{`// Squelette avec D3.js et RxJS (chargés par des balises script) ;
+// applyFilters() et updateCharts() restent à écrire
 class DataDashboard {
   constructor(containerId) {
     this.container = d3.select(containerId);
@@ -1434,21 +1429,21 @@ class DataDashboard {
 
               {/* Best Practices */}
               <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg border border-green-200">
-                <h4 className="font-semibold mb-3">💡 Bonnes Pratiques Avancées</h4>
+                <h4 className="font-semibold mb-3">💡 Bonnes pratiques</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h5 className="font-medium text-green-700 mb-2">🔧 Optimisation</h5>
                     <ul className="text-sm space-y-1 text-gray-700">
                       <li>• Vectorisation des opérations</li>
-                      <li>• Mise en cache intelligente</li>
+                      <li>• Mise en cache des résultats coûteux</li>
                       <li>• Parallélisation des tâches</li>
-                      <li>• Profiling de performance</li>
+                      <li>• Profilage avant d'optimiser</li>
                     </ul>
                   </div>
                   <div>
                     <h5 className="font-medium text-green-700 mb-2">🛡️ Robustesse</h5>
                     <ul className="text-sm space-y-1 text-gray-700">
-                      <li>• Gestion d'erreurs complète</li>
+                      <li>• Gestion des erreurs</li>
                       <li>• Tests unitaires et d'intégration</li>
                       <li>• Validation des données</li>
                       <li>• Documentation du code</li>
@@ -1466,7 +1461,7 @@ class DataDashboard {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5 text-blue-600" />
-                🎯 Analyse Comparative par Cas d'Usage
+                🎯 Appréciations par cas d'usage (de 0 à 10, avis de l'auteur)
               </CardTitle>
               <div className="flex gap-2 mt-2">
                 <Button 
@@ -1481,7 +1476,7 @@ class DataDashboard {
             <CardContent>
               <div className="h-96">
                 <DeferredResponsiveContainer width="100%" height="100%">
-                  <BarChart data={useCaseData} layout="horizontal">
+                  <BarChart data={useCaseData} layout="vertical">
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" domain={[0, 10]} />
                     <YAxis dataKey="useCase" type="category" width={140} />
@@ -1528,7 +1523,7 @@ class DataDashboard {
                       {/* Best Language(s) Recommendation */}
                       <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                         <div className="text-sm font-semibold text-green-800 mb-2">
-                          🏆 Recommandé :
+                          🏆 Mieux noté (avis de l'auteur) :
                         </div>
                         <div className="flex flex-wrap gap-1">
                           {bestLanguages.map((lang, idx) => (
@@ -1604,7 +1599,7 @@ class DataDashboard {
 
                   {/* Statistics Summary */}
                   <div>
-                    <h4 className="font-semibold mb-3">Statistiques Globales</h4>
+                    <h4 className="font-semibold mb-3">Synthèse des appréciations ci-contre</h4>
                     <div className="space-y-4">
                       {[
                         { name: 'Python', color: '#3776ab', icon: '🐍' },
@@ -1628,7 +1623,7 @@ class DataDashboard {
                             </div>
                             <div className="grid grid-cols-2 gap-2 text-sm">
                               <div>Score moyen: <span className="font-semibold">{avgScore}/10</span></div>
-                              <div>Domaines dominés: <span className="font-semibold">{dominantCases}</span></div>
+                              <div>Domaines où le mieux noté: <span className="font-semibold">{dominantCases}</span></div>
                               <div>Score max: <span className="font-semibold">{maxScore}/10</span></div>
                               <div>Score min: <span className="font-semibold">{minScore}/10</span></div>
                             </div>
@@ -1646,45 +1641,45 @@ class DataDashboard {
         <TabsContent value="decision-guide" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>🧭 Guide de Décision Personnalisé</CardTitle>
+              <CardTitle>🧭 Guide de choix</CardTitle>
             </CardHeader>
             <CardContent>
-              <CourseHighlight title="🎯 Questionnaire : Trouvez VOTRE langage idéal" type="question">
+              <CourseHighlight title="Trois questions pour s'orienter (repères de l'auteur)" type="question">
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">1. Quel est votre niveau en programmation ?</h5>
                     <div className="text-sm space-y-1">
                       <p>• <strong>Débutant complet :</strong> Python 🐍</p>
                       <p>• <strong>Quelques bases :</strong> Python ou R selon votre domaine 📊</p>
-                      <p>• <strong>Expérimenté :</strong> Julia pour la performance ⚡</p>
+                      <p>• <strong>Expérimenté :</strong> un deuxième langage selon le besoin (Julia pour le calcul intensif, par exemple) ⚡</p>
                     </div>
                   </div>
 
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">2. Dans quel secteur travaillez-vous ?</h5>
                     <div className="text-sm space-y-1">
-                      <p>• <strong>Tech/Startup :</strong> Python + SQL 🚀</p>
-                      <p>• <strong>Recherche/Académique :</strong> R + SQL 🎓</p>
-                      <p>• <strong>Finance/Banque :</strong> Python + SQL + R 💰</p>
-                      <p>• <strong>Sciences/Ingénierie :</strong> Julia + Python 🔬</p>
+                      <p>• <strong>Tech et start-up :</strong> Python + SQL 🚀</p>
+                      <p>• <strong>Recherche académique :</strong> R ou Python, plus SQL 🎓</p>
+                      <p>• <strong>Finance et banque :</strong> Python + SQL, parfois R 💰</p>
+                      <p>• <strong>Sciences et ingénierie :</strong> Python, et Julia pour le calcul scientifique intensif 🔬</p>
                     </div>
                   </div>
 
                   <div className="bg-purple-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">3. Quel type de projets vous intéresse ?</h5>
                     <div className="text-sm space-y-1">
-                      <p>• <strong>Applications web/mobile :</strong> Python 📱</p>
+                      <p>• <strong>Applications web :</strong> Python (avec un framework comme Django ou Flask) 🌐</p>
                       <p>• <strong>Analyses statistiques :</strong> R 📈</p>
-                      <p>• <strong>Machine Learning :</strong> Python 🤖</p>
-                      <p>• <strong>Big Data :</strong> SQL + Python 🗄️</p>
-                      <p>• <strong>Calcul scientifique :</strong> Julia ⚡</p>
+                      <p>• <strong>Machine learning :</strong> Python 🤖</p>
+                      <p>• <strong>Données volumineuses :</strong> SQL + Python 🗄️</p>
+                      <p>• <strong>Calcul scientifique :</strong> Julia ou Python (NumPy, SciPy) ⚡</p>
                     </div>
                   </div>
                 </div>
               </CourseHighlight>
 
               <div className="mt-8">
-                <h4 className="font-semibold mb-4">🛤️ Parcours d'Apprentissage Recommandés</h4>
+                <h4 className="font-semibold mb-4">🛤️ Deux parcours d'apprentissage possibles</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="border-l-4 border-l-blue-500">
                     <CardHeader>
@@ -1733,16 +1728,15 @@ class DataDashboard {
               </div>
 
               <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-                <h4 className="font-semibold mb-3">💡 Un petit conseil</h4>
+                <h4 className="font-semibold mb-3">💡 Un conseil</h4>
                 <p className="text-sm mb-3">
-                  <strong>Ne tombez pas dans le piège du "langage parfait" !</strong>{" "}
-                  Les meilleurs data scientists sont polyvalents. Commencez par un langage, 
-                  prenez-le bien en main, puis ajoutez les autres selon vos besoins.
+                  <strong>Il n'existe pas de langage parfait.</strong>{" "}
+                  Commencez par un langage, prenez-le bien en main, puis ajoutez les autres selon vos besoins.
                 </p>
                 <div className="bg-white p-3 rounded border border-blue-100">
                   <p className="text-xs">
-                    <strong>Repère indicatif (avis de l'auteur) :</strong> la plus grande part de votre temps ira à un langage principal, 
-                    le reste aux langages complémentaires. Choisissez bien votre langage principal !
+                    <strong>Repère indicatif (avis de l'auteur) :</strong> la plus grande part de votre temps ira à un langage principal,
+                    le reste aux langages complémentaires.
                   </p>
                 </div>
               </div>

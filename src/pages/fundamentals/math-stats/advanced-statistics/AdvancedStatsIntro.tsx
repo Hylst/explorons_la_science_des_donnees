@@ -5,10 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { TestTube, Target, Brain, Zap, Clock } from "lucide-react";
 
 const AdvancedStatsIntro = () => {
+  // Page de référence (pas un cours suivi) : ni durée annoncée, ni « instructeur »
   const courseInfo = {
-    instructor: "Geoffroy Streit",
     level: "Avancé",
-    duration: "6 semaines (indicatif)",
     sections: 6
   };
 
@@ -42,25 +41,14 @@ const AdvancedStatsIntro = () => {
           <TestTube className="h-8 w-8 text-blue-600" />
           <div>
             <h2 className="text-3xl font-bold">Bienvenue dans les Statistiques Avancées</h2>
-            <p className="text-lg text-gray-600">Par {courseInfo.instructor}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-6 max-w-md">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">{courseInfo.duration}</div>
-            <div className="text-sm text-gray-600">Rythme conseillé</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">{courseInfo.sections}</div>
-            <div className="text-sm text-gray-600">Sections</div>
+            <p className="text-lg text-gray-600">{courseInfo.sections} sections, du test d'hypothèse aux modèles avancés</p>
           </div>
         </div>
 
         <Badge className="bg-red-100 text-red-800 mb-4">{courseInfo.level}</Badge>
 
         <p className="text-lg text-gray-700 mb-4">
-          Ce cours vous propose de découvrir les techniques statistiques avancées utiles pour
+          Cette page présente les techniques statistiques avancées utiles pour
           analyser des données complexes, valider vos hypothèses de recherche et prendre des décisions 
           éclairées basées sur l'évidence statistique.
         </p>

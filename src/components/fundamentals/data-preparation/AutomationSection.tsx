@@ -37,13 +37,13 @@ export const AutomationSection: React.FC = () => {
       id: "etl",
       name: "Pipelines ETL",
       icon: Database,
-      description: "Extract, Transform, Load"
+      description: "Extraire, transformer, charger"
     },
     {
       id: "orchestration",
       name: "Orchestration",
       icon: Workflow,
-      description: "Gestion des workflows"
+      description: "Enchaîner et planifier les tâches"
     },
     {
       id: "monitoring",
@@ -103,29 +103,27 @@ export const AutomationSection: React.FC = () => {
   ];
 
   /**
-   * Workflow orchestration templates
+   * Exemples de planifications (syntaxe cron, cinq champs : minute, heure, jour du mois, mois, jour de la semaine).
+   * Aucune durée ni nombre d'étapes : ces valeurs n'auraient de sens que mesurées sur un vrai pipeline.
    */
   const workflowTemplates = [
     {
-      name: "Data Ingestion Daily",
-      description: "Ingestion quotidienne des données sources",
+      name: "Ingestion quotidienne",
+      description: "Récupérer chaque nuit les données des sources",
       schedule: "0 2 * * *",
-      steps: 8,
-      avgDuration: "25m"
+      reading: "tous les jours à 2 h"
     },
     {
-      name: "Quality Check Weekly",
-      description: "Contrôles qualité hebdomadaires",
+      name: "Contrôle qualité hebdomadaire",
+      description: "Relancer les contrôles de qualité sur l'ensemble des tables",
       schedule: "0 6 * * 1",
-      steps: 12,
-      avgDuration: "45m"
+      reading: "chaque lundi à 6 h"
     },
     {
-      name: "ML Model Retrain",
-      description: "Réentraînement des modèles ML",
+      name: "Réentraînement mensuel d'un modèle",
+      description: "Réajuster un modèle sur les données les plus récentes",
       schedule: "0 1 1 * *",
-      steps: 15,
-      avgDuration: "2h 30m"
+      reading: "le 1er de chaque mois à 1 h"
     }
   ];
 
@@ -155,12 +153,12 @@ export const AutomationSection: React.FC = () => {
           Automatisation des Processus
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-          L'automatisation permet de créer des pipelines robustes, reproductibles et scalables 
-          pour traiter vos données de manière industrielle.
+          Automatiser, c'est faire exécuter la préparation des données par un programme plutôt qu'à la main :
+          le résultat est reproductible, et chaque étape peut être surveillée.
         </p>
       </div>
 
-      <CourseHighlight type="concept" title="Écosystème d'Automatisation Complet">
+      <CourseHighlight type="concept" title="Quatre briques de l'automatisation">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {automationCategories.map((category) => {
             const IconComponent = category.icon;
@@ -255,19 +253,19 @@ export const AutomationSection: React.FC = () => {
                 </div>
 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h5 className="font-medium text-blue-800 mb-3">🛠️ Configuration Pipeline ETL</h5>
+                  <h5 className="font-medium text-blue-800 mb-3">Exemple de sources et de transformations</h5>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
-                      <h6 className="font-medium mb-2">Sources de Données:</h6>
+                      <h6 className="font-medium mb-2">Sources de données :</h6>
                       <ul className="text-blue-700 space-y-1">
-                        <li>• Base PostgreSQL (CRM)</li>
-                        <li>• API REST (E-commerce)</li>
-                        <li>• Fichiers CSV (Inventaire)</li>
-                        <li>• Kafka Streams (Temps réel)</li>
+                        <li>• Base PostgreSQL (relation client)</li>
+                        <li>• API REST (boutique en ligne)</li>
+                        <li>• Fichiers CSV (inventaire)</li>
+                        <li>• Flux Kafka (données en continu)</li>
                       </ul>
                     </div>
                     <div>
-                      <h6 className="font-medium mb-2">Transformations:</h6>
+                      <h6 className="font-medium mb-2">Transformations :</h6>
                       <ul className="text-blue-700 space-y-1">
                         <li>• Nettoyage et validation</li>
                         <li>• Enrichissement géographique</li>
@@ -282,7 +280,10 @@ export const AutomationSection: React.FC = () => {
 
             <TabsContent value="orchestration" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🎼 Orchestration des Workflows</h4>
+                <h4 className="font-semibold mb-2">Orchestration des workflows</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Trois exemples de planifications, écrites avec la syntaxe cron : cinq champs (minute, heure, jour du mois, mois, jour de la semaine).
+                </p>
                 <div className="space-y-4">
                   {workflowTemplates.map((workflow, index) => (
                     <Card key={index} className="hover:shadow-md transition-shadow">
@@ -297,18 +298,14 @@ export const AutomationSection: React.FC = () => {
                           </div>
                         </div>
                         
-                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                           <div className="text-center p-2 bg-purple-50 rounded">
-                            <div className="font-semibold text-purple-600">{workflow.schedule}</div>
-                            <div className="text-purple-700">Planification</div>
+                            <div className="font-semibold font-mono text-purple-600">{workflow.schedule}</div>
+                            <div className="text-purple-700">Expression cron</div>
                           </div>
                           <div className="text-center p-2 bg-blue-50 rounded">
-                            <div className="font-semibold text-blue-600">{workflow.steps}</div>
-                            <div className="text-blue-700">Étapes</div>
-                          </div>
-                          <div className="text-center p-2 bg-green-50 rounded">
-                            <div className="font-semibold text-green-600">{workflow.avgDuration}</div>
-                            <div className="text-green-700">Durée moy.</div>
+                            <div className="font-semibold text-blue-600">{workflow.reading}</div>
+                            <div className="text-blue-700">Se lit</div>
                           </div>
                         </div>
                       </CardContent>
@@ -392,7 +389,7 @@ export const AutomationSection: React.FC = () => {
 
             <TabsContent value="deployment" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🚀 Déploiement en Production</h4>
+                <h4 className="font-semibold mb-4">Déploiement en production</h4>
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
@@ -440,7 +437,7 @@ export const AutomationSection: React.FC = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <Cloud className="h-5 w-5 text-blue-500" />
-                        Infrastructure Cloud
+                        Infrastructure dans le nuage
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -450,9 +447,9 @@ export const AutomationSection: React.FC = () => {
                           <div className="space-y-2">
                             {[
                               { name: "AWS", services: "EC2, S3, RDS, Lambda" },
-                              { name: "Azure", services: "VMs, Blob, SQL, Functions" },
-                              { name: "GCP", services: "Compute, Storage, BigQuery" },
-                              { name: "Kubernetes", services: "Pods, Services, Ingress" }
+                              { name: "Azure", services: "machines virtuelles, Blob Storage, SQL Database, Functions" },
+                              { name: "Google Cloud", services: "Compute Engine, Cloud Storage, BigQuery" },
+                              { name: "Kubernetes", services: "orchestrateur de conteneurs (pods, services, ingress) qui s'exécute sur ces nuages ou sur ses propres serveurs" }
                             ].map((platform, index) => (
                               <div key={index} className="p-2 bg-white rounded border">
                                 <div className="font-medium text-sm">{platform.name}</div>
@@ -483,10 +480,10 @@ export const AutomationSection: React.FC = () => {
                   </Card>
 
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <h5 className="font-medium text-green-800 mb-3">✅ Checklist Déploiement</h5>
+                    <h5 className="font-medium text-green-800 mb-3">Liste de contrôle du déploiement</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <h6 className="font-medium mb-2">Pré-déploiement:</h6>
+                        <h6 className="font-medium mb-2">Avant le déploiement :</h6>
                         <ul className="text-green-700 space-y-1">
                           <li>✓ Tests unitaires passés</li>
                           <li>✓ Tests d'intégration validés</li>
@@ -495,12 +492,12 @@ export const AutomationSection: React.FC = () => {
                         </ul>
                       </div>
                       <div>
-                        <h6 className="font-medium mb-2">Post-déploiement:</h6>
+                        <h6 className="font-medium mb-2">Après le déploiement :</h6>
                         <ul className="text-green-700 space-y-1">
-                          <li>✓ Monitoring activé</li>
+                          <li>✓ Surveillance activée</li>
                           <li>✓ Alertes configurées</li>
-                          <li>✓ Rollback plan prêt</li>
-                          <li>✓ Équipe notifiée</li>
+                          <li>✓ Retour arrière possible (version précédente conservée)</li>
+                          <li>✓ Équipe prévenue</li>
                         </ul>
                       </div>
                     </div>

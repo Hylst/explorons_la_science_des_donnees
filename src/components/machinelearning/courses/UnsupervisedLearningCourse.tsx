@@ -34,8 +34,8 @@ const UnsupervisedLearningCourse = () => {
             Apprentissage Non Supervisé
           </CardTitle>
           <p className="text-xl text-green-100 max-w-3xl mx-auto">
-            Explorez l'art de découvrir des motifs cachés dans les données, 
-            comme un archéologue qui révèle les secrets d'une civilisation perdue !
+            Repérer des structures dans des données sans étiquette : groupes, axes principaux,
+            cas atypiques.
           </p>
           <div className="flex justify-center gap-3 mt-6 flex-wrap">
             <Badge className="bg-white text-green-600 text-sm px-4 py-2">
@@ -106,13 +106,13 @@ const UnsupervisedLearningCourse = () => {
 
         <TabsContent value="resources" className="mt-8">
           <UnsupervisedResourcesSection />
-          
+
           {/* Quiz bonus à la fin */}
           <div className="mt-8 space-y-6">
-            <h3 className="text-2xl font-bold text-center">Quiz Final : Testez vos connaissances !</h3>
-            
+            <h3 className="text-2xl font-bold text-center">Quiz final : testez vos connaissances</h3>
+
             <QuizCard
-              question="Votre équipe doit analyser 1 million de tweets pour identifier les sujets tendances. Quelle approche recommanderiez-vous ?"
+              question="Votre équipe doit analyser 1 million de messages courts publiés sur un réseau social pour identifier les sujets qui reviennent. Quelle approche recommanderiez-vous ?"
               options={[
                 "K-means directement sur le texte brut",
                 "TF-IDF + réduction (SVD tronquée) + clustering + analyse des termes dominants de chaque cluster",
@@ -133,7 +133,7 @@ const UnsupervisedLearningCourse = () => {
                 "Jamais, le supervisé est toujours meilleur"
               ]}
               correctAnswer={1}
-              explanation="L'apprentissage non supervisé excelle quand : 1) On veut découvrir des patterns inconnus, 2) L'étiquetage est trop coûteux ou subjectif, 3) On explore des données pour comprendre leur structure, 4) On fait du preprocessing pour le supervisé. Il révèle des insights que l'humain n'aurait pas pensé à chercher !"
+              explanation="L'apprentissage non supervisé convient quand : 1) on veut découvrir des structures inconnues, 2) l'étiquetage est trop coûteux ou subjectif, 3) on explore des données pour comprendre leur organisation, 4) on prépare des variables pour un modèle supervisé. Il peut faire apparaître des régularités auxquelles on n'aurait pas pensé, mais ses résultats restent à interpréter et à valider."
               difficulty="moyen"
             />
           </div>

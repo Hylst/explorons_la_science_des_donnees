@@ -16,18 +16,19 @@ const UnsupervisedIntroSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-3 text-2xl">
             <Search className="h-8 w-8 text-green-600" />
-            Bienvenue dans l'Apprentissage Non Supervisé
+            L'apprentissage non supervisé
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-lg text-gray-700 leading-relaxed">
-            Imaginez que vous découvrez une nouvelle planète pleine de créatures inconnues. 
-            Sans guide ni manuel, vous devez identifier les espèces, leurs habitats, 
-            et leurs comportements. C'est exactement ce que fait l'apprentissage non supervisé ! 🌍✨
+            Imaginez que vous découvrez une nouvelle planète pleine de créatures inconnues.
+            Sans guide ni manuel, vous devez identifier les espèces, leurs habitats
+            et leurs comportements. L'apprentissage non supervisé procède de la même façon :
+            il cherche de la structure dans des données dont on ne connaît pas les réponses.
           </p>
-          
+
           <div className="bg-white p-6 rounded-xl border shadow-sm">
-            <h3 className="font-semibold mb-4 text-green-800">🎯 Votre Mission d'Explorateur :</h3>
+            <h3 className="font-semibold mb-4 text-green-800">🎯 Les grandes tâches :</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-start gap-3">
                 <GitBranch className="h-5 w-5 text-green-600 mt-1" />
@@ -54,7 +55,7 @@ const UnsupervisedIntroSection = () => {
                 <Search className="h-5 w-5 text-green-600 mt-1" />
                 <div>
                   <h4 className="font-medium">Découverte de motifs</h4>
-                  <p className="text-sm text-gray-600">Révéler les structures cachées</p>
+                  <p className="text-sm text-gray-600">Repérer des régularités dans les données</p>
                 </div>
               </div>
             </div>
@@ -63,17 +64,17 @@ const UnsupervisedIntroSection = () => {
       </Card>
 
       {/* Analogie de la bibliothèque désorganisée */}
-      <EducationalCard title="📚 Analogie : La Bibliothèque Mystérieuse" type="analogie">
+      <EducationalCard title="📚 Analogie : la bibliothèque en désordre" type="analogie">
         <div className="space-y-4">
           <p>
-            Vous entrez dans une immense bibliothèque où tous les livres sont éparpillés au sol, 
+            Vous entrez dans une immense bibliothèque où tous les livres sont éparpillés au sol,
             sans étiquettes ni classification. Votre mission : organiser cette bibliothèque !
           </p>
-          
+
           <div className="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-xl space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-blue-800 mb-2">📚 Organisation de Bibliothèque</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">📚 Organiser la bibliothèque</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>Clustering</strong> : Regrouper par genre (romans, sciences, histoire)</li>
                   <li>• <strong>Réduction</strong> : Créer un système de classification simple</li>
@@ -82,20 +83,20 @@ const UnsupervisedIntroSection = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-green-800 mb-2">🤖 Apprentissage Non Supervisé</h4>
+                <h4 className="font-semibold text-green-800 mb-2">🤖 Techniques correspondantes</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>K-means</strong> : Grouper les données similaires</li>
                   <li>• <strong>PCA</strong> : Simplifier en gardant l'essentiel</li>
                   <li>• <strong>Isolation Forest</strong> : Détecter les outliers</li>
-                  <li>• <strong>Association Rules</strong> : Trouver les co-occurrences fréquentes</li>
+                  <li>• <strong>Règles d'association</strong> : Trouver les co-occurrences fréquentes</li>
                 </ul>
               </div>
             </div>
-            
+
             <div className="bg-white p-4 rounded-lg border border-green-200">
               <p className="text-sm text-green-700">
-                💡 <strong>Point clé :</strong> Dans les deux cas, nous devons découvrir 
-                l'organisation cachée sans connaître à l'avance les catégories !
+                💡 <strong>Point clé :</strong> dans les deux cas, il faut découvrir
+                l'organisation des éléments sans connaître à l'avance les catégories.
               </p>
             </div>
           </div>
@@ -105,7 +106,7 @@ const UnsupervisedIntroSection = () => {
       {/* Schéma SVG des techniques d'apprentissage non supervisé */}
       <Card className="border-2 border-green-200">
         <CardHeader>
-          <CardTitle className="text-center">L'Univers de l'Apprentissage Non Supervisé</CardTitle>
+          <CardTitle className="text-center">Les grandes familles de techniques non supervisées</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-center">
@@ -114,14 +115,14 @@ const UnsupervisedIntroSection = () => {
               <circle cx="350" cy="250" r="60" fill="#f0f9ff" stroke="#0369a1" strokeWidth="3"/>
               <text x="350" y="245" textAnchor="middle" className="font-bold" fill="#0369a1" fontSize="14">DONNÉES</text>
               <text x="350" y="260" textAnchor="middle" className="text-sm" fill="#0369a1" fontSize="12">NON ÉTIQUETÉES</text>
-              
+
               {/* Clustering */}
               <g>
                 <rect x="80" y="80" width="120" height="80" rx="15" fill="#dcfce7" stroke="#16a34a" strokeWidth="2"/>
                 <text x="140" y="110" textAnchor="middle" className="font-semibold" fill="#16a34a" fontSize="14">CLUSTERING</text>
                 <text x="140" y="130" textAnchor="middle" className="text-sm" fill="#16a34a" fontSize="11">K-means</text>
-                <text x="140" y="145" textAnchor="middle" className="text-sm" fill="#16a34a" fontSize="11">Hierarchical</text>
-                
+                <text x="140" y="145" textAnchor="middle" className="text-sm" fill="#16a34a" fontSize="11">Hiérarchique</text>
+
                 {/* Sous-groupes de clustering */}
                 <circle cx="50" cy="200" r="15" fill="#22c55e" stroke="#16a34a"/>
                 <circle cx="100" cy="200" r="15" fill="#22c55e" stroke="#16a34a"/>
@@ -129,7 +130,7 @@ const UnsupervisedIntroSection = () => {
                 <circle cx="180" cy="200" r="15" fill="#22c55e" stroke="#16a34a"/>
                 <text x="115" y="230" textAnchor="middle" className="text-xs" fill="#16a34a">Groupes découverts</text>
               </g>
-              
+
               {/* Réduction de dimension */}
               <g>
                 <rect x="500" y="80" width="120" height="80" rx="15" fill="#fef3c7" stroke="#d97706" strokeWidth="2"/>
@@ -137,7 +138,7 @@ const UnsupervisedIntroSection = () => {
                 <text x="560" y="120" textAnchor="middle" className="font-semibold" fill="#d97706" fontSize="13">DIMENSION</text>
                 <text x="560" y="135" textAnchor="middle" className="text-sm" fill="#d97706" fontSize="11">PCA</text>
                 <text x="560" y="150" textAnchor="middle" className="text-sm" fill="#d97706" fontSize="11">t-SNE</text>
-                
+
                 {/* Visualisation 3D vers 2D */}
                 <rect x="520" y="180" width="30" height="20" fill="#fbbf24" stroke="#d97706"/>
                 <text x="535" y="195" textAnchor="middle" className="text-xs" fill="white">3D</text>
@@ -145,7 +146,7 @@ const UnsupervisedIntroSection = () => {
                 <rect x="590" y="185" width="20" height="10" fill="#fbbf24" stroke="#d97706"/>
                 <text x="600" y="193" textAnchor="middle" className="text-xs" fill="white">2D</text>
               </g>
-              
+
               {/* Détection d'anomalies */}
               <g>
                 <rect x="80" y="350" width="120" height="80" rx="15" fill="#fce7f3" stroke="#be185d" strokeWidth="2"/>
@@ -153,7 +154,7 @@ const UnsupervisedIntroSection = () => {
                 <text x="140" y="390" textAnchor="middle" className="font-semibold" fill="#be185d" fontSize="13">ANOMALIES</text>
                 <text x="140" y="405" textAnchor="middle" className="text-sm" fill="#be185d" fontSize="11">Isolation Forest</text>
                 <text x="140" y="420" textAnchor="middle" className="text-sm" fill="#be185d" fontSize="11">One-Class SVM</text>
-                
+
                 {/* Points normaux et anomalie */}
                 <circle cx="60" cy="320" r="8" fill="#ec4899"/>
                 <circle cx="100" cy="325" r="8" fill="#ec4899"/>
@@ -162,7 +163,7 @@ const UnsupervisedIntroSection = () => {
                 <circle cx="210" cy="300" r="12" fill="#dc2626" stroke="#be185d" strokeWidth="2"/>
                 <text x="225" y="305" className="text-xs font-bold" fill="#dc2626">!</text>
               </g>
-              
+
               {/* Association Rules */}
               <g>
                 <rect x="500" y="350" width="120" height="80" rx="15" fill="#e0e7ff" stroke="#4f46e5" strokeWidth="2"/>
@@ -170,12 +171,12 @@ const UnsupervisedIntroSection = () => {
                 <text x="560" y="390" textAnchor="middle" className="font-semibold" fill="#4f46e5" fontSize="13">ASSOCIATION</text>
                 <text x="560" y="405" textAnchor="middle" className="text-sm" fill="#4f46e5" fontSize="11">Apriori</text>
                 <text x="560" y="420" textAnchor="middle" className="text-sm" fill="#4f46e5" fontSize="11">FP-Growth</text>
-                
+
                 {/* Exemple de règle */}
                 <text x="560" y="310" textAnchor="middle" className="text-xs" fill="#4f46e5">A + B → C</text>
                 <text x="560" y="325" textAnchor="middle" className="text-xs" fill="#4f46e5">(Pain + Beurre → Confiture)</text>
               </g>
-              
+
               {/* Flèches de connexion */}
               <defs>
                 <marker id="greenArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -191,7 +192,7 @@ const UnsupervisedIntroSection = () => {
                   <polygon points="0 0, 10 3.5, 0 7" fill="#4f46e5" />
                 </marker>
               </defs>
-              
+
               <path d="M 300 200 Q 220 140 200 140" stroke="#16a34a" strokeWidth="2" fill="none" markerEnd="url(#greenArrow)"/>
               <path d="M 400 200 Q 480 140 500 140" stroke="#d97706" strokeWidth="2" fill="none" markerEnd="url(#orangeArrow)"/>
               <path d="M 300 300 Q 220 360 200 380" stroke="#be185d" strokeWidth="2" fill="none" markerEnd="url(#pinkArrow)"/>
@@ -211,7 +212,7 @@ const UnsupervisedIntroSection = () => {
           "L'apprentissage non supervisé utilise plus d'algorithmes"
         ]}
         correctAnswer={2}
-        explanation="L'apprentissage non supervisé travaille avec des données sans étiquettes. Comme un explorateur qui découvre un nouveau territoire sans carte, l'algorithme doit découvrir les structures et motifs cachés par lui-même. C'est ce qui rend cette approche si fascinante et parfois imprévisible !"
+        explanation="L'apprentissage non supervisé travaille avec des données sans étiquettes. Comme un explorateur qui découvre un territoire sans carte, l'algorithme doit trouver lui-même des structures dans les données. Ses résultats sont plus difficiles à valider, puisqu'il n'y a pas de bonne réponse connue à comparer."
         difficulty="facile"
       />
 
@@ -222,7 +223,7 @@ const UnsupervisedIntroSection = () => {
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span className="flex items-center gap-2">
-                  🌟 Applications Révolutionnaires de l'Apprentissage Non Supervisé
+                  🌟 Exemples d'applications de l'apprentissage non supervisé
                 </span>
                 <ChevronDown className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </CardTitle>
@@ -234,11 +235,11 @@ const UnsupervisedIntroSection = () => {
             <CardContent className="pt-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-indigo-800 mb-3">🏥 Révolutions Médicales</h4>
+                  <h4 className="font-semibold text-indigo-800 mb-3">🏥 Santé</h4>
                   <div className="space-y-3">
                     <div className="border-l-4 border-indigo-400 pl-4">
                       <Badge className="mb-1 bg-indigo-100 text-indigo-800">Diagnostic</Badge>
-                      <p className="text-sm">Détecter des maladies rares dans les scans médicaux</p>
+                      <p className="text-sm">Repérer des images atypiques dans des examens (surtout en recherche)</p>
                     </div>
                     <div className="border-l-4 border-indigo-400 pl-4">
                       <Badge className="mb-1 bg-indigo-100 text-indigo-800">Génomique</Badge>
@@ -246,31 +247,31 @@ const UnsupervisedIntroSection = () => {
                     </div>
                     <div className="border-l-4 border-indigo-400 pl-4">
                       <Badge className="mb-1 bg-indigo-100 text-indigo-800">Épidémiologie</Badge>
-                      <p className="text-sm">Traquer la propagation de maladies</p>
+                      <p className="text-sm">Repérer des grappes de cas dans le temps et l'espace</p>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-purple-800 mb-3">💼 Business Intelligence</h4>
+                  <h4 className="font-semibold text-purple-800 mb-3">💼 Entreprise</h4>
                   <div className="space-y-3">
                     <div className="border-l-4 border-purple-400 pl-4">
                       <Badge className="mb-1 bg-purple-100 text-purple-800">E-commerce</Badge>
-                      <p className="text-sm">Systèmes de recommandation personnalisés</p>
+                      <p className="text-sm">Systèmes de recommandation (regroupement d'utilisateurs, factorisation)</p>
                     </div>
                     <div className="border-l-4 border-purple-400 pl-4">
                       <Badge className="mb-1 bg-purple-100 text-purple-800">Finance</Badge>
-                      <p className="text-sm">Détection de fraudes et analyses de risque</p>
+                      <p className="text-sm">Repérage de comportements atypiques (fraude), analyse de risque</p>
                     </div>
                     <div className="border-l-4 border-purple-400 pl-4">
                       <Badge className="mb-1 bg-purple-100 text-purple-800">Marketing</Badge>
-                      <p className="text-sm">Segmentation automatique de clientèle</p>
+                      <p className="text-sm">Segmentation de la clientèle</p>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white p-4 rounded-lg border-2 border-dashed border-indigo-300">
-                <h4 className="font-semibold text-indigo-800 mb-2">🚀 Cas d'Usage Innovants</h4>
+                <h4 className="font-semibold text-indigo-800 mb-2">🧭 Autres cas d'usage</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                   <p><strong>🎵 Musique :</strong> Regrouper des morceaux proches pour suggérer des playlists (principe du clustering)</p>
                   <p><strong>🛡️ Cybersécurité :</strong> Détection d'intrusions par analyse comportementale</p>

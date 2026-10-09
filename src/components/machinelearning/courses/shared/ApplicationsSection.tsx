@@ -10,7 +10,6 @@ interface Application {
   examples: string[];
   industry: string;
   difficulty: "Débutant" | "Intermédiaire" | "Avancé";
-  impact: "Faible" | "Moyen" | "Élevé";
 }
 
 interface ApplicationsSectionProps {
@@ -29,19 +28,10 @@ const ApplicationsSection = ({ title, applications, description }: ApplicationsS
     }
   };
 
-  const getImpactColor = (impact: string) => {
-    switch (impact) {
-      case "Faible": return "bg-blue-100 text-blue-800";
-      case "Moyen": return "bg-purple-100 text-purple-800";
-      case "Élevé": return "bg-orange-100 text-orange-800";
-      default: return "bg-gray-100 text-gray-800";
-    }
-  };
-
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-center">{title}</h2>
-      
+
       {description && (
         <EducationalCard title="🌍 Vue d'ensemble" type="concept">
           <p className="text-gray-700 leading-relaxed">{description}</p>
@@ -60,14 +50,13 @@ const ApplicationsSection = ({ title, applications, description }: ApplicationsS
                 <Badge variant="outline" className="text-xs">{app.industry}</Badge>
               </div>
               <div className="flex gap-2">
-                <Badge className={getDifficultyColor(app.difficulty)}>{app.difficulty}</Badge>
-                <Badge className={getImpactColor(app.impact)}>Impact {app.impact}</Badge>
+                <Badge className={getDifficultyColor(app.difficulty)} title="Difficulté de mise en œuvre (avis de l'auteur)">{app.difficulty}</Badge>
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 mb-3">{app.description}</p>
               <div>
-                <h4 className="font-medium text-sm mb-2">Exemples concrets :</h4>
+                <h4 className="font-medium text-sm mb-2">Exemples :</h4>
                 <ul className="text-xs space-y-1">
                   {app.examples.map((example, idx) => (
                     <li key={idx} className="flex items-start gap-1">

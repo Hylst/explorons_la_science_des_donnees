@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -166,7 +166,7 @@ const ResourcesSection = () => {
         title: "Hands-On Machine Learning with Scikit-Learn and PyTorch",
         auteur: "Aurélien Géron",
         niveau: "Intermédiaire-Avancé",
-        description: "Guide pratique complet du ML avec Python (scikit-learn, puis réseaux de neurones avec PyTorch ; les éditions précédentes utilisaient TensorFlow)",
+        description: "Guide pratique du machine learning avec Python (scikit-learn, puis réseaux de neurones avec PyTorch, 2025 ; le livre précédent du même auteur utilisait Keras et TensorFlow)",
         url: "https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/",
         specialite: ["Machine Learning", "PyTorch", "Scikit-learn"]
       },
@@ -175,7 +175,7 @@ const ResourcesSection = () => {
         auteur: "Hadley Wickham",
         niveau: "Débutant-Intermédiaire",
         prix: "Gratuit en ligne",
-        description: "Guide complet pour apprendre R et le tidyverse",
+        description: "Introduction à R et au tidyverse : importer, transformer et visualiser des données",
         url: "https://r4ds.hadley.nz/",
         specialite: ["R", "Tidyverse", "ggplot2"]
       },
@@ -183,7 +183,7 @@ const ResourcesSection = () => {
         title: "SQL for Data Scientists",
         auteur: "Renee M. P. Teate",
         niveau: "Débutant-Intermédiaire",
-        description: "SQL spécialement orienté pour l'analyse de données",
+        description: "Introduction à SQL centrée sur la construction de jeux de données pour l'analyse (Wiley, 2021)",
         url: "https://www.oreilly.com/library/view/sql-for-data/9781119669364/",
         specialite: ["SQL", "Bases de données", "Analytics"]
       },
@@ -192,7 +192,7 @@ const ResourcesSection = () => {
         auteur: "Hastie, Tibshirani, Friedman",
         niveau: "Avancé",
         prix: "Gratuit en ligne",
-        description: "Ouvrage académique complet sur l'apprentissage statistique et le machine learning",
+        description: "Ouvrage de référence, de niveau universitaire, sur l'apprentissage statistique (2e édition)",
         url: "https://hastie.su.domains/ElemStatLearn/",
         specialite: ["Machine Learning", "Statistiques", "Théorie"]
       },
@@ -247,50 +247,50 @@ const ResourcesSection = () => {
       {
         chaine: "3Blue1Brown",
         specialite: "Mathématiques visuelles",
-        description: "Explications visuelles brillantes des concepts mathématiques",
-        mustWatch: ["Linear Algebra", "Neural Networks", "Calculus"],
+        description: "Explications visuelles de concepts mathématiques (en anglais, avec sous-titres)",
+        mustWatch: ["Algèbre linéaire", "Réseaux de neurones", "Analyse (calcul différentiel et intégral)"],
         url: "https://www.youtube.com/@3blue1brown"
       },
       {
         chaine: "Corey Schafer",
         specialite: "Python pratique",
-        description: "Tutoriels Python clairs et détaillés pour tous niveaux",
-        mustWatch: ["Python OOP", "Pandas", "Matplotlib"],
+        description: "Tutoriels Python détaillés, en anglais",
+        mustWatch: ["Programmation orientée objet", "pandas", "Matplotlib"],
         url: "https://www.youtube.com/@coreyms"
       },
       {
         chaine: "StatQuest",
-        specialite: "Stats & ML",
-        description: "Concepts statistiques et ML expliqués simplement avec humour",
-        mustWatch: ["Random Forest", "Neural Networks", "Statistics"],
+        specialite: "Statistiques et ML",
+        description: "Concepts de statistiques et de machine learning expliqués pas à pas, en anglais",
+        mustWatch: ["Forêts aléatoires", "Réseaux de neurones", "Bases de statistique"],
         url: "https://www.youtube.com/@statquest"
       },
       {
         chaine: "Data School",
         specialite: "Data Science Python",
-        description: "Tutoriels pratiques pandas, scikit-learn et outils DS",
-        mustWatch: ["Pandas tricks", "Machine Learning", "Data cleaning"],
+        description: "Tutoriels pratiques sur pandas, scikit-learn et les outils de data science, en anglais",
+        mustWatch: ["Astuces pandas", "scikit-learn", "Nettoyage de données"],
         url: "https://www.youtube.com/@dataschool"
       },
       {
         chaine: "Two Minute Papers",
-        specialite: "AI Research",
-        description: "Résumés accessibles des derniers papers en IA et ML",
-        mustWatch: ["GPT Evolution", "Computer Vision Breakthroughs", "AI Art Generation"],
+        specialite: "Recherche en IA",
+        description: "Présentations courtes d'articles de recherche en IA et en infographie, en anglais",
+        mustWatch: ["Modèles génératifs", "Vision par ordinateur", "Simulation physique"],
         url: "https://www.youtube.com/@TwoMinutePapers"
       },
       {
         chaine: "Sentdex",
-        specialite: "Python & ML pratique",
-        description: "Tutoriels Python avancés avec applications ML et finance",
-        mustWatch: ["Python ML Tutorial", "Algorithmic Trading", "Neural Networks"],
+        specialite: "Python et ML pratique",
+        description: "Tutoriels Python avec applications au machine learning et à la finance, en anglais",
+        mustWatch: ["Python pour le ML", "Python pour la finance", "Réseaux de neurones"],
         url: "https://www.youtube.com/@sentdex"
       },
       {
         chaine: "Ken Jee",
-        specialite: "Carrière Data Science",
-        description: "Conseils carrière, portfolio building et industry insights",
-        mustWatch: ["Data Science Portfolio", "Interview Prep", "Industry Trends"],
+        specialite: "Carrière en data science",
+        description: "Conseils de parcours, projets personnels et préparation aux entretiens, en anglais",
+        mustWatch: ["Projets personnels", "Entretiens", "Parcours de carrière"],
         url: "https://www.youtube.com/@KenJee_ds"
       }
     ],
@@ -299,44 +299,43 @@ const ResourcesSection = () => {
         nom: "Stack Overflow",
         type: "Q&A",
         description: "Questions et réponses techniques, posées et corrigées par la communauté",
-        pourquoi: "Solutions rapides, communauté massive, historique complet",
+        pourquoi: "Beaucoup de questions déjà posées et résolues : cherchez avant de demander",
         tags: ["python", "pandas", "r", "sql", "machine-learning"],
         url: "https://stackoverflow.com/"
       },
       {
-        nom: "Reddit - r/MachineLearning",
+        nom: "Reddit : r/MachineLearning",
         type: "Forum",
-        description: "Discussions sur les dernières avancées en ML/AI",
-        pourquoi: "Papers récents, discussions d'experts, trends",
+        description: "Discussions sur l'actualité et la recherche en machine learning (en anglais)",
+        pourquoi: "Articles de recherche récents et discussions autour d'eux",
         url: "https://www.reddit.com/r/MachineLearning/"
       },
       {
         nom: "Kaggle",
         type: "Compétition",
-        description: "Compétitions DS, datasets et notebooks partagés",
-        pourquoi: "Pratique réelle, notebooks d'experts, datasets variés",
-        competitions: "Active",
+        description: "Compétitions de data science, jeux de données et notebooks partagés",
+        pourquoi: "S'exercer sur des jeux de données variés et lire les notebooks d'autres participants",
         url: "https://www.kaggle.com/"
       },
       {
         nom: "GitHub",
         type: "Code & Portfolio",
-        description: "Plateforme essentielle pour vos projets et contributions open source",
-        pourquoi: "Portfolio visible, collaboration, apprentissage par l'exemple",
+        description: "Hébergement de code : vos projets, ceux des autres et les contributions open source",
+        pourquoi: "Lire du code réel, versionner ses projets, collaborer",
         url: "https://github.com/topics/data-science"
       },
       {
         nom: "Towards Data Science",
         type: "Blog",
-        description: "Publication d'articles de data science rédigés par des contributeurs",
-        pourquoi: "Tutorials avancés, case studies, tendances industry",
+        description: "Publication d'articles de data science rédigés par des contributeurs (en anglais, qualité variable)",
+        pourquoi: "Tutoriels et études de cas, à lire avec un regard critique",
         url: "https://towardsdatascience.com/"
       },
       {
-        nom: "LinkedIn Data Science Groups",
-        type: "Professionnel",
-        description: "Networking professionnel et opportunités carrière",
-        pourquoi: "Job opportunities, industry connections, thought leadership",
+        nom: "Groupes LinkedIn sur la data science",
+        type: "Réseau professionnel",
+        description: "Groupes thématiques d'un réseau professionnel (un compte LinkedIn est nécessaire)",
+        pourquoi: "Suivre des échanges entre professionnels du domaine",
         url: "https://www.linkedin.com/groups/"
       }
     ]
@@ -397,8 +396,9 @@ const ResourcesSection = () => {
     };
   }, [ressources, completedResources.size, bookmarkedResources.size]);
 
-  // Enhanced ResourceCard component with modern features
-  const ResourceCard = React.memo(({ ressource, type, index }: { ressource: Resource, type: string, index: number }) => {
+  // Carte d'une ressource. Simple fonction de rendu et non composant défini ici : un composant créé dans le rendu du
+  // parent est remplacé à chaque changement d'état, ce qui détruit les boutons et fait perdre le focus clavier.
+  const renderResourceCard = (ressource: Resource, type: string, index: number, cardKey: string) => {
     const resourceId = resourceKey(type, ressource, index);
     const isBookmarked = bookmarkedResources.has(resourceId);
     const isCompleted = completedResources.has(resourceId);
@@ -426,7 +426,7 @@ const ResourcesSection = () => {
     })();
 
     return (
-      <Card className={`h-full hover:shadow-lg transition-all duration-300 relative ${
+      <Card key={cardKey} className={`h-full hover:shadow-lg transition-all duration-300 relative ${
         isCompleted ? 'ring-2 ring-green-200 bg-green-50/30' : ''
       } ${
         isBookmarked ? 'ring-2 ring-blue-200 bg-blue-50/30' : ''
@@ -438,6 +438,9 @@ const ResourcesSection = () => {
                 size="sm"
                 onClick={handleBookmark}
                 className="h-8 w-8 p-0 hover:bg-blue-100"
+                aria-label={isBookmarked ? "Retirer des ressources sauvegardées" : "Sauvegarder cette ressource"}
+                aria-pressed={isBookmarked}
+                title={isBookmarked ? "Retirer des ressources sauvegardées" : "Sauvegarder cette ressource"}
               >
                 {isBookmarked ? (
                   <BookmarkCheck className="h-4 w-4 text-blue-600" />
@@ -450,6 +453,9 @@ const ResourcesSection = () => {
                 size="sm"
                 onClick={handleComplete}
                 className="h-8 w-8 p-0 hover:bg-green-100"
+                aria-label={isCompleted ? "Marquer comme non terminée" : "Marquer comme terminée"}
+                aria-pressed={isCompleted}
+                title={isCompleted ? "Marquer comme non terminée" : "Marquer comme terminée"}
               >
                 {isCompleted ? (
                   <Award className="h-4 w-4 text-green-600" />
@@ -466,7 +472,7 @@ const ResourcesSection = () => {
               <span className="text-lg">
                 {isBookResource(ressource) ? ressource.title :
                  isPlatformResource(ressource) || isCommunityResource(ressource) ? ressource.nom :
-                 isYoutubeResource(ressource) ? ressource.chaine : 'Resource'}
+                 isYoutubeResource(ressource) ? ressource.chaine : 'Ressource'}
               </span>
             </div>
           </CardTitle>
@@ -527,7 +533,7 @@ const ResourcesSection = () => {
 
           {isYoutubeResource(ressource) && ressource.mustWatch && Array.isArray(ressource.mustWatch) && (
             <div className="space-y-2">
-              <p className="text-sm font-semibold">À regarder absolument :</p>
+              <p className="text-sm font-semibold">Thèmes abordés :</p>
               <ul className="text-xs space-y-1">
                 {ressource.mustWatch.map((video: string, idx: number) => (
                   <li key={idx}>• {video}</li>
@@ -543,27 +549,17 @@ const ResourcesSection = () => {
                 Accéder
               </a>
             </Button>
-            {!isCompleted && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => markCompleted(resourceId)}
-                className="px-3"
-              >
-                <Award className="h-4 w-4" />
-              </Button>
-            )}
           </div>
         </CardContent>
       </Card>
     );
-  });
+  };
 
-  // Progress Dashboard Component
-  const ProgressDashboard = React.memo(() => (
+  // Tableau de suivi (fonction de rendu, voir plus haut)
+  const renderProgressDashboard = () => (
     <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-indigo-900">📊 Votre Progression d'Apprentissage</h3>
+        <h3 className="text-xl font-bold text-indigo-900">📊 Votre suivi</h3>
         <Select value={userLevel} onValueChange={setUserLevel}>
           <SelectTrigger className="w-40">
             <SelectValue />
@@ -592,7 +588,7 @@ const ResourcesSection = () => {
             <span className="font-semibold">Sauvegardées</span>
           </div>
           <div className="text-2xl font-bold text-blue-600">{progressStats.bookmarked}</div>
-          <div className="text-sm text-gray-600">ressources bookmarkées</div>
+          <div className="text-sm text-gray-600">ressources mises de côté</div>
         </div>
         
         <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -609,12 +605,10 @@ const ResourcesSection = () => {
             <Star className="h-5 w-5 text-yellow-600" />
             <span className="font-semibold">Niveau</span>
           </div>
-          <div className="text-lg font-bold text-yellow-600 capitalize">{userLevel}</div>
-          <div className="text-sm text-gray-600">
-            {userLevel === 'debutant' && 'Continuez comme ça!'}
-            {userLevel === 'intermediaire' && 'Bon rythme!'}
-            {userLevel === 'avance' && 'Belle progression!'}
+          <div className="text-lg font-bold text-yellow-600">
+            {userLevel === 'intermediaire' ? 'Intermédiaire' : userLevel === 'avance' ? 'Avancé' : 'Débutant'}
           </div>
+          <div className="text-sm text-gray-600">niveau que vous avez choisi</div>
         </div>
       </div>
       
@@ -622,22 +616,23 @@ const ResourcesSection = () => {
         <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg border border-green-200">
           <div className="flex items-center gap-2 text-green-800">
             <Award className="h-6 w-6" />
-            <span className="font-bold text-lg">🎉 Félicitations! Vous avez exploré toutes les ressources!</span>
+            <span className="font-bold text-lg">Vous avez marqué toutes les ressources comme terminées.</span>
           </div>
-          <p className="text-green-700 mt-2">Pourquoi ne pas partager ce que vous avez appris avec d'autres apprenants ?</p>
+          <p className="text-green-700 mt-2">Expliquer ce que vous avez appris à d'autres apprenants est une bonne façon de le consolider.</p>
         </div>
       )}
     </div>
-  ));
+  );
 
-  // Search and Filter Controls
-  const SearchAndFilters = React.memo(() => (
+  // Recherche et filtres (fonction de rendu : un composant défini ici perdrait le focus du champ à chaque lettre tapée)
+  const renderSearchAndFilters = () => (
     <div className="mb-6 space-y-4">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
-            placeholder="Rechercher par nom, description, ou technologie..."
+            placeholder="Rechercher par nom, description ou technologie..."
+            aria-label="Rechercher une ressource"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -663,9 +658,9 @@ const ResourcesSection = () => {
       {(searchTerm || selectedCategory !== 'all') && (
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <Filter className="h-4 w-4" />
-          <span>Filtres actifs:</span>
+          <span>Filtres actifs :</span>
           {searchTerm && (
-            <Badge variant="secondary">Recherche: "{searchTerm}"</Badge>
+            <Badge variant="secondary">Recherche : « {searchTerm} »</Badge>
           )}
           {selectedCategory !== 'all' && (
             <Badge variant="secondary">
@@ -690,19 +685,19 @@ const ResourcesSection = () => {
         </div>
       )}
     </div>
-  ));
+  );
 
   return (
     <section id="resources" className="mb-16">
-      <h2 className="text-3xl font-bold mb-8">📚 Ressources d'Apprentissage : Votre Bibliothèque de Croissance</h2>
+      <h2 className="text-3xl font-bold mb-8">📚 Ressources d'apprentissage</h2>
       
-      <ProgressDashboard />
-      <SearchAndFilters />
+      {renderProgressDashboard()}
+      {renderSearchAndFilters()}
       
-      <CourseHighlight title="🎯 Comment utiliser ces ressources efficacement ?" type="concept">
+      <CourseHighlight title="Comment utiliser ces ressources" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h4 className="font-semibold mb-2">👶 Si vous débutez :</h4>
+            <h4 className="font-semibold mb-2">Si vous débutez :</h4>
             <ul className="text-sm space-y-1 list-disc pl-5">
               <li>Commencez par Kaggle Learn (gratuit)</li>
               <li>Lisez "Python for Data Analysis" en parallèle</li>
@@ -711,12 +706,12 @@ const ResourcesSection = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">🚀 Si vous avez des bases :</h4>
+            <h4 className="font-semibold mb-2">Si vous avez déjà des bases :</h4>
             <ul className="text-sm space-y-1 list-disc pl-5">
               <li>Suivez un cours structuré (fast.ai, MIT OpenCourseWare)</li>
               <li>Rejoignez les communautés Reddit/Stack Overflow</li>
-              <li>Participez aux compétitions Kaggle</li>
-              <li>Construisez un portfolio sur GitHub</li>
+              <li>Essayez une compétition Kaggle</li>
+              <li>Publiez vos projets sur GitHub</li>
             </ul>
           </div>
         </div>
@@ -734,7 +729,7 @@ const ResourcesSection = () => {
           <div className="mb-6">
             <h3 className="text-xl font-bold mb-2">📖 Livres à connaître</h3>
             <p className="text-gray-600">
-              Sélection des ouvrages les plus recommandés par la communauté data science mondiale.
+              Quelques ouvrages de référence, choisis par l'auteur du site. Les livres marqués « Gratuit en ligne » ont une version en ligne officielle.
             </p>
           </div>
           {(() => {
@@ -748,9 +743,9 @@ const ResourcesSection = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredBooks.map((livre, index) => (
-                      <ResourceCard key={`livre-${index}`} ressource={livre} type="livre" index={ressources.livres.indexOf(livre)} />
-                    ))}
+                    {filteredBooks.map((livre, index) =>
+                      renderResourceCard(livre, 'livre', ressources.livres.indexOf(livre), `livre-${index}`)
+                    )}
                   </div>
                 )}
               </>
@@ -759,18 +754,18 @@ const ResourcesSection = () => {
           
           <CourseHighlight title="💡 Conseil de lecture" type="info">
             <p className="mb-2">
-              <strong>Ne lisez pas tout d'un coup !</strong> Alternez entre théorie et pratique. 
-              Lisez un chapitre, puis implémentez les concepts sur un petit projet.
+              <strong>Inutile de tout lire d'un coup.</strong> Alternez entre théorie et pratique :
+              lisez un chapitre, puis mettez ses idées en œuvre sur un petit projet.
             </p>
             <div className="bg-blue-50 p-3 rounded text-sm">
-              <strong>Ordre recommandé :</strong> Python for Data Analysis → Hands-On ML → livre spécialisé selon votre domaine
+              <strong>Un ordre possible :</strong> Python for Data Analysis, puis Hands-On Machine Learning, puis un livre spécialisé selon votre domaine
             </div>
           </CourseHighlight>
         </TabsContent>
 
         <TabsContent value="plateformes" className="space-y-6">
           <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">🎓 Plateformes d'Apprentissage</h3>
+            <h3 className="text-xl font-bold mb-2">🎓 Plateformes d'apprentissage</h3>
             <p className="text-gray-600">
               Quelques plateformes pour apprendre la data science en ligne.
             </p>
@@ -786,9 +781,9 @@ const ResourcesSection = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredPlatforms.map((plateforme, index) => (
-                      <ResourceCard key={`plateforme-${index}`} ressource={plateforme} type="plateforme" index={ressources.plateformes.indexOf(plateforme)} />
-                    ))}
+                    {filteredPlatforms.map((plateforme, index) =>
+                      renderResourceCard(plateforme, 'plateforme', ressources.plateformes.indexOf(plateforme), `plateforme-${index}`)
+                    )}
                   </div>
                 )}
               </>
@@ -800,7 +795,7 @@ const ResourcesSection = () => {
           </p>
 
           <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
-            <h4 className="font-semibold mb-3">🎯 Guide de choix de plateforme</h4>
+            <h4 className="font-semibold mb-3">🎯 Quelle plateforme pour quel besoin</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
                 <p className="mb-2"><strong>Pour commencer :</strong> Kaggle Learn + YouTube</p>
@@ -820,7 +815,7 @@ const ResourcesSection = () => {
           <div className="mb-6">
             <h3 className="text-xl font-bold mb-2">📺 Chaînes YouTube utiles</h3>
             <p className="text-gray-600">
-              Les créateurs qui expliquent le mieux les concepts de data science.
+              Quelques chaînes qui expliquent des concepts de data science, en anglais pour la plupart.
             </p>
           </div>
           {(() => {
@@ -834,26 +829,26 @@ const ResourcesSection = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredYoutube.map((chaine, index) => (
-                      <ResourceCard key={`youtube-${index}`} ressource={chaine} type="youtube" index={ressources.youtube.indexOf(chaine)} />
-                    ))}
+                    {filteredYoutube.map((chaine, index) =>
+                      renderResourceCard(chaine, 'youtube', ressources.youtube.indexOf(chaine), `youtube-${index}`)
+                    )}
                   </div>
                 )}
               </>
             );
           })()}
 
-          <CourseHighlight title="📺 Stratégie YouTube efficace" type="example">
+          <CourseHighlight title="📺 Utiliser ces chaînes" type="example">
             <div className="space-y-3">
-              <p><strong>Routine suggérée :</strong></p>
+              <p><strong>Exemple de routine (durées indicatives) :</strong></p>
               <ul className="text-sm space-y-1 list-disc pl-5">
                 <li><strong>Matin (15 min) :</strong> 3Blue1Brown pour les concepts théoriques</li>
                 <li><strong>Pause déjeuner (20 min) :</strong> Corey Schafer pour la technique Python</li>
                 <li><strong>Soir (30 min) :</strong> StatQuest pour le ML + Data School pour la pratique</li>
               </ul>
               <div className="bg-yellow-50 p-3 rounded text-sm">
-                <strong>Pro tip :</strong> Activez les sous-titres automatiques et prenez des notes. 
-                Créez un document "Concepts appris" avec timestamps des vidéos importantes.
+                <strong>Astuce :</strong> activez les sous-titres et prenez des notes. Un document « Concepts appris »
+                avec l'heure des passages importants des vidéos aide à y revenir.
               </div>
             </div>
           </CourseHighlight>
@@ -863,7 +858,7 @@ const ResourcesSection = () => {
           <div className="mb-6">
             <h3 className="text-xl font-bold mb-2">👥 Communautés à connaître</h3>
             <p className="text-gray-600">
-              Rejoignez la conversation mondiale de la data science et accélérez votre apprentissage.
+              Quelques lieux d'échange en ligne pour poser des questions et suivre l'actualité du domaine, en anglais pour la plupart.
             </p>
           </div>
           {(() => {
@@ -877,9 +872,9 @@ const ResourcesSection = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredCommunities.map((communaute, index) => (
-                      <ResourceCard key={`communaute-${index}`} ressource={communaute} type="communaute" index={ressources.communautes.indexOf(communaute)} />
-                    ))}
+                    {filteredCommunities.map((communaute, index) =>
+                      renderResourceCard(communaute, 'communaute', ressources.communautes.indexOf(communaute), `communaute-${index}`)
+                    )}
                   </div>
                 )}
               </>
@@ -887,7 +882,7 @@ const ResourcesSection = () => {
           })()}
 
           <div className="mt-8 space-y-6">
-            <CourseHighlight title="🤝 Comment bien utiliser les communautés" type="info">
+            <CourseHighlight title="🤝 Bien utiliser les communautés" type="info">
               <div className="space-y-3">
                 <div>
                   <h5 className="font-semibold">✅ Bonnes pratiques :</h5>
@@ -935,7 +930,7 @@ const ResourcesSection = () => {
                   <CardTitle className="text-lg">🏆 Compétition ?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm">
-                  <p><strong>Kaggle</strong> pour améliorer vos skills avec des défis réels et datasets quality.</p>
+                  <p><strong>Kaggle</strong> pour vous exercer sur des compétitions et des jeux de données variés.</p>
                 </CardContent>
               </Card>
             </div>
@@ -944,7 +939,8 @@ const ResourcesSection = () => {
       </Tabs>
 
       <div className="mt-12 p-8 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl border border-indigo-200">
-        <h3 className="text-2xl font-bold mb-4 text-indigo-900">🗺️ Votre Feuille de Route d'Apprentissage</h3>
+        <h3 className="text-2xl font-bold mb-1 text-indigo-900">🗺️ Une feuille de route possible</h3>
+        <p className="text-sm text-indigo-800 mb-4">Les durées sont indicatives et varient beaucoup selon le temps dont vous disposez.</p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -991,16 +987,15 @@ const ResourcesSection = () => {
             <ul className="text-sm space-y-1">
               <li>• Recherche et veille</li>
               <li>• Contribution open source</li>
-              <li>• Mentorat d'autres apprenants</li>
+              <li>• Aider d'autres apprenants</li>
             </ul>
           </div>
         </div>
         
         <div className="mt-6 p-4 bg-white rounded-lg border border-indigo-100">
           <p className="text-sm text-indigo-700">
-            <strong>💡 Rappel important :</strong> La data science est un marathon, pas un sprint. 
-            Restez régulier, soyez patient avec vous-même, et célébrez chaque petite victoire ! 
-            La communauté est là pour vous accompagner. 🚀
+            <strong>💡 Un repère :</strong> apprendre prend du temps. Mieux vaut un rythme régulier,
+            même modeste, que de longues séances espacées.
           </p>
         </div>
       </div>

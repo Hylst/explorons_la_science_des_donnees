@@ -13,7 +13,7 @@ import { RefreshCw, ArrowRight } from 'lucide-react';
 const LifecycleSection: React.FC = () => {
   const lifecycleSteps = [
     { icon: "🔍", title: "Collecte", desc: "Sources multiples" },
-    { icon: "🧹", title: "Nettoyage", desc: "Éliminer erreurs" },
+    { icon: "🧹", title: "Nettoyage", desc: "Corriger les erreurs" },
     { icon: "🔄", title: "Transformation", desc: "Formatage, agrégation" },
     { icon: "✅", title: "Validation", desc: "Contrôles qualité" },
     { icon: "📈", title: "Exploitation", desc: "Analyse, ML, BI" }
@@ -21,7 +21,7 @@ const LifecycleSection: React.FC = () => {
 
   const timeDistribution = [
     { phase: "Collecte", percentage: 15, color: "blue", description: "Identification et extraction des sources" },
-    { phase: "Nettoyage", percentage: 40, color: "green", description: "Suppression erreurs, doublons, valeurs manquantes" },
+    { phase: "Nettoyage", percentage: 40, color: "green", description: "Traitement des erreurs, des doublons et des valeurs manquantes" },
     { phase: "Transformation", percentage: 25, color: "purple", description: "Formatage, enrichissement, agrégation" },
     { phase: "Validation", percentage: 15, color: "orange", description: "Contrôles qualité et cohérence" },
     { phase: "Exploitation", percentage: 5, color: "red", description: "Mise à disposition pour analyse" }
@@ -32,7 +32,7 @@ const LifecycleSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <RefreshCw className="h-8 w-8 text-purple-500" />
-          Le Cycle de Vie des Données
+          Le cycle de vie des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Comprendre le parcours complet d'une donnée, de sa création à son exploitation, 
@@ -43,7 +43,7 @@ const LifecycleSection: React.FC = () => {
       {/* Flowchart */}
       <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border-slate-200">
         <CardHeader>
-          <CardTitle className="text-center">📊 Flux de Traitement des Données</CardTitle>
+          <CardTitle className="text-center">📊 Flux de traitement des données</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
@@ -87,7 +87,7 @@ const LifecycleSection: React.FC = () => {
       <div className="space-y-6">
         <h3 className="text-2xl font-bold text-center">⏱️ Répartition indicative du temps par phase</h3>
         <p className="text-center text-sm text-muted-foreground max-w-3xl mx-auto">
-          Ordre de grandeur pédagogique choisi par l'auteur, pas une mesure : la répartition réelle varie fortement d'un projet à l'autre (voir les enquêtes citées en introduction).
+          Exemple d'illustration aux valeurs choisies par l'auteur : ce n'est pas une mesure. La répartition réelle varie fortement d'un projet à l'autre (voir les enquêtes citées en introduction).
         </p>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {timeDistribution.map((phase, index) => (
@@ -109,7 +109,7 @@ const LifecycleSection: React.FC = () => {
                       {phase.phase}
                     </GlossaryTerm>
                   </CardTitle>
-                  <Badge variant="secondary" className="text-lg font-bold">{phase.percentage}%</Badge>
+                  <Badge variant="secondary" className="text-lg font-bold">{phase.percentage} %</Badge>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -126,17 +126,17 @@ const LifecycleSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <RefreshCw className="h-5 w-5 text-purple-500" />
-            Points Clés du Cycle de Vie
+            Points clés du cycle de vie
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-purple-700">🔄 Processus Itératif</h4>
+              <h4 className="font-semibold mb-3 text-purple-700">🔄 Un processus itératif</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
-                  <span>Le cycle n'est pas linéaire - retours fréquents</span>
+                  <span>Le cycle n'est pas linéaire : les retours en arrière sont fréquents</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
@@ -149,7 +149,7 @@ const LifecycleSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-blue-700">⚡ Optimisations Possibles</h4>
+              <h4 className="font-semibold mb-3 text-blue-700">⚡ Pistes d'amélioration</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
@@ -157,7 +157,7 @@ const LifecycleSection: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
-                  <span>Contrôles qualité en temps réel</span>
+                  <span>Contrôles qualité à chaque exécution</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>

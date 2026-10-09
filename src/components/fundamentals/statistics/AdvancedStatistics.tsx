@@ -56,13 +56,13 @@ const AdvancedStatistics = () => {
               </div>
               
               <ul className="list-disc pl-5 space-y-1 mb-2">
-                <li><strong>Coefficient de corrélation de Pearson</strong> : Mesure la relation linéaire (-1 à 1)</li>
-                <li><strong>Régression linéaire</strong> : Modélise la relation par une droite (y = ax + b)</li>
-                <li><strong>R² (coefficient de détermination)</strong> : Mesure la qualité d'ajustement du modèle</li>
+                <li><strong>Coefficient de corrélation de Pearson</strong> : mesure la force de la relation linéaire (de -1 à 1)</li>
+                <li><strong>Régression linéaire</strong> : modélise la relation par une droite (y = ax + b)</li>
+                <li><strong>R² (coefficient de détermination)</strong> : part de la variance de y expliquée par le modèle</li>
               </ul>
               <div className="text-sm flex items-center gap-1 text-blue-600 mt-2">
                 <Lightbulb className="h-4 w-4" /> 
-                <span className="italic">Important : Corrélation n'implique pas causalité !</span>
+                <span className="italic">Important : la corrélation n'implique pas la causalité.</span>
               </div>
             </div>
 
@@ -113,14 +113,14 @@ const AdvancedStatistics = () => {
               <div className="mt-3 text-sm flex items-center">
                 <CirclePercent className="h-4 w-4 text-blue-500 mr-2" />
                 <span>
-                  Les méthodes bayésiennes sont particulièrement utiles quand on dispose de peu de données
-                  ou quand l'incertitude doit être explicitement quantifiée.
+                  Les méthodes bayésiennes peuvent être utiles quand on dispose de peu de données
+                  ou quand l'incertitude doit être explicitement quantifiée ; le choix de la loi a priori influence alors le résultat.
                 </span>
               </div>
             </div>
             
             <div className="pt-2">
-              <p className="font-medium">Ressources recommandées:</p>
+              <p className="font-medium">Ressources recommandées :</p>
               <ul className="pl-5 space-y-1 mt-1">
                 <li className="flex items-center gap-1">
                   <ExternalLink className="h-4 w-4 text-blue-500" />

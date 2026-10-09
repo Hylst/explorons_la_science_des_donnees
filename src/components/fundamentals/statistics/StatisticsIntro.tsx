@@ -7,7 +7,7 @@ const StatisticsIntro = () => {
   return (
     <>
       <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-ds-blue-500 to-ds-purple-500 bg-clip-text text-transparent">
-        Mathématiques et Statistiques
+        Mathématiques et statistiques
       </h2>
       <div className="max-w-none">
         <p className="text-lg">
@@ -62,7 +62,7 @@ const StatisticsIntro = () => {
                   et prendre des décisions basées sur les données
                 </li>
                 <li>
-                  Faire des prédictions fiables à partir d'échantillons limités en utilisant des modèles comme la 
+                  Faire des prédictions, avec une idée de leur incertitude, à partir d'échantillons limités, grâce à des modèles comme la 
                   <GlossaryTerm 
                     definition={statisticsDefinitions["régression-linéaire"]}
                   > régression linéaire</GlossaryTerm>

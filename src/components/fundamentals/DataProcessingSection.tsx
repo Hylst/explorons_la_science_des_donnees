@@ -4,6 +4,7 @@ import { ArrowRightIcon, CheckCircle2 } from "lucide-react";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { dataProcessingDefinitions } from "./definitions/data-processing-definitions";
 import { programmingDefinitions } from "./definitions/programming-definitions";
+import { SourceNote } from "@/components/ui/source-note";
 
 const DataProcessingSection = () => {
   return (
@@ -15,8 +16,8 @@ const DataProcessingSection = () => {
       </h2>
       <div className="max-w-none">
         <p className="text-lg">
-          Le traitement des données est souvent l'étape qui prend le plus de temps dans un projet de Data Science, 
-          mais c'est aussi une étape cruciale pour garantir des résultats fiables et des analyses pertinentes.
+          Le traitement des données est souvent l'étape qui prend le plus de temps dans un projet de Data Science,
+          et c'est aussi celle dont dépend la fiabilité des analyses.
         </p>
         
         <div className="my-8">
@@ -46,7 +47,7 @@ const DataProcessingSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Acquisition de données à partir de diverses sources:</p>
+              <p>Acquisition de données à partir de diverses sources :</p>
               <ul className="mt-2 space-y-1">
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> 
@@ -55,7 +56,7 @@ const DataProcessingSection = () => {
                   </GlossaryTerm>
                 </li>
                 <li className="flex items-center text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> Web scraping et extraction automatisée
+                  <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> Web scraping (extraction automatisée de pages web, dans le respect des conditions d'utilisation des sites)
                 </li>
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> Bases de données relationnelles et NoSQL
@@ -79,7 +80,7 @@ const DataProcessingSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Assurer la qualité des données en gérant:</p>
+              <p>Améliorer la qualité des données en traitant :</p>
               <ul className="mt-2 space-y-1">
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-purple-500 mr-2" /> Valeurs manquantes (imputation, suppression)
@@ -110,7 +111,7 @@ const DataProcessingSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Préparation des données pour l'analyse:</p>
+              <p>Préparation des données pour l'analyse :</p>
               <ul className="mt-2 space-y-1">
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> 
@@ -125,7 +126,7 @@ const DataProcessingSection = () => {
                   </GlossaryTerm> (one-hot, label)
                 </li>
                 <li className="flex items-center text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> Réduction de dimension (PCA, t-SNE)
+                  <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> Réduction de dimension (ACP, t-SNE)
                 </li>
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-blue-500 mr-2" /> 
@@ -147,7 +148,7 @@ const DataProcessingSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Combinaison de différentes sources:</p>
+              <p>Combinaison de différentes sources :</p>
               <ul className="mt-2 space-y-1">
                 <li className="flex items-center text-sm">
                   <CheckCircle2 className="h-4 w-4 text-ds-purple-500 mr-2" /> Jointures et fusions de datasets
@@ -171,10 +172,17 @@ const DataProcessingSection = () => {
         
         <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg my-8 border border-purple-100 shadow-sm">
           <p className="text-lg font-medium text-gray-800">
-            Un traitement de données efficace garantit que les modèles d'analyse et de machine learning reçoivent des données 
-            de qualité, augmentant ainsi leur performance et leur fiabilité. Selon les enquêtes Anaconda auprès des praticiens, cette étape occupe 
+            Un traitement de données soigné donne aux modèles d'analyse et de machine learning des données de meilleure qualité,
+            ce qui rend leurs résultats plus fiables. Selon les enquêtes Anaconda auprès des praticiens, cette étape occupe
             entre 38 % (enquête 2022) et 45 % (enquête 2020) du temps déclaré, la plus grande part de toutes les activités.
           </p>
+          <SourceNote
+            consulted="1er octobre 2026"
+            sources={[
+              { label: "Anaconda, State of Data Science 2020 (chargement et nettoyage : 45 %)", href: "https://know.anaconda.com/rs/387-XNW-688/images/Anaconda-SODS-Report-2020-Final.pdf" },
+              { label: "Anaconda 2022 (préparation et nettoyage : 38 %), relayé par VentureBeat", href: "https://venturebeat.com/ai/what-are-data-scientists-biggest-concerns-the-2022-state-of-data-science-report-has-the-answers" },
+            ]}
+          />
         </div>
       </div>
     </div>

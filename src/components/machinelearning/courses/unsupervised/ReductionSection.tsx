@@ -19,9 +19,9 @@ const ReductionSection = () => {
     {
       name: "t-SNE",
       type: "t-Distributed Stochastic Neighbor Embedding",
-      pros: ["Excellente visualisation", "Préserve structure locale", "Révèle clusters cachés", "Flexible"],
-      cons: ["Très lent", "Non déterministe", "Pas de projection inverse", "Hyperparamètres sensibles"],
-      useCases: ["Visualisation haute dimension", "Exploration de données", "Détection de patterns", "Analyse de clusters"],
+      pros: ["Bonne visualisation de la structure locale", "Préserve les voisinages", "Met en évidence des groupes locaux", "Flexible"],
+      cons: ["Lent sur de grands jeux de données", "Non déterministe", "Pas de projection inverse", "Sensible à la perplexité ; tailles et distances entre groupes peu interprétables"],
+      useCases: ["Visualisation haute dimension", "Exploration de données", "Repérage de motifs", "Analyse de clusters"],
       complexity: "Élevée" as const,
       interpretability: "Moyenne" as const,
       performance: 3
@@ -79,14 +79,14 @@ const ReductionSection = () => {
               <ul className="text-sm text-green-700 space-y-1">
                 <li>• PCA : Maximise la variance expliquée</li>
                 <li>• ICA : Sépare les sources indépendantes</li>
-                <li>• LDA : Maximise la séparabilité entre classes</li>
+                <li>• LDA : Maximise la séparabilité entre classes (méthode supervisée)</li>
               </ul>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg border">
               <h5 className="font-medium text-purple-800 mb-2">Méthodes Non-linéaires</h5>
               <ul className="text-sm text-purple-700 space-y-1">
                 <li>• t-SNE : Préserve les structures locales</li>
-                <li>• UMAP : Équilibre local et global</li>
+                <li>• UMAP : Structure locale, avec une meilleure conservation globale que t-SNE en général</li>
                 <li>• Autoencoders : Apprentissage de représentations</li>
               </ul>
             </div>
@@ -103,12 +103,12 @@ const ReductionSection = () => {
             <div className="bg-blue-50 p-4 rounded-lg border">
               <h5 className="font-medium text-blue-800 mb-2 flex items-center gap-2">
                 <Eye className="h-4 w-4" />
-                Computer Vision
+                Vision par ordinateur
               </h5>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>• Compression d'images (par exemple PCA sur des patchs ; JPEG utilise la DCT, pas la PCA)</li>
                 <li>• Reconnaissance de visages (Eigenfaces, Turk et Pentland, 1991)</li>
-                <li>• Preprocessing pour CNN</li>
+                <li>• Réduction de dimension avant un classifieur classique</li>
               </ul>
             </div>
             <div className="bg-red-50 p-4 rounded-lg border">
@@ -150,11 +150,11 @@ const ReductionSection = () => {
       <EducationalCard title="🎯 Comprendre la réduction de dimensionnalité" type="concept">
         <div className="space-y-4">
           <p className="text-gray-700 leading-relaxed">
-            Imaginez que vous essayez de dessiner un cube sur une feuille de papier. 
-            Vous devez projeter un objet 3D sur une surface 2D tout en préservant 
-            l'information importante. C'est exactement le défi de la réduction de dimensionnalité !
+            Imaginez que vous essayez de dessiner un cube sur une feuille de papier.
+            Vous devez projeter un objet 3D sur une surface 2D tout en préservant
+            l'information importante. C'est le défi de la réduction de dimensionnalité.
           </p>
-          
+
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl">
             <h4 className="font-semibold text-purple-800 mb-3">Le dilemme dimensionnel</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -184,7 +184,7 @@ const ReductionSection = () => {
       {/* Schéma SVG illustrant PCA */}
       <Card className="border-2 border-purple-200">
         <CardHeader>
-          <CardTitle className="text-center">Principe de l'Analyse en Composantes Principales (PCA)</CardTitle>
+          <CardTitle className="text-center">Principe de l'analyse en composantes principales (PCA, ou ACP en français)</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-center">
@@ -194,39 +194,39 @@ const ReductionSection = () => {
               <line x1="100" y1="350" x2="100" y2="150" stroke="#6b7280" strokeWidth="2"/>
               <text x="310" y="355" className="text-sm" fill="#6b7280">X1</text>
               <text x="85" y="140" className="text-sm" fill="#6b7280">X2</text>
-              
-              {/* Points de données */}
+
+              {/* Points de données : nuage allongé le long de la diagonale */}
               <g>
-                <circle cx="120" cy="320" r="4" fill="#3b82f6"/>
-                <circle cx="140" cy="300" r="4" fill="#3b82f6"/>
-                <circle cx="160" cy="280" r="4" fill="#3b82f6"/>
-                <circle cx="180" cy="260" r="4" fill="#3b82f6"/>
-                <circle cx="200" cy="240" r="4" fill="#3b82f6"/>
-                <circle cx="220" cy="220" r="4" fill="#3b82f6"/>
-                <circle cx="240" cy="200" r="4" fill="#3b82f6"/>
-                <circle cx="260" cy="180" r="4" fill="#3b82f6"/>
+                <circle cx="146.2" cy="305.2" r="4" fill="#3b82f6"/>
+                <circle cx="147.6" cy="278.3" r="4" fill="#3b82f6"/>
+                <circle cx="172.3" cy="274.7" r="4" fill="#3b82f6"/>
+                <circle cx="178.7" cy="252.8" r="4" fill="#3b82f6"/>
+                <circle cx="204.1" cy="250" r="4" fill="#3b82f6"/>
+                <circle cx="205.6" cy="223.1" r="4" fill="#3b82f6"/>
+                <circle cx="229.6" cy="218.9" r="4" fill="#3b82f6"/>
+                <circle cx="236.7" cy="197.7" r="4" fill="#3b82f6"/>
               </g>
-              
-              {/* Première composante principale */}
-              <line x1="110" y1="340" x2="270" y2="170" stroke="#dc2626" strokeWidth="3"/>
-              <text x="200" y="240" className="text-sm font-semibold" fill="#dc2626">PC1 (variance max)</text>
-              
-              {/* Deuxième composante principale */}
-              <line x1="150" y1="210" x2="230" y2="290" stroke="#059669" strokeWidth="2" strokeDasharray="5,5"/>
-              <text x="238" y="300" className="text-sm" fill="#059669">PC2 (perpendiculaire à PC1)</text>
-              
-              {/* Projection sur PC1 */}
+
+              {/* Première composante principale : direction de variance maximale, passant par le centre du nuage */}
+              <line x1="126.4" y1="313.6" x2="253.6" y2="186.4" stroke="#dc2626" strokeWidth="3"/>
+              <text x="262" y="190" className="text-sm font-semibold" fill="#dc2626">PC1 (variance max)</text>
+
+              {/* Deuxième composante principale : perpendiculaire à PC1 */}
+              <line x1="158.2" y1="218.2" x2="221.8" y2="281.8" stroke="#059669" strokeWidth="2" strokeDasharray="5,5"/>
+              <text x="228" y="296" className="text-sm" fill="#059669">PC2 (perpendiculaire à PC1)</text>
+
+              {/* Projection de chaque point sur PC1 (segments perpendiculaires à PC1) */}
               <g stroke="#dc2626" strokeWidth="1" strokeDasharray="2,2" opacity="0.6">
-                <line x1="120" y1="320" x2="128" y2="332"/>
-                <line x1="140" y1="300" x2="148" y2="312"/>
-                <line x1="160" y1="280" x2="168" y2="292"/>
-                <line x1="180" y1="260" x2="188" y2="272"/>
-                <line x1="200" y1="240" x2="208" y2="252"/>
-                <line x1="220" y1="220" x2="228" y2="232"/>
-                <line x1="240" y1="200" x2="248" y2="212"/>
-                <line x1="260" y1="180" x2="268" y2="192"/>
+                <line x1="146.2" y1="305.2" x2="140.5" y2="299.5"/>
+                <line x1="147.6" y1="278.3" x2="154.6" y2="285.4"/>
+                <line x1="172.3" y1="274.7" x2="168.8" y2="271.2"/>
+                <line x1="178.7" y1="252.8" x2="182.9" y2="257.1"/>
+                <line x1="204.1" y1="250" x2="197.1" y2="242.9"/>
+                <line x1="205.6" y1="223.1" x2="211.2" y2="228.8"/>
+                <line x1="229.6" y1="218.9" x2="225.4" y2="214.6"/>
+                <line x1="236.7" y1="197.7" x2="239.5" y2="200.5"/>
               </g>
-              
+
               {/* Flèche de transformation */}
               <defs>
                 <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -235,31 +235,31 @@ const ReductionSection = () => {
               </defs>
               <path d="M 350 250 Q 400 200 450 250" stroke="#7c3aed" strokeWidth="3" fill="none" markerEnd="url(#arrow)"/>
               <text x="380" y="220" className="text-sm font-semibold" fill="#7c3aed">Transformation PCA</text>
-              
+
               {/* Axes transformés */}
               <line x1="500" y1="350" x2="600" y2="350" stroke="#dc2626" strokeWidth="2"/>
               <line x1="500" y1="350" x2="500" y2="250" stroke="#059669" strokeWidth="2"/>
               <text x="610" y="355" className="text-sm font-semibold" fill="#dc2626">PC1</text>
               <text x="485" y="240" className="text-sm" fill="#059669">PC2</text>
-              
+
               {/* Points projetés */}
               <g>
+                <circle cx="501" cy="350" r="4" fill="#3b82f6"/>
                 <circle cx="515" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="525" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="535" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="545" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="555" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="565" cy="350" r="4" fill="#3b82f6"/>
-                <circle cx="575" cy="350" r="4" fill="#3b82f6"/>
+                <circle cx="529" cy="350" r="4" fill="#3b82f6"/>
+                <circle cx="543" cy="350" r="4" fill="#3b82f6"/>
+                <circle cx="557" cy="350" r="4" fill="#3b82f6"/>
+                <circle cx="571" cy="350" r="4" fill="#3b82f6"/>
                 <circle cx="585" cy="350" r="4" fill="#3b82f6"/>
+                <circle cx="599" cy="350" r="4" fill="#3b82f6"/>
               </g>
-              
+
               {/* Légendes */}
               <rect x="50" y="50" width="300" height="80" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
               <text x="60" y="70" className="text-sm font-semibold" fill="#374151">Réduction 2D → 1D :</text>
               <text x="60" y="90" className="text-xs" fill="#6b7280">1. Trouve la direction de variance maximale (PC1)</text>
               <text x="60" y="105" className="text-xs" fill="#6b7280">2. Projette tous les points sur cette ligne</text>
-              <text x="60" y="120" className="text-xs" fill="#6b7280">3. Perte minimale d'information</text>
+              <text x="60" y="120" className="text-xs" fill="#6b7280">3. Conserve le maximum de variance (schéma d'illustration)</text>
             </svg>
           </div>
         </CardContent>
@@ -276,7 +276,7 @@ const ReductionSection = () => {
 
       {/* Quiz enrichi */}
       <QuizCard
-        question="Vous analysez un dataset d'images 1000x1000 pixels (1M de dimensions) et voulez créer une visualisation 2D pour explorer les groupes. Quelle approche choisiriez-vous ?"
+        question="Vous analysez un jeu d'images de 1000 × 1000 pixels (1 million de dimensions) et voulez créer une visualisation 2D pour explorer les groupes. Quelle approche choisiriez-vous ?"
         options={[
           "Utiliser PCA directement sur toutes les dimensions",
           "Appliquer d'abord PCA pour réduire à ~50 dimensions, puis t-SNE pour la visualisation 2D",
@@ -284,7 +284,7 @@ const ReductionSection = () => {
           "Sélectionner manuellement 2 pixels représentatifs"
         ]}
         correctAnswer={1}
-        explanation="La stratégie optimale est de combiner PCA et t-SNE : PCA d'abord pour éliminer le bruit et réduire drastiquement les dimensions (de 1M à ~50), puis t-SNE pour créer une visualisation 2D qui préserve la structure locale. t-SNE seul sur 1M de dimensions serait computationnellement prohibitif et PCA seul ne révélerait pas les structures non-linéaires complexes."
+        explanation="Une stratégie courante combine PCA et t-SNE : PCA d'abord, pour atténuer le bruit et réduire drastiquement les dimensions (de 1 million à environ 50), puis t-SNE pour créer une visualisation 2D qui préserve la structure locale. t-SNE seul sur 1 million de dimensions serait très coûteux, et une PCA à 2 composantes ne révélerait pas les structures non linéaires complexes. Ces projections servent à explorer : il ne faut pas lire trop de choses dans les distances entre groupes d'un t-SNE."
         difficulty="difficile"
       />
 
@@ -297,7 +297,7 @@ const ReductionSection = () => {
           "Uniquement avec des données synthétiques"
         ]}
         correctAnswer={1}
-        explanation="La réduction de dimensionnalité est bénéfique quand l'information éliminée est principalement du bruit, des redondances ou des variations non pertinentes pour la tâche. En fait, supprimer ce 'bruit dimensionnel' améliore souvent les performances des modèles en évitant l'overfitting et en révélant les patterns vraiment importants dans les données."
+        explanation="La réduction de dimensionnalité est bénéfique quand l'information éliminée est principalement du bruit, des redondances ou des variations sans rapport avec la tâche. Supprimer ce « bruit » peut améliorer les performances des modèles en limitant le surapprentissage, mais pas toujours : une composante de faible variance peut être précisément celle qui sépare les classes."
         difficulty="moyen"
       />
     </div>

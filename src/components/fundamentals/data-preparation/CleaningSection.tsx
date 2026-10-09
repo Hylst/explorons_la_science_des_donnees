@@ -36,12 +36,12 @@ const CleaningSection: React.FC = () => {
           Nettoyage des Données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-          Le nettoyage des données est l'étape la plus chronophage mais cruciale du processus. 
-          Il s'agit de corriger, compléter et standardiser les données pour les rendre exploitables.
+          Le nettoyage prend souvent une part importante du temps d'un projet, et il conditionne la fiabilité de tout le reste.
+          Il s'agit de corriger, compléter ou écarter, et d'harmoniser les données pour les rendre exploitables.
         </p>
       </div>
 
-      <CourseHighlight type="warning" title="Les 3 Défis Majeurs du Nettoyage">
+      <CourseHighlight type="warning" title="Trois défauts à traiter">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
           <div className="text-center space-y-3">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
@@ -74,7 +74,7 @@ const CleaningSection: React.FC = () => {
               </GlossaryTerm>
             </h4>
             <p className="text-sm text-orange-600">
-              Les outliers peuvent représenter des erreurs ou des cas exceptionnels à traiter différemment
+              Les valeurs aberrantes peuvent être des erreurs ou des cas exceptionnels réels : on ne les traite pas de la même façon
             </p>
           </div>
           <div className="text-center space-y-3">
@@ -91,7 +91,7 @@ const CleaningSection: React.FC = () => {
               </GlossaryTerm>
             </h4>
             <p className="text-sm text-yellow-600">
-              Les duplicatas faussent les statistiques et peuvent créer des biais dans les modèles
+              Les doublons faussent les effectifs et les statistiques, et peuvent biaiser les modèles
             </p>
           </div>
         </div>
@@ -115,12 +115,12 @@ const CleaningSection: React.FC = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">🔍 Techniques de Détection</h4>
+                  <h4 className="font-semibold text-slate-700">🔍 Techniques de détection</h4>
                   <div className="space-y-3">
                     {[
-                      { method: "isnull().sum()", desc: "Comptage par colonne" },
-                      { method: "missingno.matrix()", desc: "Visualisation patterns" },
-                      { method: "info()", desc: "Aperçu général" }
+                      { method: "df.isnull().sum()", desc: "Comptage par colonne" },
+                      { method: "missingno.matrix(df)", desc: "Visualisation de l'emplacement des valeurs manquantes (bibliothèque missingno)" },
+                      { method: "df.info()", desc: "Aperçu général : types et nombre de valeurs non nulles" }
                     ].map((technique, index) => (
                       <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
                         <Code className="h-4 w-4 text-blue-500" />
@@ -134,12 +134,15 @@ const CleaningSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de Traitement</h4>
+                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de traitement</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Il n'existe pas de seuil de pourcentage qui décide à lui seul : le choix dépend surtout de la cause du manque.
+                  </p>
                   <div className="space-y-3">
                     {[
-                      { strategy: "Suppression", pros: "Simple, rapide", cons: "Perte d'information", when: "< 5% manquant", key: "suppression" },
-                      { strategy: "Imputation", pros: "Conserve les données", cons: "Peut introduire des biais", when: "5-20% manquant", key: "imputation" },
-                      { strategy: "Modélisation", pros: "Précision élevée", cons: "Complexe", when: "> 20% manquant", key: "modelisation" }
+                      { strategy: "Suppression", pros: "Simple, rapide", cons: "Perte d'information", when: "Peu de manques, au hasard", key: "suppression" },
+                      { strategy: "Imputation", pros: "Conserve les lignes", cons: "Peut introduire des biais", when: "Manque modéré", key: "imputation" },
+                      { strategy: "Modélisation", pros: "Utilise les autres variables", cons: "Plus complexe", when: "Variables liées entre elles", key: "modelisation" }
                     ].map((strat, index) => (
                       <Card key={index} className="p-3">
                         <div className="space-y-2">
@@ -168,7 +171,7 @@ const CleaningSection: React.FC = () => {
 
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
-                  <h5 className="font-semibold text-blue-700">💡 Exemple Pratique : Imputation</h5>
+                  <h5 className="font-semibold text-blue-700">💡 Exemple pratique : imputation</h5>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -220,7 +223,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                   {
                     method: "IQR Method",
                     description: "Hors de [Q1 − 1,5 × IQR ; Q3 + 1,5 × IQR]",
-                    pros: "Robuste, simple, sans hypothèse de normalité",
+                    pros: "Simple, sans hypothèse de normalité, peu influencée par les extrêmes",
                     cons: "Seuil 1,5 conventionnel ; peu adapté aux distributions très asymétriques",
                     code: "Q1 = df.quantile(0.25)\nQ3 = df.quantile(0.75)\nIQR = Q3 - Q1\noutliers = (df < Q1 - 1.5*IQR) | (df > Q3 + 1.5*IQR)",
                     key: "iqr"
@@ -228,17 +231,17 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                   {
                     method: "Z-Score",
                     description: "|z| > 3",
-                    pros: "Précis pour données normales",
-                    cons: "Sensible aux outliers",
-                    code: "from scipy import stats\nz_scores = np.abs(stats.zscore(df))\noutliers = z_scores > 3",
+                    pros: "Simple, adapté aux données à peu près normales",
+                    cons: "La moyenne et l'écart type sont eux-mêmes tirés par les extrêmes ; peu sensible sur de petits échantillons",
+                    code: "import numpy as np\nfrom scipy import stats\n\nz_scores = np.abs(stats.zscore(df))\noutliers = z_scores > 3",
                     key: "zscore"
                   },
                   {
                     method: "Isolation Forest",
-                    description: "ML pour détection",
-                    pros: "Multidimensionnel",
-                    cons: "Plus complexe",
-                    code: "from sklearn.ensemble import IsolationForest\niso = IsolationForest(contamination=0.1)\noutliers = iso.fit_predict(df) == -1",
+                    description: "Détection par apprentissage non supervisé",
+                    pros: "Regarde plusieurs variables à la fois",
+                    cons: "Plus complexe à expliquer ; il faut fixer la part d'anomalies attendue",
+                    code: "from sklearn.ensemble import IsolationForest\n\niso = IsolationForest(contamination=0.1, random_state=0)\noutliers = iso.fit_predict(df) == -1",
                     key: "isolationForest"
                   }
                 ].map((method, index) => (
@@ -279,8 +282,9 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               <Alert>
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Important :</strong> Ne supprimez pas automatiquement les outliers ! 
-                  Ils peuvent révéler des insights précieux ou des erreurs de mesure à corriger.
+                  <strong>Important :</strong> ne supprimez pas automatiquement les valeurs aberrantes.
+                  Ce sont parfois des cas réels et instructifs, parfois des erreurs de saisie ou de mesure à corriger à la source :
+                  il faut chercher laquelle des deux avant d'agir.
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -298,12 +302,12 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">🔍 Types de Doublons</h4>
+                  <h4 className="font-semibold text-slate-700">🔍 Types de doublons</h4>
                   <div className="space-y-3">
                     {[
                       { type: "Exact", desc: "Lignes identiques", example: "Jean Dupont, Jean Dupont" },
-                      { type: "Partiel", desc: "Similarité élevée", example: "J. Dupont, Jean Dupont" },
-                      { type: "Logique", desc: "Même entité, formats différents", example: "01/01/2023, 2023-01-01" }
+                      { type: "Approché", desc: "Même entité, écriture proche", example: "J. Dupont, Jean Dupont" },
+                      { type: "Après harmonisation", desc: "Identiques une fois les formats alignés", example: "01/01/2023 et 2023-01-01 (même jour)" }
                     ].map((dup, index) => (
                       <Card key={index} className="p-3">
                         <div className="space-y-2">
@@ -319,12 +323,12 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de Déduplication</h4>
+                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de déduplication</h4>
                   <div className="space-y-3">
                     {[
-                      { method: "drop_duplicates()", use: "Doublons exacts", params: "subset=['col1', 'col2']", key: "doublons" },
-                      { method: "fuzzy matching", use: "Similarité textuelle", params: "rapidfuzz.fuzz.ratio(a, b) > 90", key: "fuzzyMatching" },
-                      { method: "Record Linkage", use: "Entités complexes", params: "recordlinkage.Index()", key: "recordLinkage" }
+                      { method: "drop_duplicates()", use: "Doublons exacts", params: "df.drop_duplicates(subset=['col1', 'col2'])", key: "doublons" },
+                      { method: "fuzzy matching", use: "Similarité textuelle (bibliothèque rapidfuzz, score de 0 à 100)", params: "rapidfuzz.fuzz.ratio(a, b) > 90", key: "fuzzyMatching" },
+                      { method: "Record Linkage", use: "Entités décrites par plusieurs champs (bibliothèque recordlinkage)", params: "recordlinkage.Index()", key: "recordLinkage" }
                     ].map((strat, index) => (
                       <div key={index} className="p-3 bg-yellow-50 rounded-lg">
                         <div className="space-y-2">
@@ -359,7 +363,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
       <Card className="bg-gradient-to-br from-blue-50 to-green-50 border-blue-200">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-blue-700">📋 Cas Pratique : Nettoyage Données Patients</CardTitle>
+            <CardTitle className="text-blue-700">📋 Cas pratique : nettoyage de données de patients (fictives)</CardTitle>
             <Button 
               variant="outline" 
               onClick={() => setShowCaseStudy(!showCaseStudy)}
@@ -480,22 +484,22 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               <h5 className="font-semibold text-blue-700 mb-3">🔧 Pipeline de Nettoyage Appliqué</h5>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <h6 className="font-medium mb-2">Étapes de Nettoyage :</h6>
+                  <h6 className="font-medium mb-2">Étapes de nettoyage :</h6>
                   <ol className="text-blue-600 space-y-1">
-                    <li>1. Détection doublons par ID + nom</li>
-                    <li>2. Validation contraintes métier</li>
-                    <li>3. Correction valeurs aberrantes</li>
-                    <li>4. Standardisation formats</li>
-                    <li>5. Enrichissement données externes</li>
+                    <li>1. Harmoniser la casse, les espaces et les formats</li>
+                    <li>2. Repérer les doublons (identifiant et nom normalisé)</li>
+                    <li>3. Valider les contraintes métier (âge)</li>
+                    <li>4. Marquer comme manquantes les valeurs impossibles</li>
+                    <li>5. Écarter ce qui est inexploitable, en le documentant</li>
                   </ol>
                 </div>
                 <div>
-                  <h6 className="font-medium mb-2">Règles Métier :</h6>
+                  <h6 className="font-medium mb-2">Règles métier possibles :</h6>
                   <ul className="text-blue-600 space-y-1">
-                    <li>• Âge entre 0 et 120 ans</li>
-                    <li>• Date sortie ≥ date admission</li>
-                    <li>• Code postal français valide</li>
-                    <li>• Diagnostic dans nomenclature</li>
+                    <li>• Âge entre 0 et 120 ans (appliquée ici)</li>
+                    <li>• Date de sortie postérieure ou égale à la date d'admission</li>
+                    <li>• Code postal français à cinq chiffres</li>
+                    <li>• Diagnostic présent dans la nomenclature utilisée</li>
                   </ul>
                 </div>
               </div>

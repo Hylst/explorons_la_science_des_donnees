@@ -56,7 +56,7 @@ const programmingQuestions: QuizQuestion[] = [
       'Les deux premières réponses sont correctes'
     ],
     correctAnswer: 3,
-    explanation: 'Les deux premières méthodes permettent de créer un DataFrame vide avec des colonnes spécifiques. La troisième option n\'existe pas en Pandas.',
+    explanation: 'Les deux premières méthodes permettent de créer un DataFrame vide avec des colonnes spécifiques. pd.empty_dataframe() n\'existe pas en Pandas.',
     difficulty: 'Intermédiaire',
     topic: 'Pandas',
     points: 15
@@ -213,10 +213,10 @@ const programmingQuestions: QuizQuestion[] = [
   },
   {
     id: 'prog_016',
-    question: 'Quelle méthode permet de pivoter un DataFrame ?',
+    question: 'Quelle méthode permet de réorganiser un DataFrame en table pivot (les valeurs d\'une colonne deviennent des colonnes) ?',
     options: ['pivot()', 'rotate()', 'transpose()', 'flip()'],
     correctAnswer: 0,
-    explanation: 'pivot() réorganise les données en utilisant des valeurs de colonnes comme nouveaux index et colonnes, créant une table pivot.',
+    explanation: 'pivot() réorganise les données en utilisant des valeurs de colonnes comme nouveaux index et colonnes, créant une table pivot. transpose() (ou .T) se contente d\'échanger les lignes et les colonnes ; rotate() et flip() n\'existent pas dans pandas.',
     difficulty: 'Avancé',
     topic: 'Pandas',
     points: 20
@@ -226,7 +226,7 @@ const programmingQuestions: QuizQuestion[] = [
     question: 'Comment calculer la corrélation entre les colonnes d\'un DataFrame ?',
     options: ['df.corr()', 'df.correlation()', 'df.relate()', 'df.covariance()'],
     correctAnswer: 0,
-    explanation: 'df.corr() calcule la matrice de corrélation de Pearson entre toutes les colonnes numériques du DataFrame.',
+    explanation: 'df.corr() calcule la matrice de corrélation de Pearson entre les colonnes du DataFrame (method="spearman" ou "kendall" pour d\'autres coefficients). S\'il y a des colonnes de texte, il faut passer numeric_only=True, sinon pandas lève une erreur. df.cov() donne la covariance.',
     difficulty: 'Intermédiaire',
     topic: 'Pandas',
     points: 15
@@ -286,7 +286,7 @@ const programmingQuestions: QuizQuestion[] = [
       'np.asarray() ne fonctionne qu\'avec les listes'
     ],
     correctAnswer: 1,
-    explanation: 'np.asarray() ne crée une copie que si nécessaire, tandis que np.array() crée toujours une nouvelle copie par défaut (sauf si copy=False).',
+    explanation: 'np.asarray() ne crée une copie que si nécessaire (une entrée qui est déjà un ndarray est renvoyée telle quelle), tandis que np.array() copie par défaut (copy=True).',
     difficulty: 'Avancé',
     topic: 'NumPy',
     points: 20
@@ -316,7 +316,7 @@ const programmingQuestions: QuizQuestion[] = [
     question: 'Comment créer un array NumPy avec des valeurs aléatoires ?',
     options: ['np.random.random()', 'np.random.rand()', 'np.random.randn()', 'Toutes les réponses'],
     correctAnswer: 3,
-    explanation: 'Toutes ces fonctions créent des arrays aléatoires : random() et rand() tirent des valeurs uniformes sur [0, 1) (seule la façon de donner la forme diffère : un tuple pour random(), des dimensions séparées pour rand()), randn() suit une loi normale centrée réduite.',
+    explanation: 'Toutes ces fonctions créent des arrays aléatoires quand on leur donne une forme : random() et rand() tirent des valeurs uniformes sur [0, 1) (seule la façon de donner la forme diffère : un tuple pour random(), des dimensions séparées pour rand()), randn() suit une loi normale centrée réduite. Sans argument de forme, elles renvoient un simple nombre.',
     difficulty: 'Intermédiaire',
     topic: 'NumPy',
     points: 15
@@ -330,9 +330,9 @@ const mathStatsQuestions: QuizQuestion[] = [
   {
     id: 'math_001',
     question: 'Quelle mesure de tendance centrale est la plus résistante aux valeurs aberrantes ?',
-    options: ['Moyenne', 'Médiane', 'Mode', 'Étendue'],
+    options: ['Moyenne', 'Médiane', 'Moyenne quadratique', 'Étendue'],
     correctAnswer: 1,
-    explanation: 'La médiane est la mesure de tendance centrale la plus résistante aux valeurs aberrantes car elle ne dépend que de la valeur centrale, pas de toutes les valeurs.',
+    explanation: 'La médiane est la mesure de tendance centrale usuelle la plus résistante aux valeurs aberrantes : elle ne dépend que du rang des valeurs, pas de leur amplitude, alors que la moyenne est tirée par chaque valeur extrême. (Le mode n\'est pas non plus sensible à l\'amplitude des valeurs extrêmes, mais il peut être instable et n\'est pas toujours unique.)',
     difficulty: 'Débutant',
     topic: 'Statistiques descriptives',
     points: 10
@@ -472,7 +472,7 @@ const mathStatsQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce que le théorème central limite ?',
     options: [
       'La moyenne d\'un échantillon suit une loi normale',
-      'La distribution des moyennes d\'échantillons tend vers une loi normale',
+      'La distribution des moyennes d\'échantillons tend vers une loi normale quand la taille des échantillons augmente',
       'Toutes les distributions sont normales',
       'La limite d\'une fonction est toujours centrale'
     ],
@@ -496,13 +496,13 @@ const mathStatsQuestions: QuizQuestion[] = [
     id: 'math_013',
     question: 'Qu\'est-ce qu\'une distribution binomiale ?',
     options: [
-      'Une distribution avec deux paramètres',
-      'Une distribution pour des expériences avec deux issues possibles',
-      'Une distribution symétrique',
-      'Une distribution continue'
+      'Une distribution continue définie sur tous les réels',
+      'La distribution du nombre de succès sur n essais indépendants à deux issues possibles',
+      'Une distribution toujours symétrique',
+      'Une distribution dont la moyenne vaut toujours zéro'
     ],
     correctAnswer: 1,
-    explanation: 'La distribution binomiale modélise le nombre de succès dans n essais indépendants, chacun ayant deux issues possibles (succès/échec).',
+    explanation: 'La distribution binomiale modélise le nombre de succès dans n essais indépendants, chacun ayant deux issues possibles (succès/échec) et la même probabilité de succès p. Elle est discrète, et n\'est symétrique que si p vaut 0,5.',
     difficulty: 'Intermédiaire',
     topic: 'Distributions',
     points: 15
@@ -525,7 +525,7 @@ const mathStatsQuestions: QuizQuestion[] = [
   {
     id: 'math_015',
     question: 'Quelle mesure de tendance centrale utiliser pour des données très asymétriques ?',
-    options: ['Moyenne', 'Médiane', 'Mode', 'Étendue'],
+    options: ['Moyenne', 'Médiane', 'Moyenne quadratique', 'Étendue'],
     correctAnswer: 1,
     explanation: 'Pour des données très asymétriques, la médiane est préférable car elle n\'est pas influencée par les valeurs extrêmes, contrairement à la moyenne.',
     difficulty: 'Intermédiaire',
@@ -536,13 +536,13 @@ const mathStatsQuestions: QuizQuestion[] = [
     id: 'math_016',
     question: 'Qu\'est-ce que la loi de Poisson ?',
     options: [
-      'Une distribution pour des événements rares',
+      'Une distribution du nombre d\'événements survenant dans un intervalle fixe (loi des événements rares)',
       'Une distribution uniforme',
       'Une distribution normale',
       'Une distribution exponentielle'
     ],
     correctAnswer: 0,
-    explanation: 'La loi de Poisson modélise le nombre d\'événements rares qui se produisent dans un intervalle de temps ou d\'espace fixe.',
+    explanation: 'La loi de Poisson modélise le nombre d\'événements qui se produisent, de façon indépendante et à taux moyen constant, dans un intervalle de temps ou d\'espace fixe (par exemple des appels par heure) ; on l\'appelle parfois « loi des événements rares ». La loi exponentielle, elle, modélise le temps d\'attente entre deux événements.',
     difficulty: 'Avancé',
     topic: 'Distributions',
     points: 20
@@ -579,15 +579,15 @@ const mathStatsQuestions: QuizQuestion[] = [
   },
   {
     id: 'math_019',
-    question: 'Qu\'est-ce qu\'un test du chi-carré ?',
+    question: 'À quoi sert couramment le test du chi-carré (χ²) de Pearson ?',
     options: [
-      'Un test de normalité',
-      'Un test d\'indépendance ou d\'adéquation',
-      'Un test de moyenne',
-      'Un test de variance'
+      'À comparer les moyennes de deux groupes',
+      'À tester l\'indépendance de deux variables catégorielles ou l\'adéquation à une distribution théorique',
+      'À mesurer la force d\'une relation linéaire entre deux variables quantitatives',
+      'À estimer un intervalle de confiance pour une moyenne'
     ],
     correctAnswer: 1,
-    explanation: 'Le test du chi-carré teste l\'indépendance entre variables catégorielles ou l\'adéquation d\'une distribution observée à une distribution théorique.',
+    explanation: 'Le test du chi-carré de Pearson teste l\'indépendance entre variables catégorielles ou l\'adéquation d\'une distribution observée à une distribution théorique. Il suppose des effectifs attendus suffisants (règle usuelle : au moins 5 par case).',
     difficulty: 'Avancé',
     topic: 'Tests statistiques',
     points: 20
@@ -648,7 +648,7 @@ const machineLearningQuestions: QuizQuestion[] = [
     question: 'Quelle métrique est appropriée pour évaluer un modèle de classification binaire déséquilibré ?',
     options: ['Exactitude (accuracy)', 'F1-Score', 'Erreur quadratique moyenne', 'R²'],
     correctAnswer: 1,
-    explanation: 'Le F1-Score est plus approprié pour les classes déséquilibrées car il combine précision et rappel. L\'accuracy peut être trompeuse avec des classes déséquilibrées.',
+    explanation: 'Le F1-Score, moyenne harmonique de la précision et du rappel, est plus approprié pour les classes déséquilibrées. L\'accuracy peut être trompeuse : un modèle qui prédit toujours la classe majoritaire obtient une accuracy élevée sans rien détecter de la classe minoritaire.',
     difficulty: 'Avancé',
     topic: 'Métriques d\'évaluation',
     points: 20
@@ -670,10 +670,10 @@ const machineLearningQuestions: QuizQuestion[] = [
   },
   {
     id: 'ml_005',
-    question: 'Quel algorithme est le mieux adapté pour la classification de texte ?',
+    question: 'Lequel de ces algorithmes est classiquement utilisé pour la classification de texte ?',
     options: ['K-means', 'Naive Bayes', 'Régression linéaire', 'DBSCAN'],
     correctAnswer: 1,
-    explanation: 'Naive Bayes est particulièrement efficace pour la classification de texte car il gère bien les données de haute dimension et son hypothèse d\'indépendance conditionnelle des mots, fausse mais commode, donne de bons résultats sur du texte.',
+    explanation: 'Naive Bayes est un classifieur classique pour le texte (filtrage de spam, par exemple) : il supporte bien les données de haute dimension, et son hypothèse d\'indépendance conditionnelle des mots, fausse mais commode, donne souvent de bons résultats. K-means et DBSCAN sont des algorithmes de clustering, la régression linéaire prédit une valeur numérique.',
     difficulty: 'Intermédiaire',
     topic: 'Algorithmes de classification',
     points: 15
@@ -788,12 +788,12 @@ const machineLearningQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce que l\'algorithme Random Forest ?',
     options: [
       'Un seul arbre de décision très profond',
-      'Un ensemble d\'arbres de décision avec vote majoritaire',
+      'Un ensemble d\'arbres de décision dont les prédictions sont agrégées',
       'Un algorithme de clustering',
       'Une technique de régularisation'
     ],
     correctAnswer: 1,
-    explanation: 'Random Forest est un algorithme d\'ensemble qui combine plusieurs arbres de décision entraînés sur des échantillons différents et utilise le vote majoritaire pour la prédiction finale.',
+    explanation: 'Random Forest est un algorithme d\'ensemble qui combine plusieurs arbres de décision entraînés sur des échantillons bootstrap différents, chaque arbre ne considérant qu\'un sous-ensemble aléatoire de variables à chaque coupure. Les prédictions sont agrégées : vote majoritaire en classification (scikit-learn moyenne en réalité les probabilités prédites par les arbres), moyenne en régression.',
     difficulty: 'Intermédiaire',
     topic: 'Ensemble methods',
     points: 15
@@ -847,13 +847,13 @@ const machineLearningQuestions: QuizQuestion[] = [
     id: 'ml_017',
     question: 'Qu\'est-ce que le biais et la variance dans un modèle ?',
     options: [
-      'Biais = sous-apprentissage, Variance = surapprentissage',
-      'Biais = surapprentissage, Variance = sous-apprentissage',
+      'Un biais élevé conduit au sous-apprentissage, une variance élevée au surapprentissage',
+      'Un biais élevé conduit au surapprentissage, une variance élevée au sous-apprentissage',
       'Biais et variance sont identiques',
       'Biais mesure la vitesse, variance mesure la précision'
     ],
     correctAnswer: 0,
-    explanation: 'Le biais mesure l\'erreur due à des hypothèses simplificatrices (sous-apprentissage). La variance mesure la sensibilité aux variations des données d\'entraînement (surapprentissage).',
+    explanation: 'Le biais mesure l\'erreur due à des hypothèses simplificatrices : un biais élevé correspond à un sous-apprentissage. La variance mesure la sensibilité aux variations des données d\'entraînement : une variance élevée correspond à un surapprentissage.',
     difficulty: 'Avancé',
     topic: 'Biais-Variance',
     points: 20
@@ -916,10 +916,10 @@ const dataVizQuestions: QuizQuestion[] = [
   },
   {
     id: 'viz_002',
-    question: 'Quelle bibliothèque Python est basée sur la grammaire des graphiques ?',
+    question: 'Quelle bibliothèque Python est un portage de ggplot2, fondé sur la grammaire des graphiques ?',
     options: ['Matplotlib', 'Seaborn', 'Plotly', 'Plotnine'],
     correctAnswer: 3,
-    explanation: 'Plotnine est basée sur ggplot2 de R et implémente la grammaire des graphiques en Python. Bien que Plotly soit moderne, il n\'est pas basé sur cette grammaire.',
+    explanation: 'Plotnine est un portage de ggplot2 (R) : elle implémente la grammaire des graphiques en Python. Seaborn s\'en inspire dans son interface seaborn.objects, plus récente, mais n\'est pas un portage de ggplot2 ; Matplotlib et Plotly reposent sur d\'autres logiques.',
     difficulty: 'Avancé',
     topic: 'Bibliothèques de visualisation',
     points: 20
@@ -999,7 +999,7 @@ const dataVizQuestions: QuizQuestion[] = [
     question: 'Quel graphique Seaborn utiliser pour visualiser la corrélation entre variables ?',
     options: ['boxplot', 'heatmap', 'violinplot', 'stripplot'],
     correctAnswer: 1,
-    explanation: 'sns.heatmap() est parfait pour visualiser les matrices de corrélation avec un code couleur intuitif pour identifier les relations entre variables.',
+    explanation: 'sns.heatmap() est l\'outil habituel pour visualiser une matrice de corrélation (obtenue par exemple avec df.corr()) : la couleur indique la valeur de chaque coefficient et permet de repérer rapidement les paires de variables liées.',
     difficulty: 'Intermédiaire',
     topic: 'Seaborn',
     points: 15
@@ -1029,7 +1029,7 @@ const dataVizQuestions: QuizQuestion[] = [
       'Meilleure qualité d\'impression'
     ],
     correctAnswer: 1,
-    explanation: 'Plotly excelle dans la création de visualisations interactives avec zoom, hover, sélection, et s\'intègre parfaitement dans les applications web.',
+    explanation: 'Plotly permet de créer des visualisations interactives (zoom, survol, sélection) qui s\'exportent facilement en HTML ou s\'intègrent dans des applications web.',
     difficulty: 'Débutant',
     topic: 'Plotly',
     points: 10
@@ -1049,7 +1049,7 @@ const dataVizQuestions: QuizQuestion[] = [
     question: 'Quel type de graphique utiliser pour comparer des proportions ?',
     options: ['Histogramme', 'Graphique en secteurs (pie chart)', 'Nuage de points', 'Graphique en aires'],
     correctAnswer: 1,
-    explanation: 'Le graphique en secteurs est idéal pour montrer les proportions d\'un tout, bien que les graphiques en barres soient souvent préférés pour la lisibilité.',
+    explanation: 'Le graphique en secteurs montre la part de chaque catégorie dans un tout, à condition de garder peu de catégories ; un graphique en barres est souvent plus lisible pour comparer précisément des valeurs proches.',
     difficulty: 'Débutant',
     topic: 'Types de graphiques',
     points: 10
@@ -1187,10 +1187,10 @@ const dataPreparationQuestions: QuizQuestion[] = [
       'Suppression des lignes',
       'Imputation par la moyenne',
       'Imputation par régression',
-      'Remplacement par des valeurs aléatoires'
+      'Remplacement par des valeurs tirées au hasard, sans lien avec les données'
     ],
     correctAnswer: 3,
-    explanation: 'Remplacer les valeurs manquantes par des valeurs aléatoires introduit du bruit et peut biaiser l\'analyse. Les autres méthodes sont des techniques valides selon le contexte.',
+    explanation: 'Remplacer les valeurs manquantes par des valeurs tirées au hasard, sans lien avec la distribution observée, introduit du bruit et peut biaiser l\'analyse. Les autres méthodes sont des techniques usuelles, avec leurs limites selon le contexte (l\'imputation par la moyenne, par exemple, réduit la variance). Tirer au hasard parmi des valeurs observées (imputation hot-deck ou multiple) est en revanche une technique reconnue.',
     difficulty: 'Intermédiaire',
     topic: 'Valeurs manquantes',
     points: 15
@@ -1370,7 +1370,7 @@ const dataPreparationQuestions: QuizQuestion[] = [
       'Changer d\'algorithme uniquement'
     ],
     correctAnswer: 1,
-    explanation: 'Les données déséquilibrées peuvent être traitées par sous-échantillonnage, sur-échantillonnage, SMOTE, ou ajustement des poids dans les modèles.',
+    explanation: 'Les données déséquilibrées peuvent être traitées par sous-échantillonnage, sur-échantillonnage, SMOTE, ou ajustement des poids dans les modèles. Le rééchantillonnage ne s\'applique qu\'au jeu d\'entraînement, jamais au jeu de test.',
     difficulty: 'Avancé',
     topic: 'Déséquilibre des classes',
     points: 20
@@ -1380,12 +1380,12 @@ const dataPreparationQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce que la validation croisée dans la préparation des données ?',
     options: [
       'Vérifier les types de données',
-      'Évaluer la robustesse du preprocessing sur différents échantillons',
+      'Évaluer le modèle et son pré-traitement sur plusieurs découpages des données',
       'Compter les lignes',
       'Vérifier la syntaxe'
     ],
     correctAnswer: 1,
-    explanation: 'La validation croisée en preprocessing vérifie que les transformations sont robustes et généralisables sur différents échantillons des données.',
+    explanation: 'La validation croisée évalue le modèle et son pré-traitement sur plusieurs découpages des données. Les transformations apprises sur les données (moyenne, écart-type, imputation...) doivent être ajustées sur les plis d\'entraînement seulement (par exemple avec un Pipeline scikit-learn), sinon des informations du pli de test fuient dans l\'entraînement.',
     difficulty: 'Avancé',
     topic: 'Validation',
     points: 20
@@ -1440,12 +1440,12 @@ const dataPreparationQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce que le data leakage ?',
     options: [
       'Perte de données',
-      'Utilisation d\'informations futures dans les features',
+      'Utilisation, à l\'entraînement, d\'informations qui ne seront pas disponibles au moment de la prédiction',
       'Erreur de syntaxe',
       'Données manquantes'
     ],
     correctAnswer: 1,
-    explanation: 'Le data leakage survient quand des informations du futur ou de la variable cible \'fuient\' dans les features, créant des performances artificiellement élevées.',
+    explanation: 'Le data leakage survient quand des informations du futur, de la variable cible ou du jeu de test \'fuient\' dans les variables d\'entraînement, ce qui donne des performances artificiellement élevées à l\'évaluation.',
     difficulty: 'Avancé',
     topic: 'Bonnes pratiques',
     points: 20
@@ -1455,12 +1455,12 @@ const dataPreparationQuestions: QuizQuestion[] = [
     question: 'Comment valider la qualité du preprocessing ?',
     options: [
       'Visuellement seulement',
-      'Tests statistiques, profiling, et validation sur données de test',
+      'Contrôles statistiques, profilage des données et validation sur des données mises de côté',
       'Compter les lignes',
       'Vérifier les noms de colonnes'
     ],
     correctAnswer: 1,
-    explanation: 'La qualité du preprocessing se valide par des tests statistiques, profiling des données, visualisations, et validation des performances sur données de test.',
+    explanation: 'La qualité du pré-traitement se contrôle par des tests statistiques, le profilage des données (types, valeurs manquantes, distributions), des visualisations et la validation des performances sur des données mises de côté, sans jamais ajuster le pré-traitement sur le jeu de test.',
     difficulty: 'Avancé',
     topic: 'Validation',
     points: 20
@@ -1488,10 +1488,10 @@ const deepLearningQuestions: QuizQuestion[] = [
   },
   {
     id: 'dl_002',
-    question: 'Quelle fonction d\'activation est sujette au problème de gradient qui disparaît ?',
-    options: ['ReLU', 'Sigmoid', 'Tanh', 'Sigmoid et Tanh'],
+    question: 'Quelles fonctions d\'activation sont sujettes au problème de gradient qui disparaît ?',
+    options: ['ReLU', 'Sigmoid seulement', 'Tanh seulement', 'Sigmoid et Tanh'],
     correctAnswer: 3,
-    explanation: 'Les fonctions sigmoid et tanh peuvent causer le problème de gradient qui disparaît car leurs dérivées deviennent très petites, ralentissant l\'apprentissage dans les couches profondes.',
+    explanation: 'Les fonctions sigmoid et tanh saturent pour de grandes valeurs d\'entrée : leurs dérivées deviennent très petites (au plus 0,25 pour la sigmoid), ce qui ralentit l\'apprentissage des premières couches dans les réseaux profonds. La dérivée de ReLU vaut 1 pour les entrées positives, ce qui limite ce problème (en revanche, un neurone ReLU peut « mourir » si ses entrées restent négatives).',
     difficulty: 'Avancé',
     topic: 'Fonctions d\'activation',
     points: 20
@@ -1611,7 +1611,7 @@ const deepLearningQuestions: QuizQuestion[] = [
       'Plus simples à implémenter'
     ],
     correctAnswer: 1,
-    explanation: 'Les connexions résiduelles (skip connections) permettent d\'entraîner des réseaux très profonds en évitant le problème du gradient qui disparaît.',
+    explanation: 'Les connexions résiduelles (skip connections) permettent d\'entraîner des réseaux très profonds en facilitant la circulation du gradient et en atténuant le problème du gradient qui disparaît (He et al., 2015).',
     difficulty: 'Avancé',
     topic: 'Architectures avancées',
     points: 20
@@ -1636,12 +1636,12 @@ const deepLearningQuestions: QuizQuestion[] = [
     question: 'Quelle est la différence entre fine-tuning et transfer learning ?',
     options: [
       'Aucune différence',
-      'Transfer learning utilise un modèle pré-entraîné, fine-tuning ajuste ses poids',
+      'Le transfer learning réutilise un modèle pré-entraîné ; le fine-tuning en est une forme où l\'on réajuste ses poids sur la nouvelle tâche',
       'Fine-tuning est plus rapide',
       'Transfer learning est obsolète'
     ],
     correctAnswer: 1,
-    explanation: 'Transfer learning utilise un modèle pré-entraîné comme base, tandis que fine-tuning ajuste spécifiquement les poids de ce modèle pour une nouvelle tâche.',
+    explanation: 'Le transfer learning réutilise un modèle pré-entraîné comme point de départ pour une nouvelle tâche. Le fine-tuning en est une manière de faire : on réajuste tout ou partie des poids du modèle sur les nouvelles données (l\'autre manière consiste à garder les poids gelés et à n\'entraîner que la dernière couche).',
     difficulty: 'Intermédiaire',
     topic: 'Transfer Learning',
     points: 15
@@ -1726,12 +1726,12 @@ const deepLearningQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce qu\'un Transformer ?',
     options: [
       'Un type de CNN',
-      'Une architecture basée uniquement sur l\'attention',
+      'Une architecture fondée sur l\'attention, sans récurrence ni convolution',
       'Un algorithme d\'optimisation',
       'Une fonction d\'activation'
     ],
     correctAnswer: 1,
-    explanation: 'Les Transformers utilisent uniquement des mécanismes d\'attention, sans convolution ni récurrence, révolutionnant le traitement du langage naturel.',
+    explanation: 'Les Transformers (Vaswani et al., 2017, « Attention Is All You Need ») reposent sur des mécanismes d\'attention, sans convolution ni récurrence, associés à des couches denses, des connexions résiduelles et des normalisations. Ils sont à la base de la plupart des modèles de langage actuels.',
     difficulty: 'Avancé',
     topic: 'Architectures modernes',
     points: 20
@@ -1827,7 +1827,7 @@ const bigDataQuestions: QuizQuestion[] = [
       'Un protocole réseau'
     ],
     correctAnswer: 1,
-    explanation: 'MapReduce est un paradigme de programmation qui divise le traitement en deux phases : Map (traitement parallèle) et Reduce (agrégation des résultats).',
+    explanation: 'MapReduce est un modèle de programmation qui divise le traitement en deux phases : Map (traitement parallèle de morceaux de données, qui produit des paires clé-valeur) et Reduce (agrégation des valeurs de chaque clé), séparées par une étape de regroupement par clé (shuffle).',
     difficulty: 'Avancé',
     topic: 'MapReduce',
     points: 20
@@ -1897,7 +1897,7 @@ const bigDataQuestions: QuizQuestion[] = [
       'Stockage en mémoire uniquement'
     ],
     correctAnswer: 1,
-    explanation: 'Apache Cassandra offre une haute disponibilité sans point de défaillance unique et une scalabilité linéaire, idéale pour les applications nécessitant une disponibilité continue.',
+    explanation: 'Apache Cassandra offre une haute disponibilité sans point de défaillance unique et une scalabilité linéaire, adaptée aux applications qui exigent une disponibilité continue.',
     difficulty: 'Avancé',
     topic: 'Bases de données NoSQL',
     points: 20
@@ -1937,7 +1937,7 @@ const bigDataQuestions: QuizQuestion[] = [
     question: 'Qu\'est-ce que le théorème CAP ?',
     options: [
       'Un algorithme de tri',
-      'Consistency, Availability, Partition tolerance - on ne peut garantir que 2 sur 3',
+      'Consistency, Availability, Partition tolerance : lors d\'une partition du réseau, il faut choisir entre cohérence et disponibilité',
       'Un protocole réseau',
       'Une méthode de compression'
     ],
@@ -2042,12 +2042,12 @@ const bigDataQuestions: QuizQuestion[] = [
     question: 'Quel est l\'avantage principal d\'Elasticsearch ?',
     options: [
       'Stockage relationnel',
-      'Recherche et analyse en temps réel de gros volumes de données',
+      'Recherche et analyse en quasi temps réel de gros volumes de données',
       'Interface graphique',
       'Calcul distribué'
     ],
     correctAnswer: 1,
-    explanation: 'Elasticsearch est un moteur de recherche et d\'analyse distribué qui permet la recherche et l\'analyse en temps réel de gros volumes de données textuelles et structurées.',
+    explanation: 'Elasticsearch est un moteur de recherche et d\'analyse distribué qui permet la recherche et l\'analyse en quasi temps réel de gros volumes de données textuelles et structurées.',
     difficulty: 'Intermédiaire',
     topic: 'Moteurs de recherche',
     points: 15
@@ -2288,7 +2288,7 @@ const businessIntelligenceQuestions: QuizQuestion[] = [
       'BI automatisée'
     ],
     correctAnswer: 1,
-    explanation: 'La Real-Time BI permet l\'analyse et le reporting des données en temps réel ou quasi-réel, permettant une prise de décision immédiate basée sur les données les plus récentes.',
+    explanation: 'La Real-Time BI permet l\'analyse et le reporting des données en temps réel ou quasi-réel, permettant de décider à partir de données très récentes.',
     difficulty: 'Avancé',
     topic: 'BI temps réel',
     points: 20

@@ -11,7 +11,6 @@ export const datavizDefinitions: Record<string, GlossaryTermDefinition> = {
       "Carte de chaleur montrant la densité de population par région"
     ],
     relatedTerms: ["Graphique", "Diagramme", "Tableau de bord", "Infographie"],
-    source: "Principes de la visualisation de données"
   },
   
   "matplotlib": {
@@ -41,7 +40,7 @@ export const datavizDefinitions: Record<string, GlossaryTermDefinition> = {
   "tableau": {
     term: "Tableau",
     shortDefinition: "Plateforme logicielle de business intelligence et de visualisation de données.",
-    longDefinition: "Tableau est une plateforme d'analyse visuelle qui transforme les données brutes en insights exploitables. Elle permet aux utilisateurs de créer des visualisations interactives, des tableaux de bord et des histoires sans nécessiter de compétences avancées en programmation.",
+    longDefinition: "Tableau est un logiciel commercial d'analyse visuelle. Il permet de créer des visualisations interactives et des tableaux de bord sans programmer, en connectant des sources de données comme des fichiers ou des bases.",
     examples: [
       "Création d'un tableau de bord interactif pour suivre les KPIs d'une entreprise",
       "Analyse visuelle des tendances de vente par région et par période"
@@ -65,7 +64,7 @@ export const datavizDefinitions: Record<string, GlossaryTermDefinition> = {
   "power-bi": {
     term: "Power BI",
     shortDefinition: "Suite d'outils d'analyse commerciale de Microsoft pour l'analyse et le partage de données.",
-    longDefinition: "Microsoft Power BI est une collection d'applications, de services et de connecteurs qui transforment des sources de données disparates en insights cohérents, visuellement immersifs et interactifs. Il permet de connecter à diverses sources de données, de simplifier la préparation des données et de créer des visualisations rapidement.",
+    longDefinition: "Microsoft Power BI est un ensemble d'applications, de services et de connecteurs pour l'analyse de données. Il permet de se connecter à diverses sources, de préparer les données (Power Query) et de construire des rapports et des tableaux de bord interactifs.",
     examples: [
       "Création de tableaux de bord pour suivre les performances commerciales",
       "Partage de rapports interactifs au sein d'une organisation"
@@ -83,6 +82,5 @@ export const datavizDefinitions: Record<string, GlossaryTermDefinition> = {
       "Représentation de l'activité utilisateur sur un site web"
     ],
     relatedTerms: ["Matrice de corrélation", "Carte de chaleur", "Gradient de couleur"],
-    source: "Techniques de visualisation de données"
   }
 };
