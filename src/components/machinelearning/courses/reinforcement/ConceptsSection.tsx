@@ -16,7 +16,7 @@ const ConceptsSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction aux concepts */}
-      <EducationalCard title="🧩 Les quatre éléments de base de l'apprentissage par renforcement" type="concept">
+      <EducationalCard title="Les quatre éléments de base de l'apprentissage par renforcement" type="concept">
         <p className="mb-4">
           Comme un jeu vidéo, l'apprentissage par renforcement a ses « règles du jeu ».
           Voici les quatre éléments qui le constituent.
@@ -24,26 +24,26 @@ const ConceptsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-            <h4 className="font-semibold text-blue-800 mb-2">🤖 Agent</h4>
+            <h4 className="font-semibold text-blue-800 mb-2">Agent</h4>
             <p className="text-sm">Le "joueur" qui prend des décisions et apprend</p>
           </div>
           <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-            <h4 className="font-semibold text-green-800 mb-2">🌍 Environnement</h4>
+            <h4 className="font-semibold text-green-800 mb-2">Environnement</h4>
             <p className="text-sm">Le "terrain de jeu" dans lequel évolue l'agent</p>
           </div>
           <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400">
-            <h4 className="font-semibold text-purple-800 mb-2">⚡ Actions</h4>
+            <h4 className="font-semibold text-purple-800 mb-2">Actions</h4>
             <p className="text-sm">Les "mouvements" possibles de l'agent</p>
           </div>
           <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
-            <h4 className="font-semibold text-orange-800 mb-2">🎁 Récompenses</h4>
+            <h4 className="font-semibold text-orange-800 mb-2">Récompenses</h4>
             <p className="text-sm">Les "points" gagnés ou perdus après chaque action</p>
           </div>
         </div>
       </EducationalCard>
 
       {/* Cadre formel : processus de décision markovien */}
-      <EducationalCard title="📐 Le cadre formel : le processus de décision markovien (MDP)" type="zoom">
+      <EducationalCard title="Le cadre formel : le processus de décision markovien (MDP)" type="zoom">
         <div className="space-y-4">
           <p className="text-sm">
             La plupart des problèmes d'apprentissage par renforcement se décrivent comme un processus de décision
@@ -121,7 +121,7 @@ const ConceptsSection = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-blue-800 mb-3">🧠 Composants d'un agent</h4>
+                  <h4 className="font-semibold text-blue-800 mb-3">Composants d'un agent</h4>
                   <div className="space-y-3">
                     <div className="p-3 bg-white rounded-lg border">
                       <strong>Perception :</strong> Comment l'agent "voit" son environnement
@@ -138,7 +138,7 @@ const ConceptsSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-blue-800 mb-3">🎮 Exemple : Pac-Man IA</h4>
+                  <h4 className="font-semibold text-blue-800 mb-3">Exemple : Pac-Man IA</h4>
                   <div className="space-y-2 text-sm">
                     <p><strong>Perception :</strong> Position des fantômes, des pastilles</p>
                     <p><strong>Politique :</strong> "Si fantôme proche → fuir, sinon → chercher pastilles"</p>
@@ -153,7 +153,7 @@ const ConceptsSection = () => {
       </Collapsible>
 
       {/* Types d'environnements */}
-      <EducationalCard title="🌍 Types d'environnements" type="saviez-vous">
+      <EducationalCard title="Types d'environnements" type="saviez-vous">
         <p className="mb-4">
           Tous les environnements ne se ressemblent pas, et le choix de l'algorithme en dépend :
           deux critères classiques sont le caractère déterministe ou non, et l'observabilité.
@@ -162,23 +162,23 @@ const ConceptsSection = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-green-800 mb-2">🎯 Déterministe vs Stochastique</h4>
+              <h4 className="font-semibold text-green-800 mb-2">Déterministe vs Stochastique</h4>
               <p className="text-sm mb-2"><strong>Déterministe :</strong> Même action = même résultat (échecs)</p>
               <p className="text-sm"><strong>Stochastique :</strong> Résultat avec probabilités (poker)</p>
             </div>
             <div className="bg-gradient-to-r from-blue-100 to-cyan-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">👁️ Observable vs Partiel</h4>
+              <h4 className="font-semibold text-blue-800 mb-2">Observable vs Partiel</h4>
               <p className="text-sm mb-2"><strong>Observable :</strong> On voit tout (Tetris)</p>
               <p className="text-sm"><strong>Partiel :</strong> Information limitée (Bataille navale)</p>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300">
-            <h4 className="font-semibold mb-2">🏆 À vous : classez ces situations</h4>
+            <h4 className="font-semibold mb-2">À vous : classez ces situations</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-              <Badge variant="outline">🎮 Super Mario</Badge>
-              <Badge variant="outline">♠️ Blackjack</Badge>
-              <Badge variant="outline">🚗 Conduite autonome</Badge>
+              <Badge variant="outline">Super Mario</Badge>
+              <Badge variant="outline">Blackjack</Badge>
+              <Badge variant="outline">Conduite autonome</Badge>
             </div>
             <p className="text-xs text-gray-600 mt-2">
               Réponse : Mario (déterministe, observable à l'écran), Blackjack (stochastique, partiellement observable :
@@ -204,7 +204,7 @@ const ConceptsSection = () => {
 
       {/* Exercice pratique */}
       <ExerciseCard
-        title="🎮 Concevoir un agent pour Frogger"
+        title="Concevoir un agent pour Frogger"
         problem="Vous devez créer un agent RL pour le jeu Frogger (la grenouille qui traverse la route). Définissez précisément : l'espace d'états, l'espace d'actions, la fonction de récompense, et le type d'environnement."
         solution={`**Espace d'états :**
 - Position (x, y) de la grenouille
@@ -255,7 +255,7 @@ const ConceptsSection = () => {
         <CollapsibleContent>
           <Card className="mt-2 bg-gradient-to-r from-purple-50 to-pink-50">
             <CardContent className="pt-6 space-y-6">
-              <EducationalCard title="🍕 Le Dilemme du Restaurant" type="exemple">
+              <EducationalCard title="Le Dilemme du Restaurant" type="exemple">
                 <div className="space-y-4">
                   <p>
                     Imaginez que vous êtes dans une nouvelle ville avec plein de restaurants.
@@ -264,19 +264,19 @@ const ConceptsSection = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
-                      <h4 className="font-semibold text-green-800">🍕 EXPLOITER</h4>
+                      <h4 className="font-semibold text-green-800">EXPLOITER</h4>
                       <p className="text-sm">Retourner à la pizzeria connue</p>
                       <p className="text-xs text-green-600">Sûr mais limité</p>
                     </div>
                     <div className="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
-                      <h4 className="font-semibold text-blue-800">🌟 EXPLORER</h4>
+                      <h4 className="font-semibold text-blue-800">EXPLORER</h4>
                       <p className="text-sm">Essayer un nouveau restaurant</p>
                       <p className="text-xs text-blue-600">Risqué mais potentiellement meilleur</p>
                     </div>
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border">
-                    <h4 className="font-semibold mb-2">💡 Stratégies équilibrées :</h4>
+                    <h4 className="font-semibold mb-2">Stratégies équilibrées :</h4>
                     <ul className="text-sm space-y-1">
                       <li>• <strong>ε-greedy :</strong> 90 % pizzeria, 10 % d'exploration</li>
                       <li>• <strong>UCB :</strong> Essayer les restaurants peu testés</li>

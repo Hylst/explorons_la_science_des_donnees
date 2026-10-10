@@ -8,7 +8,7 @@ import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { TrendingUp, Code, BarChart3, Zap, Award, Target, Lightbulb, Scale, CheckCircle } from "lucide-react";
+import { TrendingUp, Code, BarChart3, Zap, Award, Target, Lightbulb, Scale, CheckCircle, Database, AlertTriangle, type LucideIcon } from "lucide-react";
 import { SourceNote } from "@/components/ui/source-note";
 import { readableTextColor } from "@/lib/contrast";
 
@@ -23,7 +23,6 @@ interface LanguageData {
   performance: number;
   ecosystem: number;
   color: string;
-  icon: string;
   category: string;
   yearCreated: number;
   creator: string;
@@ -38,7 +37,6 @@ interface LanguageData {
 
 interface ComparisonData {
   language: string;
-  icon: string;
   pros: string[];
   cons: string[];
 }
@@ -51,9 +49,21 @@ interface UseCaseData {
   R: number;
   SQL: number;
   Julia: number;
-  icon: string;
   [key: string]: string | number;
 }
+
+// Une icône sobre par langage, choisie d'après son nom (le nom est la clé utilisée dans toutes les données de la page).
+const LANGUAGE_ICONS: Record<string, LucideIcon> = {
+  Python: Code,
+  R: BarChart3,
+  SQL: Database,
+  Julia: Zap,
+};
+
+const LanguageIcon = ({ name, className }: { name: string; className?: string }) => {
+  const Icon = LANGUAGE_ICONS[name] ?? Code;
+  return <Icon className={className} aria-hidden="true" />;
+};
 
 // Défini hors du composant principal : sinon il est recréé à chaque rendu (le composant se redessine toutes les 3 s
 // pour l'animation des cartes) et l'onglet choisi par le visiteur reviendrait à Python.
@@ -62,9 +72,9 @@ const CodeComparison = ({ title, pythonCode, rCode, sqlCode }: { title: string, 
     <h4 className="font-semibold mb-4">{title}</h4>
     <Tabs defaultValue="python" className="w-full">
       <TabsList className="grid w-full grid-cols-3">
-        <TabsTrigger value="python">🐍 Python</TabsTrigger>
-        <TabsTrigger value="r">📊 R</TabsTrigger>
-        <TabsTrigger value="sql">🗃️ SQL</TabsTrigger>
+        <TabsTrigger value="python">Python</TabsTrigger>
+        <TabsTrigger value="r">R</TabsTrigger>
+        <TabsTrigger value="sql">SQL</TabsTrigger>
       </TabsList>
       <TabsContent value="python">
         <div className="bg-gray-900 rounded-md overflow-hidden">
@@ -112,7 +122,6 @@ const LanguageComparison = () => {
       performance: 68,
       ecosystem: 96,
       color: "#3776ab",
-      icon: "🐍",
       category: "Généraliste",
       yearCreated: 1991,
       creator: "Guido van Rossum",
@@ -120,7 +129,7 @@ const LanguageComparison = () => {
       strengths: ["Syntaxe claire", "Vaste écosystème", "Communauté active", "Polyvalence"],
       weaknesses: ["Vitesse d'exécution du code Python pur", "GIL (verrou global ; version sans GIL optionnelle depuis Python 3.13)", "Consommation mémoire"],
       useCases: ["Machine Learning", "Web Development", "Automatisation", "Data Analysis"],
-      marketTrend: "📈 En croissance",
+      marketTrend: "En croissance",
       difficulty: "Facile",
       timeToLearn: "3-6 mois"
     },
@@ -132,7 +141,6 @@ const LanguageComparison = () => {
       performance: 58,
       ecosystem: 88,
       color: "#276dc3",
-      icon: "📊",
       category: "Statistiques",
       yearCreated: 1993,
       creator: "Ross Ihaka & Robert Gentleman",
@@ -140,7 +148,7 @@ const LanguageComparison = () => {
       strengths: ["Analyses statistiques", "Visualisations", "Packages spécialisés", "Recherche"],
       weaknesses: ["Courbe d'apprentissage", "Performance", "Syntaxe parfois complexe"],
       useCases: ["Analyses statistiques", "Bioinformatique", "Recherche", "Visualisation"],
-      marketTrend: "📊 Stable",
+      marketTrend: "Stable",
       difficulty: "Modéré",
       timeToLearn: "4-8 mois"
     },
@@ -152,7 +160,6 @@ const LanguageComparison = () => {
       performance: 85,
       ecosystem: 75,
       color: "#f29111",
-      icon: "🗃️",
       category: "Base de données",
       yearCreated: 1974,
       creator: "Donald Chamberlin & Raymond Boyce",
@@ -160,7 +167,7 @@ const LanguageComparison = () => {
       strengths: ["Standard universel", "Performance", "Simplicité", "Omniprésent"],
       weaknesses: ["Limité aux données", "Pas de logique complexe", "Variations entre SGBD"],
       useCases: ["Gestion de données", "Reporting", "ETL", "Analytics"],
-      marketTrend: "🔄 Essentiel",
+      marketTrend: "Essentiel",
       difficulty: "Facile",
       timeToLearn: "2-4 mois"
     },
@@ -172,7 +179,6 @@ const LanguageComparison = () => {
       performance: 98,
       ecosystem: 45,
       color: "#9558b2",
-      icon: "⚡",
       category: "Performance",
       yearCreated: 2012,
       creator: "Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman",
@@ -180,7 +186,7 @@ const LanguageComparison = () => {
       strengths: ["Performance native", "Syntaxe mathématique", "Parallélisme", "Interopérabilité"],
       weaknesses: ["Écosystème jeune", "Communauté réduite", "Temps de compilation"],
       useCases: ["Calcul scientifique", "HPC", "Finance quantitative", "Recherche"],
-      marketTrend: "🔬 Niche (calcul scientifique)",
+      marketTrend: "Niche (calcul scientifique)",
       difficulty: "Modéré-Difficile",
       timeToLearn: "6-12 mois"
     }
@@ -191,16 +197,16 @@ const LanguageComparison = () => {
    * Using modern ES6 array methods and object destructuring
    */
   const useCaseData = useMemo((): UseCaseData[] => [
-    { useCase: "Débutant complet", Python: 9, R: 6, SQL: 8, Julia: 4, icon: "🎓" },
-    { useCase: "Analyse statistique", Python: 8, R: 10, SQL: 5, Julia: 8, icon: "📊" },
-    { useCase: "Big Data", Python: 8, R: 6, SQL: 9, Julia: 7, icon: "🗄️" },
-    { useCase: "Machine Learning", Python: 10, R: 7, SQL: 3, Julia: 8, icon: "🤖" },
-    { useCase: "Visualisation", Python: 8, R: 10, SQL: 2, Julia: 6, icon: "📈" },
-    { useCase: "Performance", Python: 6, R: 4, SQL: 8, Julia: 10, icon: "⚡" },
-    { useCase: "Web Development", Python: 9, R: 2, SQL: 6, Julia: 3, icon: "🌐" },
-    { useCase: "Recherche académique", Python: 8, R: 10, SQL: 4, Julia: 9, icon: "🔬" },
-    { useCase: "Finance quantitative", Python: 9, R: 8, SQL: 7, Julia: 10, icon: "💰" },
-    { useCase: "IoT et capteurs", Python: 8, R: 3, SQL: 5, Julia: 6, icon: "📡" }
+    { useCase: "Débutant complet", Python: 9, R: 6, SQL: 8, Julia: 4 },
+    { useCase: "Analyse statistique", Python: 8, R: 10, SQL: 5, Julia: 8 },
+    { useCase: "Big Data", Python: 8, R: 6, SQL: 9, Julia: 7 },
+    { useCase: "Machine Learning", Python: 10, R: 7, SQL: 3, Julia: 8 },
+    { useCase: "Visualisation", Python: 8, R: 10, SQL: 2, Julia: 6 },
+    { useCase: "Performance", Python: 6, R: 4, SQL: 8, Julia: 10 },
+    { useCase: "Web Development", Python: 9, R: 2, SQL: 6, Julia: 3 },
+    { useCase: "Recherche académique", Python: 8, R: 10, SQL: 4, Julia: 9 },
+    { useCase: "Finance quantitative", Python: 9, R: 8, SQL: 7, Julia: 10 },
+    { useCase: "IoT et capteurs", Python: 8, R: 3, SQL: 5, Julia: 6 }
   ], []);
 
   /**
@@ -514,25 +520,21 @@ first(result, 10)`
       'Analyse de Données': [
         {
           language: 'Python',
-          icon: '🐍',
           pros: ['Syntaxe claire', 'pandas et NumPy très complets', 'Grande communauté', 'Intégration facile'],
           cons: ['Code Python pur plus lent que Julia', 'GIL pour le parallélisme par threads', 'Gestion mémoire']
         },
         {
           language: 'R',
-          icon: '📊',
           pros: ['Conçu pour les stats', 'Visualisations natives', 'Packages spécialisés'],
           cons: ['Syntaxe parfois complexe', 'Performance limitée', 'Courbe d\'apprentissage']
         },
         {
           language: 'SQL',
-          icon: '🗃️',
           pros: ['Conçu pour interroger les données', 'Standard très répandu', 'Le moteur de la base optimise les requêtes'],
           cons: ['Limité aux requêtes', 'Pas d\'algorithmes de ML dans le standard', 'Logique procédurale limitée']
         },
         {
           language: 'Julia',
-          icon: '⚡',
           pros: ['Performance native', 'Syntaxe mathématique', 'Parallélisme intégré'],
           cons: ['Écosystème plus petit', 'Courbe d\'apprentissage', 'Moins de ressources']
         }
@@ -540,25 +542,21 @@ first(result, 10)`
       'Visualisation': [
         {
           language: 'Python',
-          icon: '🐍',
           pros: ['Matplotlib et seaborn', 'Plotly interactif', 'Intégration web'],
           cons: ['Configuration verbeuse', 'Syntaxe parfois lourde']
         },
         {
           language: 'R',
-          icon: '📊',
           pros: ['ggplot2 et sa grammaire des graphiques', 'Graphiques prêts pour la publication'],
           cons: ['Courbe d\'apprentissage ggplot', 'Performance sur gros datasets']
         },
         {
           language: 'SQL',
-          icon: '🗃️',
           pros: ['Agrégations efficaces', 'Données préparées près de la source'],
           cons: ['Pas de visualisation native', 'Dépendant d\'outils externes']
         },
         {
           language: 'Julia',
-          icon: '⚡',
           pros: ['Plots.jl unifié', 'Performance', 'Backends multiples'],
           cons: ['Écosystème en développement', 'Moins d\'exemples']
         }
@@ -566,25 +564,21 @@ first(result, 10)`
       'Machine Learning': [
         {
           language: 'Python',
-          icon: '🐍',
           pros: ['Scikit-learn', 'TensorFlow/PyTorch', 'Écosystème riche'],
           cons: ['Performance pure', 'Complexité des dépendances']
         },
         {
           language: 'R',
-          icon: '📊',
           pros: ['Packages statistiques', 'caret et tidymodels', 'Validation croisée'],
           cons: ['Performance limitée', 'Deep learning moins développé']
         },
         {
           language: 'SQL',
-          icon: '🗃️',
           pros: ['Variables dérivées (feature engineering)', 'Données à grande échelle'],
           cons: ['Pas d\'algorithmes de ML dans le standard (quelques SGBD en ajoutent)', 'Surtout utile pour préparer les données']
         },
         {
           language: 'Julia',
-          icon: '⚡',
           pros: ['MLJ.jl moderne', 'Performance native', 'Calcul scientifique'],
           cons: ['Écosystème plus petit', 'Moins de modèles pré-entraînés']
         }
@@ -592,25 +586,21 @@ first(result, 10)`
       'Base de Données': [
         {
           language: 'Python',
-          icon: '🐍',
           pros: ['SQLAlchemy (ORM)', 'Intégration avec pandas', 'Nombreux connecteurs'],
           cons: ['Overhead ORM', 'Performance sur gros volumes']
         },
         {
           language: 'R',
-          icon: '📊',
           pros: ['DBI standard', 'dbplyr pour dplyr', 'Intégration tidyverse'],
           cons: ['Performance limitée', 'Gestion mémoire']
         },
         {
           language: 'SQL',
-          icon: '🗃️',
           pros: ['Langage natif de la base', 'Le traitement se fait là où sont les données', 'Fonctions avancées (fenêtres, CTE)'],
           cons: ['Variations entre SGBD (portabilité limitée)', 'Logique métier complexe']
         },
         {
           language: 'Julia',
-          icon: '⚡',
           pros: ['Paquets SQLite.jl, LibPQ.jl (PostgreSQL) et MySQL.jl', 'Résultats lisibles en DataFrame'],
           cons: ['Moins de connecteurs que Python', 'Écosystème en développement']
         }
@@ -702,11 +692,11 @@ first(result, 10)`
 
       <Tabs value={selectedComparison} onValueChange={setSelectedComparison} className="space-y-6">
         <TabsList className="grid grid-cols-1 md:grid-cols-5 w-full">
-          <TabsTrigger value="overview">📊 Vue d'ensemble</TabsTrigger>
-          <TabsTrigger value="code-comparison">💻 Comparaison code</TabsTrigger>
-          <TabsTrigger value="use-cases">🎯 Cas d'usage</TabsTrigger>
-          <TabsTrigger value="decision-guide">🧭 Guide de choix</TabsTrigger>
-          <TabsTrigger value="advanced-examples">🚀 Exemples avancés</TabsTrigger>
+          <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
+          <TabsTrigger value="code-comparison">Comparaison code</TabsTrigger>
+          <TabsTrigger value="use-cases">Cas d'usage</TabsTrigger>
+          <TabsTrigger value="decision-guide">Guide de choix</TabsTrigger>
+          <TabsTrigger value="advanced-examples">Exemples avancés</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -715,7 +705,7 @@ first(result, 10)`
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
-                📈 Usage des langages, de 2021 à 2025
+                Usage des langages, de 2021 à 2025
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -757,7 +747,7 @@ first(result, 10)`
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5 text-green-600" />
-                  📊 Usage mesuré et appréciations
+                  Usage mesuré et appréciations
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -781,7 +771,7 @@ first(result, 10)`
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-purple-600" />
-                  🎯 Profils radar
+                  Profils radar
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -817,7 +807,7 @@ first(result, 10)`
                 <CardHeader>
                   <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">{lang.icon}</span>
+                      <LanguageIcon name={lang.name} className="h-6 w-6 text-gray-700" />
                       <div>
                         <div className="font-bold">{lang.name}</div>
                         <div className="text-xs text-gray-500">{lang.category}</div>
@@ -885,7 +875,7 @@ first(result, 10)`
             <Card className="bg-gradient-to-r from-gray-50 to-blue-50 border-blue-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
-                  <span className="text-3xl">{selectedLanguage.icon}</span>
+                  <LanguageIcon name={selectedLanguage.name} className="h-8 w-8 text-gray-700" />
                   <div>
                     <div className="text-2xl font-bold" style={{ color: selectedLanguage.color }}>
                       {selectedLanguage.name} : analyse détaillée
@@ -900,7 +890,7 @@ first(result, 10)`
                     onClick={() => setSelectedLanguage(null)}
                     className="ml-auto"
                   >
-                    ✕ Fermer
+                    Fermer
                   </Button>
                 </CardTitle>
               </CardHeader>
@@ -946,7 +936,7 @@ first(result, 10)`
                     <ul className="text-sm space-y-1">
                       {selectedLanguage.weaknesses.map((weakness, idx) => (
                         <li key={idx} className="flex items-center gap-2">
-                          <span className="text-red-500">⚠</span>
+                          <AlertTriangle className="h-4 w-4 text-red-500 shrink-0" aria-hidden="true" />
                           {weakness}
                         </li>
                       ))}
@@ -983,7 +973,7 @@ first(result, 10)`
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5 text-green-600" />
-                💻 Comparaison de code, thème par thème
+                Comparaison de code, thème par thème
               </CardTitle>
               <div className="flex flex-wrap gap-2 mt-2">
                 {['Analyse de Données', 'Visualisation', 'Machine Learning', 'Base de Données'].map((topic) => (
@@ -1007,7 +997,7 @@ first(result, 10)`
                   {/* Python Example */}
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xl">🐍</span>
+                      <LanguageIcon name="Python" className="h-5 w-5 text-gray-700" />
                       <span className="font-semibold text-blue-800">Python</span>
                       <Badge variant="secondary" className="bg-blue-100 text-blue-800">
                         Polyvalent
@@ -1021,7 +1011,7 @@ first(result, 10)`
                   {/* R Example */}
                   <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xl">📊</span>
+                      <LanguageIcon name="R" className="h-5 w-5 text-gray-700" />
                       <span className="font-semibold text-purple-800">R</span>
                       <Badge variant="secondary" className="bg-purple-100 text-purple-800">
                         Statistiques
@@ -1035,7 +1025,7 @@ first(result, 10)`
                   {/* SQL Example */}
                   <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xl">🗃️</span>
+                      <LanguageIcon name="SQL" className="h-5 w-5 text-gray-700" />
                       <span className="font-semibold text-orange-800">SQL</span>
                       <Badge variant="secondary" className="bg-orange-100 text-orange-800">
                         Données
@@ -1049,7 +1039,7 @@ first(result, 10)`
                   {/* Julia Example */}
                   <div className="bg-violet-50 border border-violet-200 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xl">⚡</span>
+                      <LanguageIcon name="Julia" className="h-5 w-5 text-gray-700" />
                       <span className="font-semibold text-violet-800">Julia</span>
                       <Badge variant="secondary" className="bg-violet-100 text-violet-800">
                         Performance
@@ -1134,12 +1124,12 @@ first(result, 10)`
                         {getLanguageComparison(selectedCodeTopic).map((comparison, idx) => (
                           <div key={idx} className="border rounded-lg p-3">
                             <div className="flex items-center gap-2 mb-2">
-                              <span className="text-lg">{comparison.icon}</span>
+                              <LanguageIcon name={comparison.language} className="h-5 w-5 text-gray-700" />
                               <span className="font-semibold">{comparison.language}</span>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                               <div>
-                                <div className="text-green-700 font-semibold mb-1">✅ Avantages:</div>
+                                <div className="text-green-700 font-semibold mb-1">Avantages:</div>
                                 <ul className="list-disc list-inside space-y-1 text-green-600">
                                   {comparison.pros.map((pro, proIdx) => (
                                     <li key={proIdx}>{pro}</li>
@@ -1147,7 +1137,7 @@ first(result, 10)`
                                 </ul>
                               </div>
                               <div>
-                                <div className="text-red-700 font-semibold mb-1">❌ Inconvénients:</div>
+                                <div className="text-red-700 font-semibold mb-1">Inconvénients:</div>
                                 <ul className="list-disc list-inside space-y-1 text-red-600">
                                   {comparison.cons.map((con, conIdx) => (
                                     <li key={conIdx}>{con}</li>
@@ -1166,7 +1156,7 @@ first(result, 10)`
                     <CardHeader>
                       <CardTitle className="text-base flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
-                        💡 Bonnes Pratiques
+                        Bonnes Pratiques
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -1191,7 +1181,7 @@ first(result, 10)`
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Zap className="h-4 w-4 text-yellow-600" />
-                ⚡ Exemples avancés : pipeline de machine learning
+                Exemples avancés : pipeline de machine learning
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -1292,13 +1282,13 @@ GROUP BY dataset_split;`}
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5 text-indigo-600" />
-                🚀 Autres exemples, langage par langage
+                Autres exemples, langage par langage
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
               {/* Python Advanced Examples */}
               <div className="border-l-4 border-blue-500 pl-6">
-                <h4 className="font-semibold text-blue-700 mb-4">🐍 Python : pipeline et validation croisée</h4>
+                <h4 className="font-semibold text-blue-700 mb-4">Python : pipeline et validation croisée</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
                   <pre>{`# Pipeline scikit-learn avec validation croisée
 from sklearn.pipeline import Pipeline
@@ -1323,7 +1313,7 @@ print(f"Exactitude moyenne: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")`}
 
               {/* R Advanced Examples */}
               <div className="border-l-4 border-purple-500 pl-6">
-                <h4 className="font-semibold text-purple-700 mb-4">📊 R : un modèle mixte avec lme4</h4>
+                <h4 className="font-semibold text-purple-700 mb-4">R : un modèle mixte avec lme4</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
                   <pre>{`# Modèle mixte avec effets aléatoires
 library(lme4)
@@ -1346,7 +1336,7 @@ longitudinal_data %>%
 
               {/* SQL Advanced Examples */}
               <div className="border-l-4 border-green-500 pl-6">
-                <h4 className="font-semibold text-green-700 mb-4">🗄️ SQL : une analyse de cohortes</h4>
+                <h4 className="font-semibold text-green-700 mb-4">SQL : une analyse de cohortes</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
                   <pre>{`-- Analyse de cohorte avec fonctions de fenêtre (syntaxe PostgreSQL : DATE_TRUNC, AGE)
 WITH user_cohorts AS (
@@ -1381,7 +1371,7 @@ ORDER BY cohort_month, period_number;`}</pre>
 
               {/* JavaScript Advanced Examples */}
               <div className="border-l-4 border-yellow-500 pl-6">
-                <h4 className="font-semibold text-yellow-700 mb-4">⚡ JavaScript : squelette d'un tableau de bord interactif</h4>
+                <h4 className="font-semibold text-yellow-700 mb-4">JavaScript : squelette d'un tableau de bord interactif</h4>
                 <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto">
                   <pre>{`// Squelette avec D3.js et RxJS (chargés par des balises script) ;
 // applyFilters() et updateCharts() restent à écrire
@@ -1420,7 +1410,7 @@ class DataDashboard {
 
               {/* Performance */}
               <div className="mt-8 p-6 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-gray-200">
-                <h4 className="font-semibold mb-2">⚡ Et les performances ?</h4>
+                <h4 className="font-semibold mb-2">Et les performances ?</h4>
                 <p className="text-sm text-gray-700">
                   Les temps d&apos;exécution dépendent de la taille des données, du matériel, de l&apos;implémentation et des bibliothèques utilisées :
                   aucun classement général n&apos;a de sens. Mesurez vos propres cas (par exemple avec <code>timeit</code> en Python) avant de choisir.
@@ -1429,10 +1419,10 @@ class DataDashboard {
 
               {/* Best Practices */}
               <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg border border-green-200">
-                <h4 className="font-semibold mb-3">💡 Bonnes pratiques</h4>
+                <h4 className="font-semibold mb-3">Bonnes pratiques</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h5 className="font-medium text-green-700 mb-2">🔧 Optimisation</h5>
+                    <h5 className="font-medium text-green-700 mb-2">Optimisation</h5>
                     <ul className="text-sm space-y-1 text-gray-700">
                       <li>• Vectorisation des opérations</li>
                       <li>• Mise en cache des résultats coûteux</li>
@@ -1441,7 +1431,7 @@ class DataDashboard {
                     </ul>
                   </div>
                   <div>
-                    <h5 className="font-medium text-green-700 mb-2">🛡️ Robustesse</h5>
+                    <h5 className="font-medium text-green-700 mb-2">Robustesse</h5>
                     <ul className="text-sm space-y-1 text-gray-700">
                       <li>• Gestion des erreurs</li>
                       <li>• Tests unitaires et d'intégration</li>
@@ -1461,7 +1451,7 @@ class DataDashboard {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5 text-blue-600" />
-                🎯 Appréciations par cas d'usage (de 0 à 10, avis de l'auteur)
+                Appréciations par cas d'usage (de 0 à 10, avis de l'auteur)
               </CardTitle>
               <div className="flex gap-2 mt-2">
                 <Button 
@@ -1482,15 +1472,11 @@ class DataDashboard {
                     <YAxis dataKey="useCase" type="category" width={140} />
                     <Tooltip 
                       formatter={(value, name) => [`${value}/10`, name]}
-                      labelFormatter={(label) => {
-                        const useCase = useCaseData.find(item => item.useCase === label);
-                        return `${useCase?.icon} ${label}`;
-                      }}
                     />
-                    <Bar dataKey="Python" fill="#3776ab" name="Python 🐍" />
-                    <Bar dataKey="R" fill="#276dc3" name="R 📊" />
-                    <Bar dataKey="SQL" fill="#f29111" name="SQL 🗃️" />
-                    <Bar dataKey="Julia" fill="#9558b2" name="Julia ⚡" />
+                    <Bar dataKey="Python" fill="#3776ab" name="Python" />
+                    <Bar dataKey="R" fill="#276dc3" name="R" />
+                    <Bar dataKey="SQL" fill="#f29111" name="SQL" />
+                    <Bar dataKey="Julia" fill="#9558b2" name="Julia" />
                     <Legend />
                   </BarChart>
                 </DeferredResponsiveContainer>
@@ -1504,17 +1490,16 @@ class DataDashboard {
               const scores = [useCase.Python, useCase.R, useCase.SQL, useCase.Julia];
               const maxScore = Math.max(...scores);
               const bestLanguages = [
-                { name: 'Python', score: useCase.Python, color: '#3776ab', icon: '🐍' },
-                { name: 'R', score: useCase.R, color: '#276dc3', icon: '📊' },
-                { name: 'SQL', score: useCase.SQL, color: '#f29111', icon: '🗃️' },
-                { name: 'Julia', score: useCase.Julia, color: '#9558b2', icon: '⚡' }
+                { name: 'Python', score: useCase.Python, color: '#3776ab' },
+                { name: 'R', score: useCase.R, color: '#276dc3' },
+                { name: 'SQL', score: useCase.SQL, color: '#f29111' },
+                { name: 'Julia', score: useCase.Julia, color: '#9558b2' }
               ].filter(lang => lang.score === maxScore);
 
               return (
                 <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <span className="text-2xl">{useCase.icon}</span>
                       {useCase.useCase}
                     </CardTitle>
                   </CardHeader>
@@ -1523,7 +1508,7 @@ class DataDashboard {
                       {/* Best Language(s) Recommendation */}
                       <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                         <div className="text-sm font-semibold text-green-800 mb-2">
-                          🏆 Mieux noté (avis de l'auteur) :
+                          Mieux noté (avis de l'auteur) :
                         </div>
                         <div className="flex flex-wrap gap-1">
                           {bestLanguages.map((lang, idx) => (
@@ -1532,7 +1517,7 @@ class DataDashboard {
                               style={{ backgroundColor: lang.color, color: readableTextColor(lang.color) }}
                               className="text-xs"
                             >
-                              {lang.icon} {lang.name} ({lang.score}/10)
+                              {lang.name} ({lang.score}/10)
                             </Badge>
                           ))}
                         </div>
@@ -1541,14 +1526,14 @@ class DataDashboard {
                       {/* Detailed Scores */}
                       <div className="space-y-2">
                         {[
-                          { name: 'Python', score: useCase.Python, color: '#3776ab', icon: '🐍' },
-                          { name: 'R', score: useCase.R, color: '#276dc3', icon: '📊' },
-                          { name: 'SQL', score: useCase.SQL, color: '#f29111', icon: '🗃️' },
-                          { name: 'Julia', score: useCase.Julia, color: '#9558b2', icon: '⚡' }
+                          { name: 'Python', score: useCase.Python, color: '#3776ab' },
+                          { name: 'R', score: useCase.R, color: '#276dc3' },
+                          { name: 'SQL', score: useCase.SQL, color: '#f29111' },
+                          { name: 'Julia', score: useCase.Julia, color: '#9558b2' }
                         ].map((lang, langIdx) => (
                           <div key={langIdx} className="flex items-center justify-between">
                             <div className="flex items-center gap-2 text-sm">
-                              <span>{lang.icon}</span>
+                              <LanguageIcon name={lang.name} className="h-4 w-4 text-gray-700" />
                               <span>{lang.name}</span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -1573,7 +1558,7 @@ class DataDashboard {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5 text-purple-600" />
-                  📊 Analyse avancée des appréciations
+                  Analyse avancée des appréciations
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -1602,10 +1587,10 @@ class DataDashboard {
                     <h4 className="font-semibold mb-3">Synthèse des appréciations ci-contre</h4>
                     <div className="space-y-4">
                       {[
-                        { name: 'Python', color: '#3776ab', icon: '🐍' },
-                        { name: 'R', color: '#276dc3', icon: '📊' },
-                        { name: 'SQL', color: '#f29111', icon: '🗃️' },
-                        { name: 'Julia', color: '#9558b2', icon: '⚡' }
+                        { name: 'Python', color: '#3776ab' },
+                        { name: 'R', color: '#276dc3' },
+                        { name: 'SQL', color: '#f29111' },
+                        { name: 'Julia', color: '#9558b2' }
                       ].map((lang) => {
                         const scores = useCaseData.map(useCase => Number(useCase[lang.name]));
                         const avgScore = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1);
@@ -1618,7 +1603,7 @@ class DataDashboard {
                         return (
                           <div key={lang.name} className="bg-white p-3 rounded-lg border">
                             <div className="flex items-center gap-2 mb-2">
-                              <span className="text-xl">{lang.icon}</span>
+                              <LanguageIcon name={lang.name} className="h-5 w-5 text-gray-700" />
                               <span className="font-semibold" style={{ color: lang.color }}>{lang.name}</span>
                             </div>
                             <div className="grid grid-cols-2 gap-2 text-sm">
@@ -1641,7 +1626,7 @@ class DataDashboard {
         <TabsContent value="decision-guide" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>🧭 Guide de choix</CardTitle>
+              <CardTitle>Guide de choix</CardTitle>
             </CardHeader>
             <CardContent>
               <CourseHighlight title="Trois questions pour s'orienter (repères de l'auteur)" type="question">
@@ -1649,41 +1634,41 @@ class DataDashboard {
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">1. Quel est votre niveau en programmation ?</h5>
                     <div className="text-sm space-y-1">
-                      <p>• <strong>Débutant complet :</strong> Python 🐍</p>
-                      <p>• <strong>Quelques bases :</strong> Python ou R selon votre domaine 📊</p>
-                      <p>• <strong>Expérimenté :</strong> un deuxième langage selon le besoin (Julia pour le calcul intensif, par exemple) ⚡</p>
+                      <p>• <strong>Débutant complet :</strong> Python</p>
+                      <p>• <strong>Quelques bases :</strong> Python ou R selon votre domaine</p>
+                      <p>• <strong>Expérimenté :</strong> un deuxième langage selon le besoin (Julia pour le calcul intensif, par exemple)</p>
                     </div>
                   </div>
 
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">2. Dans quel secteur travaillez-vous ?</h5>
                     <div className="text-sm space-y-1">
-                      <p>• <strong>Tech et start-up :</strong> Python + SQL 🚀</p>
-                      <p>• <strong>Recherche académique :</strong> R ou Python, plus SQL 🎓</p>
-                      <p>• <strong>Finance et banque :</strong> Python + SQL, parfois R 💰</p>
-                      <p>• <strong>Sciences et ingénierie :</strong> Python, et Julia pour le calcul scientifique intensif 🔬</p>
+                      <p>• <strong>Tech et start-up :</strong> Python + SQL</p>
+                      <p>• <strong>Recherche académique :</strong> R ou Python, plus SQL</p>
+                      <p>• <strong>Finance et banque :</strong> Python + SQL, parfois R</p>
+                      <p>• <strong>Sciences et ingénierie :</strong> Python, et Julia pour le calcul scientifique intensif</p>
                     </div>
                   </div>
 
                   <div className="bg-purple-50 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">3. Quel type de projets vous intéresse ?</h5>
                     <div className="text-sm space-y-1">
-                      <p>• <strong>Applications web :</strong> Python (avec un framework comme Django ou Flask) 🌐</p>
-                      <p>• <strong>Analyses statistiques :</strong> R 📈</p>
-                      <p>• <strong>Machine learning :</strong> Python 🤖</p>
-                      <p>• <strong>Données volumineuses :</strong> SQL + Python 🗄️</p>
-                      <p>• <strong>Calcul scientifique :</strong> Julia ou Python (NumPy, SciPy) ⚡</p>
+                      <p>• <strong>Applications web :</strong> Python (avec un framework comme Django ou Flask)</p>
+                      <p>• <strong>Analyses statistiques :</strong> R</p>
+                      <p>• <strong>Machine learning :</strong> Python</p>
+                      <p>• <strong>Données volumineuses :</strong> SQL + Python</p>
+                      <p>• <strong>Calcul scientifique :</strong> Julia ou Python (NumPy, SciPy)</p>
                     </div>
                   </div>
                 </div>
               </CourseHighlight>
 
               <div className="mt-8">
-                <h4 className="font-semibold mb-4">🛤️ Deux parcours d'apprentissage possibles</h4>
+                <h4 className="font-semibold mb-4">Deux parcours d'apprentissage possibles</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="border-l-4 border-l-blue-500">
                     <CardHeader>
-                      <CardTitle className="text-blue-700">🎯 Parcours Débutant (6 mois, indicatif)</CardTitle>
+                      <CardTitle className="text-blue-700">Parcours Débutant (6 mois, indicatif)</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 text-sm">
@@ -1705,7 +1690,7 @@ class DataDashboard {
 
                   <Card className="border-l-4 border-l-purple-500">
                     <CardHeader>
-                      <CardTitle className="text-purple-700">🚀 Parcours Avancé (3 mois, indicatif)</CardTitle>
+                      <CardTitle className="text-purple-700">Parcours Avancé (3 mois, indicatif)</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 text-sm">
@@ -1728,7 +1713,7 @@ class DataDashboard {
               </div>
 
               <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-                <h4 className="font-semibold mb-3">💡 Un conseil</h4>
+                <h4 className="font-semibold mb-3">Un conseil</h4>
                 <p className="text-sm mb-3">
                   <strong>Il n'existe pas de langage parfait.</strong>{" "}
                   Commencez par un langage, prenez-le bien en main, puis ajoutez les autres selon vos besoins.

@@ -147,7 +147,7 @@ const ReductionSection = () => {
       </h2>
 
       {/* Introduction conceptuelle */}
-      <EducationalCard title="🎯 Comprendre la réduction de dimensionnalité" type="concept">
+      <EducationalCard title="Comprendre la réduction de dimensionnalité" type="concept">
         <div className="space-y-4">
           <p className="text-gray-700 leading-relaxed">
             Imaginez que vous essayez de dessiner un cube sur une feuille de papier.
@@ -159,7 +159,7 @@ const ReductionSection = () => {
             <h4 className="font-semibold text-purple-800 mb-3">Le dilemme dimensionnel</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h5 className="font-medium text-purple-700 mb-2">Trop de dimensions 📈</h5>
+                <h5 className="font-medium text-purple-700 mb-2">Trop de dimensions</h5>
                 <ul className="text-sm text-purple-600 space-y-1">
                   <li>• Malédiction de la dimensionnalité</li>
                   <li>• Le volume de données nécessaire croît très vite avec la dimension</li>
@@ -168,7 +168,7 @@ const ReductionSection = () => {
                 </ul>
               </div>
               <div>
-                <h5 className="font-medium text-purple-700 mb-2">Juste ce qu'il faut ✨</h5>
+                <h5 className="font-medium text-purple-700 mb-2">Juste ce qu'il faut</h5>
                 <ul className="text-sm text-purple-600 space-y-1">
                   <li>• Information essentielle préservée</li>
                   <li>• Calculs efficaces</li>

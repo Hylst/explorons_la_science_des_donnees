@@ -75,7 +75,7 @@ SET
     END,
     date_maj = CURRENT_TIMESTAMP
 WHERE status = 'actif';`,
-      explanation: "UPDATE modifie les données existantes. Attention au WHERE pour éviter de tout modifier !"
+      explanation: "UPDATE modifie les données existantes. Attention au WHERE pour éviter de tout modifier."
     },
     join: {
       title: "JOIN - Relier les tables",
@@ -135,7 +135,7 @@ GROUP BY d.id, d.nom_departement;`,
               </p>
               
               <div className="bg-green-50 p-4 rounded-lg mb-4">
-                <h4 className="font-semibold text-green-800 mb-2">🎯 Pourquoi SQL ?</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Pourquoi SQL ?</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Standard :</strong> Fonctionne sur la plupart des bases de données relationnelles (avec des variantes de dialecte)</li>
                   <li>• <strong>Puissant :</strong> Requêtes complexes en quelques lignes</li>
@@ -146,7 +146,7 @@ GROUP BY d.id, d.nom_departement;`,
             </div>
             
             <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3">🏗️ Anatomie d'une requête SQL</h4>
+              <h4 className="font-semibold mb-3">Anatomie d'une requête SQL</h4>
               <div className="space-y-2 font-mono text-sm">
                 <div className="flex">
                   <span className="text-blue-600 font-bold w-24 flex-shrink-0">SELECT</span>
@@ -217,7 +217,7 @@ GROUP BY d.id, d.nom_departement;`,
               <div className="flex items-start gap-2">
                 <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h5 className="font-semibold text-blue-800 mb-1">💡 Explication</h5>
+                  <h5 className="font-semibold text-blue-800 mb-1">Explication</h5>
                   <p className="text-sm text-blue-700">
                     {sqlExamples[activeExample].explanation}
                   </p>
@@ -233,7 +233,7 @@ GROUP BY d.id, d.nom_departement;`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5 text-purple-600" />
-            🔒 Propriétés ACID : La fiabilité des données
+            Propriétés ACID : La fiabilité des données
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -245,7 +245,7 @@ GROUP BY d.id, d.nom_departement;`,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-red-800 mb-2">🔹 Atomicité</h4>
+                <h4 className="font-semibold text-red-800 mb-2">Atomicité</h4>
                 <p className="text-sm mb-2">
                   Tout ou rien : une transaction réussit complètement ou échoue complètement.
                 </p>
@@ -258,7 +258,7 @@ GROUP BY d.id, d.nom_departement;`,
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">🔹 Cohérence</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Cohérence</h4>
                 <p className="text-sm mb-2">
                   Une transaction fait passer la base d'un état valide à un autre état valide : toutes les contraintes déclarées sont respectées.
                 </p>
@@ -270,7 +270,7 @@ GROUP BY d.id, d.nom_departement;`,
 
             <div className="space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">🔹 Isolation</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Isolation</h4>
                 <p className="text-sm mb-2">
                   Les transactions simultanées ne s'interfèrent pas.
                 </p>
@@ -280,7 +280,7 @@ GROUP BY d.id, d.nom_departement;`,
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-yellow-800 mb-2">🔹 Durabilité</h4>
+                <h4 className="font-semibold text-yellow-800 mb-2">Durabilité</h4>
                 <p className="text-sm mb-2">
                   Une fois validée, une transaction est permanente même en cas de panne.
                 </p>
@@ -298,7 +298,7 @@ GROUP BY d.id, d.nom_departement;`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-green-600" />
-            ✅ Bonnes pratiques SQL
+            Bonnes pratiques SQL
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -312,7 +312,7 @@ GROUP BY d.id, d.nom_departement;`,
             <TabsContent value="performance" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-green-800 mb-2">✅ À faire</h4>
+                  <h4 className="font-semibold text-green-800 mb-2">À faire</h4>
                   <ul className="text-sm space-y-1">
                     <li>• Indexer les colonnes souvent utilisées dans WHERE, JOIN et ORDER BY (si la table est grosse)</li>
                     <li>• Éviter SELECT * (spécifier les colonnes)</li>
@@ -322,7 +322,7 @@ GROUP BY d.id, d.nom_departement;`,
                   </ul>
                 </div>
                 <div className="bg-red-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-red-800 mb-2">❌ À éviter</h4>
+                  <h4 className="font-semibold text-red-800 mb-2">À éviter</h4>
                   <ul className="text-sm space-y-1">
                     <li>• Fonctions appliquées à une colonne indexée dans WHERE (ex. YEAR(date_commande) = 2024)</li>
                     <li>• Jointures sans conditions appropriées</li>
@@ -339,13 +339,13 @@ GROUP BY d.id, d.nom_departement;`,
                 <div className="flex items-start gap-2">
                   <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-red-800 mb-2">🚨 Injections SQL</h4>
+                    <h4 className="font-semibold text-red-800 mb-2">Injections SQL</h4>
                     <p className="text-sm mb-3">
-                      Une faille classique de sécurité web (catégorie « Injection » de l'OWASP Top 10) ! Toujours utiliser des requêtes préparées.
+                      Une faille classique de sécurité web (catégorie « Injection » de l'OWASP Top 10). Il faut toujours utiliser des requêtes préparées.
                     </p>
                     <div className="space-y-3">
                       <div>
-                        <span className="text-red-600 font-semibold text-xs">❌ DANGER :</span>
+                        <span className="text-red-600 font-semibold text-xs">DANGER :</span>
                         <code className="bg-white p-1 rounded text-xs ml-2 break-all">
                           query = "SELECT * FROM users WHERE id = " + userId
                         </code>
@@ -356,7 +356,7 @@ GROUP BY d.id, d.nom_departement;`,
                         </p>
                       </div>
                       <div>
-                        <span className="text-green-600 font-semibold text-xs">✅ SÉCURISÉ :</span>
+                        <span className="text-green-600 font-semibold text-xs">SÉCURISÉ :</span>
                         <code className="bg-white p-1 rounded text-xs ml-2 break-all">
                           cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
                         </code>
@@ -374,7 +374,7 @@ GROUP BY d.id, d.nom_departement;`,
             <TabsContent value="maintenance" className="space-y-4">
               <div className="space-y-3">
                 <div className="bg-blue-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-blue-800 mb-1">📝 Conventions de nommage</h5>
+                  <h5 className="font-semibold text-blue-800 mb-1">Conventions de nommage</h5>
                   <ul className="text-sm space-y-1">
                     <li>• Tables en minuscules, pluriel : <code>employes</code>, <code>commandes</code></li>
                     <li>• Colonnes descriptives : <code>date_creation</code>, <code>prix_unitaire</code></li>
@@ -382,7 +382,7 @@ GROUP BY d.id, d.nom_departement;`,
                   </ul>
                 </div>
                 <div className="bg-yellow-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-yellow-800 mb-1">📚 Documentation</h5>
+                  <h5 className="font-semibold text-yellow-800 mb-1">Documentation</h5>
                   <ul className="text-sm space-y-1">
                     <li>• Commenter les requêtes complexes</li>
                     <li>• Documenter les procédures stockées</li>

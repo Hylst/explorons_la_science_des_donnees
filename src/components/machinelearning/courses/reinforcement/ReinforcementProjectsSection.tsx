@@ -3,7 +3,7 @@ import ProjectsSection from "../shared/ProjectsSection";
 
 const projects = [
   {
-    title: "🎮 Agent de jeu : tic-tac-toe avec Q-Learning",
+    title: "Agent de jeu : tic-tac-toe avec Q-Learning",
     description: "Un agent qui apprend à jouer au tic-tac-toe par Q-Learning, en jouant contre un adversaire aléatoire.",
     problem: "Implémentez un agent Q-Learning qui apprend à jouer au tic-tac-toe en affrontant un adversaire aléatoire, puis mesurez ses résultats sans exploration. Allez ensuite plus loin : entraînez-le contre lui-même (self-play) ou contre un adversaire minimax pour approcher le jeu optimal, et, si vous le souhaitez, ajoutez une interface graphique pour jouer contre lui. (La solution fournie couvre l'environnement, l'agent, l'entraînement et l'évaluation, pas l'interface.)",
     solution: `# Agent Q-Learning pour le tic-tac-toe (solution partielle)
@@ -161,7 +161,7 @@ evaluer(trained_agent)`,
     category: "Jeux"
   },
   {
-    title: "🚗 Contrôleur de véhicule : parking autonome",
+    title: "Contrôleur de véhicule : parking autonome",
     description: "Un agent qui apprend, en simulation, à se garer en évitant des obstacles (squelette à compléter).",
     problem: "Créez un simulateur de parking en deux dimensions et un agent qui apprend à stationner un véhicule en évitant les obstacles. Le véhicule se commande par la direction, l'accélération et le freinage ; comme DQN suppose des actions discrètes, il faut les discrétiser. Prévoyez plusieurs scénarios (parallèle, perpendiculaire, créneaux serrés). La solution fournie est un squelette : elle donne l'état, la récompense et le réseau, le reste est à écrire.",
     solution: `# Squelette de solution avec Deep Q-Network (DQN) : volontairement incomplet
@@ -281,7 +281,7 @@ class DQN(nn.Module):
     category: "Contrôle"
   },
   {
-    title: "📈 Agent de trading : un exercice de méthode",
+    title: "Agent de trading : un exercice de méthode",
     description: "Un agent PPO dans un environnement de trading simulé, pour apprendre à évaluer honnêtement une stratégie (et ses limites).",
     problem: "Développez un agent qui apprend, par renforcement, à acheter, conserver ou vendre un actif en tenant compte des coûts de transaction. Entraînez-le sur une période, testez-le sur une période ultérieure, et comparez-le à la stratégie « acheter et garder ». Aucun gain n'est à attendre : sur des prix simulés par marche aléatoire, tout profit durable serait un hasard, et sur de vraies données un bon résultat d'entraînement ne garantit rien. Ce projet n'est pas un conseil d'investissement.",
     solution: `# Agent de trading avec PPO sur une série de prix SIMULÉE

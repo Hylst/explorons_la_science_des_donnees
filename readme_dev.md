@@ -5,7 +5,7 @@ Ce guide s'adresse à toute personne qui travaille sur le code de « Explorons l
 Documents voisins :
 
 - [structure.md](structure.md) : arborescence commentée et flux importants (routage, build statique, exécution de code, PWA, thème, stockage).
-- `features.md` : état des fonctionnalités par section ; `docs/SOURCES.md` : registre des chiffres externes.
+- `features.md` : état des fonctionnalités par section ; `docs/SOURCES.md` : registre des chiffres externes ; `docs/PERFORMANCE_GUIDE.md` : tailles du build et scores Lighthouse (avec leurs dates) ; `docs/COMPONENT_DOCUMENTATION.md` : composants d'interface partagés.
 - `CHANGELOG.md` : historique.
 
 ## 1. Prérequis
@@ -16,7 +16,7 @@ Documents voisins :
 | npm | Celui fourni avec Node (11.11.0 avec la version de référence) | `package-lock.json` est suivi par git |
 | Git | Une version récente | Dépôt git |
 | Réseau | Nécessaire au premier `npm run dev` ou `npm run build` | `scripts/sync-runtimes.mjs` télécharge les roues Python depuis `https://cdn.jsdelivr.net/pyodide/v<version>/full/` (empreintes SHA-256 vérifiées), puis les garde dans `.cache/pyodide-wheels` |
-| Espace disque | Environ 39 Mo pour `public/vendor` et 26 Mo pour `.cache` (mesurés) en plus de `node_modules` | `du -sh public/vendor .cache` |
+| Espace disque | Environ 48 Mo pour `public/vendor` (Pyodide 314.0.7 et sql.js 1.14.2) et 35 Mo pour `.cache` (mesurés le 9 octobre 2026) en plus de `node_modules` | `du -sh public/vendor .cache` |
 | Navigateur | Récent (WebAssembly, Web Workers de type module) pour tester l'exécution de code | `src/lib/runner` |
 
 Pas de variable d'environnement à définir : l'application n'appelle aucun serveur, et `scripts/verify-dist.mjs` refuse tout build qui contiendrait une référence Supabase ou une variable `VITE_*`.
@@ -30,10 +30,10 @@ npm install
 npm run dev
 ```
 
-- `npm run dev` exécute d'abord `scripts/sync-runtimes.mjs` (hook `predev`) : le script copie Pyodide et sql.js depuis `node_modules` vers `public/vendor/pyodide-<version>/` et `public/vendor/sql-js-<version>/`, télécharge les roues numpy, pandas, scikit-learn et leurs dépendances, puis écrit `public/vendor/NOTICE.txt`. Ces dossiers et `.cache/` sont ignorés par git. Les lancements suivants sont rapides et fonctionnent hors ligne tant que `.cache/` existe.
+- `npm run dev` exécute d'abord `scripts/sync-runtimes.mjs` (hook `predev`) : le script copie Pyodide et sql.js depuis `node_modules` vers `public/vendor/pyodide-<version>/` et `public/vendor/sql-js-<version>/`, télécharge les roues numpy, pandas, scikit-learn, matplotlib et leurs dépendances, puis écrit `public/vendor/NOTICE.txt`. Ces dossiers et `.cache/` sont ignorés par git. Les lancements suivants sont rapides et fonctionnent hors ligne tant que `.cache/` existe.
 - Le serveur écoute sur le port 8080 (`vite.config.ts`, hôte `::`). Si le port est occupé, Vite en choisit un autre : lire l'adresse affichée dans le terminal.
 - En développement, le service worker n'est pas enregistré (`src/main.tsx` désinscrit même les anciens) et la Content-Security-Policy n'est pas injectée : ces deux éléments n'existent que dans un build. Pour les tester, construire puis lancer `npm run preview`.
-- `npm test`, `npm run lint` et `npm run typecheck` ne passent pas par `sync-runtimes`. Les tests ont tout de même besoin de `node_modules` : `vitest.config.ts` lit les versions de `pyodide` et `sql.js` dans leurs `package.json`.
+- `npm test` passe par `sync-runtimes` (hook `pretest`) parce que le test des cours Python charge le Pyodide et les roues de `public/vendor`, sans réseau ; `npm run lint` et `npm run typecheck` n'en ont pas besoin. Un `npx vitest run <fichier>` lancé directement ne passe pas par le hook : lancer d'abord `npm run runtimes:sync` si `public/vendor` manque. Les tests ont aussi besoin de `node_modules` : `vitest.config.ts` lit les versions de `pyodide` et `sql.js` dans leurs `package.json`.
 
 ## 3. Commandes npm
 
@@ -48,7 +48,7 @@ Source : champ `scripts` de `package.json`.
 | `npm run preview` | `vite preview` | Sert le dernier build (dossier `dist/` par défaut) |
 | `npm run lint` | `eslint .` | Zéro erreur attendue : `no-unused-vars` est une erreur. Ignore `dist` et `dist-hylst` |
 | `npm run typecheck` | `tsc -p tsconfig.app.json --noEmit` | Mode strict. Ne couvre que `src/` |
-| `npm test` | `vitest run` | Une exécution, tous les tests de `src/` |
+| `npm test` | `vitest run` | Précédée de `sync-runtimes`. Une exécution, tous les tests de `src/` hors test de fumée, y compris l'exécution de chaque exemple et de chaque corrigé des cours sur les vrais moteurs |
 | `npm run test:smoke` | `vitest run --config vitest.smoke.config.ts` | Test de fumée : affiche chacune des 56 routes canoniques et active chaque onglet dans jsdom (environ 20 s). Il échoue si une page déclenche l'ErrorBoundary. Exclu de `npm test` parce qu'il est lent |
 | `npm run test:watch` | `vitest` | Mode interactif. Pour un seul fichier : `npx vitest run src/config/page-meta.test.ts` |
 | `npm run runtimes:sync` | `node scripts/sync-runtimes.mjs` | Recrée `public/vendor`. Réseau requis la première fois |
@@ -64,30 +64,35 @@ Avant de livrer, dans cet ordre : `npm run lint`, `npm run typecheck`, `npm test
 
 **Emplacement.** Un test se place à côté du code testé, avec le suffixe `.test.ts` ou `.test.tsx`. Il n'y a pas de dossier `__tests__`. Les tests ne sont pas livrés : le build ne les inclut pas, et `brand.test.ts` les exclut de son balayage.
 
-**État mesuré** : `npm test` exécute 22 fichiers et 404 tests, tous réussis, en environ 4 secondes (Vitest 5.0.3, Node 24.14.1). Ces nombres évoluent avec le code : le résultat à retenir est zéro échec avant toute livraison.
+**État mesuré** : 45 fichiers de test au 9 octobre 2026 (`git ls-files 'src/**/*.test.*'`), dont `src/routes.smoke.test.tsx`, lancé à part par `npm run test:smoke`. Le nombre de tests évolue avec le code : relever celui de `npm test` plutôt que de recopier un chiffre ; le résultat à retenir est zéro échec avant toute livraison. Le test des cours Python charge Pyodide (environ 7 s) puis exécute chaque exemple et chaque corrigé : c'est de loin le plus long de `npm test`.
 
-**Inventaire** (13 fichiers) :
+**Inventaire** (45 fichiers, par famille) :
 
-| Fichier | Ce qu'il garantit |
-| --- | --- |
-| `src/config/page-meta.test.ts` | Lit le code source (`scripts/collect-routes.ts`) : chaque route canonique a un titre et une description ; longueurs (titre 20 à 38 caractères sans le nom du site, description 110 à 160) ; unicité ; absence de tiret cadratin ou demi-cadratin ; `PAGE_META` sans route orpheline ; cohérence de `LEGACY_REDIRECTS` (cible existante, pas de chaîne, pas de doublon, pas de page réelle masquée) |
-| `src/config/brand.test.ts` | L'ancien nom « Data Science Explorer » n'apparaît plus (exceptions listées dans le test) ; `index.html`, `public/manifest.json` et `public/offline.html` portent `SITE_NAME` ; les modèles de page 404 et de redirection de `vite.config.ts` utilisent `SITE_NAME` ; licence identique dans `package.json`, `site.ts` et `LICENSE` ; sous-chemin `/data_science_explorer/` inchangé |
-| `src/config/illustrations.test.ts` | Les trois SVG animés de `public/svg/cards/` existent, sont bien formés, n'exécutent aucun script, n'appellent aucun tiers, coupent leurs animations sous `prefers-reduced-motion`, sont tous utilisés par l'accueil ; chaque article du blog a son image WebP (vrai fichier, ni vide ni lourd) affichée comme décorative avec dimensions ; plus aucune photographie livrée |
-| `src/config/theme.test.ts` | `DEFAULT_THEME` de `public/theme-init.js` égal à `defaultTheme` de `<ThemeProvider>` dans `App.tsx` ; même clé de stockage (`THEME_STORAGE_KEY`) ; mêmes valeurs acceptées, mêmes classes `light` et `dark`, même requête média ; `theme-init.js` chargé avant `src/main.tsx` dans `index.html` |
-| `src/lib/storage.test.ts` | Le module ne lève jamais d'exception (stockage bloqué, JSON corrompu), validateurs, et deux modules n'utilisent jamais la même clé de stockage (lecture des constantes `const XXX_KEY = '...'`) |
-| `src/lib/quiz-storage.test.ts` | Enregistrement des tentatives, données corrompues, statistiques, séries de jours, succès, progression |
-| `src/lib/runner/worker-client.test.ts` | File d'exécution, délai (décompte à partir du message `started`), arrêt du worker, échec de chargement, avec un faux `Worker` |
-| `src/lib/runner/index.test.ts` | `isRunnable` et délais par langage |
-| `src/lib/sanitize.test.ts` | `sanitizeHtml` retire les scripts et conserve le contenu sûr ; liens externes |
-| `src/lib/sample-datasets.test.ts` | Générateurs à graine fixe, jeux « ventes » et « patients », statistiques calculées |
-| `src/lib/format-duration.test.ts` | `formatMinutes` |
-| `src/lib/contrast.test.ts` | `contrastRatio` (rapport WCAG) et `readableTextColor` (texte lisible sur une pastille colorée) |
-| `src/data/projects.test.ts` | Données des projets et filtres |
-| `src/components/fundamentals/data-preparation/CorrelationHeatmap.test.tsx` | La matrice de corrélation affichée est calculée (coefficient de Pearson) |
+| Famille | Fichiers | Ce qu'ils garantissent |
+| --- | --- | --- |
+| Routes, métadonnées, identité | `src/config/page-meta.test.ts` | Lit le code source (`scripts/collect-routes.ts`) : chaque route canonique a un titre et une description ; longueurs (titre 20 à 38 caractères sans le nom du site, description 110 à 160) ; unicité ; absence de tiret cadratin ou demi-cadratin ; `PAGE_META` sans route orpheline ; cohérence de `LEGACY_REDIRECTS` (cible existante, pas de chaîne, pas de doublon, pas de page réelle masquée) |
+| | `src/config/brand.test.ts` | L'ancien nom « Data Science Explorer » n'apparaît plus (exceptions listées dans le test) ; `index.html`, `public/manifest.json` et `public/offline.html` portent `SITE_NAME` ; les modèles de page 404 et de redirection de `vite.config.ts` utilisent `SITE_NAME` ; licence identique dans `package.json`, `site.ts` et `LICENSE` ; sous-chemin `/data_science_explorer/` inchangé |
+| | `src/config/internal-links.test.ts`, `source-link.test.ts` | Chaque lien interne écrit dans le code mène à une route canonique (jamais à une redirection) ; le site n'affiche aucune adresse du dépôt de code (`SOURCE_URL` reste `null`) |
+| | `src/config/theme.test.ts` | `DEFAULT_THEME` de `public/theme-init.js` égal à `defaultTheme` de `<ThemeProvider>` dans `App.tsx` ; même clé de stockage (`THEME_STORAGE_KEY`) ; mêmes valeurs acceptées, mêmes classes `light` et `dark`, même requête média ; `theme-init.js` chargé avant `src/main.tsx` dans `index.html` |
+| Présentation | `src/config/illustrations.test.ts` | Les trois SVG animés de `public/svg/cards/` existent, sont bien formés, n'exécutent aucun script, n'appellent aucun tiers, coupent leurs animations sous `prefers-reduced-motion`, sont tous utilisés par l'accueil ; chaque article du blog a son image WebP (vrai fichier, ni vide ni lourd) affichée comme décorative avec dimensions ; plus aucune photographie livrée |
+| | `src/config/gradient-text.test.ts`, `jsx-spacing.test.ts` | La règle globale d'interligne des textes à dégradé est en place ; aucun espace ne disparaît entre du texte et une balise en ligne en fin de ligne JSX |
+| Cours rédigés | `src/data/lessons/lessons.test.ts`, `lessons-python.test.ts` | Pour chaque cours : structure des modules, quiz, markdown sans tableau ni lien, formules KaTeX ; chaque exemple s'exécute sur sql.js ou Pyodide ; chaque corrigé réussit ; chaque point de départ d'exercice échoue (voir 5.13) |
+| | `src/lib/lessons/check.test.ts`, `duration.test.ts`, `typography.test.ts` | Comparaison des résultats SQL, somme des durées de modules, espaces insécables français hors du code |
+| | `src/lib/progress-migration.test.ts`, `src/components/courses/lessons/LessonWidget.test.tsx` | Reprise unique de l'ancienne progression du cours de mathématiques ; affichage des composants interactifs des leçons |
+| | `src/lib/code-snippets.test.ts`, `src/lib/latex-sources.test.ts`, `src/lib/answer-match.test.ts` | Pas de `\n` simple dans un gabarit d'extrait Python, pas d'alias pandas supprimé de pandas 3 ; pas de commande LaTeX mal échappée ; normalisation des réponses libres de mathématiques |
+| Stockage, quiz, projets | `src/lib/storage.test.ts` | Le module ne lève jamais d'exception (stockage bloqué, JSON corrompu), validateurs, et deux modules n'utilisent jamais la même clé de stockage (lecture des constantes `const XXX_KEY = '...'`) |
+| | `src/lib/quiz-storage.test.ts`, `quiz-shuffle.test.ts`, `src/data/quizData.test.ts` | Enregistrement des tentatives, données corrompues, statistiques, séries, succès ; mélange uniforme ; banque de questions (identifiants uniques, bonnes réponses) |
+| | `src/data/projects.test.ts`, `blog.test.ts`, `data-quality-demos.test.ts` | Données des projets et filtres ; articles du blog (corps, fiches, pas de faux témoignage) ; démonstrations de qualité des données calculées |
+| Moteurs d'exécution | `src/lib/runner/worker-client.test.ts`, `index.test.ts`, `python-setup.test.ts` | File d'exécution, délai (décompte à partir du message `started`), arrêt du worker, échec de chargement, avec un faux `Worker` ; `isRunnable` et délais par langage ; réglage du moteur Python |
+| Sécurité, calculs | `src/lib/sanitize.test.ts`, `sample-datasets.test.ts`, `format-duration.test.ts`, `contrast.test.ts` | `sanitizeHtml` retire les scripts ; générateurs à graine fixe ; formatage des durées ; rapport de contraste WCAG |
+| Défilement et affichage par morceaux | `src/lib/scroll-key.test.ts`, `src/components/layout/ProgressiveSections.test.tsx`, `src/components/ui/deferred-chart.test.tsx`, `src/hooks/use-sidebar-bounds.test.ts`, `src/lib/glossary-batches.test.ts` | Clé de position de défilement ; nombre de sections affichées d'emblée ; boîte réservée puis graphique dessiné à l'approche de l'écran ; bornes de la barre latérale ; lots du glossaire |
+| Glossaire | `src/data/glossary/claims.test.ts`, `dictionaries.test.ts`, `src/lib/glossary-markdown.test.ts`, `src/components/glossary/GlossaryText.test.tsx` | Aucun chiffre inventé attribué à une organisation ; un terme survolé dans un cours est retrouvable dans le glossaire ; rendu du markdown des définitions |
+| Composants | `src/components/fundamentals/data-preparation/CorrelationHeatmap.test.tsx`, `src/components/community/NewsArticleCard.test.tsx`, `src/pages/fundamentals/math-stats/probability/components/ConditionalProbabilitySection.test.tsx` | La matrice de corrélation est calculée (coefficient de Pearson) ; mots longs et lien externe d'une actualité ; calcul détaillé de chaque issue de l'arbre de probabilités |
+| Test de fumée | `src/routes.smoke.test.tsx` (`npm run test:smoke`) | Chaque route canonique et chaque onglet s'affichent sans erreur ; un seul fil d'Ariane par page ; chaque `href="#x"` a sa cible ; pas d'`id` en double ; le test attend la fin des sections en attente (`data-sections-pending`) |
 
-**Tests garde-fous qui lisent le code source.** `page-meta.test.ts`, `brand.test.ts`, `theme.test.ts` et `storage.test.ts` analysent des fichiers avec des expressions régulières. Si l'un d'eux échoue après une modification qui semble anodine, le message nomme la route, le fichier ou la ligne en cause (`brand.test.ts` donne `fichier:ligne`). Ne pas contourner le test : soit corriger le code, soit, si le format du code a vraiment changé, adapter l'expression régulière du test et celle de `scripts/collect-routes.ts` ensemble. Ces fichiers normalisent les fins de ligne (`\r\n` en `\n`) avant l'analyse, donc un dépôt en CRLF sous Windows ne pose pas de problème.
+**Tests garde-fous qui lisent le code source.** `page-meta.test.ts`, `brand.test.ts`, `theme.test.ts`, `storage.test.ts`, `internal-links.test.ts`, `code-snippets.test.ts` et `latex-sources.test.ts` analysent des fichiers avec des expressions régulières. Si l'un d'eux échoue après une modification qui semble anodine, le message nomme la route, le fichier ou la ligne en cause (`brand.test.ts` donne `fichier:ligne`). Ne pas contourner le test : soit corriger le code, soit, si le format du code a vraiment changé, adapter l'expression régulière du test et celle de `scripts/collect-routes.ts` ensemble. Ces fichiers normalisent les fins de ligne (`\r\n` en `\n`) avant l'analyse, donc un dépôt en CRLF sous Windows ne pose pas de problème.
 
-**Ce qui n'est pas testé automatiquement** : le rendu visuel, les débordements horizontaux (à vérifier à la main à 390, 768, 1024 et 1280 px), l'exécution réelle de Pyodide et de SQLite (les tests du runner utilisent un faux `Worker`), le service worker et les logos et icônes binaires.
+**Ce qui n'est pas testé automatiquement** : le rendu visuel, les débordements horizontaux (à vérifier à la main à 390, 768, 1024 et 1280 px), l'exécution dans un vrai navigateur (les tests du client de worker utilisent un faux `Worker`, mais les cours sont exécutés par le vrai Pyodide et le vrai sql.js sous Node), les hooks de progression (`use-course-progress`, `useQuiz`, `use-blog-favorites`, `use-persisted-tab`), le service worker et les logos et icônes binaires.
 
 ## 5. Procédures pas à pas
 
@@ -123,7 +128,9 @@ Une route à paramètre (`/exemple/:id`) n'est pas détectée par la regex : pou
 
 ### 5.2 Ajouter un cours (`/courses/<catégorie>/<cours>`)
 
-1. Créer la page dans `src/pages/courses/<catégorie>/<NomDuCours>.tsx`. Modèles : `statistics/AppliedStatistics.tsx` (cours à plan de modules : `CourseLayout`, `CourseHeroTemplate`, `CourseModuleTemplate`, `CourseItemActions`) ou `programming/PythonBasics.tsx` (modules détaillés). Les briques communes sont dans `src/components/courses/`.
+Un cours est un objet de données (`src/data/lessons/<cours>/`) affiché par une page générique ; écrire son contenu est décrit en 5.13. Mise en place dans le site :
+
+1. Créer la page dans `src/pages/courses/<catégorie>/<NomDuCours>.tsx` : un export par défaut d'environ 25 lignes qui rend `LessonCoursePage` avec le cours. Modèle : `pages/courses/nlp/NaturalLanguageProcessing.tsx`.
 2. Dans `src/components/routing/CourseRouter.tsx`, ajouter l'import différé et la route, avant `path="*"` :
 
    ```tsx
@@ -134,9 +141,10 @@ Une route à paramètre (`/exemple/:id`) n'est pas détectée par la regex : pou
 
    Le chemin est relatif (sans `/courses/`), entre guillemets doubles, commence par une lettre minuscule et ne contient ni `*` ni `:` : `collect-routes.ts` lit `CourseRouter.tsx` avec `path="([a-z][^"*:]*)"` et préfixe `/courses/`. Un cours inconnu affiche `NotFound`.
 3. Ajouter `"/courses/ma-categorie/mon-cours"` dans `src/config/page-meta.ts` (mêmes règles qu'en 5.1).
-4. Pour que le cours figure au catalogue et dans les cartes de l'accueil, ajouter une entrée dans `src/data/course-catalog.ts` (`COURSE_CATALOG`) : catégorie, titre, description, `href`, `status` (`"redige"` si les leçons sont écrites, `"plan"` si le cours n'est qu'une liste de modules : la carte porte alors le badge « Plan du cours »). Niveau, durée et nombre de modules ne se renseignent que s'ils figurent sur la page du cours, jamais d'après une estimation. Pour le mettre en avant sur l'accueil, ajouter son identifiant à `FEATURED_COURSE_IDS` et une photo dans `FeaturedCourses.tsx`.
-5. Si le cours suit la progression de l'apprenant, donner à `CourseItemActions` un `courseId` unique (ex. `applied-statistics`) : les données sont enregistrées sous la clé `course-progress-<courseId>` par `src/hooks/use-course-progress.ts`.
-6. Si une ancienne URL du cours doit continuer à fonctionner, voir 5.3.
+4. Pour que le cours figure au catalogue (`/courses`), dans les cartes de l'accueil, dans la liste des ressources et dans la page de mathématiques, ajouter une entrée dans `src/data/course-catalog.ts` (`COURSE_CATALOG`) : catégorie, titre, description, `href`, `status` (`"redige"` si les leçons sont écrites, `"plan"` si le cours n'est qu'une liste de modules : la carte porte alors le badge « Plan du cours »). Niveau, durée et nombre de modules se saisissent à la main et doivent reprendre ce qu'affiche la page du cours (le nombre de modules est celui de `LessonCourse.modules`), jamais une estimation. Pour le mettre en avant sur l'accueil, ajouter son identifiant à `FEATURED_COURSE_IDS`.
+5. Ajouter l'illustration de la carte : `public/img/courses/<id du cours>.webp` (800 x 450, voir `public/img/CREDITS.md`) ; `lib/course-image.ts` la retrouve par l'identifiant (les trois cours mis en avant ont à la place un SVG animé de `public/svg/cards/`, déclaré dans `ANIMATED_COURSE_IMAGES`).
+6. La progression de l'apprenant est enregistrée sous la clé `course-progress-<id du LessonCourse>` par `src/hooks/use-course-progress.ts` : rien à brancher, `LessonModuleView` le fait.
+7. Si une ancienne URL du cours doit continuer à fonctionner, voir 5.3.
 
 ### 5.3 Ajouter une redirection (ancienne URL vers URL canonique)
 
@@ -204,7 +212,7 @@ Tout se passe dans `src/data/quizData.ts`.
 
 ### 5.6 Ajouter un terme de glossaire
 
-La page `/glossary` lit `glossaryTerms`, agrégé par `src/data/glossary/index.ts` à partir de huit fichiers : `fundamentals.ts`, `tools.ts`, `statistics.ts`, `machine-learning.ts`, `deep-learning.ts`, `nlp.ts`, `mlops.ts`, `evaluation.ts` (179 entrées au moment de la rédaction, comptées en important `index.ts` ; un simple comptage de lignes `term:` donnerait un nombre plus bas). Particularité : `tools.ts` ne contient pas d'entrées écrites à la main, il les dérive des définitions de `src/components/fundamentals/definitions/` (`programming-definitions.ts` et `dataviz-definitions.ts`).
+La page `/glossary` lit `glossaryTerms`, agrégé par `src/data/glossary/index.ts` à partir de huit fichiers : `fundamentals.ts`, `tools.ts`, `statistics.ts`, `machine-learning.ts`, `deep-learning.ts`, `nlp.ts`, `mlops.ts`, `evaluation.ts`, puis des termes de `dictionaries.ts` qui ne figurent pas déjà dans ces fichiers (229 entrées au 10 octobre 2026, comptées en important `index.ts` : 190 des huit fichiers et 39 des dictionnaires ; un simple comptage de lignes `term:` donnerait un nombre plus bas). Deux particularités : `tools.ts` ne contient pas d'entrées écrites à la main, il les dérive des définitions de `src/components/fundamentals/definitions/` (`programming-definitions.ts` et `dataviz-definitions.ts`) ; `dictionaries.ts` fait de même avec les définitions de statistiques, de traitement des données et de préparation des données (`from-definition.ts` convertit une définition survolable en entrée), si bien qu'un terme survolé dans un cours est toujours retrouvable dans le glossaire (testé par `dictionaries.test.ts`).
 
 1. Choisir le fichier du domaine et ajouter un objet `GlossaryEntry` (type dans `src/data/glossary/types.ts`) :
 
@@ -217,10 +225,10 @@ La page `/glossary` lit `glossaryTerms`, agrégé par `src/data/glossary/index.t
    },
    ```
 
-   `category` appartient à l'union `GlossaryCategory` de `types.ts`. `icon` est un nom d'icône lucide-react connu de `src/components/glossary/GlossaryCard.tsx` (sinon l'icône `BookOpen` s'affiche). Champs facultatifs : `shortDefinition`, `longDefinition`, `examples`, `relatedTerms`, `source`, `sourceUrl`, `domain`, `level`, `synonyms`, `englishTerm`.
-2. Un nouveau fichier de domaine doit être importé, ajouté au tableau `glossaryTerms` et à la liste d'exports de `index.ts`. Une nouvelle catégorie s'ajoute à `GlossaryCategory`, à `CATEGORY_INFO` (`types.ts`) et à `getCategoryDisplayName` dans `src/pages/Glossary.tsx` (la catégorie `evaluation` n'y figure pas : son identifiant brut s'affiche).
+   `category` appartient à l'union `GlossaryCategory` de `types.ts`. `icon` est un nom d'icône lucide-react connu de `src/components/glossary/GlossaryCard.tsx` (sinon l'icône `BookOpen` s'affiche). Champs facultatifs : `shortDefinition`, `longDefinition`, `examples`, `relatedTerms`, `source`, `sourceUrl`, `domain`, `level`, `synonyms`, `englishTerm`. Une définition longue s'écrit en markdown léger (titres en gras sur leur propre ligne, puces, listes numérotées, blocs de code) que `lib/glossary-markdown.ts` prépare ; `claims.test.ts` refuse un chiffre attribué à un cabinet d'étude sans source.
+2. Un nouveau fichier de domaine doit être importé, ajouté au tableau `glossaryTerms` et à la liste d'exports de `index.ts`. Une nouvelle catégorie s'ajoute à `GlossaryCategory`, à `CATEGORY_INFO` (`types.ts`) et aux tables d'affichage `getCategoryDisplayName` de `src/components/glossary/GlossaryExplorer.tsx` (filtre) et de `GlossaryCard.tsx` (pastille de la fiche) ; sans cela, l'identifiant brut s'affiche.
 3. Ne rien inventer : toute définition chiffrée ou datée cite sa source.
-4. Pour un terme survolable dans le texte d'un cours, c'est un autre mécanisme : le composant `GlossaryTerm` (`src/components/ui/glossary-term.tsx`) reçoit un objet `GlossaryTermDefinition` (`term`, `shortDefinition`, `longDefinition`, ...). Les définitions vivent dans `src/data/glossary/ml-definitions.ts` (28 entrées indexées par identifiant, utilisées par les sections de Machine Learning), `src/data/data-preparation-enhanced-definitions.ts` (préparation des données) et `src/components/fundamentals/definitions/` (programmation, dataviz, statistiques, traitement des données). Ajouter l'objet au fichier qui correspond au cours, puis le passer à `GlossaryTerm`. Attention : `src/components/fundamentals/definitions/data-preparation-enhanced-definitions.ts` porte le même nom que celui de `src/data/` mais n'est importé nulle part ; c'est celui de `src/data/` qui est utilisé.
+4. Pour un terme survolable dans le texte d'un cours, c'est un autre mécanisme : le composant `GlossaryTerm` (`src/components/ui/glossary-term.tsx`) reçoit un objet `GlossaryTermDefinition` (`term`, `shortDefinition`, `longDefinition`, ...). Les définitions vivent dans `src/data/glossary/ml-definitions.ts` (28 entrées indexées par identifiant, utilisées par les sections de Machine Learning), `src/data/data-preparation-enhanced-definitions.ts` (préparation des données, version courte) et `src/components/fundamentals/definitions/` (programmation, dataviz, statistiques, traitement des données, préparation des données en version riche). Ajouter l'objet au fichier qui correspond au cours, puis le passer à `GlossaryTerm`. Attention : `src/components/fundamentals/definitions/data-preparation-enhanced-definitions.ts` porte le même nom que celui de `src/data/` mais ce sont deux fichiers différents ; `dictionaries.ts` les importe tous les deux (la version riche remplace la version courte pour les 18 termes communs). Les cours rédigés (`src/data/lessons/`) n'emploient pas `GlossaryTerm` : leur texte est du markdown simple.
 
 ### 5.7 Citer une source pour un chiffre
 
@@ -238,23 +246,24 @@ import { SourceNote } from "@/components/ui/source-note";
 - `sources` : liste de `{ label, href? }`. Sans `href`, la source est citée sans lien. Le pluriel « Sources » est automatique. Les liens s'ouvrent dans un nouvel onglet avec `rel="noopener noreferrer"`.
 - `consulted` : date déjà mise en forme en français, qui doit être celle d'une vérification réelle de la page citée.
 - Ouvrir la page citée et y retrouver le chiffre exact avant de l'écrire. Un chiffre qu'on ne peut pas sourcer est supprimé ou remplacé par une formulation qualitative.
-- `SourceNote` est utilisé aujourd'hui dans 8 composants (liste dans `structure.md`). Le registre `docs/SOURCES.md` recense chaque chiffre externe, sa source, la date de consultation et son niveau de vérification (« page lue », « extrait de recherche » ou « non vérifié ») : y ajouter une ligne pour tout nouveau chiffre, avec le niveau réellement atteint.
-- Pour les chiffres calculés par le site lui-même (statistiques sur les jeux d'exemple, quiz, progression), aucune citation : ils viennent de `src/lib/sample-datasets.ts` ou du stockage local et sont réellement calculés.
+- `SourceNote` est utilisé aujourd'hui dans 11 composants (liste dans `structure.md`). Le registre `docs/SOURCES.md` recense chaque chiffre externe, sa source, la date de consultation et son niveau de vérification (« page lue », « extrait de recherche » ou « non vérifié ») : y ajouter une ligne pour tout nouveau chiffre, avec le niveau réellement atteint.
+- Pour les chiffres calculés par le site lui-même (statistiques sur les jeux d'exemple, quiz, progression, résultats des exemples de cours), aucune citation : ils viennent de `src/lib/sample-datasets.ts`, du stockage local ou du moteur d'exécution et sont réellement calculés.
+- Dans un cours rédigé, le markdown n'a pas de lien (testé) : une référence s'écrit « Auteur, année » dans le texte et se consigne dans `docs/SOURCES.md` (section « Références citées dans les autres cours rédigés ») avec son niveau de vérification.
 
 ### 5.8 Ajouter un paquet Python au runner
 
-L'éditeur exécute Python avec Pyodide ; seuls les paquets embarqués sont disponibles (numpy, pandas, scikit-learn et leurs dépendances). Matplotlib n'est pas fourni.
+L'éditeur et les cours exécutent Python avec Pyodide ; seuls les paquets embarqués sont disponibles (numpy, pandas, scikit-learn, matplotlib et leurs dépendances). Le verrou de Pyodide 314.0.7 (`node_modules/pyodide/pyodide-lock.json`) propose d'autres paquets que le site ne livre pas, par exemple statsmodels (avec patsy), xgboost, lightgbm, beautifulsoup4, lxml, networkx, sympy, nltk et altair ; il n'a ni seaborn, ni plotly, ni spacy, ni tensorflow, ni torch. Le verrou ne donne pas les tailles : mesurer avec `du -sk public/vendor` avant et après.
 
 1. Vérifier que le paquet existe dans `node_modules/pyodide/pyodide-lock.json` : sinon `sync-runtimes.mjs` s'arrête avec `Paquet inconnu dans pyodide-lock.json`.
 2. Ajouter son nom au tableau `PYTHON_PACKAGES` de `scripts/sync-runtimes.mjs`. Les dépendances déclarées dans le verrou sont ajoutées automatiquement.
 3. Relever la licence de chaque nouvelle roue (fichier `METADATA`) et l'ajouter à `PACKAGE_LICENSES` dans le même script, sous la forme `nom: ["licence", "adresse du projet"]`, **pour le paquet et pour chacune de ses nouvelles dépendances**. Le script refuse un paquet absent de la liste (`Licence à vérifier ... puis à ajouter à PACKAGE_LICENSES`). Vérifier la compatibilité avec la licence du site (AGPL-3.0-or-later) ; les composants tiers gardent leur licence et sont recensés dans `public/vendor/NOTICE.txt`, régénéré par le script (ne pas l'éditer).
 4. Ajouter le même nom à `PROVIDED_PACKAGES` dans `src/lib/runner/python.worker.ts` (liste chargée quand le code utilise `importlib.import_module` ou `__import__`).
-5. Lancer `npm run runtimes:sync`, puis mesurer le poids : `du -sh public/vendor` (39 Mo avec les paquets actuels). Chaque Mo ajouté est téléchargé par les visiteurs qui exécutent du code.
+5. Lancer `npm run runtimes:sync`, puis mesurer le poids : `du -sh public/vendor` (48 Mo avec les paquets actuels). Chaque Mo ajouté est téléchargé par les visiteurs qui exécutent du code.
 6. Mettre à jour les textes qui énumèrent les paquets : `src/components/fundamentals/programming/CodeEditor.tsx` (texte d'aide), `src/pages/TermsOfService.tsx` (composants tiers), `README.md`.
-7. Tester dans l'éditeur de `/fundamentals/programming` : `import <module>` puis un calcul réel.
-8. Point d'attention, non testé : `public/sw.js` sert `vendor/` en « cache d'abord » dans un cache nommé `ds-explorer-vendor-v1`, dont le nom ne change pas quand on ajoute un paquet sans changer la version de Pyodide (les dossiers portent le numéro de version de Pyodide, pas la liste des paquets). Un visiteur qui a déjà téléchargé les moteurs risque de garder l'ancien `pyodide-lock.json`. Dans ce cas, incrémenter `VENDOR_CACHE` dans `public/sw.js` (le worker supprime les autres caches à l'activation).
+7. Tester dans l'éditeur de `/fundamentals/programming` : `import <module>` puis un calcul réel. Les tests des cours (`lessons-python.test.ts`) utilisent les mêmes roues par `public/vendor` : les relancer, car ils chargeront le nouveau paquet.
+8. Point d'attention, non testé : `public/sw.js` sert `vendor/` en « cache d'abord » dans un cache nommé `ds-explorer-vendor-v2` (constante `VENDOR_CACHE`), dont le nom ne change pas quand on ajoute un paquet sans changer la version de Pyodide (les dossiers portent le numéro de version de Pyodide, pas la liste des paquets). Un visiteur qui a déjà téléchargé les moteurs risque de garder l'ancien `pyodide-lock.json`. Dans ce cas, incrémenter `VENDOR_CACHE` dans `public/sw.js` (le worker supprime les autres caches à l'activation).
 
-Pour alléger au contraire le site, retirer un nom de `PYTHON_PACKAGES` et de `PROVIDED_PACKAGES` : le module retiré lèvera `ModuleNotFoundError` dans l'éditeur.
+Pour alléger au contraire le site, retirer un nom de `PYTHON_PACKAGES` et de `PROVIDED_PACKAGES` : le module retiré lèvera `ModuleNotFoundError` dans l'éditeur et dans les cours qui l'importent (scikit-learn pèse environ 19 Mo mais la plupart des cours de machine learning en dépendent).
 
 ### 5.9 Changer l'identité du site
 
@@ -283,7 +292,7 @@ Après un changement : `npm test` (il liste chaque occurrence fautive), puis `np
 
 La plateforme sert des fichiers statiques derrière Nginx, sans repli vers `index.html`. Lire d'abord `<notes de deploiement de la plateforme>` (protocole de la plateforme de l'auteur, non publié) ; les étapes ci-dessous valent pour tout hébergeur de fichiers statiques.
 
-1. Contrôles : `npm run lint`, `npm run typecheck`, `npm test`. Facultatif : `npm run news:refresh` (instantané daté des actualités de la page Communauté, réseau requis).
+1. Contrôles : `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:smoke`. Facultatif : `npm run news:refresh` (instantané daté des actualités de la page Communauté, réseau requis).
 2. `npm run build:hylst`. Le build lance `sync-runtimes`, construit dans `dist-hylst/` (ignoré par git), puis `verify-dist.mjs` contrôle le résultat et fait échouer la commande s'il trouve un secret, une référence Supabase ou `VITE_*`, un chemin absolu hors base dans `index.html`, ou s'il manque le canonical ou `sitemap.xml`. À la date de rédaction, la sortie compte 84 pages HTML (56 routes canoniques et 28 anciennes URL). Dans `vite.config.ts`, le plugin `staticHosting` écrit ces pages, `sitemap.xml`, `404.html` et la ligne `Sitemap:` de `robots.txt` ; le plugin `productionHardening` (tous les builds) injecte la CSP, copie `LICENSE` vers `LICENSE.txt` et versionne le cache de `sw.js`.
 3. Copier le **contenu** de `dist-hylst/` dans le dossier de la plateforme `<dossier de la plateforme>`, après avoir vidé les anciens fichiers hachés de son dossier `assets\` : remplacer l'ensemble d'un coup, sinon des fichiers orphelins subsistent. Ne jamais copier `node_modules`, `.env*` ni `*.zip`.
 4. Ne rien faire d'autre dans le dépôt cible : ni `git` (pas même `git status`, qui réécrit l'index et peut gêner l'agent de la plateforme), ni édition d'un autre fichier, ni accès au serveur VPS ou à l'hébergeur (consigne de l'auteur du 4 octobre 2026). La carte du hub, le contenu de la plateforme, le `robots.txt` racine et son `changelog.md` sont mis à jour par l'auteur et l'agent de la plateforme. Vérifier la copie par comparaison SHA-256 entre `dist-hylst/` et le dossier de destination.
@@ -307,6 +316,133 @@ Ce dépôt local garde un historique que l'on ne publie pas (anciens récits du 
 État au 5 octobre 2026 : le premier envoi est fait (https://github.com/Hylst/explorons_la_science_des_donnees, un commit, dossier local `explorons_la_science_des_donnees` à côté de ce dépôt). Pour publier une mise à jour : relancer l'export dans un nouveau dossier vide, copier son contenu sur le dossier du dépôt public en conservant son dossier `.git`, puis `git add -A`, un commit et `git push` depuis ce dossier (le script ne sait créer qu'un dépôt neuf).
 
 La liste `EXCLUDE` et les remplacements de chemins sont en tête du script : les modifier pour changer ce qui est publié. Le script s'exclut lui-même de l'export, puisqu'il cite par construction les chemins qu'il retire.
+
+### 5.13 Écrire ou modifier un cours au format des leçons
+
+Les 10 cours du site et les 5 projets guidés ne sont pas des pages écrites en JSX : ce sont des **données** (`src/data/lessons/`), affichées par `src/components/courses/lessons/` et contrôlées par des tests qui exécutent chaque exemple et chaque corrigé sur les vrais moteurs (Pyodide pour Python, sql.js pour SQL). Pour qu'un cours reste exact, il suffit que ces tests passent.
+
+**Les types** (`src/lib/lessons/types.ts`) :
+
+```ts
+export interface LessonCourse { id: string; modules: LessonModule[] }
+
+export interface LessonModule {
+  id: string;                 // stable : clé de la progression de l'apprenant
+  title: string;
+  duration: string;           // « 1 h 30 », « 3 h », « 45 min » ; affichée « (indicatif) »
+  summary: string;
+  objectives: string[];       // 2 au moins
+  sections: LessonSection[];
+  quiz: CourseQuizQuestion[]; // 3 au moins : { question, options, correct, explanation }
+}
+```
+
+Une section (`LessonSection`) a un `kind` parmi :
+
+| `kind` | Champs | Rôle |
+| --- | --- | --- |
+| `text` | `md` | Texte en markdown : intertitres `###`, listes, gras, `code`, blocs de code. Pas de tableau, pas de lien |
+| `code` | `language` (`"sql"` ou `"python"`), `code`, `setup?`, `caption?` | Exemple modifiable et exécuté ; `setup` s'exécute avant, sans s'afficher (création des tables, chargement des données) |
+| `exercise` | `language`, `prompt`, `starter`, `solution`, `setup?`, `hint?`, et selon le langage `test` (Python), `ordered?` et `columns?` (SQL) | Exercice vérifié par le moteur |
+| `note` | `tone` (`"info"`, `"warning"`, `"tip"`), `md` | Encadré « À retenir », « Attention » ou « Astuce » |
+| `widget` | `widget` (un nom du type `LessonWidget`) | Composant interactif chargé à la demande : banc d'essai NumPy, schémas animés du cours Python, figures SVG de `CourseFigures` |
+| `equation` | `latex`, `caption?` | Formule rendue par KaTeX (chargé à la demande) |
+
+**Créer un cours**
+
+1. Créer le dossier `src/data/lessons/<cours>/` et, dedans, un fichier par module (`m1-<sujet>.ts`, `m2-...`). Chaque fichier exporte un `LessonModule`. Squelette :
+
+   ```ts
+   import type { LessonModule } from "@/lib/lessons/types";
+   import { lines } from "../lines";
+
+   export const moduleBases: LessonModule = {
+     id: "bases",
+     title: "Les bases",
+     duration: "1 h 30",
+     summary: "Une phrase qui dit ce que le module apprend.",
+     objectives: ["Premier objectif", "Deuxième objectif"],
+     sections: [
+       { kind: "text", md: "### Un premier exemple\n\nTexte en markdown." },
+       { kind: "code", language: "python", code: lines("total = 2 + 3", "print(total)") },
+       {
+         kind: "exercise",
+         language: "python",
+         prompt: "Calculez `total` et vérifiez qu'il vaut 5.",
+         starter: lines("total = None"),
+         solution: lines("total = 2 + 3"),
+         test: lines("assert total == 5, \"total doit valoir 5\""),
+         hint: "Une addition.",
+       },
+     ],
+     quiz: [
+       { question: "...", options: ["...", "..."], correct: 0, explanation: "Une explication de plus de vingt caractères." },
+       // au moins trois questions
+     ],
+   };
+   ```
+
+2. Créer `src/data/lessons/<cours>/index.ts` qui exporte le `LessonCourse` (`export const monCours: LessonCourse = { id: "mon-cours", modules: [moduleBases, ...] }`). L'`id` du cours et ceux des modules sont des identifiants stables en minuscules séparées par des tirets (testé).
+3. Les données partagées par plusieurs exemples (un jeu de données, des imports) vont dans un fichier du dossier (`data.ts`, voir `nlp/data.ts`) ou dans `src/data/lessons/datasets/`, écrites avec `lines(...)` et réutilisées dans les `code`, les `setup` et les exercices.
+4. **Enregistrer le cours dans le test** : importer l'objet dans `src/data/lessons/lessons-python.test.ts` (cours Python) ou `lessons.test.ts` (cours SQL) et l'ajouter au tableau passé à `describeLessonCourse`. Sans cette étape, aucun exemple n'est exécuté et rien n'est contrôlé.
+5. Créer la page et la déclarer : voir 5.2 (page `LessonCoursePage`, route, titre et description, catalogue, illustration).
+6. Si le cours cite des faits externes (auteur et année, chiffre), les consigner dans `docs/SOURCES.md` (5.7).
+
+**Règles d'écriture**
+
+- **Identifiants stables.** Le `id` du cours et celui de chaque module servent de clés de progression (`course-progress-<id du cours>`, sous-clé = `id` du module). Ne jamais les changer. Python garde `python-basics` et `module-1` à `module-7` pour cette raison.
+- **Code en lignes.** Écrire le code avec `lines("ligne 1", "ligne 2", ...)` (`src/data/lessons/lines.ts`) : une ligne de source par ligne de code. Un gabarit multiligne en backticks est un piège : un `\n` voulu dans une chaîne Python y devient un vrai saut de ligne et casse le code (en cas de gabarit, écrire la barre oblique inverse deux fois). `src/lib/code-snippets.test.ts` détecte les cas les plus courants.
+- **Texte.** Markdown sans tableau (un tableau `| a | b |` n'est pas rendu) ni lien (`http://` est refusé) ; les intertitres `###` deviennent des `h4` (le titre du module est un `h3`). Écrire des espaces ordinaires : `lib/lessons/typography.ts` ajoute les espaces insécables français à l'affichage, jamais dans le code. Pas de tiret cadratin.
+- **Formules.** `latex` d'une section `equation` s'écrit dans un gabarit étiqueté `String.raw` (voir `math-intro/m4-derivees.ts`) pour ne pas doubler les barres obliques inverses ; le test compile chaque formule avec KaTeX et échoue si elle est fausse.
+- **Chaque exécution repart de zéro.** Les variables d'un exemple ne passent pas au suivant : un exemple qui réutilise des données les rappelle (constante `lines`) ou les met dans `setup`.
+- **Exercice Python.** `test` est une suite d'`assert` avec un message en français que l'apprenant lira (`assert total == 5, "total doit valoir 5"`). Le corrigé doit passer ; le `starter` doit échouer **sur un de ces `assert`** (pas sur une `NameError` ou un `assert` sans message). Tester le résultat et non la méthode, pour que plusieurs solutions puissent réussir.
+- **Exercice SQL.** Le moteur compare le **dernier** tableau produit par la réponse à celui du corrigé, sur le même `setup`. `ordered: true` quand l'ordre compte (le corrigé doit alors contenir `ORDER BY`) ; `columns: ["detail"]` pour ne comparer que certaines colonnes (par exemple `EXPLAIN QUERY PLAN`). Le corrigé doit renvoyer au moins une ligne (le moteur n'affiche rien pour 0 ligne) et le `starter` ne doit pas déjà réussir.
+- **pandas.** Le moteur ne charge un paquet que s'il le voit dans un `import` : `load_*(as_frame=True)` s'accompagne d'un `import pandas` explicite (testé).
+- **Tracés.** Seul Matplotlib s'exécute. Seaborn, Plotly, Altair et D3.js se montrent comme du code à lire, avec la mention qu'il ne tourne pas ici. Un exercice de tracé se vérifie en inspectant la figure (`ax.patches`, `ax.get_title()`, `ax.get_ylim()`...).
+- **Données.** Jeux fournis avec scikit-learn (rien n'est téléchargé), ou données écrites dans le code avec une graine fixe et annoncées comme fictives. Pas de téléchargement : le réseau est coupé.
+- **Widget.** Pour un nouveau composant interactif : ajouter son nom au type `LessonWidget` (`types.ts`), un `lazy(...)` et un cas dans `LessonWidget.tsx`, puis un cas dans `LessonWidget.test.tsx`.
+
+**Lancer les contrôles**
+
+```bash
+npx vitest run src/data/lessons/lessons-python.test.ts -t "<id du cours>"   # un cours Python, sur Pyodide
+npx vitest run src/data/lessons/lessons.test.ts                              # les cours SQL, sur sql.js
+npm test                                                                     # tout, après sync-runtimes
+npm run test:smoke                                                           # la page s'affiche, chaque module aussi
+```
+
+`-t` filtre sur le nom du bloc `describe`, qui est `cours <id du cours>` ; on peut le restreindre à un module (`-t "module 3"`). `npx vitest` ne passe pas par le hook `pretest` : si `public/vendor` manque, lancer `npm run runtimes:sync` d'abord. Chaque test Python a 120 s ; le premier charge Pyodide (environ 7 s). Pour s'assurer qu'un test peut échouer, abîmer une fois un corrigé (retirer une ligne) et vérifier que le test le signale.
+
+| Message d'échec | Cause | Remède |
+| --- | --- | --- |
+| `la réponse de départ ne doit pas déjà passer les tests` / `ne doit pas déjà être juste` | Le `starter` satisfait déjà l'exercice | Le rendre incomplet |
+| `la réponse de départ doit échouer sur un assert lisible` | Le `starter` plante autrement (`NameError`...) ou l'`assert` n'a pas de message | Faire échouer le `starter` sur un `assert ..., "message"` |
+| `un exercice Python doit avoir des tests (assert)` | Champ `test` absent ou sans `assert` | Écrire les `assert` |
+| `le corrigé doit renvoyer un tableau (au moins une ligne)` | Corrigé SQL sans résultat | Ajouter des lignes au jeu ou changer la question |
+| `pandas importé explicitement ...` | `as_frame=True` sans `import pandas` | Ajouter l'import |
+| Échec sur un `id` de module | Doublon ou caractères hors `a-z0-9-` | Renommer le nouveau module (jamais un module existant) |
+| Échec sur « markdown sans tableau ni lien externe » | Tableau `\|...\|` ou `http(s)://` dans un texte, un énoncé ou un indice | Réécrire en liste ; citer « Auteur, année » sans lien |
+| Échec sur une formule | LaTeX invalide pour KaTeX | Corriger la formule (le message nomme le LaTeX fautif) |
+| `quiz cohérent ...` | Moins de 3 questions, `correct` hors des options, explication trop courte, options en double | Compléter le quiz |
+
+**Modifier un cours existant**
+
+- Ajouter, reformuler ou réordonner des sections ou des modules : sans risque pour la progression tant que les `id` ne changent pas. Ajouter un module à la fin d'un cours est le plus simple. Retirer un module laisse une clé orpheline sans effet dans le stockage de l'apprenant.
+- Après un changement de durée ou de nombre de modules, mettre à jour l'entrée du cours dans `src/data/course-catalog.ts` (la durée totale affichée en tête de page est calculée, celle du catalogue est saisie).
+- Un exemple modifié doit rester exécutable : relancer le test du cours. Une sortie affichée dans le texte ne s'écrit jamais à la main (elle viendrait à diverger du moteur) ; écrire une consigne qui renvoie l'apprenant à la sortie de l'exemple.
+- **Reprendre une ancienne progression.** Quand un cours enregistrait sa progression sous une autre clé que `course-progress-<id>`, `src/lib/progress-migration.ts` est le modèle (`migrateMathIntroProgress`) : lire l'ancienne clé avec `readJSON` et un validateur, convertir chaque élément terminé en identifiant de module (`module-3`), les marquer avec `markDone(courseId, ids)` de `hooks/use-course-progress.ts`, puis écrire une clé-drapeau (`math-intro-progress-migrated`) pour ne le faire qu'une fois. La fonction est appelée au chargement de la page du cours (`pages/courses/math-stats/math-intro.tsx`, avant le premier affichage) et testée (`progress-migration.test.ts` : une seule reprise, aucune création sans ancienne progression).
+
+**Projets guidés.** Même format : un module par projet dans `src/data/lessons/projects/<projet>.ts`, listé dans `projects/index.ts` (cours `projects`). L'`id` du module est celui du projet dans `src/data/projects.ts` : c'est ce qui rattache le guide à la fiche de la page Projets (`ProjectGrid`) et partage la progression. Le nombre de projets guidés affiché sur la page est calculé sur cette liste.
+
+### 5.14 Ajouter du contenu lourd à une page longue
+
+Une page longue (formules KaTeX, graphiques Recharts) ne doit pas bloquer son premier affichage. Trois outils, mesurés les 6 et 7 octobre 2026 (`docs/PERFORMANCE_GUIDE.md`) :
+
+1. **Page faite d'une liste de sections** : les mettre comme enfants directs de `<ProgressiveSections>` (`components/layout/ProgressiveSections.tsx`). La première section est importée normalement, les suivantes avec `lazy(() => import(...))`. Modèle : `pages/fundamentals/math-stats/ProbabilityTheory.tsx`. La page affiche la première section, puis une de plus à chaque moment d'inactivité du navigateur ; elle s'affiche entièrement quand l'adresse a une ancre ou qu'une position de lecture doit être restaurée.
+2. **Un seul bloc lourd sous le bandeau** : l'importer avec `lazy` et l'entourer de `<LazyBlock>` (`components/layout/LazyBlock.tsx`). Modèle : `pages/MachineLearning.tsx`.
+3. **Graphique Recharts** : utiliser `DeferredResponsiveContainer` (`components/ui/deferred-chart.tsx`) à la place de `ResponsiveContainer`, avec la même `width` et la même `height` : une boîte de cette taille est réservée jusqu'à 400 px de l'écran, si bien que la hauteur de la page ne change pas.
+
+Les attentes de `ProgressiveSections` et de `LazyBlock` portent l'attribut `data-sections-pending` : `ScrollManager` et le test de fumée s'en servent pour attendre la page complète. Ne pas le retirer, et ne jamais appeler `window.scrollTo` au montage. Ne pas utiliser `content-visibility: auto`, qui casse la restauration de la position. Après avoir ajouté une section, lancer `npm run test:smoke`.
 
 ## 6. Pièges Windows
 
@@ -341,7 +477,7 @@ Ces règles viennent des commentaires du code et des tests.
 - Tout texte visible est en français correct, avec accents. Pas de tiret cadratin ni demi-cadratin dans les titres et descriptions (testé) ni dans les ajouts au dépôt de la plateforme.
 - Le nom du site s'importe de `src/config/site.ts` (`SITE_NAME`), il ne se recopie pas. L'ancien nom « Data Science Explorer » ne doit plus apparaître (testé).
 - Le formulaire de contact prépare un `mailto:` et ne prétend jamais avoir envoyé un message (`src/config/contact.ts`).
-- Les extraits de code exécutés dans l'éditeur doivent être réels. Dans un gabarit de chaîne TypeScript, écrire les échappements Python `\n` (un saut de ligne réel casserait le code).
+- Les extraits de code exécutés dans l'éditeur doivent être réels. Dans un gabarit de chaîne TypeScript, écrire les échappements Python avec une double barre oblique inverse suivie de `n` (un simple `\n` deviendrait un vrai saut de ligne et casserait le code) ; dans les cours, `lines(...)` évite le piège.
 
 **Code**
 
@@ -381,5 +517,7 @@ Ces règles viennent des commentaires du code et des tests.
 | `sync-runtimes` : `Licence à vérifier` ou `Paquet inconnu` | Paquet Python sans licence relevée ou absent du verrou Pyodide | Section 5.8 |
 | `sync-runtimes` échoue au téléchargement | Pas de réseau au premier lancement, ou HTTP en erreur | Relancer avec réseau ; les roues déjà reçues restent dans `.cache/` |
 | `npm run verify:dist` échoue sur `dist/` | Le contrôle est écrit pour le build hylst | Utiliser `npm run verify:hylst` après `npm run build:hylst` |
+| `npm test` : le test des cours Python échoue au chargement (`pyodide-lock.json` introuvable) | `public/vendor` absent (test lancé par `npx vitest` sans `pretest`) | `npm run runtimes:sync`, puis relancer |
+| Un test de cours échoue (exemple, corrigé, point de départ d'un exercice) | Voir le tableau de messages en 5.13 | Section 5.13 |
 | Python ou SQL ne démarrent pas en production : « WebAssembly est bloqué par la politique de sécurité du serveur » | En-tête CSP du serveur sans `'wasm-unsafe-eval'` | Point 7 de la section 5.11 |
 | Un visiteur voit une ancienne version | Service worker : la mise à jour est proposée par un toast « Actualiser » et activée au message `SKIP_WAITING` | Normal ; le cache est recréé à chaque build (`__BUILD_ID__`) |

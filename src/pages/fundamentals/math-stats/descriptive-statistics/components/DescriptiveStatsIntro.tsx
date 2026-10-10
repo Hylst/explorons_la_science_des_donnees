@@ -15,13 +15,13 @@ const DescriptiveStatsIntro = () => {
           <p className="text-xl leading-relaxed mb-4">
             Imaginez que vous devez expliquer à votre patron l'état de santé de votre entreprise 
             en regardant 10 000 lignes de données de ventes. Mission impossible ? 
-            Pas avec les statistiques descriptives !
+            Pas avec les statistiques descriptives.
           </p>
           
           <div className="bg-white p-6 rounded-lg border-l-4 border-blue-500 my-6">
             <h3 className="text-lg font-semibold text-blue-700 mb-3 flex items-center gap-2">
               <Lightbulb className="h-5 w-5" />
-              🎯 Analogie : Le GPS de vos données
+              Analogie : Le GPS de vos données
             </h3>
             <p className="mb-3">
               Les statistiques descriptives sont comme un GPS pour vos données. Au lieu de vous perdre 
@@ -36,14 +36,14 @@ const DescriptiveStatsIntro = () => {
           </div>
 
           <div className="bg-amber-50 p-6 rounded-lg border border-amber-200 my-6">
-            <h3 className="text-lg font-semibold text-amber-700 mb-3">🚨 Pourquoi c'est utile aujourd'hui ?</h3>
+            <h3 className="text-lg font-semibold text-amber-700 mb-3">Pourquoi c'est utile aujourd'hui ?</h3>
             <p className="mb-3">
               Nous sommes submergés par les données. Chaque clic, chaque achat, chaque interaction 
               génère des informations. Sans statistiques descriptives :
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
-                <strong>❌ Problèmes sans statistiques :</strong>
+                <strong>Problèmes sans statistiques :</strong>
                 <ul className="mt-1 space-y-1">
                   <li>• Paralysie par l'excès de données</li>
                   <li>• Décisions basées sur des impressions</li>
@@ -52,7 +52,7 @@ const DescriptiveStatsIntro = () => {
                 </ul>
               </div>
               <div>
-                <strong>✅ Solutions avec statistiques :</strong>
+                <strong>Solutions avec statistiques :</strong>
                 <ul className="mt-1 space-y-1">
                   <li>• Synthèse claire et actionnable</li>
                   <li>• Décisions basées sur des faits</li>
@@ -87,7 +87,7 @@ const DescriptiveStatsIntro = () => {
           </div>
         </div>
 
-        <CourseHighlight title="🌟 Ce que changent les statistiques descriptives" type="concept">
+        <CourseHighlight title="Ce que changent les statistiques descriptives" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
               <strong>Premier changement :</strong> de l'intuition à la mesure. Au lieu de dire « nos ventes vont bien »,
@@ -97,7 +97,7 @@ const DescriptiveStatsIntro = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-700 mb-2">📈 Business Intelligence</h4>
+                <h4 className="font-semibold text-blue-700 mb-2">Business Intelligence</h4>
                 <ul className="text-sm space-y-1">
                   <li>• KPIs et tableaux de bord</li>
                   <li>• Analyse des performances</li>
@@ -107,7 +107,7 @@ const DescriptiveStatsIntro = () => {
               </div>
               
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-700 mb-2">🔬 Recherche Scientifique</h4>
+                <h4 className="font-semibold text-green-700 mb-2">Recherche Scientifique</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Description des échantillons</li>
                   <li>• Contrôle qualité des données</li>
@@ -117,7 +117,7 @@ const DescriptiveStatsIntro = () => {
               </div>
               
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-purple-700 mb-2">🤖 Intelligence Artificielle</h4>
+                <h4 className="font-semibold text-purple-700 mb-2">Intelligence Artificielle</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Exploration des datasets</li>
                   <li>• Feature engineering</li>
@@ -131,11 +131,11 @@ const DescriptiveStatsIntro = () => {
 
         <div className="bg-gradient-to-r from-indigo-100 to-purple-100 p-6 rounded-lg mt-6">
           <h3 className="text-lg font-semibold text-indigo-800 mb-3 flex items-center gap-2">
-            🎯 Ce que vous allez apprendre
+            Ce que vous allez apprendre
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
             <div>
-              <h4 className="font-semibold mb-2 text-indigo-700">📊 Compétences techniques :</h4>
+              <h4 className="font-semibold mb-2 text-indigo-700">Compétences techniques :</h4>
               <ul className="space-y-1">
                 <li>✓ Calculer moyenne, médiane, mode avec discernement</li>
                 <li>✓ Interpréter variance et écart-type intuitivement</li>
@@ -145,7 +145,7 @@ const DescriptiveStatsIntro = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2 text-purple-700">🧠 Compétences stratégiques :</h4>
+              <h4 className="font-semibold mb-2 text-purple-700">Compétences stratégiques :</h4>
               <ul className="space-y-1">
                 <li>✓ Transformer des données en insights business</li>
                 <li>✓ Communiquer efficacement avec les données</li>

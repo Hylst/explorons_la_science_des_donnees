@@ -269,7 +269,7 @@ const AuditSection: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-orange-700">1️⃣ Préparation</h4>
+              <h4 className="font-semibold mb-3 text-orange-700">Préparation</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-500 mt-1">•</span>
@@ -286,7 +286,7 @@ const AuditSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-orange-700">2️⃣ Exécution</h4>
+              <h4 className="font-semibold mb-3 text-orange-700">Exécution</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-500 mt-1">•</span>
@@ -303,7 +303,7 @@ const AuditSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-orange-700">3️⃣ Rapport</h4>
+              <h4 className="font-semibold mb-3 text-orange-700">Rapport</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-orange-500 mt-1">•</span>

@@ -84,7 +84,7 @@ const GradientsSection = () => {
     <section id="gradients" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">4. Gradients et Dérivées Partielles</h2>
       
-      <CourseHighlight title="🌟 Le gradient : votre boussole mathématique" type="concept">
+      <CourseHighlight title="Le gradient : votre boussole mathématique" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p className="mb-4">
@@ -92,10 +92,10 @@ const GradientsSection = () => {
               toujours la direction de la <strong>montée la plus raide</strong>.
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2">🧭 Analogie GPS</h4>
+              <h4 className="font-semibold mb-2">Analogie GPS</h4>
               <p className="text-sm">
                 Le gradient = flèche GPS qui pointe vers la montée.
-                Pour descendre (optimisation), on va dans le sens opposé !
+                Pour descendre (optimisation), on va dans le sens opposé.
               </p>
             </div>
           </div>
@@ -138,10 +138,10 @@ const GradientsSection = () => {
               ))}
             </div>
 
-            <CourseHighlight title="💡 Astuce de calcul" type="example">
+            <CourseHighlight title="Astuce de calcul" type="example">
               <p className="text-sm">
                 Pour calculer ∂f/∂x, traitez toutes les autres variables comme des constantes 
-                et dérivez normalement par rapport à x !
+                et dérivez normalement par rapport à x.
               </p>
             </CourseHighlight>
           </CardContent>
@@ -214,7 +214,7 @@ const GradientsSection = () => {
             ))}
           </div>
 
-          <CourseHighlight title="🔥 Le rôle de la règle de la chaîne" type="warning">
+          <CourseHighlight title="Le rôle de la règle de la chaîne" type="warning">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold mb-3">Principe fondamental :</h4>
@@ -342,10 +342,10 @@ const GradientsSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="🎓 Le saviez-vous ? Disparition et explosion du gradient" type="info">
+      <CourseHighlight title="Le saviez-vous ? Disparition et explosion du gradient" type="info">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">🌊 Disparition du gradient</h4>
+            <h4 className="font-semibold mb-3">Disparition du gradient</h4>
             <p className="text-sm mb-2">
               Dans les réseaux profonds, les gradients peuvent devenir très petits 
               en se propageant vers les premières couches.
@@ -355,7 +355,7 @@ const GradientsSection = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">💥 Explosion du gradient</h4>
+            <h4 className="font-semibold mb-3">Explosion du gradient</h4>
             <p className="text-sm mb-2">
               À l'inverse, les gradients peuvent exploser et devenir trop grands, 
               causant une instabilité d'entraînement.

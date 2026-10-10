@@ -765,7 +765,7 @@ const InteractiveChallenges: React.FC = () => {
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg overflow-hidden">
                     <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-mono flex items-center justify-between">
-                      <span>💻 {selectedChallenge.language}</span>
+                      <span>{selectedChallenge.language}</span>
                       <span>{userCode.length} caractères</span>
                     </div>
                     <Textarea

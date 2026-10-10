@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, Brain, Target, Zap, Database, Globe, Cpu } from "lucide-react";
+import { Code, Brain, Target, Zap, Database, Globe, Cpu, BarChart3, Package, Tv } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { programmingDefinitions } from "@/components/fundamentals/definitions/programming-definitions";
@@ -23,7 +23,7 @@ const ProgrammingIntro = () => {
     {
       id: 'python',
       name: 'Python',
-      emoji: '🐍',
+      icon: Code,
       description: 'Un langage généraliste et lisible',
       badge: { text: 'Accessible aux débutants', color: 'bg-blue-100 text-blue-800' },
       popularity: 63,
@@ -34,7 +34,7 @@ const ProgrammingIntro = () => {
     {
       id: 'r',
       name: 'R',
-      emoji: '📊',
+      icon: BarChart3,
       description: 'Un langage conçu pour les statistiques',
       badge: { text: 'Statistiques', color: 'bg-purple-100 text-purple-800' },
       popularity: 27,
@@ -45,7 +45,7 @@ const ProgrammingIntro = () => {
     {
       id: 'sql',
       name: 'SQL',
-      emoji: '🗃️',
+      icon: Database,
       description: 'Le langage des bases de données relationnelles',
       badge: { text: 'Très répandu', color: 'bg-amber-100 text-amber-800' },
       popularity: 35,
@@ -56,7 +56,7 @@ const ProgrammingIntro = () => {
     {
       id: 'julia',
       name: 'Julia',
-      emoji: '⚡',
+      icon: Zap,
       description: 'Un langage pour le calcul scientifique rapide',
       badge: { text: 'Calcul intensif', color: 'bg-green-100 text-green-800' },
       popularity: 11,
@@ -133,8 +133,8 @@ const ProgrammingIntro = () => {
                   }
                 }}
               >
-                <div className="text-3xl mb-3 transition-transform duration-200 hover:scale-110">
-                  {language.emoji}
+                <div className="mb-3 transition-transform duration-200 hover:scale-110">
+                  <language.icon className="h-8 w-8 text-blue-600" aria-hidden="true" />
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">{language.name}</h3>
                 <p className="text-sm text-gray-600 mb-3">{language.description}</p>
@@ -173,7 +173,7 @@ const ProgrammingIntro = () => {
           return (
             <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">{selectedLang.emoji}</span>
+                <selectedLang.icon className="h-6 w-6 text-blue-600" aria-hidden="true" />
                 Détails sur {selectedLang.name}
               </h3>
               
@@ -195,7 +195,7 @@ const ProgrammingIntro = () => {
                   </h4>
                   <ul className="space-y-1">
                     {selectedLang.pros.map((pro, idx) => (
-                      <li key={idx} className="text-sm text-gray-600">✅ {pro}</li>
+                      <li key={idx} className="text-sm text-gray-600">{pro}</li>
                     ))}
                   </ul>
                 </div>
@@ -206,7 +206,7 @@ const ProgrammingIntro = () => {
                   </h4>
                   <ul className="space-y-1">
                     {selectedLang.cons.map((con, idx) => (
-                      <li key={idx} className="text-sm text-gray-600">⚠️ {con}</li>
+                      <li key={idx} className="text-sm text-gray-600">{con}</li>
                     ))}
                   </ul>
                 </div>
@@ -233,22 +233,22 @@ const ProgrammingIntro = () => {
               {
                 title: "Origine du nom Python",
                 content: "Python doit son nom à la série télévisée britannique Monty Python's Flying Circus, et non au serpent. Son créateur, Guido van Rossum, cherchait un nom court et un peu mystérieux.",
-                icon: "🐍"
+                icon: Tv
               },
               {
                 title: "Performance moderne",
                 content: "PyPy, un interpréteur Python alternatif doté d'un compilateur JIT, est en moyenne environ 4 fois plus rapide que CPython 3.11 sur les tests de performance du projet. Le gain varie beaucoup selon le programme, et toutes les bibliothèques ne sont pas compatibles.",
-                icon: "⚡"
+                icon: Zap
               },
               {
                 title: "Écosystème en croissance",
                 content: "PyPI, le dépôt public de paquets Python, référence plus de 900 000 projets (905 050 au 1er octobre 2026), dont plus de 130 000 créés en 2025, tous domaines confondus : la data science n'en est qu'une partie.",
-                icon: "📦"
+                icon: Package
               }
             ].map((fact, index) => (
               <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border-l-4 border-blue-400">
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl">{fact.icon}</span>
+                  <fact.icon className="h-6 w-6 text-blue-600 shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-blue-700 mb-1">{fact.title}</h4>
                     <p className="text-sm text-gray-700">{fact.content}</p>
@@ -360,7 +360,7 @@ const ProgrammingIntro = () => {
           
           {/* Modern ES6 learning path section */}
           <div className="mt-8 p-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl border border-indigo-200">
-            <h4 className="text-lg font-bold mb-4 text-indigo-800">🚀 Parcours d'apprentissage suggéré (durées indicatives)</h4>
+            <h4 className="text-lg font-bold mb-4 text-indigo-800">Parcours d'apprentissage suggéré (durées indicatives)</h4>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[
                 { step: 1, title: "Bases de Python", duration: "2-3 semaines", topics: ["Syntaxe", "Variables", "Fonctions"] },

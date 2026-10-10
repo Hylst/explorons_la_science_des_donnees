@@ -18,10 +18,10 @@ const DecompositionsSection = () => {
     <section id="decompositions" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">5. Décompositions : Décortiquer les Matrices</h2>
       
-      <CourseHighlight title="🔬 Analogie : La décomposition comme une autopsie" type="concept">
+      <CourseHighlight title="Analogie : La décomposition comme une autopsie" type="concept">
         <p>
           Imaginez que vous démontez une montre complexe pour comprendre ses mécanismes. 
-          Les décompositions matricielles font pareil : elles révèlent les "rouages" cachés de vos données !
+          Les décompositions matricielles font pareil : elles révèlent les "rouages" cachés de vos données.
         </p>
       </CourseHighlight>
 
@@ -44,7 +44,7 @@ const DecompositionsSection = () => {
                 <div className="bg-purple-50 p-4 rounded-lg mt-3">
                   <h5 className="font-semibold text-purple-700 mb-2">Interprétation intuitive :</h5>
                   <p className="text-sm text-purple-600">
-                    Le vecteur v garde sa direction quand on lui applique A ! 
+                    Le vecteur v garde sa direction quand on lui applique A. 
                     Il est juste "étiré" d'un facteur λ.
                   </p>
                 </div>
@@ -60,13 +60,13 @@ const DecompositionsSection = () => {
                 </div>
                 <div className="bg-blue-50 p-3 rounded-lg mt-3">
                   <p className="text-xs">
-                    <strong>Magie :</strong> Cette décomposition révèle les "directions privilégiées" de vos données !
+                    <strong>Intérêt :</strong> Cette décomposition révèle les "directions privilégiées" de vos données.
                   </p>
                 </div>
               </div>
             </div>
 
-            <CourseHighlight title="🎯 Exemple concret : PageRank de Google" type="example">
+            <CourseHighlight title="Exemple concret : PageRank de Google" type="example">
               <div className="space-y-3">
                 <p><strong>Le problème :</strong> Comment classer des milliards de pages web ?</p>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -75,12 +75,12 @@ const DecompositionsSection = () => {
                     représente une page web, et les valeurs représentent les liens.
                   </p>
                   <p className="text-sm mb-2">
-                    <strong>L'astuce :</strong> Le vecteur propre principal donne l'importance de chaque page !
+                    <strong>L'astuce :</strong> Le vecteur propre principal donne l'importance de chaque page.
                   </p>
                   <div className="bg-blue-100 p-3 rounded">
                     <p className="text-xs">
                       <strong>Résultat :</strong> Plus une page a de liens entrants de qualité, 
-                      plus sa valeur dans le vecteur propre est élevée → meilleur classement ! 🚀
+                      plus sa valeur dans le vecteur propre est élevée → meilleur classement.
                     </p>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ const DecompositionsSection = () => {
                   <div className="bg-orange-50 p-3 rounded-lg mt-3">
                     <p className="text-xs">
                       <strong>Superpouvoir :</strong> Fonctionne sur TOUTES les matrices, 
-                      même rectangulaires !
+                      même rectangulaires.
                     </p>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ const DecompositionsSection = () => {
 
               {showSVDDemo && (
                 <div className="bg-gradient-to-r from-orange-50 to-yellow-50 p-6 rounded-lg border border-orange-200">
-                  <h5 className="font-semibold text-orange-800 mb-3">📸 Compression d'image avec SVD</h5>
+                  <h5 className="font-semibold text-orange-800 mb-3">Compression d'image avec SVD</h5>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white p-3 rounded-lg">
                       <Badge className="bg-blue-100 text-blue-800 mb-2">Image originale</Badge>
@@ -178,7 +178,7 @@ const DecompositionsSection = () => {
                   <div className="mt-4 bg-white p-3 rounded-lg">
                     <p className="text-sm">
                       <strong>Le secret :</strong> Les premières valeurs singulières capturent l'essentiel de l'information. 
-                      On peut jeter les petites valeurs sans perdre grand-chose !
+                      On peut jeter les petites valeurs sans perdre grand-chose.
                     </p>
                   </div>
                 </div>
@@ -234,7 +234,7 @@ const DecompositionsSection = () => {
         </div>
       </div>
 
-      <CourseHighlight title="🔍 Zoom sur : Choisir la bonne décomposition" type="concept">
+      <CourseHighlight title="Zoom sur : Choisir la bonne décomposition" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold mb-3">Pour l'analyse de données :</h4>
@@ -262,15 +262,15 @@ const DecompositionsSection = () => {
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-white p-3 rounded-lg">
-            <p className="font-medium text-purple-600">🎯 Analyse de données</p>
+            <p className="font-medium text-purple-600">Analyse de données</p>
             <p className="text-xs text-gray-600">SVD, EVD → structures cachées</p>
           </div>
           <div className="bg-white p-3 rounded-lg">
-            <p className="font-medium text-blue-600">⚡ Calcul rapide</p>
+            <p className="font-medium text-blue-600">Calcul rapide</p>
             <p className="text-xs text-gray-600">LU, QR → Systèmes d'équations</p>
           </div>
           <div className="bg-white p-3 rounded-lg">
-            <p className="font-medium text-green-600">🛡️ Stabilité</p>
+            <p className="font-medium text-green-600">Stabilité</p>
             <p className="text-xs text-gray-600">QR, SVD → Données bruitées</p>
           </div>
         </div>

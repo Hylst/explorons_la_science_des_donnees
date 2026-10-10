@@ -24,7 +24,7 @@ const VectorsSection = () => {
     <section id="vectors" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">1. Vecteurs : Les Coordonnées de Vos Données</h2>
       
-      <CourseHighlight title="🧭 Rappel fondamental" type="concept">
+      <CourseHighlight title="Rappel fondamental" type="concept">
         <p>
           Un vecteur, c'est comme l'adresse GPS d'un point dans l'espace. 
           Au lieu de dire "123 rue de la Paix", on dit "3 unités vers la droite, 4 unités vers le haut".
@@ -125,7 +125,7 @@ const VectorsSection = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>🔍 Zoom sur : Le produit scalaire</CardTitle>
+          <CardTitle>Zoom sur : Le produit scalaire</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -152,7 +152,7 @@ const VectorsSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="🎯 Exercice corrigé : Système de recommandation simple" type="example">
+      <CourseHighlight title="Exercice corrigé : Système de recommandation simple" type="example">
         <div className="space-y-4">
           <p><strong>Problème :</strong> Alice aime les films [Action: 5, Comédie: 2, Drame: 1] et Bob aime [Action: 4, Comédie: 3, Drame: 2]. Sont-ils compatibles ?</p>
           
@@ -163,7 +163,7 @@ const VectorsSection = () => {
               Avec une magnitude d'Alice = √(5²+2²+1²) = √30 ≈ 5.48 et Bob = √(4²+3²+2²) = √29 ≈ 5.39
             </p>
             <p className="text-sm">
-              <strong>Similarité cosinus :</strong> 28 / (5.48 × 5.39) ≈ 0.95 → Très compatibles ! 🎬
+              <strong>Similarité cosinus :</strong> 28 / (5.48 × 5.39) ≈ 0.95 → Très compatibles.
             </p>
           </div>
         </div>
@@ -225,7 +225,7 @@ const VectorsSection = () => {
                 <h4 className="font-semibold mb-2">Projection orthogonale :</h4>
                 <CourseEquation latex="\text{proj}_{\vec{v}}\vec{u} = \frac{\vec{u} \cdot \vec{v}}{|\vec{v}|^2} \vec{v}" />
                 <p className="text-sm mt-2">
-                  Projette u sur la direction de v - utile en régression linéaire !
+                  Projette u sur la direction de v - utile en régression linéaire.
                 </p>
               </div>
 
@@ -242,7 +242,7 @@ const VectorsSection = () => {
       {/* Vector Spaces and Linear Independence */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>🏗️ Espaces Vectoriels et Indépendance Linéaire</CardTitle>
+          <CardTitle>Espaces Vectoriels et Indépendance Linéaire</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -284,7 +284,7 @@ const VectorsSection = () => {
                 
                 <div className="bg-yellow-100 p-2 rounded">
                   <p className="text-xs">
-                    <strong>En ML :</strong> Les features indépendantes apportent de l'information unique au modèle !
+                    <strong>En ML :</strong> Les features indépendantes apportent de l'information unique au modèle.
                   </p>
                 </div>
               </div>
@@ -294,7 +294,7 @@ const VectorsSection = () => {
       </Card>
 
       {/* Enhanced Practical Example */}
-      <CourseHighlight title="🎯 Exercice avancé : Analyse de sentiment avec vecteurs" type="example">
+      <CourseHighlight title="Exercice avancé : Analyse de sentiment avec vecteurs" type="example">
         <div className="space-y-4">
           <p><strong>Problème :</strong> Analyser la similarité entre trois avis clients représentés par des vecteurs de caractéristiques [Positivité, Longueur, Complexité].</p>
           
@@ -331,7 +331,7 @@ const VectorsSection = () => {
         </h4>
         <p className="text-sm text-yellow-700">
           En Data Science, on normalise souvent les vecteurs (magnitude = 1) pour comparer uniquement les "directions" 
-          sans être influencé par les "intensités". C'est comme comparer des boussoles plutôt que des distances !
+          sans être influencé par les "intensités". C'est comme comparer des boussoles plutôt que des distances.
         </p>
       </div>
     </section>

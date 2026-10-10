@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import { dataPreparationEnhancedDefinitions } from '../../../data/data-preparation-enhanced-definitions';
 import CourseHighlight from '@/components/courses/CourseHighlight';
-import { Settings } from 'lucide-react';
+import { BarChart3, Calculator, ClipboardList, Layers, Settings } from 'lucide-react';
 
 /**
  * TransformationSection Component
@@ -30,32 +30,32 @@ const TransformationSection: React.FC = () => {
           {[
             {
               type: "Structurelle",
-              icon: "🏗️",
+              Icon: Layers,
               description: "Modification de la structure des données",
               examples: ["Pivot/Unpivot", "Jointures", "Groupement"]
             },
             {
               type: "Format",
-              icon: "📋",
+              Icon: ClipboardList,
               description: "Standardisation des formats",
               examples: ["Dates", "Texte", "Nombres", "Unités"]
             },
             {
               type: "Calculée",
-              icon: "🧮",
+              Icon: Calculator,
               description: "Création de nouvelles variables",
               examples: ["Ratios", "Tendances", "Scores", "Catégories"]
             },
             {
               type: "Statistique",
-              icon: "📊",
+              Icon: BarChart3,
               description: "Normalisation et mise à l'échelle",
               examples: ["Z-score", "Min-Max", "Quantiles", "Log"]
             }
           ].map((transfo, index) => (
             <div key={index} className="p-4 bg-muted/30 rounded-lg">
               <div className="text-center mb-3">
-                <div className="text-3xl mb-2">{transfo.icon}</div>
+                <transfo.Icon className="h-8 w-8 mx-auto mb-2 text-purple-600" aria-hidden="true" />
                 <h4 className="font-semibold text-purple-700">
                   <GlossaryTerm 
                     definition={dataPreparationEnhancedDefinitions[

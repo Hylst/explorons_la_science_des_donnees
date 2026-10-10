@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, Code, Play, Lightbulb, Trophy, Target, Zap, Brain } from "lucide-react";
+import { CheckCircle, Code, Play, Lightbulb, Trophy, Target, Zap, Brain, Sprout, Rocket, Star } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { SourceNote } from "@/components/ui/source-note";
@@ -26,19 +26,19 @@ Type d'age: int
 Type de taille: float
 Age en string: '28' (type: str)`;
 
-const STRUCTURES_OUTPUT = `📊 Total des ventes : 97,000€
-📈 Moyenne mensuelle : 19,400€
-🏆 Meilleur mois : 25,000€
-👥 Équipe : 4 membres
+const STRUCTURES_OUTPUT = `Total des ventes : 97,000€
+Moyenne mensuelle : 19,400€
+Meilleur mois : 25,000€
+Équipe : 4 membres
 
-👤 Profil de Marie Dupont:
-   💼 Poste: Senior Data Analyst
-   💰 Salaire: 42,000€
+Profil de Marie Dupont:
+   Poste: Senior Data Analyst
+   Salaire: 42,000€
 
-🎯 Mois performants (>20k€): [22000, 25000, 28000]
-📊 Performances (en k€): [15.0, 18.0, 22.0, 17.0, 25.0, 28.0]
+Mois performants (>20k€): [22000, 25000, 28000]
+Performances (en k€): [15.0, 18.0, 22.0, 17.0, 25.0, 28.0]
 
-📝 Longueur des noms: {'Alice': 5, 'Bob': 3, 'Charlie': 7, 'Diana': 5, 'Eve': 3, 'Frank': 5}`;
+Longueur des noms: {'Alice': 5, 'Bob': 3, 'Charlie': 7, 'Diana': 5, 'Eve': 3, 'Frank': 5}`;
 
 interface MasterclassContextValue {
   activeExercise: number | null;
@@ -111,10 +111,11 @@ const Exercise = ({
   };
 
   const difficultyConfig = useMemo(() => ({
-    "Débutant": { color: "bg-green-100 text-green-800", icon: "🌱" },
-    "Intermédiaire": { color: "bg-blue-100 text-blue-800", icon: "🚀" },
-    "Avancé": { color: "bg-purple-100 text-purple-800", icon: "⭐" }
+    "Débutant": { color: "bg-green-100 text-green-800", icon: Sprout },
+    "Intermédiaire": { color: "bg-blue-100 text-blue-800", icon: Rocket },
+    "Avancé": { color: "bg-purple-100 text-purple-800", icon: Star }
   }), []);
+  const DifficultyIcon = difficultyConfig[difficulty as keyof typeof difficultyConfig]?.icon;
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -139,15 +140,16 @@ const Exercise = ({
             )}
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge className={difficultyConfig[difficulty as keyof typeof difficultyConfig]?.color || "bg-gray-100 text-gray-800"}>
-              {difficultyConfig[difficulty as keyof typeof difficultyConfig]?.icon} {difficulty}
+            <Badge className={`gap-1 ${difficultyConfig[difficulty as keyof typeof difficultyConfig]?.color || "bg-gray-100 text-gray-800"}`}>
+              {DifficultyIcon && <DifficultyIcon className="h-3 w-3" aria-hidden="true" />}
+              {difficulty}
             </Badge>
             <Badge variant="outline" className="text-xs">
-              ⏱️ ~{estimatedTime} min
+              ~{estimatedTime} min
             </Badge>
             {isActive && startTime && (
               <Badge variant="outline" className="text-xs">
-                ⏰ {formatTime(timeSpent)}
+                {formatTime(timeSpent)}
               </Badge>
             )}
             {tags.map((tag, index) => (
@@ -219,7 +221,7 @@ const Exercise = ({
         {showHints && hints.length > 0 && (
           <div className="mt-3 p-3 bg-blue-50 rounded-md border border-blue-200">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-blue-800">💡 Indice {currentHint + 1}/{hints.length}</span>
+              <span className="text-sm font-medium text-blue-800">Indice {currentHint + 1}/{hints.length}</span>
               {hints.length > 1 && (
                 <div className="flex gap-1">
                   <Button
@@ -293,7 +295,7 @@ const CodeExample = ({
           <Badge className={`text-xs ${
             difficulty === 'intermediate' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
           }`}>
-            {difficulty === 'intermediate' ? '🚀 Intermédiaire' : '⭐ Avancé'}
+            {difficulty === 'intermediate' ? 'Intermédiaire' : 'Avancé'}
           </Badge>
         )}
       </h4>
@@ -301,7 +303,7 @@ const CodeExample = ({
         <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-mono flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1">
-              🐍 {language}
+              {language}
             </span>
             <span className="text-xs text-gray-400">|
               {code.split('\n').length} lignes
@@ -358,9 +360,9 @@ const PythonMasterclass = () => {
   // Skill level badge configuration
   const skillBadgeConfig = useMemo(() => {
     const configs = {
-      beginner: { color: 'bg-green-100 text-green-800', icon: '🌱', label: 'Débutant' },
-      intermediate: { color: 'bg-blue-100 text-blue-800', icon: '🚀', label: 'Intermédiaire' },
-      advanced: { color: 'bg-purple-100 text-purple-800', icon: '⭐', label: 'Avancé' }
+      beginner: { color: 'bg-green-100 text-green-800', icon: Sprout, label: 'Débutant' },
+      intermediate: { color: 'bg-blue-100 text-blue-800', icon: Rocket, label: 'Intermédiaire' },
+      advanced: { color: 'bg-purple-100 text-purple-800', icon: Star, label: 'Avancé' }
     };
     return configs[skillLevel];
   }, [skillLevel]);
@@ -378,7 +380,7 @@ const PythonMasterclass = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full">
-              <span className="text-2xl">🐍</span>
+              <Code className="h-6 w-6 text-white" aria-hidden="true" />
             </div>
             <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Python : un premier outil pour la data science
@@ -411,7 +413,7 @@ const PythonMasterclass = () => {
             <Card className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
               <div className="flex items-center gap-3">
                 <div className={`p-2 rounded-full ${skillBadgeConfig.color}`}>
-                  <span className="text-lg">{skillBadgeConfig.icon}</span>
+                  <skillBadgeConfig.icon className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-purple-700">{skillBadgeConfig.label}</div>
@@ -470,10 +472,10 @@ const PythonMasterclass = () => {
 
       <Tabs defaultValue="fundamentals" className="space-y-6">
         <TabsList className="grid grid-cols-1 md:grid-cols-4 w-full">
-          <TabsTrigger value="fundamentals">🏗️ Fondamentaux</TabsTrigger>
-          <TabsTrigger value="pandas">🐼 Pandas</TabsTrigger>
-          <TabsTrigger value="visualization">📊 Visualisation</TabsTrigger>
-          <TabsTrigger value="ml">🤖 Machine Learning</TabsTrigger>
+          <TabsTrigger value="fundamentals">Fondamentaux</TabsTrigger>
+          <TabsTrigger value="pandas">Pandas</TabsTrigger>
+          <TabsTrigger value="visualization">Visualisation</TabsTrigger>
+          <TabsTrigger value="ml">Machine Learning</TabsTrigger>
         </TabsList>
 
         <TabsContent value="fundamentals" className="space-y-6">
@@ -518,7 +520,7 @@ print(f"Age en string: '{age_str}' (type: {type(age_str).__name__})")`}
               <div className="mt-6">
                 <Exercise
                   id={1}
-                  title="🏃‍♀️ Créer votre Profil Data Scientist"
+                  title="Créer votre Profil Data Scientist"
                   description="Créez un profil data scientist complet avec vos informations personnelles en utilisant différents types de variables Python."
                   solution={`# Créez votre profil data scientist
 prenom = "Votre prénom"
@@ -536,15 +538,15 @@ competences = {
 
 # Affichage du profil avec formatage avancé
 print("=" * 40)
-print("🚀 MON PROFIL DATA SCIENTIST 🚀")
+print("MON PROFIL DATA SCIENTIST")
 print("=" * 40)
-print(f"👋 Nom complet: {prenom} {nom_famille}")
-print(f"💻 Langages maîtrisés: {', '.join(langages_preferes)}")
-print(f"📈 Années d'expérience: {annees_experience}")
-print(f"🎯 Spécialité: {specialite}")
-print(f"💰 Salaire souhaité: {salaire_souhaite:,}€")
-print(f"🏢 Statut: {'Freelance' if est_freelance else 'Salarié'}")
-print("\\n🛠️ Compétences détaillées:")
+print(f"Nom complet: {prenom} {nom_famille}")
+print(f"Langages maîtrisés: {', '.join(langages_preferes)}")
+print(f"Années d'expérience: {annees_experience}")
+print(f"Spécialité: {specialite}")
+print(f"Salaire souhaité: {salaire_souhaite:,}€")
+print(f"Statut: {'Freelance' if est_freelance else 'Salarié'}")
+print("\\nCompétences détaillées:")
 for categorie, items in competences.items():
     print(f"  • {categorie.title()}: {', '.join(items)}")`}
                   difficulty="Débutant"
@@ -570,12 +572,12 @@ for categorie, items in competences.items():
               <CourseHighlight title="Zoom sur : choisir la bonne structure" type="info">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h5 className="font-semibold">📋 Liste (list)</h5>
+                    <h5 className="font-semibold">Liste (list)</h5>
                     <p className="text-sm">Pour des collections ordonnées et modifiables</p>
                     <code className="text-xs">scores = [85, 92, 78, 96]</code>
                   </div>
                   <div>
-                    <h5 className="font-semibold">📖 Dictionnaire (dict)</h5>
+                    <h5 className="font-semibold">Dictionnaire (dict)</h5>
                     <p className="text-sm">Pour associer des clés à des valeurs</p>
                     <code className="text-xs">{"student = {'nom': 'Alice', 'note': 95}"}</code>
                   </div>
@@ -589,10 +591,10 @@ ventes_mensuelles = [15000, 18000, 22000, 17000, 25000]
 equipe_data_science = ["Alice", "Bob", "Charlie", "Diana"]
 
 # Opérations courantes sur les listes
-print(f"📊 Total des ventes : {sum(ventes_mensuelles):,}€")
-print(f"📈 Moyenne mensuelle : {sum(ventes_mensuelles) / len(ventes_mensuelles):,.0f}€")
-print(f"🏆 Meilleur mois : {max(ventes_mensuelles):,}€")
-print(f"👥 Équipe : {len(equipe_data_science)} membres")
+print(f"Total des ventes : {sum(ventes_mensuelles):,}€")
+print(f"Moyenne mensuelle : {sum(ventes_mensuelles) / len(ventes_mensuelles):,.0f}€")
+print(f"Meilleur mois : {max(ventes_mensuelles):,}€")
+print(f"Équipe : {len(equipe_data_science)} membres")
 
 # Ajout et modification
 ventes_mensuelles.append(28000)  # Nouveau mois
@@ -609,9 +611,9 @@ employe = {
 }
 
 # Accès et modification avancés
-print(f"\\n👤 Profil de {employe['nom']}:")
-print(f"   💼 Poste: {employe['poste']}")
-print(f"   💰 Salaire: {employe['salaire']:,}€")
+print(f"\\nProfil de {employe['nom']}:")
+print(f"   Poste: {employe['poste']}")
+print(f"   Salaire: {employe['salaire']:,}€")
 
 # Promotion et mise à jour
 employe["salaire"] *= 1.15  # Augmentation de 15%
@@ -629,12 +631,12 @@ for vente in ventes_mensuelles:
 bons_mois = [vente for vente in ventes_mensuelles if vente > 20000]
 performances = [vente / 1000 for vente in ventes_mensuelles]  # En milliers
 
-print(f"\\n🎯 Mois performants (>20k€): {bons_mois}")
-print(f"📊 Performances (en k€): {performances}")
+print(f"\\nMois performants (>20k€): {bons_mois}")
+print(f"Performances (en k€): {performances}")
 
 # Compréhension de dictionnaire
 stats_equipe = {membre: len(membre) for membre in equipe_data_science}
-print(f"\\n📝 Longueur des noms: {stats_equipe}")`}
+print(f"\\nLongueur des noms: {stats_equipe}")`}
                 output={STRUCTURES_OUTPUT}
                 difficulty="intermediate"
               />
@@ -678,34 +680,34 @@ df = pd.DataFrame(data)
 
 # Sept étapes d'une première exploration
 print("=" * 50)
-print("🚀 EXPLORATION COMPLÈTE DES DONNÉES 🚀")
+print("EXPLORATION COMPLÈTE DES DONNÉES")
 print("=" * 50)
 
-print("\\n1️⃣ 📊 Aperçu des premières lignes:")
+print("\\nAperçu des premières lignes:")
 print(df.head(3))
 
-print("\\n2️⃣ 📏 Forme du dataset:")
+print("\\nForme du dataset:")
 print(f"   Lignes: {df.shape[0]}, Colonnes: {df.shape[1]}")
 
-print("\\n3️⃣ 🔍 Informations sur les colonnes:")
+print("\\nInformations sur les colonnes:")
 df.info()  # affiche lui-même le résumé (print(df.info()) afficherait aussi « None »)
 
-print("\\n4️⃣ 📈 Statistiques descriptives (numériques):")
+print("\\nStatistiques descriptives (numériques):")
 print(df.describe().round(2))
 
-print("\\n5️⃣ 🎯 Vérification des valeurs manquantes:")
+print("\\nVérification des valeurs manquantes:")
 valeurs_manquantes = df.isnull().sum()
 print(f"   Total: {valeurs_manquantes.sum()} valeurs manquantes")
 if valeurs_manquantes.sum() > 0:
     print(valeurs_manquantes[valeurs_manquantes > 0])
 else:
-    print("   ✅ Aucune valeur manquante détectée!")
+    print("   Aucune valeur manquante détectée")
 
-print("\\n6️⃣ 🏷️ Types de données par colonne:")
+print("\\nTypes de données par colonne:")
 for col, dtype in df.dtypes.items():
     print(f"   {col}: {dtype}")
 
-print("\\n7️⃣ 🔢 Valeurs uniques par colonne catégorielle:")
+print("\\nValeurs uniques par colonne catégorielle:")
 categorical_cols = ['Ville', 'Departement']
 for col in categorical_cols:
     print(f"   {col}: {df[col].nunique()} valeurs uniques")
@@ -733,18 +735,18 @@ for col in categorical_cols:
 
 # ANALYSE DES DONNÉES DE L'ÉQUIPE
 print("=" * 60)
-print("📊 RAPPORT D'ANALYSE DE L'ÉQUIPE")
+print("RAPPORT D'ANALYSE DE L'ÉQUIPE")
 print("=" * 60)
 
-# 1. 💰 ANALYSE DES SALAIRES
-print("\\n1️⃣ 💰 ANALYSE DES SALAIRES")
+# 1. ANALYSE DES SALAIRES
+print("\\nANALYSE DES SALAIRES")
 print("-" * 30)
 hauts_salaires = df[df['Salaire'] > 50000]
 print(f"Employés avec salaire > 50k€: {len(hauts_salaires)}/{len(df)}")
 print(hauts_salaires[['Nom', 'Salaire', 'Departement']].to_string(index=False))
 
-# 2. 🏙️ ANALYSE GÉOGRAPHIQUE
-print("\\n2️⃣ 🏙️ RÉPARTITION PAR VILLE")
+# 2. ANALYSE GÉOGRAPHIQUE
+print("\\nRÉPARTITION PAR VILLE")
 print("-" * 30)
 salaire_par_ville = df.groupby('Ville').agg({
     'Salaire': ['mean', 'count', 'std'],
@@ -752,8 +754,8 @@ salaire_par_ville = df.groupby('Ville').agg({
 }).round(2)
 print(salaire_par_ville)
 
-# 3. 🏢 ANALYSE PAR DÉPARTEMENT
-print("\\n3️⃣ 🏢 PERFORMANCE PAR DÉPARTEMENT")
+# 3. ANALYSE PAR DÉPARTEMENT
+print("\\nPERFORMANCE PAR DÉPARTEMENT")
 print("-" * 30)
 stats_dept = df.groupby('Departement').agg({
     'Salaire': 'mean',
@@ -763,14 +765,14 @@ stats_dept = df.groupby('Departement').agg({
 }).round(2)
 print(stats_dept)
 
-# 4. 🔗 ANALYSE DES CORRÉLATIONS
-print("\\n4️⃣ 🔗 MATRICE DE CORRÉLATION")
+# 4. ANALYSE DES CORRÉLATIONS
+print("\\nMATRICE DE CORRÉLATION")
 print("-" * 30)
 correlation = df[['Age', 'Salaire', 'Experience', 'Performance']].corr()
 print(correlation.round(3))
 
-# 5. 📊 MÉTRIQUES CALCULÉES
-print("\\n5️⃣ 📊 MÉTRIQUES AVANCÉES")
+# 5. MÉTRIQUES CALCULÉES
+print("\\nMÉTRIQUES AVANCÉES")
 print("-" * 30)
 # Salaire par année d'expérience
 df['Salaire_par_exp'] = (df['Salaire'] / df['Experience']).round(0)
@@ -780,22 +782,22 @@ df['Score_valeur'] = (df['Performance'] / (df['Salaire'] / 10000)).round(2)
 df['Anciennete'] = ((pd.Timestamp.now() - df['Date_embauche']).dt.days / 365).round(1)
 
 # Top performers
-print("🏆 TOP 3 - Salaire par année d'expérience:")
+print("TOP 3 - Salaire par année d'expérience:")
 top_salaire_exp = df.nlargest(3, 'Salaire_par_exp')[['Nom', 'Salaire_par_exp', 'Experience']]
 print(top_salaire_exp.to_string(index=False))
 
-print("\\n⭐ TOP 3 - Meilleur rapport performance/salaire:")
+print("\\nTOP 3 - Meilleur rapport performance/salaire:")
 top_valeur = df.nlargest(3, 'Score_valeur')[['Nom', 'Score_valeur', 'Performance', 'Salaire']]
 print(top_valeur.to_string(index=False))
 
-# 6. 🎯 RÉSUMÉ CHIFFRÉ
-print("\\n6️⃣ 🎯 POINTS CLÉS")
+# 6. RÉSUMÉ CHIFFRÉ
+print("\\nPOINTS CLÉS")
 print("-" * 30)
-print(f"💡 Salaire moyen: {df['Salaire'].mean():,.0f}€")
-print(f"💡 Performance moyenne: {df['Performance'].mean():.1f}/10")
-print(f"💡 Ville la mieux payée: {df.groupby('Ville')['Salaire'].mean().idxmax()}")
-print(f"💡 Département le plus performant: {df.groupby('Departement')['Performance'].mean().idxmax()}")
-print(f"💡 Corrélation salaire-performance: {df['Salaire'].corr(df['Performance']):.2f}")`}
+print(f"Salaire moyen: {df['Salaire'].mean():,.0f}€")
+print(f"Performance moyenne: {df['Performance'].mean():.1f}/10")
+print(f"Ville la mieux payée: {df.groupby('Ville')['Salaire'].mean().idxmax()}")
+print(f"Département le plus performant: {df.groupby('Departement')['Performance'].mean().idxmax()}")
+print(f"Corrélation salaire-performance: {df['Salaire'].corr(df['Performance']):.2f}")`}
               />
 
               <div className="mt-6">
@@ -821,22 +823,22 @@ print(f"💡 Corrélation salaire-performance: {df['Salaire'].corr(df['Performan
 
 # 1. FILTRAGE : Qui gagne plus de 50k€ ?
 hauts_salaires = df[df['Salaire'] > 50000]
-print("💰 Employés avec salaire > 50k€ :")
+print("Employés avec salaire > 50k€ :")
 print(hauts_salaires[['Nom', 'Salaire']])
 
 # 2. GROUPEMENT : Salaire moyen par ville
 salaire_par_ville = df.groupby('Ville')['Salaire'].mean().round(0)
-print("\\n🏙️ Salaire moyen par ville :")
+print("\\nSalaire moyen par ville :")
 print(salaire_par_ville)
 
 # 3. CORRELATION : Relation âge/salaire/expérience
 correlation = df[['Age', 'Salaire', 'Experience']].corr()
-print("\\n🔗 Matrice de corrélation :")
+print("\\nMatrice de corrélation :")
 print(correlation)
 
 # 4. NOUVELLE COLONNE : Calcul du salaire par année d'expérience
 df['Salaire_par_exp'] = df['Salaire'] / df['Experience']
-print("\\n📊 Salaire par année d'expérience :")
+print("\\nSalaire par année d'expérience :")
 print(df[['Nom', 'Salaire_par_exp']].sort_values('Salaire_par_exp', ascending=False))`}
                     />
                   )}
@@ -846,7 +848,7 @@ print(df[['Nom', 'Salaire_par_exp']].sort_values('Salaire_par_exp', ascending=Fa
                     variant={completedExercises.has(PANDAS_EXERCISE_ID) ? "default" : "outline"}
                     className="mt-2"
                   >
-                    {completedExercises.has(PANDAS_EXERCISE_ID) ? "✅ Terminé" : "Marquer comme terminé"}
+                    {completedExercises.has(PANDAS_EXERCISE_ID) ? "Terminé" : "Marquer comme terminé"}
                   </Button>
                 </div>
               </div>
@@ -872,6 +874,7 @@ print(df[['Nom', 'Salaire_par_exp']].sort_values('Salaire_par_exp', ascending=Fa
                   peu d'éléments à l'écran.
                 </div>
                 <SourceNote
+                  consulted="10 octobre 2026"
                   sources={[{ label: "MIT News, « In the blink of an eye », 16 janvier 2014", href: "https://news.mit.edu/2014/in-the-blink-of-an-eye-0116" }]}
                 />
               </CourseHighlight>
@@ -911,7 +914,7 @@ df_business = pd.DataFrame({
 })
 
 print("=" * 60)
-print("📊 GRAPHIQUES D'ANALYSE DES VENTES")
+print("GRAPHIQUES D'ANALYSE DES VENTES")
 print("=" * 60)
 
 # FIGURE 1 : QUATRE GRAPHIQUES
@@ -994,13 +997,13 @@ plt.show()
 
 # RÉSUMÉ CHIFFRÉ
 print("\\n" + "=" * 50)
-print("🔍 RÉSUMÉ CHIFFRÉ")
+print("RÉSUMÉ CHIFFRÉ")
 print("=" * 50)
-print(f"💡 Ventes par € de publicité: {(df_business['Ventes'].sum() / df_business['Publicité'].sum()):.1f}€")
-print(f"💡 Meilleur mois: {df_business.loc[df_business['Ventes'].idxmax(), 'Mois']} ({df_business['Ventes'].max():,}€)")
-print(f"💡 Satisfaction moyenne: {df_business['Satisfaction'].mean():.1f}/10")
-print(f"💡 Corrélation pub-ventes: {np.corrcoef(df_business['Publicité'], df_business['Ventes'])[0,1]:.2f}")
-print(f"💡 Évolution entre le premier et le dernier mois: {((df_business['Ventes'].iloc[-1] / df_business['Ventes'].iloc[0]) - 1) * 100:.1f}%")`}
+print(f"Ventes par € de publicité: {(df_business['Ventes'].sum() / df_business['Publicité'].sum()):.1f}€")
+print(f"Meilleur mois: {df_business.loc[df_business['Ventes'].idxmax(), 'Mois']} ({df_business['Ventes'].max():,}€)")
+print(f"Satisfaction moyenne: {df_business['Satisfaction'].mean():.1f}/10")
+print(f"Corrélation pub-ventes: {np.corrcoef(df_business['Publicité'], df_business['Ventes'])[0,1]:.2f}")
+print(f"Évolution entre le premier et le dernier mois: {((df_business['Ventes'].iloc[-1] / df_business['Ventes'].iloc[0]) - 1) * 100:.1f}%")`}
                 difficulty="advanced"
               />
 
@@ -1066,7 +1069,7 @@ fig = plt.figure(figsize=(20, 16))
 fig.suptitle('Tableau de bord e-commerce, données simulées de 2023', 
              fontsize=20, fontweight='bold', y=0.98)
 
-# 1️⃣ ÉVOLUTION DES VENTES (Graphique principal)
+# ÉVOLUTION DES VENTES (Graphique principal)
 ax1 = plt.subplot(3, 3, (1, 3))  # Occupe 3 colonnes
 df_monthly = df_ecommerce.groupby(df_ecommerce['Date'].dt.to_period('M')).agg({
     'Ventes': 'sum',
@@ -1091,7 +1094,7 @@ lines = line1 + line2
 labels = [l.get_label() for l in lines]
 ax1.legend(lines, labels, loc='upper left')
 
-# 2️⃣ DISTRIBUTION DES VENTES PAR JOUR DE LA SEMAINE
+# DISTRIBUTION DES VENTES PAR JOUR DE LA SEMAINE
 ax2 = plt.subplot(3, 3, 4)
 ventes_jour = df_ecommerce.groupby('Jour_semaine')['Ventes'].mean().reindex([
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
@@ -1109,7 +1112,7 @@ for bar, value in zip(bars, ventes_jour.values):
     ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 5,
              f'{value:.0f}', ha='center', va='bottom', fontweight='bold')
 
-# 3️⃣ CORRÉLATION VISITEURS VS CONVERSION
+# CORRÉLATION VISITEURS VS CONVERSION
 ax3 = plt.subplot(3, 3, 5)
 scatter = ax3.scatter(df_ecommerce['Visiteurs'], df_ecommerce['Taux_conversion'],
                      c=df_ecommerce['Satisfaction'], s=50, alpha=0.6, cmap='RdYlGn')
@@ -1123,7 +1126,7 @@ ax3.set_xlabel('Nombre de visiteurs')
 ax3.set_ylabel('Taux de conversion (%)')
 plt.colorbar(scatter, ax=ax3, label='Satisfaction')
 
-# 4️⃣ HEATMAP DES PERFORMANCES MENSUELLES
+# HEATMAP DES PERFORMANCES MENSUELLES
 ax4 = plt.subplot(3, 3, 6)
 perf_matrix = df_ecommerce.pivot_table(
     values=['Ventes', 'Taux_conversion', 'Satisfaction'], 
@@ -1138,7 +1141,7 @@ sns.heatmap(perf_normalized.T, annot=True, cmap='RdYlGn',
            ax=ax4, cbar_kws={'shrink': 0.8})  # étiquettes : numéros de mois et noms des colonnes
 ax4.set_title('Indicateurs mensuels normalisés', fontweight='bold')
 
-# 5️⃣ DISTRIBUTION DU PANIER MOYEN
+# DISTRIBUTION DU PANIER MOYEN
 ax5 = plt.subplot(3, 3, 7)
 ax5.hist(df_ecommerce['Panier_moyen'], bins=30, alpha=0.7, color='skyblue', edgecolor='black')
 ax5.axvline(df_ecommerce['Panier_moyen'].mean(), color='red', linestyle='--', 
@@ -1148,7 +1151,7 @@ ax5.set_xlabel('Panier moyen (€)')
 ax5.set_ylabel('Fréquence')
 ax5.legend()
 
-# 6️⃣ ÉVOLUTION DE LA SATISFACTION
+# ÉVOLUTION DE LA SATISFACTION
 ax6 = plt.subplot(3, 3, 8)
 satisfaction_monthly = df_ecommerce.groupby(df_ecommerce['Date'].dt.to_period('M'))['Satisfaction'].mean()
 ax6.plot(satisfaction_monthly.index.astype(str), satisfaction_monthly.values, 
@@ -1161,7 +1164,7 @@ ax6.tick_params(axis='x', rotation=45)
 ax6.set_ylim(4.0, 5.0)
 ax6.grid(True, alpha=0.3)
 
-# 7️⃣ TOP/BOTTOM PERFORMERS (Graphique en barres)
+# TOP/BOTTOM PERFORMERS (Graphique en barres)
 ax7 = plt.subplot(3, 3, 9)
 top_days = df_ecommerce.nlargest(5, 'Revenus')[['Date', 'Revenus']]
 bottom_days = df_ecommerce.nsmallest(5, 'Revenus')[['Date', 'Revenus']]
@@ -1183,16 +1186,16 @@ plt.show()
 
 # RÉSUMÉ CHIFFRÉ
 print("\\n" + "=" * 80)
-print("📊 RÉSUMÉ CHIFFRÉ DES DONNÉES SIMULÉES DE 2023")
+print("RÉSUMÉ CHIFFRÉ DES DONNÉES SIMULÉES DE 2023")
 print("=" * 80)
-print(f"💰 Chiffre d'affaires total: {df_ecommerce['Revenus'].sum():,.0f}€")
-print(f"🛒 Nombre total de ventes: {df_ecommerce['Ventes'].sum():,}")
-print(f"👥 Visites totales (somme des visiteurs de chaque jour): {df_ecommerce['Visiteurs'].sum():,}")
-print(f"📈 Taux de conversion moyen: {df_ecommerce['Taux_conversion'].mean():.2f}%")
-print(f"💳 Panier moyen: {df_ecommerce['Panier_moyen'].mean():.2f}€")
-print(f"⭐ Satisfaction client: {df_ecommerce['Satisfaction'].mean():.2f}/5")
-print(f"📅 Meilleur jour: {df_ecommerce.loc[df_ecommerce['Revenus'].idxmax(), 'Date'].strftime('%d/%m/%Y')}")
-print(f"🎯 Évolution entre le premier et le dernier mois: {((df_monthly['Revenus'].iloc[-1] / df_monthly['Revenus'].iloc[0]) - 1) * 100:.1f}%")
+print(f"Chiffre d'affaires total: {df_ecommerce['Revenus'].sum():,.0f}€")
+print(f"Nombre total de ventes: {df_ecommerce['Ventes'].sum():,}")
+print(f"Visites totales (somme des visiteurs de chaque jour): {df_ecommerce['Visiteurs'].sum():,}")
+print(f"Taux de conversion moyen: {df_ecommerce['Taux_conversion'].mean():.2f}%")
+print(f"Panier moyen: {df_ecommerce['Panier_moyen'].mean():.2f}€")
+print(f"Satisfaction client: {df_ecommerce['Satisfaction'].mean():.2f}/5")
+print(f"Meilleur jour: {df_ecommerce.loc[df_ecommerce['Revenus'].idxmax(), 'Date'].strftime('%d/%m/%Y')}")
+print(f"Évolution entre le premier et le dernier mois: {((df_monthly['Revenus'].iloc[-1] / df_monthly['Revenus'].iloc[0]) - 1) * 100:.1f}%")
 
 # GRAPHIQUE SUPPLÉMENTAIRE : tendance linéaire et extrapolation
 fig, ax = plt.subplots(figsize=(12, 6))
@@ -1226,7 +1229,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-print(f"\\n🔮 Extrapolation de la tendance, revenus de la semaine suivante: {future_trend[0]/1000:.0f}k€")`}
+print(f"\\nExtrapolation de la tendance, revenus de la semaine suivante: {future_trend[0]/1000:.0f}k€")`}
               />
             </CardContent>
           </Card>
@@ -1279,7 +1282,7 @@ df_ml = pd.DataFrame({
     'Ventes': ventes
 })
 
-print("📊 Aperçu des données :")
+print("Aperçu des données :")
 print(df_ml.head())
 
 # 2. PRÉPARATION DES DONNÉES
@@ -1291,14 +1294,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42
 )
 
-print(f"\\n📚 Données d'entraînement : {len(X_train)} exemples")
-print(f"🧪 Données de test : {len(X_test)} exemples")
+print(f"\\nDonnées d'entraînement : {len(X_train)} exemples")
+print(f"Données de test : {len(X_test)} exemples")
 
 # 3. ENTRAÎNEMENT DU MODÈLE
 model = LinearRegression()
 model.fit(X_train, y_train)
 
-print("\\n🎯 Modèle entraîné !")
+print("\\nModèle entraîné")
 # Le coefficient estimé est proche de 2,5 sans l'atteindre : le bruit et la taille de l'échantillon jouent
 print(f"Coefficient : {model.coef_[0]:.2f}")
 print(f"Intercept : {model.intercept_:.2f}")
@@ -1310,7 +1313,7 @@ y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-print("\\n📈 Performance du modèle sur les données de test :")
+print("\\nPerformance du modèle sur les données de test :")
 print(f"R² Score : {r2:.3f} ({r2*100:.1f}% de la variance expliquée)")
 print(f"MSE : {mse:.0f}")
 
@@ -1319,7 +1322,7 @@ print(f"MSE : {mse:.0f}")
 nouveaux_budgets = pd.DataFrame({'Budget_Publicite': [3000, 4500, 2000]})
 predictions = model.predict(nouveaux_budgets)
 
-print("\\n🔮 Prédictions :")
+print("\\nPrédictions :")
 for budget, pred in zip(nouveaux_budgets['Budget_Publicite'], predictions):
     print(f"Budget {budget}€ → Ventes prédites : {pred:.0f}€")`}
               />
@@ -1347,10 +1350,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
-print("🚀 PRÉDICTION DE SALAIRES SUR DES DONNÉES SIMULÉES")
+print("PRÉDICTION DE SALAIRES SUR DES DONNÉES SIMULÉES")
 print("=" * 70)
 
-# 1️⃣ SIMULATION DES DONNÉES
+# SIMULATION DES DONNÉES
 # Tout est inventé pour l'exemple : aucun de ces salaires ni de ces coefficients ne décrit le marché réel.
 np.random.seed(42)
 n_samples = 1000
@@ -1402,23 +1405,23 @@ salaire = (
 )
 df_salaires['Salaire'] = np.maximum(salaire, 25000)
 
-print("📊 DONNÉES SIMULÉES :")
-print(f"   📈 Échantillons : {len(df_salaires):,}")
-print(f"   💰 Salaire moyen : {df_salaires['Salaire'].mean():,.0f}€")
-print(f"   📊 Écart-type : {df_salaires['Salaire'].std():,.0f}€")
-print(f"   🔻 Min : {df_salaires['Salaire'].min():,.0f}€")
-print(f"   🔺 Max : {df_salaires['Salaire'].max():,.0f}€")
+print("DONNÉES SIMULÉES :")
+print(f"   Échantillons : {len(df_salaires):,}")
+print(f"   Salaire moyen : {df_salaires['Salaire'].mean():,.0f}€")
+print(f"   Écart-type : {df_salaires['Salaire'].std():,.0f}€")
+print(f"   Min : {df_salaires['Salaire'].min():,.0f}€")
+print(f"   Max : {df_salaires['Salaire'].max():,.0f}€")
 
-# 📊 EXPLORATION : salaire moyen par catégorie
-print("\\n📈 EXPLORATION :")
+# EXPLORATION : salaire moyen par catégorie
+print("\\nEXPLORATION :")
 print("=" * 50)
 for col in ['Formation', 'Ville', 'Secteur', 'Taille_Entreprise']:
-    print(f"\\n💼 Salaire moyen par {col} :")
+    print(f"\\nSalaire moyen par {col} :")
     stats = df_salaires.groupby(col)['Salaire'].agg(['mean', 'count'])
     for categorie, row in stats.iterrows():
         print(f"   {categorie:<15} : {row['mean']:>7.0f}€ (n={int(row['count'])})")
 
-# 2️⃣ VARIABLES DÉRIVÉES ET ENCODAGE
+# VARIABLES DÉRIVÉES ET ENCODAGE
 # Une fonction unique prépare les données d'entraînement ET les nouveaux cas : même traitement des deux côtés.
 CATEGORIES = ['Formation', 'Ville', 'Secteur', 'Taille_Entreprise']
 
@@ -1436,19 +1439,19 @@ def preparer(df):
 
 X = preparer(df_salaires)
 y = df_salaires['Salaire']
-print(f"\\n🔧 VARIABLES : {X.shape[1]} colonnes après dérivation et encodage")
+print(f"\\nVARIABLES : {X.shape[1]} colonnes après dérivation et encodage")
 
-# 3️⃣ DÉCOUPAGE : entraînement (60 %), validation (20 %), test (20 %)
+# DÉCOUPAGE : entraînement (60 %), validation (20 %), test (20 %)
 X_temp, X_test, y_temp, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.25, random_state=42)
 
-print("\\n📚 RÉPARTITION DES DONNÉES :")
-print(f"   🏋️ Entraînement : {len(X_train)} ({len(X_train)/len(X)*100:.1f}%)")
-print(f"   🔍 Validation : {len(X_val)} ({len(X_val)/len(X)*100:.1f}%)")
-print(f"   🧪 Test : {len(X_test)} ({len(X_test)/len(X)*100:.1f}%)")
+print("\\nRÉPARTITION DES DONNÉES :")
+print(f"   Entraînement : {len(X_train)} ({len(X_train)/len(X)*100:.1f}%)")
+print(f"   Validation : {len(X_val)} ({len(X_val)/len(X)*100:.1f}%)")
+print(f"   Test : {len(X_test)} ({len(X_test)/len(X)*100:.1f}%)")
 
-# 4️⃣ ENTRAÎNEMENT ET COMPARAISON DE MODÈLES
-print("\\n🤖 ENTRAÎNEMENT DES MODÈLES :")
+# ENTRAÎNEMENT ET COMPARAISON DE MODÈLES
+print("\\nENTRAÎNEMENT DES MODÈLES :")
 print("=" * 50)
 
 models = {
@@ -1459,7 +1462,7 @@ models = {
 
 results = {}
 for name, model in models.items():
-    print(f"\\n🔄 Entraînement {name}...")
+    print(f"\\nEntraînement {name}...")
 
     debut = time.perf_counter()
     model.fit(X_train, y_train)
@@ -1487,20 +1490,20 @@ for name, model in models.items():
 
     results[name] = {'model': model, **metrics}
 
-    print(f"   ✅ Terminé en {training_time:.2f}s")
-    print(f"   📊 R² : Train={metrics['train_r2']:.3f} | Val={metrics['val_r2']:.3f} | Test={metrics['test_r2']:.3f}")
-    print(f"   📉 MAE : Train={metrics['train_mae']:.0f} | Val={metrics['val_mae']:.0f} | Test={metrics['test_mae']:.0f}")
-    print(f"   🎯 CV : {metrics['cv_mean']:.3f} ± {metrics['cv_std']:.3f}")
+    print(f"   Terminé en {training_time:.2f}s")
+    print(f"   R² : Train={metrics['train_r2']:.3f} | Val={metrics['val_r2']:.3f} | Test={metrics['test_r2']:.3f}")
+    print(f"   MAE : Train={metrics['train_mae']:.0f} | Val={metrics['val_mae']:.0f} | Test={metrics['test_mae']:.0f}")
+    print(f"   CV : {metrics['cv_mean']:.3f} ± {metrics['cv_std']:.3f}")
 
-# 5️⃣ CHOIX DU MODÈLE : sur la validation, jamais sur le test
+# CHOIX DU MODÈLE : sur la validation, jamais sur le test
 best_model_name = max(results, key=lambda k: results[k]['val_r2'])
 best_model = results[best_model_name]['model']
 best_metrics = results[best_model_name]
 
-print(f"\\n🏆 MEILLEUR MODÈLE SUR LA VALIDATION : {best_model_name}")
-print(f"   🎯 R² validation : {best_metrics['val_r2']:.3f}")
-print(f"   📉 MAE validation : {best_metrics['val_mae']:.0f}€")
-print(f"   🔄 Écart-type de la validation croisée : {best_metrics['cv_std']:.3f}")
+print(f"\\nMEILLEUR MODÈLE SUR LA VALIDATION : {best_model_name}")
+print(f"   R² validation : {best_metrics['val_r2']:.3f}")
+print(f"   MAE validation : {best_metrics['val_mae']:.0f}€")
+print(f"   Écart-type de la validation croisée : {best_metrics['cv_std']:.3f}")
 
 # La régression linéaire gagne ici parce que les salaires ont été fabriqués par une formule presque additive :
 # sur de vraies données, le classement pourrait être tout autre.
@@ -1512,13 +1515,13 @@ feature_importance = pd.DataFrame({
     'Importance': gb.feature_importances_
 }).sort_values('Importance', ascending=False)
 
-print("\\n🔍 LES 10 VARIABLES LES PLUS UTILISÉES PAR LE GRADIENT BOOSTING :")
+print("\\nLES 10 VARIABLES LES PLUS UTILISÉES PAR LE GRADIENT BOOSTING :")
 for i, (_, row) in enumerate(feature_importance.head(10).iterrows()):
     bar = "█" * int(row['Importance'] * 50)
     print(f"   {i+1:2d}. {row['Feature']:<24} : {bar} {row['Importance']:.3f}")
 
-# 6️⃣ PRÉDICTIONS SUR TROIS CAS INVENTÉS
-print("\\n🔮 PRÉDICTIONS SUR TROIS CAS INVENTÉS :")
+# PRÉDICTIONS SUR TROIS CAS INVENTÉS
+print("\\nPRÉDICTIONS SUR TROIS CAS INVENTÉS :")
 print("=" * 50)
 
 scenarios = pd.DataFrame([
@@ -1538,20 +1541,20 @@ X_scenarios = preparer(scenarios.drop(columns='nom')).reindex(columns=X.columns,
 predictions = best_model.predict(X_scenarios)
 
 for (_, cas), prediction in zip(scenarios.iterrows(), predictions):
-    print(f"\\n👤 {cas['nom']} :")
-    print(f"   💰 Salaire prédit : {prediction:,.0f}€")
-    print(f"   📊 Expérience : {cas['Experience']} ans")
-    print(f"   🎂 Âge : {cas['Age']} ans")
-    print(f"   ⏰ Heures/semaine : {cas['Heures_Semaine']}h")
+    print(f"\\n{cas['nom']} :")
+    print(f"   Salaire prédit : {prediction:,.0f}€")
+    print(f"   Expérience : {cas['Experience']} ans")
+    print(f"   Âge : {cas['Age']} ans")
+    print(f"   Heures/semaine : {cas['Heures_Semaine']}h")
 
-# 7️⃣ BILAN
-print("\\n📊 RÉSUMÉ DES PERFORMANCES :")
+# BILAN
+print("\\nRÉSUMÉ DES PERFORMANCES :")
 print("=" * 50)
-print(f"   🎯 R² sur le jeu de test : {best_metrics['test_r2']:.3f}")
-print(f"   📉 Erreur absolue moyenne sur le test : {best_metrics['test_mae']:,.0f}€")
-print(f"   ⚡ Temps d'entraînement : {best_metrics['training_time']:.2f}s")
+print(f"   R² sur le jeu de test : {best_metrics['test_r2']:.3f}")
+print(f"   Erreur absolue moyenne sur le test : {best_metrics['test_mae']:,.0f}€")
+print(f"   Temps d'entraînement : {best_metrics['training_time']:.2f}s")
 
-print("\\n⚠️ Les salaires viennent d'une formule inventée : un R² élevé montre que le modèle retrouve cette")
+print("\\nLes salaires viennent d'une formule inventée : un R² élevé montre que le modèle retrouve cette")
 print("formule, pas qu'il saurait prédire de vrais salaires. À valider sur des données réelles avant tout usage.")`}
               />
 
@@ -1624,7 +1627,7 @@ y_pred_rf = rf_model.predict(X_test)
 mae = mean_absolute_error(y_test, y_pred_rf)
 r2_rf = r2_score(y_test, y_pred_rf)
 
-print(f"🎯 Performance Random Forest :")
+print(f"Performance Random Forest :")
 print(f"R² Score : {r2_rf:.3f}")
 print(f"Erreur moyenne : {mae:.0f}€")
 
@@ -1649,7 +1652,7 @@ print("Modèle entraîné sur des données simulées : ces scores ne valent que 
                     variant={completedExercises.has(FINAL_EXERCISE_ID) ? "default" : "outline"}
                     className="mt-2"
                   >
-                    {completedExercises.has(FINAL_EXERCISE_ID) ? "✅ Projet terminé" : "Marquer le projet comme terminé"}
+                    {completedExercises.has(FINAL_EXERCISE_ID) ? "Projet terminé" : "Marquer le projet comme terminé"}
                   </Button>
                 </div>
               </div>

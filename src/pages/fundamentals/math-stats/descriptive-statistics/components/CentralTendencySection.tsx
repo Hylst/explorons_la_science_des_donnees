@@ -15,7 +15,7 @@ const CentralTendencySection = () => {
   // Données d'exemple pour différents scénarios
   const exemples = {
     salaires: {
-      title: "💰 Salaires dans une entreprise tech",
+      title: "Salaires dans une entreprise tech",
       data: [35000, 38000, 42000, 45000, 47000, 50000, 52000, 55000, 58000, 120000],
       description: "10 employés, avec un CEO qui gagne beaucoup plus",
       moyenne: 54200,
@@ -24,7 +24,7 @@ const CentralTendencySection = () => {
       insight: "La médiane est plus représentative ici car le salaire du CEO crée une distorsion"
     },
     notes: {
-      title: "📚 Notes d'examen (sur 20)",
+      title: "Notes d'examen (sur 20)",
       data: [12, 14, 14, 15, 15, 15, 16, 16, 17, 18],
       description: "Notes d'une classe de 10 étudiants",
       moyenne: 15.2,
@@ -33,7 +33,7 @@ const CentralTendencySection = () => {
       insight: "Distribution relativement symétrique, moyenne et médiane très proches"
     },
     ventes: {
-      title: "🛒 Ventes quotidiennes (en €)",
+      title: "Ventes quotidiennes (en €)",
       data: [1200, 1400, 1500, 1500, 1600, 1700, 1800, 2000, 2200, 8000],
       description: "Ventes sur 10 jours, avec une journée exceptionnelle",
       moyenne: 2290,
@@ -65,7 +65,7 @@ const CentralTendencySection = () => {
 
       {/* Introduction conceptuelle */}
       <div className="mb-8">
-        <CourseHighlight title="🤔 Question fondamentale" type="question">
+        <CourseHighlight title="Question fondamentale" type="question">
           <div className="space-y-4">
             <p className="text-lg">
               Si vous deviez résumer 1000 nombres en UN SEUL chiffre qui les représente le mieux, 
@@ -73,7 +73,7 @@ const CentralTendencySection = () => {
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm">
-                <strong>Spoiler :</strong> Il n'y a pas UNE bonne réponse ! Selon le contexte, 
+                <strong>Spoiler :</strong> Il n'y a pas une seule bonne réponse. Selon le contexte, 
                 la moyenne, la médiane ou le mode sera plus pertinent. C'est tout l'art de la statistique descriptive.
               </p>
             </div>
@@ -84,7 +84,7 @@ const CentralTendencySection = () => {
       {/* Sélecteur d'exemples interactifs */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>🧪 Laboratoire interactif : Choisissez votre exemple</CardTitle>
+          <CardTitle>Laboratoire interactif : Choisissez votre exemple</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3 mb-6">
@@ -110,7 +110,7 @@ const CentralTendencySection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h5 className="font-semibold mb-3">📊 Visualisation des données</h5>
+              <h5 className="font-semibold mb-3">Visualisation des données</h5>
               <div className="h-64">
                 <DeferredResponsiveContainer width="100%" height="100%">
                   <ScatterChart data={distributionData}>
@@ -128,7 +128,7 @@ const CentralTendencySection = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-3">📈 Comparaison des mesures</h5>
+              <h5 className="font-semibold mb-3">Comparaison des mesures</h5>
               <div className="h-64">
                 <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={comparaisonData}>
@@ -144,7 +144,7 @@ const CentralTendencySection = () => {
           </div>
 
           <div className="mt-4 p-4 bg-green-50 rounded-lg">
-            <h5 className="font-semibold text-green-700 mb-2">💡 Insight clé :</h5>
+            <h5 className="font-semibold text-green-700 mb-2">Insight clé :</h5>
             <p className="text-sm">{currentExample.insight}</p>
           </div>
         </CardContent>
@@ -170,7 +170,7 @@ const CentralTendencySection = () => {
               
               <CourseEquation latex="\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i" />
               
-              <CourseHighlight title="🔍 Décryptage de la formule" type="example">
+              <CourseHighlight title="Décryptage de la formule" type="example">
                 <div className="space-y-2 text-sm">
                   <p><strong>x̄</strong> = moyenne de l'échantillon</p>
                   <p><strong>n</strong> = nombre total d'observations</p>
@@ -205,7 +205,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">🎯 Quand l'utiliser ?</h5>
+                <h5 className="font-semibold mb-2">Quand l'utiliser ?</h5>
                 <ul className="text-sm space-y-1">
                   <li>• Distributions normales ou symétriques</li>
                   <li>• Données sans valeurs aberrantes</li>
@@ -235,15 +235,15 @@ const CentralTendencySection = () => {
               
               <CourseEquation latex="M = \begin{cases} x_{(n+1)/2} & \text{si } n \text{ impair} \\ \frac{x_{n/2} + x_{(n/2)+1}}{2} & \text{si } n \text{ pair} \end{cases}" />
 
-              <CourseHighlight title="👥 Analogie : La file d'attente" type="example">
+              <CourseHighlight title="Analogie : La file d'attente" type="example">
                 <p className="text-sm">
                   Imaginez 11 personnes rangées par taille. La médiane est la taille de la 6ème personne : 
-                  5 personnes sont plus petites, 5 sont plus grandes. Simple et intuitif !
+                  5 personnes sont plus petites, 5 sont plus grandes. Simple et intuitif.
                 </p>
               </CourseHighlight>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">✨ Super-pouvoirs de la médiane</h5>
+                <h5 className="font-semibold mb-2">Super-pouvoirs de la médiane</h5>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Robuste :</strong> Insensible aux valeurs extrêmes</li>
                   <li>• <strong>Concrète :</strong> Avec un nombre impair de valeurs, c'est une valeur réellement observée</li>
@@ -253,7 +253,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">🌟 Exemples concrets</h5>
+                <h5 className="font-semibold mb-2">Exemples concrets</h5>
                 <div className="text-sm space-y-2">
                   <p><strong>Immobilier :</strong> Prix médian = ce que paie "l'acheteur typique"</p>
                   <p><strong>Salaires :</strong> Salaire médian = seuil où 50% gagnent plus/moins</p>
@@ -285,7 +285,7 @@ const CentralTendencySection = () => {
 
               <CourseEquation latex="\text{Mode} = \arg\max_x f(x)" />
 
-              <CourseHighlight title="🎭 Analogie : La mode vestimentaire" type="example">
+              <CourseHighlight title="Analogie : La mode vestimentaire" type="example">
                 <p className="text-sm">
                   Comme la mode vestimentaire désigne ce que la majorité porte, le mode statistique 
                   désigne ce qui apparaît le plus fréquemment dans vos données.
@@ -293,7 +293,7 @@ const CentralTendencySection = () => {
               </CourseHighlight>
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">🎯 Types de modes</h5>
+                <h5 className="font-semibold mb-2">Types de modes</h5>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Unimodal :</strong> Une seule valeur dominante</li>
                   <li>• <strong>Bimodal :</strong> Deux valeurs ex-aequo</li>
@@ -305,7 +305,7 @@ const CentralTendencySection = () => {
 
             <div className="space-y-4">
               <div className="bg-orange-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">🚀 Applications modernes</h5>
+                <h5 className="font-semibold mb-2">Applications modernes</h5>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>E-commerce :</strong> Taille de vêtement la plus vendue</li>
                   <li>• <strong>Netflix :</strong> Genre de film le plus regardé</li>
@@ -315,7 +315,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">⚠️ Attention !</h5>
+                <h5 className="font-semibold mb-2">Attention</h5>
                 <p className="text-sm">
                   Le mode n'existe pas toujours (si toutes les valeurs sont différentes) 
                   et peut être multiple (plusieurs valeurs ex-aequo).
@@ -323,7 +323,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">✅ Parfait pour :</h5>
+                <h5 className="font-semibold mb-2">Parfait pour :</h5>
                 <ul className="text-sm space-y-1">
                   <li>• Variables catégorielles</li>
                   <li>• Variables ordinales</li>
@@ -339,7 +339,7 @@ const CentralTendencySection = () => {
       {/* Comparaison et guide de choix */}
       <Card>
         <CardHeader>
-          <CardTitle>🎯 Guide de Choix : Quelle Mesure pour Quelle Situation ?</CardTitle>
+          <CardTitle>Guide de Choix : Quelle Mesure pour Quelle Situation ?</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -348,14 +348,14 @@ const CentralTendencySection = () => {
                 <Badge className="bg-blue-500 text-white">Moyenne</Badge>
               </h4>
               <div className="space-y-2 text-sm">
-                <p><strong>🎯 Idéale pour :</strong></p>
+                <p><strong>Idéale pour :</strong></p>
                 <ul className="space-y-1">
                   <li>• Distributions symétriques</li>
                   <li>• Variables continues</li>
                   <li>• Calculs statistiques avancés</li>
                   <li>• Données sans aberrantes</li>
                 </ul>
-                <p><strong>🚫 Éviter si :</strong></p>
+                <p><strong>Éviter si :</strong></p>
                 <ul className="space-y-1">
                   <li>• Valeurs aberrantes présentes</li>
                   <li>• Distribution très asymétrique</li>
@@ -369,14 +369,14 @@ const CentralTendencySection = () => {
                 <Badge className="bg-green-600 text-white">Médiane</Badge>
               </h4>
               <div className="space-y-2 text-sm">
-                <p><strong>🎯 Idéale pour :</strong></p>
+                <p><strong>Idéale pour :</strong></p>
                 <ul className="space-y-1">
                   <li>• Distributions asymétriques</li>
                   <li>• Présence de valeurs aberrantes</li>
                   <li>• Variables ordinales</li>
                   <li>• Données de revenus, prix</li>
                 </ul>
-                <p><strong>💡 Avantage unique :</strong></p>
+                <p><strong>Avantage unique :</strong></p>
                 <ul className="space-y-1">
                   <li>• Robuste aux extrêmes</li>
                   <li>• Facile à interpréter</li>
@@ -390,14 +390,14 @@ const CentralTendencySection = () => {
                 <Badge className="bg-purple-500 text-white">Mode</Badge>
               </h4>
               <div className="space-y-2 text-sm">
-                <p><strong>🎯 Idéale pour :</strong></p>
+                <p><strong>Idéale pour :</strong></p>
                 <ul className="space-y-1">
                   <li>• Variables catégorielles</li>
                   <li>• Variables nominales</li>
                   <li>• Identifier les préférences</li>
                   <li>• Planification commerciale</li>
                 </ul>
-                <p><strong>✨ Spécialité :</strong></p>
+                <p><strong>Spécialité :</strong></p>
                 <ul className="space-y-1">
                   <li>• Seule mesure pour données nominales</li>
                   <li>• Révèle les tendances populaires</li>
@@ -407,7 +407,7 @@ const CentralTendencySection = () => {
             </div>
           </div>
 
-          <CourseHighlight title="🧠 Mémo pour retenir" type="concept">
+          <CourseHighlight title="Mémo pour retenir" type="concept">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="text-center">
                 <p className="font-semibold text-blue-600">MOYENNE</p>

@@ -13,7 +13,7 @@ export interface TextSegment {
 }
 
 const FENCE = /^\s*```/;
-/** Une ligne qui n'est qu'un titre en gras : « **🎨 Analogie Artistique :** » */
+/** Une ligne qui n'est qu'un titre en gras : « **Analogie Artistique :** » */
 const BOLD_TITLE = /^\s*\*\*[^*\n]+\*\*\s*$/;
 const LIST_ITEM = /^\s*(?:[-*+]|\d+[.)])\s+/;
 /** Une étiquette en gras après une fin de phrase, avec les deux-points dedans ou dehors : « . **Objectif :** » ou « . **Objectif** : » */

@@ -15,7 +15,7 @@ const ClusteringSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction au clustering */}
-      <EducationalCard title="🎭 Clustering : repérer des groupes dans des données sans étiquette" type="concept">
+      <EducationalCard title="Clustering : repérer des groupes dans des données sans étiquette" type="concept">
         <p className="mb-4">
           Le clustering regroupe des exemples qui se ressemblent, sans connaître de catégories à l'avance.
           Imaginez-vous dans une soirée où vous ne connaissez personne : vous observez les invités et formez
@@ -23,22 +23,22 @@ const ClusteringSection = () => {
         </p>
 
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl space-y-4">
-          <h4 className="font-semibold text-indigo-800 mb-3">🎯 Objectifs du Clustering</h4>
+          <h4 className="font-semibold text-indigo-800 mb-3">Objectifs du Clustering</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white p-4 rounded-lg border-l-4 border-blue-400">
-              <h5 className="font-medium text-blue-800 mb-2">📊 Homogénéité Intra-cluster</h5>
+              <h5 className="font-medium text-blue-800 mb-2">Homogénéité Intra-cluster</h5>
               <p className="text-sm">Les membres d'un même groupe doivent se ressembler</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-green-400">
-              <h5 className="font-medium text-green-800 mb-2">🎭 Hétérogénéité Inter-cluster</h5>
+              <h5 className="font-medium text-green-800 mb-2">Hétérogénéité Inter-cluster</h5>
               <p className="text-sm">Les groupes doivent être bien distincts les uns des autres</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-purple-400">
-              <h5 className="font-medium text-purple-800 mb-2">⚖️ Équilibre des Groupes</h5>
+              <h5 className="font-medium text-purple-800 mb-2">Équilibre des Groupes</h5>
               <p className="text-sm">Éviter un groupe géant entouré de minuscules groupes (sauf si les données l'exigent)</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-orange-400">
-              <h5 className="font-medium text-orange-800 mb-2">🔍 Interprétabilité</h5>
+              <h5 className="font-medium text-orange-800 mb-2">Interprétabilité</h5>
               <p className="text-sm">Les groupes doivent avoir un sens métier</p>
             </div>
           </div>
@@ -63,7 +63,7 @@ const ClusteringSection = () => {
         <CollapsibleContent>
           <Card className="mt-2 bg-gradient-to-r from-blue-50 to-cyan-50">
             <CardContent className="pt-6 space-y-6">
-              <EducationalCard title="🎯 K-means : Le Jeu des Centres de Gravité" type="analogie">
+              <EducationalCard title="K-means : Le Jeu des Centres de Gravité" type="analogie">
                 <div className="space-y-4">
                   <p>
                     Imaginez que vous placez plusieurs scènes dans un festival, de façon à minimiser
@@ -72,7 +72,7 @@ const ClusteringSection = () => {
                   </p>
 
                   <div className="bg-white p-6 rounded-xl border-2 border-dashed border-blue-400">
-                    <h4 className="font-semibold mb-4 text-center">🎵 L'algorithme K-means, étape par étape</h4>
+                    <h4 className="font-semibold mb-4 text-center">L'algorithme K-means, étape par étape</h4>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                       <div className="text-center">
@@ -161,7 +161,7 @@ const ClusteringSection = () => {
                     </div>
 
                     <p className="text-sm text-gray-600 text-center">
-                      🔄 On répète les étapes 2 et 3 jusqu'à ce que les centres ne bougent plus (schéma d'illustration).
+                      On répète les étapes 2 et 3 jusqu'à ce que les centres ne bougent plus (schéma d'illustration).
                     </p>
                   </div>
                 </div>
@@ -169,33 +169,33 @@ const ClusteringSection = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-blue-800 mb-3">✅ Forces de K-means</h4>
+                  <h4 className="font-semibold text-blue-800 mb-3">Forces de K-means</h4>
                   <div className="space-y-2 text-sm">
                     <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
-                      <strong>🚀 Rapidité :</strong> complexité en O(n·k·d·i) (n points, k clusters, d dimensions, i itérations), très efficace en pratique
+                      <strong>Rapidité :</strong> complexité en O(n·k·d·i) (n points, k clusters, d dimensions, i itérations), très efficace en pratique
                     </div>
                     <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
-                      <strong>🎯 Simplicité :</strong> Algorithme intuitif et facile à implémenter
+                      <strong>Simplicité :</strong> Algorithme intuitif et facile à implémenter
                     </div>
                     <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
-                      <strong>📊 Passage à l'échelle :</strong> reste utilisable sur de gros jeux de données
+                      <strong>Passage à l'échelle :</strong> reste utilisable sur de gros jeux de données
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-red-800 mb-3">⚠️ Limitations de K-means</h4>
+                  <h4 className="font-semibold text-red-800 mb-3">Limitations de K-means</h4>
                   <div className="space-y-2 text-sm">
                     <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
-                      <strong>🎲 Initialisation :</strong> Sensible aux centres initiaux
+                      <strong>Initialisation :</strong> Sensible aux centres initiaux
                     </div>
                     <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
-                      <strong>⭕ Formes :</strong> Préfère les clusters sphériques
+                      <strong>Formes :</strong> Préfère les clusters sphériques
                     </div>
                     <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
-                      <strong>🔢 K fixe :</strong> Il faut choisir le nombre de clusters
+                      <strong>K fixe :</strong> Il faut choisir le nombre de clusters
                     </div>
                     <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
-                      <strong>📏 Échelle et valeurs aberrantes :</strong> Sensible à l'échelle des variables (à standardiser) et aux points extrêmes
+                      <strong>Échelle et valeurs aberrantes :</strong> Sensible à l'échelle des variables (à standardiser) et aux points extrêmes
                     </div>
                   </div>
                 </div>
@@ -207,27 +207,27 @@ const ClusteringSection = () => {
 
       {/* Clustering hiérarchique */}
       <ProgressiveDisclosure
-        title="🌳 Clustering hiérarchique : un arbre de fusions"
+        title="Clustering hiérarchique : un arbre de fusions"
         levels={[
           {
             title: "Concept de Base",
             difficulty: "basic",
             content: (
               <div className="space-y-4">
-                <EducationalCard title="👨‍👩‍👧‍👦 L'Analogie de l'Arbre Généalogique" type="analogie">
+                <EducationalCard title="L'Analogie de l'Arbre Généalogique" type="analogie">
                   <p className="mb-4">
                     Imaginez que vous reconstituez l'arbre généalogique d'une famille d'après les ressemblances
                     physiques seulement, sans connaître les liens de parenté.
                   </p>
                   <div className="bg-amber-50 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🔄 Deux Approches :</h4>
+                    <h4 className="font-semibold mb-2">Deux Approches :</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white p-3 rounded border-l-4 border-green-400">
-                        <strong>⬆️ Agglomerative (Bottom-up) :</strong>{" "}
+                        <strong>Agglomerative (Bottom-up) :</strong>{" "}
                         Partir des individus et former des familles, puis des clans
                       </div>
                       <div className="bg-white p-3 rounded border-l-4 border-blue-400">
-                        <strong>⬇️ Divisive (Top-down) :</strong>{" "}
+                        <strong>Divisive (Top-down) :</strong>{" "}
                         Partir du clan entier et diviser en sous-groupes (non implémenté dans scikit-learn)
                       </div>
                     </div>
@@ -242,23 +242,23 @@ const ClusteringSection = () => {
             content: (
               <div className="space-y-4">
                 <div className="bg-white p-4 rounded-lg border">
-                  <h4 className="font-semibold mb-3">📏 Comment mesurer la distance entre deux groupes ?</h4>
+                  <h4 className="font-semibold mb-3">Comment mesurer la distance entre deux groupes ?</h4>
                   <div className="space-y-3">
                     <div className="bg-blue-50 p-3 rounded">
                       <strong>Single Linkage :</strong> Distance entre les plus proches voisins
-                      <p className="text-sm text-gray-600">👫 "Deux familles sont proches si leurs membres les plus similaires se ressemblent"</p>
+                      <p className="text-sm text-gray-600">"Deux familles sont proches si leurs membres les plus similaires se ressemblent"</p>
                     </div>
                     <div className="bg-green-50 p-3 rounded">
                       <strong>Complete Linkage :</strong> Distance entre les plus éloignés
-                      <p className="text-sm text-gray-600">👥 "Deux familles sont proches si même leurs membres les plus différents se ressemblent"</p>
+                      <p className="text-sm text-gray-600">"Deux familles sont proches si même leurs membres les plus différents se ressemblent"</p>
                     </div>
                     <div className="bg-purple-50 p-3 rounded">
                       <strong>Average Linkage :</strong> Distance moyenne entre tous les membres
-                      <p className="text-sm text-gray-600">⚖️ "On fait la moyenne de toutes les ressemblances"</p>
+                      <p className="text-sm text-gray-600">"On fait la moyenne de toutes les ressemblances"</p>
                     </div>
                     <div className="bg-amber-50 p-3 rounded">
                       <strong>Ward :</strong> Fusionne les deux groupes dont la réunion augmente le moins la variance interne
-                      <p className="text-sm text-gray-600">🧮 Valeur par défaut de scikit-learn (distance euclidienne uniquement), qui donne souvent des groupes compacts</p>
+                      <p className="text-sm text-gray-600">Valeur par défaut de scikit-learn (distance euclidienne uniquement), qui donne souvent des groupes compacts</p>
                     </div>
                   </div>
                 </div>
@@ -271,7 +271,7 @@ const ClusteringSection = () => {
             content: (
               <div className="space-y-4">
                 <div className="bg-white p-4 rounded-lg border text-center">
-                  <h4 className="font-semibold mb-4">🌳 Dendrogramme : L'Histoire du Clustering</h4>
+                  <h4 className="font-semibold mb-4">Dendrogramme : L'Histoire du Clustering</h4>
                   <svg width="480" height="250" viewBox="0 0 480 250" className="max-w-full h-auto mx-auto">
                     {/* Feuilles (points de données) */}
                     <text x="50" y="240" textAnchor="middle" className="text-xs">A</text>
@@ -317,7 +317,7 @@ const ClusteringSection = () => {
                     <text x="362" y="135" className="text-sm fill-red-600 font-bold">Coupe → 2 clusters</text>
                   </svg>
                   <p className="text-sm text-gray-600 mt-2">
-                    💡 En « coupant » le dendrogramme à différentes hauteurs, on obtient différents nombres de clusters (ici, la coupe isole E du reste).
+                    En « coupant » le dendrogramme à différentes hauteurs, on obtient différents nombres de clusters (ici, la coupe isole E du reste).
                   </p>
                 </div>
               </div>
@@ -342,7 +342,7 @@ const ClusteringSection = () => {
 
       {/* Exercice pratique */}
       <ExerciseCard
-        title="🛍️ Segmentation de clientèle d'une boutique en ligne"
+        title="Segmentation de clientèle d'une boutique en ligne"
         problem="Une boutique en ligne veut segmenter sa clientèle. Vous disposez de quatre variables : âge, revenu annuel, fréquence d'achat mensuelle, montant moyen par commande (la solution les simule, pour 300 clients). Implémentez un clustering K-means et utilisez la méthode du coude (elbow method), confirmée par la silhouette, pour choisir le nombre de segments."
         solution={`import numpy as np
 import matplotlib.pyplot as plt

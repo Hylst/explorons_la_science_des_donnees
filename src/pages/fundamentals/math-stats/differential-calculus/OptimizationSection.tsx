@@ -91,12 +91,12 @@ const OptimizationSection = () => {
     <section id="optimization" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">3. Optimisation avec les Dérivées</h2>
       
-      <CourseHighlight title="🎯 L'objectif" type="concept">
+      <CourseHighlight title="L'objectif" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p className="mb-4">
               En machine learning, optimiser = <strong>minimiser l'erreur</strong>. 
-              Les dérivées nous indiquent dans quelle direction aller !
+              Les dérivées nous indiquent dans quelle direction aller.
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
               <h4 className="font-semibold flex items-center gap-2">
@@ -140,10 +140,10 @@ const OptimizationSection = () => {
                 </ul>
               </div>
               
-              <CourseHighlight title="💡 Astuce visuelle" type="example">
+              <CourseHighlight title="Astuce visuelle" type="example">
                 <p className="text-sm">
                   Imaginez une bille qui roule : elle s'arrête naturellement dans les creux (minima) 
-                  et tombe des bosses (maxima) !
+                  et tombe des bosses (maxima).
                 </p>
               </CourseHighlight>
             </div>
@@ -295,7 +295,7 @@ const OptimizationSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="⚠️ Un réglage décisif : le taux d'apprentissage" type="warning">
+      <CourseHighlight title="Un réglage décisif : le taux d'apprentissage" type="warning">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-red-50 p-4 rounded-lg">
             <h4 className="font-semibold text-red-800 mb-2">α trop grand</h4>
@@ -324,7 +324,7 @@ const OptimizationSection = () => {
         </div>
       </CourseHighlight>
 
-      <CourseHighlight title="🔍 Zoom sur : Variantes de l'optimisation" type="info">
+      <CourseHighlight title="Zoom sur : Variantes de l'optimisation" type="info">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold mb-3">Descente de gradient classique</h4>

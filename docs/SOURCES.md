@@ -2,7 +2,7 @@
 
 Ce document recense les chiffres du site qui décrivent le monde réel (enquêtes, registres de paquets, salaires, prix, statistiques de marché), leur origine, la date de consultation et le niveau de vérification. Il complète la ligne « Source : ... , consulté le ... » affichée sous chaque chiffre par le composant `SourceNote` (`src/components/ui/source-note.tsx`).
 
-Date de consultation de toutes les sources : **1er octobre 2026**.
+Date de consultation des sources : **1er octobre 2026**, sauf mention contraire ligne par ligne (relectures des 5, 6 et 9 octobre 2026). Dernière révision de ce registre : 10 octobre 2026.
 
 ## Niveaux de vérification
 
@@ -12,7 +12,7 @@ Date de consultation de toutes les sources : **1er octobre 2026**.
 | extrait de recherche | La valeur a été obtenue par un moteur de recherche ou par un relais (article de presse, miroir) et n'a pas été relue à la source. |
 | non vérifié | Aucune source consultée ou source inaccessible : la valeur est donnée telle quelle et signalée comme telle. |
 
-Les niveaux des sections 1, 2 et 7 reprennent les rapports de recherche R1 (programmation, langages, frameworks) et R2 (statistiques de pratique) du 1er octobre 2026. Ceux de la section 8 viennent des notes de recherche R3-a (salaires) de la même date. Pour les sections 3 à 6, 9 et 10, le niveau est précisé ligne par ligne, avec la façon dont il a été établi.
+Les niveaux des sections 1, 2 et 7 reprennent les rapports de recherche R1 (programmation, langages, frameworks) et R2 (statistiques de pratique) du 1er octobre 2026. Ceux de la section 8 viennent des notes de recherche R3-a (salaires) de la même date. Pour les sections 3 à 6 et 9 à 12, le niveau est précisé ligne par ligne, avec la façon dont il a été établi.
 
 ## Lecture rapide : où sont les `SourceNote`
 
@@ -23,10 +23,13 @@ Les niveaux des sections 1, 2 et 7 reprennent les rapports de recherche R1 (prog
 | `src/components/fundamentals/programming/LanguageComparison.tsx` | `/fundamentals/programming` | Usage des langages (Stack Overflow 2021 à 2025) |
 | `src/components/fundamentals/programming/ProgrammingIntro.tsx` | `/fundamentals/programming` | Usage chez les praticiens (Anaconda), PyPy, PyPI |
 | `src/components/fundamentals/data-preparation/IntroductionSection.tsx` | `/fundamentals/data-preparation` | Part du temps consacrée à la préparation des données |
-| `src/components/tools/sections/DataProcessingTools.tsx` | `/tools/data-processing` | Part du temps consacrée au chargement et au nettoyage (Anaconda 2020 et 2022, mêmes sources que ci-dessus) |
+| `src/components/fundamentals/DataProcessingSection.tsx` | `/fundamentals` (section Traitement des données) | Part du temps consacrée au chargement et au nettoyage (Anaconda 2020 et 2022, mêmes sources que la section 7) |
+| `src/components/tools/sections/DataProcessingTools.tsx` | `/tools/data-processing` | Part du temps consacrée au chargement et au nettoyage (Anaconda 2020 et 2022, mêmes sources que ci-dessus) ; Spark jusqu'à 20 fois plus rapide que Hadoop MapReduce (NSDI 2012, consulté le 5 octobre 2026) |
+| `src/components/fundamentals/programming/PythonMasterclass.tsx` | `/fundamentals/programming` | Image reconnue en 13 millisecondes (MIT News, 2014) ; `SourceNote` sans date de consultation affichée |
 | `src/components/introduction/sections/HistorySection.tsx` | `/introduction` | Repères datés : TensorFlow publié en open source (9 novembre 2015, blog Google), GPT-3 : Brown et al., « Language Models are Few-Shot Learners », arXiv 2005.14165 (175 milliards de paramètres ; résumé lu le 5 octobre 2026, `SourceNote` sous la frise) ; TensorFlow : source connue, non rouverte ; AlexNet et ImageNet 2012 (Krizhevsky, Sutskever et Hinton) : fait connu, non rouvert |
 | `src/pages/fundamentals/databases/components/DatabasesIntroSection.tsx` | `/fundamentals/databases` | Volumes de données et impact business |
 | `src/components/introduction/sections/CareersSection.tsx` | `/introduction` | Fourchettes de salaires Apec |
+| `src/data/lessons/` (références citées dans le texte des cours, sans `SourceNote`) | `/courses/...` | Voir la section 12 |
 
 ---
 
@@ -125,7 +128,7 @@ Remarques tirées de R1-e :
 
 ## 7. Part du temps consacrée à la préparation des données
 
-- **Où** : `/fundamentals/data-preparation`, introduction (`IntroductionSection.tsx`) ; `/fundamentals`, section de traitement des données (`DataProcessingSection.tsx`, lignes 175 et 176) ; `src/components/ui/interactive-schema.tsx` (étape « Préparation des données » du schéma `MLWorkflowSchema`, composant qu'aucune page n'importe aujourd'hui).
+- **Où** : `/fundamentals/data-preparation`, introduction (`IntroductionSection.tsx`) ; `/fundamentals`, section de traitement des données (`DataProcessingSection.tsx`, paragraphe « Un traitement de données soigné... » suivi de sa `SourceNote`) ; `src/components/tools/sections/DataProcessingTools.tsx` ; `src/components/ui/interactive-schema.tsx` (étape « Préparation des données » du schéma `MLWorkflowSchema`, composant qu'aucune page n'importe aujourd'hui).
 - **Source du rapport** : R2-a (verdict initial : « statistique zombie », le « 80 % » n'a jamais été mesuré).
 - **Texte affiché** : « 45 % du temps déclaré dans l'enquête Anaconda 2020 (chargement et nettoyage), 38 % dans celle de 2022. Les « 50 à 80 % » souvent cités viennent d'estimations d'experts rapportées par la presse en 2014, pas d'une mesure. »
 
@@ -160,21 +163,18 @@ Origine du « 80 % » (R2-a), pour mémoire :
 
 ## 9. Volumes de données et impact business
 
-- **Où** : `/fundamentals/databases`, encadré « Le saviez-vous ? » de `DatabasesIntroSection.tsx` (une seule ligne `SourceNote` regroupe les sept sources).
+- **Où** : `/fundamentals/databases`, encadré « Le saviez-vous ? » de `DatabasesIntroSection.tsx` (une seule ligne `SourceNote` regroupe les quatre sources).
+- **Chiffres retirés le 10 octobre 2026** (décision de l'auteur : pas de chiffre sans source relue) : 149 et 181 zettaoctets (IDC via Statista, valeurs derrière un accès payant), « 23 fois plus de chances » (McKinsey 2014, page injoignable), « 35 % des achats Amazon » (McKinsey 2013, page injoignable), « 3 100 milliards de dollars » (IBM via Harvard Business Review 2016, phrase introuvable dans la partie lisible de la page). Les rubriques de l'encadré sont devenues « Volumes » et « Grandes plateformes ».
 - **Niveaux** : « page lue » signifie que la page a été ouverte le 1er octobre 2026 et la phrase retrouvée. Ces lignes ne figurent pas dans R1 et R2 : elles ont été recontrôlées pour ce registre quand la page s'ouvrait. Pour la ligne marquée « inventaire du commit », la vérification ne vient que du message du commit `f97eff0` (« Inventaire des affirmations chiffrées, vérifiées à la source le 2026-10-01 ») ; elle n'a pas pu être rejouée.
 
 | Valeur affichée | Source et URL | Niveau |
 |---|---|---|
-| 149 zettaoctets de données créées, capturées, copiées et consommées en 2024, 181 prévus en 2025 | IDC, via Statista : https://www.statista.com/statistics/871513/worldwide-data-created/ | extrait de recherche : la page Statista citée masque les valeurs (accès payant) ; elle attribue la série à l'« IDC Global Datasphere Forecast » (relayée par Seagate, Ohio State University, Ciena et Western Digital). Une recherche du 2 octobre 2026 retrouve « 149 zettaoctets en 2024 » et « 181 en 2025 » sur plusieurs sites qui citent Statista, sans que la valeur soit lisible sur la page elle-même |
 | Environ 9 octets sur 10 sont des copies de données déjà existantes | IDC, communiqué du 8 mai 2020 « IDC's Global DataSphere Forecast Shows Continued Steady Growth in the Creation and Consumption of Data » : https://www.businesswire.com/news/home/20200508005025/en/IDCs-Global-DataSphere-Forecast-Shows-Continued-Steady-Growth-in-the-Creation-and-Consumption-of-Data | page lue sur une reprise intégrale du communiqué (https://workflowotg.com/idcs-global-datasphere-forecast/, 2 octobre 2026) : « The ratio of unique data (created and captured) to replicated data (copied and consumed) is roughly 1:9 » et « By 2024, IDC expects this ratio to be 1:10 ». La page BusinessWire d'origine répond HTTP 403. Le site écrit « environ 9 sur 10 », fidèle au rapport de 2020 |
-| Google traite plus de 5 000 milliards de recherches par an, soit environ 158 000 par seconde (début 2025) | Search Engine Land : https://searchengineland.com/google-5-trillion-searches-per-year-452928 | extrait de recherche |
+| Google traite plus de 5 000 milliards de recherches par an, soit environ 158 000 par seconde (début 2025) | Search Engine Land : https://searchengineland.com/google-5-trillion-searches-per-year-452928 | extrait de recherche, recoupé par plusieurs résultats qui citent l'annonce de Google de mars 2025 ; la page de Search Engine Land répond HTTP 403. Les 158 000 par seconde sont un calcul (5 000 milliards / 31,5 millions de secondes) |
 | Facebook : plus de 300 pétaoctets dans l'entrepôt de données dès 2014, 600 téraoctets ajoutés par jour | Facebook Engineering, 10 avril 2014 : https://engineering.fb.com/2014/04/10/core-infra/scaling-the-facebook-data-warehouse-to-300-pb/ | page lue (« Our warehouse stores upwards of 300 PB of Hive data, with an incoming daily rate of about 600 TB ») |
-| Enquête McKinsey auprès de 400 dirigeants (2014) : les utilisateurs intensifs de l'analyse client ont 23 fois plus de chances de nettement surpasser leurs concurrents pour attirer de nouveaux clients | McKinsey, « Five facts: How customer analytics boosts corporate performance » : https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/five-facts-how-customer-analytics-boosts-corporate-performance | page lue selon l'inventaire du commit f97eff0 ; la relecture de ce registre a échoué (page injoignable, délai dépassé) |
 | Netflix estime que la personnalisation et les recommandations lui font économiser plus d'un milliard de dollars par an (2015) | Gomez-Uribe et Hunt, « The Netflix Recommender System: Algorithms, Business Value, and Innovation », ACM Transactions on Management Information Systems, vol. 6, n° 4, article 13, décembre 2015 : https://dl.acm.org/doi/10.1145/2843948 | page lue (PDF de l'article ; la phrase « save us more than $1B per year » est à la page 7) |
-| 35 % des achats sur Amazon proviendraient de ses recommandations (McKinsey, 2013) | McKinsey, « How retailers can keep up with consumers » : https://www.mckinsey.com/industries/retail/our-insights/how-retailers-can-keep-up-with-consumers | extrait de recherche |
-| IBM estimait en 2016 le coût annuel des mauvaises données à 3 100 milliards de dollars pour l'économie américaine | Redman, Harvard Business Review, 2016 : https://hbr.org/2016/09/bad-data-costs-the-u-s-3-trillion-per-year | extrait de recherche |
 
-Autres chiffres sourcés dans le texte de pages, **sans** composant `SourceNote` :
+Autres chiffres sourcés dans le texte de pages, hors de l'encadré ci-dessus. Chacun a sa propre `SourceNote` depuis le 5 octobre 2026 :
 
 | Où | Valeur affichée | Source citée dans le texte | Niveau |
 |---|---|---|---|
@@ -209,6 +209,23 @@ Le cours ne cite aucun chiffre externe sur l'usage ou le marché ; ses valeurs n
 | Word2vec (Mikolov et al., 2013), Transformer (Vaswani et al., 2017), BERT (Devlin et al., 2018), GPT (Radford et al., 2018) | Références bibliographiques classiques, citées par auteur et année | non vérifié (non relu à la source pour cette page) |
 | Vocabulaire des transformeurs « de quelques dizaines de milliers d'unités » | Connaissance générale (ordre de grandeur, sans chiffre précis) | non vérifié |
 
+## 12. Références citées dans les autres cours rédigés (10 octobre 2026)
+
+Relevé fait le 10 octobre 2026 en cherchant, dans `src/data/lessons/`, les années, les noms d'auteurs et les formules de citation (« et al. », « coauteurs », « article de », « selon »). Les cours cités ici ne portent pas de `SourceNote` : leurs leçons sont du markdown sans lien externe (règle vérifiée par `lib/lessons/course-checks.ts`), et les références sont données par auteur et année. **Aucune n'a été relue à la source pour ce registre** : le niveau de toutes les lignes est « non vérifié » (références classiques de bibliographie).
+
+| Cours (fichier) | Fait ou référence cité | Niveau |
+|---|---|---|
+| Visualisation de données (`data-visualization/m1-principles.ts`, texte et question de quiz) | Cleveland et McGill (1984) : classement de la précision avec laquelle on compare des valeurs selon leur encodage (position, longueur, angle, aire...) | non vérifié |
+| Visualisation de données (`data-visualization/m5-grammar.ts`, texte et question de quiz) | Leland Wilkinson, *The Grammar of Graphics* (1999) ; la leçon dit que l'idée inspire ggplot2, Vega-Lite et Altair, et éclaire Plotly Express et Seaborn | non vérifié |
+| ML supervisé (`supervised-learning/m5-random-forests.ts`) | Forêt aléatoire : Breiman, 2001 | non vérifié |
+| Transformers (`transformers/m1-deux-sens-du-mot.ts`, `m4-attention-multi-tetes.ts`, `m5-bert-gpt-vit.ts`) | Vaswani et al., 2017, *Attention Is All You Need* ; l'article empile 6 blocs, avec d_model = 512 et d_ff = 2048 (le calcul de 3 145 728 paramètres en découle) | non vérifié |
+| Transformers (`m5-bert-gpt-vit.ts`) | BERT (Devlin et al., 2018) : 15 % des éléments masqués, dont 80 % remplacés par `[MASK]` et 10 % par un élément au hasard ; GPT (Radford et al., 2018) : prédiction du mot suivant | non vérifié |
+| Transformers (`m5-bert-gpt-vit.ts`) | Vision Transformer : Dosovitskiy et al., 2020, *An Image is Worth 16x16 Words*, patchs de 16 × 16 pixels ; la leçon écrit que le modèle se généralise mal avec peu de données | non vérifié |
+| Transformers (`m6-workflow-et-production.ts`, texte « une variante d'une expérience classique ») | Fuite par sélection de variables, variante d'une expérience « décrite dans *The Elements of Statistical Learning* (Hastie, Tibshirani et Friedman) », « avec ici 100 exemples, 2 000 variables de pur bruit » et 20 variables gardées | non vérifié ; le livre (validation croisée correcte et incorrecte) porte, d'après une connaissance non revérifiée, sur 50 exemples et 5 000 variables dont 100 gardées. Le texte dit depuis le 10 octobre 2026 qu'il s'agit d'une variante, sans citer les valeurs du livre |
+| Bases de données (`datasets/bibliotheque.ts`, `database-fundamentals/m1-introduction.ts`) | Auteurs, titres, pays et années de première publication de 13 livres (Hugo 1831 et 1862, Verne 1870 et 1872, Sand 1846, Camus 1942 et 1947, Yourcenar 1951, Nothomb 1999, Kourouma 1968, Laferrière 2009, Shelley 1818, Asimov 1951). Les exemplaires, adhérents et emprunts sont inventés, et la leçon le dit | non vérifié (notices bibliographiques courantes, non rouvertes) |
+| Traitement du langage (`nlp/`) | Voir la section 11 | voir la section 11 |
+
+Les autres cours (Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, guide des modèles de ML) et les cinq projets guidés ne contiennent, d'après cette recherche, aucune référence d'auteur datée ni chiffre externe : leurs valeurs sont calculées par les exemples, tirées de jeux fournis avec scikit-learn (rien n'est téléchargé) ou inventées avec une graine fixe et annoncées comme telles. Cette recherche est lexicale : elle ne remplace pas une relecture des leçons.
 ---
 
 ## Éléments éditoriaux
@@ -230,28 +247,25 @@ Les durées des cours du site sont des estimations éditoriales, à suivre à vo
 - `src/components/ui/unified-hero-section.tsx` (durée dans l'en-tête de page) ;
 - `src/pages/courses/CoursesIndex.tsx` (catalogue `/courses`) ;
 - `src/components/home/FeaturedCourses.tsx` (accueil) ;
+- `src/components/resources/InitiationCoursesSection.tsx` (ressources) ;
 - `src/components/fundamentals/math/MathLearningPaths.tsx` (parcours de mathématiques).
 
-Là où aucun suffixe n'est affiché, le libellé est « Durée conseillée » (`src/components/resources/InitiationCoursesSection.tsx`, `src/pages/courses/MLModelsGuide.tsx`). Les durées de cours externes de la rubrique « Cours en ligne » sont, elles, relevées sur les pages des plateformes (section 10).
+Les durées des modules et le total d'un cours rédigé portent aussi « (indicatif) » (`src/components/courses/lessons/LessonCoursePage.tsx` pour le total, somme des durées de modules saisies dans `src/data/lessons/<cours>/`, et `LessonModuleView.tsx` pour chaque module). Le libellé « Durée conseillée » n'existe plus dans le code. Les durées de cours externes de la rubrique « Cours en ligne » sont, elles, relevées sur les pages des plateformes (section 10).
 
 ### Estimations de l'auteur par niveau (salaires) : retirées
 
 Retirées le 9 octobre 2026 à la demande de l'auteur : certaines fourchettes (juniors notamment) contredisaient les fiches Apec affichées juste au-dessus, et elles ne reposaient sur aucune étude. `CareersSection.tsx` (`/introduction`) ne garde que les fourchettes sourcées de l'Apec (section 8) et un paragraphe sans chiffre sur l'évolution avec l'expérience.
 
-### Prix indicatifs des livres
-
-`ResourcesSection.tsx` affiche « ~40€ » (Hands-On Machine Learning) et « ~35€ » (SQL for Data Scientists) : ce sont des ordres de grandeur de l'auteur, non vérifiés auprès des éditeurs ni des libraires. Les livres « Gratuit en ligne » renvoient vers la version en ligne officielle de l'ouvrage.
-
 ---
 
 ## Limites
 
-- **Instantané daté.** Tous les chiffres sont relevés le 1er octobre 2026 ; les registres de paquets, les prix et les parts d'usage évoluent. Les rafraîchir demande de refaire le relevé à la source (PyPI, CRAN, Julia, npm, Scaladex, enquêtes), pas de modifier un pourcentage.
-- **Actualités de la communauté.** Le flux « Le Big Data » répond par une erreur 403 (protection Cloudflare) et n'a pas pu être contourné : `npm run news:refresh` l'ignore, et l'instantané `src/data/rss-articles.json` ne contient donc aucun article de cette source.
+- **Instantané daté.** Les chiffres sont relevés le 1er octobre 2026 (quelques-uns les 5 et 9 octobre, indiqués ligne par ligne) ; les registres de paquets et les parts d'usage évoluent. Les rafraîchir demande de refaire le relevé à la source (PyPI, CRAN, Julia, npm, Scaladex, enquêtes), pas de modifier un pourcentage.
+- **Actualités de la communauté.** Le flux « Le Big Data » répond par une erreur 403 (protection Cloudflare) et n'a pas pu être contourné : `npm run news:refresh` l'ignore, et l'instantané `src/data/rss-articles.json` (relevé du 2 octobre 2026, 20 articles) ne contient donc aucun article de cette source. Cet instantané n'a pas été renouvelé depuis (`npm run news:refresh`).
 - **Éléments non vérifiés** :
-  - les extraits McKinsey sur le commerce de détail (35 % des achats Amazon), l'article de Search Engine Land (5 000 milliards de recherches Google) et l'article de Harvard Business Review (3 100 milliards de dollars) : valeurs obtenues par la recherche, non relues à la source (niveau « extrait de recherche »). Lors de la rédaction de ce registre, la page de Search Engine Land a répondu HTTP 403, celle de McKinsey sur le commerce de détail n'a pas répondu (délai dépassé), et la lecture automatique de la page de HBR n'y a pas retrouvé la phrase sur IBM ni les 3 100 milliards (contenu partiel de la page) ;
-  - les chiffres IDC de Statista (149 et 181 zettaoctets) : la page citée masque les valeurs derrière un accès payant (la proportion de copies, elle, est confirmée par le communiqué IDC de 2020) ;
-  - la page McKinsey « Five facts » (400 dirigeants, 23 fois), qui n'a pas répondu lors de la relecture, et l'étude de Mary Potter (13 ms), lue seulement par le communiqué du MIT News ;
+  - l'article de Search Engine Land (5 000 milliards de recherches Google), HTTP 403 : valeur obtenue par la recherche (niveau « extrait de recherche ») ;
+  - l'étude de Mary Potter (13 ms), lue seulement par le communiqué du MIT News ;
+  - les chiffres IDC (149 et 181 zettaoctets), McKinsey (23 fois, 35 % Amazon) et HBR (3 100 milliards) ne sont plus affichés depuis le 10 octobre 2026 (voir section 9) ;
   - l'article de Forbes (Gil Press, 2016) sur le « 80 % », bloqué en HTTP 403, et l'original du New York Times de 2014, cité sur un miroir.
 - **Relais, non sources.** Anaconda 2022 (38 %) est lu par l'intermédiaire de VentureBeat et de Machine Learning Times ; le rapport original n'a pas été ouvert.
 - **Définitions qui diffèrent.** Les nombres de paquets comparent des unités différentes (projets, paquets, projets indexés). Le compteur npm vient de la base de réplication faute de page officielle de total ; Scaladex n'est qu'un sous-ensemble de Maven Central. Les enquêtes Stack Overflow et Anaconda sont auto-sélectionnées et ne représentent pas la population des data scientists, ni les développeurs en général.

@@ -9,7 +9,7 @@
  *
  * Les paquets Python sont téléchargés depuis le CDN officiel de Pyodide, à la version installée, et leur
  * empreinte SHA-256 est vérifiée avec celle de pyodide-lock.json. Le téléchargement est mis en cache dans .cache/.
- * Pour alléger le site (environ 40 Mo), retirer des noms de PYTHON_PACKAGES : les modules retirés lèveront alors
+ * Pour alléger le site (48 Mo mesurés avec Pyodide 314.0.7 : `du -sk public/vendor`), retirer des noms de PYTHON_PACKAGES : les modules retirés lèveront alors
  * ModuleNotFoundError dans l'éditeur (message clair, pas de faux résultat).
  */
 import { createHash } from "node:crypto";

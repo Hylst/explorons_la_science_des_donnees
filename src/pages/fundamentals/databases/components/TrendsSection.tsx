@@ -14,7 +14,7 @@ const TrendsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="border-l-4 border-l-blue-500">
           <CardHeader>
-            <CardTitle>🚀 Technologies récentes (à suivre)</CardTitle>
+            <CardTitle>Technologies récentes (à suivre)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -43,7 +43,7 @@ const TrendsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lightbulb className="h-5 w-5 flex-shrink-0" />
-              💡 Le saviez-vous ?
+              Le saviez-vous ?
             </CardTitle>
           </CardHeader>
           <CardContent>

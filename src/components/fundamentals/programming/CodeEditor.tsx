@@ -308,7 +308,7 @@ class DataManager {
             );
             
             await Promise.all(postPromises);
-            console.log('Toutes les données chargées!');
+            console.log('Toutes les données chargées');
             
         } catch (error) {
             console.error('Erreur lors du chargement:', error);
@@ -468,7 +468,7 @@ const CodeEditor: React.FC = () => {
         id: 'default',
         name: 'main.py',
         language: 'python',
-        content: '# Bienvenue dans l\'éditeur de code interactif!\n# Écrivez votre code ici ou choisissez un template\n\nprint("Hello, Data Science!")',
+        content: '# Bienvenue dans l\'éditeur de code interactif\n# Écrivez votre code ici ou choisissez un template\n\nprint("Bonjour, data science")',
         isModified: false
       };
       setFiles([defaultFile]);
@@ -866,7 +866,7 @@ const CodeEditor: React.FC = () => {
                 <div className={`px-4 py-2 text-sm font-mono flex items-center justify-between ${
                   settings.theme === 'dark' ? 'bg-gray-800 text-gray-200' : 'bg-gray-200 text-gray-800'
                 }`}>
-                  <span>💻 {activeFile?.language || 'text'}</span>
+                  <span>{activeFile?.language || 'text'}</span>
                   <span>{activeFile?.content.length || 0} caractères</span>
                 </div>
                 <Textarea
@@ -962,7 +962,7 @@ const CodeEditor: React.FC = () => {
       </div>
 
       {/* Tips */}
-      <CourseHighlight title="💡 Conseils pour l'éditeur" type="tip">
+      <CourseHighlight title="Conseils pour l'éditeur" type="tip">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           <div>
             <h4 className="font-semibold mb-2 flex items-center gap-2">

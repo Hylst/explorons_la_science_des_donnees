@@ -54,7 +54,7 @@ const IntegralCalculusContent = () => {
         <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-8 rounded-xl border border-purple-100">
           <h2 className="text-3xl font-bold mb-6 text-indigo-900 flex items-center gap-3">
             <Lightbulb className="h-8 w-8 text-yellow-500" />
-            🧮 Le calcul intégral : mesurer une accumulation
+            Le calcul intégral : mesurer une accumulation
           </h2>
           
           <div className="max-w-none text-gray-700 mb-8">
@@ -68,7 +68,7 @@ const IntegralCalculusContent = () => {
             <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500 my-6">
               <h3 className="text-lg font-semibold text-purple-700 mb-3 flex items-center gap-2">
                 <Calculator className="h-5 w-5" />
-                💡 Intuition géométrique
+                Intuition géométrique
               </h3>
               <p className="mb-4">
                 Imaginez que vous voulez mesurer l'aire sous une courbe. Le calcul intégral vous permet 
@@ -122,7 +122,7 @@ const IntegralCalculusContent = () => {
           </Card>
         </div>
 
-        <CourseHighlight title="🎯 Théorème fondamental du calcul" type="concept">
+        <CourseHighlight title="Théorème fondamental du calcul" type="concept">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h4 className="font-semibold mb-3">Première partie</h4>
@@ -266,7 +266,7 @@ const IntegralCalculusContent = () => {
         </div>
       </section>
 
-      <CourseHighlight title="🎯 Prochaines étapes" type="info">
+      <CourseHighlight title="Prochaines étapes" type="info">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-semibold mb-3">Avec les bases du calcul intégral, vous pouvez aborder :</h4>
@@ -280,10 +280,10 @@ const IntegralCalculusContent = () => {
           <div>
             <h4 className="font-semibold mb-3">Ressources pour approfondir :</h4>
             <ul className="space-y-2 text-sm">
-              <li>📚 Khan Academy - Calcul intégral</li>
-              <li>📊 3Blue1Brown - Essence du calcul</li>
-              <li>🎓 MIT OpenCourseWare - Calculus</li>
-              <li>💻 SciPy pour l'intégration numérique</li>
+              <li>Khan Academy - Calcul intégral</li>
+              <li>3Blue1Brown - Essence du calcul</li>
+              <li>MIT OpenCourseWare - Calculus</li>
+              <li>SciPy pour l'intégration numérique</li>
             </ul>
           </div>
         </div>

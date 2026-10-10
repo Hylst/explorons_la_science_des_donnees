@@ -143,7 +143,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5" />
-              🤖 Classification d'e-mails (exemple fictif)
+              Classification d'e-mails (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -190,7 +190,7 @@ const PracticalApplicationsSection = () => {
                 ))}
                 
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">🎯 Décision automatique :</h5>
+                  <h5 className="font-semibold mb-2">Décision automatique :</h5>
                   <p className="text-sm">
                     <strong>Classification :</strong> Spam (probabilité estimée : 85 %, au-dessus du seuil)<br/>
                     <strong>Action :</strong> Déplacer vers le dossier spam<br/>
@@ -216,7 +216,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
-              📊 Test A/B : comparer deux versions (exemple fictif)
+              Test A/B : comparer deux versions (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -255,7 +255,7 @@ const PracticalApplicationsSection = () => {
                 })}
                 
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">📈 Résultats :</h5>
+                  <h5 className="font-semibold mb-2">Résultats :</h5>
                   <ul className="text-sm space-y-1">
                     <li>• <strong>Amélioration :</strong> +4.2 points de pourcentage</li>
                     <li>• <strong>Lift relatif :</strong> +17.1%</li>
@@ -283,7 +283,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5" />
-              ⚖️ Analyse de risque (exemple fictif)
+              Analyse de risque (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -334,7 +334,7 @@ const PracticalApplicationsSection = () => {
                 <div className="bg-yellow-50 p-4 rounded-lg">
                   <h5 className="font-semibold mb-2 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4" />
-                    💡 À retenir :
+                    À retenir :
                   </h5>
                   <p className="text-sm">
                     Rendement espéré : {calculateExpectedReturn().toFixed(2)} %. L'espérance ne dit rien du risque : il faut aussi
@@ -361,7 +361,7 @@ const PracticalApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              🎯 Système de recommandation (exemple fictif)
+              Système de recommandation (exemple fictif)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -391,7 +391,7 @@ const PracticalApplicationsSection = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">🎯 Recommandation Top</h5>
+                  <h5 className="font-semibold mb-2">Recommandation Top</h5>
                   <div className="space-y-2">
                     <div><strong>Produit :</strong> {recommendationData[0].item}</div>
                     <div><strong>Score :</strong> {(recommendationData[0].score * 100).toFixed(0)}%</div>
@@ -401,7 +401,7 @@ const PracticalApplicationsSection = () => {
                 </div>
                 
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">📊 Métriques du système</h5>
+                  <h5 className="font-semibold mb-2">Métriques du système</h5>
                   <div className="space-y-2 text-sm">
                     <div><strong>Précision :</strong> 87.3%</div>
                     <div><strong>Rappel :</strong> 82.1%</div>

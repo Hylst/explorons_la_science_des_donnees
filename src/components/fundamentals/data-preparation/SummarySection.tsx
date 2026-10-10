@@ -16,7 +16,7 @@ const SummarySection: React.FC = () => {
       <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-green-200">
         <CardHeader>
           <CardTitle className="text-center text-green-700">
-            🎯 Récapitulatif : trois habitudes utiles
+            Récapitulatif : trois habitudes utiles
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">

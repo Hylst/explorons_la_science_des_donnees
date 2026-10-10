@@ -80,12 +80,12 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="h-6 w-6 text-blue-600" />
-            🔔 Distribution Gaussienne : La Reine des Distributions
+            Distribution Gaussienne : La Reine des Distributions
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <CourseHighlight title="🎯 Qu'est-ce que la distribution normale ?" type="concept">
+            <CourseHighlight title="Qu'est-ce que la distribution normale ?" type="concept">
               <p className="mb-4">
                 La distribution normale (ou gaussienne) est la distribution de probabilité continue la plus importante en statistiques. 
                 Elle décrit de nombreux phénomènes naturels et est au cœur du théorème central limite.
@@ -93,7 +93,7 @@ const GaussianDistributionSection = () => {
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-blue-700">📐 Fonction de densité</h5>
+                  <h5 className="font-semibold mb-3 text-blue-700">Fonction de densité</h5>
                   <CourseEquation 
                     latex="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}"
                   />
@@ -105,7 +105,7 @@ const GaussianDistributionSection = () => {
                 </div>
 
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-green-700">✨ Propriétés clés</h5>
+                  <h5 className="font-semibold mb-3 text-green-700">Propriétés clés</h5>
                   <ul className="text-sm space-y-2">
                     <li>• <strong>Symétrique :</strong> Parfaitement équilibrée autour de μ</li>
                     <li>• <strong>Unimodale :</strong> Un seul pic au centre</li>
@@ -163,15 +163,15 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-6 w-6 text-green-600" />
-            ⚙️ Impact des Paramètres μ et σ
+            Impact des Paramètres μ et σ
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <CourseHighlight title="🎛️ Comment μ et σ façonnent la distribution" type="concept">
+            <CourseHighlight title="Comment μ et σ façonnent la distribution" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-purple-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-purple-700">📍 Effet de la moyenne (μ)</h5>
+                  <h5 className="font-semibold mb-3 text-purple-700">Effet de la moyenne (μ)</h5>
                   <ul className="text-sm space-y-2">
                     <li>• <strong>Translation horizontale :</strong> Déplace toute la courbe</li>
                     <li>• <strong>Centre de symétrie :</strong> Point d'équilibre</li>
@@ -181,7 +181,7 @@ const GaussianDistributionSection = () => {
                 </div>
 
                 <div className="bg-orange-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-orange-700">📏 Effet de l'écart-type (σ)</h5>
+                  <h5 className="font-semibold mb-3 text-orange-700">Effet de l'écart-type (σ)</h5>
                   <ul className="text-sm space-y-2">
                     <li>• <strong>Étalement :</strong> σ ↑ → courbe plus large et plate</li>
                     <li>• <strong>Concentration :</strong> σ ↓ → courbe plus étroite et haute</li>
@@ -195,7 +195,7 @@ const GaussianDistributionSection = () => {
 
           {/* Comparaison de différentes distributions */}
           <div className="mb-6">
-            <h4 className="font-semibold mb-4">📊 Comparaison de distributions normales</h4>
+            <h4 className="font-semibold mb-4">Comparaison de distributions normales</h4>
             <div className="bg-gray-50 p-4 rounded-lg">
               <DeferredResponsiveContainer width="100%" height={350}>
                 <LineChart data={normalComparisons}>
@@ -262,12 +262,12 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-6 w-6 text-red-600" />
-            🎯 Règle Empirique : 68-95-99.7%
+            Règle Empirique : 68-95-99.7%
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <CourseHighlight title="📏 La règle des écarts-types" type="example">
+            <CourseHighlight title="La règle des écarts-types" type="example">
               <p className="mb-4">
                 Cette règle fondamentale permet d'estimer rapidement les probabilités dans une distribution normale 
                 sans calculs complexes. Elle est essentielle pour l'interprétation pratique.
@@ -288,7 +288,7 @@ const GaussianDistributionSection = () => {
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-blue-700">🧮 Formules mathématiques</h5>
+                <h5 className="font-semibold mb-3 text-blue-700">Formules mathématiques</h5>
                 <div className="space-y-2 text-sm">
                   <CourseEquation 
                     latex="P(\mu - \sigma \leq X \leq \mu + \sigma) \approx 0.6827"
@@ -309,7 +309,7 @@ const GaussianDistributionSection = () => {
 
           {/* Visualisation de la règle empirique */}
           <div className="mb-6">
-            <h4 className="font-semibold mb-4">📊 Visualisation de la règle empirique</h4>
+            <h4 className="font-semibold mb-4">Visualisation de la règle empirique</h4>
             <div className="bg-gray-50 p-4 rounded-lg">
               <DeferredResponsiveContainer width="100%" height={250}>
                 <BarChart data={empiricalRuleData}>
@@ -330,12 +330,12 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-6 w-6 text-purple-600" />
-            ⚡ Exemples Pratiques Interactifs
+            Exemples Pratiques Interactifs
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <h4 className="font-semibold mb-4">🎮 Sélectionnez un exemple :</h4>
+            <h4 className="font-semibold mb-4">Sélectionnez un exemple :</h4>
             <div className="flex flex-wrap gap-2 mb-6">
               {Object.entries(practicalExamples).map(([key, example]) => (
                 <Button
@@ -351,13 +351,13 @@ const GaussianDistributionSection = () => {
 
             <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg">
               <h5 className="font-semibold text-lg mb-4 text-purple-800">
-                📊 {currentExample.title}
+                {currentExample.title}
               </h5>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border">
-                    <h6 className="font-semibold mb-2">📈 Paramètres de la distribution</h6>
+                    <h6 className="font-semibold mb-2">Paramètres de la distribution</h6>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>Moyenne (μ) :</span>
@@ -375,7 +375,7 @@ const GaussianDistributionSection = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border">
-                    <h6 className="font-semibold mb-2">🎯 Plages de valeurs attendues (règle 68-95-99,7)</h6>
+                    <h6 className="font-semibold mb-2">Plages de valeurs attendues (règle 68-95-99,7)</h6>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>68% des valeurs :</span>
@@ -400,7 +400,7 @@ const GaussianDistributionSection = () => {
                 </div>
 
                 <div className="bg-white p-4 rounded-lg border">
-                  <h6 className="font-semibold mb-2">💡 Interprétation pratique</h6>
+                  <h6 className="font-semibold mb-2">Interprétation pratique</h6>
                   <p className="text-sm mb-3">{currentExample.description}</p>
                   <div className="bg-blue-50 p-3 rounded">
                     <p className="text-sm font-semibold text-blue-800">
@@ -409,7 +409,7 @@ const GaussianDistributionSection = () => {
                   </div>
                   
                   <div className="mt-4">
-                    <h6 className="font-semibold text-sm mb-2">🔍 Applications :</h6>
+                    <h6 className="font-semibold text-sm mb-2">Applications :</h6>
                     <ul className="text-xs space-y-1">
                       {selectedExample === 'heights' && (
                         <>
@@ -446,15 +446,15 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Layers className="h-6 w-6 text-indigo-600" />
-            🔬 Estimation des Paramètres
+            Estimation des Paramètres
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <CourseHighlight title="📊 Comment estimer μ et σ à partir des données" type="concept">
+            <CourseHighlight title="Comment estimer μ et σ à partir des données" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-blue-700">📐 Estimateurs ponctuels</h5>
+                  <h5 className="font-semibold mb-3 text-blue-700">Estimateurs ponctuels</h5>
                   <div className="space-y-3">
                     <div>
                       <h6 className="font-semibold text-sm">Moyenne de l'échantillon :</h6>
@@ -474,7 +474,7 @@ const GaussianDistributionSection = () => {
                 </div>
 
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-green-700">🎯 Méthodes d'estimation</h5>
+                  <h5 className="font-semibold mb-3 text-green-700">Méthodes d'estimation</h5>
                   <div className="space-y-3 text-sm">
                     <div>
                       <h6 className="font-semibold">1. Méthode des moments :</h6>
@@ -496,7 +496,7 @@ const GaussianDistributionSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 text-purple-700">📏 Intervalles de confiance</h5>
+              <h5 className="font-semibold mb-3 text-purple-700">Intervalles de confiance</h5>
               <div className="space-y-3 text-sm">
                 <div>
                   <h6 className="font-semibold">Pour la moyenne (σ connu) :</h6>
@@ -516,7 +516,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 text-orange-700">🧪 Tests de normalité</h5>
+              <h5 className="font-semibold mb-3 text-orange-700">Tests de normalité</h5>
               <div className="space-y-2 text-sm">
                 <div><strong>Shapiro-Wilk :</strong> Petit échantillon (n ≤ 50)</div>
                 <div><strong>Kolmogorov-Smirnov :</strong> Grand échantillon</div>
@@ -532,12 +532,12 @@ const GaussianDistributionSection = () => {
       {/* Applications et utilité */}
       <Card>
         <CardHeader>
-          <CardTitle>🚀 Applications et Utilité de la Distribution Normale</CardTitle>
+          <CardTitle>Applications et Utilité de la Distribution Normale</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-blue-700">📊 Statistiques</h6>
+              <h6 className="font-semibold mb-2 text-blue-700">Statistiques</h6>
               <ul className="text-xs space-y-1">
                 <li>• Théorème central limite</li>
                 <li>• Tests d'hypothèses (z-test, t-test)</li>
@@ -547,7 +547,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-green-700">🤖 Machine Learning</h6>
+              <h6 className="font-semibold mb-2 text-green-700">Machine Learning</h6>
               <ul className="text-xs space-y-1">
                 <li>• Initialisation des poids</li>
                 <li>• Régularisation gaussienne</li>
@@ -557,7 +557,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-purple-700">💰 Finance</h6>
+              <h6 className="font-semibold mb-2 text-purple-700">Finance</h6>
               <ul className="text-xs space-y-1">
                 <li>• Modèle de Black-Scholes</li>
                 <li>• Value at Risk (VaR)</li>
@@ -567,7 +567,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-orange-700">🔬 Sciences</h6>
+              <h6 className="font-semibold mb-2 text-orange-700">Sciences</h6>
               <ul className="text-xs space-y-1">
                 <li>• Erreurs de mesure</li>
                 <li>• Contrôle qualité (Six Sigma)</li>
@@ -581,7 +581,7 @@ const GaussianDistributionSection = () => {
             <div className="flex items-start">
               <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5 mr-3" />
               <div>
-                <h5 className="font-semibold text-yellow-800 mb-2">⚠️ Limitations et précautions</h5>
+                <h5 className="font-semibold text-yellow-800 mb-2">Limitations et précautions</h5>
                 <ul className="text-sm text-yellow-700 space-y-1">
                   <li>• <strong>Hypothèse forte :</strong> Beaucoup de phénomènes ne sont pas normaux</li>
                   <li>• <strong>Queues légères :</strong> Sous-estime les événements extrêmes</li>
@@ -598,13 +598,13 @@ const GaussianDistributionSection = () => {
       {/* Astuces et règles pratiques */}
       <Card>
         <CardHeader>
-          <CardTitle>💡 Astuces et Règles Pratiques</CardTitle>
+          <CardTitle>Astuces et Règles Pratiques</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-blue-700">🎯 Règles de pouce</h5>
+                <h5 className="font-semibold mb-3 text-blue-700">Règles de pouce</h5>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>n ≥ 30 :</strong> TCL applicable pour la moyenne</li>
                   <li>• <strong>|Skewness| ≤ 2 :</strong> Approximation normale acceptable</li>
@@ -614,7 +614,7 @@ const GaussianDistributionSection = () => {
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-green-700">🔧 Transformations utiles</h5>
+                <h5 className="font-semibold mb-3 text-green-700">Transformations utiles</h5>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>Log-normale :</strong> ln(X) si X &gt; 0 et asymétrique</li>
                   <li>• <strong>Box-Cox :</strong> Transformation paramétrique</li>
@@ -626,7 +626,7 @@ const GaussianDistributionSection = () => {
 
             <div className="space-y-4">
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-purple-700">📈 Diagnostic visuel</h5>
+                <h5 className="font-semibold mb-3 text-purple-700">Diagnostic visuel</h5>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>Histogramme :</strong> Forme en cloche symétrique</li>
                   <li>• <strong>Q-Q plot :</strong> Points alignés sur la diagonale</li>
@@ -636,7 +636,7 @@ const GaussianDistributionSection = () => {
               </div>
 
               <div className="bg-orange-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-orange-700">⚡ Calculs rapides</h5>
+                <h5 className="font-semibold mb-3 text-orange-700">Calculs rapides</h5>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>P(|Z| &gt; 2) ≈ 5% :</strong> Seuil de significativité</li>
                   <li>• <strong>P(|Z| &gt; 1.96) = 5% :</strong> Intervalle 95%</li>

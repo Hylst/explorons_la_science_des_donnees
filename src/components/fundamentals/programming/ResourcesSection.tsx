@@ -481,7 +481,7 @@ const ResourcesSection = () => {
           )}
           {isCompleted && (
             <Badge className="bg-green-100 text-green-800 w-fit">
-              ✅ Terminé
+              Terminé
             </Badge>
           )}
         </CardHeader>
@@ -559,15 +559,15 @@ const ResourcesSection = () => {
   const renderProgressDashboard = () => (
     <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-indigo-900">📊 Votre suivi</h3>
+        <h3 className="text-xl font-bold text-indigo-900">Votre suivi</h3>
         <Select value={userLevel} onValueChange={setUserLevel}>
           <SelectTrigger className="w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="debutant">🌱 Débutant</SelectItem>
-            <SelectItem value="intermediaire">🚀 Intermédiaire</SelectItem>
-            <SelectItem value="avance">⭐ Avancé</SelectItem>
+            <SelectItem value="debutant">Débutant</SelectItem>
+            <SelectItem value="intermediaire">Intermédiaire</SelectItem>
+            <SelectItem value="avance">Avancé</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -645,12 +645,12 @@ const ResourcesSection = () => {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">🌐 Toutes les ressources</SelectItem>
-            <SelectItem value="bookmarked">🔖 Sauvegardées</SelectItem>
-            <SelectItem value="completed">✅ Terminées</SelectItem>
-            <SelectItem value="free">🆓 Gratuites</SelectItem>
-            <SelectItem value="beginner">🌱 Débutant</SelectItem>
-            <SelectItem value="advanced">⭐ Avancé</SelectItem>
+            <SelectItem value="all">Toutes les ressources</SelectItem>
+            <SelectItem value="bookmarked">Sauvegardées</SelectItem>
+            <SelectItem value="completed">Terminées</SelectItem>
+            <SelectItem value="free">Gratuites</SelectItem>
+            <SelectItem value="beginner">Débutant</SelectItem>
+            <SelectItem value="advanced">Avancé</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -664,11 +664,11 @@ const ResourcesSection = () => {
           )}
           {selectedCategory !== 'all' && (
             <Badge variant="secondary">
-              {selectedCategory === 'bookmarked' && '🔖 Sauvegardées'}
-              {selectedCategory === 'completed' && '✅ Terminées'}
-              {selectedCategory === 'free' && '🆓 Gratuites'}
-              {selectedCategory === 'beginner' && '🌱 Débutant'}
-              {selectedCategory === 'advanced' && '⭐ Avancé'}
+              {selectedCategory === 'bookmarked' && 'Sauvegardées'}
+              {selectedCategory === 'completed' && 'Terminées'}
+              {selectedCategory === 'free' && 'Gratuites'}
+              {selectedCategory === 'beginner' && 'Débutant'}
+              {selectedCategory === 'advanced' && 'Avancé'}
             </Badge>
           )}
           <Button
@@ -689,7 +689,7 @@ const ResourcesSection = () => {
 
   return (
     <section id="resources" className="mb-16">
-      <h2 className="text-3xl font-bold mb-8">📚 Ressources d'apprentissage</h2>
+      <h2 className="text-3xl font-bold mb-8">Ressources d'apprentissage</h2>
       
       {renderProgressDashboard()}
       {renderSearchAndFilters()}
@@ -719,15 +719,15 @@ const ResourcesSection = () => {
 
       <Tabs defaultValue="livres" className="space-y-6">
         <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full">
-          <TabsTrigger value="livres">📖 Livres</TabsTrigger>
-          <TabsTrigger value="plateformes">🎓 Plateformes</TabsTrigger>
-          <TabsTrigger value="youtube">📺 YouTube</TabsTrigger>
-          <TabsTrigger value="communautes">👥 Communautés</TabsTrigger>
+          <TabsTrigger value="livres">Livres</TabsTrigger>
+          <TabsTrigger value="plateformes">Plateformes</TabsTrigger>
+          <TabsTrigger value="youtube">YouTube</TabsTrigger>
+          <TabsTrigger value="communautes">Communautés</TabsTrigger>
         </TabsList>
 
         <TabsContent value="livres" className="space-y-6">
           <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">📖 Livres à connaître</h3>
+            <h3 className="text-xl font-bold mb-2">Livres à connaître</h3>
             <p className="text-gray-600">
               Quelques ouvrages de référence, choisis par l'auteur du site. Les livres marqués « Gratuit en ligne » ont une version en ligne officielle.
             </p>
@@ -752,7 +752,7 @@ const ResourcesSection = () => {
             );
           })()}
           
-          <CourseHighlight title="💡 Conseil de lecture" type="info">
+          <CourseHighlight title="Conseil de lecture" type="info">
             <p className="mb-2">
               <strong>Inutile de tout lire d'un coup.</strong> Alternez entre théorie et pratique :
               lisez un chapitre, puis mettez ses idées en œuvre sur un petit projet.
@@ -765,7 +765,7 @@ const ResourcesSection = () => {
 
         <TabsContent value="plateformes" className="space-y-6">
           <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">🎓 Plateformes d'apprentissage</h3>
+            <h3 className="text-xl font-bold mb-2">Plateformes d'apprentissage</h3>
             <p className="text-gray-600">
               Quelques plateformes pour apprendre la data science en ligne.
             </p>
@@ -795,7 +795,7 @@ const ResourcesSection = () => {
           </p>
 
           <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
-            <h4 className="font-semibold mb-3">🎯 Quelle plateforme pour quel besoin</h4>
+            <h4 className="font-semibold mb-3">Quelle plateforme pour quel besoin</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
                 <p className="mb-2"><strong>Pour commencer :</strong> Kaggle Learn + YouTube</p>
@@ -813,7 +813,7 @@ const ResourcesSection = () => {
 
         <TabsContent value="youtube" className="space-y-6">
           <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">📺 Chaînes YouTube utiles</h3>
+            <h3 className="text-xl font-bold mb-2">Chaînes YouTube utiles</h3>
             <p className="text-gray-600">
               Quelques chaînes qui expliquent des concepts de data science, en anglais pour la plupart.
             </p>
@@ -838,7 +838,7 @@ const ResourcesSection = () => {
             );
           })()}
 
-          <CourseHighlight title="📺 Utiliser ces chaînes" type="example">
+          <CourseHighlight title="Utiliser ces chaînes" type="example">
             <div className="space-y-3">
               <p><strong>Exemple de routine (durées indicatives) :</strong></p>
               <ul className="text-sm space-y-1 list-disc pl-5">
@@ -856,7 +856,7 @@ const ResourcesSection = () => {
 
         <TabsContent value="communautes" className="space-y-6">
           <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">👥 Communautés à connaître</h3>
+            <h3 className="text-xl font-bold mb-2">Communautés à connaître</h3>
             <p className="text-gray-600">
               Quelques lieux d'échange en ligne pour poser des questions et suivre l'actualité du domaine, en anglais pour la plupart.
             </p>
@@ -882,10 +882,10 @@ const ResourcesSection = () => {
           })()}
 
           <div className="mt-8 space-y-6">
-            <CourseHighlight title="🤝 Bien utiliser les communautés" type="info">
+            <CourseHighlight title="Bien utiliser les communautés" type="info">
               <div className="space-y-3">
                 <div>
-                  <h5 className="font-semibold">✅ Bonnes pratiques :</h5>
+                  <h5 className="font-semibold">Bonnes pratiques :</h5>
                   <ul className="text-sm space-y-1 list-disc pl-5">
                     <li>Lisez les règles avant de poster</li>
                     <li>Utilisez des titres descriptifs</li>
@@ -895,7 +895,7 @@ const ResourcesSection = () => {
                   </ul>
                 </div>
                 <div>
-                  <h5 className="font-semibold">❌ À éviter :</h5>
+                  <h5 className="font-semibold">À éviter :</h5>
                   <ul className="text-sm space-y-1 list-disc pl-5">
                     <li>Poser sans avoir cherché avant</li>
                     <li>Demander qu'on fasse le travail à votre place</li>
@@ -909,7 +909,7 @@ const ResourcesSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="border-l-4 border-l-blue-500">
                 <CardHeader>
-                  <CardTitle className="text-lg">🆘 Besoin d'aide ?</CardTitle>
+                  <CardTitle className="text-lg">Besoin d'aide ?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p><strong>Stack Overflow</strong> pour les questions techniques précises avec code d'exemple.</p>
@@ -918,7 +918,7 @@ const ResourcesSection = () => {
               
               <Card className="border-l-4 border-l-green-500">
                 <CardHeader>
-                  <CardTitle className="text-lg">🧠 Discussions ?</CardTitle>
+                  <CardTitle className="text-lg">Discussions ?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p><strong>Reddit r/MachineLearning</strong> pour débattre des tendances et papers récents.</p>
@@ -927,7 +927,7 @@ const ResourcesSection = () => {
               
               <Card className="border-l-4 border-l-purple-500">
                 <CardHeader>
-                  <CardTitle className="text-lg">🏆 Compétition ?</CardTitle>
+                  <CardTitle className="text-lg">Compétition ?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm">
                   <p><strong>Kaggle</strong> pour vous exercer sur des compétitions et des jeux de données variés.</p>
@@ -939,7 +939,7 @@ const ResourcesSection = () => {
       </Tabs>
 
       <div className="mt-12 p-8 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-xl border border-indigo-200">
-        <h3 className="text-2xl font-bold mb-1 text-indigo-900">🗺️ Une feuille de route possible</h3>
+        <h3 className="text-2xl font-bold mb-1 text-indigo-900">Une feuille de route possible</h3>
         <p className="text-sm text-indigo-800 mb-4">Les durées sont indicatives et varient beaucoup selon le temps dont vous disposez.</p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -994,7 +994,7 @@ const ResourcesSection = () => {
         
         <div className="mt-6 p-4 bg-white rounded-lg border border-indigo-100">
           <p className="text-sm text-indigo-700">
-            <strong>💡 Un repère :</strong> apprendre prend du temps. Mieux vaut un rythme régulier,
+            <strong>Un repère :</strong> apprendre prend du temps. Mieux vaut un rythme régulier,
             même modeste, que de longues séances espacées.
           </p>
         </div>

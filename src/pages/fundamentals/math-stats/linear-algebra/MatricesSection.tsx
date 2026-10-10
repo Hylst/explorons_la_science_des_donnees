@@ -22,11 +22,11 @@ const MatricesSection = () => {
     <section id="matrices" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">2. Matrices : Les Machines à Transformer l'Espace</h2>
       
-      <CourseHighlight title="🔧 Analogie : La matrice comme une usine" type="concept">
+      <CourseHighlight title="Analogie : La matrice comme une usine" type="concept">
         <p>
           Imaginez une matrice comme une usine : vous entrez un vecteur par un côté, 
           la machine le transforme selon ses "réglages" (les nombres dans la matrice), 
-          et vous récupérez un nouveau vecteur de l'autre côté !
+          et vous récupérez un nouveau vecteur de l'autre côté.
         </p>
       </CourseHighlight>
 
@@ -55,7 +55,7 @@ const MatricesSection = () => {
                 <h4 className="font-semibold mb-2">En pratique :</h4>
                 <p className="text-sm">
                   Une matrice 2×2 peut représenter une rotation, une mise à l'échelle, 
-                  ou même une transformation plus complexe dans le plan !
+                  ou même une transformation plus complexe dans le plan.
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@ const MatricesSection = () => {
                     <strong>Résultat :</strong> [{multiplyMatrixVector()[0]}, {multiplyMatrixVector()[1]}]
                   </p>
                   <p className="text-xs text-gray-600">
-                    Le point (3,2) a été transformé en ({multiplyMatrixVector()[0]},{multiplyMatrixVector()[1]}) !
+                    Le point (3,2) a été transformé en ({multiplyMatrixVector()[0]},{multiplyMatrixVector()[1]}).
                   </p>
                 </div>
               )}
@@ -105,7 +105,7 @@ const MatricesSection = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>🔍 Zoom sur : Types de matrices importantes</CardTitle>
+          <CardTitle>Zoom sur : Types de matrices importantes</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -114,7 +114,7 @@ const MatricesSection = () => {
               <CourseEquation latex="I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
               <div className="bg-blue-50 p-3 rounded-lg">
                 <p className="text-xs">
-                  <strong>Effet :</strong> Ne change rien ! Comme multiplier par 1.
+                  <strong>Effet :</strong> Ne change rien, comme multiplier par 1.
                 </p>
                 <p className="text-xs mt-1">
                   <strong>Usage :</strong> Point de référence, initialisation
@@ -151,7 +151,7 @@ const MatricesSection = () => {
         </CardContent>
       </Card>
 
-      <CourseHighlight title="🎯 Exercice corrigé : Transformation d'image" type="example">
+      <CourseHighlight title="Exercice corrigé : Transformation d'image" type="example">
         <div className="space-y-4">
           <p><strong>Problème :</strong> Vous voulez faire tourner une image de 90° dans le sens antihoraire. Quelle matrice utiliser ?</p>
           
@@ -160,12 +160,12 @@ const MatricesSection = () => {
             <p className="text-sm mb-2">Pour θ = 90°, cos(90°) = 0 et sin(90°) = 1</p>
             <CourseEquation latex="R_{90°} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
             <p className="text-sm mt-2">
-              <strong>Test :</strong> Le point (1,0) devient (0,1) → rotation parfaite ! ✅
+              <strong>Test :</strong> Le point (1,0) devient (0,1) → c'est bien une rotation de 90°.
             </p>
             <div className="bg-blue-100 p-3 rounded-lg mt-3">
               <p className="text-sm">
                 <strong>Dans le code :</strong> Cette matrice est utilisée dans tous les logiciels de retouche photo 
-                pour les rotations d'images !
+                pour les rotations d'images.
               </p>
             </div>
           </div>
@@ -187,7 +187,7 @@ const MatricesSection = () => {
                 <h4 className="font-semibold mb-3">Addition et Soustraction :</h4>
                 <CourseEquation latex="A + B = \begin{pmatrix} a_{11}+b_{11} & a_{12}+b_{12} \\ a_{21}+b_{21} & a_{22}+b_{22} \end{pmatrix}" />
                 <p className="text-sm mt-2">
-                  <strong>Condition :</strong> Les matrices doivent avoir les mêmes dimensions !
+                  <strong>Condition :</strong> Les matrices doivent avoir les mêmes dimensions.
                 </p>
               </div>
 
@@ -236,7 +236,7 @@ const MatricesSection = () => {
 
               <div className="bg-red-50 p-3 rounded-lg">
                 <p className="text-sm">
-                  <strong>Piège courant :</strong> L'ordre compte ! AB ≠ BA
+                  <strong>Piège courant :</strong> L'ordre compte : AB ≠ BA
                 </p>
               </div>
             </div>
@@ -247,7 +247,7 @@ const MatricesSection = () => {
       {/* Advanced Matrix Properties */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>🔍 Propriétés Avancées des Matrices</CardTitle>
+          <CardTitle>Propriétés Avancées des Matrices</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -315,7 +315,7 @@ const MatricesSection = () => {
       </Card>
 
       {/* Enhanced Practical Example */}
-      <CourseHighlight title="🎯 Exercice avancé : Transformation d'image par matrices" type="example">
+      <CourseHighlight title="Exercice avancé : Transformation d'image par matrices" type="example">
         <div className="space-y-4">
           <p><strong>Problème :</strong> Appliquer une rotation de 45° suivie d'une mise à l'échelle (×2 en x, ×0.5 en y) à un pixel situé en (4, 2).</p>
           
@@ -344,7 +344,7 @@ const MatricesSection = () => {
               
               <div className="bg-blue-100 p-3 rounded">
                 <p className="text-sm">
-                  <strong>Résultat :</strong> Le pixel (4, 2) devient (2.83, 2.12) après transformation !
+                  <strong>Résultat :</strong> Le pixel (4, 2) devient (2.83, 2.12) après transformation.
                 </p>
                 <p className="text-xs mt-1">
                   <strong>Note :</strong> L'ordre des transformations compte : rotation puis échelle ≠ échelle puis rotation
@@ -362,13 +362,13 @@ const MatricesSection = () => {
         </h4>
         <div className="space-y-3 text-sm text-purple-700">
           <p>
-            Dans un réseau de neurones, chaque couche est une multiplication matricielle ! 
+            Dans un réseau de neurones, chaque couche est une multiplication matricielle. 
             Un réseau "dense" avec 1000 neurones d'entrée et 500 de sortie utilise une matrice 500×1000.
           </p>
           <div className="bg-white p-3 rounded-lg">
             <p className="text-xs">
               <strong>Exemple concret :</strong> GPT-3 répartit ses 175 milliards de paramètres dans des centaines de matrices.
-              Pour chaque mot qu'il produit, cela représente des centaines de milliards d'opérations arithmétiques (multiplications et additions) !
+              Pour chaque mot qu'il produit, cela représente des centaines de milliards d'opérations arithmétiques (multiplications et additions).
             </p>
           </div>
           <div className="bg-purple-100 p-3 rounded-lg mt-3">

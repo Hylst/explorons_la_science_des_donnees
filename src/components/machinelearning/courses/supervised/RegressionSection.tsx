@@ -3,17 +3,17 @@ import { EducationalCard, QuizCard } from "@/components/ui/educational-cards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, BarChart3, Calculator, Lightbulb } from "lucide-react";
+import { TrendingUp, BarChart3, Calculator, Lightbulb, Euro, Thermometer, Timer } from "lucide-react";
 
 const RegressionSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction à la régression */}
-      <EducationalCard title="📈 Régression : Prédire des valeurs continues" type="concept">
+      <EducationalCard title="Régression : Prédire des valeurs continues" type="concept">
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border">
             <h3 className="text-xl font-bold text-green-800 mb-4">
-              📊 Prédire une valeur numérique
+              Prédire une valeur numérique
             </h3>
             <p className="text-green-700 mb-4">
               En régression, au lieu de prédire une catégorie (comme en classification),
@@ -23,19 +23,19 @@ const RegressionSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-white p-4 rounded-lg border border-green-200">
-                <div className="text-center mb-2">💰</div>
+                <Euro className="h-6 w-6 mx-auto mb-2 text-green-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Prix</h4>
                 <p className="text-xs text-gray-600">Euros, dollars...</p>
                 <p className="text-xs text-green-600">Maison : 250 000 €</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-green-200">
-                <div className="text-center mb-2">🌡️</div>
+                <Thermometer className="h-6 w-6 mx-auto mb-2 text-green-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Température</h4>
                 <p className="text-xs text-gray-600">Degrés Celsius</p>
                 <p className="text-xs text-green-600">Demain : 23,5 °C</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-green-200">
-                <div className="text-center mb-2">⏱️</div>
+                <Timer className="h-6 w-6 mx-auto mb-2 text-green-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Durée</h4>
                 <p className="text-xs text-gray-600">Minutes, heures...</p>
                 <p className="text-xs text-green-600">Trajet : 47 min</p>
@@ -46,13 +46,13 @@ const RegressionSection = () => {
           {/* Comparaison Classification vs Régression */}
           <Card>
             <CardHeader>
-              <CardTitle>🔄 Classification et régression : quelle différence ?</CardTitle>
+              <CardTitle>Classification et régression : quelle différence ?</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-6 rounded-xl">
                   <h4 className="font-bold text-blue-800 mb-3 flex items-center gap-2">
-                    🏷️ Classification
+                    Classification
                   </h4>
                   <p className="text-blue-700 mb-4 text-sm">
                     "Cette maison est-elle <strong>chère</strong> ou <strong>abordable</strong> ?"
@@ -69,7 +69,7 @@ const RegressionSection = () => {
 
                 <div className="bg-green-50 p-6 rounded-xl">
                   <h4 className="font-bold text-green-800 mb-3 flex items-center gap-2">
-                    📈 Régression
+                    Régression
                   </h4>
                   <p className="text-green-700 mb-4 text-sm">
                     "Combien vaut <strong>environ</strong> cette maison ?"
@@ -92,7 +92,7 @@ const RegressionSection = () => {
       {/* Visualisation régression linéaire */}
       <Card>
         <CardHeader>
-          <CardTitle>📊 Schéma : la régression linéaire</CardTitle>
+          <CardTitle>Schéma : la régression linéaire</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex justify-center mb-4">
@@ -157,7 +157,7 @@ const RegressionSection = () => {
       {/* Types de régression avec onglets */}
       <Card>
         <CardHeader>
-          <CardTitle>🔍 Types de régression</CardTitle>
+          <CardTitle>Types de régression</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="linear" className="w-full">
@@ -204,7 +204,7 @@ const RegressionSection = () => {
 
                 <div className="mt-4 p-4 bg-blue-100 rounded-lg">
                   <p className="text-sm text-blue-800">
-                    <strong>💡 Astuce :</strong> si vos points forment approximativement une ligne droite,
+                    <strong>Astuce :</strong> si vos points forment approximativement une ligne droite,
                     la régression linéaire sera probablement un bon choix.
                   </p>
                 </div>
@@ -222,7 +222,7 @@ const RegressionSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">📈 Cas d'usage</h4>
+                    <h4 className="font-semibold mb-2">Cas d'usage</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Relations courbes sur un intervalle limité</li>
                       <li>• Effets qui s'accélèrent ou ralentissent</li>
@@ -231,7 +231,7 @@ const RegressionSection = () => {
                     </ul>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">⚠️ Attention au degré</h4>
+                    <h4 className="font-semibold mb-2">Attention au degré</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Degré 2-3 : souvent suffisant</li>
                       <li>• Degré élevé : risque de surapprentissage</li>
@@ -253,7 +253,7 @@ const RegressionSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🎯 Avantages</h4>
+                    <h4 className="font-semibold mb-2">Avantages</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Plus proche de situations multifactorielles</li>
                       <li>• Souvent de meilleures prédictions qu'avec une seule variable</li>
@@ -262,7 +262,7 @@ const RegressionSection = () => {
                     </ul>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">⚖️ Défis</h4>
+                    <h4 className="font-semibold mb-2">Défis</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Multicolinéarité entre variables</li>
                       <li>• Plus de données nécessaires</li>
@@ -278,7 +278,7 @@ const RegressionSection = () => {
       </Card>
 
       {/* Métriques d'évaluation */}
-      <EducationalCard title="📏 Comment évaluer une régression ?" type="concept">
+      <EducationalCard title="Comment évaluer une régression ?" type="concept">
         <div className="space-y-6">
           <p className="text-gray-700">
             Contrairement à la classification où on compte les bonnes réponses,
@@ -342,7 +342,7 @@ const RegressionSection = () => {
 
       {/* Quiz enrichi sur la régression */}
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold text-center">🧠 Quiz : où en êtes-vous avec la régression ?</h3>
+        <h3 className="text-2xl font-bold text-center">Quiz : où en êtes-vous avec la régression ?</h3>
 
         <QuizCard
           question="Vous voulez prédire le nombre de pizzas vendues en fonction de la température. Quel type de problème est-ce ?"
@@ -411,7 +411,7 @@ const RegressionSection = () => {
       </div>
 
       {/* Conseils pratiques */}
-      <EducationalCard title="🎯 Guide pratique pour réussir en régression" type="rappel">
+      <EducationalCard title="Guide pratique pour réussir en régression" type="rappel">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <h4 className="font-semibold text-green-800 flex items-center gap-2">

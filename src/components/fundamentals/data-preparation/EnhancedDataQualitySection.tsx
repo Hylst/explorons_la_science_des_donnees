@@ -91,11 +91,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Les données correspondent-elles à la réalité ?",
       detailedDesc: "L'exactitude mesure à quel point les données reflètent fidèlement la réalité qu'elles sont censées représenter. C'est souvent la dimension la plus critique : des données inexactes conduisent à des décisions erronées.",
       examples: [
-        "❌ Âge de 150 ans pour un patient",
-        "❌ Température corporelle de -10°C",
-        "❌ Salaire négatif dans une base RH",
-        "✅ Validation par sources externes",
-        "✅ Contrôles de cohérence métier"
+        "✗ Âge de 150 ans pour un patient",
+        "✗ Température corporelle de -10°C",
+        "✗ Salaire négatif dans une base RH",
+        "✓ Validation par sources externes",
+        "✓ Contrôles de cohérence métier"
       ],
       impact: "Résultats d'analyse faussés, décisions erronées (parfois dangereuses dans un contexte médical ou industriel)",
       metrics: ["Taux d'erreur", "Validation croisée", "Audit manuel", "Feedback utilisateurs"],
@@ -114,11 +114,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Toutes les données nécessaires sont-elles présentes ?",
       detailedDesc: "La complétude évalue si toutes les données requises pour l'analyse sont disponibles. Des données incomplètes peuvent créer des biais d'échantillonnage et fausser les conclusions.",
       examples: [
-        "❌ Un tiers des dates de naissance manquantes",
-        "❌ Codes postaux vides pour l'analyse géographique",
-        "❌ Revenus non renseignés pour l'étude socio-économique",
-        "✅ Stratégie d'imputation choisie selon la cause du manque",
-        "✅ Collecte de données complémentaires"
+        "✗ Un tiers des dates de naissance manquantes",
+        "✗ Codes postaux vides pour l'analyse géographique",
+        "✗ Revenus non renseignés pour l'étude socio-économique",
+        "✓ Stratégie d'imputation choisie selon la cause du manque",
+        "✓ Collecte de données complémentaires"
       ],
       impact: "Biais d'échantillonnage, conclusions non représentatives",
       metrics: ["% valeurs manquantes", "Couverture des champs", "Densité d'information"],
@@ -137,11 +137,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Les données sont-elles uniformes et logiques ?",
       detailedDesc: "La cohérence garantit que les données suivent des formats, des règles et des conventions uniformes à travers tout le système. L'incohérence rend l'analyse difficile et peut introduire des erreurs.",
       examples: [
-        "❌ Dates : 01/02/2023 vs 2023-02-01 vs Feb 1, 2023",
-        "❌ Noms : DUPONT vs Dupont vs dupont",
-        "❌ Unités : km vs miles vs mètres",
-        "✅ Standardisation des formats",
-        "✅ Règles de nommage cohérentes"
+        "✗ Dates : 01/02/2023 vs 2023-02-01 vs Feb 1, 2023",
+        "✗ Noms : DUPONT vs Dupont vs dupont",
+        "✗ Unités : km vs miles vs mètres",
+        "✓ Standardisation des formats",
+        "✓ Règles de nommage cohérentes"
       ],
       impact: "Erreurs de traitement, difficultés d'analyse, résultats incohérents",
       metrics: ["Violations de règles", "Écarts de format", "Incohérences référentielles"],
@@ -160,11 +160,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Les données sont-elles à jour et disponibles en temps voulu ?",
       detailedDesc: "La fraîcheur évalue si les données sont suffisamment récentes pour l'usage prévu et si elles sont disponibles dans les délais requis. Des données obsolètes peuvent conduire à des décisions inadaptées.",
       examples: [
-        "❌ Prix produits datant de 6 mois",
-        "❌ Données météo de la semaine dernière pour une prévision du jour",
-        "❌ Informations client non mises à jour",
-        "✅ Flux temps réel pour données critiques",
-        "✅ Politiques de rafraîchissement définies"
+        "✗ Prix produits datant de 6 mois",
+        "✗ Données météo de la semaine dernière pour une prévision du jour",
+        "✗ Informations client non mises à jour",
+        "✓ Flux temps réel pour données critiques",
+        "✓ Politiques de rafraîchissement définies"
       ],
       impact: "Décisions fondées sur des informations dépassées",
       metrics: ["Âge des données", "Fréquence de mise à jour", "Latence de disponibilité"],
@@ -183,11 +183,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Les données respectent-elles les contraintes et formats définis ?",
       detailedDesc: "La validité vérifie que les données respectent les règles de format, les contraintes de domaine et les standards définis. Des données invalides peuvent causer des erreurs système et des analyses incorrectes.",
       examples: [
-        "❌ Code postal avec 6 chiffres au lieu de 5",
-        "❌ Email sans @ ou domaine invalide",
-        "❌ Numéro de téléphone avec lettres",
-        "✅ Validation par expressions régulières",
-        "✅ Contrôles de format automatisés"
+        "✗ Code postal avec 6 chiffres au lieu de 5",
+        "✗ Email sans @ ou domaine invalide",
+        "✗ Numéro de téléphone avec lettres",
+        "✓ Validation par expressions régulières",
+        "✓ Contrôles de format automatisés"
       ],
       impact: "Erreurs système, échecs de traitement, analyses impossibles",
       metrics: ["Contraintes violées", "Formats invalides", "Erreurs de validation"],
@@ -206,11 +206,11 @@ const EnhancedDataQualitySection: React.FC = () => {
       shortDesc: "Chaque entité est-elle représentée une seule fois ?",
       detailedDesc: "L'unicité garantit qu'il n'y a pas de doublons dans les données. Les duplicatas peuvent fausser les statistiques, surestimer les volumes et créer des biais dans les analyses.",
       examples: [
-        "❌ Client présent 3 fois avec variantes de nom",
-        "❌ Même transaction enregistrée plusieurs fois",
-        "❌ Produits dupliqués avec codes différents",
-        "✅ Clés primaires uniques",
-        "✅ Algorithmes de déduplication"
+        "✗ Client présent 3 fois avec variantes de nom",
+        "✗ Même transaction enregistrée plusieurs fois",
+        "✗ Produits dupliqués avec codes différents",
+        "✓ Clés primaires uniques",
+        "✓ Algorithmes de déduplication"
       ],
       impact: "Volumes surestimés, statistiques biaisées, coûts de traitement gonflés",
       metrics: ["Taux de doublons", "Clés en double", "Similarité d'entités"],
@@ -234,35 +234,35 @@ const EnhancedDataQualitySection: React.FC = () => {
         word: "Spécifique",
         description: "Définir précisément quelles données collecter",
         questions: ["Quelles variables exactes ?", "Quel niveau de granularité ?", "Quelles dimensions ?"],
-        example: "❌ 'Données clients' → ✅ 'Âge, genre, revenus, historique achats des clients actifs'"
+        example: "'Données clients' → 'Âge, genre, revenus, historique achats des clients actifs'"
       },
       {
         letter: "M",
         word: "Mesurable",
         description: "Établir des métriques de qualité quantifiables",
         questions: ["Comment mesurer la qualité ?", "Quels seuils acceptables ?", "Quels KPIs ?"],
-        example: "❌ 'Données de qualité' → ✅ 'Complétude au moins 95 %, fraîcheur de moins de 24 h' (seuils d'illustration, à fixer avec les utilisateurs des données)"
+        example: "'Données de qualité' → 'Complétude au moins 95 %, fraîcheur de moins de 24 h' (seuils d'illustration, à fixer avec les utilisateurs des données)"
       },
       {
         letter: "A",
         word: "Accessible",
         description: "S'assurer que les données sont disponibles et récupérables",
         questions: ["Sources disponibles ?", "Autorisations nécessaires ?", "Coûts d'accès ?"],
-        example: "❌ 'Données confidentielles inaccessibles' → ✅ 'API publique + données internes autorisées'"
+        example: "'Données confidentielles inaccessibles' → 'API publique + données internes autorisées'"
       },
       {
         letter: "R",
         word: "Réaliste",
         description: "Fixer des objectifs de collecte atteignables",
         questions: ["Budget suffisant ?", "Délais réalistes ?", "Ressources disponibles ?"],
-        example: "❌ 'Un million de lignes en une journée' → ✅ 'Cent mille lignes par semaine avec l'équipe actuelle' (chiffres d'illustration)"
+        example: "'Un million de lignes en une journée' → 'Cent mille lignes par semaine avec l'équipe actuelle' (chiffres d'illustration)"
       },
       {
         letter: "T",
         word: "Temporel",
         description: "Définir des échéances claires et une fréquence de mise à jour",
         questions: ["Quand collecter ?", "Quelle fréquence ?", "Date limite ?"],
-        example: "❌ 'Bientôt' → ✅ 'Collecte quotidienne à 2 h du matin, livraison le vendredi à 15 h'"
+        example: "'Bientôt' → 'Collecte quotidienne à 2 h du matin, livraison le vendredi à 15 h'"
       }
     ]
   };
@@ -374,13 +374,9 @@ const EnhancedDataQualitySection: React.FC = () => {
                     {analogy.parallels.map((parallel, pIndex) => (
                       <div key={pIndex} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-3 bg-muted/30 rounded-lg">
                         <div className="text-sm">
-                          <span className="font-medium text-orange-600">
-                            {analogy.title === "Le Chef Cuisinier" ? "🍳 " : "🔍 "}
-                          </span>
                           {"cooking" in parallel ? parallel.cooking : parallel.investigation}
                         </div>
                         <div className="text-sm">
-                          <span className="font-medium text-blue-600">📊 </span>
                           {parallel.data}
                         </div>
                       </div>
@@ -586,7 +582,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="bg-green-50 p-3 rounded-lg">
-                            <h5 className="font-semibold text-green-700 mb-2">✅ Avantages :</h5>
+                            <h5 className="font-semibold text-green-700 mb-2">Avantages :</h5>
                             <ul className="text-sm text-green-600 space-y-1">
                               {technique.pros.map((pro, pIndex) => (
                                 <li key={pIndex}>• {pro}</li>
@@ -594,7 +590,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                             </ul>
                           </div>
                           <div className="bg-red-50 p-3 rounded-lg">
-                            <h5 className="font-semibold text-red-700 mb-2">❌ Inconvénients :</h5>
+                            <h5 className="font-semibold text-red-700 mb-2">Inconvénients :</h5>
                             <ul className="text-sm text-red-600 space-y-1">
                               {technique.cons.map((con, cIndex) => (
                                 <li key={cIndex}>• {con}</li>
@@ -602,7 +598,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                             </ul>
                           </div>
                           <div className="bg-blue-50 p-3 rounded-lg">
-                            <h5 className="font-semibold text-blue-700 mb-2">🎯 Quand utiliser :</h5>
+                            <h5 className="font-semibold text-blue-700 mb-2">Quand utiliser :</h5>
                             <p className="text-sm text-blue-600">{technique.when}</p>
                           </div>
                         </div>

@@ -159,7 +159,7 @@ export const MLWorkflowSchema = ({ activeStep = 0 }: MLWorkflowProps) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-green-50 p-4 rounded-lg">
-              <h5 className="font-semibold text-green-800 mb-2">✅ Exemples & Outils</h5>
+              <h5 className="font-semibold text-green-800 mb-2">Exemples et outils</h5>
               <ul className="list-disc pl-5 space-y-1">
                 {steps[currentStep].examples.map((example, index) => (
                   <li key={index} className="text-sm text-green-700">{example}</li>
@@ -168,7 +168,7 @@ export const MLWorkflowSchema = ({ activeStep = 0 }: MLWorkflowProps) => {
             </div>
             
             <div className="bg-red-50 p-4 rounded-lg">
-              <h5 className="font-semibold text-red-800 mb-2">⚠️ Défis & Challenges</h5>
+              <h5 className="font-semibold text-red-800 mb-2">Défis</h5>
               <ul className="list-disc pl-5 space-y-1">
                 {steps[currentStep].challenges.map((challenge, index) => (
                   <li key={index} className="text-sm text-red-700">{challenge}</li>
@@ -210,7 +210,7 @@ export const AlgorithmComparison = ({ algorithms }: AlgorithmComparisonProps) =>
   };
 
   const renderStars = (rating: number) => {
-    return "⭐".repeat(rating) + "☆".repeat(5 - rating);
+    return "★".repeat(rating) + "☆".repeat(5 - rating);
   };
 
   const toggleCompare = (index: number) => {
@@ -270,7 +270,7 @@ export const AlgorithmComparison = ({ algorithms }: AlgorithmComparisonProps) =>
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h5 className="font-semibold text-green-600 mb-4 text-lg">✅ Avantages</h5>
+                  <h5 className="font-semibold text-green-600 mb-4 text-lg">Avantages</h5>
                   <ul className="space-y-2">
                     {algorithms[selectedAlgorithm].pros.map((pro, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -282,7 +282,7 @@ export const AlgorithmComparison = ({ algorithms }: AlgorithmComparisonProps) =>
                 </div>
                 
                 <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h5 className="font-semibold text-red-600 mb-4 text-lg">❌ Inconvénients</h5>
+                  <h5 className="font-semibold text-red-600 mb-4 text-lg">Inconvénients</h5>
                   <ul className="space-y-2">
                     {algorithms[selectedAlgorithm].cons.map((con, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -294,7 +294,7 @@ export const AlgorithmComparison = ({ algorithms }: AlgorithmComparisonProps) =>
                 </div>
                 
                 <div className="bg-white p-6 rounded-xl shadow-lg">
-                  <h5 className="font-semibold text-blue-600 mb-4 text-lg">🎯 Cas d'usage</h5>
+                  <h5 className="font-semibold text-blue-600 mb-4 text-lg">Cas d'usage</h5>
                   <ul className="space-y-2">
                     {algorithms[selectedAlgorithm].useCases.map((useCase, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -464,7 +464,7 @@ export const ConceptVisualization = ({ title, concept }: ConceptVisualizationPro
         )}
 
         <div className="bg-blue-50 p-6 rounded-xl">
-          <h4 className="font-bold text-blue-800 mb-3">📚 Exemples concrets :</h4>
+          <h4 className="font-bold text-blue-800 mb-3">Exemples concrets :</h4>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {concept.examples.map((example, index) => (
               <li key={index} className="flex items-start gap-2">

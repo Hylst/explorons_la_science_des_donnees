@@ -126,7 +126,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2 text-gray-800">💡 Points clés</h4>
+              <h4 className="font-semibold mb-2 text-gray-800">Points clés</h4>
               <ul className="text-sm space-y-1 text-gray-700">
                 <li>• <strong>Shape:</strong> Dimensions de l'array (lignes, colonnes, profondeur...)</li>
                 <li>• <strong>Dtype:</strong> Type de données (int64, float64, bool...). L'entier par défaut est int64 sous Linux/macOS, mais int32 dans l'éditeur du site</li>
@@ -267,7 +267,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
               <h4 className="font-semibold mb-3 text-blue-800">Règles du Broadcasting</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h5 className="font-medium mb-2 text-blue-700">✅ Compatible</h5>
+                  <h5 className="font-medium mb-2 text-blue-700">Compatible</h5>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between bg-white p-2 rounded">
                       <span>(3, 4)</span>
@@ -293,7 +293,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
                   </div>
                 </div>
                 <div>
-                  <h5 className="font-medium mb-2 text-red-700">❌ Incompatible</h5>
+                  <h5 className="font-medium mb-2 text-red-700">Incompatible</h5>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between bg-white p-2 rounded">
                       <span>(3, 4)</span>
@@ -336,7 +336,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
                 {/* Python Pure */}
                 <div className="bg-white p-4 rounded-lg border border-red-200">
                   <h5 className="font-semibold text-red-700 mb-3 flex items-center gap-2">
-                    🐍 Python Pur
+                    Python Pur
                   </h5>
                   <pre className="bg-gray-800 text-green-400 p-3 rounded text-xs overflow-x-auto mb-3">
 {`# Addition de 1M d'éléments
@@ -361,7 +361,7 @@ print(f"Temps: {end-start:.3f}s")`}
                 {/* NumPy */}
                 <div className="bg-white p-4 rounded-lg border border-blue-200">
                   <h5 className="font-semibold text-blue-700 mb-3 flex items-center gap-2">
-                    ⚡ NumPy
+                    NumPy
                   </h5>
                   <pre className="bg-gray-800 text-green-400 p-3 rounded text-xs overflow-x-auto mb-3">
 {`# Addition de 1M d'éléments
@@ -372,7 +372,7 @@ a = np.arange(1000000)
 b = np.arange(1000000)
 
 start = time.time()
-result = a + b  # Vectorisé!
+result = a + b  # Vectorisé
 end = time.time()
 
 print(f"Temps: {end-start:.3f}s")`}
@@ -385,7 +385,7 @@ print(f"Temps: {end-start:.3f}s")`}
 
               {/* Performance Metrics */}
               <div className="mt-6 bg-white p-4 rounded-lg border">
-                <h5 className="font-semibold mb-3 text-gray-800">📊 Métriques de Performance</h5>
+                <h5 className="font-semibold mb-3 text-gray-800">Métriques de Performance</h5>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-3 bg-green-50 rounded">
                     <div className="text-2xl font-bold text-green-600">Bien plus rapide</div>
@@ -405,7 +405,7 @@ print(f"Temps: {end-start:.3f}s")`}
 
             {/* Why NumPy is Faster */}
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-yellow-800">🚀 Pourquoi NumPy est-il si rapide ?</h4>
+              <h4 className="font-semibold mb-3 text-yellow-800">Pourquoi NumPy est-il si rapide ?</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h5 className="font-medium mb-2 text-yellow-700">Optimisations</h5>
@@ -639,7 +639,7 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
 
             {/* Architecture Matplotlib */}
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-gray-800">🏗️ Architecture Matplotlib</h4>
+              <h4 className="font-semibold mb-3 text-gray-800">Architecture Matplotlib</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-3 rounded border">
                   <h5 className="font-semibold text-blue-700 mb-2">Figure</h5>
@@ -766,7 +766,7 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
 
             {/* Memory Usage Example */}
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-yellow-800">💾 Exemple d'Usage Mémoire</h4>
+              <h4 className="font-semibold mb-3 text-yellow-800">Exemple d'Usage Mémoire</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-white p-3 rounded border">
                   <h5 className="font-semibold text-red-700 mb-2">Liste Python (1M entiers)</h5>

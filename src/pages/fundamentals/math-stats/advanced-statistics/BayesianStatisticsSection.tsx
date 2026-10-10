@@ -64,28 +64,28 @@ const BayesianStatisticsSection = () => {
             <div className="space-y-4">
               <div className="space-y-3">
                 <div className="bg-green-50 p-3 rounded">
-                  <h5 className="font-semibold text-green-700">✅ Intégration des connaissances</h5>
+                  <h5 className="font-semibold text-green-700">Intégration des connaissances</h5>
                   <p className="text-sm text-green-600">
                     Utilise l'expertise et les études antérieures
                   </p>
                 </div>
                 
                 <div className="bg-blue-50 p-3 rounded">
-                  <h5 className="font-semibold text-blue-700">✅ Quantification de l'incertitude</h5>
+                  <h5 className="font-semibold text-blue-700">Quantification de l'incertitude</h5>
                   <p className="text-sm text-blue-600">
                     Distributions de probabilité complètes
                   </p>
                 </div>
                 
                 <div className="bg-purple-50 p-3 rounded">
-                  <h5 className="font-semibold text-purple-700">✅ Mise à jour continue</h5>
+                  <h5 className="font-semibold text-purple-700">Mise à jour continue</h5>
                   <p className="text-sm text-purple-600">
                     Apprentissage séquentiel avec nouvelles données
                   </p>
                 </div>
                 
                 <div className="bg-orange-50 p-3 rounded">
-                  <h5 className="font-semibold text-orange-700">✅ Décisions optimales</h5>
+                  <h5 className="font-semibold text-orange-700">Décisions optimales</h5>
                   <p className="text-sm text-orange-600">
                     Théorie de la décision bayésienne
                   </p>

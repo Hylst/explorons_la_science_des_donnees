@@ -7,7 +7,7 @@ const CACHE_PREFIX = 'ds-explorer-';
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}`;
 const LEGACY_CACHE = `${CACHE_PREFIX}static-v1`;
 // Moteurs d'exécution de code (Python, SQLite : plusieurs dizaines de Mo). Leurs dossiers portent le numéro de version
-// (public/vendor/pyodide-<version>/), donc ce cache survit aux déploiements : on ne retélécharge pas 40 Mo à chaque mise à jour du site.
+// (public/vendor/pyodide-<version>/), donc ce cache survit aux déploiements : on ne retélécharge pas 48 Mo à chaque mise à jour du site.
 const VENDOR_CACHE = `${CACHE_PREFIX}vendor-v2`;
 
 // L'app est une SPA : toutes les routes renvoient index.html, mis en cache sous '/'.

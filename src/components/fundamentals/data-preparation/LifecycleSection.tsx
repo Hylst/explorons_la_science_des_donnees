@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import { dataPreparationEnhancedDefinitions } from '../../../data/data-preparation-enhanced-definitions';
-import { RefreshCw, ArrowRight } from 'lucide-react';
+import { RefreshCw, ArrowRight, Search, Eraser, CheckCircle, TrendingUp } from 'lucide-react';
 
 /**
  * Lifecycle section component for Data Preparation page
@@ -12,11 +12,11 @@ import { RefreshCw, ArrowRight } from 'lucide-react';
  */
 const LifecycleSection: React.FC = () => {
   const lifecycleSteps = [
-    { icon: "🔍", title: "Collecte", desc: "Sources multiples" },
-    { icon: "🧹", title: "Nettoyage", desc: "Corriger les erreurs" },
-    { icon: "🔄", title: "Transformation", desc: "Formatage, agrégation" },
-    { icon: "✅", title: "Validation", desc: "Contrôles qualité" },
-    { icon: "📈", title: "Exploitation", desc: "Analyse, ML, BI" }
+    { icon: Search, title: "Collecte", desc: "Sources multiples" },
+    { icon: Eraser, title: "Nettoyage", desc: "Corriger les erreurs" },
+    { icon: RefreshCw, title: "Transformation", desc: "Formatage, agrégation" },
+    { icon: CheckCircle, title: "Validation", desc: "Contrôles qualité" },
+    { icon: TrendingUp, title: "Exploitation", desc: "Analyse, ML, BI" }
   ];
 
   const timeDistribution = [
@@ -43,15 +43,15 @@ const LifecycleSection: React.FC = () => {
       {/* Flowchart */}
       <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border-slate-200">
         <CardHeader>
-          <CardTitle className="text-center">📊 Flux de traitement des données</CardTitle>
+          <CardTitle className="text-center">Flux de traitement des données</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
             {lifecycleSteps.map((step, index) => (
               <React.Fragment key={index}>
                 <div className="text-center space-y-3">
-                  <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center text-2xl shadow-lg">
-                    {step.icon}
+                  <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <step.icon className="h-7 w-7 text-slate-600" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-700">
@@ -85,7 +85,7 @@ const LifecycleSection: React.FC = () => {
 
       {/* Time Distribution */}
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold text-center">⏱️ Répartition indicative du temps par phase</h3>
+        <h3 className="text-2xl font-bold text-center">Répartition indicative du temps par phase</h3>
         <p className="text-center text-sm text-muted-foreground max-w-3xl mx-auto">
           Exemple d'illustration aux valeurs choisies par l'auteur : ce n'est pas une mesure. La répartition réelle varie fortement d'un projet à l'autre (voir les enquêtes citées en introduction).
         </p>
@@ -132,7 +132,7 @@ const LifecycleSection: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-purple-700">🔄 Un processus itératif</h4>
+              <h4 className="font-semibold mb-3 text-purple-700">Un processus itératif</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-purple-500 mt-1">•</span>
@@ -149,7 +149,7 @@ const LifecycleSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-blue-700">⚡ Pistes d'amélioration</h4>
+              <h4 className="font-semibold mb-3 text-blue-700">Pistes d'amélioration</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>

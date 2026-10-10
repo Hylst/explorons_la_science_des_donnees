@@ -91,7 +91,7 @@ const ExercisesSection = () => {
     <section id="exercises" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">5. Exercices Interactifs</h2>
       
-      <CourseHighlight title="🎯 Mode d'emploi des exercices" type="concept">
+      <CourseHighlight title="Mode d'emploi des exercices" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
             <Brain className="h-8 w-8 mx-auto mb-2 text-blue-600" />
@@ -171,7 +171,7 @@ const ExercisesSection = () => {
                     }`}>
                       {scores[index] ? <CheckCircle className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
                       <span className="font-semibold">
-                        {scores[index] ? 'Correct, bravo ! (une forme équivalente est acceptée)' : 'Pas encore : relisez l\'indice ou consultez la solution.'}
+                        {scores[index] ? 'Correct (une forme équivalente est acceptée).' : 'Pas encore : relisez l\'indice ou consultez la solution.'}
                       </span>
                     </div>
                   )}
@@ -254,7 +254,7 @@ const ExercisesSection = () => {
             </Card>
           ))}
 
-          <CourseHighlight title="🚀 Projet pratique : programmez votre descente de gradient" type="example">
+          <CourseHighlight title="Projet pratique : programmez votre descente de gradient" type="example">
             <div className="bg-white p-6 rounded-lg border">
               <h4 className="font-semibold mb-4">Défi : Codez un optimiseur simple</h4>
               <div className="space-y-3">
@@ -271,7 +271,7 @@ const ExercisesSection = () => {
             break
     return x
 
-# Votre mission : définissez f(x) et df(x) !`}
+# Votre mission : définissez f(x) et df(x).`}
                 </div>
                 <p className="text-sm">
                   <strong>Indice :</strong> Si f(x) = x² + 2x + 1, alors f'(x) = ?
@@ -282,7 +282,7 @@ const ExercisesSection = () => {
         </TabsContent>
       </Tabs>
 
-      <CourseHighlight title="📈 Suivez vos progrès" type="info">
+      <CourseHighlight title="Suivez vos progrès" type="info">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">

@@ -45,7 +45,7 @@ const getScoreDisplay = (score: number) => {
       bgColor: 'bg-green-100',
       borderColor: 'border-green-300',
       icon: <Trophy className="h-8 w-8 text-yellow-500" />,
-      message: 'Excellent !',
+      message: 'Excellent',
       description: 'Beau résultat : vous semblez à l\'aise avec ce sujet.'
     },
     {
@@ -54,8 +54,8 @@ const getScoreDisplay = (score: number) => {
       bgColor: 'bg-blue-100',
       borderColor: 'border-blue-300',
       icon: <Award className="h-8 w-8 text-blue-500" />,
-      message: 'Très bien !',
-      description: 'Bonne performance ! Quelques points à revoir pour consolider vos acquis.'
+      message: 'Très bien',
+      description: 'Bonne performance. Quelques points à revoir pour consolider vos acquis.'
     },
     {
       threshold: 60,
@@ -63,7 +63,7 @@ const getScoreDisplay = (score: number) => {
       bgColor: 'bg-yellow-100',
       borderColor: 'border-yellow-300',
       icon: <Target className="h-8 w-8 text-yellow-500" />,
-      message: 'Bien !',
+      message: 'Bien',
       description: 'Performance correcte. Continuez à vous entraîner pour progresser.'
     },
     {
@@ -73,7 +73,7 @@ const getScoreDisplay = (score: number) => {
       borderColor: 'border-red-300',
       icon: <AlertTriangle className="h-8 w-8 text-red-500" />,
       message: 'À améliorer',
-      description: 'Il y a encore du travail ! Révisez les concepts et retentez le quiz.'
+      description: 'Il y a encore du travail. Révisez les concepts et retentez le quiz.'
     }
   ];
   
@@ -131,7 +131,7 @@ const getPerformanceInsights = (results: SimpleQuizResults, questions: QuizQuest
       insight: {
         type: 'time',
         icon: <Zap className="h-4 w-4" />,
-        message: 'Vous avez répondu rapidement ! Assurez-vous de bien lire chaque question.',
+        message: 'Vous avez répondu rapidement. Assurez-vous de bien lire chaque question.',
         color: 'text-yellow-600'
       }
     },
@@ -171,7 +171,7 @@ const getPerformanceInsights = (results: SimpleQuizResults, questions: QuizQuest
         insights.push({
           type: 'difficulty',
           icon: <Star className="h-4 w-4" />,
-          message: `Parfait sur les questions ${difficulty.toLowerCase()} !`,
+          message: `Parfait sur les questions ${difficulty.toLowerCase()}.`,
           color: 'text-green-600'
         });
       } else if (percentage < 50) {
@@ -211,7 +211,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
     try {
       const shareData = {
         title: `Quiz ${categoryTitle} - ${results.score}%`,
-        text: `Je viens de terminer le quiz "${categoryTitle}" avec un score de ${results.score}% !`,
+        text: `Je viens de terminer le quiz "${categoryTitle}" avec un score de ${results.score} %.`,
         url: window.location.href
       };
       
@@ -220,7 +220,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
       } else {
         // Fallback: copy to clipboard
         await navigator.clipboard?.writeText(
-          `Je viens de terminer le quiz "${categoryTitle}" avec un score de ${results.score}% ! 🎯`
+          `Je viens de terminer le quiz "${categoryTitle}" avec un score de ${results.score} %.`
         );
       }
       clearError(); // Clear any previous errors

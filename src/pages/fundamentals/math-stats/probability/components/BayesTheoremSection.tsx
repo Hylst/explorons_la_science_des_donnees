@@ -52,17 +52,17 @@ const BayesTheoremSection = () => {
 
   const examples = {
     medical: {
-      title: "🏥 Diagnostic Médical",
+      title: "Diagnostic Médical",
       description: "Test de dépistage d'une maladie rare",
       scenario: "Une maladie touche 0.1% de la population. Un test a 99% de sensibilité et 95% de spécificité."
     },
     spam: {
-      title: "📧 Détection de Spam",
+      title: "Détection de Spam",
       description: "Classification automatique des emails",
       scenario: "30% des emails sont des spams. Le filtre détecte 95% des spams mais classe 2% des vrais emails comme spam."
     },
     weather: {
-      title: "🌧️ Prévision Météo",
+      title: "Prévision Météo",
       description: "Prédiction de pluie basée sur les nuages",
       scenario: "Il pleut 20% des jours. Quand il pleut, il y a des nuages 90% du temps. Quand il ne pleut pas, il y a des nuages 30% du temps."
     }
@@ -71,12 +71,12 @@ const BayesTheoremSection = () => {
   return (
     <section id="bayes-theorem" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🧠 5. Le Théorème de Bayes : L'Art de Réviser ses Croyances
+        5. Le Théorème de Bayes : L'Art de Réviser ses Croyances
       </h2>
 
       {/* Introduction conceptuelle */}
       <div className="mb-8">
-        <CourseHighlight title="🎭 L'histoire du détective Bayes" type="concept">
+        <CourseHighlight title="L'histoire du détective Bayes" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
               Imaginez un détective qui reçoit un nouvel indice dans une enquête. 
@@ -85,7 +85,7 @@ const BayesTheoremSection = () => {
             </p>
             <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
               <p className="text-sm">
-                <strong>🎯 C'est exactement ce que fait le théorème de Bayes :</strong>{" "}
+                <strong>C'est exactement ce que fait le théorème de Bayes :</strong>{" "}
                 Il nous dit comment mettre à jour nos croyances quand on reçoit de nouvelles informations.
               </p>
             </div>
@@ -127,7 +127,7 @@ const BayesTheoremSection = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-3">
-                <h5 className="font-semibold">🔍 Décomposition :</h5>
+                <h5 className="font-semibold">Décomposition :</h5>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">
                     <Badge className="bg-blue-100 text-blue-800">P(A|B)</Badge>
@@ -149,7 +149,7 @@ const BayesTheoremSection = () => {
               </div>
               
               <div className="bg-indigo-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">💡 En mots simples :</h5>
+                <h5 className="font-semibold mb-2">En mots simples :</h5>
                 <p className="text-sm">
                   <strong>Nouvelle croyance</strong> = <br/>
                   (Ancienne croyance × Compatibilité avec l'observation) / Probabilité totale de l'observation
@@ -225,7 +225,7 @@ const BayesTheoremSection = () => {
 
                 {/* Calcul et résultat */}
                 <div className="bg-white border rounded-lg p-4">
-                  <h5 className="font-semibold mb-3">🧮 Calcul de Bayes :</h5>
+                  <h5 className="font-semibold mb-3">Calcul de Bayes :</h5>
                   
                   {testResult === 'positive' ? (
                     <div className="space-y-3">
@@ -242,7 +242,7 @@ const BayesTheoremSection = () => {
                           Probabilité d'être réellement malade : <span className="text-red-600">{(medicalProbability * 100).toFixed(2)}%</span>
                         </p>
                         <p className="text-sm mt-1">
-                          Malgré un test positif, il n'y a que {(medicalProbability * 100).toFixed(2)}% de chances d'être réellement malade !
+                          Malgré un test positif, il n'y a que {(medicalProbability * 100).toFixed(2)}% de chances d'être réellement malade.
                         </p>
                       </div>
                     </div>
@@ -261,7 +261,7 @@ const BayesTheoremSection = () => {
                           Probabilité d'être malade malgré un test négatif : <span className="text-green-600">{(medicalProbability * 100).toFixed(4)}%</span>
                         </p>
                         <p className="text-sm mt-1">
-                          Un test négatif est très rassurant avec cette maladie rare !
+                          Un test négatif est très rassurant avec cette maladie rare.
                         </p>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ const BayesTheoremSection = () => {
 
                 {/* Visualisation */}
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3">📊 Visualisation sur 100,000 personnes :</h5>
+                  <h5 className="font-semibold mb-3">Visualisation sur 100,000 personnes :</h5>
                   <div className="h-64">
                     <DeferredResponsiveContainer width="100%" height="100%">
                       <BarChart data={bayesVisualizationData}>
@@ -313,10 +313,10 @@ const BayesTheoremSection = () => {
       </Card>
 
       {/* Applications en Data Science */}
-      <CourseHighlight title="🚀 Applications en Data Science" type="concept">
+      <CourseHighlight title="Applications en Data Science" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <h4 className="font-semibold">🤖 Machine Learning :</h4>
+            <h4 className="font-semibold">Machine Learning :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Classifieur bayésien naïf :</strong> Classification de textes, emails, sentiments
@@ -331,7 +331,7 @@ const BayesTheoremSection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">🏢 Applications Business :</h4>
+            <h4 className="font-semibold">Applications Business :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Détection de Fraude :</strong> Mise à jour du risque avec chaque transaction
@@ -347,7 +347,7 @@ const BayesTheoremSection = () => {
         </div>
         
         <div className="mt-6 bg-indigo-100 p-4 rounded-lg">
-          <h5 className="font-semibold text-indigo-800 mb-2">💡 Ce que l'approche bayésienne apporte</h5>
+          <h5 className="font-semibold text-indigo-800 mb-2">Ce que l'approche bayésienne apporte</h5>
           <div className="text-sm text-indigo-700 space-y-1">
             <p>• <strong>Apprentissage continu :</strong> Les modèles s'améliorent avec chaque nouvelle donnée</p>
             <p>• <strong>Gestion de l'incertitude :</strong> Quantification explicite de la confiance</p>

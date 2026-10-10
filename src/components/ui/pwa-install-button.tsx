@@ -99,7 +99,7 @@ export const PWAInstallButton: React.FC<{ compact?: boolean }> = ({ compact = fa
             </div>
             <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-xs text-blue-700">
-                💡 Une fois installée, vous pourrez accéder à {SITE_NAME} directement depuis votre écran d'accueil, même hors ligne !
+                Une fois installée, vous pourrez accéder à {SITE_NAME} directement depuis votre écran d'accueil, même hors ligne.
               </p>
             </div>
           </CardContent>
@@ -159,7 +159,7 @@ export const PWAInstallBanner: React.FC = () => {
           <div>
             <h3 className="font-semibold">Installez {SITE_NAME}</h3>
             <p className="text-sm opacity-90">
-              Accédez rapidement à vos cours, même hors ligne !
+              Accédez rapidement à vos cours, même hors ligne.
             </p>
           </div>
         </div>

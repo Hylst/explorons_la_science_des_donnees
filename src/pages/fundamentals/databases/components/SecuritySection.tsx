@@ -14,7 +14,7 @@ const SecuritySection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0" />
-            🚨 Injections SQL : un risque majeur
+            Injections SQL : un risque majeur
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -25,7 +25,7 @@ const SecuritySection = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold text-red-800 mb-2">❌ DANGER</h3>
+                <h3 className="font-semibold text-red-800 mb-2">DANGER</h3>
                 <code className="bg-white p-2 rounded block text-xs break-all">
                   query = "SELECT * FROM users WHERE id = " + userId
                 </code>
@@ -36,7 +36,7 @@ const SecuritySection = () => {
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-green-800 mb-2">✅ SÉCURISÉ</h3>
+                <h3 className="font-semibold text-green-800 mb-2">SÉCURISÉ</h3>
                 <code className="bg-white p-2 rounded block text-xs break-all">
                   cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
                 </code>
@@ -55,7 +55,7 @@ const SecuritySection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lock className="h-5 w-5 flex-shrink-0" />
-              🔐 Contrôle d'accès
+              Contrôle d'accès
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -78,7 +78,7 @@ const SecuritySection = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>🔒 Protection des données</CardTitle>
+            <CardTitle>Protection des données</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm">

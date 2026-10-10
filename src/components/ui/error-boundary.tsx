@@ -97,7 +97,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <AlertTriangle className="w-8 h-8 text-destructive" />
               </div>
               <CardTitle className="text-2xl font-bold text-destructive">
-                Oops! Une erreur s'est produite
+                Une erreur s'est produite
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">

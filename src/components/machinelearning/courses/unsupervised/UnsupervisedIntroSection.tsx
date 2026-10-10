@@ -28,7 +28,7 @@ const UnsupervisedIntroSection = () => {
           </p>
 
           <div className="bg-white p-6 rounded-xl border shadow-sm">
-            <h3 className="font-semibold mb-4 text-green-800">🎯 Les grandes tâches :</h3>
+            <h3 className="font-semibold mb-4 text-green-800">Les grandes tâches :</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-start gap-3">
                 <GitBranch className="h-5 w-5 text-green-600 mt-1" />
@@ -64,17 +64,17 @@ const UnsupervisedIntroSection = () => {
       </Card>
 
       {/* Analogie de la bibliothèque désorganisée */}
-      <EducationalCard title="📚 Analogie : la bibliothèque en désordre" type="analogie">
+      <EducationalCard title="Analogie : la bibliothèque en désordre" type="analogie">
         <div className="space-y-4">
           <p>
             Vous entrez dans une immense bibliothèque où tous les livres sont éparpillés au sol,
-            sans étiquettes ni classification. Votre mission : organiser cette bibliothèque !
+            sans étiquettes ni classification. Votre mission : organiser cette bibliothèque.
           </p>
 
           <div className="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-xl space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-blue-800 mb-2">📚 Organiser la bibliothèque</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Organiser la bibliothèque</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>Clustering</strong> : Regrouper par genre (romans, sciences, histoire)</li>
                   <li>• <strong>Réduction</strong> : Créer un système de classification simple</li>
@@ -83,7 +83,7 @@ const UnsupervisedIntroSection = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-green-800 mb-2">🤖 Techniques correspondantes</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Techniques correspondantes</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>K-means</strong> : Grouper les données similaires</li>
                   <li>• <strong>PCA</strong> : Simplifier en gardant l'essentiel</li>
@@ -95,7 +95,7 @@ const UnsupervisedIntroSection = () => {
 
             <div className="bg-white p-4 rounded-lg border border-green-200">
               <p className="text-sm text-green-700">
-                💡 <strong>Point clé :</strong> dans les deux cas, il faut découvrir
+                <strong>Point clé :</strong> dans les deux cas, il faut découvrir
                 l'organisation des éléments sans connaître à l'avance les catégories.
               </p>
             </div>
@@ -223,7 +223,7 @@ const UnsupervisedIntroSection = () => {
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span className="flex items-center gap-2">
-                  🌟 Exemples d'applications de l'apprentissage non supervisé
+                  Exemples d'applications de l'apprentissage non supervisé
                 </span>
                 <ChevronDown className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </CardTitle>
@@ -235,7 +235,7 @@ const UnsupervisedIntroSection = () => {
             <CardContent className="pt-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-indigo-800 mb-3">🏥 Santé</h4>
+                  <h4 className="font-semibold text-indigo-800 mb-3">Santé</h4>
                   <div className="space-y-3">
                     <div className="border-l-4 border-indigo-400 pl-4">
                       <Badge className="mb-1 bg-indigo-100 text-indigo-800">Diagnostic</Badge>
@@ -252,7 +252,7 @@ const UnsupervisedIntroSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-purple-800 mb-3">💼 Entreprise</h4>
+                  <h4 className="font-semibold text-purple-800 mb-3">Entreprise</h4>
                   <div className="space-y-3">
                     <div className="border-l-4 border-purple-400 pl-4">
                       <Badge className="mb-1 bg-purple-100 text-purple-800">E-commerce</Badge>
@@ -271,11 +271,11 @@ const UnsupervisedIntroSection = () => {
               </div>
 
               <div className="bg-white p-4 rounded-lg border-2 border-dashed border-indigo-300">
-                <h4 className="font-semibold text-indigo-800 mb-2">🧭 Autres cas d'usage</h4>
+                <h4 className="font-semibold text-indigo-800 mb-2">Autres cas d'usage</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                  <p><strong>🎵 Musique :</strong> Regrouper des morceaux proches pour suggérer des playlists (principe du clustering)</p>
-                  <p><strong>🛡️ Cybersécurité :</strong> Détection d'intrusions par analyse comportementale</p>
-                  <p><strong>🌿 Écologie :</strong> Regroupement de sons ou d'images d'animaux sans étiquettes préalables</p>
+                  <p><strong>Musique :</strong> Regrouper des morceaux proches pour suggérer des playlists (principe du clustering)</p>
+                  <p><strong>Cybersécurité :</strong> Détection d'intrusions par analyse comportementale</p>
+                  <p><strong>Écologie :</strong> Regroupement de sons ou d'images d'animaux sans étiquettes préalables</p>
                 </div>
               </div>
             </CardContent>

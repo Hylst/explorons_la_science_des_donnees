@@ -82,7 +82,7 @@ const IntroductionSection: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-red-700">🚨 Problèmes courants</h4>
+              <h4 className="font-semibold mb-3 text-red-700">Problèmes courants</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 mt-1">•</span>
@@ -103,7 +103,7 @@ const IntroductionSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-green-700">✅ Bénéfices d'une bonne préparation</h4>
+              <h4 className="font-semibold mb-3 text-green-700">Bénéfices d'une bonne préparation</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>

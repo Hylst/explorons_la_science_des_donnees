@@ -2,7 +2,12 @@
 
 ## Vue d'ensemble
 
-Ce guide décrit les mesures de performance réellement présentes dans « Explorons la Data Science » (anciennement « Data Science Explorer »), et comment les vérifier. Chaque affirmation a été contrôlée dans le code ; les tailles proviennent d'un `npm run build:hylst` réel du 2 octobre 2026 (Vite 7.3). Des scores Lighthouse ont été mesurés en local les 6 et 7 octobre 2026 (section « Mesures Lighthouse ») ; aucune mesure de terrain (Core Web Vitals de vrais visiteurs) n'existe.
+Ce guide décrit les mesures de performance réellement présentes dans « Explorons la Data Science » (anciennement « Data Science Explorer »), et comment les vérifier. Chaque affirmation a été contrôlée dans le code. Deux jeux de mesures de dates différentes :
+
+- **Tailles du build** : relevées le 9 octobre 2026 sur le dossier `dist-hylst/` existant (build du 9 octobre, point d'entrée `index-got7Iu6V.js`), avec `stat`, `gzip -c` (niveau par défaut) et `find`. Elles remplacent celles du 2 octobre.
+- **Scores Lighthouse** : mesurés en local les **6 et 7 octobre 2026**, donc avant la réécriture des cours Python, introduction aux mathématiques, statistiques inférentielles, guide des modèles de ML et Transformers au format des leçons (8 et 9 octobre), avant la réécriture du glossaire et l'ajout des projets guidés (8 octobre), et avant la relecture des pages du 9 octobre. Ils sont à remesurer (section « Mesures Lighthouse »).
+
+Aucune mesure de terrain (Core Web Vitals de vrais visiteurs) n'existe.
 
 ## Mesures en place
 
@@ -10,7 +15,8 @@ Ce guide décrit les mesures de performance réellement présentes dans « Explo
 
 - `src/App.tsx` : les 35 pages sont chargées avec `React.lazy`, dans un seul `Suspense` dont le `fallback` est `PageLoading` (`components/ui/loading-states.tsx`)
 - `src/components/routing/CourseRouter.tsx` : 11 pages de cours en `React.lazy`
-- Vite crée un fichier JS par page ; il n'y a pas de `manualChunks` dans `vite.config.ts` (Rollup partage automatiquement le code commun, d'où des fichiers comme `CourseEquation-*.js` ou `useQuiz-*.js`)
+- Vite crée un fichier JS par page ; il n'y a pas de `manualChunks` dans `vite.config.ts` (Rollup partage automatiquement le code commun, d'où des fichiers comme `CourseEquation-*.js`, `useQuiz-*.js` ou des chunks `index-*.js` partagés)
+- Les cours sont des données (`src/data/lessons/`) : le texte, les exemples et les exercices d'un cours sont dans le fichier JS de sa page (par exemple `MLModelsGuide-*.js`, `PythonBasics-*.js`). Chaque module d'un cours n'est rendu que lorsqu'on l'ouvre (`LessonModuleView`), et les formules (`CourseEquation`, KaTeX) et les composants interactifs (`LessonWidget`) ne sont chargés que si le module en contient
 
 ```typescript
 const MachineLearning = lazy(() => import("./pages/MachineLearning"));
@@ -22,19 +28,24 @@ const MachineLearning = lazy(() => import("./pages/MachineLearning"));
 
 ### 2. Taille du build (mesurée)
 
-`npm run build:hylst` (SWC, minification par défaut de Vite) produit 182 fichiers JS dans `dist-hylst/assets/`.
+Mesures du 9 octobre 2026 sur `dist-hylst/` (SWC, minification par défaut de Vite) : 236 fichiers JS et 2 fichiers CSS dans `dist-hylst/assets/` (297 fichiers au total avec 59 fichiers de polices KaTeX), contre 182 fichiers JS le 2 octobre (les cours en données et le découpage en blocs chargés à la demande ont multiplié les fichiers). Tailles en octets (`stat -c %s`) et en gzip (`gzip -c | wc -c`).
 
 | Élément | Taille | Gzip |
 |---|---|---|
-| Point d'entrée `index-*.js` (chargé sur toutes les pages) | 358 kB | 118 kB |
-| CSS global `index-*.css` | 207 kB | 28,5 kB |
-| Chargement initial (HTML exclu) | 565 kB | 146 kB |
-| Plus gros chunks partagés | `generateCategoricalChart` (Recharts) 381 kB / 105 kB gzip ; un chunk `index` contenant les données du glossaire 384 kB / 120 kB gzip | |
-| Plus grosses pages | `ProgrammingSection` 308 kB (86 kB gzip), `CourseEquation` 270 kB (78 kB gzip), `PythonBasics` 223 kB (41 kB gzip), `MachineLearning` 180 kB (46 kB gzip) | |
-| `assets/` au complet (JS, CSS, polices, images) | 5,9 Mo bruts | non mesuré |
-| Moteurs d'exécution `vendor/` (Pyodide, sql.js, roues Python) | 39 Mo, téléchargés seulement à la première exécution de code, puis en cache | |
+| Point d'entrée `index-got7Iu6V.js` (chargé sur toutes les pages) | 357 kB (356 866 o) | 117 kB (117 165 o) |
+| CSS global `index-C8ZO6nGB.css` | 205 kB (205 352 o) | 28,4 kB (28 363 o) |
+| Chargement initial (point d'entrée et CSS, HTML exclu) | 562 kB | 146 kB |
+| Chunk des définitions du glossaire (`index-Cnxv50JX.js`, importé par `Glossary`, `GlossaryExplorer`, `GlossaryTermsBank` et `Fundamentals`) | 303 kB | 100 kB |
+| Chunk Recharts (`generateCategoricalChart-*.js`) | 381 kB | 105 kB |
+| Chunk partagé `index-Bd7DuANr.js`, importé par les pages de cours (code de rendu markdown, d'après son contenu) | 118 kB | 36 kB |
+| `CourseEquation-*.js` (KaTeX) et son CSS | 270 kB ; CSS 30 kB | 78 kB ; CSS 7,9 kB |
+| Plus grosses pages (cours en données comprises) | `MLModelsGuide` 181 kB (51 kB gzip), `MachineLearningContentRefactored` 175 kB (46 kB), `DataPreparationRefactored` 153 kB (41 kB), `TransformersGuide` 142 kB (44 kB), `PythonBasics` 130 kB (43 kB), `inferential-statistics` 123 kB (38 kB), `SupervisedLearning` 115 kB (31 kB) | |
+| `ProgrammingSection-*.js` (n'est plus que la coquille : les huit sous-sections sont chargées une à une) | 18 kB | 6,7 kB |
+| `assets/` au complet (JS, CSS, polices) | 6,46 Mo bruts (6 464 112 o), dont 5,16 Mo de JS | non mesuré |
+| Dossier `dist-hylst/` complet (87 pages HTML, images, `assets/`) | 56 Mo (`du -sh`) | |
+| Moteurs d'exécution `public/vendor/` (Pyodide 314.0.7, sql.js 1.14.2, roues Python) | 48 Mo (`du -sk` : 49 080 ko), dont sql.js 0,6 Mo ; téléchargés seulement à la première exécution de code, puis en cache. Le cache `.cache/` des roues pèse 35 Mo | |
 
-Le chunk Recharts et le chunk `CourseEquation` (KaTeX) ne sont chargés qu'avec les pages qui les utilisent. Ces chiffres varient à chaque changement de code : relancer `npm run build:hylst` plutôt que de les recopier. Le gzip ci-dessus est calculé avec `zlib` sur les fichiers de `dist-hylst/assets/` ; Nginx peut compresser autrement (Brotli par exemple).
+Le chunk Recharts et le chunk `CourseEquation` (KaTeX) ne sont chargés qu'avec les pages qui les utilisent. Ces chiffres varient à chaque changement de code : relancer `npm run build:hylst` plutôt que de les recopier. Le gzip ci-dessus est calculé avec `gzip -c` sur les fichiers de `dist-hylst/assets/` ; Nginx peut compresser autrement (Brotli par exemple).
 
 Aucune cible de « bundle < 250 KB » n'a de sens pour ce site : le point d'entrée seul dépasse déjà 100 kB gzip. Une piste d'amélioration serait d'analyser l'entrée (`index-*.js`), par exemple avec un visualiseur de bundle (non installé : il n'y a pas de script `build:analyze`).
 
@@ -60,7 +71,10 @@ Aucune cible de « bundle < 250 KB » n'a de sens pour ce site : le point d'entr
 
 - `React.memo` / `useMemo` sont utilisés ponctuellement (par exemple `components/blog/BlogList.tsx`, `BlogPostCard.tsx`, `community/ActuSection.tsx`), sans stratégie globale
 - Animations d'entrée : `AnimatedEntrance` (`components/ui/animated-entrance.tsx`) ne déclenche l'animation qu'à l'entrée dans le viewport (`IntersectionObserver`)
-- Les blocs volumineux des cours sont repliables (`Collapsible`, `CollapsibleSection`), ce qui limite le contenu affiché d'emblée
+- Les blocs volumineux des cours sont repliables (`Collapsible`, `CollapsibleSection`), ce qui limite le contenu affiché d'emblée ; dans les cours rédigés, seul le premier module est ouvert et le contenu d'un module fermé n'est pas rendu
+- **Affichage par morceaux** (mesuré les 6 et 7 octobre 2026, voir plus bas) : `ProgressiveSections` (une section au premier rendu, une de plus à chaque moment d'inactivité du navigateur, chaque section après l'introduction en `React.lazy`), `LazyBlock` (un bloc chargé après le bandeau), `DeferredResponsiveContainer` (`components/ui/deferred-chart.tsx` : un graphique Recharts n'est dessiné qu'à moins de 400 px de l'écran, dans une boîte de la taille exacte du graphique). Tout s'affiche d'un coup quand une position de lecture va être restaurée ou que l'adresse a une ancre ; `ScrollManager` attend les attentes marquées `data-sections-pending` (3 s au plus). `content-visibility: auto` a été essayé et écarté (il casse la restauration de la position)
+- Le glossaire est affiché par lots de 24 fiches (`lib/glossary-batches.ts`), le nombre affiché étant gardé pour la session afin de retrouver la position au retour
+- Le titre et la description du bandeau (`UnifiedHeroSection`) s'affichent au premier rendu, sans fondu retardé
 - Il n'y a ni liste virtualisée, ni composant de mesure de performance, ni `PerformanceObserver` dans le code
 
 ### 6. Données et stockage
@@ -76,14 +90,23 @@ Aucune cible de « bundle < 250 KB » n'a de sens pour ce site : le point d'entr
 ## Vérifier les performances
 
 ```bash
-npm run build:hylst   # tailles par fichier (brutes et gzip) affichées dans la console
+npm run build:hylst   # tailles par fichier (brutes et gzip) affichées dans la console ; produit dist-hylst/
 npm run preview       # servir dist/ localement (après npm run build)
 npm run lint
 npm run typecheck
 npm test
+npm run test:smoke    # chaque route et chaque onglet s'affichent, sections en attente comprises
+
+# mesurer les tailles d'un build déjà fait (méthode du 9 octobre 2026)
+ls -la dist-hylst/assets/index-*.js
+gzip -c dist-hylst/assets/<fichier>.js | wc -c
+find dist-hylst/assets -name '*.js' | wc -l
+du -sk public/vendor
 ```
 
-## Mesures Lighthouse (6 et 7 octobre 2026)
+## Mesures Lighthouse (6 et 7 octobre 2026, non refaites depuis)
+
+**Date des chiffres : 6 et 7 octobre 2026.** Depuis, les pages suivantes ont été profondément modifiées et leur score n'est plus mesuré : les cours Python (8 octobre), introduction aux mathématiques, statistiques inférentielles, guide des modèles de ML et Transformers (9 octobre, passage au format des leçons), le glossaire et les projets (8 octobre), la page de programmation (section Git, environnements et Docker, 8 octobre) et la plupart des pages de contenu (relecture des 9 octobre). Les lignes de ces pages dans le tableau sont donc historiques. Les cinq routes sous 80 au dernier passage étaient `/fundamentals` (75), `/fundamentals/math-stats` (75), `/fundamentals/programming` (77), `/machine-learning` (77) et `/fundamentals/data-preparation` (79). Il n'y a pas eu de nouveau passage Lighthouse depuis le 7 octobre.
 
 Méthode : `npx lighthouse@12`, catégorie performance, profil mobile (ralentissement simulé du réseau et du processeur), sur le build `npm run build:hylst` servi en local avec compression gzip (comme Nginx), profil Chrome vierge à chaque passe. Une passe par route : l'écart d'une passe à l'autre est de l'ordre de 1 à 3 points. Ces chiffres ne sont pas ceux de hylst.fr (réseau et serveur réels).
 
@@ -154,10 +177,11 @@ Pour un audit réel (Lighthouse, Core Web Vitals), utiliser les outils de Chrome
 
 ## Pistes non réalisées
 
-- Analyse du contenu du point d'entrée (358 kB) et éventuel `manualChunks` pour Recharts / KaTeX
-- Chargement différé des images restantes (`loading="lazy"`)
+- Analyse du contenu du point d'entrée (357 kB) et éventuel `manualChunks` pour Recharts / KaTeX
+- Remesurer les 56 routes avec Lighthouse, les cinq pages sous 80 d'abord, puis les pages de cours converties en leçons
+- Chargement différé des images restantes (`loading="lazy"` n'est posé que dans l'accueil, le catalogue des cours, les cartes du blog et `BigDataSection`)
 - Suivi automatisé (Lighthouse CI, tests de performance) : aucun outil n'est configuré ; les tests Vitest (`npm test`) couvrent la logique, pas les performances
 
 ---
 
-*Guide maintenu avec le dépôt. Dernière révision : 2 octobre 2026 (tailles issues d'un build réel). Le respect de `prefers-reduced-motion` est en place depuis cette date (`src/index.css`).*
+*Guide maintenu avec le dépôt. Dernière révision : 10 octobre 2026 (tailles relevées le 9 octobre sur `dist-hylst/` ; scores Lighthouse du 6 et 7 octobre, non refaits). Le respect de `prefers-reduced-motion` est en place depuis le 2 octobre (`src/index.css`).*

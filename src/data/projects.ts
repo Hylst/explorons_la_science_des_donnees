@@ -43,7 +43,7 @@ export const projects: Project[] = [
   {
     id: "beginner-2",
     title: "Classification des fleurs d'Iris",
-    description: "Votre premier modèle de machine learning ! Classifiez les trois espèces de fleurs d'Iris avec des algorithmes simples.",
+    description: "Votre premier modèle de machine learning. Classifiez les trois espèces de fleurs d'Iris avec des algorithmes simples.",
     level: "beginner",
     technologies: ["Python", "scikit-learn", "Matplotlib", "NumPy"],
     category: "machine learning",

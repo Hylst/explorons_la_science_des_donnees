@@ -17,7 +17,7 @@ import { SourceNote } from "@/components/ui/source-note";
 const DatabasesIntroSection = () => {
   const analogies = {
     library: {
-      title: "📚 La Bibliothèque",
+      title: "La Bibliothèque",
       description: "Une base de données, c'est comme une bibliothèque géante et ultra-organisée",
       details: [
         "Les tables = les rayonnages thématiques",
@@ -28,7 +28,7 @@ const DatabasesIntroSection = () => {
       ]
     },
     city: {
-      title: "🏙️ La Ville",
+      title: "La Ville",
       description: "Pensez à une base de données comme une ville bien planifiée",
       details: [
         "Les quartiers = les schémas/bases de données",
@@ -39,7 +39,7 @@ const DatabasesIntroSection = () => {
       ]
     },
     excel: {
-      title: "📊 Excel... mais en mieux !",
+      title: "Excel, en plus structuré",
       description: "Si vous connaissez Excel, vous comprenez déjà les bases",
       details: [
         "Feuille Excel = Table de base de données",
@@ -77,7 +77,7 @@ const DatabasesIntroSection = () => {
               </p>
               
               <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                <h4 className="font-semibold text-blue-800 mb-2">💡 Définition simple</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Définition simple</h4>
                 <p className="text-sm">
                   C'est comme un classeur géant, mais digital, qui peut contenir des millions 
                   d'informations organisées de façon à les retrouver rapidement.
@@ -129,7 +129,7 @@ const DatabasesIntroSection = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="bg-green-50 p-3 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">🎯 Les données sont partout</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Les données sont partout</h4>
                 <p className="text-sm">
                   Une grande partie du temps d'un data scientist passe à collecter, nettoyer 
                   et préparer les données. Les ranger dans une base facilite beaucoup ce travail.
@@ -208,41 +208,33 @@ const DatabasesIntroSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertCircle className="h-5 w-5 text-cyan-600" />
-            💡 Le saviez-vous ?
+            Le saviez-vous ?
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-2">🌍 Données mondiales</h4>
+              <h4 className="font-semibold mb-2">Volumes</h4>
               <ul className="text-sm space-y-1">
-                <li>• <strong>149 zettaoctets</strong> de données créées, capturées, copiées et consommées dans le monde en 2024, 181 prévus en 2025 (IDC)</li>
                 <li>• Environ <strong>9 octets sur 10</strong> sont des copies de données déjà existantes (IDC, 2020 : rapport d'environ 1 pour 9 entre données uniques et données copiées)</li>
                 <li>• <strong>Google</strong> traite plus de 5 000 milliards de recherches par an, soit environ 158 000 par seconde (début 2025)</li>
-                <li>• <strong>Facebook</strong> stockait plus de 300 pétaoctets dans son entrepôt de données dès 2014, avec 600 téraoctets ajoutés par jour</li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">🏢 Impact business</h4>
+              <h4 className="font-semibold mb-2">Grandes plateformes</h4>
               <ul className="text-sm space-y-1">
-                <li>• Selon une enquête McKinsey auprès de 400 dirigeants (2014), les utilisateurs intensifs de l'<strong>analyse client</strong> ont 23 fois plus de chances de nettement surpasser leurs concurrents pour attirer de nouveaux clients</li>
+                <li>• <strong>Facebook</strong> stockait plus de 300 pétaoctets dans son entrepôt de données dès 2014, avec 600 téraoctets ajoutés par jour</li>
                 <li>• <strong>Netflix</strong> estime que la personnalisation et les recommandations lui font économiser plus d'un milliard de dollars par an (2015)</li>
-                <li>• Selon McKinsey (2013), <strong>35 %</strong> des achats sur Amazon proviendraient de ses recommandations</li>
-                <li>• IBM estimait en 2016 le coût annuel des <strong>mauvaises données</strong> à 3 100 milliards de dollars pour l'économie américaine</li>
               </ul>
             </div>
           </div>
           <SourceNote
             consulted="1er octobre 2026"
             sources={[
-              { label: "IDC via Statista (volume de données, valeurs sous accès payant)", href: "https://www.statista.com/statistics/871513/worldwide-data-created/" },
               { label: "IDC, communiqué du 8 mai 2020 (données uniques et données copiées)", href: "https://www.businesswire.com/news/home/20200508005025/en/IDCs-Global-DataSphere-Forecast-Shows-Continued-Steady-Growth-in-the-Creation-and-Consumption-of-Data" },
               { label: "Search Engine Land (recherches Google)", href: "https://searchengineland.com/google-5-trillion-searches-per-year-452928" },
               { label: "Facebook Engineering, 2014", href: "https://engineering.fb.com/2014/04/10/core-infra/scaling-the-facebook-data-warehouse-to-300-pb/" },
-              { label: "McKinsey, Five facts, 2014", href: "https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/five-facts-how-customer-analytics-boosts-corporate-performance" },
               { label: "Gomez-Uribe et Hunt, ACM TMIS, 2015", href: "https://dl.acm.org/doi/10.1145/2843948" },
-              { label: "McKinsey, How retailers can keep up with consumers, 2013", href: "https://www.mckinsey.com/industries/retail/our-insights/how-retailers-can-keep-up-with-consumers" },
-              { label: "Redman, Harvard Business Review, 2016", href: "https://hbr.org/2016/09/bad-data-costs-the-u-s-3-trillion-per-year" },
             ]}
           />
         </CardContent>
@@ -251,7 +243,7 @@ const DatabasesIntroSection = () => {
       {/* Types de données */}
       <Card>
         <CardHeader>
-          <CardTitle>🗂️ Types de données à gérer</CardTitle>
+          <CardTitle>Types de données à gérer</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="structured" className="w-full">
@@ -263,7 +255,7 @@ const DatabasesIntroSection = () => {
             
             <TabsContent value="structured" className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">📊 Données structurées</h4>
+                <h4 className="font-semibold mb-2">Données structurées</h4>
                 <p className="text-sm mb-3">
                   Données organisées en tables avec des colonnes et des types définis
                 </p>
@@ -291,7 +283,7 @@ const DatabasesIntroSection = () => {
             
             <TabsContent value="semi-structured" className="space-y-4">
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">🔗 Données semi-structurées</h4>
+                <h4 className="font-semibold mb-2">Données semi-structurées</h4>
                 <p className="text-sm mb-3">
                   Données avec une structure flexible, souvent avec des métadonnées
                 </p>
@@ -319,7 +311,7 @@ const DatabasesIntroSection = () => {
             
             <TabsContent value="unstructured" className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">📝 Données non structurées</h4>
+                <h4 className="font-semibold mb-2">Données non structurées</h4>
                 <p className="text-sm mb-3">
                   Données sans format prédéfini, nécessitant un traitement spécialisé
                 </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Copy } from 'lucide-react';
 import { Button } from './button';
 
 interface ResponsiveTableProps {
@@ -103,7 +103,7 @@ export const ResponsiveTable: React.FC<ResponsiveTableProps> = ({
 
       {/* Mobile scroll hint */}
       <div className="md:hidden text-xs text-muted-foreground text-center mt-2">
-        💡 Faites glisser horizontalement pour voir plus de colonnes
+        Faites glisser horizontalement pour voir plus de colonnes
       </div>
     </div>
   );
@@ -148,9 +148,9 @@ export const ResponsiveCodeBlock: React.FC<ResponsiveCodeBlockProps> = ({
           size="sm"
           className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm"
           onClick={copyToClipboard}
-          aria-label="Copy code"
+          aria-label={copied ? "Code copié" : "Copier le code"}
         >
-          {copied ? '✓' : '📋'}
+          {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
         </Button>
       )}
       
@@ -171,7 +171,7 @@ export const ResponsiveCodeBlock: React.FC<ResponsiveCodeBlockProps> = ({
       
       {/* Mobile scroll hint */}
       <div className="md:hidden text-xs text-muted-foreground text-center mt-1">
-        💡 Faites glisser horizontalement pour voir le code complet
+        Faites glisser horizontalement pour voir le code complet
       </div>
     </div>
   );

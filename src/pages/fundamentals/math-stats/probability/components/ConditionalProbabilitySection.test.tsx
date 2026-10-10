@@ -35,7 +35,7 @@ describe("arbre de probabilités conditionnelles", () => {
     expect(issues.some((button) => (button.textContent ?? "").includes("-"))).toBe(true);
     for (const issue of issues) {
       act(() => issue.click());
-      const bloc = [...container.querySelectorAll("h6")].find((h) => (h.textContent ?? "").startsWith("🧮 Calculs pour"));
+      const bloc = [...container.querySelectorAll("h6")].find((h) => (h.textContent ?? "").startsWith("Calculs pour"));
       expect(bloc, `issue « ${issue.textContent} »`).toBeTruthy();
       const calcul = bloc!.parentElement!.textContent ?? "";
       expect(calcul, `issue « ${issue.textContent} » : aucun calcul affiché`).toMatch(/P\([^)]+\) = \d/);

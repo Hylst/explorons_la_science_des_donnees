@@ -6,7 +6,7 @@ import { EducationalCard, ExerciseCard } from "@/components/ui/educational-cards
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Target, Users, TreePine, Bot, Code, CheckCircle, ArrowRight, Lightbulb, Eye } from "lucide-react";
+import { Target, Users, TreePine, Bot, Code, CheckCircle, ArrowRight, Lightbulb, Eye, GitBranch, Search, FlaskConical, Scale } from "lucide-react";
 
 const IntroSectionRefactored = () => {
   const [activeSection, setActiveSection] = useState("models-work");
@@ -25,10 +25,10 @@ const IntroSectionRefactored = () => {
           de Kaggle Learn.
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-8">
-          <Badge variant="secondary" className="px-4 py-2">📚 Inspiré de Kaggle Learn</Badge>
-          <Badge variant="secondary" className="px-4 py-2">💻 Exercices Pratiques</Badge>
-          <Badge variant="secondary" className="px-4 py-2">🐍 Python & Pandas</Badge>
-          <Badge variant="secondary" className="px-4 py-2">📊 Schémas</Badge>
+          <Badge variant="secondary" className="px-4 py-2">Inspiré de Kaggle Learn</Badge>
+          <Badge variant="secondary" className="px-4 py-2">Exercices Pratiques</Badge>
+          <Badge variant="secondary" className="px-4 py-2">Python & Pandas</Badge>
+          <Badge variant="secondary" className="px-4 py-2">Schémas</Badge>
         </div>
       </div>
 
@@ -92,27 +92,27 @@ const IntroSectionRefactored = () => {
       <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto p-1">
           <TabsTrigger value="models-work" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">🌱</span>
+            <GitBranch className="h-5 w-5" aria-hidden="true" />
             <span>Comment Fonctionnent les Modèles</span>
           </TabsTrigger>
           <TabsTrigger value="data-exploration" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">🔍</span>
+            <Search className="h-5 w-5" aria-hidden="true" />
             <span>Exploration des Données</span>
           </TabsTrigger>
           <TabsTrigger value="first-model" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">🧪</span>
+            <FlaskConical className="h-5 w-5" aria-hidden="true" />
             <span>Premier Modèle</span>
           </TabsTrigger>
           <TabsTrigger value="model-validation" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">📊</span>
+            <CheckCircle className="h-5 w-5" aria-hidden="true" />
             <span>Validation</span>
           </TabsTrigger>
           <TabsTrigger value="overfitting" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">⚖️</span>
+            <Scale className="h-5 w-5" aria-hidden="true" />
             <span>Sur/Sous-ajustement</span>
           </TabsTrigger>
           <TabsTrigger value="random-forests" className="text-xs p-3 h-auto flex flex-col gap-1">
-            <span className="text-lg">🌲</span>
+            <TreePine className="h-5 w-5" aria-hidden="true" />
             <span>Forêts Aléatoires</span>
           </TabsTrigger>
         </TabsList>
@@ -121,7 +121,7 @@ const IntroSectionRefactored = () => {
         <TabsContent value="models-work" className="space-y-8">
           <div className="text-center mb-8">
             <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-              🌱 Comment Fonctionnent les Modèles
+              Comment Fonctionnent les Modèles
             </h3>
             <p className="text-xl text-muted-foreground">Comprendre ce qu'est un modèle prédictif, à travers les arbres de décision</p>
           </div>
@@ -238,7 +238,7 @@ const IntroSectionRefactored = () => {
           </Card>
 
           <ExerciseCard
-            title="🎯 Exercice Pratique : Construisez Votre Arbre de Décision"
+            title="Exercice Pratique : Construisez Votre Arbre de Décision"
             problem="Vous conseillez une concession automobile. Dessinez un arbre de décision pour prédire si un client achètera plutôt une voiture électrique. Vous devez poser exactement 3 questions pour répartir les clients. (Exercice de réflexion : aucune donnée de ventes n'est fournie.)"
             solution={`
 **Une solution possible** (les seuils sont des exemples, à valider sur des données de ventes réelles) :
@@ -295,14 +295,14 @@ const IntroSectionRefactored = () => {
 
         {/* Section 2: Basic Data Exploration */}
         <TabsContent value="data-exploration" className="space-y-8">
-          <EducationalCard title="🔍 2. Premiers pas dans l'exploration des données" type="concept">
+          <EducationalCard title="2. Premiers pas dans l'exploration des données" type="concept">
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border-l-4 border-blue-500">
-                <h4 className="font-bold text-blue-800 mb-3">🎯 Objectif : Apprendre à explorer un dataset avec Pandas</h4>
+                <h4 className="font-bold text-blue-800 mb-3">Objectif : Apprendre à explorer un dataset avec Pandas</h4>
 
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">📥 1. Chargement des données</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">1. Chargement des données</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto">
                       import pandas as pd<br/>
                       data = pd.read_csv('melbourne_housing.csv')
@@ -311,7 +311,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
-                    <h5 className="font-semibold text-purple-800 mb-2">🔍 2. Analyse descriptive</h5>
+                    <h5 className="font-semibold text-purple-800 mb-2">2. Analyse descriptive</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="bg-purple-50 p-3 rounded">
                         <div className="font-mono text-sm mb-1">data.describe()</div>
@@ -325,7 +325,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-yellow-500">
-                    <h5 className="font-semibold text-yellow-800 mb-2">🎯 3. Identification des variables</h5>
+                    <h5 className="font-semibold text-yellow-800 mb-2">3. Identification des variables</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="bg-yellow-50 p-3 rounded">
                         <strong>Features (caractéristiques) :</strong>
@@ -358,14 +358,14 @@ const IntroSectionRefactored = () => {
 
         {/* Section 3: Your First ML Model */}
         <TabsContent value="first-model" className="space-y-8">
-          <EducationalCard title="🧪 3. Votre premier modèle" type="concept">
+          <EducationalCard title="3. Votre premier modèle" type="concept">
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border-l-4 border-purple-500">
-                <h4 className="font-bold text-purple-800 mb-3">🎯 Objectif : Construire un modèle prédictif simple</h4>
+                <h4 className="font-bold text-purple-800 mb-3">Objectif : Construire un modèle prédictif simple</h4>
 
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
-                    <h5 className="font-semibold text-blue-800 mb-2">1️⃣ Sélection des features et de la target</h5>
+                    <h5 className="font-semibold text-blue-800 mb-2">Sélection des features et de la target</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       features = ['Rooms', 'Bathroom', 'Landsize']<br/>
                       X = data[features]<br/>
@@ -375,7 +375,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">2️⃣ Utilisation de scikit-learn</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">Utilisation de scikit-learn</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       from sklearn.tree import DecisionTreeRegressor<br/>
                       model = DecisionTreeRegressor(random_state=1)<br/>
@@ -399,7 +399,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-red-500">
-                    <h5 className="font-semibold text-red-800 mb-2">3️⃣ Évaluation avec la MAE</h5>
+                    <h5 className="font-semibold text-red-800 mb-2">Évaluation avec la MAE</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       from sklearn.metrics import mean_absolute_error<br/>
                       mae = mean_absolute_error(y, predictions)
@@ -429,17 +429,17 @@ const IntroSectionRefactored = () => {
 
         {/* Section 4: Model Validation */}
         <TabsContent value="model-validation" className="space-y-8">
-          <EducationalCard title="📊 4. Validation d'un modèle" type="concept">
+          <EducationalCard title="4. Validation d'un modèle" type="concept">
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl border-l-4 border-orange-500">
-                <h4 className="font-bold text-orange-800 mb-3">🎯 Objectif : Valider la fiabilité d'un modèle</h4>
+                <h4 className="font-bold text-orange-800 mb-3">Objectif : Valider la fiabilité d'un modèle</h4>
 
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border-l-4 border-red-500">
-                    <h5 className="font-semibold text-red-800 mb-2">⚠️ Le piège du score sur les données d'entraînement</h5>
+                    <h5 className="font-semibold text-red-800 mb-2">Le piège du score sur les données d'entraînement</h5>
                     <p className="text-sm mb-3">
                       Un modèle performant sur les données d'entraînement peut <strong>échouer sur de nouvelles données</strong>.
-                      C'est comme réviser avec les réponses du test - on ne teste pas vraiment ses connaissances !
+                      C'est comme réviser avec les réponses du test - on ne teste pas vraiment ses connaissances.
                     </p>
                     <div className="bg-red-50 p-3 rounded">
                       <p className="text-xs"><strong>Analogie :</strong> un étudiant qui mémorise les réponses réussira les mêmes questions, mais pas forcément un nouveau test.</p>
@@ -447,7 +447,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">✅ Solution : Train-Test Split</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">Solution : Train-Test Split</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       from sklearn.model_selection import train_test_split<br/>
                       X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=1)
@@ -465,7 +465,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
-                    <h5 className="font-semibold text-purple-800 mb-2">📏 Calcul de la MAE sur la validation</h5>
+                    <h5 className="font-semibold text-purple-800 mb-2">Calcul de la MAE sur la validation</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       model.fit(X_train, y_train)<br/>
                       val_predictions = model.predict(X_val)<br/>
@@ -494,15 +494,15 @@ const IntroSectionRefactored = () => {
 
         {/* Section 5: Underfitting and Overfitting */}
         <TabsContent value="overfitting" className="space-y-8">
-          <EducationalCard title="⚖️ 5. Sous-ajustement et sur-ajustement" type="concept">
+          <EducationalCard title="5. Sous-ajustement et sur-ajustement" type="concept">
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-xl border-l-4 border-yellow-500">
-                <h4 className="font-bold text-yellow-800 mb-3">🎯 Objectif : Diagnostiquer les problèmes de complexité du modèle</h4>
+                <h4 className="font-bold text-yellow-800 mb-3">Objectif : Diagnostiquer les problèmes de complexité du modèle</h4>
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
-                      <h5 className="font-semibold text-blue-800 mb-2">📉 Sous-ajustement (Underfitting)</h5>
+                      <h5 className="font-semibold text-blue-800 mb-2">Sous-ajustement (Underfitting)</h5>
                       <div className="space-y-2 text-sm">
                         <p><strong>Définition :</strong> Modèle trop simple</p>
                         <p><strong>Symptôme :</strong> Arbre avec peu de feuilles</p>
@@ -514,7 +514,7 @@ const IntroSectionRefactored = () => {
                     </div>
 
                     <div className="bg-white p-4 rounded-lg border-l-4 border-red-500">
-                      <h5 className="font-semibold text-red-800 mb-2">📈 Sur-ajustement (Overfitting)</h5>
+                      <h5 className="font-semibold text-red-800 mb-2">Sur-ajustement (Overfitting)</h5>
                       <div className="space-y-2 text-sm">
                         <p><strong>Définition :</strong> Modèle trop complexe</p>
                         <p><strong>Symptôme :</strong> Arbre avec trop de feuilles</p>
@@ -527,7 +527,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">🎛️ Contrôle via max_leaf_nodes</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">Contrôle via max_leaf_nodes</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       model = DecisionTreeRegressor(max_leaf_nodes=100, random_state=1)
                     </div>
@@ -548,7 +548,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-gradient-to-r from-purple-100 to-blue-100 p-4 rounded-lg">
-                    <h5 className="font-semibold text-purple-800 mb-2">🎯 Trouver le bon compromis</h5>
+                    <h5 className="font-semibold text-purple-800 mb-2">Trouver le bon compromis</h5>
                     <p className="text-sm mb-2">Testez différentes valeurs de max_leaf_nodes et choisissez celle qui minimise la MAE de validation (valeurs mesurées sur melb_data.csv avec Rooms, Bathroom et Landsize ; elles dépendent des variables choisies) :</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
                       <div className="bg-green-200 p-2 rounded"><strong>50 feuilles → MAE: 368 400</strong></div>
@@ -578,17 +578,17 @@ const IntroSectionRefactored = () => {
 
         {/* Section 6: Random Forests */}
         <TabsContent value="random-forests" className="space-y-8">
-          <EducationalCard title="🌲 6. Forêts aléatoires (random forests)" type="concept">
+          <EducationalCard title="6. Forêts aléatoires (random forests)" type="concept">
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-xl border-l-4 border-green-500">
-                <h4 className="font-bold text-green-800 mb-3">🎯 Objectif : Améliorer les prédictions avec des ensembles d'arbres</h4>
+                <h4 className="font-bold text-green-800 mb-3">Objectif : Améliorer les prédictions avec des ensembles d'arbres</h4>
 
                 <div className="space-y-4">
                   <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
-                    <h5 className="font-semibold text-orange-800 mb-2">⚠️ Limites des arbres de décision uniques</h5>
+                    <h5 className="font-semibold text-orange-800 mb-2">Limites des arbres de décision uniques</h5>
                     <p className="text-sm mb-3">
                       Les arbres de décision sont <strong>sensibles aux petites variations</strong> des données.
-                      Changer quelques points peut créer un arbre complètement différent !
+                      Changer quelques points peut créer un arbre complètement différent.
                     </p>
                     <div className="bg-orange-50 p-3 rounded">
                       <p className="text-xs"><strong>Analogie :</strong> Demander son avis à une seule personne est risqué ; recueillir plusieurs avis indépendants et les moyenner est plus stable.</p>
@@ -596,7 +596,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">🌳 Principe des Forêts Aléatoires</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">Principe des Forêts Aléatoires</h5>
                     <div className="space-y-3">
                       <p className="text-sm">Une forêt aléatoire combine <strong>plusieurs arbres</strong>, chacun entraîné sur un échantillon tiré au hasard avec remise, et limité à un sous-ensemble de variables tiré au hasard à chaque coupure :</p>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -622,25 +622,25 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500">
-                    <h5 className="font-semibold text-blue-800 mb-2">📊 Atouts des forêts aléatoires</h5>
+                    <h5 className="font-semibold text-blue-800 mb-2">Atouts des forêts aléatoires</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="space-y-2">
                         <div className="bg-blue-50 p-2 rounded text-sm">
-                          <strong>🛡️ Réduction du sur-ajustement</strong><br/>
+                          <strong>Réduction du sur-ajustement</strong><br/>
                           <span className="text-xs">La moyenne lisse les erreurs individuelles des arbres</span>
                         </div>
                         <div className="bg-blue-50 p-2 rounded text-sm">
-                          <strong>🎯 Meilleure généralisation</strong><br/>
+                          <strong>Meilleure généralisation</strong><br/>
                           <span className="text-xs">Souvent plus stable qu'un arbre seul sur des données nouvelles</span>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="bg-blue-50 p-2 rounded text-sm">
-                          <strong>⚡ Parallélisable</strong><br/>
+                          <strong>Parallélisable</strong><br/>
                           <span className="text-xs">Les arbres sont indépendants, donc entraînables en parallèle (n_jobs)</span>
                         </div>
                         <div className="bg-blue-50 p-2 rounded text-sm">
-                          <strong>🔧 Peu de réglages</strong><br/>
+                          <strong>Peu de réglages</strong><br/>
                           <span className="text-xs">Donne souvent un bon résultat avec les paramètres par défaut</span>
                         </div>
                       </div>
@@ -648,7 +648,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500">
-                    <h5 className="font-semibold text-purple-800 mb-2">💻 Utilisation avec scikit-learn</h5>
+                    <h5 className="font-semibold text-purple-800 mb-2">Utilisation avec scikit-learn</h5>
                     <div className="bg-gray-100 p-3 rounded text-sm font-mono overflow-x-auto mb-2">
                       from sklearn.ensemble import RandomForestRegressor<br/>
                       rf_model = RandomForestRegressor(n_estimators=100, random_state=1)<br/>
@@ -676,33 +676,33 @@ const IntroSectionRefactored = () => {
           />
 
           <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl border-l-4 border-emerald-500">
-            <h4 className="font-bold text-emerald-800 mb-4 text-center">✅ Points clés du cours</h4>
+            <h4 className="font-bold text-emerald-800 mb-4 text-center">Points clés du cours</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-blue-800 mb-1">🎯 Public visé</h5>
+                  <h5 className="font-semibold text-blue-800 mb-1">Public visé</h5>
                   <p className="text-sm">Débutants en Python, sans prérequis en ML</p>
                 </div>
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-green-800 mb-1">🛠️ Outils</h5>
+                  <h5 className="font-semibold text-green-800 mb-1">Outils</h5>
                   <p className="text-sm">pandas pour l'exploration, scikit-learn pour la modélisation</p>
                 </div>
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-purple-800 mb-1">📚 Pédagogie</h5>
+                  <h5 className="font-semibold text-purple-800 mb-1">Pédagogie</h5>
                   <p className="text-sm">Approche pratique avec exercices intégrés</p>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-orange-800 mb-1">💻 Environnement</h5>
+                  <h5 className="font-semibold text-orange-800 mb-1">Environnement</h5>
                   <p className="text-sm">Python, pandas et scikit-learn, par exemple dans un notebook Jupyter sur votre machine</p>
                 </div>
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-red-800 mb-1">📥 Données</h5>
+                  <h5 className="font-semibold text-red-800 mb-1">Données</h5>
                   <p className="text-sm">Le fichier melb_data.csv est à télécharger sur Kaggle ; il n'est pas fourni ici</p>
                 </div>
                 <div className="bg-white p-3 rounded-lg">
-                  <h5 className="font-semibold text-teal-800 mb-1">🧩 Exercices</h5>
+                  <h5 className="font-semibold text-teal-800 mb-1">Exercices</h5>
                   <p className="text-sm">Énoncé, indices progressifs et solution à afficher</p>
                 </div>
               </div>

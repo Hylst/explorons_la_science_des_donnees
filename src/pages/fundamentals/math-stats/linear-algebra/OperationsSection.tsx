@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { Calculator, Target, Layers, TrendingUp, RotateCcw, AlertCircle } from "lucide-react";
+import { Calculator, Target, Layers, TrendingUp, RotateCcw, AlertCircle, ArrowDown } from "lucide-react";
 
 const OperationsSection = () => {
   const [showDeterminantCalc, setShowDeterminantCalc] = useState(false);
@@ -19,10 +19,10 @@ const OperationsSection = () => {
     <section id="operations" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">4. Opérations Matricielles : Les Règles du Jeu</h2>
       
-      <CourseHighlight title="🎮 Rappel : Les matrices comme des règles de jeu" type="concept">
+      <CourseHighlight title="Rappel : Les matrices comme des règles de jeu" type="concept">
         <p>
           Chaque opération matricielle a ses propres règles, comme aux échecs. 
-          Comprendre ces règles vous donne le pouvoir de manipuler l'information à volonté !
+          Comprendre ces règles vous donne le pouvoir de manipuler l'information à volonté.
         </p>
       </CourseHighlight>
 
@@ -43,7 +43,7 @@ const OperationsSection = () => {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="text-center">
                   <CourseEquation latex="A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}" />
-                  <p className="text-sm my-2">⬇️</p>
+                  <ArrowDown className="h-5 w-5 mx-auto my-2 text-blue-600" aria-hidden="true" />
                   <CourseEquation latex="A^T = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}" />
                 </div>
               </div>
@@ -95,7 +95,7 @@ const OperationsSection = () => {
                   </p>
                   <div className="bg-white p-2 rounded">
                     <p className="text-xs">
-                      <strong>Interprétation :</strong> Cette transformation multiplie les aires par {calculateDeterminant()} !
+                      <strong>Interprétation :</strong> Cette transformation multiplie les aires par {calculateDeterminant()}.
                     </p>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ const OperationsSection = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>🔍 Zoom sur : L'inverse d'une matrice</CardTitle>
+          <CardTitle>Zoom sur : L'inverse d'une matrice</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
@@ -116,12 +116,12 @@ const OperationsSection = () => {
                 <h4 className="font-semibold mb-3">Concept intuitif</h4>
                 <p className="text-sm mb-3">
                   L'inverse A^(-1) "annule" l'effet de A. Si A fait tourner de 90°, 
-                  alors A^(-1) fait tourner de -90° !
+                  alors A^(-1) fait tourner de -90°.
                 </p>
                 <CourseEquation latex="A \times A^{-1} = I" />
                 <div className="bg-blue-50 p-3 rounded-lg mt-3">
                   <p className="text-xs">
-                    Comme 5 × (1/5) = 1, mais pour les matrices !
+                    Comme 5 × (1/5) = 1, mais pour les matrices.
                   </p>
                 </div>
               </div>
@@ -130,22 +130,22 @@ const OperationsSection = () => {
                 <h4 className="font-semibold mb-3">Condition d'existence</h4>
                 <div className="space-y-3">
                   <Badge className="bg-green-100 text-green-800">
-                    det(A) ≠ 0 → Inverse existe ✅
+                    det(A) ≠ 0 → Inverse existe
                   </Badge>
                   <Badge className="bg-red-100 text-red-800">
-                    det(A) = 0 → Pas d'inverse ❌
+                    det(A) = 0 → Pas d'inverse
                   </Badge>
                   <div className="bg-yellow-50 p-3 rounded-lg">
                     <p className="text-xs">
                       <strong>Intuition :</strong> Si le déterminant est 0, la transformation "écrase" 
-                      l'espace en une dimension inférieure. Impossible de revenir en arrière !
+                      l'espace en une dimension inférieure. Impossible de revenir en arrière.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <CourseHighlight title="🎯 Exemple concret : Résoudre un système d'équations" type="example">
+            <CourseHighlight title="Exemple concret : Résoudre un système d'équations" type="example">
               <div className="space-y-3">
                 <p><strong>Problème :</strong> Résoudre le système 2x + 3y = 7 et x + 4y = 6</p>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -153,7 +153,7 @@ const OperationsSection = () => {
                   <CourseEquation latex="\begin{pmatrix} 2 & 3 \\ 1 & 4 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 7 \\ 6 \end{pmatrix}" />
                   <p className="text-sm mt-2"><strong>Solution :</strong> x = A^(-1) × b</p>
                   <div className="bg-green-100 p-2 rounded mt-2">
-                    <p className="text-xs">En pratique : x = 2, y = 1 → Vérifiez : 2×2 + 3×1 = 7 ✅</p>
+                    <p className="text-xs">En pratique : x = 2, y = 1 → Vérifiez : 2×2 + 3×1 = 7</p>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ const OperationsSection = () => {
             <div className="space-y-3">
               <CourseEquation latex="\text{tr}(A) = \sum_{i=1}^{n} a_{ii}" />
               <p className="text-sm">
-                La trace est la somme des éléments diagonaux. Simple mais puissant !
+                La trace est la somme des éléments diagonaux. Simple, mais utile.
               </p>
               <div className="bg-orange-50 p-3 rounded-lg">
                 <p className="text-xs">
@@ -208,7 +208,7 @@ const OperationsSection = () => {
       </div>
 
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200">
-        <h4 className="font-semibold text-blue-800 mb-3">💡 Astuce de mémorisation</h4>
+        <h4 className="font-semibold text-blue-800 mb-3">Astuce de mémorisation</h4>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-white p-3 rounded-lg">
             <p className="font-medium">Transposée</p>
@@ -239,10 +239,10 @@ const OperationsSection = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CourseHighlight title="🔄 Analogie : L'inverse comme un bouton Annuler matriciel" type="concept">
+              <CourseHighlight title="Analogie : L'inverse comme un bouton Annuler matriciel" type="concept">
                 <p>
                   Si une matrice A transforme un vecteur, son inverse A^(-1) fait exactement l'opération contraire. 
-                  C'est comme avoir un bouton "Annuler" pour les transformations géométriques !
+                  C'est comme avoir un bouton "Annuler" pour les transformations géométriques.
                 </p>
               </CourseHighlight>
 
@@ -299,10 +299,10 @@ const OperationsSection = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CourseHighlight title="🎯 Analogie : Les vecteurs propres comme des rails de transformation" type="concept">
+              <CourseHighlight title="Analogie : Les vecteurs propres comme des rails de transformation" type="concept">
                 <p>
                   Imaginez une transformation matricielle comme un flux d'eau. Les vecteurs propres sont les directions 
-                  où l'eau coule naturellement, sans changer de direction - elle ne fait qu'accélérer ou ralentir !
+                  où l'eau coule naturellement, sans changer de direction - elle ne fait qu'accélérer ou ralentir.
                 </p>
               </CourseHighlight>
 
@@ -335,21 +335,21 @@ const OperationsSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-blue-600">🔍 Analyse en Composantes Principales (PCA)</p>
+                      <p className="font-semibold text-blue-600">Analyse en Composantes Principales (PCA)</p>
                       <p className="text-xs">Réduction de dimensionnalité, compression d'images</p>
                     </div>
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-green-600">📊 PageRank de Google</p>
+                      <p className="font-semibold text-green-600">PageRank de Google</p>
                       <p className="text-xs">Classement des pages web par importance</p>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-purple-600">👤 Reconnaissance Faciale</p>
+                      <p className="font-semibold text-purple-600">Reconnaissance Faciale</p>
                       <p className="text-xs">Eigenfaces pour identifier les visages</p>
                     </div>
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-red-600">⚡ Systèmes Dynamiques</p>
+                      <p className="font-semibold text-red-600">Systèmes Dynamiques</p>
                       <p className="text-xs">Stabilité, oscillations, chaos</p>
                     </div>
                   </div>
@@ -369,10 +369,10 @@ const OperationsSection = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CourseHighlight title="🔧 Analogie : Décomposer comme démonter un moteur" type="concept">
+              <CourseHighlight title="Analogie : Décomposer comme démonter un moteur" type="concept">
                 <p>
                   Décomposer une matrice, c'est comme démonter un moteur complexe en pièces simples. 
-                  Chaque pièce a un rôle spécifique, et ensemble elles reconstruisent la machine originale !
+                  Chaque pièce a un rôle spécifique, et ensemble elles reconstruisent la machine originale.
                 </p>
               </CourseHighlight>
 
@@ -455,15 +455,15 @@ const OperationsSection = () => {
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold mb-3">🚀 Exemple Concret : Compression d'Image par SVD</h4>
+                <h4 className="font-semibold mb-3">Exemple Concret : Compression d'Image par SVD</h4>
                 <div className="space-y-3">
                   <p className="text-sm">
                     Une image 1000×1000 pixels = 1 million de nombres. Avec SVD, on peut la compresser 
-                    en gardant seulement les 50 plus grandes valeurs singulières !
+                    en gardant seulement les 50 plus grandes valeurs singulières.
                   </p>
                   <div className="bg-white p-3 rounded">
                     <p className="text-sm">
-                      <strong>Compression :</strong> 1,000,000 → 100,050 nombres (90% de réduction !)<br/>
+                      <strong>Compression :</strong> 1,000,000 → 100,050 nombres (90 % de réduction)<br/>
                       <strong>Qualité :</strong> correcte pour une image peu détaillée ; les détails fins se perdent quand on garde peu de valeurs singulières
                     </p>
                   </div>

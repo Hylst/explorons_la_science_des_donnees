@@ -1,9 +1,10 @@
 
 import ApplicationsSection from "../shared/ApplicationsSection";
+import { Building2, Car, Factory, GraduationCap, Landmark, Megaphone, ShoppingCart, Stethoscope, Wheat } from "lucide-react";
 
 const applications = [
   {
-    icon: <span className="text-2xl">🏥</span>,
+    icon: <Stethoscope className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Aide au diagnostic médical",
     description: "Systèmes d'aide au diagnostic qui analysent symptômes, analyses biologiques et imagerie pour assister les médecins, qui gardent la décision.",
     examples: [
@@ -16,7 +17,7 @@ const applications = [
     difficulty: "Avancé" as const
   },
   {
-    icon: <span className="text-2xl">🚗</span>,
+    icon: <Car className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Véhicules autonomes",
     description: "Briques de perception des véhicules autonomes : reconnaissance d'objets, prédiction de trajectoires.",
     examples: [
@@ -29,7 +30,7 @@ const applications = [
     difficulty: "Avancé" as const
   },
   {
-    icon: <span className="text-2xl">💰</span>,
+    icon: <Landmark className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Finance",
     description: "Détection de fraudes, évaluation des risques de crédit, estimation de valeurs ; la prévision des marchés financiers reste un domaine où les gains sont très incertains.",
     examples: [
@@ -42,7 +43,7 @@ const applications = [
     difficulty: "Intermédiaire" as const
   },
   {
-    icon: <span className="text-2xl">🛒</span>,
+    icon: <ShoppingCart className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Commerce en ligne et recommandations",
     description: "Recommandations personnalisées, prévision de la demande, optimisation des prix et analyse du comportement des clients.",
     examples: [
@@ -55,7 +56,7 @@ const applications = [
     difficulty: "Intermédiaire" as const
   },
   {
-    icon: <span className="text-2xl">🏭</span>,
+    icon: <Factory className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Industrie 4.0 et IoT",
     description: "Maintenance prédictive, optimisation de la production, contrôle qualité automatisé et gestion intelligente de l'énergie.",
     examples: [
@@ -68,7 +69,7 @@ const applications = [
     difficulty: "Intermédiaire" as const
   },
   {
-    icon: <span className="text-2xl">🎯</span>,
+    icon: <Megaphone className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Marketing digital",
     description: "Ciblage publicitaire, analyse de sentiment sur les réseaux sociaux, optimisation des campagnes et prévision de leur retour.",
     examples: [
@@ -81,7 +82,7 @@ const applications = [
     difficulty: "Débutant" as const
   },
   {
-    icon: <span className="text-2xl">🌾</span>,
+    icon: <Wheat className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Agriculture de précision",
     description: "Optimisation des rendements agricoles par analyse satellite, prédiction météo, gestion précise des ressources et détection précoce de maladies.",
     examples: [
@@ -94,7 +95,7 @@ const applications = [
     difficulty: "Intermédiaire" as const
   },
   {
-    icon: <span className="text-2xl">🎓</span>,
+    icon: <GraduationCap className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "EdTech et Formation",
     description: "Personnalisation de l'apprentissage, évaluation automatique, détection des difficultés d'apprentissage et recommandations pédagogiques.",
     examples: [
@@ -107,7 +108,7 @@ const applications = [
     difficulty: "Débutant" as const
   },
   {
-    icon: <span className="text-2xl">🏘️</span>,
+    icon: <Building2 className="h-6 w-6 text-blue-600" aria-hidden="true" />,
     title: "Villes intelligentes (smart cities)",
     description: "Gestion du trafic, optimisation de l'éclairage public et de la collecte des déchets. La prédiction de la criminalité est controversée, car elle peut reproduire des biais des données.",
     examples: [
@@ -124,7 +125,7 @@ const applications = [
 const SupervisedApplicationsSection = () => {
   return (
     <ApplicationsSection
-      title="🌍 Applications de l'apprentissage supervisé"
+      title="Applications de l'apprentissage supervisé"
       applications={applications}
       description="L'apprentissage supervisé sert dans de nombreux secteurs, de la santé à la finance en passant par l'industrie : des modèles apprennent à partir d'exemples étiquetés pour prédire ou classer."
     />

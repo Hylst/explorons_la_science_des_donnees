@@ -116,14 +116,14 @@ export const VisualExplorationSection: React.FC = () => {
 
             <TabsContent value="distribution" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">📊 Distribution des valeurs</h4>
+                <h4 className="font-semibold mb-4">Distribution des valeurs</h4>
                 <DistributionPanel ds={dataset} />
               </div>
             </TabsContent>
 
             <TabsContent value="correlation" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🔗 Matrice de corrélation</h4>
+                <h4 className="font-semibold mb-4">Matrice de corrélation</h4>
                 <CorrelationHeatmap />
                 <p className="mt-3 text-xs text-muted-foreground">Cet onglet utilise son propre jeu à six variables numériques, indépendant du jeu choisi ci-dessus.</p>
               </div>
@@ -131,14 +131,14 @@ export const VisualExplorationSection: React.FC = () => {
 
             <TabsContent value="outliers" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🎯 Détection visuelle des valeurs aberrantes</h4>
+                <h4 className="font-semibold mb-4">Détection visuelle des valeurs aberrantes</h4>
                 <OutliersPanel ds={dataset} />
               </div>
             </TabsContent>
 
             <TabsContent value="profiling" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">🤖 Profilage automatique du jeu de données</h4>
+                <h4 className="font-semibold mb-4">Profilage automatique du jeu de données</h4>
                 <ProfilingPanel ds={dataset} />
               </div>
             </TabsContent>

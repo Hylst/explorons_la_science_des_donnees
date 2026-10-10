@@ -20,7 +20,7 @@ const DataModelingSection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-semibold mb-3">🎯 Principes de normalisation</h3>
+              <h3 className="font-semibold mb-3">Principes de normalisation</h3>
               <div className="space-y-3">
                 <div className="bg-blue-50 p-3 rounded-lg">
                   <h4 className="font-semibold text-blue-800">1NF - Première forme normale</h4>
@@ -37,7 +37,7 @@ const DataModelingSection = () => {
               </div>
             </div>
             <div>
-              <h3 className="font-semibold mb-3">⚡ Dénormalisation stratégique</h3>
+              <h3 className="font-semibold mb-3">Dénormalisation stratégique</h3>
               <div className="bg-yellow-50 p-4 rounded-lg">
                 <p className="text-sm mb-2">
                   En Data Science, on dénormalise parfois pour la performance :
@@ -60,21 +60,21 @@ const DataModelingSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>🏗️ Modélisation dimensionnelle</CardTitle>
+            <CardTitle>Modélisation dimensionnelle</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="mb-4">Pour l'analytique et le Data Warehousing :</p>
             <div className="space-y-3">
               <div className="bg-blue-50 p-3 rounded-lg">
-                <h3 className="font-semibold">Schéma en étoile (Star Schema) ⭐</h3>
+                <h3 className="font-semibold">Schéma en étoile (Star Schema)</h3>
                 <p className="text-xs">Table de faits centrale + dimensions</p>
               </div>
               <div className="bg-green-50 p-3 rounded-lg">
-                <h3 className="font-semibold">Schéma en flocon (Snowflake Schema) ❄️</h3>
+                <h3 className="font-semibold">Schéma en flocon (Snowflake Schema)</h3>
                 <p className="text-xs">Dimensions normalisées</p>
               </div>
               <div className="bg-purple-50 p-3 rounded-lg">
-                <h3 className="font-semibold">Schéma en constellation de faits (Galaxy Schema) 🌌</h3>
+                <h3 className="font-semibold">Schéma en constellation de faits (Galaxy Schema)</h3>
                 <p className="text-xs">Multiples tables de faits</p>
               </div>
             </div>
@@ -83,7 +83,7 @@ const DataModelingSection = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>🔗 Gestion des relations</CardTitle>
+            <CardTitle>Gestion des relations</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">

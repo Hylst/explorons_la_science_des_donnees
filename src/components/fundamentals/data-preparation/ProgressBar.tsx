@@ -16,15 +16,15 @@ interface ProgressBarProps {
 
 // Sections suivies par la barre : constante de module, donc référence stable pour l'effet de défilement
 const sections = [
-  { id: 'introduction', name: 'Introduction', icon: '📚' },
-  { id: 'lifecycle', name: 'Cycle de vie', icon: '🔄' },
-  { id: 'collection', name: 'Collecte', icon: '📊' },
-  { id: 'audit', name: 'Audit qualité', icon: '🔍' },
-  { id: 'cleaning', name: 'Nettoyage', icon: '🧹' },
-  { id: 'transformation', name: 'Transformation', icon: '⚙️' },
-  { id: 'exploration', name: 'Exploration', icon: '📈' },
-  { id: 'validation', name: 'Validation', icon: '✅' },
-  { id: 'automation', name: 'Automatisation', icon: '🤖' }
+  { id: 'introduction', name: 'Introduction' },
+  { id: 'lifecycle', name: 'Cycle de vie' },
+  { id: 'collection', name: 'Collecte' },
+  { id: 'audit', name: 'Audit qualité' },
+  { id: 'cleaning', name: 'Nettoyage' },
+  { id: 'transformation', name: 'Transformation' },
+  { id: 'exploration', name: 'Exploration' },
+  { id: 'validation', name: 'Validation' },
+  { id: 'automation', name: 'Automatisation' }
 ];
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ currentSection }) => {
@@ -101,7 +101,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentSection }) => {
                     ${isCompleted ? 'text-green-700' : 'text-slate-600'}
                   `}
                 >
-                  <span className="text-sm">{section.icon}</span>
                   {isCompleted ? (
                     <CheckCircle className="h-3 w-3 text-green-500" />
                   ) : (

@@ -386,7 +386,7 @@ ORDER BY score_maintenance DESC;`,
       {/* Sélecteur d'exercices */}
       <Card>
         <CardHeader>
-          <CardTitle>🎯 Choisissez votre défi</CardTitle>
+          <CardTitle>Choisissez votre défi</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -442,12 +442,12 @@ ORDER BY score_maintenance DESC;`,
           <CardContent>
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">📖 Contexte</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Contexte</h4>
                 <p className="text-sm">{currentEx.context}</p>
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">🗄️ Schéma de base de données</h4>
+                <h4 className="font-semibold mb-2">Schéma de base de données</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {currentEx.tables.map((table, index) => (
                     <div key={index} className="bg-white p-2 rounded border font-mono text-xs">
@@ -458,7 +458,7 @@ ORDER BY score_maintenance DESC;`,
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-yellow-800 mb-2">❓ Questions à résoudre</h4>
+                <h4 className="font-semibold text-yellow-800 mb-2">Questions à résoudre</h4>
                 <ol className="list-decimal list-inside space-y-1 text-sm">
                   {currentEx.questions.map((question, index) => (
                     <li key={index}>{question}</li>
@@ -506,7 +506,7 @@ ORDER BY score_maintenance DESC;`,
                   <div className="flex items-start gap-2">
                     <Lightbulb className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                     <div>
-                      <h5 className="font-semibold text-green-800 mb-1">💡 Explication détaillée</h5>
+                      <h5 className="font-semibold text-green-800 mb-1">Explication détaillée</h5>
                       <p className="text-sm text-green-700 whitespace-pre-line">
                         {currentEx.explanation}
                       </p>
@@ -515,7 +515,7 @@ ORDER BY score_maintenance DESC;`,
                 </div>
 
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold text-blue-800 mb-2">🚀 Pour aller plus loin</h5>
+                  <h5 className="font-semibold text-blue-800 mb-2">Pour aller plus loin</h5>
                   <ul className="text-sm space-y-1">
                     <li>• Testez les requêtes avec différents jeux de données</li>
                     <li>• Analysez les plans d'exécution avec EXPLAIN</li>

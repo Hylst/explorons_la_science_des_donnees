@@ -117,7 +117,7 @@ export const OutliersPanel: React.FC<{ ds: SampleDataset }> = ({ ds }) => {
         </div>
       </div>
       <div className="p-4 bg-yellow-50 rounded-lg">
-        <h6 className="font-medium text-yellow-800 mb-2">⚠️ Valeurs aberrantes détectées sur « {ds.numeric} »</h6>
+        <h6 className="font-medium text-yellow-800 mb-2">Valeurs aberrantes détectées sur « {ds.numeric} »</h6>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-yellow-900">
           <div><span className="font-medium">Méthode IQR :</span> {d.outliersIqr.length} valeur(s) : {listed(d.outliersIqr)}</div>
           <div><span className="font-medium">Méthode Z (|z| &gt; 3) :</span> {d.outliersZ.length} valeur(s) : {listed(d.outliersZ)}</div>
@@ -155,7 +155,7 @@ export const ProfilingPanel: React.FC<{ ds: SampleDataset }> = ({ ds }) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h5 className="font-medium mb-3">📋 Complétude par variable</h5>
+          <h5 className="font-medium mb-3">Complétude par variable</h5>
           <div className="space-y-2">
             {p.perColumn.map((c) => (
               <div key={c.column} className="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded">
@@ -171,7 +171,7 @@ export const ProfilingPanel: React.FC<{ ds: SampleDataset }> = ({ ds }) => {
           </div>
         </div>
         <div>
-          <h5 className="font-medium mb-3">🔍 Recommandations (déduites des chiffres)</h5>
+          <h5 className="font-medium mb-3">Recommandations (déduites des chiffres)</h5>
           <div className="space-y-2 text-sm">
             {withMissing.length > 0 && (
               <div className="p-2 bg-blue-50 rounded border-l-4 border-blue-400">

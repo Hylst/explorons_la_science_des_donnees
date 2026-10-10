@@ -33,7 +33,7 @@ const DifferentialCalculusIntro = () => {
           </Badge>
         </div>
 
-        <CourseHighlight title="🎯 Objectifs d'apprentissage" type="concept">
+        <CourseHighlight title="Objectifs d'apprentissage" type="concept">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <li>• Comprendre intuitivement la notion de dérivée</li>
             <li>• Se familiariser avec les règles de dérivation fondamentales</li>

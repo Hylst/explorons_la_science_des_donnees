@@ -51,7 +51,7 @@ Pour tenir le contraste WCAG AA (4,5:1) du texte coloré sur fond clair et du te
 
 **Fichier :** `src/components/ui/unified-hero-section.tsx`
 
-Section héros unifiée. Utilisée par 32 fichiers : l'accueil (`home/Hero.tsx`), la plupart des pages de rubrique (Introduction, Fondamentaux, Machine Learning, Outils et leurs sous-pages, Projets, Quiz, Ressources, Glossaire, Blog, Communauté), les pages de mathématiques et de statistiques, les trois pages d'apprentissage ML, et plusieurs cours (`math-intro`, `inferential-statistics`, `MLModelsGuide`, `TransformersGuide`, `DatabaseFundamentals`).
+Section héros unifiée. Utilisée par 28 fichiers : l'accueil (`home/Hero.tsx`), la plupart des pages de rubrique (Introduction, Fondamentaux, Machine Learning, Outils et leurs sous-pages, Projets, Quiz, Ressources, Glossaire, Blog, Communauté), les pages de mathématiques et de statistiques, les trois pages d'apprentissage ML, et les 10 cours rédigés, par l'intermédiaire de `components/courses/lessons/LessonCoursePage.tsx` (variante `course`, titre en `h2` parce que `CourseLayout` porte déjà le `h1`). Le titre et la description s'affichent dès le premier rendu, sans animation retardée (ils retardaient le LCP de chaque page) ; seuls les badges et les décorations gardent leur fondu.
 
 #### Props
 
@@ -59,6 +59,7 @@ Section héros unifiée. Utilisée par 32 fichiers : l'accueil (`home/Hero.tsx`)
 interface UnifiedHeroSectionProps {
   variant: "home" | "page" | "course";
   title: string;
+  titleAs?: "h1" | "h2";         // h1 par défaut ; h2 quand le gabarit de la page porte déjà le h1
   subtitle?: string;
   description: string;
   alert?: {
@@ -98,7 +99,7 @@ interface UnifiedHeroSectionProps {
 
 **Fichier :** `src/components/ui/animated-entrance.tsx`
 
-Animations d'entrée déclenchées par un `IntersectionObserver`. Le fichier exporte `AnimatedEntrance`, `StaggeredAnimation`, `Parallax`, `MorphingShape` et `TextReveal`. Dans le reste du code, seul `AnimatedEntrance` est importé (par `UnifiedHeroSection`).
+Animations d'entrée déclenchées par un `IntersectionObserver`. Le fichier exporte `AnimatedEntrance`, `StaggeredAnimation`, `Parallax`, `MorphingShape` et `TextReveal`. Dans le reste du code, seul `AnimatedEntrance` est importé (par `UnifiedHeroSection`, pour les badges et les décorations). Elles sont coupées par `prefers-reduced-motion` (voir plus bas).
 
 Valeurs de `animation` : `fade-in`, `fade-in-up` (défaut), `fade-in-down`, `fade-in-left`, `fade-in-right`, `scale-in`. Chacune correspond à une classe `animate-*` de `tailwind.config.ts`.
 
@@ -124,22 +125,30 @@ Logo de la barre de navigation (`layout/Navbar.tsx`), lien vers l'accueil avec i
 
 ### 4. Images
 
-Les images du site utilisent des balises `<img>` directes, avec `loading="lazy"` quand elles sont sous la ligne de flottaison (accueil, `BigDataSection.tsx`). Un composant `OptimizedImage` (chargement différé par `IntersectionObserver`, image de repli) a existé : il n'était importé nulle part et a été supprimé le 5 octobre 2026. Les chemins d'images statiques doivent passer par `asset()` de `src/lib/asset.ts`, jamais en dur. Les illustrations de l'accueil sont des SVG animés maison (`public/svg/cards/`) ; une image décorative porte `alt=""`.
+Les images du site utilisent des balises `<img>` directes, avec `loading="lazy"` quand elles sont sous la ligne de flottaison (accueil, catalogue des cours, cartes du blog, `BigDataSection.tsx`). Un composant `OptimizedImage` (chargement différé par `IntersectionObserver`, image de repli) a existé : il n'était importé nulle part et a été supprimé le 5 octobre 2026. Les chemins d'images statiques doivent passer par `asset()` de `src/lib/asset.ts`, jamais en dur. Les illustrations des trois cours mis en avant sur l'accueil sont des SVG animés maison (`public/svg/cards/`, `lib/course-image.ts`) ; les autres cours et chaque article du blog ont une image WebP (`public/img/courses/`, `public/img/blog/`). Une image décorative porte `alt=""`.
 
 ### 5. Composants de cours
 
-Les pages de cours sont composées à partir de `src/components/courses/` :
+Les 10 cours sont des données (`src/data/lessons/<cours>/`) affichées par `src/components/courses/lessons/` ; une page de cours (`src/pages/courses/...`) ne fait que passer son cours à `LessonCoursePage` (25 à 33 lignes). Les composants de `src/components/courses/lessons/` :
 
-- `CourseHeroTemplate` : en-tête de cours (utilisé par 5 pages : Python et quatre cours à plan ; durée suivie de « (indicatif) »)
-- `CourseModuleTemplate` : structure d'un module, avec barre d'avancement locale
+- `LessonCoursePage` : page d'un cours (bandeau `UnifiedHeroSection`, encadré « Comment ça marche », liste des modules, section « Et ensuite ? » reçue en propriété) dans `CourseLayout`. Propriétés : `course`, `title`, `categoryName`, `description`, `level`, `icon`, `language` (`sql` ou `python`, pour le texte du mode d'emploi) et `next`
+- `LessonModuleView` : un module repliable, avec objectifs, sections, quiz (`CourseQuizBlock`) et boutons de progression (`CourseItemActions`) ; les formules (`CourseEquation`) sont chargées à la demande
+- `RunnableCode` : exemple modifiable, exécuté par `runCode` (SQL ou Python), figures Matplotlib comprises
+- `LessonExercise` : exercice vérifié par le moteur (SQL : le dernier tableau de la réponse est comparé à celui du corrigé ; Python : la réponse suivie des `assert` de l'exercice), avec indice et corrigé repliables
+- `LessonWidget` : composant interactif chargé à la demande, nommé par une section `widget` (banc d'essai NumPy, schémas animés de `components/courses/python`, figures SVG de `CourseFigures`)
+- `LessonMarkdown` : rendu du texte markdown (sans tableau ni lien externe)
+
+Les briques de `src/components/courses/` restent partagées :
+
 - `CourseEquation` : équations KaTeX
-- `CourseHighlight` : encadrés de mise en évidence (`type` : `info`, `concept`, `example`, `question`, `warning`, `tip`, `success`)
+- `CourseHighlight` : encadrés de mise en évidence (`type` : `info`, `concept`, `example`, `question`, `warning`, `tip`, `success`), utilisés par 45 fichiers
 - `CourseBreadcrumb` : fil d'Ariane
 - `CourseFigures` : figures SVG (sans image distante)
 - `CourseQuizBlock` : quiz intégré au cours
-- `CourseItemActions` : progression et notes locales (via `hooks/use-course-progress.ts`)
+- `CourseItemActions` : progression et notes locales (via `hooks/use-course-progress.ts`) ; sert aussi aux fiches de projet
+- `CourseHeroTemplate` et `CourseModuleTemplate` : gabarits des anciens cours « à plan » (en-tête et liste de modules avec avancement local). Aucune page ne les importe depuis le 9 octobre 2026 ; ils restent pour un futur cours qui ne serait qu'une liste de modules
 
-Le gabarit de page des cours longs est `src/components/layout/CourseLayout.tsx`. `layout/PageHeader.tsx` (en-tête simple) existe toujours et n'est utilisé que par `DatabasesRefactored.tsx`. `CourseHeroTemplate` et `UnifiedHeroSection` coexistent : aucune migration de l'un vers l'autre n'a été réalisée, suivre une page voisine lors d'un ajout.
+Le gabarit de page des cours est `src/components/layout/CourseLayout.tsx`. `layout/PageHeader.tsx` (en-tête simple) existe toujours et n'est utilisé que par `DatabasesRefactored.tsx`. Pour écrire un cours, voir `readme_dev.md` (section 5.13).
 
 ### 6. Encadrés pédagogiques et sources
 
@@ -157,6 +166,15 @@ Le gabarit de page des cours longs est `src/components/layout/CourseLayout.tsx`.
 - `components/routing/CourseRouter.tsx` : routes `/courses/*`
 - `components/routing/ScrollManager.tsx` : défilement en haut à chaque navigation, vers l'ancre, restauration de la position au retour arrière
 - `components/routing/RouteMeta.tsx` : titre et description de la page affichée, lus dans `config/page-meta.ts` (même source que les pages HTML générées au build)
+
+### 9. Affichage par morceaux et chargement différé
+
+- `components/layout/ProgressiveSections.tsx` : affiche la première section d'une longue page, puis une de plus à chaque moment d'inactivité du navigateur ; tout d'un coup si l'adresse a une ancre ou si une position de lecture va être restaurée. Les sections après l'introduction sont des `React.lazy`
+- `components/layout/LazyBlock.tsx` : un bloc chargé à la demande sous le bandeau (explorateur du glossaire, contenu de la page ML, sections des outils...), avec une attente qui réserve la hauteur
+- `components/ui/deferred-chart.tsx` : `DeferredResponsiveContainer`, mêmes propriétés que `ResponsiveContainer` de Recharts, mais le graphique n'est dessiné qu'à moins de 400 px de l'écran, dans une boîte de la taille exacte du graphique. Tout graphique Recharts du site l'utilise (hors `components/ui/chart.tsx`, le composant shadcn)
+- Les attentes de `ProgressiveSections` et de `LazyBlock` portent `data-sections-pending` : `ScrollManager` et le test de fumée attendent qu'il n'en reste aucune
+
+Mesures (Lighthouse mobile, 6 et 7 octobre 2026) : `docs/PERFORMANCE_GUIDE.md`.
 
 ## Système d'animations
 
@@ -202,7 +220,7 @@ Classes présentes, entre autres : `.btn-interactive` (survol avec balayage de d
 
 1. **Routage** : lier les URL canoniques (les anciennes URL redirigées sont listées dans `src/config/routes.ts`)
 2. **Données** : aucune statistique inventée (étudiants, notes, avis) ; afficher uniquement de l'état réel et local ; citer la source de tout chiffre externe avec `SourceNote`
-3. **Animations** : éviter d'empiler de nombreuses animations simultanées. Le code ne gère pas `prefers-reduced-motion` aujourd'hui (aucune occurrence dans `src/` ni dans `tailwind.config.ts`) : amélioration possible
+3. **Animations** : éviter d'empiler de nombreuses animations simultanées. `src/index.css` respecte `prefers-reduced-motion` (bloc `@media (prefers-reduced-motion: reduce)`) ; les illustrations animées de `public/svg/cards/` font de même, ce que `illustrations.test.ts` vérifie
 4. **Responsive** : tester aux largeurs 390, 768, 1024 et 1280 px avec les classes responsives de Tailwind ; grilles écrites `grid grid-cols-1 md:grid-cols-N`, boutons à libellé long en `whitespace-normal h-auto`
 5. **Assets** : `asset()` de `src/lib/asset.ts` et `import.meta.env.BASE_URL`, jamais de chemin `/img/...` en dur
 6. **Thème** : vérifier le rendu en clair et en sombre ; les couleurs en dur dans `style` ne suivent pas le thème
@@ -213,12 +231,13 @@ Classes présentes, entre autres : `.btn-interactive` (survol avec balayage de d
 ```bash
 npm run lint
 npm run typecheck     # tsc -p tsconfig.app.json --noEmit
-npm run test          # Vitest (jsdom)
-npm run build
+npm test              # Vitest (jsdom) ; prépare d'abord public/vendor (cours Python testés sur Pyodide)
+npm run test:smoke    # affiche chacune des 56 routes et chaque onglet (environ 20 s)
+npm run build:hylst   # build statique, puis contrôle du dossier dist-hylst
 ```
 
-`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (12 fichiers, 334 tests au 1er octobre 2026) ; React Testing Library n'est pas installée.
+`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (45 fichiers de test au 9 octobre 2026, dont le test de fumée ; `npm test` donne le nombre de tests) ; React Testing Library n'est pas installée.
 
 ---
 
-*Documentation d'Explorons la Data Science. Dernière révision : 1er octobre 2026 (alignée sur le code de la branche d'audit).*
+*Documentation d'Explorons la Data Science. Dernière révision : 10 octobre 2026 (alignée sur le code de la branche d'audit).*

@@ -27,11 +27,11 @@ const MatrixTypesSection = () => {
     <section id="matrix-types" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">3. Types de Matrices Importantes : La Boîte à Outils</h2>
       
-      <CourseHighlight title="🧰 Analogie : Les matrices comme des outils spécialisés" type="concept">
+      <CourseHighlight title="Analogie : Les matrices comme des outils spécialisés" type="concept">
         <p>
           Chaque type de matrice est comme un outil spécialisé dans une boîte à outils. 
           Un marteau pour enfoncer des clous, un tournevis pour visser... 
-          Chaque matrice a sa spécialité et ses applications optimales !
+          Chaque matrice a sa spécialité et ses applications optimales.
         </p>
       </CourseHighlight>
 
@@ -97,7 +97,7 @@ const MatrixTypesSection = () => {
                 </p>
                 <div className="bg-white p-2 rounded mt-2">
                   <p className="text-xs">
-                    <strong>Avantage :</strong> Calculs très rapides ! D^n se calcule en O(n) au lieu de O(n³)
+                    <strong>Avantage :</strong> Calculs très rapides : D^n se calcule en O(n) au lieu de O(n³)
                   </p>
                 </div>
               </div>
@@ -248,7 +248,7 @@ const MatrixTypesSection = () => {
       </div>
 
       {/* Practical Applications */}
-      <CourseHighlight title="🎯 Applications pratiques : Système de recommandation matriciel" type="example">
+      <CourseHighlight title="Applications pratiques : Système de recommandation matriciel" type="example">
         <div className="space-y-4">
           <p><strong>Problème :</strong> Netflix utilise des matrices pour recommander des films. Comment ça marche ?</p>
           
@@ -296,7 +296,7 @@ const MatrixTypesSection = () => {
             
             <div className="bg-blue-100 p-3 rounded mt-4">
               <p className="text-sm">
-                <strong>Magie :</strong> En décomposant la matrice incomplète, on peut prédire les notes manquantes ! 
+                <strong>Intérêt :</strong> En décomposant la matrice incomplète, on peut prédire les notes manquantes. 
                 La factorisation matricielle a été popularisée par le Netflix Prize (2006-2009), un concours de prédiction de notes de films.
               </p>
             </div>

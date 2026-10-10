@@ -115,7 +115,7 @@ const CleaningSection: React.FC = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">🔍 Techniques de détection</h4>
+                  <h4 className="font-semibold text-slate-700">Techniques de détection</h4>
                   <div className="space-y-3">
                     {[
                       { method: "df.isnull().sum()", desc: "Comptage par colonne" },
@@ -134,7 +134,7 @@ const CleaningSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de traitement</h4>
+                  <h4 className="font-semibold text-slate-700">Stratégies de traitement</h4>
                   <p className="text-xs text-muted-foreground">
                     Il n'existe pas de seuil de pourcentage qui décide à lui seul : le choix dépend surtout de la cause du manque.
                   </p>
@@ -159,8 +159,8 @@ const CleaningSection: React.FC = () => {
                             <Badge variant="outline" className="text-xs">{strat.when}</Badge>
                           </div>
                           <div className="grid grid-cols-2 gap-2 text-xs">
-                            <div className="text-green-600">✅ {strat.pros}</div>
-                            <div className="text-red-600">❌ {strat.cons}</div>
+                            <div className="text-green-600">{strat.pros}</div>
+                            <div className="text-red-600">{strat.cons}</div>
                           </div>
                         </div>
                       </Card>
@@ -171,7 +171,7 @@ const CleaningSection: React.FC = () => {
 
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
-                  <h5 className="font-semibold text-blue-700">💡 Exemple pratique : imputation</h5>
+                  <h5 className="font-semibold text-blue-700">Exemple pratique : imputation</h5>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -265,8 +265,8 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                         <p className="text-sm text-orange-600">{method.description}</p>
                       </div>
                       <div className="space-y-2 text-xs">
-                        <div className="text-green-600">✅ {method.pros}</div>
-                        <div className="text-red-600">❌ {method.cons}</div>
+                        <div className="text-green-600">{method.pros}</div>
+                        <div className="text-red-600">{method.cons}</div>
                       </div>
                       <details className="text-xs">
                         <summary className="cursor-pointer text-blue-600 hover:text-blue-800">Voir code</summary>
@@ -302,7 +302,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">🔍 Types de doublons</h4>
+                  <h4 className="font-semibold text-slate-700">Types de doublons</h4>
                   <div className="space-y-3">
                     {[
                       { type: "Exact", desc: "Lignes identiques", example: "Jean Dupont, Jean Dupont" },
@@ -323,7 +323,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-slate-700">⚡ Stratégies de déduplication</h4>
+                  <h4 className="font-semibold text-slate-700">Stratégies de déduplication</h4>
                   <div className="space-y-3">
                     {[
                       { method: "drop_duplicates()", use: "Doublons exacts", params: "df.drop_duplicates(subset=['col1', 'col2'])", key: "doublons" },
@@ -363,7 +363,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
       <Card className="bg-gradient-to-br from-blue-50 to-green-50 border-blue-200">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-blue-700">📋 Cas pratique : nettoyage de données de patients (fictives)</CardTitle>
+            <CardTitle className="text-blue-700">Cas pratique : nettoyage de données de patients (fictives)</CardTitle>
             <Button 
               variant="outline" 
               onClick={() => setShowCaseStudy(!showCaseStudy)}
@@ -404,7 +404,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                   ))}
                 </div>
                 <div className="space-y-2">
-                  <h5 className="font-medium text-red-600">🚨 Problèmes Identifiés :</h5>
+                  <h5 className="font-medium text-red-600">Problèmes Identifiés :</h5>
                   <ul className="text-sm text-red-600 space-y-1">
                     <li>• Doublon P001 (formats différents)</li>
                     <li>• Âge manquant P002</li>
@@ -447,7 +447,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-green-50 border-green-200">
                 <CardContent className="p-4">
-                  <h5 className="font-semibold text-green-700 mb-2">✅ Actions Correctives</h5>
+                  <h5 className="font-semibold text-green-700 mb-2">Actions Correctives</h5>
                   <ul className="text-sm text-green-600 space-y-1">
                     <li>• Fusion des doublons P001</li>
                     <li>• Âge impossible P003 (150) marqué manquant, jamais « corrigé » à la main</li>
@@ -458,7 +458,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               </Card>
               <Card className="bg-blue-50 border-blue-200">
                 <CardContent className="p-4">
-                  <h5 className="font-semibold text-blue-700 mb-2">🔍 Enrichissements</h5>
+                  <h5 className="font-semibold text-blue-700 mb-2">Enrichissements</h5>
                   <ul className="text-sm text-blue-600 space-y-1">
                     <li>• Colonne indicatrice « âge manquant »</li>
                     <li>• Imputation de l'âge (médiane) après découpage train/test</li>
@@ -469,7 +469,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               </Card>
               <Card className="bg-purple-50 border-purple-200">
                 <CardContent className="p-4">
-                  <h5 className="font-semibold text-purple-700 mb-2">📈 Prêt pour Analyse</h5>
+                  <h5 className="font-semibold text-purple-700 mb-2">Prêt pour Analyse</h5>
                   <ul className="text-sm text-purple-600 space-y-1">
                     <li>• Effectifs par diagnostic</li>
                     <li>• Âge moyen par diagnostic (valeurs manquantes exclues)</li>
@@ -481,7 +481,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             </div>
 
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h5 className="font-semibold text-blue-700 mb-3">🔧 Pipeline de Nettoyage Appliqué</h5>
+              <h5 className="font-semibold text-blue-700 mb-3">Pipeline de Nettoyage Appliqué</h5>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <h6 className="font-medium mb-2">Étapes de nettoyage :</h6>

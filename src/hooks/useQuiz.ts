@@ -275,7 +275,7 @@ export const useQuizResults = (session: QuizSession | null) => {
       recommendations.push('Travaillez sur la rapidité de réponse.');
     }
     if (scorePercentage >= 80) {
-      recommendations.push('Excellent travail! Essayez un niveau plus difficile.');
+      recommendations.push('Excellent travail. Essayez un niveau plus difficile.');
     }
 
     const quizResults: QuizResults = {

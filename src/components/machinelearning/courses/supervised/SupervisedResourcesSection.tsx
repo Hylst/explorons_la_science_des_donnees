@@ -220,7 +220,7 @@ const SupervisedResourcesSection = () => {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-center">📚 Ressources pour découvrir l'apprentissage supervisé</h2>
+      <h2 className="text-3xl font-bold text-center">Ressources pour découvrir l'apprentissage supervisé</h2>
       <p className="text-center text-gray-600 max-w-3xl mx-auto">
         Sélection commentée de ressources pour s'initier à l'apprentissage supervisé et progresser,
         des bases théoriques aux applications pratiques. Elles sont toutes en anglais.
@@ -228,7 +228,7 @@ const SupervisedResourcesSection = () => {
 
       {/* Conseils et avertissements */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <EducationalCard title="💡 Conseils d'apprentissage" type="saviez-vous">
+        <EducationalCard title="Conseils d'apprentissage" type="saviez-vous">
           <ul className="space-y-2 text-sm">
             {tips.map((tip, index) => (
               <li key={index} className="flex items-start gap-2">
@@ -239,7 +239,7 @@ const SupervisedResourcesSection = () => {
           </ul>
         </EducationalCard>
 
-        <EducationalCard title="⚠️ Points d'attention" type="rappel">
+        <EducationalCard title="Points d'attention" type="rappel">
           <ul className="space-y-2 text-sm">
             {warnings.map((warning, index) => (
               <li key={index} className="flex items-start gap-2">
@@ -250,7 +250,7 @@ const SupervisedResourcesSection = () => {
           </ul>
         </EducationalCard>
 
-        <EducationalCard title="✅ Bonnes pratiques" type="concept">
+        <EducationalCard title="Bonnes pratiques" type="concept">
           <ul className="space-y-2 text-sm">
             {bestPractices.map((practice, index) => (
               <li key={index} className="flex items-start gap-2">

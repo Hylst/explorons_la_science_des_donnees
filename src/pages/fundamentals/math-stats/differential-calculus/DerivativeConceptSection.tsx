@@ -69,17 +69,17 @@ const DerivativeConceptSection = () => {
 
   const analogies = [
     {
-      title: "🚗 Analogie automobile",
+      title: "Analogie automobile",
       description: "Si votre position est f(t), alors votre vitesse est f'(t) - la dérivée de votre position par rapport au temps.",
       example: "Position f(t) = 5t² (en m) → vitesse à t = 1 s : f'(1) = 10 m/s"
     },
     {
-      title: "🏔️ Analogie montagne",
+      title: "Analogie montagne",
       description: "La dérivée, c'est la pente de la montagne à l'endroit où vous vous trouvez.",
       example: "Pente raide → Dérivée élevée | Plateau → Dérivée nulle"
     },
     {
-      title: "💰 Analogie économique",
+      title: "Analogie économique",
       description: "Si f(t) est votre capital au temps t, f'(t) est la vitesse à laquelle il varie (en euros par mois, par exemple).",
       example: "Capital croissant → Dérivée positive | Perte → Dérivée négative"
     }
@@ -89,14 +89,14 @@ const DerivativeConceptSection = () => {
     <section id="derivatives" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">1. Le Concept de Dérivée</h2>
       
-      <CourseHighlight title="🧠 Intuition fondamentale" type="concept">
+      <CourseHighlight title="Intuition fondamentale" type="concept">
         <p className="mb-4">
           Imaginez que vous regardez une courbe à la loupe. Plus vous zoomez, plus la courbe 
-          ressemble à une ligne droite. La dérivée, c'est la pente de cette ligne droite !
+          ressemble à une ligne droite. La dérivée, c'est la pente de cette ligne droite.
         </p>
         <div className="bg-blue-50 p-4 rounded-lg">
           <p className="text-sm font-semibold text-blue-800">
-            💡 La dérivée = "À quelle vitesse ça change ?"
+            La dérivée = "À quelle vitesse ça change ?"
           </p>
         </div>
       </CourseHighlight>
@@ -123,10 +123,10 @@ const DerivativeConceptSection = () => {
               </div>
             </div>
 
-            <CourseHighlight title="📝 Rappel important" type="info">
+            <CourseHighlight title="Rappel important" type="info">
               <p className="text-sm">
                 La dérivée n'existe que si la fonction est "lisse" au point considéré. 
-                Une fonction peut être continue sans être dérivable !
+                Une fonction peut être continue sans être dérivable.
               </p>
             </CourseHighlight>
           </CardContent>
@@ -209,7 +209,7 @@ const DerivativeConceptSection = () => {
         </Card>
       </div>
 
-      <CourseHighlight title="🔍 Zoom sur : Analogies pour comprendre" type="example">
+      <CourseHighlight title="Zoom sur : Analogies pour comprendre" type="example">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {analogies.map((analogy, index) => (
             <div key={index} className="bg-white p-4 rounded-lg border">
@@ -223,13 +223,13 @@ const DerivativeConceptSection = () => {
         </div>
       </CourseHighlight>
 
-      <CourseHighlight title="⚠️ Le saviez-vous ?" type="warning">
+      <CourseHighlight title="Le saviez-vous ?" type="warning">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h4 className="font-semibold mb-2">Fonctions non dérivables</h4>
             <ul className="text-sm space-y-1">
               <li>• |x| en x = 0 (point anguleux)</li>
-              <li>• ReLU en x = 0 (utilisée en ML !)</li>
+              <li>• ReLU en x = 0 (utilisée en ML)</li>
               <li>• √x en x = 0 (tangente verticale)</li>
             </ul>
           </div>

@@ -84,7 +84,7 @@ const ExerciseCard = ({ id, title, difficulty, duration, description, hints, sol
         <p className="mb-4">{description}</p>
 
         <div className="mb-4">
-          <h5 className="font-semibold mb-2">🎯 Compétences travaillées :</h5>
+          <h5 className="font-semibold mb-2">Compétences travaillées :</h5>
           <div className="flex flex-wrap gap-2">
             {skills.map(skill => (
               <Badge key={skill} variant="secondary">{skill}</Badge>
@@ -118,13 +118,13 @@ const ExerciseCard = ({ id, title, difficulty, duration, description, hints, sol
             className={isCompleted ? "bg-green-700 hover:bg-green-800 text-white" : ""}
             disabled={isCompleted}
           >
-            {isCompleted ? "✅ Terminé" : "Marquer comme terminé"}
+            {isCompleted ? "Terminé" : "Marquer comme terminé"}
           </Button>
         </div>
 
         {activePanel === `${id}-hints` && (
           <div className="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-            <h5 className="font-semibold mb-2">💡 Indices :</h5>
+            <h5 className="font-semibold mb-2">Indices :</h5>
             <ul className="text-sm space-y-1">
               {hints.map((hint, index) => (
                 <li key={index}>• {hint}</li>
@@ -239,15 +239,15 @@ const PracticalExercises = () => {
 
       <Tabs defaultValue="beginner" className="space-y-6">
         <TabsList className="grid grid-cols-1 md:grid-cols-3 w-full">
-          <TabsTrigger value="beginner">🌱 Débutant</TabsTrigger>
-          <TabsTrigger value="intermediate">🚀 Intermédiaire</TabsTrigger>
-          <TabsTrigger value="advanced">⭐ Avancé</TabsTrigger>
+          <TabsTrigger value="beginner">Débutant</TabsTrigger>
+          <TabsTrigger value="intermediate">Intermédiaire</TabsTrigger>
+          <TabsTrigger value="advanced">Avancé</TabsTrigger>
         </TabsList>
 
         <TabsContent value="beginner" className="space-y-6">
           <ExerciseCard 
             id="ex1"
-            title="🧮 Calculatrice de ROI Marketing"
+            title="Calculatrice de ROI Marketing"
             difficulty="Débutant"
             duration="30 min"
             description="Créez un script qui calcule le retour sur investissement (ROI) d'une campagne marketing à partir de son coût et de ses revenus, puis commente le résultat selon des seuils que vous choisissez."
@@ -277,25 +277,25 @@ def calculer_roi_marketing():
         return
     
     # Affichage des résultats
-    print(f"\\n📊 RÉSULTATS:")
-    print(f"💰 ROI: {roi:.1f}%")
-    print(f"💵 Coût par conversion: {cout_par_conversion:.2f}€")
-    print(f"💸 Bénéfice net: {revenus_generes - cout_campagne:.2f}€")
+    print(f"\\nRÉSULTATS:")
+    print(f"ROI: {roi:.1f}%")
+    print(f"Coût par conversion: {cout_par_conversion:.2f}€")
+    print(f"Bénéfice net: {revenus_generes - cout_campagne:.2f}€")
     
     # Recommandations automatiques
     # Lecture des résultats (seuils choisis pour l'exercice : à adapter à votre activité)
-    print("\\n🎯 LECTURE:")
+    print("\\nLECTURE:")
     if roi > 300:
-        print("🚀 ROI très élevé : la campagne mérite d'être étudiée pour être étendue.")
+        print("ROI très élevé : la campagne mérite d'être étudiée pour être étendue.")
     elif roi > 100:
-        print("✅ ROI correct : la campagne est rentable.")
+        print("ROI correct : la campagne est rentable.")
     elif roi > 0:
-        print("⚠️ ROI positif mais faible : cherchez à réduire le coût ou à augmenter les revenus.")
+        print("ROI positif mais faible : cherchez à réduire le coût ou à augmenter les revenus.")
     else:
-        print("❌ ROI négatif : la campagne a coûté plus qu'elle n'a rapporté.")
+        print("ROI négatif : la campagne a coûté plus qu'elle n'a rapporté.")
 
     if cout_par_conversion > 50:
-        print("💡 Coût par conversion élevé (au-delà de 50 € dans cet exercice).")
+        print("Coût par conversion élevé (au-delà de 50 € dans cet exercice).")
 
 # Exécution
 calculer_roi_marketing()`}
@@ -303,7 +303,7 @@ calculer_roi_marketing()`}
           
           <ExerciseCard 
             id="ex2"
-            title="📊 Analyseur de Ventes Mensuelles"
+            title="Analyseur de Ventes Mensuelles"
             difficulty="Débutant"
             duration="45 min"
             description="Analysez douze mois de ventes (données d'exemple) : meilleur et moins bon mois, variations d'un mois à l'autre, puis une estimation simple pour le mois suivant."
@@ -331,37 +331,37 @@ def analyser_ventes():
     meilleur_mois_idx = ventes.index(max(ventes))
     pire_mois_idx = ventes.index(min(ventes))
     
-    print(f"📈 STATISTIQUES GÉNÉRALES:")
+    print(f"STATISTIQUES GÉNÉRALES:")
     print(f"Total annuel: {total_ventes:,}€")
     print(f"Moyenne mensuelle: {moyenne_mensuelle:,.0f}€")
     print(f"Meilleur mois: {mois[meilleur_mois_idx]} ({max(ventes):,}€)")
     print(f"Pire mois: {mois[pire_mois_idx]} ({min(ventes):,}€)")
     
     # Analyse de tendance
-    print(f"\\n📊 ANALYSE DE TENDANCE:")
+    print(f"\\nANALYSE DE TENDANCE:")
     croissances = []
     for i in range(1, len(ventes)):
         croissance = ((ventes[i] - ventes[i-1]) / ventes[i-1]) * 100
         croissances.append(croissance)
         if abs(croissance) > 15:
-            signe = "📈" if croissance > 0 else "📉"
+            signe = "" if croissance > 0 else ""
             print(f"{signe} {mois[i-1]} → {mois[i]}: {croissance:+.1f}%")
     
     # Prévision simple (moyenne des 3 derniers mois)
     prevision = sum(ventes[-3:]) / 3
-    print(f"\\n🔮 PRÉVISION JANVIER SUIVANT:")
+    print(f"\\nPRÉVISION JANVIER SUIVANT:")
     print(f"Estimation: {prevision:,.0f}€")
     
     # Recommandations
-    print(f"\\n💡 RECOMMANDATIONS:")
+    print(f"\\nRECOMMANDATIONS:")
     if moyenne_mensuelle > 25000:
-        print("✅ Performance excellente maintenue")
+        print("Performance excellente maintenue")
     elif max(ventes) > moyenne_mensuelle * 1.3:
-        print("🎯 Analysez les facteurs du meilleur mois pour les reproduire")
+        print("Analysez les facteurs du meilleur mois pour les reproduire")
     
     variance = sum([(v - moyenne_mensuelle)**2 for v in ventes]) / len(ventes)
     if variance > 10000000:  # Forte variabilité
-        print("⚠️ Ventes très irrégulières - stabilisez votre pipeline")
+        print("Ventes très irrégulières - stabilisez votre pipeline")
 
 analyser_ventes()`}
           />
@@ -370,7 +370,7 @@ analyser_ventes()`}
         <TabsContent value="intermediate" className="space-y-6">
           <ExerciseCard 
             id="ex3"
-            title="🛒 Analyse de paniers e-commerce"
+            title="Analyse de paniers e-commerce"
             difficulty="Intermédiaire"
             duration="60 min"
             description="Construisez une classe qui analyse des achats (données d'exemple), estime la valeur vie client (CLV) de façon simplifiée et suggère des produits souvent achetés ensemble."
@@ -457,7 +457,7 @@ class AnalyseurEcommerce:
         clv_clients = [(cid, self.calculer_clv(cid)) for cid in self.clients.keys()]
         clv_clients.sort(key=lambda x: x[1], reverse=True)
         
-        print(f"\\n👑 TOP 5 CLIENTS (CLV):")
+        print(f"\\nTOP 5 CLIENTS (CLV):")
         for i, (client_id, clv) in enumerate(clv_clients[:5], 1):
             print(f"{i}. Client {client_id}: {clv:.0f}€")
         
@@ -467,7 +467,7 @@ class AnalyseurEcommerce:
             tous_produits.extend(t['produits'])
         
         top_produits = Counter(tous_produits).most_common(5)
-        print(f"\\n🏆 TOP 5 PRODUITS:")
+        print(f"\\nTOP 5 PRODUITS:")
         for i, (produit, count) in enumerate(top_produits, 1):
             print(f"{i}. {produit}: {count} ventes")
         
@@ -475,7 +475,7 @@ class AnalyseurEcommerce:
         ca_total = sum(t['montant'] for t in self.transactions)
         panier_moyen = ca_total / len(self.transactions)
         
-        print(f"\\n📊 STATISTIQUES GÉNÉRALES:")
+        print(f"\\nSTATISTIQUES GÉNÉRALES:")
         print(f"CA Total: {ca_total:,.0f}€")
         print(f"Panier moyen: {panier_moyen:.2f}€")
         print(f"Nombre de clients: {len(self.clients)}")
@@ -499,7 +499,7 @@ for transaction in transactions_test:
 analyseur.generer_rapport()
 
 # Test recommandations
-print(f"\\n🎯 RECOMMANDATIONS pour ['Laptop']:")
+print(f"\\nRECOMMANDATIONS pour ['Laptop']:")
 reco = analyseur.recommander_produits(['Laptop'])
 for produit, score in reco:
     print(f"• {produit} (score: {score})")`}
@@ -507,7 +507,7 @@ for produit, score in reco:
 
           <ExerciseCard 
             id="ex4"
-            title="📈 Tableau de bord automatisé de KPIs"
+            title="Tableau de bord automatisé de KPIs"
             difficulty="Intermédiaire"
             duration="75 min"
             description="Créez un tableau de bord qui calcule des indicateurs (KPIs) à partir de données de ventes et de clients, déclenche des alertes quand un seuil est franchi et trace des graphiques. La solution travaille sur des données simulées."
@@ -558,10 +558,10 @@ class DashboardKPIs:
             'clv': np.random.exponential(500, 1000)
         })
 
-        print("✅ Données chargées")
+        print("Données chargées")
 
     def calculer_kpis(self):
-        print("\\n🔄 Calcul des KPIs en cours...")
+        print("\\nCalcul des KPIs en cours...")
 
         # KPI 1 : taux de conversion (conversions / visiteurs)
         total_visiteurs = self.data['ventes']['visiteurs'].sum()
@@ -587,7 +587,7 @@ class DashboardKPIs:
         # KPI 5 : valeur vie client moyenne (colonne clv des données)
         self.kpis['clv_moyenne'] = self.data['clients']['clv'].mean()
 
-        print("✅ KPIs calculés")
+        print("KPIs calculés")
 
     def generer_alertes(self):
         self.alertes = []
@@ -650,11 +650,11 @@ class DashboardKPIs:
 
     def generer_rapport(self):
         print("\\n" + "="*50)
-        print("📊 TABLEAU DE BORD DES KPIs : RAPPORT AUTOMATISÉ")
+        print("TABLEAU DE BORD DES KPIs : RAPPORT AUTOMATISÉ")
         print("="*50)
-        print(f"📅 Généré le : {datetime.now().strftime('%d/%m/%Y à %H:%M')}")
+        print(f"Généré le : {datetime.now().strftime('%d/%m/%Y à %H:%M')}")
 
-        print("\\n📈 KPIs PRINCIPAUX :")
+        print("\\nKPIs PRINCIPAUX :")
         print(f"• Taux de conversion : {self.kpis['taux_conversion']:.2f}%")
         print(f"• CA mensuel moyen : {self.kpis['ca_mensuel']:,.0f}€")
         print(f"• Taux de churn : {self.kpis['taux_churn']:.2f}%")
@@ -663,14 +663,14 @@ class DashboardKPIs:
 
         # Alertes
         if self.alertes:
-            print(f"\\n🚨 ALERTES ({len(self.alertes)}) :")
+            print(f"\\nALERTES ({len(self.alertes)}) :")
             for alerte in self.alertes:
-                print(f"⚠️ {alerte['message']}")
+                print(f"{alerte['message']}")
         else:
-            print("\\n✅ Aucune alerte : tous les KPIs respectent les seuils")
+            print("\\nAucune alerte : tous les KPIs respectent les seuils")
 
         # Pistes de lecture (règles simples, à ajuster)
-        print("\\n💡 PISTES :")
+        print("\\nPISTES :")
         if self.kpis['taux_conversion'] < 3:
             print("• Examiner le parcours d'achat (pages d'atterrissage, paiement)")
         if self.kpis['taux_churn'] > 10:
@@ -681,7 +681,7 @@ class DashboardKPIs:
             print("• Rien à signaler sur cette période")
 
     def executer_dashboard(self):
-        print("🚀 Lancement du tableau de bord des KPIs...")
+        print("Lancement du tableau de bord des KPIs...")
         self.charger_donnees()
         self.calculer_kpis()
         self.generer_alertes()
@@ -695,7 +695,7 @@ dashboard.executer_dashboard()`}
 
           <ExerciseCard 
             id="ex6"
-            title="🤖 Chatbot à règles pour un support client"
+            title="Chatbot à règles pour un support client"
             difficulty="Intermédiaire"
             duration="90 min"
             description="Développez un chatbot à règles (expressions régulières et réponses prédéfinies) qui reconnaît des intentions simples dans les questions clients et enregistre celles qu'il ne comprend pas."
@@ -718,9 +718,9 @@ class ChatbotSupport:
             'salutations': {
                 'patterns': [r'bonjour', r'salut', r'hello', r'bonsoir'],
                 'responses': [
-                    "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
-                    "Salut ! Je suis là pour répondre à vos questions.",
-                    "Hello ! En quoi puis-je vous être utile ?"
+                    "Bonjour, comment puis-je vous aider aujourd'hui ?",
+                    "Salut, je suis là pour répondre à vos questions.",
+                    "Hello, en quoi puis-je vous être utile ?"
                 ]
             },
             'commande': {
@@ -840,23 +840,23 @@ class ChatbotSupport:
         taux_resolution = (conversations_resolues / total_conversations * 100) if total_conversations > 0 else 0
         
         rapport = f"""
-🤖 RAPPORT DE PERFORMANCE CHATBOT
+RAPPORT DE PERFORMANCE CHATBOT
 {'='*45}
 
-📊 STATISTIQUES GÉNÉRALES:
+STATISTIQUES GÉNÉRALES:
 • Total conversations: {total_conversations}
 • Conversations résolues: {conversations_resolues}
 • Taux de résolution: {taux_resolution:.1f}%
 • Questions non résolues: {len(self.questions_non_resolues)}
 
-🏆 INTENTIONS LES PLUS FRÉQUENTES:
+INTENTIONS LES PLUS FRÉQUENTES:
 """
         
         for intention, count in sorted(self.statistiques.items(), key=lambda x: x[1], reverse=True):
             rapport += f"  • {intention.capitalize()}: {count} fois\\n"
         
         if self.questions_non_resolues:
-            rapport += f"\\n❓ QUESTIONS NON RÉSOLUES RÉCENTES:\\n"
+            rapport += f"\\nQUESTIONS NON RÉSOLUES RÉCENTES:\\n"
             for q in self.questions_non_resolues[-5:]:
                 rapport += f"  • {q['message'][:50]}...\\n"
         
@@ -875,11 +875,11 @@ conversations_test = [
     "Comment contacter le service client ?"
 ]
 
-print("🤖 SIMULATION DE CONVERSATIONS:\\n")
+print("SIMULATION DE CONVERSATIONS:\\n")
 for i, message in enumerate(conversations_test, 1):
-    print(f"👤 Utilisateur {i}: {message}")
+    print(f"Utilisateur {i}: {message}")
     reponse = chatbot.generer_reponse(message, f"user_{i}")
-    print(f"🤖 Chatbot: {reponse}\\n")
+    print(f"Chatbot: {reponse}\\n")
 
 # Apprentissage d'une nouvelle réponse
 chatbot.apprendre_nouvelle_reponse(
@@ -895,7 +895,7 @@ print(chatbot.generer_rapport_performance())`}
         <TabsContent value="advanced" className="space-y-6">
           <ExerciseCard 
             id="ex5"
-            title="🤖 Prédire le départ de clients (churn)"
+            title="Prédire le départ de clients (churn)"
             difficulty="Avancé"
             duration="120 min"
             description="Construisez une chaîne complète de machine learning sur des clients simulés : préparation des variables, comparaison de modèles par validation croisée, évaluation sur un jeu de test et prédiction pour un nouveau client."
@@ -980,18 +980,18 @@ class PredicteurChurn:
 
     def analyser_donnees(self, df):
         """Analyse exploratoire"""
-        print("\\n📊 ANALYSE EXPLORATOIRE")
+        print("\\nANALYSE EXPLORATOIRE")
         print("="*40)
 
         df = self.ajouter_variables_derivees(df)
         taux_churn = df['churn'].mean() * 100
-        print(f"📈 Taux de churn global : {taux_churn:.1f}%")
+        print(f"Taux de churn global : {taux_churn:.1f}%")
         print("   (classe minoritaire : regardez le rappel de la classe 1, pas seulement l'exactitude)")
 
         # Corrélations (en valeur absolue) avec le churn
         numeriques = df.select_dtypes(include=[np.number]).drop(columns='client_id')
         correlations = numeriques.corr()['churn'].abs().sort_values(ascending=False).drop('churn')
-        print("\\n🔗 Les 5 variables les plus corrélées au churn :")
+        print("\\nLes 5 variables les plus corrélées au churn :")
         for var, corr in correlations.head(5).items():
             print(f"• {var} : {corr:.3f}")
 
@@ -1025,7 +1025,7 @@ class PredicteurChurn:
 
     def entrainer_modeles(self, X_train, X_test, y_train, y_test):
         """Entraînement et comparaison de plusieurs modèles"""
-        print("\\n🤖 ENTRAÎNEMENT DES MODÈLES")
+        print("\\nENTRAÎNEMENT DES MODÈLES")
         print("="*40)
 
         modeles_config = {
@@ -1037,7 +1037,7 @@ class PredicteurChurn:
         resultats = {}
 
         for nom, modele in modeles_config.items():
-            print(f"\\n📚 Entraînement {nom}...")
+            print(f"\\nEntraînement {nom}...")
 
             # Le choix du modèle se fait sur la validation croisée (jeu d'entraînement),
             # le jeu de test ne sert qu'à mesurer le modèle retenu.
@@ -1057,28 +1057,28 @@ class PredicteurChurn:
                 'probabilities': y_pred_proba
             }
 
-            print(f"📊 AUC en validation croisée : {cv_scores.mean():.3f} (+/- {cv_scores.std()*2:.3f})")
-            print(f"✅ AUC sur le jeu de test : {auc_score:.3f}")
+            print(f"AUC en validation croisée : {cv_scores.mean():.3f} (+/- {cv_scores.std()*2:.3f})")
+            print(f"AUC sur le jeu de test : {auc_score:.3f}")
 
         self.modeles = resultats
         self.meilleur_modele = max(resultats, key=lambda nom: resultats[nom]['cv_mean'])
 
-        print(f"\\n🏆 Modèle retenu (meilleure AUC en validation croisée) : {self.meilleur_modele}")
+        print(f"\\nModèle retenu (meilleure AUC en validation croisée) : {self.meilleur_modele}")
         return resultats
 
     def evaluer_modele(self, y_test):
         """Évaluation détaillée du modèle retenu sur le jeu de test"""
-        print(f"\\n📊 ÉVALUATION DÉTAILLÉE : {self.meilleur_modele}")
+        print(f"\\nÉVALUATION DÉTAILLÉE : {self.meilleur_modele}")
         print("="*50)
 
         modele_info = self.modeles[self.meilleur_modele]
         y_pred = modele_info['predictions']
         y_pred_proba = modele_info['probabilities']
 
-        print("📋 Rapport de classification :")
+        print("Rapport de classification :")
         print(classification_report(y_test, y_pred))
 
-        print("\\n🎯 Matrice de confusion :")
+        print("\\nMatrice de confusion :")
         print(confusion_matrix(y_test, y_pred))
 
         # Importance des variables (modèles à base d'arbres)
@@ -1089,7 +1089,7 @@ class PredicteurChurn:
             }).sort_values('importance', ascending=False)
             self.feature_importance = importances
 
-            print("\\n🔍 Les 10 variables les plus utilisées :")
+            print("\\nLes 10 variables les plus utilisées :")
             for _, row in importances.head(10).iterrows():
                 print(f"• {row['feature']} : {row['importance']:.3f}")
 
@@ -1133,11 +1133,11 @@ class PredicteurChurn:
         return {'probabilite_churn': proba_churn, 'risque': risque}
 
     def pipeline_complet(self):
-        print("🚀 PRÉDICTION DE CHURN SUR DES CLIENTS SIMULÉS")
+        print("PRÉDICTION DE CHURN SUR DES CLIENTS SIMULÉS")
         print("="*60)
 
         # 1. Simulation des données
-        print("1️⃣ Simulation des données...")
+        print("Simulation des données...")
         df = self.generer_donnees_clients()
 
         # 2. Analyse exploratoire
@@ -1162,7 +1162,7 @@ class PredicteurChurn:
         self.evaluer_modele(y_test)
 
         # 7. Un client d'exemple
-        print("\\n🧪 TEST SUR UN CLIENT D'EXEMPLE")
+        print("\\nTEST SUR UN CLIENT D'EXEMPLE")
         print("="*35)
         client_test = {
             'age': 45, 'anciennete_mois': 36, 'nb_commandes_total': 8,
@@ -1173,8 +1173,8 @@ class PredicteurChurn:
             'abonne_newsletter': 1
         }
         resultat = self.predire_churn_client(client_test)
-        print(f"👤 Probabilité de churn : {resultat['probabilite_churn']:.1%}")
-        print(f"⚠️ Niveau de risque : {resultat['risque']}")
+        print(f"Probabilité de churn : {resultat['probabilite_churn']:.1%}")
+        print(f"Niveau de risque : {resultat['risque']}")
 
         return df, self.modeles
 

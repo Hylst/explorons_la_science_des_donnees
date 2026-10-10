@@ -1,5 +1,5 @@
 
-import { Lightbulb, Target, Eye, Zap } from "lucide-react";
+import { Lightbulb, Target, Eye, Zap, Scale } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 
 const ProbabilityIntro = () => {
@@ -7,7 +7,7 @@ const ProbabilityIntro = () => {
     <section id="intro" className="mb-16">
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 rounded-xl border border-indigo-100 mb-8">
         <h2 className="text-3xl font-bold mb-6 text-indigo-900 flex items-center gap-3">
-          🎲 Introduction : Le Langage de l'Incertitude
+          Introduction : Le Langage de l'Incertitude
         </h2>
         
         <div className="max-w-none text-gray-700 mb-8">
@@ -20,20 +20,20 @@ const ProbabilityIntro = () => {
           <div className="bg-white p-6 rounded-lg border-l-4 border-indigo-500 my-6">
             <h3 className="text-lg font-semibold text-indigo-700 mb-3 flex items-center gap-2">
               <Lightbulb className="h-5 w-5" />
-              🌟 Analogie : La météo de votre esprit
+              Analogie : La météo de votre esprit
             </h3>
             <p className="mb-4">
               Quand vous regardez le ciel le matin, votre cerveau fait automatiquement des probabilités :
               "Il y a 80% de chances qu'il pleuve", "J'ai 30% de chances d'être en retard si je prends cette route".
             </p>
             <p className="text-sm bg-indigo-50 p-3 rounded">
-              <strong>💡 Révélation :</strong> Les mathématiques des probabilités formalisent simplement 
-              ce que votre intuition fait déjà ! Elles donnent juste une structure rigoureuse à votre raisonnement.
+              <strong>Révélation :</strong> Les mathématiques des probabilités formalisent simplement 
+              ce que votre intuition fait déjà. Elles donnent juste une structure rigoureuse à votre raisonnement.
             </p>
           </div>
 
           <div className="bg-amber-50 p-6 rounded-lg border border-amber-200 my-6">
-            <h3 className="text-lg font-semibold text-amber-700 mb-3">🚨 Pourquoi c'est crucial aujourd'hui ?</h3>
+            <h3 className="text-lg font-semibold text-amber-700 mb-3">Pourquoi c'est crucial aujourd'hui ?</h3>
             <p className="mb-3">
               Nous vivons dans un monde d'<strong>explosion de données</strong> où chaque décision importante 
               implique de l'incertitude :
@@ -54,7 +54,7 @@ const ProbabilityIntro = () => {
             <p className="text-sm text-gray-600">Anticiper l'avenir avec des données incomplètes</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 transform hover:scale-105 transition-transform">
-            <div className="text-2xl mb-3">⚖️</div>
+            <Scale className="h-8 w-8 text-orange-600 mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-gray-800 mb-2">Décision</h3>
             <p className="text-sm text-gray-600">Choisir la meilleure option face à l'incertitude</p>
           </div>
@@ -70,11 +70,11 @@ const ProbabilityIntro = () => {
           </div>
         </div>
 
-        <CourseHighlight title="🚀 Ce que les probabilités changent" type="concept">
+        <CourseHighlight title="Ce que les probabilités changent" type="concept">
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-red-700 mb-2">❌ Sans les probabilités :</h4>
+                <h4 className="font-semibold text-red-700 mb-2">Sans les probabilités :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Décisions basées sur l'intuition pure</li>
                   <li>• Impossibilité de quantifier les risques</li>
@@ -82,7 +82,7 @@ const ProbabilityIntro = () => {
                 </ul>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-700 mb-2">✅ Avec les probabilités :</h4>
+                <h4 className="font-semibold text-green-700 mb-2">Avec les probabilités :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Quantification rigoureuse de l'incertitude</li>
                   <li>• Optimisation basée sur les données</li>
@@ -93,7 +93,7 @@ const ProbabilityIntro = () => {
             </div>
             
             <div className="bg-blue-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-700 mb-2">🌍 Impact concret dans votre quotidien :</h4>
+              <h4 className="font-semibold text-blue-700 mb-2">Impact concret dans votre quotidien :</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <strong>GPS :</strong> Calcul du trajet optimal en temps réel<br/>
@@ -111,7 +111,7 @@ const ProbabilityIntro = () => {
         </CourseHighlight>
 
         <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg mt-6">
-          <h3 className="text-lg font-semibold text-purple-800 mb-3">🎯 Objectifs de ce chapitre</h3>
+          <h3 className="text-lg font-semibold text-purple-800 mb-3">Objectifs de ce chapitre</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <h4 className="font-semibold mb-2">Vous saurez :</h4>

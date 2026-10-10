@@ -12,7 +12,7 @@ const PerformanceOptimizationSection = () => {
 
       <Card className="border-l-4 border-l-yellow-500">
         <CardHeader>
-          <CardTitle>⚡ Les index : un levier de performance</CardTitle>
+          <CardTitle>Les index : un levier de performance</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm mb-4">
@@ -26,7 +26,7 @@ const PerformanceOptimizationSection = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-semibold mb-3 text-green-700">✅ Bonnes pratiques</h3>
+              <h3 className="font-semibold mb-3 text-green-700">Bonnes pratiques</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
@@ -43,7 +43,7 @@ const PerformanceOptimizationSection = () => {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 text-red-700">❌ Pièges à éviter</h3>
+              <h3 className="font-semibold mb-3 text-red-700">Pièges à éviter</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
@@ -66,7 +66,7 @@ const PerformanceOptimizationSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">🎯 Optimisation requêtes</CardTitle>
+            <CardTitle className="text-lg">Optimisation requêtes</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="text-sm space-y-2">
@@ -81,7 +81,7 @@ const PerformanceOptimizationSection = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">🔄 Partitionnement</CardTitle>
+            <CardTitle className="text-lg">Partitionnement</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="text-sm space-y-2">
@@ -96,7 +96,7 @@ const PerformanceOptimizationSection = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">💾 Mise en cache</CardTitle>
+            <CardTitle className="text-lg">Mise en cache</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="text-sm space-y-2">

@@ -65,14 +65,14 @@ const ConfidenceIntervalsSection = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-700 mb-2">✅ Interprétation correcte</h4>
+                <h4 className="font-semibold text-blue-700 mb-2">Interprétation correcte</h4>
                 <p className="text-sm text-blue-600">
                   "Nous sommes confiants à 95% que la vraie moyenne se situe entre [a, b]"
                 </p>
               </div>
 
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-red-700 mb-2">❌ Interprétation incorrecte</h4>
+                <h4 className="font-semibold text-red-700 mb-2">Interprétation incorrecte</h4>
                 <p className="text-sm text-red-600">
                   "Il y a 95% de chance que la vraie moyenne soit entre [a, b]"
                 </p>
@@ -81,7 +81,7 @@ const ConfidenceIntervalsSection = () => {
               <div className="flex items-start gap-2 p-3 bg-yellow-50 rounded-lg">
                 <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-yellow-700">
-                  <strong>Attention :</strong> L'intervalle est aléatoire, pas le paramètre !
+                  <strong>Attention :</strong> L'intervalle est aléatoire, pas le paramètre.
                 </div>
               </div>
             </div>

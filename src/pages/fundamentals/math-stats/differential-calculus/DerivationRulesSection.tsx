@@ -76,7 +76,7 @@ const DerivationRulesSection = () => {
     {
       name: "Sigmoïde",
       formula: "\\frac{d}{dx}[\\sigma(x)] = \\sigma(x)(1-\\sigma(x))",
-      description: "Où σ(x) = 1/(1+e^(-x)). Propriété remarquable !",
+      description: "Où σ(x) = 1/(1+e^(-x)). Propriété remarquable.",
       mlUse: "Activation classique, régression logistique"
     },
     {
@@ -97,10 +97,10 @@ const DerivationRulesSection = () => {
     <section id="rules" className="scroll-mt-24 space-y-8">
       <h2 className="text-3xl font-bold mb-6">2. Règles de Dérivation</h2>
       
-      <CourseHighlight title="🎯 Stratégie d'apprentissage" type="concept">
+      <CourseHighlight title="Stratégie d'apprentissage" type="concept">
         <p className="mb-4">
           Travailler les règles de dérivation, c'est comme apprendre les gammes en musique : 
-          une fois automatisées, elles libèrent votre créativité pour résoudre des problèmes complexes !
+          une fois automatisées, elles libèrent votre créativité pour résoudre des problèmes complexes.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-blue-50 p-3 rounded-lg text-center">
@@ -147,7 +147,7 @@ const DerivationRulesSection = () => {
             ))}
           </div>
           
-          <CourseHighlight title="💡 Astuce mnémotechnique" type="example">
+          <CourseHighlight title="Astuce mnémotechnique" type="example">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <h4 className="font-semibold mb-2">Règle de la puissance</h4>
@@ -179,7 +179,7 @@ const DerivationRulesSection = () => {
                   </div>
                   {rule.mnemonic && (
                     <div className="bg-yellow-50 p-3 rounded-lg">
-                      <p className="text-sm font-semibold">💭 Moyen mnémotechnique :</p>
+                      <p className="text-sm font-semibold">Moyen mnémotechnique :</p>
                       <p className="text-xs">{rule.mnemonic}</p>
                     </div>
                   )}
@@ -188,7 +188,7 @@ const DerivationRulesSection = () => {
             ))}
           </div>
           
-          <CourseHighlight title="🔥 Focus : Règle de la chaîne" type="warning">
+          <CourseHighlight title="Focus : Règle de la chaîne" type="warning">
             <p className="mb-3">
               La règle de la chaîne est <strong>essentielle</strong> en apprentissage automatique :
               elle est à la base de la rétropropagation dans les réseaux de neurones.
@@ -200,7 +200,7 @@ const DerivationRulesSection = () => {
               </p>
               <CourseEquation latex="\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial y} \frac{\partial y}{\partial h} \frac{\partial h}{\partial w_1}" />
               <p className="text-xs text-gray-600">
-                Gradient de la perte par rapport aux poids = règle de la chaîne !
+                Gradient de la perte par rapport aux poids = règle de la chaîne.
               </p>
             </div>
           </CourseHighlight>
@@ -225,10 +225,10 @@ const DerivationRulesSection = () => {
             ))}
           </div>
           
-          <CourseHighlight title="⚡ Le saviez-vous ? Propriété de la sigmoïde" type="info">
+          <CourseHighlight title="Le saviez-vous ? Propriété de la sigmoïde" type="info">
             <p className="mb-3">
               La sigmoïde a une propriété remarquable : sa dérivée s'exprime uniquement 
-              en fonction d'elle-même ! Cela simplifie énormément les calculs.
+              en fonction d'elle-même. Cela simplifie énormément les calculs.
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
               <CourseEquation latex="\sigma'(x) = \sigma(x)(1-\sigma(x))" />

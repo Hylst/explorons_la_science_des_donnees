@@ -1,17 +1,17 @@
 
-import { Brain } from "lucide-react";
+import { Brain, Factory, GraduationCap, HeartPulse, Landmark, BarChart3, ShoppingCart, Sprout, Truck, Zap, type LucideIcon } from "lucide-react";
 
 interface SectorCardProps {
   title: string;
-  icon: string;
+  icon: LucideIcon;
   examples: string[];
   description?: string;
 }
 
-const SectorCard = ({ title, icon, examples, description }: SectorCardProps) => (
+const SectorCard = ({ title, icon: Icon, examples, description }: SectorCardProps) => (
   <div className="bg-white rounded-lg p-4 border shadow-sm hover:shadow-md transition-all">
     <div className="flex items-center gap-2 mb-3">
-      <span className="text-2xl">{icon}</span>
+      <Icon className="h-6 w-6 text-ds-blue-500" aria-hidden="true" />
       <h3 className="text-lg font-bold">{title}</h3>
     </div>
     {description && <p className="text-sm text-gray-700 mb-3">{description}</p>}
@@ -30,55 +30,55 @@ const ApplicationsSection = () => {
   const sectors: SectorCardProps[] = [
     {
       title: "Santé",
-      icon: "🏥",
+      icon: HeartPulse,
       description: "Aide au diagnostic, personnalisation des traitements et organisation des opérations hospitalières.",
       examples: ["Diagnostic assisté par IA", "Médecine personnalisée", "Prévention des épidémies", "Optimisation des parcours patients"]
     },
     {
       title: "Finance",
-      icon: "💰",
+      icon: Landmark,
       description: "Automatisation des processus financiers, détection de fraudes et prise de décision d'investissement.",
       examples: ["Détection de fraudes", "Trading algorithmique", "Évaluation des risques", "Score de crédit"]
     },
     {
       title: "Marketing",
-      icon: "📊",
+      icon: BarChart3,
       description: "Ciblage des clients, optimisation des campagnes et prévision des comportements d'achat.",
       examples: ["Personnalisation", "Segmentation client", "Prévision des tendances", "Optimisation des prix"]
     },
     {
       title: "Transport & Logistique",
-      icon: "🚗",
+      icon: Truck,
       description: "Gestion optimisée des flottes, prévision de la demande et maintenance intelligente.",
       examples: ["Optimisation logistique", "Maintenance prédictive", "Véhicules autonomes", "Gestion du trafic urbain"]
     },
     {
       title: "Énergie",
-      icon: "⚡",
+      icon: Zap,
       description: "Optimisation de la production, réduction de la consommation et planification des ressources.",
       examples: ["Prévision de consommation", "Optimisation de production", "Réseaux électriques intelligents", "Détection de pannes"]
     },
     {
       title: "Industrie & Fabrication",
-      icon: "🏭",
+      icon: Factory,
       description: "Amélioration des procédés de fabrication, contrôle qualité automatisé et maintenance prédictive.",
       examples: ["Contrôle qualité", "Optimisation des processus", "Maintenance prédictive", "Gestion de la chaîne d'approvisionnement"]
     },
     {
       title: "E-commerce & Retail",
-      icon: "🛒",
+      icon: ShoppingCart,
       description: "Personnalisation de l'expérience d'achat, prévision des stocks et optimisation des prix.",
       examples: ["Recommandations de produits", "Aménagement des rayons", "Prévision des ventes", "Optimisation des stocks"]
     },
     {
       title: "Éducation",
-      icon: "🎓",
+      icon: GraduationCap,
       description: "Adaptation des parcours d'apprentissage, détection des risques de décrochage et évaluation automatisée.",
       examples: ["Apprentissage adaptatif", "Détection du décrochage", "Évaluation automatisée", "Personnalisation des cursus"]
     },
     {
       title: "Agriculture",
-      icon: "🌱",
+      icon: Sprout,
       description: "Optimisation des rendements, gestion durable des ressources et détection précoce des problèmes.",
       examples: ["Agriculture de précision", "Prévisions météorologiques", "Gestion des ressources", "Détection des maladies"]
     }

@@ -112,7 +112,7 @@ const InteractiveExercises = () => {
                     </div>
                     <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                       <p className="text-sm text-yellow-700">
-                        <strong>💡 Indice :</strong> {currentEx.hint}
+                        <strong>Indice :</strong> {currentEx.hint}
                       </p>
                     </div>
                   </div>
@@ -127,7 +127,7 @@ const InteractiveExercises = () => {
                         <XCircle className="h-5 w-5 text-red-600" />
                       )}
                       <p className="font-medium">
-                        {parseInt(userAnswers[currentExercise]) === currentEx.correct ? "Correct !" : "Incorrect"}
+                        {parseInt(userAnswers[currentExercise]) === currentEx.correct ? "Correct" : "Incorrect"}
                       </p>
                     </div>
 
@@ -210,11 +210,11 @@ const InteractiveExercises = () => {
 
                 {isComplete && (
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <p className="font-medium text-blue-800 mb-1">Quiz terminé !</p>
+                    <p className="font-medium text-blue-800 mb-1">Quiz terminé</p>
                     <p className="text-sm text-blue-600">
-                      {score === exercises.length ? "🎉 Trois sur trois, bravo !" :
-                       score >= 2 ? "👍 Bien joué, encore un petit effort !" :
-                       "📚 Un tour dans le cours, puis on réessaie !"}
+                      {score === exercises.length ? "Trois sur trois, bravo." :
+                       score >= 2 ? "Bien joué, encore un petit effort." :
+                       "Un tour dans le cours, puis on réessaie."}
                     </p>
                   </div>
                 )}
@@ -222,7 +222,7 @@ const InteractiveExercises = () => {
             </CardContent>
           </Card>
 
-          <CourseHighlight title="🎯 Défis bonus" type="concept">
+          <CourseHighlight title="Défis bonus" type="concept">
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-orange-600" />

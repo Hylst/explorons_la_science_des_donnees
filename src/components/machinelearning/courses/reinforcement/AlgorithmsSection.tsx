@@ -15,7 +15,7 @@ const AlgorithmsSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction aux algorithmes */}
-      <EducationalCard title="🎯 Les grandes familles d'algorithmes de RL" type="concept">
+      <EducationalCard title="Les grandes familles d'algorithmes de RL" type="concept">
         <p className="mb-4">
           L'apprentissage par renforcement dispose de plusieurs familles d'algorithmes,
           adaptées à des situations différentes (espace d'états discret ou continu, actions discrètes ou continues).
@@ -23,17 +23,17 @@ const AlgorithmsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-lg">
-            <h4 className="font-semibold text-blue-800 mb-2">🏁 Basés sur la valeur</h4>
+            <h4 className="font-semibold text-blue-800 mb-2">Basés sur la valeur</h4>
             <p className="text-sm">Q-Learning, SARSA, DQN</p>
             <p className="text-xs text-blue-600">Apprennent la valeur des actions</p>
           </div>
           <div className="bg-gradient-to-br from-green-100 to-green-200 p-4 rounded-lg">
-            <h4 className="font-semibold text-green-800 mb-2">🎪 Basés sur la politique</h4>
+            <h4 className="font-semibold text-green-800 mb-2">Basés sur la politique</h4>
             <p className="text-sm">REINFORCE</p>
             <p className="text-xs text-green-600">Apprennent directement la stratégie</p>
           </div>
           <div className="bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg">
-            <h4 className="font-semibold text-purple-800 mb-2">⚖️ Acteur-critique</h4>
+            <h4 className="font-semibold text-purple-800 mb-2">Acteur-critique</h4>
             <p className="text-sm">A2C, A3C, PPO, SAC</p>
             <p className="text-xs text-purple-600">Combinent les deux approches</p>
           </div>
@@ -58,7 +58,7 @@ const AlgorithmsSection = () => {
         <CollapsibleContent>
           <Card className="mt-2 bg-gradient-to-r from-yellow-50 to-orange-50">
             <CardContent className="pt-6 space-y-6">
-              <EducationalCard title="🗺️ La table Q : la mémoire de l'agent" type="analogie">
+              <EducationalCard title="La table Q : la mémoire de l'agent" type="analogie">
                 <div className="space-y-4">
                   <p>
                     Imaginez un voyageur qui apprend les meilleurs chemins en explorant une ville.
@@ -67,16 +67,16 @@ const AlgorithmsSection = () => {
                   </p>
 
                   <div className="bg-white p-6 rounded-xl border-2 border-dashed border-yellow-400">
-                    <h4 className="font-semibold mb-4 text-center">📊 Table Q simplifiée (Pac-Man, valeurs inventées pour l'illustration)</h4>
+                    <h4 className="font-semibold mb-4 text-center">Table Q simplifiée (Pac-Man, valeurs inventées pour l'illustration)</h4>
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm border-collapse">
                         <thead>
                           <tr className="bg-yellow-100">
                             <th className="border p-2">État</th>
-                            <th className="border p-2">⬆️ Haut</th>
-                            <th className="border p-2">⬇️ Bas</th>
-                            <th className="border p-2">⬅️ Gauche</th>
-                            <th className="border p-2">➡️ Droite</th>
+                            <th className="border p-2">Haut</th>
+                            <th className="border p-2">Bas</th>
+                            <th className="border p-2">Gauche</th>
+                            <th className="border p-2">Droite</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -105,7 +105,7 @@ const AlgorithmsSection = () => {
                       </table>
                     </div>
                     <p className="text-xs text-gray-600 mt-2">
-                      💡 Plus la valeur est élevée, plus l'action est jugée prometteuse dans cette situation (l'agent choisit en général la plus haute, sauf quand il explore).
+                      Plus la valeur est élevée, plus l'action est jugée prometteuse dans cette situation (l'agent choisit en général la plus haute, sauf quand il explore).
                     </p>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const AlgorithmsSection = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-orange-800 mb-3">⚡ Règle de mise à jour de Q-Learning</h4>
+                  <h4 className="font-semibold text-orange-800 mb-3">Règle de mise à jour de Q-Learning</h4>
                   <div className="bg-white p-4 rounded-lg border border-orange-200">
                     <div className="text-center mb-4">
                       <code className="text-lg font-mono bg-gray-100 p-2 rounded">
@@ -129,7 +129,7 @@ const AlgorithmsSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-orange-800 mb-3">🎯 L'algorithme pas à pas</h4>
+                  <h4 className="font-semibold text-orange-800 mb-3">L'algorithme pas à pas</h4>
                   <div className="space-y-2 text-sm">
                     <div className="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
                       <strong>1.</strong> Observer l'état actuel
@@ -159,7 +159,7 @@ const AlgorithmsSection = () => {
 
       {/* Comparaison d'algorithmes */}
       <ProgressiveDisclosure
-        title="⚔️ Comparer les algorithmes"
+        title="Comparer les algorithmes"
         levels={[
           {
             title: "Débutant : les bases",
@@ -168,12 +168,12 @@ const AlgorithmsSection = () => {
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">🏆 Q-Learning</h4>
+                    <h4 className="font-semibold text-blue-800 mb-2">Q-Learning</h4>
                     <p className="text-sm mb-2"><strong>Points forts :</strong> simple, bien compris, converge dans le cas tabulaire sous conditions</p>
                     <p className="text-sm"><strong>Utile pour :</strong> petits environnements discrets, apprendre le principe</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-green-800 mb-2">🎪 REINFORCE</h4>
+                    <h4 className="font-semibold text-green-800 mb-2">REINFORCE</h4>
                     <p className="text-sm mb-2"><strong>Points forts :</strong> simple à écrire, accepte des actions discrètes ou continues. <strong>Limite :</strong> gradients à forte variance</p>
                     <p className="text-sm"><strong>Utile pour :</strong> comprendre le gradient de politique, base des méthodes acteur-critique</p>
                   </div>
@@ -187,7 +187,7 @@ const AlgorithmsSection = () => {
             content: (
               <div className="space-y-4">
                 <div className="bg-white p-4 rounded-lg border">
-                  <h4 className="font-semibold mb-3">📊 Comparatif des caractéristiques</h4>
+                  <h4 className="font-semibold mb-3">Comparatif des caractéristiques</h4>
                   <p className="text-xs text-gray-600 mb-2">
                     Repères généraux ; les performances réelles dépendent de l'environnement et des hyperparamètres.
                   </p>
@@ -243,10 +243,10 @@ const AlgorithmsSection = () => {
             difficulty: "advanced",
             content: (
               <div className="space-y-4">
-                <EducationalCard title="🔬 Les compromis en détail" type="zoom">
+                <EducationalCard title="Les compromis en détail" type="zoom">
                   <div className="space-y-4">
                     <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
-                      <h4 className="font-semibold text-red-800 mb-2">⚠️ Pièges courants</h4>
+                      <h4 className="font-semibold text-red-800 mb-2">Pièges courants</h4>
                       <ul className="text-sm space-y-1">
                         <li>• <strong>Q-Learning :</strong> Surestimation des valeurs Q</li>
                         <li>• <strong>Policy Gradient :</strong> Variance élevée des gradients</li>
@@ -255,7 +255,7 @@ const AlgorithmsSection = () => {
                       </ul>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                      <h4 className="font-semibold text-green-800 mb-2">💡 Remèdes connus</h4>
+                      <h4 className="font-semibold text-green-800 mb-2">Remèdes connus</h4>
                       <ul className="text-sm space-y-1">
                         <li>• <strong>Double DQN :</strong> Réduit la surestimation</li>
                         <li>• <strong>Dueling Networks :</strong> Sépare valeur d'état et avantage</li>
@@ -287,7 +287,7 @@ const AlgorithmsSection = () => {
 
       {/* Exercice de codage */}
       <ExerciseCard
-        title="🎮 Q-Learning dans une grille (Grid World)"
+        title="Q-Learning dans une grille (Grid World)"
         problem="Implémentez un agent Q-Learning simple pour naviguer dans une grille 4×4. L'agent commence en (0,0) et doit atteindre (3,3). Les cases (1,1) et (2,2) sont des obstacles. Implémentez la table Q, la politique ε-greedy et la mise à jour des valeurs, puis affichez le chemin que suit l'agent une fois entraîné."
         solution={`import numpy as np
 import random

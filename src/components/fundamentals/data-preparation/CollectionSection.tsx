@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Database, Globe, Shield } from 'lucide-react';
+import { CheckCircle2, Database, FileText, Globe, Plug, Radio, ScanSearch, Shield, ShoppingCart, Users, type LucideIcon } from 'lucide-react';
 import { GlossaryTerm } from '@/components/ui/glossary-term';
 import { dataPreparationEnhancedDefinitions } from '../../../data/data-preparation-enhanced-definitions';
 import CourseHighlight from '@/components/courses/CourseHighlight';
@@ -10,23 +10,23 @@ import CourseHighlight from '@/components/courses/CourseHighlight';
  * Covers data collection strategies and sources
  */
 const CollectionSection: React.FC = () => {
-  const dataSources = [
+  const dataSources: { category: string; sources: { name: string; icon: LucideIcon; example: string }[] }[] = [
     {
       category: "Données internes",
       sources: [
-        { name: "Bases de données transactionnelles", icon: "🗄️", example: "CRM, ERP, Comptabilité" },
-        { name: "Logs et fichiers système", icon: "📜", example: "Serveurs web, applications" },
-        { name: "Capteurs IoT", icon: "📡", example: "Température, géolocalisation" },
-        { name: "Données utilisateur", icon: "👥", example: "Clics, préférences, historique" }
+        { name: "Bases de données transactionnelles", icon: Database, example: "CRM, ERP, Comptabilité" },
+        { name: "Logs et fichiers système", icon: FileText, example: "Serveurs web, applications" },
+        { name: "Capteurs IoT", icon: Radio, example: "Température, géolocalisation" },
+        { name: "Données utilisateur", icon: Users, example: "Clics, préférences, historique" }
       ]
     },
     {
       category: "Données externes",
       sources: [
-        { name: "APIs publiques", icon: "🔌", example: "Météo, réseaux sociaux, finance" },
-        { name: "Open Data", icon: "🌍", example: "Gouvernement, INSEE, Banque Mondiale" },
-        { name: "Données d'achat", icon: "💰", example: "Nielsen, Kantar, panels" },
-        { name: "Web scraping", icon: "🕷️", example: "Sites e-commerce, actualités (après vérification des conditions d'utilisation et du droit applicable)" }
+        { name: "APIs publiques", icon: Plug, example: "Météo, réseaux sociaux, finance" },
+        { name: "Open Data", icon: Globe, example: "Gouvernement, INSEE, Banque Mondiale" },
+        { name: "Données d'achat", icon: ShoppingCart, example: "Nielsen, Kantar, panels" },
+        { name: "Web scraping", icon: ScanSearch, example: "Sites e-commerce, actualités (après vérification des conditions d'utilisation et du droit applicable)" }
       ]
     }
   ];
@@ -79,7 +79,7 @@ const CollectionSection: React.FC = () => {
                 <div className="space-y-3">
                   {category.sources.map((source, index) => (
                     <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-                      <span className="text-2xl flex-shrink-0">{source.icon}</span>
+                      <source.icon className="h-6 w-6 shrink-0 text-blue-600" aria-hidden="true" />
                       <div className="flex-1">
                         <h5 className="font-medium">{source.name}</h5>
                         <p className="text-sm text-muted-foreground">{source.example}</p>
@@ -136,10 +136,10 @@ const CollectionSection: React.FC = () => {
       <CourseHighlight type="example" title="Cas pratique (fictif) : un site de vente en ligne étudie le comportement de ses clients">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">🎯 Objectif métier</h4>
+            <h4 className="font-semibold mb-3">Objectif métier</h4>
             <p className="text-sm mb-4">Réduire le taux d'abandon de panier. L'objectif chiffré se fixe à partir du taux mesuré sur le site, pas d'une moyenne du secteur.</p>
             
-            <h4 className="font-semibold mb-3">📊 Données à collecter</h4>
+            <h4 className="font-semibold mb-3">Données à collecter</h4>
             <ul className="text-sm space-y-1">
               <li>• Pages visitées et temps passé</li>
               <li>• Produits ajoutés/supprimés du panier</li>
@@ -149,7 +149,7 @@ const CollectionSection: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">🔧 Sources identifiées</h4>
+            <h4 className="font-semibold mb-3">Sources identifiées</h4>
             <ul className="text-sm space-y-1">
               <li>• Mesure d'audience du site (comportement web, avec le consentement requis par la réglementation)</li>
               <li>• Base CRM (profil client)</li>
@@ -158,7 +158,7 @@ const CollectionSection: React.FC = () => {
               <li>• Données concurrentielles (benchmarking)</li>
             </ul>
             
-            <h4 className="font-semibold mb-3 mt-4">⏱️ Fréquence</h4>
+            <h4 className="font-semibold mb-3 mt-4">Fréquence</h4>
             <ul className="text-sm space-y-1">
               <li>• Temps réel : clics, ajouts panier</li>
               <li>• Quotidien : commandes, abandons</li>
@@ -179,7 +179,7 @@ const CollectionSection: React.FC = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-blue-700">🎯 Planification</h4>
+              <h4 className="font-semibold mb-3 text-blue-700">Planification</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-500 mt-1">•</span>
@@ -196,7 +196,7 @@ const CollectionSection: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3 text-green-700">🔒 Gouvernance</h4>
+              <h4 className="font-semibold mb-3 text-green-700">Gouvernance</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-green-500 mt-1">•</span>

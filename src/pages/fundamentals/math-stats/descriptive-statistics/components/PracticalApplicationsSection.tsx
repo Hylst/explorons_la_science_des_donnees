@@ -147,7 +147,7 @@ const PracticalApplicationsSection = () => {
           </p>
           <div className="bg-blue-100 p-4 rounded-lg">
             <p className="text-sm">
-              <strong>💡 À retenir :</strong> moyenne, écart-type, quartiles et corrélation reviennent dans presque toutes les analyses de données. Les exemples chiffrés de cette page sont illustratifs : leurs valeurs sont inventées pour l'exemple.
+              <strong>À retenir :</strong> moyenne, écart-type, quartiles et corrélation reviennent dans presque toutes les analyses de données. Les exemples chiffrés de cette page sont illustratifs : leurs valeurs sont inventées pour l'exemple.
             </p>
           </div>
         </CourseHighlight>
@@ -176,7 +176,7 @@ const PracticalApplicationsSection = () => {
                     
                     <div className="space-y-3">
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2">🔧 Métriques clés :</h4>
+                        <h4 className="text-sm font-semibold text-gray-700 mb-2">Métriques clés :</h4>
                         <div className="flex flex-wrap gap-1">
                           {useCase.metrics.map((metric, metricIndex) => (
                             <Badge key={metricIndex} variant="outline" className="text-xs">
@@ -195,7 +195,7 @@ const PracticalApplicationsSection = () => {
                       </div>
                       
                       <div className={`p-3 rounded-lg ${colorClasses[app.color as keyof typeof colorClasses]}`}>
-                        <h4 className="text-sm font-semibold mb-1">📊 Exemple :</h4>
+                        <h4 className="text-sm font-semibold mb-1">Exemple :</h4>
                         <p className="text-xs">{useCase.example}</p>
                       </div>
                     </div>
@@ -212,13 +212,13 @@ const PracticalApplicationsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-6 w-6 text-indigo-600" />
-            🎯 Pour passer à la pratique
+            Pour passer à la pratique
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold mb-4 text-indigo-700">📋 Checklist de l'analyste data</h4>
+              <h4 className="font-semibold mb-4 text-indigo-700">Checklist de l'analyste data</h4>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
@@ -259,10 +259,10 @@ const PracticalApplicationsSection = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-purple-700">🛠️ Outils recommandés par niveau</h4>
+              <h4 className="font-semibold mb-4 text-purple-700">Outils recommandés par niveau</h4>
               <div className="space-y-4">
                 <div className="bg-white p-3 rounded-lg border">
-                  <h5 className="font-semibold text-sm text-green-700 mb-2">🌱 Débutant</h5>
+                  <h5 className="font-semibold text-sm text-green-700 mb-2">Débutant</h5>
                   <ul className="text-xs space-y-1">
                     <li>• Excel/Google Sheets : Fonctions statistiques de base</li>
                     <li>• Tableau Public : visualisations par glisser-déposer</li>
@@ -271,7 +271,7 @@ const PracticalApplicationsSection = () => {
                 </div>
                 
                 <div className="bg-white p-3 rounded-lg border">
-                  <h5 className="font-semibold text-sm text-blue-700 mb-2">🚀 Intermédiaire</h5>
+                  <h5 className="font-semibold text-sm text-blue-700 mb-2">Intermédiaire</h5>
                   <ul className="text-xs space-y-1">
                     <li>• Python : pandas, seaborn, scipy.stats</li>
                     <li>• R : dplyr, ggplot2, corrplot</li>
@@ -280,7 +280,7 @@ const PracticalApplicationsSection = () => {
                 </div>
                 
                 <div className="bg-white p-3 rounded-lg border">
-                  <h5 className="font-semibold text-sm text-purple-700 mb-2">⚡ Expert</h5>
+                  <h5 className="font-semibold text-sm text-purple-700 mb-2">Expert</h5>
                   <ul className="text-xs space-y-1">
                     <li>• Spark : statistiques sur de gros volumes</li>
                     <li>• TensorFlow Probability : statistiques pour le ML</li>
@@ -294,7 +294,7 @@ const PracticalApplicationsSection = () => {
           <div className="mt-6 p-4 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg">
             <h4 className="font-semibold mb-2 flex items-center gap-2">
               <Target className="h-5 w-5 text-green-600" />
-              🎯 Quelques idées pour la suite
+              Quelques idées pour la suite
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div>

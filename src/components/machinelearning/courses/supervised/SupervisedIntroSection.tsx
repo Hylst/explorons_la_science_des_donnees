@@ -2,13 +2,13 @@
 import { EducationalCard } from "@/components/ui/educational-cards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Target, BookOpen, Lightbulb, Users, Trophy } from "lucide-react";
+import { Brain, Target, BookOpen, Lightbulb, Users, Trophy, Mail, Home, Stethoscope } from "lucide-react";
 
 const SupervisedIntroSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction avec analogie principale */}
-      <EducationalCard title="🎯 Qu'est-ce que l'apprentissage supervisé ?" type="concept">
+      <EducationalCard title="Qu'est-ce que l'apprentissage supervisé ?" type="concept">
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
             <h3 className="text-xl font-bold text-blue-800 mb-4 flex items-center gap-2">
@@ -168,12 +168,12 @@ const SupervisedIntroSection = () => {
       </Card>
 
       {/* Exemples concrets de la vie quotidienne */}
-      <EducationalCard title="🌟 Exemples de la vie quotidienne" type="exemple">
+      <EducationalCard title="Exemples de la vie quotidienne" type="exemple">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="border-2 border-blue-200 hover:shadow-lg transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">📧</span>
+                <Mail className="h-6 w-6 text-blue-600" aria-hidden="true" />
                 <div>
                   <CardTitle className="text-lg">Courriel indésirable</CardTitle>
                   <Badge variant="outline" className="text-xs">Classification</Badge>
@@ -196,7 +196,7 @@ const SupervisedIntroSection = () => {
           <Card className="border-2 border-green-200 hover:shadow-lg transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">🏠</span>
+                <Home className="h-6 w-6 text-green-600" aria-hidden="true" />
                 <div>
                   <CardTitle className="text-lg">Prix immobilier</CardTitle>
                   <Badge variant="outline" className="text-xs">Régression</Badge>
@@ -219,7 +219,7 @@ const SupervisedIntroSection = () => {
           <Card className="border-2 border-purple-200 hover:shadow-lg transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">🩺</span>
+                <Stethoscope className="h-6 w-6 text-purple-600" aria-hidden="true" />
                 <div>
                   <CardTitle className="text-lg">Aide au diagnostic</CardTitle>
                   <Badge variant="outline" className="text-xs">Classification</Badge>
@@ -244,7 +244,7 @@ const SupervisedIntroSection = () => {
       {/* Caractéristiques clés */}
       <Card>
         <CardHeader>
-          <CardTitle>🔑 Caractéristiques clés de l'apprentissage supervisé</CardTitle>
+          <CardTitle>Caractéristiques clés de l'apprentissage supervisé</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

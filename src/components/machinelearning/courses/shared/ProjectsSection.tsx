@@ -38,10 +38,10 @@ const ProjectsSection = ({ title, projects, description }: ProjectsSectionProps)
       <h2 className="text-3xl font-bold text-center">{title}</h2>
 
       {description && (
-        <EducationalCard title="🚀 Mode d'emploi des projets" type="concept">
+        <EducationalCard title="Mode d'emploi des projets" type="concept">
           <p className="text-gray-700 leading-relaxed mb-4">{description}</p>
           <div className="bg-blue-50 p-4 rounded-lg">
-            <h4 className="font-semibold text-blue-800 mb-2">💡 Conseils :</h4>
+            <h4 className="font-semibold text-blue-800 mb-2">Conseils :</h4>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Commencez par comprendre le problème avant de coder</li>
               <li>• Testez votre solution sur des données simples d'abord</li>

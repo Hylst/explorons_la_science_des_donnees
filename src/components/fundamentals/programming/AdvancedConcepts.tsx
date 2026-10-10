@@ -382,7 +382,7 @@ class CSVLoader(DataLoader):
                 index_col=load_config.get('index_col')
             )
             
-            print(f"✅ CSV chargé: {df.shape[0]} lignes, {df.shape[1]} colonnes")
+            print(f"CSV chargé: {df.shape[0]} lignes, {df.shape[1]} colonnes")
             return df
             
         except Exception as e:
@@ -420,7 +420,7 @@ class JSONLoader(DataLoader):
                     data = json.load(f)
                 df = pd.DataFrame(data)
             
-            print(f"✅ JSON chargé: {df.shape[0]} lignes, {df.shape[1]} colonnes")
+            print(f"JSON chargé: {df.shape[0]} lignes, {df.shape[1]} colonnes")
             return df
             
         except Exception as e:
@@ -471,15 +471,15 @@ class DynamicImporter:
         try:
             module = importlib.import_module(module_name)
             self._cache[module_name] = module
-            print(f"✅ Module '{module_name}' importé avec succès")
+            print(f"Module '{module_name}' importé avec succès")
             return module
         
         except ImportError as e:
             self._failed_imports.add(module_name)
-            print(f"❌ Échec d'import de '{module_name}': {e}")
+            print(f"Échec d'import de '{module_name}': {e}")
             
             if fallback:
-                print(f"🔄 Tentative avec fallback: {fallback}")
+                print(f"Tentative avec fallback: {fallback}")
                 return self.safe_import(fallback)
             
             return None
@@ -526,10 +526,10 @@ class DynamicImporter:
         for backend in preferences:
             module = self.safe_import(backend)
             if module:
-                print(f"🎯 Backend sélectionné: {backend}")
+                print(f"Backend sélectionné: {backend}")
                 return module
         
-        print("⚠️ Aucun backend disponible")
+        print("Aucun backend disponible")
         return None
 
 # Factory pattern pour les modèles ML
@@ -597,24 +597,24 @@ def advanced_import_example():
         'has_torch': 'torch'
     })
     
-    print(f"📦 Backends ML disponibles: {list(ml_backends.keys())}")
+    print(f"Backends ML disponibles: {list(ml_backends.keys())}")
     
     # Sélection du meilleur backend pour le calcul numérique
     numeric_preferences = ['cupy', 'numpy']  # CuPy pour GPU, NumPy en fallback
     numeric_backend = importer.get_best_available_backend(numeric_preferences)
     
     if numeric_backend:
-        print(f"🔢 Backend numérique: {numeric_backend.__name__}")
+        print(f"Backend numérique: {numeric_backend.__name__}")
     
     # Utilisation de la factory de modèles
     factory = ModelFactory()
     available_models = factory.get_available_models()
-    print(f"🤖 Modèles ML disponibles: {available_models}")
+    print(f"Modèles ML disponibles: {available_models}")
     
     if available_models:
         # Création d'un modèle avec le premier disponible
         model = factory.create_model(available_models[0], n_estimators=100)
-        print(f"✅ Modèle créé: {type(model).__name__}")
+        print(f"Modèle créé: {type(model).__name__}")
 
 if __name__ == "__main__":
     advanced_import_example()`,
@@ -1063,7 +1063,7 @@ if __name__ == "__main__":
             
             <div className="bg-gray-900 rounded-lg overflow-hidden">
               <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-mono flex items-center justify-between">
-                <span>💻 {concept.title}</span>
+                <span>{concept.title}</span>
                 <Badge variant="secondary" className="text-xs">
                   Python
                 </Badge>

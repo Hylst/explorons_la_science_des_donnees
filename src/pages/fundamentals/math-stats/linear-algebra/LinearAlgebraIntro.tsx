@@ -2,66 +2,66 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { Brain, Target, Zap } from "lucide-react";
+import { Brain, Grid3x3, MoveUpRight, Target, Zap } from "lucide-react";
 
 const LinearAlgebraIntro = () => {
   return (
     <section id="intro" className="mb-16">
       <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-8 rounded-xl border border-purple-100 mb-8">
-        <h2 className="text-3xl font-bold mb-6 text-purple-900">🔬 L'Algèbre Linéaire : Le GPS du Machine Learning</h2>
+        <h2 className="text-3xl font-bold mb-6 text-purple-900">L'Algèbre Linéaire : Le GPS du Machine Learning</h2>
         
         <div className="max-w-none text-gray-700 mb-8">
           <p className="text-xl leading-relaxed mb-6">
             Imaginez que vous êtes un architecte qui conçoit des gratte-ciels dans un monde multidimensionnel. 
-            Vos outils ? Les vecteurs et matrices ! Chaque donnée devient un point dans l'espace, 
+            Vos outils : les vecteurs et les matrices. Chaque donnée devient un point dans l'espace, 
             chaque algorithme une transformation géométrique élégante.
           </p>
           
           <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500 my-6">
-            <h3 className="text-lg font-semibold text-purple-700 mb-3">🌟 Analogie : L'algèbre linéaire comme un langage universel</h3>
+            <h3 className="text-lg font-semibold text-purple-700 mb-3">Analogie : L'algèbre linéaire comme un langage universel</h3>
             <p>
               Tout comme les mathématiques permettent aux physiciens de décrire l'univers, 
               l'algèbre linéaire permet aux data scientists de décrire et manipuler l'information. 
-              Chaque image, chaque mot, chaque donnée devient un vecteur dans un espace mathématique !
+              Chaque image, chaque mot, chaque donnée devient un vecteur dans un espace mathématique.
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="text-3xl mb-3">📐</div>
+            <MoveUpRight className="h-8 w-8 text-purple-600 mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-gray-800 mb-2">Vecteurs</h3>
             <p className="text-sm text-gray-600">Les coordonnées GPS de vos données</p>
             <Badge className="mt-2 bg-purple-100 text-purple-800">Fondamental</Badge>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="text-3xl mb-3">🔄</div>
+            <Grid3x3 className="h-8 w-8 text-blue-600 mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-gray-800 mb-2">Matrices</h3>
             <p className="text-sm text-gray-600">Les machines à transformer l'espace</p>
             <Badge className="mt-2 bg-blue-100 text-blue-800">Puissant</Badge>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="text-3xl mb-3">⚡</div>
+            <Zap className="h-8 w-8 text-green-600 mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-gray-800 mb-2">Opérations</h3>
             <p className="text-sm text-gray-600">Les règles du jeu mathématique</p>
             <Badge className="mt-2 bg-green-100 text-green-800">Pratique</Badge>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-            <div className="text-3xl mb-3">🎯</div>
+            <Target className="h-8 w-8 text-amber-600 mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-gray-800 mb-2">Applications</h3>
             <p className="text-sm text-gray-600">La magie en action</p>
             <Badge className="mt-2 bg-amber-100 text-amber-800">Concret</Badge>
           </div>
         </div>
 
-        <CourseHighlight title="💡 Le saviez-vous ?" type="concept">
+        <CourseHighlight title="Le saviez-vous ?" type="concept">
           <div className="space-y-4">
             <p>
               <strong>L'algèbre linéaire est au cœur du moteur de recherche de Google.</strong> L'algorithme PageRank (Brin et Page, 1998) classe les pages web en calculant le vecteur propre dominant d'une matrice immense, par itérations successives, et non par une décomposition complète. Ce n'est qu'un des nombreux signaux de classement actuels.
             </p>
             <div className="bg-purple-100 p-4 rounded-lg mt-4">
               <p className="text-sm">
-                <strong>Fait étonnant :</strong> Une image en niveaux de gris de 1920×1080 pixels est un vecteur de 2 073 600 dimensions (6 220 800 en couleur RGB) ! 
+                <strong>Fait étonnant :</strong> Une image en niveaux de gris de 1920×1080 pixels est un vecteur de 2 073 600 dimensions (6 220 800 en couleur RGB). 
                 L'algèbre linéaire nous permet de manipuler ces "monstres" mathématiques comme s'il s'agissait de simples nombres.
               </p>
             </div>

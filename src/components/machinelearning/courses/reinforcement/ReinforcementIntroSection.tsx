@@ -27,7 +27,7 @@ const ReinforcementIntroSection = () => {
           </p>
 
           <div className="bg-white p-6 rounded-xl border shadow-sm">
-            <h3 className="font-semibold mb-4 text-purple-800">🎯 Au programme :</h3>
+            <h3 className="font-semibold mb-4 text-purple-800">Au programme :</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-start gap-3">
                 <Target className="h-5 w-5 text-purple-600 mt-1" />
@@ -63,7 +63,7 @@ const ReinforcementIntroSection = () => {
       </Card>
 
       {/* Analogie du dressage d'un chien */}
-      <EducationalCard title="🐕 Analogie : dresser un chien" type="analogie">
+      <EducationalCard title="Analogie : dresser un chien" type="analogie">
         <div className="space-y-4">
           <p>
             L'apprentissage par renforcement ressemble au dressage d'un chien :
@@ -72,7 +72,7 @@ const ReinforcementIntroSection = () => {
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-blue-800 mb-2">🐕 Dressage traditionnel</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Dressage traditionnel</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>Chien</strong> : apprend par essai-erreur</li>
                   <li>• <strong>Maître</strong> : donne récompenses/punitions</li>
@@ -81,7 +81,7 @@ const ReinforcementIntroSection = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-purple-800 mb-2">🤖 Apprentissage par renforcement</h4>
+                <h4 className="font-semibold text-purple-800 mb-2">Apprentissage par renforcement</h4>
                 <ul className="space-y-2 text-sm">
                   <li>• <strong>Agent</strong> : apprend par essai-erreur</li>
                   <li>• <strong>Fonction de récompense</strong> : donne des signaux</li>
@@ -164,7 +164,7 @@ const ReinforcementIntroSection = () => {
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span className="flex items-center gap-2">
-                  📚 Repères historiques de l'apprentissage par renforcement
+                  Repères historiques de l'apprentissage par renforcement
                 </span>
                 <ChevronDown className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
               </CardTitle>
@@ -176,7 +176,7 @@ const ReinforcementIntroSection = () => {
             <CardContent className="pt-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-amber-800 mb-3">🕰️ Chronologie clé</h4>
+                  <h4 className="font-semibold text-amber-800 mb-3">Chronologie clé</h4>
                   <div className="space-y-3">
                     <div className="border-l-4 border-amber-400 pl-4">
                       <Badge className="mb-1">1950s</Badge>
@@ -197,11 +197,11 @@ const ReinforcementIntroSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-amber-800 mb-3">💡 Anecdotes</h4>
+                  <h4 className="font-semibold text-amber-800 mb-3">Anecdotes</h4>
                   <div className="space-y-3 text-sm">
-                    <p><strong>🎮 Les jeux Atari :</strong> DeepMind a utilisé de vieux jeux de la console Atari 2600 pour montrer qu'un même algorithme pouvait apprendre à jouer à de nombreux jeux à partir des pixels et du score, sans règles programmées.</p>
-                    <p><strong>🐁 Le conditionnement animal :</strong> Les expériences de Thorndike et de Skinner sur l'apprentissage animal (rats, pigeons) sont à l'origine de l'idée de renforcement par la récompense.</p>
-                    <p><strong>🚁 Hélicoptères autonomes :</strong> des chercheurs de Stanford ont fait exécuter des figures acrobatiques à un hélicoptère radiocommandé par apprentissage par renforcement (Abbeel, Coates, Quigley et Ng, 2007).</p>
+                    <p><strong>Les jeux Atari :</strong> DeepMind a utilisé de vieux jeux de la console Atari 2600 pour montrer qu'un même algorithme pouvait apprendre à jouer à de nombreux jeux à partir des pixels et du score, sans règles programmées.</p>
+                    <p><strong>Le conditionnement animal :</strong> Les expériences de Thorndike et de Skinner sur l'apprentissage animal (rats, pigeons) sont à l'origine de l'idée de renforcement par la récompense.</p>
+                    <p><strong>Hélicoptères autonomes :</strong> des chercheurs de Stanford ont fait exécuter des figures acrobatiques à un hélicoptère radiocommandé par apprentissage par renforcement (Abbeel, Coates, Quigley et Ng, 2007).</p>
                   </div>
                 </div>
               </div>

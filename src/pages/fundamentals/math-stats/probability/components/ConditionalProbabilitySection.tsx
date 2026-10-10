@@ -17,7 +17,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple médical
   const medicalScenario = {
-    title: "🏥 Test Médical",
+    title: "Test Médical",
     description: "Diagnostic d'une maladie avec un test",
     initialEvent: "Population",
     branches: [
@@ -44,7 +44,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple météo
   const weatherScenario = {
-    title: "🌤️ Prévision Météo",
+    title: "Prévision Météo",
     description: "Prédiction de pluie selon les nuages",
     initialEvent: "Journée",
     branches: [
@@ -71,7 +71,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple marketing
   const marketingScenario = {
-    title: "📧 Email Marketing",
+    title: "Email Marketing",
     description: "Taux d'ouverture selon le segment",
     initialEvent: "Clients",
     branches: [
@@ -129,33 +129,33 @@ const ConditionalProbabilitySection = () => {
   return (
     <section id="conditional-probability" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🌳 2. Probabilité Conditionnelle : Quand l'Information Change Tout
+        2. Probabilité Conditionnelle : Quand l'Information Change Tout
       </h2>
 
       {/* Introduction conceptuelle */}
       <div className="mb-8">
-        <CourseHighlight title="🔍 Le pouvoir de l'information" type="concept">
+        <CourseHighlight title="Le pouvoir de l'information" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
               Imaginez que vous jouez aux cartes. La probabilité de tirer un As est de 4/52 ≈ 7.7%. 
-              Mais si je vous dis "la carte que vous allez tirer est rouge", cette probabilité change ! 
+              Mais si je vous dis "la carte que vous allez tirer est rouge", cette probabilité change. 
               Elle devient 2/26 ≈ 7.7%... Attendez, c'est pareil ?
             </p>
             <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
               <p className="text-sm">
-                <strong>🤔 Réflexion :</strong> Et si je vous dis "la carte est un cœur" ? 
-                Maintenant P(As|Cœur) = 1/13 ≈ 7.7%... Toujours pareil !
+                <strong>Réflexion :</strong> Et si je vous dis "la carte est un cœur" ? 
+                Maintenant P(As|Cœur) = 1/13 ≈ 7.7%... Toujours pareil.
               </p>
               <p className="text-sm mt-2">
-                <strong>🎯 Mais si je dis "la carte est une figure" ?</strong>{" "}
-                Alors P(As|Figure) = 0% car un As n'est pas une figure !
+                <strong>Mais si je dis "la carte est une figure" ?</strong>{" "}
+                Alors P(As|Figure) = 0% car un As n'est pas une figure.
               </p>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">💡 L'essence de la probabilité conditionnelle :</h4>
+              <h4 className="font-semibold text-blue-800 mb-2">L'essence de la probabilité conditionnelle :</h4>
               <p className="text-sm text-blue-700">
                 Chaque nouvelle information <strong>restreint l'espace des possibles</strong> et peut 
-                drastiquement changer les probabilités. C'est le fondement de l'apprentissage automatique !
+                drastiquement changer les probabilités. C'est le fondement de l'apprentissage automatique.
               </p>
             </div>
           </div>
@@ -197,10 +197,10 @@ const ConditionalProbabilitySection = () => {
             </div>
 
             <div className="bg-indigo-50 p-4 rounded-lg">
-              <h5 className="font-semibold text-indigo-800 mb-2">🧠 Intuition :</h5>
+              <h5 className="font-semibold text-indigo-800 mb-2">Intuition :</h5>
               <p className="text-sm text-indigo-700">
                 On "zoome" sur les cas où B s'est produit, puis on regarde quelle fraction 
-                de ces cas contient aussi A. C'est comme regarder à travers un filtre !
+                de ces cas contient aussi A. C'est comme regarder à travers un filtre.
               </p>
             </div>
           </div>
@@ -242,7 +242,7 @@ const ConditionalProbabilitySection = () => {
 
             {/* Diagramme en arbre */}
             <div className="bg-white border rounded-lg p-6">
-              <h5 className="font-semibold mb-4 text-center">🌳 Diagramme en Arbre</h5>
+              <h5 className="font-semibold mb-4 text-center">Diagramme en Arbre</h5>
               
               <div className="flex flex-col items-center space-y-8">
                 {/* Nœud racine */}
@@ -311,7 +311,7 @@ const ConditionalProbabilitySection = () => {
               {/* Calculs détaillés pour le chemin sélectionné */}
               {selectedPath && (
                 <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <h6 className="font-semibold text-blue-800 mb-2">🧮 Calculs pour : {selectedPath.replace("|", " → ")}</h6>
+                  <h6 className="font-semibold text-blue-800 mb-2">Calculs pour : {selectedPath.replace("|", " → ")}</h6>
                   {(() => {
                     const [condition, result] = selectedPath.split('|');
                     const branch = currentScenario.branches.find(b => b.condition === condition);
@@ -336,7 +336,7 @@ const ConditionalProbabilitySection = () => {
 
             {/* Graphique en barres */}
             <div className="space-y-3">
-              <h5 className="font-semibold">📊 Probabilités Jointes</h5>
+              <h5 className="font-semibold">Probabilités Jointes</h5>
               <div className="h-64 bg-white rounded border">
                 <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={barData}>
@@ -375,7 +375,7 @@ const ConditionalProbabilitySection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <h4 className="font-semibold">✅ Propriétés fondamentales :</h4>
+              <h4 className="font-semibold">Propriétés fondamentales :</h4>
               <div className="space-y-3 text-sm">
                 <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
                   <strong>Règle de multiplication :</strong><br/>
@@ -393,7 +393,7 @@ const ConditionalProbabilitySection = () => {
             </div>
             
             <div className="space-y-4">
-              <h4 className="font-semibold">⚠️ Pièges courants :</h4>
+              <h4 className="font-semibold">Pièges courants :</h4>
               <div className="space-y-3 text-sm">
                 <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
                   <strong>Confusion P(A|B) ≠ P(B|A) :</strong><br/>
@@ -414,10 +414,10 @@ const ConditionalProbabilitySection = () => {
       </Card>
 
       {/* Applications pratiques */}
-      <CourseHighlight title="🚀 Applications en Data Science" type="concept">
+      <CourseHighlight title="Applications en Data Science" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <h4 className="font-semibold">🤖 Machine Learning :</h4>
+            <h4 className="font-semibold">Machine Learning :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Classification :</strong> P(Classe|Caractéristiques)
@@ -432,7 +432,7 @@ const ConditionalProbabilitySection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">📊 Analyse client :</h4>
+            <h4 className="font-semibold">Analyse client :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Segmentation :</strong> P(Achat|Segment)
@@ -448,7 +448,7 @@ const ConditionalProbabilitySection = () => {
         </div>
         
         <div className="mt-6 bg-indigo-100 p-4 rounded-lg">
-          <h5 className="font-semibold text-indigo-800 mb-2">💡 Pourquoi c'est crucial ?</h5>
+          <h5 className="font-semibold text-indigo-800 mb-2">Pourquoi c'est crucial ?</h5>
           <div className="text-sm text-indigo-700 space-y-1">
             <p>• <strong>Prise de décision :</strong> Intégrer de nouvelles informations</p>
             <p>• <strong>Personnalisation :</strong> Adapter selon le contexte utilisateur</p>

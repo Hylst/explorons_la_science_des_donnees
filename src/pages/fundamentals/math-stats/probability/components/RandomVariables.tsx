@@ -131,13 +131,13 @@ const RandomVariables = () => {
   return (
     <section id="random-variables" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        🎯 3. Variables Aléatoires : Transformer le Hasard en Nombres
+        3. Variables Aléatoires : Transformer le Hasard en Nombres
       </h2>
       
       <div className="mb-8">
         <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-lg border border-green-100">
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            🧠 Analogie : Le traducteur universel du hasard
+            Analogie : Le traducteur universel du hasard
           </h3>
           <p className="text-lg mb-4">
             Imaginez un traducteur magique qui transforme tout événement aléatoire en nombre précis. 
@@ -149,8 +149,8 @@ const RandomVariables = () => {
           </div>
           <div className="mt-4 bg-blue-50 p-4 rounded-lg">
             <p className="text-sm">
-              <strong>🎯 Pourquoi c'est génial ?</strong> Une fois que le hasard devient des nombres, 
-              on peut faire des calculs, des graphiques, des prédictions... Bref, de la vraie Data Science !
+              <strong>Pourquoi c'est génial ?</strong> Une fois que le hasard devient des nombres, 
+              on peut faire des calculs, des graphiques, des prédictions... Bref, de la vraie Data Science.
             </p>
           </div>
           
@@ -183,7 +183,7 @@ const RandomVariables = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
-              🔢 Variables Discrètes : Les Compteurs
+              Variables Discrètes : Les Compteurs
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -193,7 +193,7 @@ const RandomVariables = () => {
                 Ce sont des nombres entiers qu'on peut énumérer.
               </p>
               
-              <CourseHighlight title="📱 Exemple moderne : Notifications smartphone" type="example">
+              <CourseHighlight title="Exemple moderne : Notifications smartphone" type="example">
                 <div className="space-y-3">
                   <p className="text-sm">Soit X = "nombre de notifications reçues en 1 heure"</p>
                   <div className="bg-purple-50 p-3 rounded text-xs space-y-1">
@@ -237,12 +237,12 @@ const RandomVariables = () => {
               </div>
               
               <div className="bg-purple-50 p-3 rounded text-sm">
-                <strong>📊 Fonction de masse :</strong>
+                <strong>Fonction de masse :</strong>
                 <CourseEquation latex="P(X = k) = \text{probabilité d'avoir exactement } k \text{ notifications}" />
               </div>
 
               <div className="space-y-2 text-xs">
-                <h5 className="font-semibold">🎯 Autres exemples de variables discrètes :</h5>
+                <h5 className="font-semibold">Autres exemples de variables discrètes :</h5>
                 <ul className="space-y-1 ml-4">
                   <li>• Nombre de défauts dans un produit</li>
                   <li>• Nombre de visiteurs sur un site web</li>
@@ -259,7 +259,7 @@ const RandomVariables = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              📏 Variables Continues : Les Mesureurs
+              Variables Continues : Les Mesureurs
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -269,14 +269,14 @@ const RandomVariables = () => {
                 Ce sont des nombres réels qui peuvent prendre n'importe quelle valeur dans un intervalle.
               </p>
               
-              <CourseHighlight title="🌡️ Exemple concret : Température extérieure" type="example">
+              <CourseHighlight title="Exemple concret : Température extérieure" type="example">
                 <div className="space-y-3">
                   <p className="text-sm">Soit Y = "température à 14h demain"</p>
                   <div className="bg-orange-50 p-3 rounded text-xs space-y-1">
                     <p>• Y peut valoir 20.5°C, 20.51°C, 20.512°C... (infinité de valeurs possibles)</p>
                     <p>• P(Y = 25.0°C exactement) = 0 (probabilité nulle pour une valeur précise)</p>
                     <p>• P(20°C ≤ Y ≤ 30°C) = probabilité d'une température entre 20 et 30°C</p>
-                    <p>• On travaille toujours avec des intervalles !</p>
+                    <p>• On travaille toujours avec des intervalles.</p>
                   </div>
                 </div>
               </CourseHighlight>
@@ -329,7 +329,7 @@ const RandomVariables = () => {
               </div>
               
               <div className="bg-orange-50 p-3 rounded text-sm">
-                <strong>📊 Fonction de densité :</strong>
+                <strong>Fonction de densité :</strong>
                 <CourseEquation latex="f(y) = \text{densité de probabilité en } y" />
                 <p className="text-xs mt-1">
                   L'aire sous la courbe dans un intervalle = probabilité de cet intervalle
@@ -337,7 +337,7 @@ const RandomVariables = () => {
               </div>
 
               <div className="space-y-2 text-xs">
-                <h5 className="font-semibold">🎯 Autres exemples de variables continues :</h5>
+                <h5 className="font-semibold">Autres exemples de variables continues :</h5>
                 <ul className="space-y-1 ml-4">
                   <li>• Temps d'attente dans une file</li>
                   <li>• Poids d'un colis</li>
@@ -355,7 +355,7 @@ const RandomVariables = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-5 w-5" />
-            🎯 Caractéristiques importantes d'une variable aléatoire
+            Caractéristiques importantes d'une variable aléatoire
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -368,7 +368,7 @@ const RandomVariables = () => {
               <CourseEquation latex="E[X] = \sum x_i \cdot P(X = x_i) \text{ (discret)}" />
               <CourseEquation latex="E[X] = \int x \cdot f(x) dx \text{ (continu)}" />
               <div className="bg-blue-50 p-3 rounded text-sm">
-                <p><strong>💡 Intuition :</strong> La valeur "typique" qu'on s'attend à observer.</p>
+                <p><strong>Intuition :</strong> La valeur "typique" qu'on s'attend à observer.</p>
                 <p className="text-xs mt-1">
                   Exemple : Si en moyenne vous recevez 3 notifications/heure, E[X] = 3
                 </p>
@@ -383,7 +383,7 @@ const RandomVariables = () => {
               <CourseEquation latex="Var(X) = E[(X - E[X])^2]" />
               <CourseEquation latex="= E[X^2] - (E[X])^2" />
               <div className="bg-green-50 p-3 rounded text-sm">
-                <p><strong>💡 Intuition :</strong> Mesure la "dispersion" autour de la moyenne.</p>
+                <p><strong>Intuition :</strong> Mesure la "dispersion" autour de la moyenne.</p>
                 <p className="text-xs mt-1">
                   Exemple : Grande variance = notifications très variables (parfois 0, parfois 10)
                 </p>
@@ -397,7 +397,7 @@ const RandomVariables = () => {
               </h4>
               <CourseEquation latex="\sigma(X) = \sqrt{Var(X)}" />
               <div className="bg-purple-50 p-3 rounded text-sm">
-                <p><strong>💡 Intuition :</strong> Variance dans la même unité que X.</p>
+                <p><strong>Intuition :</strong> Variance dans la même unité que X.</p>
                 <p className="text-xs mt-1">
                   Exemple : pour une variable d'espérance 3 notifications et d'écart-type 1,5, une bonne part des valeurs se situe entre 1,5 et 4,5 (un écart-type de part et d'autre de la moyenne)
                 </p>
@@ -411,7 +411,7 @@ const RandomVariables = () => {
               </h4>
               <CourseEquation latex="F(x) = P(X \leq x)" />
               <div className="bg-orange-50 p-3 rounded text-sm">
-                <p><strong>💡 Intuition :</strong> Probabilité d'être "en dessous" d'une valeur.</p>
+                <p><strong>Intuition :</strong> Probabilité d'être "en dessous" d'une valeur.</p>
                 <p className="text-xs mt-1">
                   Exemple : F(2) = probabilité de recevoir 2 notifications ou moins
                 </p>
@@ -427,7 +427,7 @@ const RandomVariables = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
-              📊 Analyse des ventes hebdomadaires
+              Analyse des ventes hebdomadaires
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -477,7 +477,7 @@ const RandomVariables = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-5 w-5" />
-            🔬 Applications en Data Science
+            Applications en Data Science
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -526,7 +526,7 @@ const RandomVariables = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Dice6 className="h-5 w-5" />
-            🎯 Exercice interactif : simulation de Monte Carlo
+            Exercice interactif : simulation de Monte Carlo
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -574,7 +574,7 @@ const RandomVariables = () => {
             </div>
             
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2">💡 Concepts clés à retenir :</h4>
+              <h4 className="font-semibold mb-2">Concepts clés à retenir :</h4>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Loi des grands nombres :</strong> Plus on simule, plus on se rapproche de la théorie</li>
                 <li>• <strong>Convergence :</strong> Les résultats se stabilisent avec le nombre d'essais</li>
@@ -584,7 +584,7 @@ const RandomVariables = () => {
             </div>
             
             <div className="bg-green-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2">🚀 Applications pratiques :</h4>
+              <h4 className="font-semibold mb-2">Applications pratiques :</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h5 className="font-medium">Finance</h5>

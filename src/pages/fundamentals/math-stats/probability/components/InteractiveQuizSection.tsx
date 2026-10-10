@@ -289,15 +289,15 @@ const InteractiveQuizSection = () => {
                 <div className="mt-4">
                   {calculateScore().percentage >= 80 ? (
                     <Badge className="bg-green-100 text-green-800 text-lg px-4 py-2">
-                      🎉 Beau résultat : vous semblez à l'aise avec les probabilités
+                      Beau résultat : vous semblez à l'aise avec les probabilités
                     </Badge>
                   ) : calculateScore().percentage >= 60 ? (
                     <Badge className="bg-yellow-100 text-yellow-800 text-lg px-4 py-2">
-                      👍 Bien ! Quelques révisions et ce sera parfait
+                      Bien. Quelques révisions et ce sera parfait
                     </Badge>
                   ) : (
                     <Badge className="bg-red-100 text-red-800 text-lg px-4 py-2">
-                      📚 À revoir ! Reprenez les concepts de base
+                      À revoir : reprenez les concepts de base
                     </Badge>
                   )}
                 </div>
@@ -370,13 +370,13 @@ const InteractiveQuizSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Lightbulb className="h-6 w-6 text-purple-600" />
-            💡 Conseils pour Progresser en Probabilités
+            Conseils pour Progresser en Probabilités
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3">🎯 Stratégies d'apprentissage :</h4>
+              <h4 className="font-semibold mb-3">Stratégies d'apprentissage :</h4>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Visualisez :</strong> Dessinez des diagrammes et des arbres de probabilité</li>
                 <li>• <strong>Pratiquez :</strong> Résolvez des problèmes variés régulièrement</li>
@@ -386,7 +386,7 @@ const InteractiveQuizSection = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3">🔧 Outils recommandés :</h4>
+              <h4 className="font-semibold mb-3">Outils recommandés :</h4>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Python :</strong> NumPy, SciPy, Pandas pour les calculs</li>
                 <li>• <strong>R :</strong> Excellent pour les statistiques</li>
@@ -397,7 +397,7 @@ const InteractiveQuizSection = () => {
           </div>
           
           <div className="mt-6 bg-white p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">🚀 Prochaines étapes :</h4>
+            <h4 className="font-semibold mb-2">Prochaines étapes :</h4>
             <p className="text-sm text-gray-700">
               Continuez votre apprentissage en explorant les statistiques inférentielles, 
               l'apprentissage automatique probabiliste, et les applications avancées comme 

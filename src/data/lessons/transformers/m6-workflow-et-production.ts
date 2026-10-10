@@ -159,7 +159,7 @@ Une validation croisée ordinaire mélange les lignes : un pli de test contient 
       kind: "text",
       md: `### Une fuite bien plus grave qu'un scaler
 
-Le module 2 a mesuré qu'une fuite par un simple scaler reste discrète sur des données stables et devient visible quand elles dérivent. Elle peut être bien pire : une étape qui utilise la **cible** (comme une sélection de variables) peut produire une fuite énorme. Voici l'expérience classique, décrite dans *The Elements of Statistical Learning* (Hastie, Tibshirani et Friedman) : 100 exemples, 2 000 variables de **pur bruit**, des étiquettes sans aucun rapport avec elles. Aucun modèle ne peut y prédire mieux que le hasard, soit 0,5.
+Le module 2 a mesuré qu'une fuite par un simple scaler reste discrète sur des données stables et devient visible quand elles dérivent. Elle peut être bien pire : une étape qui utilise la **cible** (comme une sélection de variables) peut produire une fuite énorme. Voici une variante d'une expérience classique, décrite dans *The Elements of Statistical Learning* (Hastie, Tibshirani et Friedman), avec ici 100 exemples, 2 000 variables de **pur bruit**, des étiquettes sans aucun rapport avec elles. Aucun modèle ne peut y prédire mieux que le hasard, soit 0,5.
 
 - **Mauvaise méthode** : on garde les 20 variables les mieux corrélées avec l'étiquette en regardant **tous** les exemples, puis on valide. Parmi 2 000 variables aléatoires, quelques-unes sont corrélées aux étiquettes par pur hasard, et la sélection les a trouvées en voyant aussi les exemples de test.
 - **Bonne méthode** : la sélection est une étape du \`Pipeline\`, donc refaite sur chaque partie d'entraînement, sans voir les étiquettes du pli de test.`,

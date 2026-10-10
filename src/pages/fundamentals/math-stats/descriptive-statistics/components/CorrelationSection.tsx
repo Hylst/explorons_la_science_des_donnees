@@ -7,7 +7,7 @@ import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
-import { TrendingUp, AlertTriangle, Eye, Zap, Heart, Users } from "lucide-react";
+import { TrendingUp, TrendingDown, Shuffle, AlertTriangle, Eye, Zap, Heart, Users } from "lucide-react";
 import { readableTextColor } from "@/lib/contrast";
 import { makeUniform } from "@/lib/sample-datasets";
 
@@ -44,7 +44,7 @@ const CorrelationSection = () => {
 
   const correlationExamples = {
     height_weight: {
-      title: "📏 Taille vs Poids",
+      title: "Taille vs Poids",
       description: "Relation entre la taille (cm) et le poids (kg) chez 50 personnes",
       data: HEIGHT_WEIGHT,
       correlation: pearson(HEIGHT_WEIGHT),
@@ -52,7 +52,7 @@ const CorrelationSection = () => {
       color: "#10B981"
     },
     temperature_sales: {
-      title: "🌡️ Température vs Ventes de glaces",
+      title: "Température vs Ventes de glaces",
       description: "Température (°C) et ventes quotidiennes de glaces (€)",
       data: TEMP_SALES,
       correlation: pearson(TEMP_SALES),
@@ -60,7 +60,7 @@ const CorrelationSection = () => {
       color: "#F59E0B"
     },
     study_tv: {
-      title: "📚 Heures d'étude vs Heures de TV",
+      title: "Heures d'étude vs Heures de TV",
       description: "Heures d'étude par semaine vs Heures de télévision",
       data: STUDY_TV,
       correlation: pearson(STUDY_TV),
@@ -68,7 +68,7 @@ const CorrelationSection = () => {
       color: "#EF4444"
     },
     random: {
-      title: "🎲 Variables indépendantes",
+      title: "Variables indépendantes",
       description: "Deux variables totalement indépendantes",
       data: INDEPENDENT,
       correlation: pearson(INDEPENDENT),
@@ -101,7 +101,7 @@ const CorrelationSection = () => {
 
       {/* Introduction conceptuelle */}
       <div className="mb-8">
-        <CourseHighlight title="💕 Analogie : Les relations humaines" type="concept">
+        <CourseHighlight title="Analogie : Les relations humaines" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
               La corrélation, c'est comme analyser les relations entre personnes. 
@@ -116,13 +116,13 @@ const CorrelationSection = () => {
                 <p className="text-xs text-gray-600">Ex: Taille et pointure</p>
               </div>
               <div className="bg-red-50 p-4 rounded-lg text-center">
-                <div className="text-2xl mb-2">💔</div>
+                <TrendingDown className="h-8 w-8 text-red-600 mx-auto mb-2" aria-hidden="true" />
                 <p><strong>Corrélation négative</strong></p>
                 <p>"Quand l'un monte, l'autre descend"</p>
                 <p className="text-xs text-gray-600">Ex: Prix et demande</p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg text-center">
-                <div className="text-2xl mb-2">🤷</div>
+                <Shuffle className="h-8 w-8 text-gray-600 mx-auto mb-2" aria-hidden="true" />
                 <p><strong>Pas de corrélation</strong></p>
                 <p>"Chacun vit sa vie"</p>
                 <p className="text-xs text-gray-600">Ex: Pointure et QI</p>
@@ -135,7 +135,7 @@ const CorrelationSection = () => {
       {/* Sélecteur d'exemples */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>🔬 Explorateur de Corrélations</CardTitle>
+          <CardTitle>Explorateur de Corrélations</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3 mb-6">
@@ -202,7 +202,7 @@ const CorrelationSection = () => {
 
               <CourseEquation latex="Cov(X,Y) = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})" />
 
-              <CourseHighlight title="🧮 Décryptage du calcul" type="example">
+              <CourseHighlight title="Décryptage du calcul" type="example">
                 <div className="text-sm space-y-2">
                   <p><strong>Étape 1 :</strong> Pour chaque point, calculer les écarts à la moyenne</p>
                   <p><strong>Étape 2 :</strong> Multiplier les écarts de X et Y</p>
@@ -238,7 +238,7 @@ const CorrelationSection = () => {
                 </h5>
                 <p className="text-xs">
                   La covariance dépend des unités de mesure. Impossible de comparer 
-                  covariance(€, kg) avec covariance(°C, heures) !
+                  covariance(€, kg) avec covariance(°C, heures).
                 </p>
               </div>
             </div>
@@ -256,15 +256,15 @@ const CorrelationSection = () => {
             <div className="space-y-4">
               <p className="text-sm">
                 Le coefficient de corrélation de Pearson normalise la covariance. 
-                C'est la "covariance standardisée", parfaite pour les comparaisons !
+                C'est la "covariance standardisée", bien adaptée aux comparaisons.
               </p>
 
               <CourseEquation latex="r = \frac{Cov(X,Y)}{s_X \cdot s_Y} = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}}" />
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">🌟 Super-pouvoirs du coefficient r</h5>
+                <h5 className="font-semibold text-sm mb-2">Super-pouvoirs du coefficient r</h5>
                 <ul className="text-xs space-y-1">
-                  <li>• <strong>Borné :</strong> -1 ≤ r ≤ 1 (toujours !)</li>
+                  <li>• <strong>Borné :</strong> -1 ≤ r ≤ 1 (toujours)</li>
                   <li>• <strong>Sans unité :</strong> Comparable universellement</li>
                   <li>• <strong>Symétrique :</strong> r(X,Y) = r(Y,X)</li>
                   <li>• <strong>Invariant :</strong> ne change pas si l'on change d'unité (x → ax + b avec a &gt; 0) ; le signe s'inverse si a &lt; 0</li>
@@ -286,7 +286,7 @@ const CorrelationSection = () => {
                 </div>
               </div>
 
-              <CourseHighlight title="🎯 Astuce de mémorisation" type="example">
+              <CourseHighlight title="Astuce de mémorisation" type="example">
                 <p className="text-sm">
                   <strong>r² = coefficient de détermination</strong><br/>
                   Il indique le % de variabilité de Y expliqué par X.<br/>
@@ -327,7 +327,7 @@ const CorrelationSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3">🎯 Règles d'interprétation pratiques</h5>
+              <h5 className="font-semibold mb-3">Règles d'interprétation pratiques</h5>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>|r| ≥ 0.8</span>
@@ -351,7 +351,7 @@ const CorrelationSection = () => {
             <div className="bg-red-50 p-4 rounded-lg">
               <h5 className="font-semibold mb-3 flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4" />
-                ⚠️ Pièges à éviter absolument
+                Pièges à éviter absolument
               </h5>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Corrélation ≠ Causalité</strong><br/>
@@ -361,7 +361,7 @@ const CorrelationSection = () => {
                     <span className="text-xs">Une relation courbe parfaite peut avoir r = 0</span>
                 </li>
                 <li>• <strong>Attention aux variables confondantes</strong><br/>
-                    <span className="text-xs">Taille de pied et vocabulaire (âge caché !)</span>
+                    <span className="text-xs">Taille de pied et vocabulaire (âge caché)</span>
                 </li>
                 <li>• <strong>Outliers peuvent fausser r</strong><br/>
                     <span className="text-xs">Une seule valeur extrême change tout</span>
@@ -371,22 +371,22 @@ const CorrelationSection = () => {
           </div>
 
           <div className="mt-6">
-            <CourseHighlight title="🚀 Applications modernes de la corrélation" type="concept">
+            <CourseHighlight title="Applications modernes de la corrélation" type="concept">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                 <div className="bg-blue-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">📊 Finance</h6>
+                  <h6 className="font-semibold mb-1">Finance</h6>
                   <p className="text-xs">Diversification de portefeuille, corrélations entre actifs</p>
                 </div>
                 <div className="bg-green-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">🔬 Recherche</h6>
+                  <h6 className="font-semibold mb-1">Recherche</h6>
                   <p className="text-xs">Validation d'hypothèses, sélection de variables</p>
                 </div>
                 <div className="bg-purple-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">🤖 Machine Learning</h6>
+                  <h6 className="font-semibold mb-1">Machine Learning</h6>
                   <p className="text-xs">Feature selection, détection de multicolinéarité</p>
                 </div>
                 <div className="bg-orange-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">📈 Business</h6>
+                  <h6 className="font-semibold mb-1">Business</h6>
                   <p className="text-xs">KPIs corrélés, optimisation marketing</p>
                 </div>
               </div>
@@ -398,18 +398,18 @@ const CorrelationSection = () => {
       {/* Matrices de Covariance */}
       <Card>
         <CardHeader>
-          <CardTitle>🔢 Matrices de Covariance : L'Algèbre de la Dépendance</CardTitle>
+          <CardTitle>Matrices de Covariance : L'Algèbre de la Dépendance</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
-            <CourseHighlight title="🎯 Qu'est-ce qu'une matrice de covariance ?" type="concept">
+            <CourseHighlight title="Qu'est-ce qu'une matrice de covariance ?" type="concept">
               <p className="mb-4">
                 Une matrice de covariance est une matrice carrée qui contient les covariances entre toutes les paires de variables d'un dataset multidimensionnel. 
                 Elle généralise le concept de variance à plusieurs dimensions.
               </p>
               
               <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                <h5 className="font-semibold mb-2">📐 Structure mathématique</h5>
+                <h5 className="font-semibold mb-2">Structure mathématique</h5>
                 <CourseEquation latex="\Sigma = \begin{pmatrix} \sigma_{11} & \sigma_{12} & \cdots & \sigma_{1n} \\ \sigma_{21} & \sigma_{22} & \cdots & \sigma_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ \sigma_{n1} & \sigma_{n2} & \cdots & \sigma_{nn} \end{pmatrix}" />
               </div>
             </CourseHighlight>
@@ -417,7 +417,7 @@ const CorrelationSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div className="bg-green-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 text-green-700">✨ Propriétés fondamentales</h5>
+              <h5 className="font-semibold mb-3 text-green-700">Propriétés fondamentales</h5>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Symétrique :</strong> Σᵢⱼ = Σⱼᵢ</li>
                 <li>• <strong>Semi-définie positive :</strong> toutes les valeurs propres ≥ 0</li>
@@ -428,7 +428,7 @@ const CorrelationSection = () => {
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 text-orange-700">🔍 Exemple concret : 3 variables</h5>
+              <h5 className="font-semibold mb-3 text-orange-700">Exemple concret : 3 variables</h5>
               <div className="text-sm space-y-2">
                 <p><strong>Variables :</strong> Taille, Poids, Âge</p>
                 <div className="bg-white p-3 rounded border font-mono text-xs">
@@ -447,10 +447,10 @@ const CorrelationSection = () => {
 
           {/* Valeurs propres et vecteurs propres */}
           <div className="mb-6">
-            <CourseHighlight title="🎭 Valeurs propres et Vecteurs propres : Les Directions Principales" type="concept">
+            <CourseHighlight title="Valeurs propres et Vecteurs propres : Les Directions Principales" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                  <h5 className="font-semibold mb-3">🔢 Décomposition spectrale</h5>
+                  <h5 className="font-semibold mb-3">Décomposition spectrale</h5>
                   <CourseEquation latex="\Sigma \mathbf{v} = \lambda \mathbf{v}" />
                   <div className="mt-3 text-sm space-y-2">
                     <p><strong>Valeurs propres (λ) :</strong></p>
@@ -463,7 +463,7 @@ const CorrelationSection = () => {
                 </div>
 
                 <div>
-                  <h5 className="font-semibold mb-3">📐 Vecteurs propres</h5>
+                  <h5 className="font-semibold mb-3">Vecteurs propres</h5>
                   <div className="text-sm space-y-2">
                     <p><strong>Directions principales :</strong></p>
                     <ul className="ml-4 space-y-1">
@@ -474,7 +474,7 @@ const CorrelationSection = () => {
                     </ul>
                     
                     <div className="bg-blue-100 p-3 rounded mt-3">
-                      <p className="text-xs font-semibold">💡 Intuition géométrique</p>
+                      <p className="text-xs font-semibold">Intuition géométrique</p>
                       <p className="text-xs">Les vecteurs propres montrent les "directions naturelles" de dispersion des données, comme les axes d'une ellipse.</p>
                     </div>
                   </div>
@@ -485,10 +485,10 @@ const CorrelationSection = () => {
 
           {/* Connexion avec PCA */}
           <div className="mb-6">
-            <CourseHighlight title="🔗 Connexion avec l'Analyse en Composantes Principales (PCA)" type="example">
+            <CourseHighlight title="Connexion avec l'Analyse en Composantes Principales (PCA)" type="example">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-purple-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-purple-700">🎯 PCA = Diagonalisation de Σ</h5>
+                  <h5 className="font-semibold mb-3 text-purple-700">PCA = Diagonalisation de Σ</h5>
                   <div className="text-sm space-y-2">
                     <CourseEquation latex="\Sigma = P \Lambda P^T" />
                     <p><strong>Étapes PCA :</strong></p>
@@ -502,7 +502,7 @@ const CorrelationSection = () => {
                 </div>
 
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-green-700">📊 Réduction de dimensionnalité</h5>
+                  <h5 className="font-semibold mb-3 text-green-700">Réduction de dimensionnalité</h5>
                   <div className="text-sm space-y-2">
                     <p><strong>Variance expliquée :</strong></p>
                     <CourseEquation latex="\text{Variance expliquée} = \frac{\lambda_i}{\sum_{j=1}^n \lambda_j}" />
@@ -525,7 +525,7 @@ const CorrelationSection = () => {
           {/* Applications pratiques */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-blue-700">🤖 Machine Learning</h6>
+              <h6 className="font-semibold mb-2 text-blue-700">Machine Learning</h6>
               <ul className="text-xs space-y-1">
                 <li>• Feature selection</li>
                 <li>• Détection d'anomalies</li>
@@ -535,7 +535,7 @@ const CorrelationSection = () => {
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-green-700">📈 Finance</h6>
+              <h6 className="font-semibold mb-2 text-green-700">Finance</h6>
               <ul className="text-xs space-y-1">
                 <li>• Gestion de portefeuille</li>
                 <li>• Mesure du risque</li>
@@ -545,7 +545,7 @@ const CorrelationSection = () => {
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-purple-700">🔬 Sciences</h6>
+              <h6 className="font-semibold mb-2 text-purple-700">Sciences</h6>
               <ul className="text-xs space-y-1">
                 <li>• Analyse multivariée</li>
                 <li>• Contrôle qualité</li>
@@ -555,7 +555,7 @@ const CorrelationSection = () => {
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-orange-700">📊 Business Intelligence</h6>
+              <h6 className="font-semibold mb-2 text-orange-700">Business Intelligence</h6>
               <ul className="text-xs space-y-1">
                 <li>• Segmentation client</li>
                 <li>• Analyse des KPIs</li>
@@ -570,7 +570,7 @@ const CorrelationSection = () => {
               <div className="flex items-start">
                 <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5 mr-3" />
                 <div>
-                  <h5 className="font-semibold text-yellow-800 mb-2">⚠️ Points d'attention pratiques</h5>
+                  <h5 className="font-semibold text-yellow-800 mb-2">Points d'attention pratiques</h5>
                   <ul className="text-sm text-yellow-700 space-y-1">
                     <li>• <strong>Conditionnement :</strong> Matrice mal conditionnée → instabilité numérique</li>
                     <li>• <strong>Singularité :</strong> Déterminant = 0 → variables linéairement dépendantes</li>
@@ -587,7 +587,7 @@ const CorrelationSection = () => {
       {/* Corrélations non-linéaires */}
       <Card>
         <CardHeader>
-          <CardTitle>🌊 Au-delà de Pearson : Autres Types de Corrélations</CardTitle>
+          <CardTitle>Au-delà de Pearson : Autres Types de Corrélations</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

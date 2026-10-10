@@ -33,7 +33,7 @@ const ApplicationsSection = ({ title, applications, description }: ApplicationsS
       <h2 className="text-3xl font-bold text-center">{title}</h2>
 
       {description && (
-        <EducationalCard title="🌍 Vue d'ensemble" type="concept">
+        <EducationalCard title="Vue d'ensemble" type="concept">
           <p className="text-gray-700 leading-relaxed">{description}</p>
         </EducationalCard>
       )}

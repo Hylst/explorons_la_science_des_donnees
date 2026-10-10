@@ -19,13 +19,13 @@ Ma mission est de rendre la Data Science accessible aux francophones en proposan
 - **Fondamentaux** : mathématiques et statistiques (six pages : probabilités, statistiques descriptives, algèbre linéaire, calcul différentiel, statistiques avancées, calcul intégral), programmation, préparation des données, bases de données
 - **Machine Learning** : apprentissage supervisé, non supervisé et par renforcement, évaluation des modèles, deep learning, exercices
 - **Outils** : langages, traitement des données, frameworks de machine learning, visualisation
-- **Cours** : dix cours sous `/courses/` ; cinq sont rédigés (introduction aux mathématiques, statistiques inférentielles, Python pour la data science, guide des modèles de ML, Transformers), cinq sont des plans de modules annoncés (bases de données, visualisation, ML supervisé, NLP, statistiques appliquées)
-- **Projets** : dix sujets à réaliser soi-même, classés par niveau, sans corrigé ni jeu de données fournis
+- **Cours** : dix cours rédigés sous `/courses/` (Python pour la data science, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, fondamentaux des bases de données, visualisation de données, machine learning supervisé, guide des modèles de ML, Transformers, traitement du langage naturel). Chaque cours est une suite de modules avec objectifs, exemples modifiables exécutés dans le navigateur, exercices vérifiés par le moteur, quiz de fin de module, progression et notes gardées dans le navigateur
+- **Projets** : douze sujets classés par niveau ; cinq sont guidés pas à pas (analyse exploratoire de ventes, classification des iris, analyse de sentiment, segmentation de clients, prévision d'une fréquentation en série temporelle), avec jeu de données, exercices vérifiés et corrigés ; les sept autres sont des sujets à réaliser soi-même, sans énoncé détaillé, jeu de données ni corrigé
 
 ### Contenu et exercices
 - Quiz de data science par thème, avec explications des réponses ; score et historique gardés dans le navigateur
 - Glossaire : recherche et définitions courtes (au survol) ou détaillées (au clic), reprises dans le texte des cours
-- Éditeur de code qui exécute réellement Python (NumPy, pandas, scikit-learn), SQL (SQLite) et JavaScript dans le navigateur, sans envoyer le code à un serveur
+- Éditeur de code qui exécute réellement Python (NumPy, pandas, scikit-learn, Matplotlib), SQL (SQLite) et JavaScript dans le navigateur, sans envoyer le code à un serveur ; les figures Matplotlib s'affichent sous l'exemple
 - Visualisations et laboratoires interactifs (tangente, descente de gradient, statistiques descriptives, matrice de corrélation calculée sur des jeux d'exemple)
 - Sélection de ressources, blog, et rubrique Communauté (liens vers des forums, événements et comptes réels, avec un instantané daté d'actualités issues de flux RSS)
 - Les chiffres qui décrivent le monde réel citent leur source et leur date de consultation ; les estimations personnelles sont signalées comme telles
@@ -36,8 +36,8 @@ Ma mission est de rendre la Data Science accessible aux francophones en proposan
 - Navigation par rubriques, barre latérale de sections dans chaque page
 
 ### Sections qui restent à enrichir
-- **Cours à plan seulement** : les modules des cinq cours annoncés ci-dessus n'ont pas encore de leçon rédigée
-- **Projets** : énoncés détaillés, jeux de données et corrigés à écrire
+- **Projets** : les sept sujets non guidés n'ont ni énoncé détaillé, ni jeu de données, ni corrigé (certains demandent des bibliothèques que le navigateur ne fournit pas, comme TensorFlow ou Streamlit)
+- **Visualisation** : Seaborn, Plotly, Altair et D3.js sont présentés en code à lire ; seul Matplotlib s'exécute dans le navigateur
 - **Préparation des données** : le cycle complet est en ligne (collecte, audit, nettoyage, transformation, exploration visuelle, validation, automatisation) ; quelques démonstrations (rapport de validation, tableau de bord de monitoring, cas pratique hospitalier) utilisent des chiffres fictifs, signalés comme tels
 
 ## Technologies utilisées
@@ -49,7 +49,7 @@ J'ai choisi des technologies modernes que j'apprends et maîtrise progressivemen
 - **Tailwind CSS** pour un design responsive, avec un thème clair et un thème sombre
 - **shadcn/ui** (composants Radix) intégrés et personnalisés, et **Lucide React** pour les icônes
 - **KaTeX** pour afficher les équations mathématiques, **Recharts** pour les graphiques
-- **Pyodide** (Python) et **sql.js** (SQLite) compilés en WebAssembly pour exécuter le code dans le navigateur ; le JavaScript s'exécute dans un cadre isolé
+- **Pyodide** (Python) et **sql.js** (SQLite) compilés en WebAssembly pour exécuter le code dans le navigateur (environ 48 Mo, téléchargés à la première exécution de code) ; le JavaScript s'exécute dans un cadre isolé
 
 ### Outils de développement
 - **Vite** pour un développement et un build rapides
@@ -61,7 +61,7 @@ J'ai choisi des technologies modernes que j'apprends et maîtrise progressivemen
 
 J'organise le code de manière modulaire en apprenant les bonnes pratiques :
 - Composants réutilisables que je développe et optimise progressivement (briques de cours, encadrés, quiz, figures)
-- Contenu piloté par des données (`src/data/` : glossaire, quiz, projets, blog)
+- Contenu piloté par des données (`src/data/` : glossaire, quiz, projets, blog) ; les dix cours et les projets guidés sont eux-mêmes des données (`src/data/lessons/`), affichées par un seul jeu de composants, et leurs tests exécutent chaque exemple et chaque corrigé sur les vrais moteurs
 - Séparation entre logique (`src/lib/`, `src/hooks/`) et interface
 - Gestion d'état avec les hooks React ; stockage local isolé dans `src/lib/storage.ts`
 - Description détaillée dans `structure.md`

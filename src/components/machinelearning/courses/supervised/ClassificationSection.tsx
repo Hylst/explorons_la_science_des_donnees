@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Target, Brain, Zap, AlertTriangle } from "lucide-react";
+import { ChevronDown, Target, Brain, Zap, AlertTriangle, Binary, Shapes, Tags } from "lucide-react";
 import { useState } from "react";
 
 const ClassificationSection = () => {
@@ -21,11 +21,11 @@ const ClassificationSection = () => {
   return (
     <div className="space-y-8">
       {/* Introduction à la classification */}
-      <EducationalCard title="🎯 Classification : Prédire des catégories" type="concept">
+      <EducationalCard title="Classification : Prédire des catégories" type="concept">
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border">
             <h3 className="text-xl font-bold text-indigo-800 mb-4">
-              🏷️ Attribuer une catégorie à chaque exemple
+              Attribuer une catégorie à chaque exemple
             </h3>
             <p className="text-indigo-700 mb-4">
               La classification consiste à prédire une catégorie (une « classe ») pour chaque exemple, un peu comme trier
@@ -35,19 +35,19 @@ const ClassificationSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                <div className="text-center mb-2">📋</div>
+                <Binary className="h-6 w-6 mx-auto mb-2 text-indigo-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Binaire</h4>
                 <p className="text-xs text-gray-600">2 choix possibles</p>
                 <p className="text-xs text-indigo-600">Spam ou Non-spam</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                <div className="text-center mb-2">🎨</div>
+                <Shapes className="h-6 w-6 mx-auto mb-2 text-indigo-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Multi-classe</h4>
                 <p className="text-xs text-gray-600">Plusieurs catégories</p>
                 <p className="text-xs text-indigo-600">Chat, Chien, Oiseau</p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                <div className="text-center mb-2">🏷️</div>
+                <Tags className="h-6 w-6 mx-auto mb-2 text-indigo-600" aria-hidden="true" />
                 <h4 className="font-semibold text-sm">Multi-label</h4>
                 <p className="text-xs text-gray-600">Plusieurs étiquettes</p>
                 <p className="text-xs text-indigo-600">Drôle + Romantique</p>
@@ -73,7 +73,7 @@ const ClassificationSection = () => {
 
                   {/* Région Classe A (chats : plus petits et plus légers) */}
                   <ellipse cx="160" cy="280" rx="85" ry="55" fill="#3B82F6" fillOpacity="0.2" stroke="#3B82F6" strokeWidth="2" strokeDasharray="5,5" />
-                  <text x="160" y="285" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#1D4ED8">Chats 🐱</text>
+                  <text x="160" y="285" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#1D4ED8">Chats</text>
 
                   {/* Points Classe A */}
                   <circle cx="130" cy="262" r="4" fill="#3B82F6" />
@@ -84,7 +84,7 @@ const ClassificationSection = () => {
 
                   {/* Région Classe B (chiens : plus grands et plus lourds) */}
                   <ellipse cx="460" cy="130" rx="100" ry="65" fill="#10B981" fillOpacity="0.2" stroke="#10B981" strokeWidth="2" strokeDasharray="5,5" />
-                  <text x="460" y="135" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#047857">Chiens 🐕</text>
+                  <text x="460" y="135" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#047857">Chiens</text>
 
                   {/* Points Classe B */}
                   <circle cx="420" cy="105" r="4" fill="#10B981" />
@@ -126,7 +126,7 @@ const ClassificationSection = () => {
       {/* Types de classification avec onglets */}
       <Card>
         <CardHeader>
-          <CardTitle>🔍 Types de problèmes de classification</CardTitle>
+          <CardTitle>Types de problèmes de classification</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="binary" className="w-full">
@@ -146,17 +146,17 @@ const ClassificationSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">📧 Filtrage Email</h4>
+                    <h4 className="font-semibold mb-2">Filtrage Email</h4>
                     <p className="text-sm mb-2">Spam ou Légitime ?</p>
                     <Badge variant="outline" className="text-xs">Seuil de décision</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🏥 Diagnostic</h4>
+                    <h4 className="font-semibold mb-2">Diagnostic</h4>
                     <p className="text-sm mb-2">Malade ou Sain ?</p>
                     <Badge variant="outline" className="text-xs">Médical</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">💳 Fraude</h4>
+                    <h4 className="font-semibold mb-2">Fraude</h4>
                     <p className="text-sm mb-2">Frauduleux ou Légitime ?</p>
                     <Badge variant="outline" className="text-xs">Sécurité</Badge>
                   </div>
@@ -174,17 +174,17 @@ const ClassificationSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🖼️ Reconnaissance d'images</h4>
+                    <h4 className="font-semibold mb-2">Reconnaissance d'images</h4>
                     <p className="text-sm mb-2">Chat, Chien, Oiseau, Poisson...</p>
                     <Badge variant="outline" className="text-xs">Vision</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🎭 Analyse sentiment</h4>
+                    <h4 className="font-semibold mb-2">Analyse sentiment</h4>
                     <p className="text-sm mb-2">Positif, Négatif, Neutre</p>
                     <Badge variant="outline" className="text-xs">NLP</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🎵 Genre musical</h4>
+                    <h4 className="font-semibold mb-2">Genre musical</h4>
                     <p className="text-sm mb-2">Rock, Jazz, Pop, Classique...</p>
                     <Badge variant="outline" className="text-xs">Audio</Badge>
                   </div>
@@ -202,17 +202,17 @@ const ClassificationSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🎬 Tags de films</h4>
+                    <h4 className="font-semibold mb-2">Tags de films</h4>
                     <p className="text-sm mb-2">Action + Comédie + Romance</p>
                     <Badge variant="outline" className="text-xs">Divertissement</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">📰 Catégories d'articles</h4>
+                    <h4 className="font-semibold mb-2">Catégories d'articles</h4>
                     <p className="text-sm mb-2">Politique + Économie + International</p>
                     <Badge variant="outline" className="text-xs">Médias</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">🏥 Symptômes médicaux</h4>
+                    <h4 className="font-semibold mb-2">Symptômes médicaux</h4>
                     <p className="text-sm mb-2">Fièvre + Maux de tête + Fatigue</p>
                     <Badge variant="outline" className="text-xs">Médical</Badge>
                   </div>
@@ -226,7 +226,7 @@ const ClassificationSection = () => {
       {/* Algorithmes de classification avec contenu pliable */}
       <Card>
         <CardHeader>
-          <CardTitle>🧠 Algorithmes de classification populaires</CardTitle>
+          <CardTitle>Algorithmes de classification populaires</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <Collapsible
@@ -250,7 +250,7 @@ const ClassificationSection = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-semibold text-green-600 mb-2">✅ Avantages</h4>
+                    <h4 className="font-semibold text-green-600 mb-2">Avantages</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Très rapide et simple</li>
                       <li>• Donne des probabilités</li>
@@ -259,7 +259,7 @@ const ClassificationSection = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-red-600 mb-2">❌ Inconvénients</h4>
+                    <h4 className="font-semibold text-red-600 mb-2">Inconvénients</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Frontière linéaire, sauf à transformer les variables</li>
                       <li>• Sensible aux données aberrantes</li>
@@ -292,7 +292,7 @@ const ClassificationSection = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-semibold text-green-600 mb-2">✅ Avantages</h4>
+                    <h4 className="font-semibold text-green-600 mb-2">Avantages</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Plutôt robuste aux données bruitées</li>
                       <li>• Pas besoin de standardiser les variables</li>
@@ -301,7 +301,7 @@ const ClassificationSection = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-red-600 mb-2">❌ Inconvénients</h4>
+                    <h4 className="font-semibold text-red-600 mb-2">Inconvénients</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Moins interprétable qu'un seul arbre</li>
                       <li>• Peut encore surapprendre si les arbres sont trop profonds</li>
@@ -334,7 +334,7 @@ const ClassificationSection = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-semibold text-green-600 mb-2">✅ Avantages</h4>
+                    <h4 className="font-semibold text-green-600 mb-2">Avantages</h4>
                     <ul className="text-sm space-y-1">
                       <li>• À l'aise en grande dimension</li>
                       <li>• Peut bien fonctionner avec peu de données</li>
@@ -343,7 +343,7 @@ const ClassificationSection = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-red-600 mb-2">❌ Inconvénients</h4>
+                    <h4 className="font-semibold text-red-600 mb-2">Inconvénients</h4>
                     <ul className="text-sm space-y-1">
                       <li>• Lent sur de gros jeux de données</li>
                       <li>• Sensible à l'échelle des données</li>
@@ -360,7 +360,7 @@ const ClassificationSection = () => {
 
       {/* Quiz enrichi */}
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold text-center">🧠 Quiz : Testez votre compréhension</h3>
+        <h3 className="text-2xl font-bold text-center">Quiz : Testez votre compréhension</h3>
 
         <QuizCard
           question="Vous développez un système pour classer automatiquement des avis clients en 'Positif', 'Négatif' ou 'Neutre'. De quel type de classification s'agit-il ?"
@@ -429,7 +429,7 @@ const ClassificationSection = () => {
       </div>
 
       {/* Conseils pratiques */}
-      <EducationalCard title="💡 Conseils pratiques pour la classification" type="rappel">
+      <EducationalCard title="Conseils pratiques pour la classification" type="rappel">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <h4 className="font-semibold text-green-800 flex items-center gap-2">

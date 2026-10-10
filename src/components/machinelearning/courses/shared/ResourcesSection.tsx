@@ -52,7 +52,7 @@ const ResourcesSection = ({ title, resources, tips = [], warnings = [], bestPrac
       {(tips.length > 0 || warnings.length > 0 || bestPractices.length > 0) && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {tips.length > 0 && (
-            <EducationalCard title="💡 Conseils d'apprentissage" type="saviez-vous">
+            <EducationalCard title="Conseils d'apprentissage" type="saviez-vous">
               <ul className="space-y-2 text-sm">
                 {tips.map((tip, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -65,7 +65,7 @@ const ResourcesSection = ({ title, resources, tips = [], warnings = [], bestPrac
           )}
 
           {warnings.length > 0 && (
-            <EducationalCard title="⚠️ Points d'attention" type="rappel">
+            <EducationalCard title="Points d'attention" type="rappel">
               <ul className="space-y-2 text-sm">
                 {warnings.map((warning, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -78,7 +78,7 @@ const ResourcesSection = ({ title, resources, tips = [], warnings = [], bestPrac
           )}
 
           {bestPractices.length > 0 && (
-            <EducationalCard title="✅ Bonnes pratiques" type="concept">
+            <EducationalCard title="Bonnes pratiques" type="concept">
               <ul className="space-y-2 text-sm">
                 {bestPractices.map((practice, index) => (
                   <li key={index} className="flex items-start gap-2">

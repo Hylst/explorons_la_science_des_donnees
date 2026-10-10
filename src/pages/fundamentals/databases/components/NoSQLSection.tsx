@@ -189,7 +189,7 @@ RETURN DISTINCT recommendation;`,
               </p>
               
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-purple-800 mb-2">🚀 Les 3V du Big Data (souvent étendus à 5V : + Véracité et Valeur)</h4>
+                <h4 className="font-semibold text-purple-800 mb-2">Les 3V du Big Data (souvent étendus à 5V : + Véracité et Valeur)</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Volume :</strong> Téraoctets → Pétaoctets</li>
                   <li>• <strong>Vélocité :</strong> Données qui arrivent en continu, parfois en temps réel</li>
@@ -200,7 +200,7 @@ RETURN DISTINCT recommendation;`,
             
             <div className="space-y-3">
               <div className="bg-red-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-red-800 mb-1">❌ Limites SQL classique</h5>
+                <h5 className="font-semibold text-red-800 mb-1">Limites SQL classique</h5>
                 <ul className="text-xs space-y-1">
                   <li>• Schéma rigide difficile à faire évoluer</li>
                   <li>• Mise à l'échelle verticale limitée et coûteuse (le partage entre serveurs est possible en SQL, mais plus délicat)</li>
@@ -210,7 +210,7 @@ RETURN DISTINCT recommendation;`,
               </div>
               
               <div className="bg-green-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-green-800 mb-1">✅ Avantages NoSQL</h5>
+                <h5 className="font-semibold text-green-800 mb-1">Avantages NoSQL</h5>
                 <ul className="text-xs space-y-1">
                   <li>• Flexibilité du schéma</li>
                   <li>• Répartition sur plusieurs serveurs souvent prévue dès la conception</li>
@@ -226,7 +226,7 @@ RETURN DISTINCT recommendation;`,
       {/* Sélecteur de types */}
       <Card>
         <CardHeader>
-          <CardTitle>🗂️ Les 4 familles NoSQL</CardTitle>
+          <CardTitle>Les 4 familles NoSQL</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
@@ -258,7 +258,7 @@ RETURN DISTINCT recommendation;`,
               <div className="space-y-4">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">🎯 Cas d'usage typiques</CardTitle>
+                    <CardTitle className="text-lg">Cas d'usage typiques</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
@@ -274,7 +274,7 @@ RETURN DISTINCT recommendation;`,
 
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">🏢 Technologies populaires</CardTitle>
+                    <CardTitle className="text-lg">Technologies populaires</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
@@ -291,7 +291,7 @@ RETURN DISTINCT recommendation;`,
               {/* Exemple de structure */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">📋 Structure des données</CardTitle>
+                  <CardTitle className="text-lg">Structure des données</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
@@ -307,7 +307,7 @@ RETURN DISTINCT recommendation;`,
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="border-l-4 border-l-green-500">
                 <CardHeader>
-                  <CardTitle className="text-lg text-green-700">✅ Avantages</CardTitle>
+                  <CardTitle className="text-lg text-green-700">Avantages</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
@@ -323,7 +323,7 @@ RETURN DISTINCT recommendation;`,
 
               <Card className="border-l-4 border-l-red-500">
                 <CardHeader>
-                  <CardTitle className="text-lg text-red-700">⚠️ Limitations</CardTitle>
+                  <CardTitle className="text-lg text-red-700">Limitations</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
@@ -346,7 +346,7 @@ RETURN DISTINCT recommendation;`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertCircle className="h-5 w-5 text-orange-600" />
-            📐 Théorème CAP : Choisir ses compromis
+            Théorème CAP : Choisir ses compromis
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -358,21 +358,21 @@ RETURN DISTINCT recommendation;`,
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg text-center">
-              <h4 className="font-bold text-blue-800 mb-2">🔒 Consistency</h4>
+              <h4 className="font-bold text-blue-800 mb-2">Consistency</h4>
               <p className="text-sm">
                 Tous les nœuds voient les mêmes données au même moment
               </p>
             </div>
             
             <div className="bg-green-50 p-4 rounded-lg text-center">
-              <h4 className="font-bold text-green-800 mb-2">🌐 Availability</h4>
+              <h4 className="font-bold text-green-800 mb-2">Availability</h4>
               <p className="text-sm">
                 Le système reste opérationnel même en cas de panne
               </p>
             </div>
             
             <div className="bg-purple-50 p-4 rounded-lg text-center">
-              <h4 className="font-bold text-purple-800 mb-2">📡 Partition tolerance</h4>
+              <h4 className="font-bold text-purple-800 mb-2">Partition tolerance</h4>
               <p className="text-sm">
                 Le système continue de fonctionner malgré les coupures réseau
               </p>
@@ -388,7 +388,7 @@ RETURN DISTINCT recommendation;`,
             
             <TabsContent value="cp" className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">🔒 Systèmes CP</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Systèmes CP</h4>
                 <p className="text-sm mb-3">
                   Privilégient la cohérence : en cas de partition réseau, certains nœuds 
                   deviennent indisponibles pour maintenir la cohérence.
@@ -412,7 +412,7 @@ RETURN DISTINCT recommendation;`,
             
             <TabsContent value="ap" className="space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">🌐 Systèmes AP</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Systèmes AP</h4>
                 <p className="text-sm mb-3">
                   Privilégient la disponibilité : le système reste accessible même si 
                   les données peuvent être temporairement incohérentes.
@@ -436,7 +436,7 @@ RETURN DISTINCT recommendation;`,
             
             <TabsContent value="ca" className="space-y-4">
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-purple-800 mb-2">🏢 Systèmes CA</h4>
+                <h4 className="font-semibold text-purple-800 mb-2">Systèmes CA</h4>
                 <p className="text-sm mb-3">
                   Cohérence et disponibilité sont possibles tant qu'aucune partition ne survient, par exemple pour une
                   base relationnelle sur un seul serveur. Dès que le système est réparti sur plusieurs nœuds, une partition

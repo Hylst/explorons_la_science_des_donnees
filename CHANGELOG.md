@@ -1,5 +1,13 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-10] - Ton plus sobre, chiffres non relus retirés, documentation à jour
+
+- **Pictogrammes** : environ 1 150 émojis décoratifs retirés des pages (titres, encadrés, exemples de code) ; les 75 qui servaient d'icône sont remplacés par des icônes du site (lucide, masquées aux lecteurs d'écran). Restent les coches et croix des listes pour et contre, les étoiles des notes de l'auteur, et les pictogrammes d'iOS dans l'aide à l'installation (ils désignent des boutons du système).
+- **Points d'exclamation** : environ 125 phrases réécrites sobrement, messages des quiz compris. Gardés : citations (avis client, exemple de sarcasme), faux spams du projet de filtre (le modèle compte justement les « ! »), « Hello, World! », la factorielle et la syntaxe Julia.
+- **Chiffres** : retirés de l'encadré « Le saviez-vous ? » des bases de données, faute de source relue : 149 et 181 zettaoctets (IDC, accès payant), « 23 fois » et « 35 % des achats Amazon » (McKinsey, pages injoignables), « 3 100 milliards de dollars » (HBR, phrase introuvable). Les 13 millisecondes de Mary Potter sont relues sur MIT News, la date de consultation est ajoutée.
+- **Cours Transformers, module 6** : l'expérience de fuite par sélection de variables est présentée comme une variante de celle de *The Elements of Statistical Learning*, dont les valeurs diffèrent.
+- **Documentation** : `structure.md` réécrit, `cours_dev.md`, `readme_dev.md` (écrire un cours au format des leçons, contenu lourd sur une page longue), `docs/PERFORMANCE_GUIDE.md` (mesures du 9 octobre), `docs/SOURCES.md`, `docs/COMPONENT_DOCUMENTATION.md`, `menus.md`, `about.md`, `features.md` et `todo.md` alignés sur le code ; `docs/python-modules-4-8.md` supprimé (modules disparus).
+
 ## [2026-10-09, fin] - Relecture du reste du site : outils, ressources, accueil, introduction, communauté, blog, pages
 
 Deux sous-agents Sonnet sur des périmètres séparés, lots vérifiés avant intégration.

@@ -131,7 +131,7 @@ const ProbabilityDistributionsSection = () => {
 
   const distributions = {
     binomial: {
-      title: "🎯 Distribution Binomiale",
+      title: "Distribution Binomiale",
       icon: Target,
       description: "Nombre de succès dans n essais indépendants",
       formula: "P(X = k) = C(n,k) \\cdot p^k \\cdot (1-p)^{n-k}",
@@ -141,7 +141,7 @@ const ProbabilityDistributionsSection = () => {
       color: "#3B82F6"
     },
     poisson: {
-      title: "⚡ Distribution de Poisson",
+      title: "Distribution de Poisson",
       icon: Zap,
       description: "Nombre d'événements rares dans un intervalle fixe",
       formula: "P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}",
@@ -151,7 +151,7 @@ const ProbabilityDistributionsSection = () => {
       color: "#10B981"
     },
     exponential: {
-      title: "⏱️ Distribution Exponentielle",
+      title: "Distribution Exponentielle",
       icon: Clock,
       description: "Temps d'attente entre événements",
       formula: "f(x) = \\lambda e^{-\\lambda x}",
@@ -161,7 +161,7 @@ const ProbabilityDistributionsSection = () => {
       color: "#F59E0B"
     },
     uniform: {
-      title: "📏 Distribution Uniforme",
+      title: "Distribution Uniforme",
       icon: Shuffle,
       description: "Probabilité égale sur un intervalle",
       formula: "f(x) = \\frac{1}{b-a} \\text{ pour } a \\leq x \\leq b",
@@ -177,12 +177,12 @@ const ProbabilityDistributionsSection = () => {
   return (
     <section id="probability-distributions" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        📊 4. Les Distributions de Probabilité : Les Modèles de l'Aléatoire
+        4. Les Distributions de Probabilité : Les Modèles de l'Aléatoire
       </h2>
 
       {/* Introduction */}
       <div className="mb-8">
-        <CourseHighlight title="🎲 Qu'est-ce qu'une distribution de probabilité ?" type="concept">
+        <CourseHighlight title="Qu'est-ce qu'une distribution de probabilité ?" type="concept">
           <div className="space-y-4">
             <p className="text-lg">
               Une distribution de probabilité est comme un "moule" mathématique qui décrit 
@@ -191,14 +191,14 @@ const ProbabilityDistributionsSection = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">🔢 Variables Discrètes</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Variables Discrètes</h4>
                 <p className="text-sm text-blue-700">
                   Valeurs séparées (0, 1, 2, 3...)<br/>
                   <strong>Fonction de masse :</strong> P(X = k)
                 </p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">📈 Variables Continues</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Variables Continues</h4>
                 <p className="text-sm text-green-700">
                   Valeurs dans un intervalle<br/>
                   <strong>Fonction de densité :</strong> f(x)
@@ -257,7 +257,7 @@ const ProbabilityDistributionsSection = () => {
 
             {/* Contrôles des paramètres */}
             <div className="space-y-4">
-              <h4 className="font-semibold">🎛️ Paramètres interactifs :</h4>
+              <h4 className="font-semibold">Paramètres interactifs :</h4>
               
               {selectedDistribution === 'binomial' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -346,7 +346,7 @@ const ProbabilityDistributionsSection = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Fonction de probabilité/densité */}
               <div className="space-y-3">
-                <h5 className="font-semibold">📊 Fonction de {selectedDistribution === 'exponential' || selectedDistribution === 'uniform' ? 'densité' : 'masse'}</h5>
+                <h5 className="font-semibold">Fonction de {selectedDistribution === 'exponential' || selectedDistribution === 'uniform' ? 'densité' : 'masse'}</h5>
                 <div className="h-64 bg-white rounded border">
                   <DeferredResponsiveContainer width="100%" height="100%">
                     {selectedDistribution === 'exponential' || selectedDistribution === 'uniform' ? (
@@ -378,7 +378,7 @@ const ProbabilityDistributionsSection = () => {
 
               {/* Fonction de répartition */}
               <div className="space-y-3">
-                <h5 className="font-semibold">📈 Fonction de répartition F(x) = P(X ≤ x)</h5>
+                <h5 className="font-semibold">Fonction de répartition F(x) = P(X ≤ x)</h5>
                 <div className="h-64 bg-white rounded border">
                   <DeferredResponsiveContainer width="100%" height="100%">
                     <LineChart data={currentDistribution.data}>
@@ -401,7 +401,7 @@ const ProbabilityDistributionsSection = () => {
 
             {/* Statistiques */}
             <div className="bg-white border rounded-lg p-4">
-              <h5 className="font-semibold mb-3">📈 Statistiques de la distribution :</h5>
+              <h5 className="font-semibold mb-3">Statistiques de la distribution :</h5>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                 {selectedDistribution === 'binomial' && (
                   <>
@@ -493,10 +493,10 @@ const ProbabilityDistributionsSection = () => {
       </Card>
 
       {/* Applications pratiques */}
-      <CourseHighlight title="🚀 Applications en Data Science" type="concept">
+      <CourseHighlight title="Applications en Data Science" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <h4 className="font-semibold">🎯 Distribution Binomiale :</h4>
+            <h4 className="font-semibold">Distribution Binomiale :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Test A/B :</strong> taux de conversion
@@ -509,7 +509,7 @@ const ProbabilityDistributionsSection = () => {
               </div>
             </div>
             
-            <h4 className="font-semibold">⚡ Distribution de Poisson :</h4>
+            <h4 className="font-semibold">Distribution de Poisson :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Audience web :</strong> pages vues par heure
@@ -524,7 +524,7 @@ const ProbabilityDistributionsSection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">⏱️ Distribution Exponentielle :</h4>
+            <h4 className="font-semibold">Distribution Exponentielle :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Fiabilité :</strong> durée de vie d'un composant
@@ -537,7 +537,7 @@ const ProbabilityDistributionsSection = () => {
               </div>
             </div>
             
-            <h4 className="font-semibold">📏 Distribution Uniforme :</h4>
+            <h4 className="font-semibold">Distribution Uniforme :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Monte Carlo :</strong> génération de nombres aléatoires
@@ -553,7 +553,7 @@ const ProbabilityDistributionsSection = () => {
         </div>
         
         <div className="mt-6 bg-indigo-100 p-4 rounded-lg">
-          <h5 className="font-semibold text-indigo-800 mb-2">🎯 Choisir la bonne distribution :</h5>
+          <h5 className="font-semibold text-indigo-800 mb-2">Choisir la bonne distribution :</h5>
           <div className="text-sm text-indigo-700 space-y-1">
             <p>• <strong>Comptage d'événements rares :</strong> Poisson</p>
             <p>• <strong>Succès/échecs répétés :</strong> Binomiale</p>

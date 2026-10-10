@@ -4,17 +4,17 @@ import { Badge } from "@/components/ui/badge";
 import CourseEquation from "@/components/courses/CourseEquation";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { ResponsiveTable } from "@/components/ui/responsive-table";
-import { Brain, Camera, Music, Smartphone } from "lucide-react";
+import { Brain, Camera, Globe, Microscope, Music, Smartphone } from "lucide-react";
 
 const ApplicationsSection = () => {
   return (
     <section id="applications" className="mb-12">
       <h2 className="text-3xl font-bold mb-6">6. Applications</h2>
       
-      <CourseHighlight title="🌍 L'algèbre linéaire façonne notre monde quotidien" type="concept">
+      <CourseHighlight title="L'algèbre linéaire façonne notre monde quotidien" type="concept">
         <p>
           De votre smartphone qui reconnaît votre visage aux recommandations Netflix, 
-          en passant par les voitures autonomes : l'algèbre linéaire est partout !
+          en passant par les voitures autonomes : l'algèbre linéaire est partout.
         </p>
       </CourseHighlight>
 
@@ -48,7 +48,7 @@ const ApplicationsSection = () => {
               </div>
 
               <Badge className="bg-purple-100 text-purple-800">
-                🔥 Application chaude : Transformers, BERT, GPT
+                Application chaude : Transformers, BERT, GPT
               </Badge>
             </div>
           </CardContent>
@@ -79,7 +79,7 @@ const ApplicationsSection = () => {
               </div>
 
               <Badge className="bg-green-100 text-green-800">
-                📱 Partout dans votre smartphone !
+                Partout dans votre smartphone
               </Badge>
             </div>
           </CardContent>
@@ -99,7 +99,7 @@ const ApplicationsSection = () => {
               </p>
               <CourseEquation latex="R \approx UV^T" />
               <div className="space-y-2 text-sm">
-                <p>• <strong>R :</strong> matrice utilisateur-item (avec trous !)</p>
+                <p>• <strong>R :</strong> matrice utilisateur-item (avec des valeurs manquantes)</p>
                 <p>• <strong>U :</strong> profils utilisateurs cachés</p>
                 <p>• <strong>V :</strong> caractéristiques items cachées</p>
               </div>
@@ -113,7 +113,7 @@ const ApplicationsSection = () => {
               </div>
 
               <Badge className="bg-blue-100 text-blue-800">
-                🎵 Popularisée par le Netflix Prize (2006-2009)
+                Popularisée par le Netflix Prize (2006-2009)
               </Badge>
             </div>
           </CardContent>
@@ -145,14 +145,14 @@ const ApplicationsSection = () => {
               </div>
 
               <Badge className="bg-orange-100 text-orange-800">
-                📊 Technique classique de réduction de dimension
+                Technique classique de réduction de dimension
               </Badge>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <CourseHighlight title="🎯 Exercice intégré : Système de recommandation simplifié" type="example">
+      <CourseHighlight title="Exercice intégré : Système de recommandation simplifié" type="example">
         <div className="space-y-4">
           <p><strong>Scénario :</strong> Créer un mini-Netflix avec 3 utilisateurs et 4 films</p>
           
@@ -208,24 +208,24 @@ const ApplicationsSection = () => {
       </CourseHighlight>
 
       <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-green-50 p-8 rounded-xl border border-purple-100">
-        <h3 className="text-xl font-bold mb-4 text-center">🚀 L'avenir avec l'algèbre linéaire</h3>
+        <h3 className="text-xl font-bold mb-4 text-center">L'avenir avec l'algèbre linéaire</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
-            <div className="text-3xl mb-2">🧠</div>
+            <Brain className="h-8 w-8 text-purple-600 mx-auto mb-2" aria-hidden="true" />
             <h4 className="font-semibold">IA Générative</h4>
             <p className="text-sm text-gray-600">
               DALL-E, Midjourney : création d'images par transformations matricielles complexes
             </p>
           </div>
           <div className="text-center">
-            <div className="text-3xl mb-2">🔬</div>
+            <Microscope className="h-8 w-8 text-blue-600 mx-auto mb-2" aria-hidden="true" />
             <h4 className="font-semibold">Sciences</h4>
             <p className="text-sm text-gray-600">
               Découverte de médicaments, prédiction climatique, exploration spatiale
             </p>
           </div>
           <div className="text-center">
-            <div className="text-3xl mb-2">🌐</div>
+            <Globe className="h-8 w-8 text-green-600 mx-auto mb-2" aria-hidden="true" />
             <h4 className="font-semibold">Métaverse</h4>
             <p className="text-sm text-gray-600">
               Mondes virtuels en temps réel grâce aux GPU et transformations 3D

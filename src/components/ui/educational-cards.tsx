@@ -149,7 +149,7 @@ export const QuizCard = ({ question, options, correctAnswer, explanation, diffic
                   <AlertCircle className="h-6 w-6 text-red-600" />
                 )}
                 <span className="font-semibold text-lg">
-                  {selectedAnswer === correctAnswer ? "Excellent ! 🎉" : "Pas tout à fait..."}
+                  {selectedAnswer === correctAnswer ? "Bonne réponse." : "Pas tout à fait..."}
                 </span>
               </div>
               <p className="text-gray-700 mb-4">{explanation}</p>
@@ -198,7 +198,7 @@ export const ExerciseCard = ({ title, problem, solution, hints = [], difficulty 
         </div>
 
         <div className="bg-white p-6 rounded-xl border-2 shadow-sm">
-          <h4 className="font-semibold mb-3 text-gray-800">📋 Énoncé :</h4>
+          <h4 className="font-semibold mb-3 text-gray-800">Énoncé :</h4>
           <p className="text-gray-700 leading-relaxed">{problem}</p>
         </div>
 
@@ -208,20 +208,20 @@ export const ExerciseCard = ({ title, problem, solution, hints = [], difficulty 
               onClick={() => setShowHints(!showHints)}
               className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg hover:bg-yellow-200 transition-colors text-sm font-medium shadow-sm"
             >
-              {showHints ? "Masquer les indices 🙈" : "Voir les indices 💡"}
+              {showHints ? "Masquer les indices" : "Voir les indices"}
             </button>
           )}
           <button
             onClick={() => setShowSolution(!showSolution)}
             className="px-4 py-2 bg-green-100 text-green-800 rounded-lg hover:bg-green-200 transition-colors text-sm font-medium shadow-sm"
           >
-            {showSolution ? "Masquer la solution 🙈" : "Voir la solution ✅"}
+            {showSolution ? "Masquer la solution" : "Voir la solution"}
           </button>
         </div>
 
         {showHints && hints.length > 0 && (
           <div className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 shadow-sm">
-            <h4 className="font-semibold mb-3 text-yellow-800">💡 Indices :</h4>
+            <h4 className="font-semibold mb-3 text-yellow-800">Indices :</h4>
             <div className="space-y-3">
               {hints.slice(0, currentHint + 1).map((hint, index) => (
                 <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg">
@@ -234,7 +234,7 @@ export const ExerciseCard = ({ title, problem, solution, hints = [], difficulty 
                   onClick={() => setCurrentHint(currentHint + 1)}
                   className="text-sm text-yellow-600 hover:text-yellow-800 font-medium"
                 >
-                  Indice suivant ➡️
+                  Indice suivant
                 </button>
               )}
             </div>
@@ -243,7 +243,7 @@ export const ExerciseCard = ({ title, problem, solution, hints = [], difficulty 
 
         {showSolution && (
           <div className="bg-green-50 p-6 rounded-xl border-2 border-green-200 shadow-sm">
-            <h4 className="font-semibold mb-3 text-green-800">✅ Solution :</h4>
+            <h4 className="font-semibold mb-3 text-green-800">Solution :</h4>
             <div className="text-sm whitespace-pre-wrap text-gray-700 font-mono bg-white p-4 rounded-lg border">
               {solution}
             </div>
@@ -268,9 +268,9 @@ export const ProgressiveDisclosure = ({ title, levels }: ProgressiveDisclosurePr
 
   const getDifficultyIcon = (difficulty: string) => {
     switch (difficulty) {
-      case "basic": return "🟢";
-      case "intermediate": return "🟡";
-      case "advanced": return "🔴";
+      case "basic": return <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-500" aria-hidden="true" />;
+      case "intermediate": return <span className="inline-block h-2.5 w-2.5 rounded-full bg-yellow-500" aria-hidden="true" />;
+      case "advanced": return <span className="inline-block h-2.5 w-2.5 rounded-full bg-red-500" aria-hidden="true" />;
     }
   };
 
