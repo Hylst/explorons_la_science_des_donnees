@@ -11,7 +11,7 @@ Pour les commandes et les procédures d'ajout de contenu (dont « Écrire ou mod
 - Fichiers suivis par git : 609, dont 520 sous `src/` (314 `.tsx`, 202 `.ts`, 3 `.json`, 1 `.css`), tests compris. Compter avec `git ls-files | wc -l`.
 - Routes : 56 routes canoniques (celles du `sitemap.xml`) et 28 anciennes URL redirigées, soit 84 pages HTML générées par `npm run build:hylst`. Compter avec `scripts/collect-routes.ts` (voir plus bas).
 - Pages chargées à la demande : 35 `React.lazy` dans `src/App.tsx`, 11 dans `src/components/routing/CourseRouter.tsx`.
-- Cours : 10 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 65 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 5 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
+- Cours : 10 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 65 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 8 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
 - Pages longues affichées par morceaux (`ProgressiveSections`, `LazyBlock`, `DeferredResponsiveContainer`) : voir « Affichage par morceaux et chargement différé ».
 
 ## Arborescence commentée
@@ -196,7 +196,7 @@ public/
 | `src/hooks/use-theme.ts` | Contexte du thème (`THEMES`, `THEME_STORAGE_KEY`, `useTheme`), clé `ds-explorer-theme` |
 | `src/data/quizData.ts` | 8 catégories, 165 questions ; une tentative tire 10 questions au hasard (`getRandomQuestions`, appelé par `QuizCategory.tsx`) |
 | `src/data/glossary/` | 229 termes (comptés en important `index.ts`) : huit fichiers écrits à la main agrégés par `index.ts`, plus les termes des dictionnaires de survol des cours (`dictionaries.ts`) qui n'y figurent pas déjà. Types et catégories dans `types.ts`. `tools.ts` dérive ses entrées des définitions de `components/fundamentals/definitions/` |
-| `src/data/projects.ts` | 12 projets et fonctions de filtre ; tous les compteurs de la page sont calculés dessus. Cinq projets sont guidés (`src/data/lessons/projects/`) |
+| `src/data/projects.ts` | 12 projets et fonctions de filtre ; tous les compteurs de la page sont calculés dessus. Huit projets sont guidés (`src/data/lessons/projects/`) |
 | `src/data/course-catalog.ts` | 10 cours avec catégorie, niveau, durée indicative, nombre de modules et statut (`redige` ou `plan`, tous `redige` aujourd'hui) ; lu par `FeaturedCourses.tsx` (accueil), `CoursesIndex.tsx` (`/courses`), `InitiationCoursesSection.tsx` (ressources) et `UnifiedMathCourses.tsx` (maths). Niveau, durée et nombre de modules y sont saisis à la main : ils ne sont pas vérifiés contre les données des leçons |
 | `src/data/blog-posts.json`, `blog-contents.ts`, `blog-articles.ts` | Métadonnées (5 articles), corps HTML par identifiant, et jointure des deux pour les pages d'article |
 | `src/components/ui/source-note.tsx` | Ligne « Source : ... » sous un chiffre du monde réel |
@@ -225,11 +225,11 @@ Le titre et la description du bandeau (`UnifiedHeroSection`) sont affichés au p
 
 ### Cours rédigés comme données
 
-Les 10 cours et les 5 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
+Les 10 cours et les 8 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
 
 | Dossier ou fichier | Rôle |
 | --- | --- |
-| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, plus `projects/` (5 projets guidés en un seul `LessonCourse`, id `projects`) |
+| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, plus `projects/` (8 projets guidés en un seul `LessonCourse`, id `projects`) |
 | `src/data/lessons/lines.ts` | `lines(...)` : écrit un extrait de code une ligne de source par ligne de code |
 | `src/data/lessons/lessons.test.ts` | Contrôle du cours de bases de données sur sql.js sous Node |
 | `src/data/lessons/lessons-python.test.ts` | Contrôle de tous les cours Python et des projets guidés sur Pyodide sous Node (environ 7 s de chargement, sans réseau) |

@@ -28,7 +28,7 @@ export const projects: Project[] = [
     title: "Analyse exploratoire de données : ventes",
     description: "Découvrez les bases de l'analyse de données sur un jeu de ventes fictif fourni (projet guidé), puis refaites-la sur de vraies données, par exemple de data.gouv.fr. Nettoyer, calculer, visualiser, conclure.",
     level: "beginner",
-    technologies: ["Python", "Pandas", "Matplotlib", "Seaborn"],
+    technologies: ["Python", "pandas", "Matplotlib"],
     category: "analyse",
     duration: "3-5 heures",
     difficulty: 2,
@@ -62,11 +62,11 @@ export const projects: Project[] = [
     title: "Tableau de bord COVID-19 avec Streamlit",
     description: "Créez un tableau de bord interactif pour visualiser l'évolution des données COVID-19 mondiales.",
     level: "beginner",
-    technologies: ["Python", "Streamlit", "Plotly", "Pandas"],
+    technologies: ["Python", "Streamlit", "Plotly", "pandas"],
     category: "visualisation",
     duration: "5-7 heures",
     difficulty: 3,
-    prerequisites: ["Python", "Pandas"],
+    prerequisites: ["Python", "pandas"],
     learningObjectives: [
       "Applications web avec Streamlit",
       "Visualisations interactives",
@@ -95,53 +95,53 @@ export const projects: Project[] = [
   // PROJETS INTERMÉDIAIRES
   {
     id: "intermediate-1",
-    title: "Système de recommandation pour le commerce en ligne",
-    description: "Développez un système de recommandation complet pour un site e-commerce avec filtrage collaboratif et basé sur le contenu.",
+    title: "Recommander des livres aux lecteurs d'une médiathèque",
+    description: "Les emprunts (fictifs) de 400 lecteurs : évaluation en cachant un emprunt par lecteur, référence par popularité, filtrage collaboratif par similarité entre livres, couverture et nouveaux livres.",
     level: "intermediate",
-    technologies: ["Python", "scikit-learn", "Surprise", "Flask", "PostgreSQL"],
+    technologies: ["Python", "NumPy", "pandas", "Matplotlib"],
     category: "recommandation",
-    duration: "12-15 heures",
-    difficulty: 4,
-    prerequisites: ["Machine Learning de base", "Algèbre linéaire", "SQL"],
+    duration: "3-4 heures",
+    difficulty: 3,
+    prerequisites: ["pandas de base", "Produit matriciel avec NumPy"],
     learningObjectives: [
-      "Filtrage collaboratif",
-      "Recommandations basées sur le contenu",
-      "Évaluation des systèmes de recommandation",
-      "API REST avec Flask"
+      "Filtrage collaboratif par similarité cosinus",
+      "Évaluer en cachant un emprunt par lecteur",
+      "Comparer à la popularité et au contenu",
+      "Couverture et démarrage à froid"
     ]
   },
   {
     id: "intermediate-2",
-    title: "Prédiction des prix immobiliers",
-    description: "Créez un modèle de régression avancé pour prédire les prix immobiliers en utilisant des données géographiques et économiques.",
+    title: "Estimer le prix d'un logement",
+    description: "1 000 logements fictifs d'une ville inventée : référence, régression sur le logarithme du prix, variables construites sans fuite, boosting comparé par validation croisée, lecture des erreurs par quartier.",
     level: "intermediate",
-    technologies: ["Python", "XGBoost", "GeoPandas", "Folium", "Docker"],
+    technologies: ["Python", "pandas", "scikit-learn", "Matplotlib"],
     category: "regression",
-    duration: "10-14 heures",
-    difficulty: 4,
-    prerequisites: ["Statistiques avancées", "Python intermédiaire"],
+    duration: "3-4 heures",
+    difficulty: 3,
+    prerequisites: ["Régression linéaire", "pandas de base"],
     learningObjectives: [
-      "Régression avec XGBoost",
-      "Données géographiques",
-      "Construction de variables avancée (feature engineering)",
-      "Validation et optimisation"
+      "Régression sur le logarithme du prix",
+      "Construction de variables sans fuite d'information",
+      "Comparer des modèles par validation croisée",
+      "Lire les erreurs par quartier"
     ]
   },
   {
     id: "intermediate-3",
-    title: "Détection de fraudes bancaires",
-    description: "Implémentez des algorithmes de détection d'anomalies pour identifier les transactions frauduleuses en temps réel.",
+    title: "Détection de fraudes à la carte bancaire",
+    description: "40 000 transactions fictives dont 0,8 % de fraudes : pourquoi l'exactitude trompe, précision et rappel, seuil choisi selon les coûts, et comparaison avec un détecteur d'anomalies sans étiquettes.",
     level: "intermediate",
-    technologies: ["Python", "scikit-learn", "Kafka", "Redis", "Elasticsearch"],
+    technologies: ["Python", "pandas", "scikit-learn", "Matplotlib"],
     category: "anomaly-detection",
-    duration: "15-18 heures",
-    difficulty: 4,
-    prerequisites: ["Machine Learning", "Statistiques", "Bases de données"],
+    duration: "3-4 heures",
+    difficulty: 3,
+    prerequisites: ["Régression logistique", "pandas de base"],
     learningObjectives: [
-      "Détection d'anomalies",
-      "Données déséquilibrées",
-      "Streaming de données",
-      "Systèmes temps réel"
+      "Données déséquilibrées : précision, rappel, précision moyenne",
+      "Choisir un seuil selon les coûts",
+      "Détection d'anomalies avec IsolationForest",
+      "Limites : dérive des fraudes et étiquettes tardives"
     ]
   },
   {

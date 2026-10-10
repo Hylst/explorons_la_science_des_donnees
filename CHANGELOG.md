@@ -1,5 +1,14 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-10, fin] - Trois projets guidés de plus
+
+Huit projets sur douze sont maintenant guidés pas à pas, avec des données inventées et générées avec une graine fixe, tout dans le navigateur. Les deux premiers ont été écrits par des sous-agents Sonnet, le troisième dans la session ; chaque nombre des légendes a été revérifié en relançant les exemples sur le moteur du site.
+
+- **Recommander des livres** (intermediate-1) : 400 lecteurs et 120 livres d'une médiathèque, évaluation en cachant un emprunt par lecteur, popularité, similarité cosinus entre livres, couverture et démarrage à froid. Le livre caché est retrouvé dans les dix propositions pour 9,5 % des lecteurs au hasard, 26,5 % par popularité (21 livres différents proposés), 49,5 % par ressemblance (99 livres).
+- **Estimer le prix d'un logement** (intermediate-2) : 1 000 logements d'une ville inventée, régression sur le logarithme du prix, variables construites sans fuite (la fuite par le prix au m² est montrée), boosting de scikit-learn comparé par validation croisée. Résultat honnête : le modèle linéaire bien construit fait aussi bien que le boosting (12 966 contre 13 292 euros d'erreur moyenne, écart plus petit que la dispersion entre plis).
+- **Détecter des fraudes** (intermediate-3) : 40 000 transactions dont 0,8 % de fraudes, exactitude trompeuse (99,2 % sans rien détecter), précision et rappel, précision moyenne plutôt que l'aire ROC seule, seuil choisi selon des coûts (inventés et annoncés comme tels), IsolationForest sans étiquettes face à trois nouveaux types de fraudes.
+- **Fiches de projets** : les trois fiches annoncent les technologies réellement utilisées (plus de Kafka, Docker, XGBoost, Flask...) et des durées de 3 à 4 heures. Les filtres montraient « Pandas » et « pandas » comme deux technologies : libellé unifié, et un test refuse deux libellés qui ne diffèrent que par la casse. La fiche des ventes n'annonce plus Seaborn, que le projet guidé n'utilise pas.
+
 ## [2026-10-10, suite] - statsmodels dans le moteur Python
 
 - **statsmodels** (avec patsy) est livré avec le moteur Python, sur décision de l'auteur après mesure : 8 Mo de plus (56 Mo de moteurs), téléchargés seulement quand un code l'importe. Licences BSD relevées dans les roues ; le cache des moteurs passe à `vendor-v3` pour que les visiteurs récupèrent la nouvelle liste de paquets. xgboost, lightgbm, beautifulsoup4 et nltk, mesurés et fonctionnels, restent non livrés.

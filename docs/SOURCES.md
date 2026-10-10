@@ -225,7 +225,7 @@ Relevé fait le 10 octobre 2026 en cherchant, dans `src/data/lessons/`, les ann�
 | Bases de données (`datasets/bibliotheque.ts`, `database-fundamentals/m1-introduction.ts`) | Auteurs, titres, pays et années de première publication de 13 livres (Hugo 1831 et 1862, Verne 1870 et 1872, Sand 1846, Camus 1942 et 1947, Yourcenar 1951, Nothomb 1999, Kourouma 1968, Laferrière 2009, Shelley 1818, Asimov 1951). Les exemplaires, adhérents et emprunts sont inventés, et la leçon le dit | non vérifié (notices bibliographiques courantes, non rouvertes) |
 | Traitement du langage (`nlp/`) | Voir la section 11 | voir la section 11 |
 
-Les autres cours (Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, guide des modèles de ML) et les cinq projets guidés ne contiennent, d'après cette recherche, aucune référence d'auteur datée ni chiffre externe : leurs valeurs sont calculées par les exemples, tirées de jeux fournis avec scikit-learn (rien n'est téléchargé) ou inventées avec une graine fixe et annoncées comme telles. Cette recherche est lexicale : elle ne remplace pas une relecture des leçons.
+Les autres cours (Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, guide des modèles de ML) et les projets guidés ne contiennent, d'après cette recherche, aucune référence d'auteur datée ni chiffre externe : leurs valeurs sont calculées par les exemples, tirées de jeux fournis avec scikit-learn (rien n'est téléchargé) ou inventées avec une graine fixe et annoncées comme telles. Cette recherche est lexicale : elle ne remplace pas une relecture des leçons.
 ---
 
 ## Éléments éditoriaux

@@ -30,7 +30,7 @@ const sample = (overrides: Partial<Project> = {}): Project => ({
   title: "Prévision des ventes",
   description: "Estimer les ventes futures d'un magasin.",
   level: "beginner",
-  technologies: ["Python", "Pandas"],
+  technologies: ["Python", "pandas"],
   category: "analyse",
   duration: "3-5 heures",
   difficulty: 2,
@@ -169,12 +169,12 @@ describe("matchesFilters", () => {
 
   describe("technologies", () => {
     it("retient les projets qui utilisent la technologie cochée", () => {
-      const result = select({ technologies: ["Docker"] });
-      expect(ids(result).sort()).toEqual(["advanced-3", "intermediate-2"]);
+      const result = select({ technologies: ["NumPy"] });
+      expect(ids(result).sort()).toEqual(["beginner-2", "beginner-4", "intermediate-1"]);
     });
 
     it("avec plusieurs technologies, exige qu'elles soient toutes utilisées (ET, pas OU)", () => {
-      expect(ids(select({ technologies: ["Docker", "XGBoost"] }))).toEqual(["intermediate-2"]);
+      expect(ids(select({ technologies: ["pandas", "statsmodels"] }))).toEqual(["intermediate-5"]);
       expect(select({ technologies: ["Docker", "Streamlit"] })).toEqual([]);
     });
 
@@ -208,7 +208,7 @@ describe("matchesFilters", () => {
     });
 
     it("cherche dans les technologies", () => {
-      expect(ids(select({ query: "kafka" }))).toEqual(["intermediate-3"]);
+      expect(ids(select({ query: "statsmodels" }))).toEqual(["intermediate-5"]);
     });
 
     it("cherche dans les objectifs d'apprentissage", () => {
@@ -252,10 +252,10 @@ describe("matchesFilters", () => {
 
   describe("combinaison de filtres", () => {
     it("un projet doit satisfaire tous les filtres actifs", () => {
-      expect(ids(select({ level: "beginner", technologies: ["Pandas"] })).sort()).toEqual(["beginner-1", "beginner-3"]);
+      expect(ids(select({ level: "beginner", technologies: ["pandas"] })).sort()).toEqual(["beginner-1", "beginner-3"]);
       expect(ids(select({ level: "beginner", technologies: ["scikit-learn"] })).sort()).toEqual(["beginner-2", "beginner-4"]);
-      expect(ids(select({ level: "beginner", technologies: ["Pandas"], category: "visualisation" }))).toEqual(["beginner-3"]);
-      expect(ids(select({ level: "beginner", technologies: ["Pandas"], category: "visualisation", query: "covid", duration: "medium" }))).toEqual(["beginner-3"]);
+      expect(ids(select({ level: "beginner", technologies: ["pandas"], category: "visualisation" }))).toEqual(["beginner-3"]);
+      expect(ids(select({ level: "beginner", technologies: ["pandas"], category: "visualisation", query: "covid", duration: "medium" }))).toEqual(["beginner-3"]);
     });
 
     it("renvoie une liste vide quand les filtres se contredisent", () => {
@@ -287,6 +287,11 @@ describe("valeurs dérivées des données", () => {
     expect(allTechnologies.every((t) => used.has(t))).toBe(true);
   });
 
+  it("allTechnologies : pas deux libellés qui ne diffèrent que par la casse (« Pandas » et « pandas » faisaient deux filtres)", () => {
+    const minuscules = allTechnologies.map((tech) => tech.toLowerCase());
+    expect(new Set(minuscules).size).toBe(minuscules.length);
+  });
+
   it("allCategories : une entrée par catégorie utilisée, triée par libellé", () => {
     expect(new Set(allCategories).size).toBe(allCategories.length);
     expect(new Set(allCategories)).toEqual(new Set(projects.map((p) => p.category)));
@@ -296,7 +301,7 @@ describe("valeurs dérivées des données", () => {
 
   it("levelSummary : nombre de projets et fourchette de durée calculés sur les données", () => {
     expect(levelSummary("beginner")).toEqual({ count: 4, minHours: 3, maxHours: 7 });
-    expect(levelSummary("intermediate")).toEqual({ count: 5, minHours: 3, maxHours: 18 });
+    expect(levelSummary("intermediate")).toEqual({ count: 5, minHours: 3, maxHours: 4 });
     expect(levelSummary("advanced")).toEqual({ count: 3, minHours: 20, maxHours: 35 });
   });
 

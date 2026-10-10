@@ -319,7 +319,7 @@ La liste `EXCLUDE` et les remplacements de chemins sont en tête du script : les
 
 ### 5.13 Écrire ou modifier un cours au format des leçons
 
-Les 10 cours du site et les 5 projets guidés ne sont pas des pages écrites en JSX : ce sont des **données** (`src/data/lessons/`), affichées par `src/components/courses/lessons/` et contrôlées par des tests qui exécutent chaque exemple et chaque corrigé sur les vrais moteurs (Pyodide pour Python, sql.js pour SQL). Pour qu'un cours reste exact, il suffit que ces tests passent.
+Les 10 cours du site et les 8 projets guidés ne sont pas des pages écrites en JSX : ce sont des **données** (`src/data/lessons/`), affichées par `src/components/courses/lessons/` et contrôlées par des tests qui exécutent chaque exemple et chaque corrigé sur les vrais moteurs (Pyodide pour Python, sql.js pour SQL). Pour qu'un cours reste exact, il suffit que ces tests passent.
 
 **Les types** (`src/lib/lessons/types.ts`) :
 

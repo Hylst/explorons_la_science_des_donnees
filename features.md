@@ -27,7 +27,7 @@ Recomptés le 9 octobre 2026 (méthode en fin de document).
 | Formules des cours (sections « équation ») | 77 | 33 en introduction aux mathématiques, 18 en statistiques inférentielles, 14 dans le guide des modèles, 12 dans Transformers ; chacune est compilée par les tests |
 | Questions de quiz (section Quiz) | 165 | 8 catégories : Programmation 25, puis 20 pour chacune des 7 autres ; 10 questions tirées au hasard par tentative |
 | Termes du glossaire | 229 | 190 écrits à la main (8 fichiers) et 39 issus des dictionnaires de survol des cours ; 9 catégories utilisées (fondamentaux 23, statistiques 22, machine learning 32, deep learning 31, NLP 16, MLOps 34, évaluation 34, préparation 32, ingénierie des données 5) ; 52 ont une définition longue ; aucun doublon de nom |
-| Projets | 12 | 4 débutant, 5 intermédiaire, 3 avancé ; 11 catégories, 30 technologies distinctes ; 5 guidés pas à pas (16 exercices vérifiés) |
+| Projets | 12 | 4 débutant, 5 intermédiaire, 3 avancé ; 11 catégories, 20 technologies distinctes ; 8 guidés pas à pas (32 exercices vérifiés) |
 | Articles de blog | 5 | tous signés Geoffroy Streit, datés du 2 octobre 2026, 3 à 4 minutes de lecture annoncées |
 | Articles d'actualité (Communauté) | 20 | instantané du 2 octobre 2026, 5 flux sur les 6 déclarés dans `rss-sources.json` (4 articles chacun) ; articles publiés du 23 juin au 2 octobre 2026 |
 | Modèles de code de l'éditeur | 6 | 3 Python, 2 JavaScript, 1 SQL |
@@ -131,7 +131,7 @@ Les dix cours partagent `LessonCoursePage` (`src/components/courses/lessons/`) :
 
 | Fonctionnalité | État | Détail vérifié |
 | --- | --- | --- |
-| 12 projets | Partiel | `src/data/projects.ts` : fiches avec description, niveau, technologies, durée, difficulté de 1 à 5, prérequis, objectifs. 5 sont guidés pas à pas dans la section « Projets guidés » (`src/data/lessons/projects/`, format des cours : données fournies, exercices vérifiés par le moteur Python, corrigés) : ventes, iris, sentiment, segmentation de clients (KMeans), prévision de fréquentation (série temporelle). Les 7 autres restent des sujets sans jeu de données ni corrigé, ce que la page dit |
+| 12 projets | Partiel | `src/data/projects.ts` : fiches avec description, niveau, technologies, durée, difficulté de 1 à 5, prérequis, objectifs. 8 sont guidés pas à pas dans la section « Projets guidés » (`src/data/lessons/projects/`, format des cours : données fournies, exercices vérifiés par le moteur Python, corrigés) : ventes, iris, sentiment, segmentation de clients (KMeans), prévision de fréquentation (série temporelle). Les 7 autres restent des sujets sans jeu de données ni corrigé, ce que la page dit |
 | Recherche et filtres | Disponible | Texte, niveau, durée, catégorie, technologies, progression ; tous les compteurs de la page sont calculés sur les données |
 | Suivi par projet | Disponible | Commencé ou terminé, notes (`useCourseProgress("projects")`), enregistrés dans le navigateur |
 
@@ -198,7 +198,7 @@ Les dix cours partagent `LessonCoursePage` (`src/components/courses/lessons/`) :
 - **Données externes datées.** Les actualités sont un instantané du 2 octobre 2026. Les chiffres de marché des pages Outils, Introduction et Programmation portent une date de consultation (1er octobre 2026) et vieillissent. Quelques chiffres de la page Bases de données (IDC, Google, McKinsey, Amazon, IBM) et les 13 millisecondes de la masterclass Python restent non vérifiés à la source (`docs/SOURCES.md`). Les liens externes (ressources, forums, vidéos) ne sont pas vérifiés automatiquement.
 - **Cours en plan.** Plus aucun depuis le 6 octobre 2026 : les cinq plans de modules ont été rédigés (bases de données, ML supervisé, visualisation, statistiques appliquées, traitement du langage).
 - **Contenu illustratif.** Plusieurs encadrés de la préparation des données (validation, automatisation, qualité avancée) montrent des chiffres d'exemple fixes, signalés comme tels dans leur texte.
-- **Projets sans corrigé.** 7 projets sur 12 restent des fiches : aucun jeu de données ni solution n'est fourni, et certains sujets (tableau de bord COVID-19, imagerie médicale) demandent des données publiques à récupérer soi-même. Les 5 projets guidés fournissent leurs données (simulées ou intégrées à scikit-learn) et leurs corrigés.
+- **Projets sans corrigé.** 4 projets sur 12 restent des fiches : aucun jeu de données ni solution n'est fourni, et certains sujets (tableau de bord COVID-19, imagerie médicale) demandent des données publiques à récupérer soi-même. Les 8 projets guidés fournissent leurs données (simulées ou intégrées à scikit-learn) et leurs corrigés.
 - **Blog limité.** 5 articles, sans recherche ni filtre sur la page `/blog`.
 - **Langue.** Interface et contenus uniquement en français ; certaines ressources externes sont en anglais.
 - **Code source.** Aucun lien vers le dépôt n'est affiché : `SOURCE_URL` vaut `null` par décision de l'auteur (5 octobre 2026). Le code est proposé sur demande, par la page Contact, ce que l'AGPL permet (offrir l'accès au code source correspondant).
