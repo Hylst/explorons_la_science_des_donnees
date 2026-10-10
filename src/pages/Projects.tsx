@@ -177,7 +177,7 @@ const Projects = () => {
             <h2 id="projets-guides-titre" className="text-2xl font-bold">Projets guidés</h2>
             <p className="text-muted-foreground">
               {nombreGuides} projets complets, de l'énoncé à la conclusion : les données sont fournies, chaque étape a son exercice vérifié et son corrigé,
-              et tout s'exécute dans votre navigateur. Les fleurs d'iris sont un jeu réel ; les ventes, les avis, les clients et la fréquentation sont inventés pour l'exercice.
+              et tout s'exécute dans votre navigateur. Les fleurs d'iris sont un jeu réel ; les ventes, les avis, les emprunts, les logements, les transactions, les clients et la fréquentation sont inventés pour l'exercice.
             </p>
             {guidedProjects.modules.map((module, index) => (
               <LessonModuleView key={module.id} courseId="projects" module={module} number={index + 1} />
