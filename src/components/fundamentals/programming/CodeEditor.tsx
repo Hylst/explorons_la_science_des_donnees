@@ -914,7 +914,7 @@ const CodeEditor: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-3 text-xs text-muted-foreground" role="note">
-                  Exécution réelle, dans votre navigateur et sans envoi de données : Python (Pyodide, avec NumPy, pandas, scikit-learn et Matplotlib dont les figures s'affichent sous la sortie ; seaborn n'est pas fourni),
+                  Exécution réelle, dans votre navigateur et sans envoi de données : Python (Pyodide, avec NumPy, pandas, scikit-learn, statsmodels et Matplotlib dont les figures s'affichent sous la sortie ; seaborn n'est pas fourni),
                   SQL (SQLite, base vide recréée à chaque exécution) et JavaScript (zone isolée, sans réseau).
                 </p>
                 {isExecuting && runStatus && (

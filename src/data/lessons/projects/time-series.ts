@@ -212,12 +212,44 @@ Une régression linéaire peut apprendre l'effet de chaque **jour de la semaine*
     },
     {
       kind: "text",
+      md: `### Étape 6 : un modèle de séries temporelles
+
+Le moteur du site fournit **statsmodels**, la bibliothèque Python de référence pour les modèles classiques de séries temporelles. Un **SARIMA** prévoit la série à partir de ses propres valeurs passées. Ici, il travaille sur les écarts d'une semaine à l'autre (saisonnalité de 7 jours), et il donne en plus un **intervalle de prévision**. Au premier lancement, le navigateur télécharge statsmodels (environ 8 Mo) : comptez quelques secondes de plus.`,
+    },
+    {
+      kind: "code",
+      language: "python",
+      code: lines(
+        DONNEES,
+        DECOUPAGE,
+        "import matplotlib.pyplot as plt",
+        "from statsmodels.tsa.statespace.sarimax import SARIMAX",
+        "",
+        "modele = SARIMAX(train, order=(0, 1, 1), seasonal_order=(0, 1, 1, 7)).fit(disp=False)",
+        "prevision = modele.get_forecast(56)",
+        "centrale = prevision.predicted_mean",
+        "bornes = prevision.conf_int(alpha=0.2)  # intervalle de prévision à 80 %",
+        "print('MAE du SARIMA :', round(np.mean(np.abs(test.to_numpy() - centrale.to_numpy())), 1), 'visites par jour')",
+        "dedans = ((test >= bornes.iloc[:, 0]) & (test <= bornes.iloc[:, 1])).mean()",
+        "print('jours réels dans l\\'intervalle à 80 % :', round(100 * dedans), '%')",
+        "fig, ax = plt.subplots(figsize=(9, 3.5))",
+        "ax.plot(test.index, test, color='black', linewidth=1, label='réel')",
+        "ax.plot(test.index, centrale, label='SARIMA')",
+        "ax.fill_between(test.index, bornes.iloc[:, 0], bornes.iloc[:, 1], alpha=0.25, label='intervalle à 80 %')",
+        "ax.set_ylabel('visites')",
+        "ax.legend()",
+        "plt.tight_layout()",
+      ),
+      caption: "Le SARIMA se trompe de 21,5 visites par jour : à peine mieux que la référence (24), loin de la régression sur le calendrier (14). Il reproduit le rythme de la semaine, mais rien dans les dernières semaines de juin n'annonce le creux d'août. Son intervalle à 80 % ne contient que 70 % des jours réels : il suppose que l'été prolonge le printemps.",
+    },
+    {
+      kind: "text",
       md: `### Conclure honnêtement
 
 - Le modèle n'a vu qu'**un seul été** : il suppose que 2025 ressemblera à 2024. Un été pluvieux, une fermeture pour travaux ou une grande animation le prendraient en défaut.
 - Une seule date de coupure ne suffit pas pour juger : on répète l'évaluation à plusieurs dates (c'est ce que fait \`TimeSeriesSplit\` de scikit-learn), et on regarde la dispersion des erreurs.
 - Une prévision utile donne aussi une **marge d'incertitude**, pas seulement un chiffre.
-- Les modèles classiques de séries temporelles (ARIMA et SARIMA de la bibliothèque statsmodels, Prophet) ne sont pas disponibles dans le moteur de ce site. Sur votre machine, ils méritent d'être comparés à la même référence, au même horizon.`,
+- Un modèle plus savant n'est pas forcément meilleur : le SARIMA fait à peine mieux que la référence, faute de connaître la saison de l'année. On peut lui donner les variables de calendrier (\`SARIMAX(train, exog=...)\`), ou essayer d'autres modèles (Prophet, absent du moteur de ce site) : toujours face à la même référence, au même horizon.`,
     },
   ],
   quiz: [
@@ -253,6 +285,17 @@ Une régression linéaire peut apprendre l'effet de chaque **jour de la semaine*
       ],
       correct: 1,
       explanation: "On compare des méthodes au même horizon et avec les mêmes informations disponibles. Sinon, la comparaison est faussée par une fuite d'information.",
+    },
+    {
+      question: "Le SARIMA à saisonnalité hebdomadaire fait à peine mieux que la référence sur l'été 2025. Pourquoi ?",
+      options: [
+        "statsmodels fonctionne mal dans un navigateur",
+        "Il prolonge le rythme de la semaine et le niveau récent, sans rien savoir du creux d'août",
+        "Il faudrait un test plus court",
+        "Un SARIMA ne peut pas prévoir plus de sept jours",
+      ],
+      correct: 1,
+      explanation: "Le modèle ne voit que la saisonnalité de 7 jours. Le creux de l'été est une saison annuelle : il faut la lui donner (variables de calendrier en entrée) ou disposer de plusieurs années d'historique.",
     },
   ],
 };

@@ -10,7 +10,7 @@ let pyodidePromise: Promise<PyodideInterface> | null = null;
 const post = (message: WorkerResponse) => self.postMessage(message);
 
 /** Paquets scientifiques fournis par le site (liste à garder alignée avec PYTHON_PACKAGES de scripts/sync-runtimes.mjs) */
-const PROVIDED_PACKAGES = ['numpy', 'pandas', 'scikit-learn', 'matplotlib'];
+const PROVIDED_PACKAGES = ['numpy', 'pandas', 'scikit-learn', 'matplotlib', 'statsmodels'];
 
 /** Matplotlib sans écran : rendu Agg, plt.show() ne fait rien (les figures sont renvoyées à la fin de l'exécution) */
 const MATPLOTLIB_SETUP = `

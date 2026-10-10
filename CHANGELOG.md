@@ -1,5 +1,10 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-10, suite] - statsmodels dans le moteur Python
+
+- **statsmodels** (avec patsy) est livré avec le moteur Python, sur décision de l'auteur après mesure : 8 Mo de plus (56 Mo de moteurs), téléchargés seulement quand un code l'importe. Licences BSD relevées dans les roues ; le cache des moteurs passe à `vendor-v3` pour que les visiteurs récupèrent la nouvelle liste de paquets. xgboost, lightgbm, beautifulsoup4 et nltk, mesurés et fonctionnels, restent non livrés.
+- **Projet guidé « prévoir une fréquentation »** : nouvelle étape 6, un SARIMA hebdomadaire avec son intervalle de prévision. Il fait à peine mieux que la référence (21,5 visites d'erreur contre 24) et moins bien que la régression sur le calendrier (14) : il ignore le creux d'août, et son intervalle à 80 % ne contient que 70 % des jours réels. Une question de quiz en plus.
+
 ## [2026-10-10] - Ton plus sobre, chiffres non relus retirés, documentation à jour
 
 - **Pictogrammes** : environ 1 150 émojis décoratifs retirés des pages (titres, encadrés, exemples de code) ; les 75 qui servaient d'icône sont remplacés par des icônes du site (lucide, masquées aux lecteurs d'écran). Restent les coches et croix des listes pour et contre, les étoiles des notes de l'auteur, et les pictogrammes d'iOS dans l'aide à l'installation (ils désignent des boutons du système).

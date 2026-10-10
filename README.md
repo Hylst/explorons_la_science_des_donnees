@@ -17,7 +17,7 @@ Le contenu, avec les nombres comptés dans le code :
 - **179 termes de glossaire**, aussi consultables par survol dans les cours.
 - **10 projets** : des énoncés à réaliser soi-même, sans jeu de données ni corrigé.
 - **5 articles de blog**, des ressources externes sélectionnées, et une page Communauté dont les actualités sont un **instantané daté** de flux RSS publics (pas un flux en direct).
-- **Exécution de code réelle** : Python (Pyodide : NumPy, pandas, scikit-learn), SQL (SQLite via sql.js) et JavaScript (iframe isolée, sans réseau). Pas de Matplotlib. Les moteurs, environ 39 Mo, sont servis par le site lui-même et mis en cache.
+- **Exécution de code réelle** : Python (Pyodide : NumPy, pandas, scikit-learn, statsmodels, Matplotlib), SQL (SQLite via sql.js) et JavaScript (iframe isolée, sans réseau). Les moteurs, 56 Mo, sont servis par le site lui-même et mis en cache.
 - **Application installable** (PWA), utilisable hors ligne pour les pages et moteurs déjà chargés ; thème clair, sombre ou celui de l'appareil.
 
 Le détail, avec l'état de chaque fonction (disponible, partiel, à venir) et les limites connues, est dans [features.md](features.md).

@@ -164,9 +164,9 @@ export const projects: Project[] = [
   {
     id: "intermediate-5",
     title: "Prévoir la fréquentation d'une médiathèque",
-    description: "Deux ans de visites quotidiennes (données fictives) : saisonnalités de la semaine et de l'année, découpage dans le temps, prévision de référence puis régression sur le calendrier, comparées au même horizon.",
+    description: "Deux ans de visites quotidiennes (données fictives) : saisonnalités de la semaine et de l'année, découpage dans le temps, prévision de référence, régression sur le calendrier et modèle SARIMA, comparés au même horizon.",
     level: "intermediate",
-    technologies: ["Python", "pandas", "scikit-learn", "Matplotlib"],
+    technologies: ["Python", "pandas", "scikit-learn", "statsmodels", "Matplotlib"],
     category: "series-temporelles",
     duration: "3-4 heures",
     difficulty: 3,
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     learningObjectives: [
       "Manipuler une série temporelle avec pandas",
       "Découper les données dans le temps",
-      "Comparer un modèle à une prévision de référence",
+      "Comparer des modèles à une prévision de référence",
       "Raisonner sur l'horizon de prévision"
     ]
   },

@@ -99,7 +99,7 @@ const TermsOfService = () => {
                 <p className="text-gray-700 leading-relaxed">
                   Sont exclus de cette licence : les logos et noms de marques
                   cités (propriété de leurs détenteurs) et les composants tiers embarqués, qui gardent leur propre
-                  licence, notamment les moteurs Python et SQL (Pyodide, NumPy, pandas, scikit-learn, SQLite), dont la
+                  licence, notamment les moteurs Python et SQL (Pyodide, NumPy, pandas, scikit-learn, Matplotlib, statsmodels, SQLite), dont la
                   liste figure dans{" "}
                   <a href={asset(NOTICE_FILE)} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                     cet inventaire

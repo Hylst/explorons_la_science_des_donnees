@@ -49,7 +49,7 @@ J'ai choisi des technologies modernes que j'apprends et maîtrise progressivemen
 - **Tailwind CSS** pour un design responsive, avec un thème clair et un thème sombre
 - **shadcn/ui** (composants Radix) intégrés et personnalisés, et **Lucide React** pour les icônes
 - **KaTeX** pour afficher les équations mathématiques, **Recharts** pour les graphiques
-- **Pyodide** (Python) et **sql.js** (SQLite) compilés en WebAssembly pour exécuter le code dans le navigateur (environ 48 Mo, téléchargés à la première exécution de code) ; le JavaScript s'exécute dans un cadre isolé
+- **Pyodide** (Python) et **sql.js** (SQLite) compilés en WebAssembly pour exécuter le code dans le navigateur (environ 56 Mo, téléchargés à la première exécution de code, chaque bibliothèque seulement quand un code l'importe) ; le JavaScript s'exécute dans un cadre isolé
 
 ### Outils de développement
 - **Vite** pour un développement et un build rapides

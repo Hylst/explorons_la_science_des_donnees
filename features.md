@@ -35,7 +35,7 @@ Recomptés le 9 octobre 2026 (méthode en fin de document).
 | Ressources externes (page Ressources) | 14 | 3 livres, 2 cours en ligne, 5 sites, 4 chaînes vidéo ; plus la liste des cours du site, lue dans le catalogue |
 | Routes ayant titre et description propres | 56 | 42 entrées de `PAGE_META`, l'accueil (`HOME_TITLE`) et 13 pages dynamiques (5 articles de blog, 8 catégories de quiz) qui tirent les leurs de leurs données |
 | Fichiers de test Vitest | 45 | `src/**/*.test.ts(x)`, dont le test de fumée des 56 routes (`npm run test:smoke`, hors de `npm test`) ; 1 538 tests au dernier passage complet de `npm test` (9 octobre 2026) |
-| Moteurs d'exécution (`public/vendor`) | 48 Mo | Pyodide 314.0.7 : 48 Mo ; sql.js : 0,6 Mo ; non versionnés, recréés par `npm run runtimes:sync` |
+| Moteurs d'exécution (`public/vendor`) | 56 Mo | Pyodide 314.0.7 : 55 Mo ; sql.js : 0,6 Mo ; non versionnés, recréés par `npm run runtimes:sync` |
 
 ## Fonctionnalités par section
 
@@ -192,9 +192,9 @@ Les dix cours partagent `LessonCoursePage` (`src/components/courses/lessons/`) :
 ## Limites connues
 
 - **Pas de compte ni de serveur.** Aucune donnée n'est partagée entre appareils ou navigateurs ; vider les données du site efface progression, notes, quiz et code. Aucun certificat n'est délivré (le texte du cours supervisé le dit).
-- **Bibliothèques du moteur.** NumPy, pandas, scikit-learn (SciPy comprise) et Matplotlib (rendu Agg, figures affichées sous la sortie) sont fournis. `statsmodels`, `xgboost`, `lightgbm` et `beautifulsoup4` existent dans la distribution Pyodide du site mais ne sont pas livrés (question de poids) ; seaborn, plotly, spacy, TensorFlow et PyTorch n'existent pas dans Pyodide. Un `import` de l'un d'eux échoue avec un `ModuleNotFoundError` explicite.
+- **Bibliothèques du moteur.** NumPy, pandas, scikit-learn (SciPy comprise), statsmodels (depuis le 10 octobre 2026) et Matplotlib (rendu Agg, figures affichées sous la sortie) sont fournis. `xgboost`, `lightgbm`, `beautifulsoup4` et `nltk` existent dans la distribution Pyodide du site mais ne sont pas livrés (question de poids) ; seaborn, plotly, spacy, TensorFlow et PyTorch n'existent pas dans Pyodide. Un `import` de l'un d'eux échoue avec un `ModuleNotFoundError` explicite.
 - **Worker Python (et SQL) de même origine, donc non isolé.** Contrairement à l'iframe JavaScript (origine opaque, sans réseau), les workers Python et SQL sont chargés depuis l'origine du site, sans `sandbox` ni politique propre : la CSP du site est une balise `<meta>` qui ne s'applique pas à un worker. Le code s'exécute sur la machine du visiteur, mais rien dans le dépôt n'empêche ce code d'utiliser les API de l'origine, `fetch` compris (non testé).
-- **Moteurs lourds.** 48 Mo dans `public/vendor` (non versionné, recréé par `npm run runtimes:sync`, qui a besoin du réseau la première fois). Ils ne se téléchargent qu'à la première exécution, puis restent en cache.
+- **Moteurs lourds.** 56 Mo dans `public/vendor` (non versionné, recréé par `npm run runtimes:sync`, qui a besoin du réseau la première fois). Ils ne se téléchargent qu'à la première exécution, puis restent en cache.
 - **Données externes datées.** Les actualités sont un instantané du 2 octobre 2026. Les chiffres de marché des pages Outils, Introduction et Programmation portent une date de consultation (1er octobre 2026) et vieillissent. Quelques chiffres de la page Bases de données (IDC, Google, McKinsey, Amazon, IBM) et les 13 millisecondes de la masterclass Python restent non vérifiés à la source (`docs/SOURCES.md`). Les liens externes (ressources, forums, vidéos) ne sont pas vérifiés automatiquement.
 - **Cours en plan.** Plus aucun depuis le 6 octobre 2026 : les cinq plans de modules ont été rédigés (bases de données, ML supervisé, visualisation, statistiques appliquées, traitement du langage).
 - **Contenu illustratif.** Plusieurs encadrés de la préparation des données (validation, automatisation, qualité avancée) montrent des chiffres d'exemple fixes, signalés comme tels dans leur texte.

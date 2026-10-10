@@ -146,10 +146,10 @@ public/
 ├── img/                     Logos (devicon et marques), blog/ (une image WebP par article, générée en local), courses/ (une image WebP par cours, 7 fichiers), CREDITS.md
 ├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : trois illustrations animées des cours de l'accueil (CSS, sans script, qui respectent prefers-reduced-motion)
 ├── sandbox/                 Bac à sable JavaScript : js-runner.html, js-runner.js, js-core.js
-└── vendor/                  Moteurs Python et SQL, NOTICE.txt (généré, non suivi par git, 48 Mo mesurés)
+└── vendor/                  Moteurs Python et SQL, NOTICE.txt (généré, non suivi par git, 56 Mo mesurés)
 ```
 
-`public/vendor/` contient `pyodide-<version>/` (noyau, bibliothèque standard, roues numpy, pandas, scipy, scikit-learn, matplotlib et leurs dépendances), `sql-js-<version>/` (binaire WebAssembly de SQLite) et `NOTICE.txt`. Il est recréé par `scripts/sync-runtimes.mjs`. Mesure du 9 octobre 2026 (`du -sk public/vendor` : 49 080 ko) : 48 Mo, dont Pyodide 314.0.7 pour presque tout et sql.js 1.14.2 pour 0,6 Mo.
+`public/vendor/` contient `pyodide-<version>/` (noyau, bibliothèque standard, roues numpy, pandas, scipy, scikit-learn, matplotlib, statsmodels et leurs dépendances), `sql-js-<version>/` (binaire WebAssembly de SQLite) et `NOTICE.txt`. Il est recréé par `scripts/sync-runtimes.mjs`. Mesure du 10 octobre 2026, après l'ajout de statsmodels (`du -sk public/vendor` : 57 172 ko) : 56 Mo, dont Pyodide 314.0.7 pour presque tout et sql.js 1.14.2 pour 0,6 Mo.
 
 ### scripts/, tailwind/, docs/
 
@@ -321,7 +321,7 @@ Point de sécurité à connaître : les workers Python et SQL sont de même orig
 ### PWA et hors ligne
 
 - `src/main.tsx` enregistre `sw.js` (portée `BASE_URL`) uniquement en production ; en développement, il désinscrit tout worker résiduel. Une mise à jour téléchargée est proposée par un toast « Actualiser » ; le worker n'est activé qu'après le message `SKIP_WAITING`, sauf pour remplacer l'ancien worker de caches `-v1`.
-- `public/sw.js` : cache `ds-explorer-<BUILD_ID>` recréé à chaque build (les anciens sont supprimés à l'activation) et cache `ds-explorer-vendor-v2` (constante `VENDOR_CACHE`) qui survit aux déploiements (les dossiers de `vendor/` portent le numéro de version).
+- `public/sw.js` : cache `ds-explorer-<BUILD_ID>` recréé à chaque build (les anciens sont supprimés à l'activation) et cache `ds-explorer-vendor-v3` (constante `VENDOR_CACHE`) qui survit aux déploiements (les dossiers de `vendor/` portent le numéro de version).
   - navigation : réseau d'abord, puis `index.html` mis en cache, puis `offline.html` ;
   - `vendor/` : cache d'abord, dans le cache dédié ;
   - `assets/` (fichiers hachés de Vite) : cache d'abord ;
@@ -329,7 +329,7 @@ Point de sécurité à connaître : les workers Python et SQL sont de même orig
   - une réponse HTML n'est jamais mise en cache sous l'URL d'une ressource.
 - Changer la liste des paquets Python sans changer la version de Pyodide ne change pas le nom des dossiers de `vendor/` : incrémenter le suffixe de `VENDOR_CACHE` pour que les visiteurs de retour ne gardent pas un ancien `pyodide-lock.json` (déduit du code, non testé).
 - `src/lib/pwa-install.ts` capture `beforeinstallprompt` dès le démarrage (la Navbar est remontée à chaque page) ; `PWAInstallButton` l'affiche, avec des instructions pour iOS.
-- Pré-cache à l'installation : le shell de l'application, `offline.html`, `offline.js`, `manifest.json`, `favicon.svg` et une icône. Hors ligne, l'application ne retrouve que ce qui a déjà été chargé : les fichiers des pages visitées (chargés à la demande) et les moteurs une fois téléchargés (48 Mo à la première exécution de code). Les liens externes exigent le réseau.
+- Pré-cache à l'installation : le shell de l'application, `offline.html`, `offline.js`, `manifest.json`, `favicon.svg` et une icône. Hors ligne, l'application ne retrouve que ce qui a déjà été chargé : les fichiers des pages visitées (chargés à la demande) et les moteurs une fois téléchargés (le noyau à la première exécution de code, chaque bibliothèque quand un code l'importe ; 56 Mo en tout). Les liens externes exigent le réseau.
 
 ### Thème clair, sombre, système
 

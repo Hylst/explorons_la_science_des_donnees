@@ -9,7 +9,7 @@
  *
  * Les paquets Python sont téléchargés depuis le CDN officiel de Pyodide, à la version installée, et leur
  * empreinte SHA-256 est vérifiée avec celle de pyodide-lock.json. Le téléchargement est mis en cache dans .cache/.
- * Pour alléger le site (48 Mo mesurés avec Pyodide 314.0.7 : `du -sk public/vendor`), retirer des noms de PYTHON_PACKAGES : les modules retirés lèveront alors
+ * Pour alléger le site (56 Mo mesurés avec Pyodide 314.0.7 et statsmodels : `du -sk public/vendor`), retirer des noms de PYTHON_PACKAGES : les modules retirés lèveront alors
  * ModuleNotFoundError dans l'éditeur (message clair, pas de faux résultat).
  */
 import { createHash } from "node:crypto";
@@ -18,11 +18,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 /** Paquets proposés dans l'éditeur ; leurs dépendances sont ajoutées automatiquement. */
-const PYTHON_PACKAGES = ["numpy", "pandas", "scikit-learn", "matplotlib"];
+const PYTHON_PACKAGES = ["numpy", "pandas", "scikit-learn", "matplotlib", "statsmodels"];
 const CORE_FILES = ["pyodide.asm.wasm", "python_stdlib.zip"];
 
 /**
- * Licences des paquets Python livrés, relevées dans le fichier METADATA de chaque roue (2026-09-30 ; matplotlib et ses dépendances : 2026-10-02).
+ * Licences des paquets Python livrés, relevées dans le fichier METADATA de chaque roue (2026-09-30 ; matplotlib et ses dépendances : 2026-10-02 ; statsmodels et patsy : 2026-10-10).
  * Le script refuse un paquet absent de cette liste : en ajouter un impose de vérifier sa licence.
  */
 const PACKAGE_LICENSES = {
@@ -43,6 +43,8 @@ const PACKAGE_LICENSES = {
   packaging: ["Apache-2.0 OU BSD-2-Clause (double licence)", "https://github.com/pypa/packaging"],
   pillow: ["MIT-CMU (HPND)", "https://python-pillow.github.io"],
   pyparsing: ["MIT", "https://github.com/pyparsing/pyparsing"],
+  statsmodels: ["BSD-3-Clause", "https://www.statsmodels.org"],
+  patsy: ["BSD-2-Clause", "https://github.com/pydata/patsy"],
 };
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");

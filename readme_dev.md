@@ -16,7 +16,7 @@ Documents voisins :
 | npm | Celui fourni avec Node (11.11.0 avec la version de référence) | `package-lock.json` est suivi par git |
 | Git | Une version récente | Dépôt git |
 | Réseau | Nécessaire au premier `npm run dev` ou `npm run build` | `scripts/sync-runtimes.mjs` télécharge les roues Python depuis `https://cdn.jsdelivr.net/pyodide/v<version>/full/` (empreintes SHA-256 vérifiées), puis les garde dans `.cache/pyodide-wheels` |
-| Espace disque | Environ 48 Mo pour `public/vendor` (Pyodide 314.0.7 et sql.js 1.14.2) et 35 Mo pour `.cache` (mesurés le 9 octobre 2026) en plus de `node_modules` | `du -sh public/vendor .cache` |
+| Espace disque | Environ 56 Mo pour `public/vendor` (Pyodide 314.0.7 et sql.js 1.14.2) et 35 Mo pour `.cache` (mesurés le 9 octobre 2026) en plus de `node_modules` | `du -sh public/vendor .cache` |
 | Navigateur | Récent (WebAssembly, Web Workers de type module) pour tester l'exécution de code | `src/lib/runner` |
 
 Pas de variable d'environnement à définir : l'application n'appelle aucun serveur, et `scripts/verify-dist.mjs` refuse tout build qui contiendrait une référence Supabase ou une variable `VITE_*`.
@@ -252,16 +252,16 @@ import { SourceNote } from "@/components/ui/source-note";
 
 ### 5.8 Ajouter un paquet Python au runner
 
-L'éditeur et les cours exécutent Python avec Pyodide ; seuls les paquets embarqués sont disponibles (numpy, pandas, scikit-learn, matplotlib et leurs dépendances). Le verrou de Pyodide 314.0.7 (`node_modules/pyodide/pyodide-lock.json`) propose d'autres paquets que le site ne livre pas, par exemple statsmodels (avec patsy), xgboost, lightgbm, beautifulsoup4, lxml, networkx, sympy, nltk et altair ; il n'a ni seaborn, ni plotly, ni spacy, ni tensorflow, ni torch. Le verrou ne donne pas les tailles : mesurer avec `du -sk public/vendor` avant et après.
+L'éditeur et les cours exécutent Python avec Pyodide ; seuls les paquets embarqués sont disponibles (numpy, pandas, scikit-learn, matplotlib, statsmodels et leurs dépendances). Le verrou de Pyodide 314.0.7 (`node_modules/pyodide/pyodide-lock.json`) propose d'autres paquets que le site ne livre pas, par exemple xgboost, lightgbm, beautifulsoup4, lxml, networkx, sympy, nltk et altair ; il n'a ni seaborn, ni plotly, ni spacy, ni tensorflow, ni torch. Le verrou ne donne pas les tailles : mesurer avec `du -sk public/vendor` avant et après.
 
 1. Vérifier que le paquet existe dans `node_modules/pyodide/pyodide-lock.json` : sinon `sync-runtimes.mjs` s'arrête avec `Paquet inconnu dans pyodide-lock.json`.
 2. Ajouter son nom au tableau `PYTHON_PACKAGES` de `scripts/sync-runtimes.mjs`. Les dépendances déclarées dans le verrou sont ajoutées automatiquement.
 3. Relever la licence de chaque nouvelle roue (fichier `METADATA`) et l'ajouter à `PACKAGE_LICENSES` dans le même script, sous la forme `nom: ["licence", "adresse du projet"]`, **pour le paquet et pour chacune de ses nouvelles dépendances**. Le script refuse un paquet absent de la liste (`Licence à vérifier ... puis à ajouter à PACKAGE_LICENSES`). Vérifier la compatibilité avec la licence du site (AGPL-3.0-or-later) ; les composants tiers gardent leur licence et sont recensés dans `public/vendor/NOTICE.txt`, régénéré par le script (ne pas l'éditer).
 4. Ajouter le même nom à `PROVIDED_PACKAGES` dans `src/lib/runner/python.worker.ts` (liste chargée quand le code utilise `importlib.import_module` ou `__import__`).
-5. Lancer `npm run runtimes:sync`, puis mesurer le poids : `du -sh public/vendor` (48 Mo avec les paquets actuels). Chaque Mo ajouté est téléchargé par les visiteurs qui exécutent du code.
+5. Lancer `npm run runtimes:sync`, puis mesurer le poids : `du -sh public/vendor` (56 Mo avec les paquets actuels ; statsmodels et patsy en ont ajouté 8). Chaque Mo ajouté est téléchargé par les visiteurs qui exécutent du code.
 6. Mettre à jour les textes qui énumèrent les paquets : `src/components/fundamentals/programming/CodeEditor.tsx` (texte d'aide), `src/pages/TermsOfService.tsx` (composants tiers), `README.md`.
 7. Tester dans l'éditeur de `/fundamentals/programming` : `import <module>` puis un calcul réel. Les tests des cours (`lessons-python.test.ts`) utilisent les mêmes roues par `public/vendor` : les relancer, car ils chargeront le nouveau paquet.
-8. Point d'attention, non testé : `public/sw.js` sert `vendor/` en « cache d'abord » dans un cache nommé `ds-explorer-vendor-v2` (constante `VENDOR_CACHE`), dont le nom ne change pas quand on ajoute un paquet sans changer la version de Pyodide (les dossiers portent le numéro de version de Pyodide, pas la liste des paquets). Un visiteur qui a déjà téléchargé les moteurs risque de garder l'ancien `pyodide-lock.json`. Dans ce cas, incrémenter `VENDOR_CACHE` dans `public/sw.js` (le worker supprime les autres caches à l'activation).
+8. Point d'attention, non testé : `public/sw.js` sert `vendor/` en « cache d'abord » dans un cache nommé `ds-explorer-vendor-v3` (constante `VENDOR_CACHE`, passée de `v2` à `v3` à l'ajout de statsmodels), dont le nom ne change pas quand on ajoute un paquet sans changer la version de Pyodide (les dossiers portent le numéro de version de Pyodide, pas la liste des paquets). Un visiteur qui a déjà téléchargé les moteurs risque de garder l'ancien `pyodide-lock.json`. Dans ce cas, incrémenter `VENDOR_CACHE` dans `public/sw.js` (le worker supprime les autres caches à l'activation).
 
 Pour alléger au contraire le site, retirer un nom de `PYTHON_PACKAGES` et de `PROVIDED_PACKAGES` : le module retiré lèvera `ModuleNotFoundError` dans l'éditeur et dans les cours qui l'importent (scikit-learn pèse environ 19 Mo mais la plupart des cours de machine learning en dépendent).
 

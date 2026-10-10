@@ -26,7 +26,7 @@ const ENGINE: Record<LessonLanguage, { name: string; loading: string; reset: str
     reset: "La base d'exemple est recréée à chaque exécution : vous ne pouvez rien casser.",
   },
   python: {
-    name: "un vrai Python (Pyodide) avec NumPy, pandas, scikit-learn et Matplotlib",
+    name: "un vrai Python (Pyodide) avec NumPy, pandas, scikit-learn, statsmodels et Matplotlib",
     loading: " Le premier lancement charge Python dans votre navigateur (quelques secondes).",
     reset: "Chaque exécution repart de zéro : les variables d'un exemple ne passent pas au suivant.",
   },
