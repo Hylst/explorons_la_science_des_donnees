@@ -80,8 +80,10 @@ const About = () => {
                   à la data science, à l'IA, au machine learning et à Python depuis plus de deux ans.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Ce site consolide mes connaissances tout en créant une ressource pour la communauté
-                  francophone. Je ne suis pas data scientist de métier : les cours sont des notes de
+                  Ce site réunit les informations libres et les connaissances que j'ai accumulées pendant
+                  mon apprentissage, ainsi que des enrichissements proposés par des IA, que j'ai relus et qui
+                  m'ont paru tout à fait cohérents. Réuni ici de manière structurée, l'ensemble me permet de
+                  consolider mes connaissances tout en créant une ressource pour la communauté francophone. Je ne suis pas data scientist de métier : les cours sont des notes de
                   formation, à recouper avec les sources citées. Écrivez-moi pour signaler une erreur.
                 </p>
                 <div className="flex flex-wrap gap-2">

@@ -1,5 +1,11 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-10, soir] - Image de partage absolue, page À propos, documentation recalée
+
+- **og:image et twitter:image** : elles valaient `/data_science_explorer/logo.png` (URL relative, que les réseaux sociaux ne résolvent pas) sur les 84 pages générées. Le remplacement prévu dans `vite.config.ts` arrivait après la réécriture de l'URL par Vite et ne trouvait plus rien. L'URL absolue `https://hylst.fr/data_science_explorer/logo.png` est désormais écrite dans `index.html`. `src/config/brand.test.ts` la compare à `SITE_URL`, et `scripts/verify-dist.mjs` la contrôle sur chaque page. Les deux contrôles ont été vérifiés par mutation : l'ancien build donne 112 échecs (56 pages × 2 balises).
+- **Page À propos** : le paragraphe sur l'auteur précise que le site réunit des informations libres et des connaissances accumulées pendant son apprentissage, ainsi que des enrichissements proposés par des IA, relus et jugés cohérents (texte proposé par l'auteur).
+- **Documentation** : `README.md` annonçait encore 5 cours rédigés, 179 termes et 10 projets sans corrigé ; `about.md`, `features.md`, `todo.md`, `content_todo.md` et `docs/PERFORMANCE_GUIDE.md` sont recalés sur l'état du 10 octobre (10 cours rédigés, 8 projets guidés, statsmodels livré, 56 Mo).
+
 ## [2026-10-10, fin] - Trois projets guidés de plus
 
 Huit projets sur douze sont maintenant guidés pas à pas, avec des données inventées et générées avec une graine fixe, tout dans le navigateur. Les deux premiers ont été écrits par des sous-agents Sonnet, le troisième dans la session ; chaque nombre des légendes a été revérifié en relançant les exemples sur le moteur du site.

@@ -20,12 +20,12 @@ Ma mission est de rendre la Data Science accessible aux francophones en proposan
 - **Machine Learning** : apprentissage supervisé, non supervisé et par renforcement, évaluation des modèles, deep learning, exercices
 - **Outils** : langages, traitement des données, frameworks de machine learning, visualisation
 - **Cours** : dix cours rédigés sous `/courses/` (Python pour la data science, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, fondamentaux des bases de données, visualisation de données, machine learning supervisé, guide des modèles de ML, Transformers, traitement du langage naturel). Chaque cours est une suite de modules avec objectifs, exemples modifiables exécutés dans le navigateur, exercices vérifiés par le moteur, quiz de fin de module, progression et notes gardées dans le navigateur
-- **Projets** : douze sujets classés par niveau ; cinq sont guidés pas à pas (analyse exploratoire de ventes, classification des iris, analyse de sentiment, segmentation de clients, prévision d'une fréquentation en série temporelle), avec jeu de données, exercices vérifiés et corrigés ; les sept autres sont des sujets à réaliser soi-même, sans énoncé détaillé, jeu de données ni corrigé
+- **Projets** : douze sujets classés par niveau ; huit sont guidés pas à pas (analyse exploratoire de ventes, classification des iris, analyse de sentiment, recommandation de livres, prix des logements, détection de fraudes à la carte bancaire, segmentation de clients, prévision d'une fréquentation en série temporelle), avec jeu de données, exercices vérifiés et corrigés ; les quatre autres (tableau de bord COVID-19 avec Streamlit, classification d'images médicales avec un CNN, traduction automatique avec des Transformers, trading algorithmique) sont des sujets à réaliser soi-même, sans énoncé détaillé, jeu de données ni corrigé
 
 ### Contenu et exercices
 - Quiz de data science par thème, avec explications des réponses ; score et historique gardés dans le navigateur
 - Glossaire : recherche et définitions courtes (au survol) ou détaillées (au clic), reprises dans le texte des cours
-- Éditeur de code qui exécute réellement Python (NumPy, pandas, scikit-learn, Matplotlib), SQL (SQLite) et JavaScript dans le navigateur, sans envoyer le code à un serveur ; les figures Matplotlib s'affichent sous l'exemple
+- Éditeur de code qui exécute réellement Python (NumPy, pandas, scikit-learn, statsmodels, Matplotlib), SQL (SQLite) et JavaScript dans le navigateur, sans envoyer le code à un serveur ; les figures Matplotlib s'affichent sous l'exemple
 - Visualisations et laboratoires interactifs (tangente, descente de gradient, statistiques descriptives, matrice de corrélation calculée sur des jeux d'exemple)
 - Sélection de ressources, blog, et rubrique Communauté (liens vers des forums, événements et comptes réels, avec un instantané daté d'actualités issues de flux RSS)
 - Les chiffres qui décrivent le monde réel citent leur source et leur date de consultation ; les estimations personnelles sont signalées comme telles
@@ -36,7 +36,7 @@ Ma mission est de rendre la Data Science accessible aux francophones en proposan
 - Navigation par rubriques, barre latérale de sections dans chaque page
 
 ### Sections qui restent à enrichir
-- **Projets** : les sept sujets non guidés n'ont ni énoncé détaillé, ni jeu de données, ni corrigé (certains demandent des bibliothèques que le navigateur ne fournit pas, comme TensorFlow ou Streamlit)
+- **Projets** : les quatre sujets non guidés n'ont ni énoncé détaillé, ni jeu de données, ni corrigé (ils demandent des bibliothèques que le navigateur ne fournit pas, comme Streamlit, TensorFlow ou PyTorch, ou, pour le trading, des outils de backtesting et d'orchestration absents du moteur)
 - **Visualisation** : Seaborn, Plotly, Altair et D3.js sont présentés en code à lire ; seul Matplotlib s'exécute dans le navigateur
 - **Préparation des données** : le cycle complet est en ligne (collecte, audit, nettoyage, transformation, exploration visuelle, validation, automatisation) ; quelques démonstrations (rapport de validation, tableau de bord de monitoring, cas pratique hospitalier) utilisent des chiffres fictifs, signalés comme tels
 

@@ -12,10 +12,10 @@ Le contenu, avec les nombres comptés dans le code :
 
 - **Introduction** et **Fondamentaux** : mathématiques et statistiques (6 cours avec formules et graphiques), programmation, préparation des données, bases de données.
 - **Machine Learning** : apprentissage supervisé, non supervisé, par renforcement, deep learning, évaluation.
-- **10 cours** sous `/courses/` : 5 sont rédigés (Python, introduction aux mathématiques, statistiques inférentielles, guide des modèles, Transformers) ; 5 ne sont encore que des plans de modules, avec suivi et notes mais sans leçon (statistiques appliquées, bases de données, visualisation, ML supervisé, NLP).
+- **10 cours** sous `/courses/`, tous rédigés en leçons (exemples exécutables, exercices vérifiés par le moteur, quiz de module, suivi et notes) : Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, bases de données, visualisation de données, ML supervisé, guide des modèles de ML, Transformers, traitement du langage naturel.
 - **165 questions de quiz** en 8 catégories, avec explications, historique et statistiques calculés localement.
-- **179 termes de glossaire**, aussi consultables par survol dans les cours.
-- **10 projets** : des énoncés à réaliser soi-même, sans jeu de données ni corrigé.
+- **229 termes de glossaire**, aussi consultables par survol dans les cours.
+- **12 projets**, dont 8 guidés pas à pas (jeu de données, exercices vérifiés, corrigés) ; les 4 autres sont des sujets à réaliser soi-même.
 - **5 articles de blog**, des ressources externes sélectionnées, et une page Communauté dont les actualités sont un **instantané daté** de flux RSS publics (pas un flux en direct).
 - **Exécution de code réelle** : Python (Pyodide : NumPy, pandas, scikit-learn, statsmodels, Matplotlib), SQL (SQLite via sql.js) et JavaScript (iframe isolée, sans réseau). Les moteurs, 56 Mo, sont servis par le site lui-même et mis en cache.
 - **Application installable** (PWA), utilisable hors ligne pour les pages et moteurs déjà chargés ; thème clair, sombre ou celui de l'appareil.

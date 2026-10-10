@@ -80,6 +80,11 @@ const OLD_NAME_EXCEPTIONS: Exception[] = [
     reason: "Nom de fichier de l'illustration dans public/svg : identifiant technique, jamais affiché.",
   },
   {
+    file: "index.html",
+    line: /content="https:\/\/hylst\.fr\/data_science_explorer\/logo\.png"/,
+    reason: "og:image et twitter:image en URL absolue : les réseaux sociaux ne résolvent pas une URL relative.",
+  },
+  {
     file: "public/sw.js",
     line: /"\/data_science_explorer\/"/,
     reason: "Commentaire qui cite le sous-chemin de déploiement (portée du service worker).",
@@ -181,6 +186,11 @@ describe("cohérence de la marque", () => {
 
     it("la description est celle de SITE_DESCRIPTION", () => {
       expect(attribute(/<meta name="description" content="([^"]*)"/)).toBe(SITE_DESCRIPTION);
+    });
+
+    it("og:image et twitter:image sont l'URL absolue du logo (une URL relative n'est pas lue par les réseaux sociaux)", () => {
+      expect(attribute(/<meta property="og:image" content="([^"]*)"/)).toBe(`${SITE_URL}logo.png`);
+      expect(attribute(/<meta name="twitter:image" content="([^"]*)"/)).toBe(`${SITE_URL}logo.png`);
     });
   });
 

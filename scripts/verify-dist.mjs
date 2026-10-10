@@ -100,12 +100,16 @@ for (const file of pageFiles) {
   const description = (/<meta name="description" content="([^"]*)"/.exec(html) || [])[1];
   if (!title) fail(route + ' : titre absent'); else titles.set(title, [...(titles.get(title) || []), route]);
   if (!description) fail(route + ' : description absente'); else descriptions.set(description, [...(descriptions.get(description) || []), route]);
+  for (const property of ['property="og:image"', 'name="twitter:image"']) {
+    const image = (new RegExp('<meta ' + property + ' content="([^"]*)"').exec(html) || [])[1];
+    if (image !== CANONICAL + '/logo.png') fail(route + ' : ' + property + ' vaut ' + image + ' (attendu ' + CANONICAL + '/logo.png)');
+  }
   const expected = route === '/' ? CANONICAL + '/' : CANONICAL + route;
   if (canonical !== expected) fail(route + ' : canonical ' + canonical + ' (attendu ' + expected + ')');
 }
 for (const [title, routes] of titles) if (routes.length > 1) fail('titre en double (' + title + ') : ' + routes.join(', '));
 for (const [description, routes] of descriptions) if (routes.length > 1) fail('description en double : ' + routes.join(', '));
-if (fails.length === failsBeforePages) ok(pageCount + ' pages et ' + redirectCount + ' redirections controlees (titres et descriptions uniques, canonical sans fragment)');
+if (fails.length === failsBeforePages) ok(pageCount + ' pages et ' + redirectCount + ' redirections controlees (titres et descriptions uniques, canonical sans fragment, og:image absolu)');
 
 const sitemapFile = path.join(DIST, 'sitemap.xml');
 if (fs.existsSync(sitemapFile)) {

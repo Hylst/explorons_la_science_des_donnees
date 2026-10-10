@@ -74,10 +74,11 @@ const staticHosting = (): Plugin => {
     configResolved(config) {
       outDir = path.resolve(config.root, config.build.outDir);
     },
-    // Métadonnées sociales et SEO en URL absolue (une URL relative n'est pas résolue par les réseaux sociaux)
+    // og:image et twitter:image sont écrits en URL absolue dans index.html (une URL relative n'est pas résolue par les
+    // réseaux sociaux) : un remplacement ici arrivait après la réécriture de Vite en /data_science_explorer/logo.png et
+    // ne trouvait plus rien (constaté le 10 octobre 2026). brand.test.ts et verify-dist.mjs le vérifient.
     transformIndexHtml: (html) =>
       html
-        .replace(/content="\/logo\.png"/g, `content="${HYLST_SITE_URL}logo.png"`)
         .replace("</head>", `    <meta property="og:locale" content="fr_FR" />\n    <meta name="robots" content="index, follow" />\n  </head>`),
     closeBundle() {
       const indexPath = path.join(outDir, "index.html");

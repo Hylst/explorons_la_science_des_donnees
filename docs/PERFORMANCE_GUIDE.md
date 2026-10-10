@@ -42,8 +42,10 @@ Mesures du 9 octobre 2026 sur `dist-hylst/` (SWC, minification par défaut de Vi
 | Plus grosses pages (cours en données comprises) | `MLModelsGuide` 181 kB (51 kB gzip), `MachineLearningContentRefactored` 175 kB (46 kB), `DataPreparationRefactored` 153 kB (41 kB), `TransformersGuide` 142 kB (44 kB), `PythonBasics` 130 kB (43 kB), `inferential-statistics` 123 kB (38 kB), `SupervisedLearning` 115 kB (31 kB) | |
 | `ProgrammingSection-*.js` (n'est plus que la coquille : les huit sous-sections sont chargées une à une) | 18 kB | 6,7 kB |
 | `assets/` au complet (JS, CSS, polices) | 6,46 Mo bruts (6 464 112 o), dont 5,16 Mo de JS | non mesuré |
-| Dossier `dist-hylst/` complet (87 pages HTML, images, `assets/`) | 56 Mo (`du -sh`) | |
+| Dossier `dist-hylst/` complet (86 pages HTML, images, `assets/`) | environ 63 Mo (`du -sk` : 64 937 ko le 10 octobre 2026) | |
 | Moteurs d'exécution `public/vendor/` (Pyodide 314.0.7, sql.js 1.14.2, roues Python) | 56 Mo (`du -sk` : 57 172 ko le 10 octobre 2026, après l'ajout de statsmodels ; 49 080 ko avant), dont sql.js 0,6 Mo ; téléchargés seulement à la première exécution de code, puis en cache. Le cache `.cache/` des roues pèse 35 Mo | |
+
+Les 86 pages HTML sont comptées le 10 octobre 2026 par `find dist-hylst -name "*.html"` hors `vendor/` et `sandbox/` : 84 `index.html` (56 routes canoniques et 28 redirections), `404.html` et `offline.html`. Avec `sandbox/js-runner.html`, le bac à sable JavaScript, on en compte 87, chiffre qui figurait ici avant ce recomptage (méthode d'alors non consignée).
 
 Le chunk Recharts et le chunk `CourseEquation` (KaTeX) ne sont chargés qu'avec les pages qui les utilisent. Ces chiffres varient à chaque changement de code : relancer `npm run build:hylst` plutôt que de les recopier. Le gzip ci-dessus est calculé avec `gzip -c` sur les fichiers de `dist-hylst/assets/` ; Nginx peut compresser autrement (Brotli par exemple).
 
