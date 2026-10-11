@@ -18,6 +18,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from "recharts";
 import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
 
+/** Étiquette de l'axe des registres sur deux lignes (« JavaScript » puis « (npm) ») : sur une ligne, elles se chevauchaient */
+const RegistryTick = ({ x = 0, y = 0, payload }: { x?: number; y?: number; payload?: { value: string } }) => {
+  const [language, registry] = String(payload?.value ?? "").split(" (");
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text textAnchor="middle" fontSize={11} style={{ fill: "hsl(var(--muted-foreground))" }}>
+        <tspan x={0} dy={12}>{language}</tspan>
+        {registry && <tspan x={0} dy={13}>({registry}</tspan>}
+      </text>
+    </g>
+  );
+};
+
 const ProgrammingTools = () => {
   // Stack Overflow Developer Survey, question « langages utilisés », part de TOUS les répondants (pas seulement des
   // data scientists). Relevé le 1er octobre 2026 sur survey.stackoverflow.co. Julia n'apparaît pas dans la liste de 2025.
@@ -74,6 +87,9 @@ const ProgrammingTools = () => {
                   <Line type="monotone" dataKey="Julia" stroke="#8b5cf6" strokeWidth={2} />
                 </LineChart>
               </DeferredResponsiveContainer>
+            </div>
+            {/* Notes hors du bloc h-80 : le graphique en occupe toute la hauteur, elles débordaient sous la carte */}
+            <div>
               <SourceNote
                 className="text-center mb-4 pb-4"
                 consulted="1er octobre 2026"
@@ -108,12 +124,14 @@ const ProgrammingTools = () => {
                   margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" tick={{ fontSize: 11 }} interval={0} />
+                  <XAxis dataKey="name" tick={<RegistryTick />} interval={0} height={44} />
                   <YAxis scale="log" domain={[1000, 10000000]} allowDataOverflow tickFormatter={formatCount} />
                   <Tooltip formatter={(value: number) => [value.toLocaleString('fr-FR'), 'Paquets']} />
                   <Bar dataKey="packages" name="Paquets" fill="#3b82f6" />
                 </BarChart>
               </DeferredResponsiveContainer>
+            </div>
+            <div>
               <SourceNote
                 className="text-center mb-4 pb-4"
                 consulted="1er octobre 2026"

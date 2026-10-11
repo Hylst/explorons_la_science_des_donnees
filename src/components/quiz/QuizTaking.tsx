@@ -328,7 +328,7 @@ const QuizTaking: React.FC<QuizTakingProps> = ({
           <CardHeader>
             <div className="flex items-start justify-between">
               <div className="space-y-2 flex-1">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <Badge className={getDifficultyColor(currentQuestion.difficulty)}>
                     {currentQuestion.difficulty}
                   </Badge>

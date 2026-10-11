@@ -183,7 +183,10 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
           
           arrows.push(
             <g key={`${step.id}-${nextStepId}`}>
-              {/* Curved arrow path */}
+              {/* Courbe entre deux étapes. Le SVG est étiré (viewBox 0 0 100 100, preserveAspectRatio="none") : l'épaisseur
+                  est donnée en pixels (non-scaling-stroke), et ni pointe de flèche, ni cercle, ni texte n'y sont dessinés,
+                  car ils seraient agrandis et déformés (le numéro d'étape occupait 12 % de la largeur). Le numéro est
+                  affiché par la pastille de chaque étape. */}
               <path
                 d={`M ${startX} ${startY} Q ${midX + controlOffset} ${midY - controlOffset} ${endX} ${endY}`}
                 fill="none"
@@ -191,32 +194,12 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
                 strokeWidth={isHighlighted ? "4" : isActive ? "3" : "2"}
                 strokeDasharray={isActive ? "0" : "6,3"}
                 className={`transition-all duration-700 ${isActive ? 'opacity-90' : 'opacity-40'}`}
-                markerEnd={isActive ? "url(#arrowActive)" : "url(#arrowDefault)"}
+                vectorEffect="non-scaling-stroke"
                 style={{
                   filter: isHighlighted ? 'drop-shadow(0 0 8px hsl(var(--primary)))' : 'none'
                 }}
               />
               
-              {/* Step number indicator on arrow */}
-              {isActive && (
-                <circle
-                  cx={midX}
-                  cy={midY - 5}
-                  r="8"
-                  fill="hsl(var(--primary))"
-                  className="animate-pulse"
-                />
-              )}
-              {isActive && (
-                <text
-                  x={midX}
-                  y={midY - 2}
-                  textAnchor="middle"
-                  className="text-xs font-bold fill-white"
-                >
-                  {step.step}
-                </text>
-              )}
             </g>
           );
         }
@@ -303,13 +286,6 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
             <stop offset="0%" stopColor="hsl(var(--muted-foreground))" stopOpacity="0.4" />
             <stop offset="100%" stopColor="hsl(var(--muted-foreground))" stopOpacity="0.2" />
           </linearGradient>
-          {/* Arrow markers */}
-          <marker id="arrowActive" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="hsl(var(--primary))" />
-          </marker>
-          <marker id="arrowDefault" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L6,3 z" fill="hsl(var(--muted-foreground))" opacity="0.5" />
-          </marker>
         </defs>
         {renderLearningFlow()}
       </svg>

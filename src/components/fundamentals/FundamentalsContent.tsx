@@ -158,7 +158,7 @@ const FundamentalsContent = () => {
         <DataProcessingSection />
       </ProgressiveSections>
 
-      <div className="flex justify-between pt-6 border-t">
+      <div className="flex flex-wrap justify-between gap-3 pt-6 border-t">
         <Button 
           variant="outline" 
           onClick={goToPrevSection}

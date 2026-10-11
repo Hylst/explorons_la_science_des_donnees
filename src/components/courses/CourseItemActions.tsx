@@ -33,7 +33,7 @@ const CourseItemActions = ({ courseId, itemId, itemTitle, startLabel, startIcon,
 
   return (
     <div className={cn('space-y-2', className)}>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {status === 'todo' && (
           <Button
             type="button"

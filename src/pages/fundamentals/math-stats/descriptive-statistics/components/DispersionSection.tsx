@@ -634,7 +634,7 @@ const DispersionSection = () => {
             {/* Variance Animation */}
             {selectedVisualization === 'variance' && (
               <div className="bg-white p-6 rounded-lg border">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <h4 className="text-lg font-semibold text-blue-700">Animation : Calcul de la Variance Étape par Étape</h4>
                   <div className="flex gap-2">
                     <Button

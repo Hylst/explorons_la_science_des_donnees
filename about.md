@@ -4,7 +4,7 @@ Texte de référence de la page « À propos » (`src/pages/About.tsx`). Le site
 
 ## Qu'est-ce qu'Explorons la Data Science ?
 
-Explorons la Data Science est un projet personnel et éducatif créé par Geoffroy Streit, passionné de data science actuellement en apprentissage. Ce site web interactif a été développé comme un moyen de structurer et consolider mes connaissances tout en les partageant gratuitement avec la communauté francophone. Il est réalisé par Geoffroy Streit avec assistance IA, comme tous les sites de la plateforme hylst.fr.
+Explorons la Data Science est un projet personnel et éducatif créé par Geoffroy Streit, passionné de data science actuellement en apprentissage. Ce site réunit les informations libres et les connaissances que j'ai accumulées pendant mon apprentissage, ainsi que des enrichissements proposés par des IA, que j'ai relus et qui m'ont paru tout à fait cohérents. Réuni ici de manière structurée, l'ensemble me permet de consolider mes connaissances tout en créant une ressource gratuite pour la communauté francophone. Il est réalisé par Geoffroy Streit avec assistance IA, comme tous les sites de la plateforme hylst.fr.
 
 C'est un site 100 % statique : il n'y a ni compte, ni serveur applicatif, ni cookie, ni mesure d'audience. Votre progression, vos notes, vos résultats de quiz et le code que vous écrivez restent dans votre navigateur et ne sont envoyés nulle part.
 

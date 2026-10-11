@@ -1,5 +1,15 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-11] - Suite du contrôle dans Chrome : affichage corrigé
+
+Contrôles du build `mv2nziuf` (Chrome headless) : retour arrière avec restauration du défilement (position retrouvée sur quatre pages), menus de bureau et mobile, cartes de projets et six pages en mode sombre ; aucun débordement à 600 et 900 px. Défauts trouvés et corrigés :
+
+- **Parcours de l'accueil** : le SVG des liaisons est étiré à la taille du bloc (`viewBox="0 0 100 100"`, `preserveAspectRatio="none"`). Le numéro d'étape posé sur la courbe y occupait 12 % de la largeur, son cercle devenait une grande ellipse et la pointe de flèche un grand triangle par-dessus les étapes. Les courbes gardent maintenant une épaisseur en pixels (`vector-effect`), sans numéro ni pointe (chaque étape porte déjà sa pastille numérotée). `DataScienceMap.test.tsx` le vérifie (2 échecs sur l'ancien composant).
+- **/tools/programming** : la note sur Julia et les sources débordaient sous la carte (elles étaient dans le bloc de hauteur fixe du graphique), et les noms des registres se chevauchaient sous les barres (« JavaScript (npm)Python (PyPI) ») : notes sorties du bloc, noms sur deux lignes.
+- **Débordements à 320 px** (21 routes, largeur que les règles d'accessibilité demandent de tenir) : bouton « Notes » des dix cours, barres d'actions du blog et des ressources, deux DOI dans un article, boutons et titre de /fundamentals/programming, badge de niveau des quiz, boutons de l'animation de variance. Les rangées passent à la ligne, les liens des articles se coupent. Sur /fundamentals, deux causes de plus : les onglets du graphique de visualisation (quatre colonnes, deux sous 640 px) et la barre « Section précédente / suivante ». Revu dans Chrome : aucun débordement sur les 56 routes à 320 et 390 px.
+- **Menu** : « Quizz » devient « Quiz ».
+- **Documentation** : `verify-dist.mjs` décrit avec son contrôle d'`og:image` (CLAUDE.md, readme_dev.md, structure.md), `about.md` aligné sur le texte de la page À propos, `structure.md` ne présente plus les notes relues le 10 octobre comme historiques.
+
 ## [2026-10-10, soir] - Image de partage absolue, page À propos, documentation recalée
 
 - **og:image et twitter:image** : elles valaient `/data_science_explorer/logo.png` (URL relative, que les réseaux sociaux ne résolvent pas) sur les 84 pages générées. Le remplacement prévu dans `vite.config.ts` arrivait après la réécriture de l'URL par Vite et ne trouvait plus rien. L'URL absolue `https://hylst.fr/data_science_explorer/logo.png` est désormais écrite dans `index.html`. `src/config/brand.test.ts` la compare à `SITE_URL`, et `scripts/verify-dist.mjs` la contrôle sur chaque page. Les deux contrôles ont été vérifiés par mutation : l'ancien build donne 112 échecs (56 pages × 2 balises).

@@ -128,8 +128,8 @@ const Exercise = ({
       isActive ? 'border-l-blue-500 shadow-lg' : 
       isCompleted ? 'border-l-green-500' : 'border-l-gray-300'
     }`}>
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex-1">
+      <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+        <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
             <h4 className="font-semibold text-lg">{title}</h4>
             {isActive && (
@@ -195,7 +195,7 @@ const Exercise = ({
       <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
       
       <div className="space-y-2">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {hints.length > 0 && (
             <Button
               variant="outline"

@@ -54,7 +54,7 @@ const Blog = () => {
         
         {id ? <BlogPost id={id} content={blogPost?.content} title={blogPost?.title} /> : <BlogList />}
         
-        <div className="mt-12 flex justify-between items-center pt-8 border-t">
+        <div className="mt-12 flex flex-wrap justify-between items-center gap-3 pt-8 border-t">
           <Button asChild variant="outline">
             <Link to="/community" className="flex items-center gap-1">
               <ChevronLeft className="h-4 w-4" />

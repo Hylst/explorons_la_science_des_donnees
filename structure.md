@@ -158,7 +158,7 @@ public/
 | `scripts/collect-routes.ts` | Lit le code source pour établir la liste des routes (`collectRoutes`) et les métadonnées des routes dynamiques (`collectDynamicMeta`). Importé par `vite.config.ts` et par `page-meta.test.ts` ; exécutable seul par un Node récent qui retire les types TypeScript de lui-même (essayé avec Node 24.14) |
 | `scripts/sync-runtimes.mjs` | Prépare `public/vendor` (Pyodide, sql.js, roues Python vérifiées par SHA-256) et génère `NOTICE.txt` |
 | `scripts/refresh-news.mjs` | Récupère les flux de `src/data/rss-sources.json` et réécrit `src/data/rss-articles.json` |
-| `scripts/verify-dist.mjs` | Contrôle d'un build statique : aucun secret ni référence Supabase ou `VITE_*`, aucun chemin absolu hors base dans `index.html`, canonical hylst.fr et `sitemap.xml` présents |
+| `scripts/verify-dist.mjs` | Contrôle d'un build statique : aucun secret ni référence Supabase ou `VITE_*`, aucun chemin absolu hors base dans `index.html`, canonical hylst.fr et `sitemap.xml` présents, `og:image` et `twitter:image` absolus sur chaque page |
 | `scripts/export-public-repo.mjs` | Prépare un dépôt neuf à un seul commit à partir de `HEAD` pour la publication du code (voir `readme_dev.md`, section 5.12) |
 | `tailwind/dark-palette.ts` | Plugin Tailwind : génère les règles `.dark` des classes de couleur fixes utilisées dans `src/` |
 | `tailwind/dynamic-colors.ts` | Couleurs des classes construites à l'exécution (safelist et règles sombres) |

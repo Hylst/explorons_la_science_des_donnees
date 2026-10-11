@@ -273,6 +273,11 @@
   line-height: 1.25;
 }
 
+/* Liens des articles du blog : une adresse ou un DOI sans espace dépassait l'écran à 320 px (constaté le 11 octobre 2026) */
+.rich-text a {
+  overflow-wrap: anywhere;
+}
+
 /* Respecte le réglage « réduire les animations » du système : animations et transitions quasi instantanées */
 @media (prefers-reduced-motion: reduce) {
   *,

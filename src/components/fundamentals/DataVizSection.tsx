@@ -157,7 +157,7 @@ const DataVizSection = () => {
         </Alert>
 
         <Tabs defaultValue="line" onValueChange={setActiveChart} className="w-full">
-          <TabsList className="grid grid-cols-4 mb-4">
+          <TabsList className="grid h-auto grid-cols-2 sm:grid-cols-4 mb-4">
             <TabsTrigger value="line">Tendance</TabsTrigger>
             <TabsTrigger value="bar">Comparaison</TabsTrigger>
             <TabsTrigger value="area">Évolution</TabsTrigger>

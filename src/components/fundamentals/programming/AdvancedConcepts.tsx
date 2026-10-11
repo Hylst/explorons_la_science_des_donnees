@@ -1127,11 +1127,11 @@ if __name__ == "__main__":
     <section id="advanced-concepts" className="mb-16">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
           <div className="p-3 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full">
             <Rocket className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
             Concepts avancés de programmation
           </h2>
         </div>

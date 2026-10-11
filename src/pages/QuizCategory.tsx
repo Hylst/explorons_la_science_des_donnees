@@ -231,7 +231,7 @@ const QuizCategory: React.FC = () => {
         {/* Category Header */}
         <Card className="border-l-4 border-l-blue-500">
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <h1 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Brain className="h-6 w-6 text-blue-600" />
                 {category.title}

@@ -49,7 +49,7 @@ const Navbar = () => {
     { name: "Outils", path: "/tools" },
     { name: "Projets", path: "/projects" },
     { name: "Ressources", path: "/resources" },
-    { name: "Quizz", path: "/quiz" },
+    { name: "Quiz", path: "/quiz" },
     { name: "Communauté", path: "/community", secondary: true },
     { name: "Blog", path: "/blog", secondary: true },
     { name: "Glossaire", path: "/glossary", secondary: true },
