@@ -23,18 +23,18 @@ const ClusteringSection = () => {
         </p>
 
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl space-y-4">
-          <h4 className="font-semibold text-indigo-800 mb-3">Objectifs du Clustering</h4>
+          <h4 className="font-semibold text-indigo-800 mb-3">Objectifs du clustering</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white p-4 rounded-lg border-l-4 border-blue-400">
-              <h5 className="font-medium text-blue-800 mb-2">Homogénéité Intra-cluster</h5>
+              <h5 className="font-medium text-blue-800 mb-2">Homogénéité intra-cluster</h5>
               <p className="text-sm">Les membres d'un même groupe doivent se ressembler</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-green-400">
-              <h5 className="font-medium text-green-800 mb-2">Hétérogénéité Inter-cluster</h5>
+              <h5 className="font-medium text-green-800 mb-2">Hétérogénéité inter-cluster</h5>
               <p className="text-sm">Les groupes doivent être bien distincts les uns des autres</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-purple-400">
-              <h5 className="font-medium text-purple-800 mb-2">Équilibre des Groupes</h5>
+              <h5 className="font-medium text-purple-800 mb-2">Équilibre des groupes</h5>
               <p className="text-sm">Éviter un groupe géant entouré de minuscules groupes (sauf si les données l'exigent)</p>
             </div>
             <div className="bg-white p-4 rounded-lg border-l-4 border-orange-400">
@@ -63,7 +63,7 @@ const ClusteringSection = () => {
         <CollapsibleContent>
           <Card className="mt-2 bg-gradient-to-r from-blue-50 to-cyan-50">
             <CardContent className="pt-6 space-y-6">
-              <EducationalCard title="K-means : Le Jeu des Centres de Gravité" type="analogie">
+              <EducationalCard title="K-means : le jeu des centres de gravité" type="analogie">
                 <div className="space-y-4">
                   <p>
                     Imaginez que vous placez plusieurs scènes dans un festival, de façon à minimiser
@@ -210,17 +210,17 @@ const ClusteringSection = () => {
         title="Clustering hiérarchique : un arbre de fusions"
         levels={[
           {
-            title: "Concept de Base",
+            title: "Concept de base",
             difficulty: "basic",
             content: (
               <div className="space-y-4">
-                <EducationalCard title="L'Analogie de l'Arbre Généalogique" type="analogie">
+                <EducationalCard title="L'analogie de l'arbre généalogique" type="analogie">
                   <p className="mb-4">
                     Imaginez que vous reconstituez l'arbre généalogique d'une famille d'après les ressemblances
                     physiques seulement, sans connaître les liens de parenté.
                   </p>
                   <div className="bg-amber-50 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Deux Approches :</h4>
+                    <h4 className="font-semibold mb-2">Deux approches :</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white p-3 rounded border-l-4 border-green-400">
                         <strong>Agglomerative (Bottom-up) :</strong>{" "}
@@ -271,7 +271,7 @@ const ClusteringSection = () => {
             content: (
               <div className="space-y-4">
                 <div className="bg-white p-4 rounded-lg border text-center">
-                  <h4 className="font-semibold mb-4">Dendrogramme : L'Histoire du Clustering</h4>
+                  <h4 className="font-semibold mb-4">Dendrogramme : l'histoire du clustering</h4>
                   <svg width="480" height="250" viewBox="0 0 480 250" className="max-w-full h-auto mx-auto">
                     {/* Feuilles (points de données) */}
                     <text x="50" y="240" textAnchor="middle" className="text-xs">A</text>

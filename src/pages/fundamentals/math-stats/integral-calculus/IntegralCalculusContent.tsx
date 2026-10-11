@@ -87,7 +87,7 @@ const IntegralCalculusContent = () => {
       <section id="concepts" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Calculator className="h-6 w-6 text-blue-600" />
-          Concepts Fondamentaux
+          Concepts fondamentaux
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -152,7 +152,7 @@ const IntegralCalculusContent = () => {
       <section id="techniques" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Settings className="h-6 w-6 text-purple-600" />
-          Techniques d'Intégration
+          Techniques d'intégration
         </h2>
 
         <div className="space-y-6">
@@ -222,7 +222,7 @@ const IntegralCalculusContent = () => {
       <section id="exercices" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <BookOpen className="h-6 w-6 text-orange-600" />
-          Exercices Pratiques
+          Exercices pratiques
         </h2>
 
         <div className="space-y-6">

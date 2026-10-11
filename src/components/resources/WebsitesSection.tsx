@@ -39,7 +39,7 @@ const WebsitesSection = () => {
 
   return (
     <div id="websites" className="scroll-mt-24 mt-16">
-      <h2 className="text-3xl font-bold mb-6">Sites Web</h2>
+      <h2 className="text-3xl font-bold mb-6">Sites web</h2>
       <div className="max-w-none mb-6">
         <p>
           Quelques sites pour s'entraîner, poser des questions et lire la documentation. La plupart sont en anglais.

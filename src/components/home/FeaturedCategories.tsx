@@ -12,7 +12,7 @@ const categories = [
     gradient: "from-ds-blue-500 to-sky-400"
   },
   {
-    title: "Mathématiques & Stats",
+    title: "Mathématiques & stats",
     description: "Probabilités, statistiques et algèbre linéaire",
     icon: <Calculator className="h-6 w-6 text-ds-purple-500" />,
     href: "/fundamentals/math-stats",
@@ -36,7 +36,7 @@ const categories = [
     gradient: "from-amber-500 to-yellow-400"
   },
   {
-    title: "Bases de Données",
+    title: "Bases de données",
     description: "SQL, NoSQL, et gestion des données",
     icon: <Database className="h-6 w-6 text-rose-500" />,
     href: "/fundamentals/databases",
@@ -44,7 +44,7 @@ const categories = [
     gradient: "from-rose-500 to-pink-400"
   },
   {
-    title: "Projets Pratiques",
+    title: "Projets pratiques",
     description: "Sujets de projets, dont plusieurs guidés pas à pas",
     icon: <FileText className="h-6 w-6 text-cyan-500" />,
     href: "/projects",

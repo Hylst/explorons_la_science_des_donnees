@@ -17,7 +17,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple médical
   const medicalScenario = {
-    title: "Test Médical",
+    title: "Test médical",
     description: "Diagnostic d'une maladie avec un test",
     initialEvent: "Population",
     branches: [
@@ -44,7 +44,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple météo
   const weatherScenario = {
-    title: "Prévision Météo",
+    title: "Prévision météo",
     description: "Prédiction de pluie selon les nuages",
     initialEvent: "Journée",
     branches: [
@@ -71,7 +71,7 @@ const ConditionalProbabilitySection = () => {
 
   // Données pour l'exemple marketing
   const marketingScenario = {
-    title: "Email Marketing",
+    title: "Email marketing",
     description: "Taux d'ouverture selon le segment",
     initialEvent: "Clients",
     branches: [
@@ -129,7 +129,7 @@ const ConditionalProbabilitySection = () => {
   return (
     <section id="conditional-probability" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        2. Probabilité Conditionnelle : Quand l'Information Change Tout
+        2. Probabilité conditionnelle : Quand l'information change tout
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -167,13 +167,13 @@ const ConditionalProbabilitySection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-5 w-5" />
-            Définition Mathématique
+            Définition mathématique
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
             <div className="bg-green-50 p-6 rounded-lg">
-              <h4 className="font-semibold mb-4 text-center">Probabilité Conditionnelle</h4>
+              <h4 className="font-semibold mb-4 text-center">Probabilité conditionnelle</h4>
               <CourseEquation latex="P(A|B) = \frac{P(A \cap B)}{P(B)}" />
               <p className="text-center text-sm mt-2 text-gray-600">"Probabilité de A sachant que B s'est produit"</p>
             </div>
@@ -212,7 +212,7 @@ const ConditionalProbabilitySection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TreePine className="h-5 w-5" />
-            Diagrammes en Arbre Interactifs
+            Diagrammes en arbre interactifs
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -242,7 +242,7 @@ const ConditionalProbabilitySection = () => {
 
             {/* Diagramme en arbre */}
             <div className="bg-white border rounded-lg p-6">
-              <h5 className="font-semibold mb-4 text-center">Diagramme en Arbre</h5>
+              <h5 className="font-semibold mb-4 text-center">Diagramme en arbre</h5>
               
               <div className="flex flex-col items-center space-y-8">
                 {/* Nœud racine */}
@@ -336,7 +336,7 @@ const ConditionalProbabilitySection = () => {
 
             {/* Graphique en barres */}
             <div className="space-y-3">
-              <h5 className="font-semibold">Probabilités Jointes</h5>
+              <h5 className="font-semibold">Probabilités jointes</h5>
               <div className="h-64 bg-white rounded border">
                 <DeferredResponsiveContainer width="100%" height="100%">
                   <BarChart data={barData}>
@@ -352,7 +352,7 @@ const ConditionalProbabilitySection = () => {
                     <Tooltip 
                       formatter={(value, name) => [
                         `${value}%`, 
-                        name === 'probability' ? 'Probabilité Jointe' : 'Probabilité Conditionnelle'
+                        name === 'probability' ? 'Probabilité jointe' : 'Probabilité conditionnelle'
                       ]} 
                     />
                     <Bar dataKey="probability" fill="#3B82F6" name="probability" />
@@ -369,7 +369,7 @@ const ConditionalProbabilitySection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5" />
-            Règles et Propriétés Importantes
+            Règles et propriétés importantes
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -426,7 +426,7 @@ const ConditionalProbabilitySection = () => {
                 <strong>Naive Bayes :</strong> Hypothèse d'indépendance conditionnelle
               </div>
               <div className="bg-white p-3 rounded border">
-                <strong>Réseaux Bayésiens :</strong> Modélisation de dépendances
+                <strong>Réseaux bayésiens :</strong> Modélisation de dépendances
               </div>
             </div>
           </div>

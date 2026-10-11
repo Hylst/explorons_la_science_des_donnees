@@ -23,7 +23,7 @@ const ReinforcementLearningCourse = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Brain className="h-12 w-12" />
-            Apprentissage par Renforcement
+            Apprentissage par renforcement
           </CardTitle>
           <p className="text-xl text-purple-100 max-w-3xl mx-auto">
             Comment un agent apprend à prendre des décisions par essais et erreurs,
@@ -32,15 +32,15 @@ const ReinforcementLearningCourse = () => {
           <div className="flex justify-center gap-3 mt-6 flex-wrap">
             <Badge className="bg-white text-purple-600 text-sm px-4 py-2">
               <Target className="h-4 w-4 mr-2" />
-              Prise de Décision
+              Prise de décision
             </Badge>
             <Badge className="bg-white text-purple-600 text-sm px-4 py-2">
               <Zap className="h-4 w-4 mr-2" />
-              Apprentissage Adaptatif
+              Apprentissage adaptatif
             </Badge>
             <Badge className="bg-white text-purple-600 text-sm px-4 py-2">
               <Gamepad2 className="h-4 w-4 mr-2" />
-              IA de Jeux
+              IA de jeux
             </Badge>
           </div>
         </CardHeader>

@@ -54,7 +54,7 @@ export const machineLearningTerms: GlossaryEntry[] = [
     icon: "Target"
   },
   {
-    term: "Apprentissage Supervisé",
+    term: "Apprentissage supervisé",
     description: `L'apprentissage supervisé entraîne un modèle à partir d'exemples dont la réponse attendue est connue (les étiquettes), afin de prédire la réponse pour de nouvelles entrées.
 
 **Principe :** à partir de paires (x, y), on cherche une fonction f telle que f(x) soit proche de y, en minimisant une fonction de perte sur les données d'entraînement. Le but réel est la généralisation : bien prédire sur des données jamais vues.
@@ -80,7 +80,7 @@ export const machineLearningTerms: GlossaryEntry[] = [
     icon: "Users"
   },
   {
-    term: "Apprentissage Non Supervisé",
+    term: "Apprentissage non supervisé",
     description: `L'apprentissage non supervisé cherche des structures dans des données sans étiquette : groupes, axes principaux de variation, observations atypiques.
 
 **Principales tâches :**

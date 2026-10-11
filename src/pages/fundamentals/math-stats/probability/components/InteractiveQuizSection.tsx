@@ -170,11 +170,11 @@ const InteractiveQuizSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Brain className="h-6 w-6 text-green-600" />
-            Quiz Interactif - Testez vos Connaissances
+            Quiz interactif - Testez vos connaissances
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <CourseHighlight title="Quiz Interactif" type="concept">
+          <CourseHighlight title="Quiz interactif" type="concept">
             Mettez en pratique vos connaissances sur les probabilités avec ce quiz interactif. 
             Chaque question teste un concept clé et fournit des explications détaillées.
           </CourseHighlight>
@@ -273,7 +273,7 @@ const InteractiveQuizSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Trophy className="h-6 w-6 text-yellow-600" />
-              Résultats du Quiz
+              Résultats du quiz
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -370,7 +370,7 @@ const InteractiveQuizSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Lightbulb className="h-6 w-6 text-purple-600" />
-            Conseils pour Progresser en Probabilités
+            Conseils pour progresser en probabilités
           </CardTitle>
         </CardHeader>
         <CardContent>

@@ -95,7 +95,7 @@ const QuizStatsSection: React.FC = () => {
     <div className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Vos Statistiques de Performance
+          Vos statistiques de performance
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Suivez votre progression et identifiez vos points forts et axes d'amélioration.
@@ -111,7 +111,7 @@ const QuizStatsSection: React.FC = () => {
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
                 {userStats.totalAttempts}
               </div>
-              <div className="text-sm text-gray-600">Quiz Complétés</div>
+              <div className="text-sm text-gray-600">Quiz complétés</div>
             </div>
           </CardContent>
         </Card>
@@ -123,7 +123,7 @@ const QuizStatsSection: React.FC = () => {
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
                 {userStats.totalQuestionsAnswered}
               </div>
-              <div className="text-sm text-gray-600">Questions Répondues</div>
+              <div className="text-sm text-gray-600">Questions répondues</div>
             </div>
           </CardContent>
         </Card>
@@ -135,7 +135,7 @@ const QuizStatsSection: React.FC = () => {
               <div className={`text-2xl font-bold ${getScoreColor(userStats.averageScore)}`}>
                 {userStats.averageScore}%
               </div>
-              <div className="text-sm text-gray-600">Score Moyen</div>
+              <div className="text-sm text-gray-600">Score moyen</div>
             </div>
           </CardContent>
         </Card>
@@ -147,7 +147,7 @@ const QuizStatsSection: React.FC = () => {
               <div className="text-2xl font-bold text-gray-900 dark:text-white">
                 {formatTime(userStats.totalTimeSpent)}
               </div>
-              <div className="text-sm text-gray-600">Temps Total</div>
+              <div className="text-sm text-gray-600">Temps total</div>
             </div>
           </CardContent>
         </Card>
@@ -158,7 +158,7 @@ const QuizStatsSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-green-500" />
-            Progression Générale
+            Progression générale
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -176,15 +176,15 @@ const QuizStatsSection: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center space-y-1">
                 <div className="text-lg font-bold text-green-600">{userStats.bestScore}%</div>
-                <div className="text-sm text-gray-600">Meilleur Score</div>
+                <div className="text-sm text-gray-600">Meilleur score</div>
               </div>
               <div className="text-center space-y-1">
                 <div className="text-lg font-bold text-orange-600">{userStats.currentStreak}</div>
-                <div className="text-sm text-gray-600">Série Actuelle</div>
+                <div className="text-sm text-gray-600">Série actuelle</div>
               </div>
               <div className="text-center space-y-1">
                 <div className="text-lg font-bold text-blue-600">{userStats.longestStreak}</div>
-                <div className="text-sm text-gray-600">Plus Longue Série</div>
+                <div className="text-sm text-gray-600">Plus longue série</div>
               </div>
             </div>
         </CardContent>
@@ -195,7 +195,7 @@ const QuizStatsSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="h-5 w-5 text-blue-500" />
-            Performance par Catégorie
+            Performance par catégorie
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -247,7 +247,7 @@ const QuizStatsSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calendar className="h-5 w-5 text-purple-500" />
-            Activité Récente
+            Activité récente
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -282,7 +282,7 @@ const QuizStatsSection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Award className="h-5 w-5 text-yellow-500" />
-            Réalisations Débloquées
+            Réalisations débloquées
           </CardTitle>
         </CardHeader>
         <CardContent>

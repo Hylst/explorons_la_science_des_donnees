@@ -5,7 +5,7 @@ import { Puzzle } from "lucide-react";
 const PillarsSection = () => {
   const pillars = [
     {
-      title: "Mathématiques & Statistiques",
+      title: "Mathématiques & statistiques",
       subtitle: "Le fondement théorique",
       description: "Probabilités, inférence statistique, algèbre linéaire et calcul différentiel sont les bases mathématiques essentielles de la Data Science.",
       color: "border-t-ds-blue-500",
@@ -31,7 +31,7 @@ const PillarsSection = () => {
       ]
     },
     {
-      title: "Connaissance du Domaine",
+      title: "Connaissance du domaine",
       subtitle: "Le contexte d'application",
       description: "Comprendre le contexte métier est indispensable pour poser les bonnes questions et interpréter correctement les résultats d'analyse.",
       color: "border-t-ds-blue-300",
@@ -44,7 +44,7 @@ const PillarsSection = () => {
       ]
     },
     {
-      title: "Intelligence Artificielle",
+      title: "Intelligence artificielle",
       subtitle: "Les algorithmes avancés",
       description: "Les techniques d'IA et d'apprentissage automatique permettent de construire des modèles qui apprennent à partir des données, par exemple pour prédire ou classer.",
       color: "border-t-ds-purple-300",

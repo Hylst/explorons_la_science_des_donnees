@@ -131,14 +131,14 @@ const ClassificationSection = () => {
         <CardContent>
           <Tabs defaultValue="binary" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="binary">Classification Binaire</TabsTrigger>
+              <TabsTrigger value="binary">Classification binaire</TabsTrigger>
               <TabsTrigger value="multiclass">Multi-classe</TabsTrigger>
               <TabsTrigger value="multilabel">Multi-label</TabsTrigger>
             </TabsList>
 
             <TabsContent value="binary" className="space-y-4">
               <div className="bg-blue-50 p-6 rounded-xl">
-                <h3 className="font-bold text-blue-800 mb-3">Classification Binaire : Oui ou Non ?</h3>
+                <h3 className="font-bold text-blue-800 mb-3">Classification binaire : oui ou non ?</h3>
                 <p className="text-blue-700 mb-4">
                   Comme un interrupteur : il n'y a que deux positions possibles.
                   L'algorithme doit choisir entre deux options exclusives.
@@ -146,18 +146,18 @@ const ClassificationSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Filtrage Email</h4>
-                    <p className="text-sm mb-2">Spam ou Légitime ?</p>
+                    <h4 className="font-semibold mb-2">Filtrage email</h4>
+                    <p className="text-sm mb-2">Spam ou légitime ?</p>
                     <Badge variant="outline" className="text-xs">Seuil de décision</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <h4 className="font-semibold mb-2">Diagnostic</h4>
-                    <p className="text-sm mb-2">Malade ou Sain ?</p>
+                    <p className="text-sm mb-2">Malade ou sain ?</p>
                     <Badge variant="outline" className="text-xs">Médical</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <h4 className="font-semibold mb-2">Fraude</h4>
-                    <p className="text-sm mb-2">Frauduleux ou Légitime ?</p>
+                    <p className="text-sm mb-2">Frauduleux ou légitime ?</p>
                     <Badge variant="outline" className="text-xs">Sécurité</Badge>
                   </div>
                 </div>
@@ -166,7 +166,7 @@ const ClassificationSection = () => {
 
             <TabsContent value="multiclass" className="space-y-4">
               <div className="bg-green-50 p-6 rounded-xl">
-                <h3 className="font-bold text-green-800 mb-3">Multi-classe : Choisir parmi plusieurs options</h3>
+                <h3 className="font-bold text-green-800 mb-3">Multi-classe : choisir parmi plusieurs options</h3>
                 <p className="text-green-700 mb-4">
                   Comme choisir votre plat préféré dans un menu : plusieurs options,
                   mais vous ne pouvez en choisir qu'une seule.
@@ -180,7 +180,7 @@ const ClassificationSection = () => {
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <h4 className="font-semibold mb-2">Analyse sentiment</h4>
-                    <p className="text-sm mb-2">Positif, Négatif, Neutre</p>
+                    <p className="text-sm mb-2">Positif, négatif, neutre</p>
                     <Badge variant="outline" className="text-xs">NLP</Badge>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
@@ -236,7 +236,7 @@ const ClassificationSection = () => {
             <CollapsibleTrigger className="flex items-center justify-between w-full p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
               <div className="flex items-center gap-3">
                 <Brain className="h-5 w-5 text-blue-600" />
-                <span className="font-semibold">Régression Logistique</span>
+                <span className="font-semibold">Régression logistique</span>
                 <Badge className="bg-blue-100 text-blue-800">Simple</Badge>
               </div>
               <ChevronDown className={`h-4 w-4 transition-transform ${openSections.includes('logistic') ? 'rotate-180' : ''}`} />

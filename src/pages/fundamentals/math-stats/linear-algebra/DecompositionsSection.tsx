@@ -16,7 +16,7 @@ const DecompositionsSection = () => {
 
   return (
     <section id="decompositions" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">5. Décompositions : Décortiquer les Matrices</h2>
+      <h2 className="text-3xl font-bold mb-6">5. Décompositions : décortiquer les matrices</h2>
       
       <CourseHighlight title="Analogie : La décomposition comme une autopsie" type="concept">
         <p>
@@ -30,7 +30,7 @@ const DecompositionsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5 text-purple-600" />
-              Décomposition en Valeurs Propres (EVD)
+              Décomposition en valeurs propres (EVD)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -93,7 +93,7 @@ const DecompositionsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5 text-orange-600" />
-              Décomposition en Valeurs Singulières (SVD)
+              Décomposition en valeurs singulières (SVD)
             </CardTitle>
           </CardHeader>
           <CardContent>

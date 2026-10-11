@@ -20,28 +20,28 @@ const MathStats = () => {
 
   const fundamentalConcepts = [
     {
-      title: "Algèbre Linéaire",
+      title: "Algèbre linéaire",
       description: "Fondamental pour la manipulation et transformation des données",
       icon: <Calculator className="h-8 w-8 text-blue-600" />,
-      examples: ["Vecteurs & Matrices", "Produit scalaire", "Décomposition SVD/PCA"],
+      examples: ["Vecteurs & matrices", "Produit scalaire", "Décomposition SVD/PCA"],
       applications: ["Réduction de dimension", "Réseaux de neurones", "Traitement d'images", "Systèmes de recommandation"]
     },
     {
-      title: "Statistiques & Probabilités",
+      title: "Statistiques & probabilités",
       description: "Cœur de l'analyse prédictive et de la modélisation",
       icon: <ChartBar className="h-8 w-8 text-green-600" />,
       examples: ["Statistiques descriptives", "Distributions", "Inférence statistique", "Théorème de Bayes"],
       applications: ["A/B testing", "Analyse exploratoire", "Validation de modèles", "Tests d'hypothèses"]
     },
     {
-      title: "Calcul Différentiel & Optimisation",
+      title: "Calcul différentiel & optimisation",
       description: "Clé pour l'entraînement et l'optimisation des modèles",
       icon: <TrendingUp className="h-8 w-8 text-purple-600" />,
       examples: ["Dérivées partielles", "Gradients", "Optimisation contrainte", "Algorithmes SGD"],
       applications: ["Régression", "Deep learning", "Réglage hyperparamètres", "Minimisation coût"]
     },
     {
-      title: "Mathématiques Discrètes",
+      title: "Mathématiques discrètes",
       description: "Bases logiques et combinatoires pour l'algorithmique",
       icon: <Brain className="h-8 w-8 text-orange-600" />,
       examples: ["Logique & ensembles", "Combinatoire", "Fonctions logarithmiques", "Algèbre de Boole"],
@@ -74,7 +74,7 @@ const MathStats = () => {
 
   const complementaryTopics = [
     {
-      title: "Calcul Intégral",
+      title: "Calcul intégral",
       description: "Probabilités continues et densités de probabilité",
       icon: "∫",
       importance: "Essentiel pour comprendre les distributions continues"
@@ -86,13 +86,13 @@ const MathStats = () => {
       importance: "Utile pour les variables catégorielles et binaires"
     },
     {
-      title: "Théorie des Graphes",
+      title: "Théorie des graphes",
       description: "Réseaux, structures de données et algorithmes",
       icon: "⊙—⊙",
       importance: "Applications en réseaux sociaux et recommandations"
     },
     {
-      title: "Analyse Numérique",
+      title: "Analyse numérique",
       description: "Méthodes computationnelles et approximations",
       icon: "≈",
       importance: "Implémentation pratique des algorithmes"
@@ -104,7 +104,7 @@ const MathStats = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Mathématiques & Statistiques"
+          title="Mathématiques & statistiques"
           description="Découvrez les fondements mathématiques essentiels pour acquérir de bonnes bases en Data Science"
           
         />
@@ -167,7 +167,7 @@ const MathStats = () => {
           <div className="bg-white/60 p-6 rounded-lg mb-6">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <Trophy className="h-6 w-6 text-yellow-600" />
-              Impact des Mathématiques en Data Science
+              Impact des mathématiques en Data Science
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {mathImportance.map((item, index) => (
@@ -189,7 +189,7 @@ const MathStats = () => {
           <div className="bg-white/60 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <Target className="h-6 w-6 text-purple-600" />
-              Bases Complémentaires Utiles
+              Bases complémentaires utiles
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {complementaryTopics.map((topic, index) => (

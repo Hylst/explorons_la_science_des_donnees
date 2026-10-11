@@ -13,7 +13,7 @@ export const fundamentalsTerms: GlossaryEntry[] = [
     icon: "BookOpen"
   },
   {
-    term: "Intelligence Artificielle (IA)",
+    term: "Intelligence artificielle (IA)",
     description: "L'Intelligence Artificielle (IA) est une branche de l'informatique qui cherche à créer des systèmes informatiques capables de réaliser des tâches qui nécessitent normalement l'intelligence humaine. Pensez à l'IA comme à un apprenti très doué qui observe comment les humains résolvent des problèmes, puis développe ses propres méthodes pour les résoudre de manière autonome. Contrairement à un programme traditionnel qui suit des instructions précises, l'IA apprend à partir d'exemples et s'améliore avec l'expérience. L'IA englobe plusieurs domaines : l'apprentissage automatique (Machine Learning) pour reconnaître des patterns, le traitement du langage naturel (NLP) pour comprendre et générer du texte, la vision par ordinateur pour analyser des images, et la robotique pour interagir avec le monde physique.",
     category: "fondamentaux",
     icon: "Brain"
@@ -31,7 +31,7 @@ export const fundamentalsTerms: GlossaryEntry[] = [
     icon: "Code"
   },
   {
-    term: "Dataset (Jeu de données)",
+    term: "Dataset (jeu de données)",
     description: "Un Dataset (ou Jeu de données) est une collection organisée et structurée d'informations qui constitue la matière première fondamentale de toute analyse de données, projet de machine learning, ou recherche scientifique. Un dataset est comme une bibliothèque bien organisée : les livres sont les observations/enregistrements (lignes), les chapitres sont les variables/attributs (colonnes), le système de classification est la structure et métadonnées, et le catalogue est la documentation. Chaque ligne représente une entité ou un événement unique, chaque colonne représente une caractéristique mesurée. Les variables peuvent être quantitatives (continues ou discrètes), qualitatives (nominales ou ordinales), ou temporelles.",
     category: "fondamentaux",
     icon: "Database"
@@ -61,7 +61,7 @@ export const fundamentalsTerms: GlossaryEntry[] = [
     icon: "BarChart3"
   },
   {
-    term: "Corrélation vs Causalité",
+    term: "Corrélation vs causalité",
     description: "Cette distinction fondamentale est l'un des concepts les plus importants en data science et statistiques. La Corrélation mesure la force et la direction d'une relation statistique entre deux variables (coefficient de -1 à +1), indiquant qu'elles varient ensemble de manière prévisible. La Causalité établit qu'une variable (cause) influence directement et provoque des changements dans une autre variable (effet). Le principe 'Corrélation n'implique pas causalité' met en garde contre l'erreur logique de déduire une relation de cause à effet à partir d'une simple association statistique. Exemples classiques : les ventes de glaces et les noyades sont corrélées (augmentent ensemble en été) mais l'une ne cause pas l'autre - c'est la température qui influence les deux. Les ventes de margarine et le taux de divorce au Maine étaient corrélées sur 10 ans, pure coïncidence statistique. Pour établir la causalité, il faut : une corrélation significative, un ordre temporel (cause précède effet), éliminer les variables confondantes (facteurs cachés), et idéalement des expériences contrôlées ou des quasi-expériences. Les méthodes incluent les essais randomisés contrôlés (gold standard), l'inférence causale (variables instrumentales, discontinuité de régression), et l'analyse contrefactuelle. Cette distinction est cruciale pour éviter les décisions business erronées basées sur des corrélations trompeuses et pour construire des modèles prédictifs robustes.",
     category: "fondamentaux",
     icon: "GitBranch"

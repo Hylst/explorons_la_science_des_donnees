@@ -10,7 +10,7 @@ const BooksSection = () => {
       author: "Jake VanderPlas",
       description: "Parcours de l'écosystème Python pour la data science : NumPy, pandas, Matplotlib et scikit-learn. Livre de 2016, gratuit en ligne ; le code a été écrit pour Python 3.5 et certains extraits demandent des adaptations avec les versions actuelles des bibliothèques.",
       link: "https://jakevdp.github.io/PythonDataScienceHandbook/",
-      level: "Débutant-Intermédiaire",
+      level: "Débutant-intermédiaire",
       tags: ["Python", "Data Science", "Open Source"]
     },
     {
@@ -27,7 +27,7 @@ const BooksSection = () => {
       description: "Manuel théorique sur le deep learning, mathématiques comprises, gratuit en ligne. Publié en 2016, il ne couvre pas les évolutions plus récentes, comme les transformers.",
       link: "https://www.deeplearningbook.org/",
       level: "Avancé",
-      tags: ["Deep Learning", "Intelligence Artificielle", "Mathématiques"]
+      tags: ["Deep Learning", "Intelligence artificielle", "Mathématiques"]
     },
   ];
 

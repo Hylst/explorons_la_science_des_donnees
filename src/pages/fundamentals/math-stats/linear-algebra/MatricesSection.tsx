@@ -20,7 +20,7 @@ const MatricesSection = () => {
 
   return (
     <section id="matrices" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">2. Matrices : Les Machines à Transformer l'Espace</h2>
+      <h2 className="text-3xl font-bold mb-6">2. Matrices : les machines à transformer l'espace</h2>
       
       <CourseHighlight title="Analogie : La matrice comme une usine" type="concept">
         <p>
@@ -110,7 +110,7 @@ const MatricesSection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-3">
-              <h4 className="font-semibold text-blue-600">Matrice Identité</h4>
+              <h4 className="font-semibold text-blue-600">Matrice identité</h4>
               <CourseEquation latex="I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
               <div className="bg-blue-50 p-3 rounded-lg">
                 <p className="text-xs">
@@ -123,7 +123,7 @@ const MatricesSection = () => {
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold text-green-600">Matrice de Rotation</h4>
+              <h4 className="font-semibold text-green-600">Matrice de rotation</h4>
               <CourseEquation latex="R = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}" />
               <div className="bg-green-50 p-3 rounded-lg">
                 <p className="text-xs">
@@ -136,7 +136,7 @@ const MatricesSection = () => {
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold text-purple-600">Matrice d'Échelle</h4>
+              <h4 className="font-semibold text-purple-600">Matrice d'échelle</h4>
               <CourseEquation latex="S = \begin{pmatrix} s_x & 0 \\ 0 & s_y \end{pmatrix}" />
               <div className="bg-purple-50 p-3 rounded-lg">
                 <p className="text-xs">
@@ -178,13 +178,13 @@ const MatricesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5 text-blue-600" />
-              Opérations Matricielles Fondamentales
+              Opérations matricielles fondamentales
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Addition et Soustraction :</h4>
+                <h4 className="font-semibold mb-3">Addition et soustraction :</h4>
                 <CourseEquation latex="A + B = \begin{pmatrix} a_{11}+b_{11} & a_{12}+b_{12} \\ a_{21}+b_{21} & a_{22}+b_{22} \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   <strong>Condition :</strong> Les matrices doivent avoir les mêmes dimensions.
@@ -212,7 +212,7 @@ const MatricesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Grid3X3 className="h-5 w-5 text-green-600" />
-              Multiplication Matricielle
+              Multiplication matricielle
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -247,12 +247,12 @@ const MatricesSection = () => {
       {/* Advanced Matrix Properties */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Propriétés Avancées des Matrices</CardTitle>
+          <CardTitle>Propriétés avancées des matrices</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-blue-600">Transposition Détaillée</h4>
+              <h4 className="font-semibold mb-3 text-blue-600">Transposition détaillée</h4>
               <div className="bg-blue-50 p-4 rounded-lg space-y-3">
                 <CourseEquation latex="(A^T)_{ij} = A_{ji}" />
                 <div className="bg-white p-3 rounded">
@@ -271,7 +271,7 @@ const MatricesSection = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-3 text-purple-600">Trace d'une Matrice</h4>
+              <h4 className="font-semibold mb-3 text-purple-600">Trace d'une matrice</h4>
               <div className="bg-purple-50 p-4 rounded-lg space-y-3">
                 <CourseEquation latex="\text{tr}(A) = \sum_{i=1}^{n} a_{ii}" />
                 <p className="text-sm">
@@ -292,7 +292,7 @@ const MatricesSection = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-3 text-green-600">Rang d'une Matrice</h4>
+              <h4 className="font-semibold mb-3 text-green-600">Rang d'une matrice</h4>
               <div className="bg-green-50 p-4 rounded-lg space-y-3">
                 <p className="text-sm">
                   Le rang est le nombre maximal de lignes (ou colonnes) linéairement indépendantes.

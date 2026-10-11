@@ -75,26 +75,26 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
         <rect x="50" y="50" width="100" height="60" rx="10" fill="url(#mlGrad1)" />
         <text x="100" y="75" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Supervisé</text>
         <text x="100" y="90" textAnchor="middle" fill="white" fontSize="9">Données étiquetées</text>
-        <text x="100" y="102" textAnchor="middle" fill="white" fontSize="9">Classification, Régression</text>
+        <text x="100" y="102" textAnchor="middle" fill="white" fontSize="9">Classification, régression</text>
         
         {/* Unsupervised Learning */}
         <rect x="250" y="50" width="100" height="60" rx="10" fill="url(#mlGrad2)" />
         <text x="300" y="75" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Non-supervisé</text>
         <text x="300" y="90" textAnchor="middle" fill="white" fontSize="9">Pas d'étiquettes</text>
-        <text x="300" y="102" textAnchor="middle" fill="white" fontSize="9">Clustering, Réduction</text>
+        <text x="300" y="102" textAnchor="middle" fill="white" fontSize="9">Clustering, réduction</text>
         
         {/* Reinforcement Learning */}
         <rect x="150" y="220" width="100" height="60" rx="10" fill="url(#mlGrad3)" />
         <text x="200" y="245" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Renforcement</text>
-        <text x="200" y="260" textAnchor="middle" fill="white" fontSize="9">Récompenses/Punitions</text>
-        <text x="200" y="272" textAnchor="middle" fill="white" fontSize="9">Agents, Environnement</text>
+        <text x="200" y="260" textAnchor="middle" fill="white" fontSize="9">Récompenses/punitions</text>
+        <text x="200" y="272" textAnchor="middle" fill="white" fontSize="9">Agents, environnement</text>
         
         {/* Connection lines */}
         <line x1="150" y1="80" x2="170" y2="130" stroke="#6B7280" strokeWidth="2" />
         <line x1="250" y1="80" x2="230" y2="130" stroke="#6B7280" strokeWidth="2" />
         <line x1="200" y1="190" x2="200" y2="220" stroke="#6B7280" strokeWidth="2" />
         
-        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Types d'Apprentissage Automatique</text>
+        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Types d'apprentissage automatique</text>
       </svg>
     ),
     
@@ -211,7 +211,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
           ))
         )}
         
-        <text x="200" y="200" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Réseau de Neurones Artificiels</text>
+        <text x="200" y="200" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Réseau de neurones artificiels</text>
         <text x="200" y="220" textAnchor="middle" fill="#6B7280" fontSize="10">Chaque connexion a un poids ajustable</text>
       </svg>
     ),
@@ -253,10 +253,10 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
           {/* Regression line */}
           <line x1="230" y1="130" x2="350" y2="50" stroke="#10B981" strokeWidth="2" />
           
-          <text x="300" y="175" textAnchor="middle" fill="#6B7280" fontSize="10">Sortie: Valeurs continues</text>
+          <text x="300" y="175" textAnchor="middle" fill="#6B7280" fontSize="10">Sortie: valeurs continues</text>
         </g>
         
-        <text x="200" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Classification vs Régression</text>
+        <text x="200" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Classification vs régression</text>
       </svg>
     ),
     
@@ -307,7 +307,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
           <text x="300" y="175" textAnchor="middle" fill="#6B7280" fontSize="10">des patterns cachés</text>
         </g>
         
-        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Apprentissage Supervisé vs Non-supervisé</text>
+        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Apprentissage supervisé vs non-supervisé</text>
       </svg>
     ),
     
@@ -360,7 +360,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
         <circle cx="200" cy="120" r="5" fill="#1E40AF" stroke="white" strokeWidth="2" />
         <circle cx="300" cy="70" r="5" fill="#059669" stroke="white" strokeWidth="2" />
         
-        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Exemple de Clustering (K-means)</text>
+        <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Exemple de clustering (K-means)</text>
         <text x="200" y="180" textAnchor="middle" fill="#6B7280" fontSize="10">Les points sont regroupés par similarité autour des centroïdes</text>
       </svg>
     ),
@@ -421,7 +421,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
           <text x="370" y="175" textAnchor="middle" fill="#6B7280" fontSize="9">Trop complexe</text>
         </g>
         
-        <text x="225" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Sous-apprentissage vs Sur-apprentissage</text>
+        <text x="225" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Sous-apprentissage vs sur-apprentissage</text>
       </svg>
     ),
     
@@ -429,7 +429,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
       <svg viewBox="0 0 400 250" className={`w-full h-auto ${className}`}>
         {/* K-Fold illustration */}
         <g>
-          <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Validation Croisée (5-Fold)</text>
+          <text x="200" y="25" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Validation croisée (5-Fold)</text>
           
           {/* Fold 1 */}
           <g>
@@ -535,7 +535,7 @@ const ConceptDiagram: React.FC<ConceptDiagramProps> = ({ type, className = '' })
         <text x="200" y="190" textAnchor="middle" fill="#6B7280" fontSize="10">Paramètres du modèle</text>
         <text x="15" y="100" textAnchor="middle" fill="#6B7280" fontSize="10" transform="rotate(-90 15 100)">Coût (Erreur)</text>
         
-        <text x="200" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Descente de Gradient</text>
+        <text x="200" y="15" textAnchor="middle" fill="#1F2937" fontSize="14" fontWeight="bold">Descente de gradient</text>
       </svg>
     )
   };

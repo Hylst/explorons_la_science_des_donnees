@@ -55,7 +55,7 @@ const EnhancedDataQualitySection: React.FC = () => {
   // Pedagogical analogies
   const analogies = [
     {
-      title: "Le Chef Cuisinier",
+      title: "Le chef cuisinier",
       icon: <ChefHat className="h-8 w-8 text-orange-500" />,
       description: "Comme un cuisinier, la personne qui analyse des données doit choisir de bons ingrédients (les données) pour réussir son plat (l'analyse).",
       parallels: [
@@ -68,7 +68,7 @@ const EnhancedDataQualitySection: React.FC = () => {
       lesson: "De mauvais ingrédients donnent rarement un bon plat, de mauvaises données donnent rarement une bonne analyse."
     },
     {
-      title: "Le Détective",
+      title: "Le détective",
       icon: <Search className="h-8 w-8 text-blue-500" />,
       description: "Comme un enquêteur, on recoupe des indices pour établir ce que les données disent vraiment.",
       parallels: [
@@ -270,10 +270,10 @@ const EnhancedDataQualitySection: React.FC = () => {
   // Advanced cleaning techniques with pros/cons
   const cleaningTechniques = [
     {
-      category: "Données Manquantes",
+      category: "Données manquantes",
       techniques: [
         {
-          name: "Suppression Listwise",
+          name: "Suppression listwise",
           description: "Supprimer toutes les lignes avec des valeurs manquantes",
           pros: ["Simple à implémenter", "Pas de biais d'imputation", "Données restantes complètes"],
           cons: ["Perte importante d'information", "Réduction de la taille d'échantillon", "Biais si données non MCAR"],
@@ -281,7 +281,7 @@ const EnhancedDataQualitySection: React.FC = () => {
           code: "df.dropna()"
         },
         {
-          name: "Imputation par Régression",
+          name: "Imputation par régression",
           description: "Prédire les valeurs manquantes avec un modèle de régression",
           pros: ["Utilise les relations entre variables", "Plus fine que la moyenne quand les relations sont réelles", "Garde toutes les lignes"],
           cons: ["Sous-estime la variance : les valeurs imputées tombent exactement sur la droite", "Risque de surajustement", "Suppose une relation linéaire"],
@@ -289,7 +289,7 @@ const EnhancedDataQualitySection: React.FC = () => {
           code: "from sklearn.experimental import enable_iterative_imputer  # noqa: F401\nfrom sklearn.impute import IterativeImputer\nfrom sklearn.linear_model import LinearRegression\n\nimputer = IterativeImputer(estimator=LinearRegression())\nX_impute = imputer.fit_transform(X)  # X : tableau numérique contenant des NaN"
         },
         {
-          name: "Imputation Multiple (MICE)",
+          name: "Imputation multiple (MICE)",
           description: "Créer plusieurs jeux de données imputés et combiner les résultats",
           pros: ["Prend en compte l'incertitude de l'imputation", "Donne des erreurs types plus honnêtes qu'une imputation unique", "Adaptée aux valeurs manquantes au hasard (MAR)"],
           cons: ["Plus complexe : il faut analyser chaque jeu, puis combiner (règles de Rubin)", "Coûteuse en calcul", "Ne règle pas le cas où le manque dépend de la valeur elle-même (MNAR)"],
@@ -299,7 +299,7 @@ const EnhancedDataQualitySection: React.FC = () => {
       ]
     },
     {
-      category: "Valeurs Aberrantes",
+      category: "Valeurs aberrantes",
       techniques: [
         {
           name: "Méthode de l'IQR à facteur ajustable",
@@ -334,7 +334,7 @@ const EnhancedDataQualitySection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Database className="h-8 w-8 text-blue-500" />
-          Qualité des Données : aller plus loin
+          Qualité des données : aller plus loin
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Découvrez comment préparer des données avec soin à travers des analogies,
@@ -345,15 +345,15 @@ const EnhancedDataQualitySection: React.FC = () => {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="analogies">Analogies</TabsTrigger>
-          <TabsTrigger value="dimensions">6 Dimensions</TabsTrigger>
+          <TabsTrigger value="dimensions">6 dimensions</TabsTrigger>
           <TabsTrigger value="smart">Framework SMART</TabsTrigger>
-          <TabsTrigger value="techniques">Techniques Avancées</TabsTrigger>
-          <TabsTrigger value="case-study">Cas Pratique</TabsTrigger>
+          <TabsTrigger value="techniques">Techniques avancées</TabsTrigger>
+          <TabsTrigger value="case-study">Cas pratique</TabsTrigger>
         </TabsList>
 
         {/* Pedagogical Analogies Tab */}
         <TabsContent value="analogies" className="space-y-8">
-          <CourseHighlight type="info" title="Apprendre par l'Analogie">
+          <CourseHighlight type="info" title="Apprendre par l'analogie">
             <p className="text-muted-foreground">
               Les meilleures leçons viennent souvent de comparaisons avec des domaines familiers. 
               Voyons la préparation des données à travers deux métiers : un chef cuisinier et un enquêteur.
@@ -397,7 +397,7 @@ const EnhancedDataQualitySection: React.FC = () => {
 
         {/* 6 Dimensions Tab */}
         <TabsContent value="dimensions" className="space-y-8">
-          <CourseHighlight type="example" title="Les 6 Piliers de la Qualité">
+          <CourseHighlight type="example" title="Les 6 piliers de la qualité">
             <p className="text-muted-foreground">
               Six questions à se poser pour évaluer la qualité d'un jeu de données et décider quoi améliorer. Cliquez sur une carte pour la déplier.
             </p>
@@ -532,7 +532,7 @@ const EnhancedDataQualitySection: React.FC = () => {
 
         {/* Advanced Techniques Tab */}
         <TabsContent value="techniques" className="space-y-8">
-          <CourseHighlight type="info" title="Techniques Avancées de Nettoyage">
+          <CourseHighlight type="info" title="Techniques avancées de nettoyage">
             <p className="text-muted-foreground">
               Explorez les techniques sophistiquées avec leurs avantages, inconvénients et cas d'usage optimaux.
             </p>

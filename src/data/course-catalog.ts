@@ -26,7 +26,7 @@ export const COURSE_CATEGORIES: { id: CourseCategoryId; title: string; descripti
   { id: "databases", title: "Bases de données", description: "SQL, NoSQL et gestion de données pour la Data Science" },
   { id: "dataviz", title: "Visualisation", description: "Construire des graphiques lisibles et honnêtes, du choix du graphique aux tableaux de bord" },
   { id: "machine-learning", title: "Machine Learning", description: "Algorithmes et techniques d'apprentissage automatique" },
-  { id: "ai", title: "Intelligence Artificielle", description: "NLP et techniques avancées d'IA" },
+  { id: "ai", title: "Intelligence artificielle", description: "NLP et techniques avancées d'IA" },
 ];
 
 export const COURSE_CATALOG: CatalogCourse[] = [

@@ -89,7 +89,7 @@ const ExercisesSection = () => {
 
   return (
     <section id="exercises" className="scroll-mt-24 space-y-8">
-      <h2 className="text-3xl font-bold mb-6">5. Exercices Interactifs</h2>
+      <h2 className="text-3xl font-bold mb-6">5. Exercices interactifs</h2>
       
       <CourseHighlight title="Mode d'emploi des exercices" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

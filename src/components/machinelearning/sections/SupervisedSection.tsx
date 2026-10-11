@@ -7,7 +7,7 @@ import { mlDefinitions } from "@/data/glossary/ml-definitions";
 const SupervisedSection = () => {
   return (
     <section id="supervised" className="space-y-8">
-      <h2 className="text-3xl font-bold mb-6">Apprentissage Supervisé</h2>
+      <h2 className="text-3xl font-bold mb-6">Apprentissage supervisé</h2>
 
       <p className="text-lg mb-6">
         L'<GlossaryTerm definition={mlDefinitions["apprentissage-supervise"]}>apprentissage supervisé</GlossaryTerm> est une approche où l'algorithme apprend à partir de données étiquetées.

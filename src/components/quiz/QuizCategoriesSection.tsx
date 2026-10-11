@@ -54,7 +54,7 @@ const QuizCategoriesSection: React.FC = () => {
     <div className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Choisissez votre Domaine d'Évaluation
+          Choisissez votre domaine d'évaluation
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Sélectionnez une catégorie pour tester vos connaissances. Chaque quiz propose des questions adaptées à votre niveau avec des explications détaillées.

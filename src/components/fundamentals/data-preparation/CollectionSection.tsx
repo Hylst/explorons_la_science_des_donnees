@@ -14,7 +14,7 @@ const CollectionSection: React.FC = () => {
     {
       category: "Données internes",
       sources: [
-        { name: "Bases de données transactionnelles", icon: Database, example: "CRM, ERP, Comptabilité" },
+        { name: "Bases de données transactionnelles", icon: Database, example: "CRM, ERP, comptabilité" },
         { name: "Logs et fichiers système", icon: FileText, example: "Serveurs web, applications" },
         { name: "Capteurs IoT", icon: Radio, example: "Température, géolocalisation" },
         { name: "Données utilisateur", icon: Users, example: "Clics, préférences, historique" }
@@ -24,7 +24,7 @@ const CollectionSection: React.FC = () => {
       category: "Données externes",
       sources: [
         { name: "APIs publiques", icon: Plug, example: "Météo, réseaux sociaux, finance" },
-        { name: "Open Data", icon: Globe, example: "Gouvernement, INSEE, Banque Mondiale" },
+        { name: "Open Data", icon: Globe, example: "Gouvernement, INSEE, Banque mondiale" },
         { name: "Données d'achat", icon: ShoppingCart, example: "Nielsen, Kantar, panels" },
         { name: "Web scraping", icon: ScanSearch, example: "Sites e-commerce, actualités (après vérification des conditions d'utilisation et du droit applicable)" }
       ]

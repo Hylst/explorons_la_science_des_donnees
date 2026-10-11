@@ -105,13 +105,13 @@ const CoursesIndex = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/fundamentals" className="text-blue-600 hover:underline">
-                  Voir les Fondamentaux
+                  Voir les fondamentaux
                 </Link>
                 <Link to="/machine-learning" className="text-blue-600 hover:underline">
                   Explorer le Machine Learning
                 </Link>
                 <Link to="/projects" className="text-blue-600 hover:underline">
-                  Découvrir les Projets
+                  Découvrir les projets
                 </Link>
               </div>
             </div>

@@ -33,7 +33,7 @@ const CleaningSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Trash2 className="h-8 w-8 text-red-500" />
-          Nettoyage des Données
+          Nettoyage des données
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Le nettoyage prend souvent une part importante du temps d'un projet, et il conditionne la fiabilité de tout le reste.
@@ -53,7 +53,7 @@ const CleaningSection: React.FC = () => {
                 variant="hover"
                 highlightStyle="glow"
               >
-                Données Manquantes
+                Données manquantes
               </GlossaryTerm>
             </h4>
             <p className="text-sm text-red-600">
@@ -70,7 +70,7 @@ const CleaningSection: React.FC = () => {
                 variant="hover"
                 highlightStyle="glow"
               >
-                Valeurs Aberrantes
+                Valeurs aberrantes
               </GlossaryTerm>
             </h4>
             <p className="text-sm text-orange-600">
@@ -99,8 +99,8 @@ const CleaningSection: React.FC = () => {
 
       <Tabs value={activeCleaningTab} onValueChange={setActiveCleaningTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="missing">Données Manquantes</TabsTrigger>
-          <TabsTrigger value="outliers">Valeurs Aberrantes</TabsTrigger>
+          <TabsTrigger value="missing">Données manquantes</TabsTrigger>
+          <TabsTrigger value="outliers">Valeurs aberrantes</TabsTrigger>
           <TabsTrigger value="duplicates">Doublons</TabsTrigger>
         </TabsList>
 
@@ -109,7 +109,7 @@ const CleaningSection: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <XCircle className="h-5 w-5 text-red-500" />
-                Gestion des Données Manquantes
+                Gestion des données manquantes
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -214,7 +214,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-orange-500" />
-                Détection et Traitement des Valeurs Aberrantes
+                Détection et traitement des valeurs aberrantes
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -296,7 +296,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Copy className="h-5 w-5 text-yellow-500" />
-                Gestion des Doublons
+                Gestion des doublons
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -378,7 +378,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               <div className="space-y-4">
                 <h4 className="font-semibold text-red-700 flex items-center gap-2">
                   <XCircle className="h-4 w-4" />
-                  Avant Nettoyage (exemple fictif)
+                  Avant nettoyage (exemple fictif)
                 </h4>
                 <div className="bg-red-50 p-4 rounded-lg space-y-3">
                   <div className="grid grid-cols-4 gap-2 text-xs font-mono">
@@ -404,7 +404,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
                   ))}
                 </div>
                 <div className="space-y-2">
-                  <h5 className="font-medium text-red-600">Problèmes Identifiés :</h5>
+                  <h5 className="font-medium text-red-600">Problèmes identifiés :</h5>
                   <ul className="text-sm text-red-600 space-y-1">
                     <li>• Doublon P001 (formats différents)</li>
                     <li>• Âge manquant P002</li>
@@ -418,12 +418,12 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               <div className="space-y-4">
                 <h4 className="font-semibold text-green-700 flex items-center gap-2">
                   <CheckCircle className="h-4 w-4" />
-                  Après Nettoyage
+                  Après nettoyage
                 </h4>
                 <div className="bg-green-50 p-4 rounded-lg space-y-3">
                   <div className="grid grid-cols-4 gap-2 text-xs font-mono">
                     <div className="font-semibold">ID</div>
-                    <div className="font-semibold">Nom Complet</div>
+                    <div className="font-semibold">Nom complet</div>
                     <div className="font-semibold">Âge</div>
                     <div className="font-semibold">Diagnostic</div>
                   </div>
@@ -447,7 +447,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-green-50 border-green-200">
                 <CardContent className="p-4">
-                  <h5 className="font-semibold text-green-700 mb-2">Actions Correctives</h5>
+                  <h5 className="font-semibold text-green-700 mb-2">Actions correctives</h5>
                   <ul className="text-sm text-green-600 space-y-1">
                     <li>• Fusion des doublons P001</li>
                     <li>• Âge impossible P003 (150) marqué manquant, jamais « corrigé » à la main</li>
@@ -469,7 +469,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
               </Card>
               <Card className="bg-purple-50 border-purple-200">
                 <CardContent className="p-4">
-                  <h5 className="font-semibold text-purple-700 mb-2">Prêt pour Analyse</h5>
+                  <h5 className="font-semibold text-purple-700 mb-2">Prêt pour analyse</h5>
                   <ul className="text-sm text-purple-600 space-y-1">
                     <li>• Effectifs par diagnostic</li>
                     <li>• Âge moyen par diagnostic (valeurs manquantes exclues)</li>
@@ -481,7 +481,7 @@ print(f"Données manquantes après imputation: {df.isnull().sum().sum()}")`}</pr
             </div>
 
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h5 className="font-semibold text-blue-700 mb-3">Pipeline de Nettoyage Appliqué</h5>
+              <h5 className="font-semibold text-blue-700 mb-3">Pipeline de nettoyage appliqué</h5>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <h6 className="font-medium mb-2">Étapes de nettoyage :</h6>

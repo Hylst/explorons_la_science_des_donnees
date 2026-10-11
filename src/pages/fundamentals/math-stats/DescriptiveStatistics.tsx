@@ -16,7 +16,7 @@ const DescriptiveStatistics = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Statistiques Descriptives"
+          title="Statistiques descriptives"
           description="Les outils statistiques fondamentaux pour décrire des données et en tirer des conclusions prudentes"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

@@ -22,7 +22,7 @@ const VectorsSection = () => {
 
   return (
     <section id="vectors" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">1. Vecteurs : Les Coordonnées de Vos Données</h2>
+      <h2 className="text-3xl font-bold mb-6">1. Vecteurs : les coordonnées de vos données</h2>
       
       <CourseHighlight title="Rappel fondamental" type="concept">
         <p>
@@ -175,7 +175,7 @@ const VectorsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5 text-red-600" />
-              Produit Vectoriel (3D)
+              Produit vectoriel (3D)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -208,7 +208,7 @@ const VectorsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Eye className="h-5 w-5 text-purple-600" />
-              Propriétés Géométriques
+              Propriétés géométriques
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -242,12 +242,12 @@ const VectorsSection = () => {
       {/* Vector Spaces and Linear Independence */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Espaces Vectoriels et Indépendance Linéaire</CardTitle>
+          <CardTitle>Espaces vectoriels et indépendance linéaire</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-blue-600">Espace Vectoriel</h4>
+              <h4 className="font-semibold mb-3 text-blue-600">Espace vectoriel</h4>
               <div className="bg-blue-50 p-4 rounded-lg space-y-3">
                 <p className="text-sm">
                   Un espace vectoriel est un "terrain de jeu" où les vecteurs peuvent être additionnés et multipliés par des scalaires.
@@ -268,7 +268,7 @@ const VectorsSection = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-3 text-green-600">Indépendance Linéaire</h4>
+              <h4 className="font-semibold mb-3 text-green-600">Indépendance linéaire</h4>
               <div className="bg-green-50 p-4 rounded-lg space-y-3">
                 <p className="text-sm">
                   Des vecteurs sont <strong>linéairement indépendants</strong> si aucun ne peut s'exprimer comme combinaison des autres.

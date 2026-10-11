@@ -40,7 +40,7 @@ const AdvancedStatsIntro = () => {
         <div className="flex items-center gap-3 mb-4">
           <TestTube className="h-8 w-8 text-blue-600" />
           <div>
-            <h2 className="text-3xl font-bold">Bienvenue dans les Statistiques Avancées</h2>
+            <h2 className="text-3xl font-bold">Bienvenue dans les statistiques avancées</h2>
             <p className="text-lg text-gray-600">{courseInfo.sections} sections, du test d'hypothèse aux modèles avancés</p>
           </div>
         </div>

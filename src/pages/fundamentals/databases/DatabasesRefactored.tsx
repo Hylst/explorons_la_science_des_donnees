@@ -79,13 +79,13 @@ const DatabasesRefactored = () => {
 
   return (
     <ContentLayout 
-      title="Bases de Données" 
+      title="Bases de données" 
       backLink={{ href: "/fundamentals", label: "Retour aux fondamentaux" }}
       sidebar={sidebar}
     >
       <section className="py-8 space-y-16">
         <PageHeader
-          title="Bases de Données en Data Science"
+          title="Bases de données en Data Science"
           description="Explorez l'art de stocker, gérer et exploiter les données. Des concepts fondamentaux aux architectures distribuées modernes, découvrez les grandes familles de bases de données."
         />
 

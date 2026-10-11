@@ -12,7 +12,7 @@ const PracticalApplicationsEnriched = () => {
       color: "purple",
       applications: [
         {
-          title: "Régression Linéaire",
+          title: "Régression linéaire",
           math: "y = X\\beta + \\epsilon",
           description: "Prédiction de valeurs continues basée sur des relations linéaires",
           realWorldUse: "Prédiction des prix immobiliers, estimation des ventes",
@@ -21,7 +21,7 @@ const PracticalApplicationsEnriched = () => {
           dataset: "California Housing (le jeu Boston Housing a été retiré de scikit-learn 1.2 pour des raisons éthiques)"
         },
         {
-          title: "Réseaux de Neurones",
+          title: "Réseaux de neurones",
           math: "f(x) = \\sigma(W \\cdot x + b)",
           description: "Modélisation de fonctions complexes par composition de fonctions simples (la formule décrit une seule couche)",
           realWorldUse: "Reconnaissance d'images, traitement du langage naturel",
@@ -32,7 +32,7 @@ const PracticalApplicationsEnriched = () => {
       ]
     },
     {
-      category: "Statistiques Bayésiennes",
+      category: "Statistiques bayésiennes",
       icon: <Target className="h-6 w-6 text-blue-600" />,
       color: "blue",
       applications: [
@@ -46,7 +46,7 @@ const PracticalApplicationsEnriched = () => {
           dataset: "Données médicales, emails, comportement utilisateur"
         },
         {
-          title: "Classification Naïve de Bayes",
+          title: "Classification naïve de Bayes",
           math: "P(C|F_1,...,F_n) = \\frac{P(C)\\prod_{i=1}^{n}P(F_i|C)}{P(F_1,...,F_n)}",
           description: "Classification basée sur l'indépendance conditionnelle des caractéristiques",
           realWorldUse: "Analyse de sentiment, classification de textes",
@@ -62,7 +62,7 @@ const PracticalApplicationsEnriched = () => {
       color: "green",
       applications: [
         {
-          title: "Descente de Gradient",
+          title: "Descente de gradient",
           math: "\\theta_{t+1} = \\theta_t - \\alpha \\nabla J(\\theta_t)",
           description: "Algorithme d'optimisation pour minimiser une fonction de coût",
           realWorldUse: "Entraînement de modèles de machine learning (minimisation d'une fonction de coût)",
@@ -71,7 +71,7 @@ const PracticalApplicationsEnriched = () => {
           dataset: "Tous types de données pour ML"
         },
         {
-          title: "Programmation Linéaire",
+          title: "Programmation linéaire",
           math: "\\min c^T x \\text{ s.t. } Ax \\leq b, x \\geq 0",
           description: "Optimisation de fonctions linéaires sous contraintes linéaires",
           realWorldUse: "Planification de production, allocation de ressources",
@@ -82,12 +82,12 @@ const PracticalApplicationsEnriched = () => {
       ]
     },
     {
-      category: "Algèbre Linéaire",
+      category: "Algèbre linéaire",
       icon: <Code className="h-6 w-6 text-orange-600" />,
       color: "orange",
       applications: [
         {
-          title: "Analyse en Composantes Principales (PCA)",
+          title: "Analyse en composantes principales (PCA)",
           math: "X_c = U\\Sigma V^T",
           description: "Réduction de dimensionnalité par décomposition en valeurs singulières de la matrice des données centrées X_c",
           realWorldUse: "Compression d'images, visualisation de données haute dimension",
@@ -96,7 +96,7 @@ const PracticalApplicationsEnriched = () => {
           dataset: "Images, données génomiques, données financières"
         },
         {
-          title: "Recommandation par Factorisation Matricielle",
+          title: "Recommandation par factorisation matricielle",
           math: "R \\approx UV^T",
           description: "Prédiction de préférences par décomposition de matrices",
           realWorldUse: "Systèmes de recommandation (popularisée par le Netflix Prize ; aussi utilisée par des services de streaming musical)",

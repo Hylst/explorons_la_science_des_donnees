@@ -49,7 +49,7 @@ export const dataPreparationEnhancedDefinitions = {
   
   // Data Cleaning Techniques
   donneesManquantes: {
-    term: "Données Manquantes",
+    term: "Données manquantes",
     shortDefinition: "Valeurs absentes dans un dataset",
     definition: "Valeurs absentes ou nulles dans un dataset qui peuvent affecter la qualité de l'analyse et nécessitent un traitement approprié.",
     examples: ["Valeurs NULL dans une base de données", "Champs vides dans un formulaire", "Mesures non collectées"]
@@ -90,7 +90,7 @@ export const dataPreparationEnhancedDefinitions = {
   },
   
   outliers: {
-    term: "Valeurs Aberrantes",
+    term: "Valeurs aberrantes",
     shortDefinition: "Observations s'écartant du pattern général",
     definition: "Observations qui s'écartent significativement du pattern général des données, pouvant indiquer des erreurs ou des cas exceptionnels.",
     examples: ["Salaire de 1M€ dans une base d'employés", "Âge de 200 ans", "Température de 100°C en hiver"]
@@ -163,7 +163,7 @@ export const dataPreparationEnhancedDefinitions = {
   
   // Quality KPIs
   qualityKPIs: {
-    term: "KPIs Qualité",
+    term: "KPIs qualité",
     shortDefinition: "Indicateurs de performance pour la qualité des données",
     definition: "Indicateurs clés de performance pour mesurer et surveiller la qualité des données en continu.",
     examples: ["Taux de complétude", "Pourcentage d'erreurs", "Temps de détection des anomalies"]
@@ -193,35 +193,35 @@ export const dataPreparationEnhancedDefinitions = {
   
   // Lifecycle phases
   collecte: {
-    term: "Collecte de Données",
+    term: "Collecte de données",
     shortDefinition: "Acquisition de données depuis diverses sources",
     definition: "Phase d'acquisition et de rassemblement des données depuis diverses sources internes et externes.",
     examples: ["Extraction de bases de données", "APIs et web scraping", "Capteurs IoT"]
   },
   
   nettoyage: {
-    term: "Nettoyage de Données",
+    term: "Nettoyage de données",
     shortDefinition: "Correction des erreurs et incohérences",
     definition: "Processus d'identification et de correction des erreurs, incohérences et valeurs manquantes dans les données.",
     examples: ["Suppression des doublons", "Correction des erreurs de saisie", "Traitement des valeurs manquantes"]
   },
   
   transformation: {
-    term: "Transformation de Données",
+    term: "Transformation de données",
     shortDefinition: "Modification de structure et format des données",
     definition: "Modification de la structure, du format ou du contenu des données pour les adapter aux besoins d'analyse.",
     examples: ["Normalisation", "Agrégation", "Création de variables dérivées", "Changement de format"]
   },
   
   validation: {
-    term: "Validation de Données",
+    term: "Validation de données",
     shortDefinition: "Vérification de conformité aux règles métier",
     definition: "Vérification de la conformité des données aux règles métier et critères de qualité définis.",
     examples: ["Tests de cohérence", "Validation des formats", "Contrôles de plausibilité"]
   },
   
   exploitation: {
-    term: "Exploitation de Données",
+    term: "Exploitation de données",
     shortDefinition: "Utilisation des données pour l'analyse",
     definition: "Utilisation des données préparées pour l'analyse, la modélisation ou la prise de décision.",
     examples: ["Analyses statistiques", "Machine learning", "Tableaux de bord", "Rapports métier"]

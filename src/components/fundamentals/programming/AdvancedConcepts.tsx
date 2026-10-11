@@ -262,7 +262,7 @@ if __name__ == "__main__":
       ]
     },
     modules: {
-      title: 'Modules et Packages',
+      title: 'Modules et packages',
       icon: <Package className="h-6 w-6" />,
       description: 'Organisation du code avec les modules, packages et imports',
       difficulty: 'Intermédiaire',
@@ -628,7 +628,7 @@ if __name__ == "__main__":
       ]
     },
     classes: {
-      title: 'Classes et POO Avancée',
+      title: 'Classes et POO avancée',
       icon: <Layers className="h-6 w-6" />,
       description: 'Programmation orientée objet avancée avec métaclasses et patterns',
       difficulty: 'Avancé',
@@ -636,7 +636,7 @@ if __name__ == "__main__":
       concepts: [
         {
           id: 'advanced-oop',
-          title: 'POO Avancée et Métaclasses',
+          title: 'POO avancée et métaclasses',
           description: 'Concepts avancés de la programmation orientée objet',
           code: `# Programmation orientée objet avancée en Python
 from abc import ABC, ABCMeta, abstractmethod
@@ -1139,7 +1139,7 @@ if __name__ == "__main__":
           Explorez les concepts avancés pour aller plus loin en programmation, à votre rythme
         </p>
         <Badge className="bg-purple-100 text-purple-800 mt-2">
-          Niveau Avancé
+          Niveau avancé
         </Badge>
       </div>
 

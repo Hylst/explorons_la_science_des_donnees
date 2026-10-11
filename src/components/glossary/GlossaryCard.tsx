@@ -100,7 +100,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
         ],
         relatedTerms: ["Big Data", "Machine Learning", "Statistiques", "IA"]
       },
-      "Intelligence Artificielle (IA)": {
+      "Intelligence artificielle (IA)": {
         explanation: "Capacité des machines à simuler l'intelligence humaine pour résoudre des problèmes complexes.",
         keyPoints: [
           "IA faible : spécialisée dans une tâche (Siri, AlphaGo)",
@@ -190,7 +190,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
         ],
         relatedTerms: ["Classification", "MSE", "R²", "Corrélation"]
       },
-      "Apprentissage Supervisé": {
+      "Apprentissage supervisé": {
         explanation: "Paradigme d'apprentissage utilisant des données étiquetées pour entraîner un modèle prédictif.",
         diagram: "supervised-vs-unsupervised",
         keyPoints: [
@@ -205,7 +205,7 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
         ],
         relatedTerms: ["Non-supervisé", "Étiquettes", "Train/Test", "Validation"]
       },
-      "Apprentissage Non Supervisé": {
+      "Apprentissage non supervisé": {
         explanation: "Apprentissage automatique sans étiquettes, cherchant à découvrir des structures cachées dans les données.",
         diagram: "supervised-vs-unsupervised",
         keyPoints: [
@@ -515,12 +515,12 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
       "machine-learning": "Machine Learning",
       "deep-learning": "Deep Learning",
       statistiques: "Statistiques",
-      nlp: "Traitement du Langage",
+      nlp: "Traitement du langage",
       evaluation: "Évaluation des modèles",
-      "computer-vision": "Vision par Ordinateur",
-      preprocessing: "Préparation des Données",
-      mlops: "MLOps & Production",
-      "data-engineering": "Ingénierie des Données",
+      "computer-vision": "Vision par ordinateur",
+      preprocessing: "Préparation des données",
+      mlops: "MLOps & production",
+      "data-engineering": "Ingénierie des données",
       visualization: "Visualisation",
       ethics: "Éthique & IA"
     };

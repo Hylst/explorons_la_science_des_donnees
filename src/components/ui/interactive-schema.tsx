@@ -225,7 +225,7 @@ export const AlgorithmComparison = ({ algorithms }: AlgorithmComparisonProps) =>
     <Card className="w-full border-2 hover:shadow-2xl transition-all duration-500">
       <CardContent className="p-8">
         <div className="flex items-center justify-between mb-8">
-          <h3 className="text-2xl font-bold">Comparaison des Algorithmes</h3>
+          <h3 className="text-2xl font-bold">Comparaison des algorithmes</h3>
           <button
             onClick={() => setCompareMode(!compareMode)}
             className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${

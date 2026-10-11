@@ -23,7 +23,7 @@ type SectionInfo = {
 const sections: SectionInfo[] = [
   {
     id: "statistics",
-    title: "Statistiques & Mathématiques",
+    title: "Statistiques & mathématiques",
     description: "Les bases statistiques et mathématiques essentielles en Data Science"
   },
   {

@@ -13,14 +13,14 @@ const DataVisualizationTools = () => {
 
   return (
     <ContentLayout 
-      title="Outils de Visualisation de Données" 
+      title="Outils de visualisation de données" 
       backLink={{ href: "/tools", label: "Retour aux outils" }}
       sidebar={sidebar}
     >
       <section className="w-full">
         <UnifiedHeroSection
           variant="page"
-          title="Outils de Visualisation"
+          title="Outils de visualisation"
           description="Bibliothèques, frameworks et plateformes pour créer des visualisations de données claires et interactives."
           icon={LineChart}
         />

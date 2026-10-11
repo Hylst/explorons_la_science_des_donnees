@@ -72,7 +72,7 @@ const InteractiveExercises = () => {
 
   return (
     <section id="exercises" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">7. Exercices Interactifs</h2>
+      <h2 className="text-3xl font-bold mb-6">7. Exercices interactifs</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">

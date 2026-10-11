@@ -30,7 +30,7 @@ export const statisticsTerms: GlossaryEntry[] = [
     icon: "BarChart3"
   },
   {
-    term: "Population vs Échantillon",
+    term: "Population vs échantillon",
     description: `La population est l'ensemble des unités sur lesquelles porte la question (tous les clients d'une entreprise, tous les patients atteints d'une maladie) ; l'échantillon est le sous-ensemble de cette population que l'on observe réellement.
 
 **Principe :**

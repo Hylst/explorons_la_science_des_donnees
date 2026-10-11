@@ -89,7 +89,7 @@ const OptimizationSection = () => {
 
   return (
     <section id="optimization" className="scroll-mt-24 space-y-8">
-      <h2 className="text-3xl font-bold mb-6">3. Optimisation avec les Dérivées</h2>
+      <h2 className="text-3xl font-bold mb-6">3. Optimisation avec les dérivées</h2>
       
       <CourseHighlight title="L'objectif" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

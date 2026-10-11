@@ -131,7 +131,7 @@ const RandomVariables = () => {
   return (
     <section id="random-variables" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        3. Variables Aléatoires : Transformer le Hasard en Nombres
+        3. Variables aléatoires : Transformer le hasard en nombres
       </h2>
       
       <div className="mb-8">
@@ -183,7 +183,7 @@ const RandomVariables = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
-              Variables Discrètes : Les Compteurs
+              Variables discrètes : les compteurs
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -193,7 +193,7 @@ const RandomVariables = () => {
                 Ce sont des nombres entiers qu'on peut énumérer.
               </p>
               
-              <CourseHighlight title="Exemple moderne : Notifications smartphone" type="example">
+              <CourseHighlight title="Exemple moderne : notifications smartphone" type="example">
                 <div className="space-y-3">
                   <p className="text-sm">Soit X = "nombre de notifications reçues en 1 heure"</p>
                   <div className="bg-purple-50 p-3 rounded text-xs space-y-1">
@@ -259,7 +259,7 @@ const RandomVariables = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              Variables Continues : Les Mesureurs
+              Variables continues : les mesureurs
             </CardTitle>
           </CardHeader>
           <CardContent>

@@ -951,7 +951,7 @@ const dataVizQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     explanation: 'L\'histogramme représente la distribution de données continues en regroupant les valeurs en intervalles, tandis que le graphique en barres compare des catégories distinctes.',
     difficulty: 'Intermédiaire',
-    topic: 'Histogramme vs Barres',
+    topic: 'Histogramme vs barres',
     points: 15
   },
   {
@@ -2387,7 +2387,7 @@ export const quizCategories: QuizCategory[] = [
   },
   {
     id: 'math-stats',
-    title: 'Mathématiques & Statistiques',
+    title: 'Mathématiques & statistiques',
     description: 'Statistiques descriptives, probabilités, tests d\'hypothèse et concepts mathématiques',
     icon: 'Calculator',
     color: 'blue',
@@ -2409,7 +2409,7 @@ export const quizCategories: QuizCategory[] = [
   },
   {
     id: 'data-visualization',
-    title: 'Visualisation de Données',
+    title: 'Visualisation de données',
     description: 'Création de graphiques efficaces, outils de visualisation et principes de design',
     icon: 'BarChart3',
     color: 'teal',
@@ -2420,7 +2420,7 @@ export const quizCategories: QuizCategory[] = [
   },
   {
     id: 'data-preparation',
-    title: 'Préparation des Données',
+    title: 'Préparation des données',
     description: 'Nettoyage, transformation et préparation des données pour l\'analyse',
     icon: 'Database',
     color: 'orange',

@@ -131,7 +131,7 @@ const ProbabilityDistributionsSection = () => {
 
   const distributions = {
     binomial: {
-      title: "Distribution Binomiale",
+      title: "Distribution binomiale",
       icon: Target,
       description: "Nombre de succès dans n essais indépendants",
       formula: "P(X = k) = C(n,k) \\cdot p^k \\cdot (1-p)^{n-k}",
@@ -151,7 +151,7 @@ const ProbabilityDistributionsSection = () => {
       color: "#10B981"
     },
     exponential: {
-      title: "Distribution Exponentielle",
+      title: "Distribution exponentielle",
       icon: Clock,
       description: "Temps d'attente entre événements",
       formula: "f(x) = \\lambda e^{-\\lambda x}",
@@ -161,7 +161,7 @@ const ProbabilityDistributionsSection = () => {
       color: "#F59E0B"
     },
     uniform: {
-      title: "Distribution Uniforme",
+      title: "Distribution uniforme",
       icon: Shuffle,
       description: "Probabilité égale sur un intervalle",
       formula: "f(x) = \\frac{1}{b-a} \\text{ pour } a \\leq x \\leq b",
@@ -177,7 +177,7 @@ const ProbabilityDistributionsSection = () => {
   return (
     <section id="probability-distributions" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        4. Les Distributions de Probabilité : Les Modèles de l'Aléatoire
+        4. Les distributions de probabilité : Les modèles de l'aléatoire
       </h2>
 
       {/* Introduction */}
@@ -191,14 +191,14 @@ const ProbabilityDistributionsSection = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">Variables Discrètes</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Variables discrètes</h4>
                 <p className="text-sm text-blue-700">
                   Valeurs séparées (0, 1, 2, 3...)<br/>
                   <strong>Fonction de masse :</strong> P(X = k)
                 </p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">Variables Continues</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Variables continues</h4>
                 <p className="text-sm text-green-700">
                   Valeurs dans un intervalle<br/>
                   <strong>Fonction de densité :</strong> f(x)
@@ -214,7 +214,7 @@ const ProbabilityDistributionsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="h-5 w-5" />
-            Explorateur de Distributions
+            Explorateur de distributions
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -496,7 +496,7 @@ const ProbabilityDistributionsSection = () => {
       <CourseHighlight title="Applications en Data Science" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <h4 className="font-semibold">Distribution Binomiale :</h4>
+            <h4 className="font-semibold">Distribution binomiale :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Test A/B :</strong> taux de conversion
@@ -524,7 +524,7 @@ const ProbabilityDistributionsSection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">Distribution Exponentielle :</h4>
+            <h4 className="font-semibold">Distribution exponentielle :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Fiabilité :</strong> durée de vie d'un composant
@@ -537,7 +537,7 @@ const ProbabilityDistributionsSection = () => {
               </div>
             </div>
             
-            <h4 className="font-semibold">Distribution Uniforme :</h4>
+            <h4 className="font-semibold">Distribution uniforme :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
                 <strong>Monte Carlo :</strong> génération de nombres aléatoires

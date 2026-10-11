@@ -151,7 +151,7 @@ const QuizHistorySection: React.FC = () => {
     <div className="space-y-8">
       <div className="text-center space-y-4">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Historique de vos Quiz
+          Historique de vos quiz
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Consultez vos tentatives passées et analysez votre progression au fil du temps.
@@ -168,7 +168,7 @@ const QuizHistorySection: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Filter className="h-5 w-5 text-blue-500" />
-            Filtres et Recherche
+            Filtres et recherche
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -335,7 +335,7 @@ const QuizHistorySection: React.FC = () => {
                       {/* Topics Covered */}
                       <div>
                         <h4 className="font-medium text-gray-900 dark:text-white mb-3">
-                          Sujets Couverts
+                          Sujets couverts
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {quiz.topics.map((topic, index) => (
@@ -353,7 +353,7 @@ const QuizHistorySection: React.FC = () => {
                           <div>
                             <h4 className="font-medium text-green-700 dark:text-green-400 mb-3 flex items-center gap-2">
                               <TrendingUp className="h-4 w-4" />
-                              Points Forts
+                              Points forts
                             </h4>
                             <div className="space-y-2">
                               {quiz.strongAreas.map((area, index) => (
@@ -371,7 +371,7 @@ const QuizHistorySection: React.FC = () => {
                           <div>
                             <h4 className="font-medium text-red-700 dark:text-red-400 mb-3 flex items-center gap-2">
                               <AlertCircle className="h-4 w-4" />
-                              Axes d'Amélioration
+                              Axes d'amélioration
                             </h4>
                             <div className="space-y-2">
                               {quiz.weakAreas.map((area, index) => (
@@ -399,7 +399,7 @@ const QuizHistorySection: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-blue-500" />
-              Résumé de la Période
+              Résumé de la période
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -419,28 +419,28 @@ const QuizHistorySection: React.FC = () => {
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       {completedQuizzes.length}
                     </div>
-                    <div className="text-sm text-gray-600">Quiz Terminés</div>
+                    <div className="text-sm text-gray-600">Quiz terminés</div>
                   </div>
                   
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       {averageScore}%
                     </div>
-                    <div className="text-sm text-gray-600">Score Moyen</div>
+                    <div className="text-sm text-gray-600">Score moyen</div>
                   </div>
                   
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       {Math.round(totalDuration)}min
                     </div>
-                    <div className="text-sm text-gray-600">Temps Total</div>
+                    <div className="text-sm text-gray-600">Temps total</div>
                   </div>
                   
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       {bestScore}%
                     </div>
-                    <div className="text-sm text-gray-600">Meilleur Score</div>
+                    <div className="text-sm text-gray-600">Meilleur score</div>
                   </div>
                 </div>
               );

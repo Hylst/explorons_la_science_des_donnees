@@ -44,7 +44,7 @@ const CorrelationSection = () => {
 
   const correlationExamples = {
     height_weight: {
-      title: "Taille vs Poids",
+      title: "Taille vs poids",
       description: "Relation entre la taille (cm) et le poids (kg) chez 50 personnes",
       data: HEIGHT_WEIGHT,
       correlation: pearson(HEIGHT_WEIGHT),
@@ -52,7 +52,7 @@ const CorrelationSection = () => {
       color: "#10B981"
     },
     temperature_sales: {
-      title: "Température vs Ventes de glaces",
+      title: "Température vs ventes de glaces",
       description: "Température (°C) et ventes quotidiennes de glaces (€)",
       data: TEMP_SALES,
       correlation: pearson(TEMP_SALES),
@@ -60,8 +60,8 @@ const CorrelationSection = () => {
       color: "#F59E0B"
     },
     study_tv: {
-      title: "Heures d'étude vs Heures de TV",
-      description: "Heures d'étude par semaine vs Heures de télévision",
+      title: "Heures d'étude vs heures de TV",
+      description: "Heures d'étude par semaine vs heures de télévision",
       data: STUDY_TV,
       correlation: pearson(STUDY_TV),
       interpretation: "Corrélation négative forte : plus on étudie, moins on regarde la TV",
@@ -96,7 +96,7 @@ const CorrelationSection = () => {
     <section id="correlation" className="mb-12">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
         <Heart className="h-8 w-8 text-red-500" />
-        3. Corrélation : Détecter les Relations Secrètes
+        3. Corrélation : Détecter les relations secrètes
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -135,7 +135,7 @@ const CorrelationSection = () => {
       {/* Sélecteur d'exemples */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Explorateur de Corrélations</CardTitle>
+          <CardTitle>Explorateur de corrélations</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3 mb-6">
@@ -190,7 +190,7 @@ const CorrelationSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              Covariance : La Mesure Brute
+              Covariance : la mesure brute
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -249,7 +249,7 @@ const CorrelationSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5" />
-              Corrélation : La Version Normalisée
+              Corrélation : la version normalisée
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -303,7 +303,7 @@ const CorrelationSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Eye className="h-5 w-5" />
-            Guide d'Interprétation des Corrélations
+            Guide d'interprétation des corrélations
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -354,7 +354,7 @@ const CorrelationSection = () => {
                 Pièges à éviter absolument
               </h5>
               <ul className="space-y-2 text-sm">
-                <li>• <strong>Corrélation ≠ Causalité</strong><br/>
+                <li>• <strong>Corrélation ≠ causalité</strong><br/>
                     <span className="text-xs">Crème solaire et noyades sont corrélées, mais...</span>
                 </li>
                 <li>• <strong>Corrélation = relation linéaire uniquement</strong><br/>
@@ -398,7 +398,7 @@ const CorrelationSection = () => {
       {/* Matrices de Covariance */}
       <Card>
         <CardHeader>
-          <CardTitle>Matrices de Covariance : L'Algèbre de la Dépendance</CardTitle>
+          <CardTitle>Matrices de covariance : l'algèbre de la dépendance</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-6">
@@ -447,7 +447,7 @@ const CorrelationSection = () => {
 
           {/* Valeurs propres et vecteurs propres */}
           <div className="mb-6">
-            <CourseHighlight title="Valeurs propres et Vecteurs propres : Les Directions Principales" type="concept">
+            <CourseHighlight title="Valeurs propres et vecteurs propres : les directions principales" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <h5 className="font-semibold mb-3">Décomposition spectrale</h5>
@@ -485,7 +485,7 @@ const CorrelationSection = () => {
 
           {/* Connexion avec PCA */}
           <div className="mb-6">
-            <CourseHighlight title="Connexion avec l'Analyse en Composantes Principales (PCA)" type="example">
+            <CourseHighlight title="Connexion avec l'analyse en composantes principales (PCA)" type="example">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-purple-50 p-4 rounded-lg">
                   <h5 className="font-semibold mb-3 text-purple-700">PCA = Diagonalisation de Σ</h5>
@@ -587,7 +587,7 @@ const CorrelationSection = () => {
       {/* Corrélations non-linéaires */}
       <Card>
         <CardHeader>
-          <CardTitle>Au-delà de Pearson : Autres Types de Corrélations</CardTitle>
+          <CardTitle>Au-delà de Pearson : autres types de corrélations</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

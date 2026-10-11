@@ -26,7 +26,7 @@ const ProbabilityBasics = () => {
   return (
     <section id="basics" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        1. Les Fondements : Comprendre la Logique du Hasard
+        1. Les fondements : Comprendre la logique du hasard
       </h2>
       
       <div className="mb-8">
@@ -177,7 +177,7 @@ const ProbabilityBasics = () => {
             <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
               <h4 className="font-semibold text-purple-700 mb-3 flex items-center gap-2">
                 <Badge className="bg-purple-100 text-purple-800">3</Badge>
-                Approche subjective (Bayésienne)
+                Approche subjective (bayésienne)
               </h4>
               <p className="text-sm mb-2">Degré de croyance personnelle</p>
               <CourseEquation latex="P(A) = \text{Croyance subjective}" />
@@ -204,7 +204,7 @@ const ProbabilityBasics = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-orange-500" />
-            Les Règles d'Or des Probabilités
+            Les règles d'or des probabilités
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -212,7 +212,7 @@ const ProbabilityBasics = () => {
             <div>
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <Badge className="bg-blue-100 text-blue-800">Règle 1</Badge>
-                Addition (Union d'événements) - "OU"
+                Addition (union d'événements) - "OU"
               </h4>
               <CourseEquation latex="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
               <CourseHighlight title="Intuition : Le piège du double comptage" type="example">
@@ -235,7 +235,7 @@ const ProbabilityBasics = () => {
             <div>
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <Badge className="bg-green-100 text-green-800">Règle 2</Badge>
-                Multiplication (Intersection d'événements) - "ET"
+                Multiplication (intersection d'événements) - "ET"
               </h4>
               <CourseEquation latex="P(A \cap B) = P(A) \times P(B|A)" />
               <CourseHighlight title="Intuition : L'effet domino" type="example">
@@ -353,7 +353,7 @@ const ProbabilityBasics = () => {
                 </div>
                 
                 <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
-                  <strong>Q3 :</strong> Devez-vous prendre un parapluie ? (Question de décision)
+                  <strong>Q3 :</strong> Devez-vous prendre un parapluie ? (question de décision)
                   <details className="mt-2">
                     <summary className="cursor-pointer text-blue-600 text-xs">Cliquez pour l'analyse</summary>
                     <div className="mt-2 text-xs bg-white p-2 rounded space-y-1">

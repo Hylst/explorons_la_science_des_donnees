@@ -6,7 +6,7 @@ import { mlDefinitions } from "@/data/glossary/ml-definitions";
 const UnsupervisedSection = () => {
   return (
     <section id="unsupervised" className="space-y-8">
-      <h2 className="text-3xl font-bold mb-6">Apprentissage Non Supervisé</h2>
+      <h2 className="text-3xl font-bold mb-6">Apprentissage non supervisé</h2>
 
       <p className="text-lg mb-6">
         L'<GlossaryTerm definition={mlDefinitions["apprentissage-non-supervise"]}>apprentissage non supervisé</GlossaryTerm> traite des données non étiquetées pour découvrir des structures,
@@ -40,7 +40,7 @@ const UnsupervisedSection = () => {
           </p>
           <h4 className="font-medium mt-4 mb-2">Algorithmes populaires :</h4>
           <ul className="list-disc pl-6 space-y-1">
-            <li><GlossaryTerm definition={mlDefinitions["pca"]}>Analyse en Composantes Principales (PCA)</GlossaryTerm></li>
+            <li><GlossaryTerm definition={mlDefinitions["pca"]}>Analyse en composantes principales (PCA)</GlossaryTerm></li>
             <li><GlossaryTerm definition={mlDefinitions["t-sne"]}>t-SNE</GlossaryTerm></li>
             <li>UMAP</li>
             <li>Autoencodeurs</li>
@@ -48,7 +48,7 @@ const UnsupervisedSection = () => {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Exemple de code : K-means Clustering</CardTitle>
+            <CardTitle>Exemple de code : K-means clustering</CardTitle>
             <CardDescription>Implémentation avec scikit-learn</CardDescription>
           </CardHeader>
           <CardContent>

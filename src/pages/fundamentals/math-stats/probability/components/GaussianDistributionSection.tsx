@@ -80,7 +80,7 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="h-6 w-6 text-blue-600" />
-            Distribution Gaussienne : La Reine des Distributions
+            Distribution gaussienne : la reine des distributions
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -163,7 +163,7 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-6 w-6 text-green-600" />
-            Impact des Paramètres μ et σ
+            Impact des paramètres μ et σ
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -262,7 +262,7 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-6 w-6 text-red-600" />
-            Règle Empirique : 68-95-99.7%
+            Règle empirique : 68-95-99.7%
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -330,7 +330,7 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-6 w-6 text-purple-600" />
-            Exemples Pratiques Interactifs
+            Exemples pratiques interactifs
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -446,7 +446,7 @@ const GaussianDistributionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Layers className="h-6 w-6 text-indigo-600" />
-            Estimation des Paramètres
+            Estimation des paramètres
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -532,7 +532,7 @@ const GaussianDistributionSection = () => {
       {/* Applications et utilité */}
       <Card>
         <CardHeader>
-          <CardTitle>Applications et Utilité de la Distribution Normale</CardTitle>
+          <CardTitle>Applications et utilité de la distribution normale</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -598,7 +598,7 @@ const GaussianDistributionSection = () => {
       {/* Astuces et règles pratiques */}
       <Card>
         <CardHeader>
-          <CardTitle>Astuces et Règles Pratiques</CardTitle>
+          <CardTitle>Astuces et règles pratiques</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

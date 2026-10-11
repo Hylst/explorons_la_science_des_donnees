@@ -26,7 +26,7 @@ const PracticalApplicationsSection = () => {
       ]
     },
     {
-      domain: "Finance & Trading",
+      domain: "Finance & trading",
       icon: <TrendingUp className="h-6 w-6" />,
       color: "green", 
       cases: [
@@ -45,7 +45,7 @@ const PracticalApplicationsSection = () => {
       ]
     },
     {
-      domain: "Santé & Recherche",
+      domain: "Santé & recherche",
       icon: <Stethoscope className="h-6 w-6" />,
       color: "red",
       cases: [
@@ -64,7 +64,7 @@ const PracticalApplicationsSection = () => {
       ]
     },
     {
-      domain: "E-commerce & Marketing",
+      domain: "E-commerce & marketing",
       icon: <ShoppingCart className="h-6 w-6" />,
       color: "purple",
       cases: [
@@ -135,7 +135,7 @@ const PracticalApplicationsSection = () => {
     <section className="mb-12">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
         <Target className="h-8 w-8 text-blue-600" />
-        4. Applications Pratiques : La Statistique Descriptive en Action
+        4. Applications pratiques : La statistique descriptive en action
       </h2>
 
       {/* Introduction */}

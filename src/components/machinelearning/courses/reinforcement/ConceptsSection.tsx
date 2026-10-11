@@ -162,12 +162,12 @@ const ConceptsSection = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-green-800 mb-2">Déterministe vs Stochastique</h4>
+              <h4 className="font-semibold text-green-800 mb-2">Déterministe vs stochastique</h4>
               <p className="text-sm mb-2"><strong>Déterministe :</strong> Même action = même résultat (échecs)</p>
               <p className="text-sm"><strong>Stochastique :</strong> Résultat avec probabilités (poker)</p>
             </div>
             <div className="bg-gradient-to-r from-blue-100 to-cyan-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">Observable vs Partiel</h4>
+              <h4 className="font-semibold text-blue-800 mb-2">Observable vs partiel</h4>
               <p className="text-sm mb-2"><strong>Observable :</strong> On voit tout (Tetris)</p>
               <p className="text-sm"><strong>Partiel :</strong> Information limitée (Bataille navale)</p>
             </div>
@@ -255,7 +255,7 @@ const ConceptsSection = () => {
         <CollapsibleContent>
           <Card className="mt-2 bg-gradient-to-r from-purple-50 to-pink-50">
             <CardContent className="pt-6 space-y-6">
-              <EducationalCard title="Le Dilemme du Restaurant" type="exemple">
+              <EducationalCard title="Le dilemme du restaurant" type="exemple">
                 <div className="space-y-4">
                   <p>
                     Imaginez que vous êtes dans une nouvelle ville avec plein de restaurants.

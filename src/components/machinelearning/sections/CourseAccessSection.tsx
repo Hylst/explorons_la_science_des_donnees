@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const CourseAccessSection = () => {
   const courses = [
     {
-      title: "Apprentissage Supervisé",
+      title: "Apprentissage supervisé",
       description: "La classification et la régression : types de problèmes, algorithmes usuels (régression logistique, forêts aléatoires, SVM, régression linéaire), mesures d'évaluation, applications et projets, avec quiz et exercices.",
       href: "/machine-learning/supervised",
       icon: <Network className="h-8 w-8" />,
@@ -24,7 +24,7 @@ const CourseAccessSection = () => {
       ]
     },
     {
-      title: "Apprentissage Non Supervisé",
+      title: "Apprentissage non supervisé",
       description: "Le clustering et la réduction de dimensionnalité (K-means, clustering hiérarchique, PCA, t-SNE, UMAP), puis la détection d'anomalies dans un projet, avec applications et quiz.",
       href: "/machine-learning/unsupervised",
       icon: <GitBranch className="h-8 w-8" />,
@@ -40,7 +40,7 @@ const CourseAccessSection = () => {
       ]
     },
     {
-      title: "Apprentissage par Renforcement",
+      title: "Apprentissage par renforcement",
       description: "Un agent qui apprend par essais et erreurs : agent, environnement, récompenses, Q-learning et SARSA, puis un aperçu des méthodes profondes (DQN, PPO), avec des projets en simulation.",
       href: "/machine-learning/reinforcement",
       icon: <Zap className="h-8 w-8" />,
@@ -60,7 +60,7 @@ const CourseAccessSection = () => {
   return (
     <section id="advanced-courses" className="space-y-8">
       <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">Cours Approfondis</h2>
+        <h2 className="text-3xl font-bold">Cours approfondis</h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           Explorez en détail les trois grandes familles du Machine Learning : un cours par famille, avec
           théorie, exemples, projets et ressources.

@@ -120,7 +120,7 @@ for num in numbers:
   },
   {
     id: 'python-data-analysis',
-    name: 'Analyse de Données',
+    name: 'Analyse de données',
     description: 'Template pour l\'analyse de données avec pandas',
     language: 'python',
     category: 'Data Science',
@@ -155,7 +155,7 @@ print(df.groupby('ville')['salaire'].mean())`
   },
   {
     id: 'python-ml-basic',
-    name: 'Machine Learning Basique',
+    name: 'Machine Learning basique',
     description: 'Exemple de classification avec scikit-learn',
     language: 'python',
     category: 'Machine Learning',
@@ -260,7 +260,7 @@ console.log('HTML du conteneur :', container.innerHTML.replace(/\\s+/g, ' ').tri
   },
   {
     id: 'js-async-await',
-    name: 'Async/Await et API',
+    name: 'Async/await et API',
     description: 'Gestion asynchrone et appels API',
     language: 'javascript',
     category: 'Advanced JavaScript',
@@ -347,7 +347,7 @@ main().catch(console.error);`
   },
   {
     id: 'sql-basic',
-    name: 'Requêtes SQL de Base',
+    name: 'Requêtes SQL de base',
     description: 'Requêtes SQL essentielles',
     language: 'sql',
     category: 'Database',
@@ -651,7 +651,7 @@ const CodeEditor: React.FC = () => {
         <div className="flex items-center gap-2">
           <Code2 className="h-6 w-6 text-blue-600" />
           <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Éditeur de Code Interactif
+            Éditeur de code interactif
           </h2>
         </div>
         

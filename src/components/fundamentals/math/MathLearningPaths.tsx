@@ -32,7 +32,7 @@ interface LearningPath {
 const learningPaths: LearningPath[] = [
   {
     id: "beginner",
-    title: "Parcours Débutant",
+    title: "Parcours débutant",
     description: "Fondamentaux mathématiques pour débuter en Data Science",
     difficulty: "Débutant",
     color: "green",
@@ -46,7 +46,7 @@ const learningPaths: LearningPath[] = [
   },
   {
     id: "intermediate",
-    title: "Parcours Intermédiaire",
+    title: "Parcours intermédiaire",
     description: "Calcul, algèbre linéaire et statistiques pour l'analyse de données",
     difficulty: "Intermédiaire",
     color: "blue",
@@ -60,7 +60,7 @@ const learningPaths: LearningPath[] = [
   },
   {
     id: "advanced",
-    title: "Parcours Avancé",
+    title: "Parcours avancé",
     description: "Mathématiques pour le Machine Learning et l'IA",
     difficulty: "Avancé",
     color: "purple",

@@ -60,7 +60,7 @@ const CentralTendencySection = () => {
     <section id="central" className="mb-12">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
         <Calculator className="h-8 w-8 text-blue-600" />
-        1. Mesures de Tendance Centrale : Trouver le "Centre" de vos Données
+        1. Mesures de tendance centrale : Trouver le "centre" de vos données
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -158,7 +158,7 @@ const CentralTendencySection = () => {
               <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-xs font-bold">μ</span>
               </div>
-              La Moyenne : Le Centre de Gravité
+              La moyenne : le centre de gravité
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -223,7 +223,7 @@ const CentralTendencySection = () => {
               <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
                 <span className="text-white text-xs font-bold">M</span>
               </div>
-              La Médiane : Le Juste Milieu
+              La médiane : le juste milieu
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -272,7 +272,7 @@ const CentralTendencySection = () => {
             <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">Mo</span>
             </div>
-            Le Mode : La Star de vos Données
+            Le mode : la star de vos données
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -339,7 +339,7 @@ const CentralTendencySection = () => {
       {/* Comparaison et guide de choix */}
       <Card>
         <CardHeader>
-          <CardTitle>Guide de Choix : Quelle Mesure pour Quelle Situation ?</CardTitle>
+          <CardTitle>Guide de choix : quelle mesure pour quelle situation ?</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">

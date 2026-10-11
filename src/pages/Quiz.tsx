@@ -31,13 +31,13 @@ const QuizPage = () => {
   // Sidebar navigation items
   const sidebarItems = [
     { 
-      title: "Catégories de Quiz", 
+      title: "Catégories de quiz", 
       href: "#categories", 
       isActive: currentSection === "categories",
       icon: <Brain className="h-4 w-4" /> 
     },
     { 
-      title: "Mes Statistiques", 
+      title: "Mes statistiques", 
       href: "#stats", 
       isActive: currentSection === "stats",
       icon: <BarChart3 className="h-4 w-4" /> 
@@ -52,19 +52,19 @@ const QuizPage = () => {
 
   return (
     <ContentLayout 
-      title="Quiz & Évaluation" 
+      title="Quiz & évaluation" 
       backLink={{ href: "/", label: "Retour à l'accueil" }}
       sidebar={{ items: sidebarItems }}
     >
       {/* Hero Section */}
       <UnifiedHeroSection
         variant="page"
-        title="Quiz & Évaluation"
+        title="Quiz & évaluation"
         subtitle="Testez vos connaissances en data science"
         description="Évaluez votre niveau thème par thème avec des quiz interactifs : chaque réponse est expliquée et votre score s'accompagne des points forts et des points à revoir. Vos résultats restent dans votre navigateur."
         actions={[
-          { label: "Commencer un Quiz", to: "#categories" },
-          { label: "Voir mes Statistiques", to: "#stats", variant: "outline" }
+          { label: "Commencer un quiz", to: "#categories" },
+          { label: "Voir mes statistiques", to: "#stats", variant: "outline" }
         ]}
         className="mb-12"
       >

@@ -8,7 +8,7 @@ const BayesianStatisticsSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <Zap className="h-8 w-8 text-yellow-600" />
-          Statistiques Bayésiennes
+          Statistiques bayésiennes
         </h2>
         <p className="text-lg text-gray-600">
           Découvrez l'approche bayésienne qui intègre les connaissances préalables dans l'analyse statistique.
@@ -108,7 +108,7 @@ const BayesianStatisticsSection = () => {
                 La forme mathématique est préservée après mise à jour
               </p>
               <div className="text-xs text-red-600">
-                Ex: Beta pour Binomiale, Gamma pour Poisson
+                Ex: Beta pour binomiale, Gamma pour Poisson
               </div>
             </div>
             

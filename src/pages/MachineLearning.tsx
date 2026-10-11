@@ -28,7 +28,7 @@ const MachineLearning = () => {
       icon: <BrainCircuit className="h-4 w-4" />,
     },
     {
-      title: "Cours Approfondis",
+      title: "Cours approfondis",
       href: "#advanced-courses",
       isActive: currentSection === "advanced-courses",
       icon: <GraduationCap className="h-4 w-4" />,

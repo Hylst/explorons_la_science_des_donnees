@@ -891,7 +891,7 @@ print(f"\\nPureté moyenne : {np.mean(puretes):.2f}")`,
     <section id="practical-exercises" className="space-y-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          Exercices Pratiques et Exemples de Code
+          Exercices pratiques et exemples de code
         </h2>
         <p className="text-xl text-gray-600 max-w-4xl mx-auto">
           Trois programmes complets à exécuter chez vous, deux exercices avec indices et solution, deux questions de quiz et des pistes pour un projet de recommandation

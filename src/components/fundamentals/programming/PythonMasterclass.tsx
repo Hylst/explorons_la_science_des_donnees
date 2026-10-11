@@ -520,7 +520,7 @@ print(f"Age en string: '{age_str}' (type: {type(age_str).__name__})")`}
               <div className="mt-6">
                 <Exercise
                   id={1}
-                  title="Créer votre Profil Data Scientist"
+                  title="Créer votre profil Data Scientist"
                   description="Créez un profil data scientist complet avec vos informations personnelles en utilisant différents types de variables Python."
                   solution={`# Créez votre profil data scientist
 prenom = "Votre prénom"

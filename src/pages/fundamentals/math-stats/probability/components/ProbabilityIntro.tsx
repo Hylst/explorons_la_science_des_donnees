@@ -7,7 +7,7 @@ const ProbabilityIntro = () => {
     <section id="intro" className="mb-16">
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 rounded-xl border border-indigo-100 mb-8">
         <h2 className="text-3xl font-bold mb-6 text-indigo-900 flex items-center gap-3">
-          Introduction : Le Langage de l'Incertitude
+          Introduction : le langage de l'incertitude
         </h2>
         
         <div className="max-w-none text-gray-700 mb-8">

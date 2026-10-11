@@ -47,7 +47,7 @@ const ApplicationsSection = () => {
       examples: ["Personnalisation", "Segmentation client", "Prévision des tendances", "Optimisation des prix"]
     },
     {
-      title: "Transport & Logistique",
+      title: "Transport & logistique",
       icon: Truck,
       description: "Gestion optimisée des flottes, prévision de la demande et maintenance intelligente.",
       examples: ["Optimisation logistique", "Maintenance prédictive", "Véhicules autonomes", "Gestion du trafic urbain"]
@@ -59,7 +59,7 @@ const ApplicationsSection = () => {
       examples: ["Prévision de consommation", "Optimisation de production", "Réseaux électriques intelligents", "Détection de pannes"]
     },
     {
-      title: "Industrie & Fabrication",
+      title: "Industrie & fabrication",
       icon: Factory,
       description: "Amélioration des procédés de fabrication, contrôle qualité automatisé et maintenance prédictive.",
       examples: ["Contrôle qualité", "Optimisation des processus", "Maintenance prédictive", "Gestion de la chaîne d'approvisionnement"]

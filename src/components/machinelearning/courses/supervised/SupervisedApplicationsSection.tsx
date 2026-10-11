@@ -96,7 +96,7 @@ const applications = [
   },
   {
     icon: <GraduationCap className="h-6 w-6 text-blue-600" aria-hidden="true" />,
-    title: "EdTech et Formation",
+    title: "EdTech et formation",
     description: "Personnalisation de l'apprentissage, évaluation automatique, détection des difficultés d'apprentissage et recommandations pédagogiques.",
     examples: [
       "Parcours d'apprentissage adaptatifs personnalisés",

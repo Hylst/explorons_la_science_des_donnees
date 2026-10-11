@@ -26,7 +26,7 @@ const ProbabilityTheory = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Théorie des Probabilités"
+          title="Théorie des probabilités"
           description="Quantifier l'incertitude : les bases des probabilités pour la data science"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

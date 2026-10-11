@@ -25,7 +25,7 @@ const learningCurveData = [
 const EvaluationSection = () => {
   return (
     <section id="evaluation" className="space-y-8">
-      <h2 className="text-3xl font-bold mb-6">Évaluation des Modèles</h2>
+      <h2 className="text-3xl font-bold mb-6">Évaluation des modèles</h2>
 
       <p className="text-lg mb-8">
         L'<GlossaryTerm definition={mlDefinitions["evaluation-modele"]}>évaluation</GlossaryTerm> permet de mesurer les performances d'un modèle de machine learning et de comparer
@@ -94,7 +94,7 @@ const EvaluationSection = () => {
             </div>
             <div className="border p-3 rounded-md">
               <p className="font-medium">
-                <GlossaryTerm definition={mlDefinitions["r-carre"]}>R² (Coefficient de détermination)</GlossaryTerm>
+                <GlossaryTerm definition={mlDefinitions["r-carre"]}>R² (coefficient de détermination)</GlossaryTerm>
               </p>
               <p className="text-sm text-muted-foreground">Proportion de la variance expliquée par le modèle</p>
               <p className="text-sm font-mono mt-1">R² = 1 - (Σ(y_i - ŷ_i)² / Σ(y_i - ȳ)²)</p>

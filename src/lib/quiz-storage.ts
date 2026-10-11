@@ -153,7 +153,7 @@ const computeAchievements = (chronological: StoredQuizAttempt[], streakThirdDay:
   if (chronological.length >= 1) {
     achievements.push({
       id: 'first-quiz',
-      title: 'Premier Pas',
+      title: 'Premier pas',
       description: 'Terminer votre premier quiz',
       icon: 'trophy',
       unlockedAt: at(chronological[0]),
@@ -175,7 +175,7 @@ const computeAchievements = (chronological: StoredQuizAttempt[], streakThirdDay:
   if (firstPerfect) {
     achievements.push({
       id: 'perfect-score',
-      title: 'Score Parfait',
+      title: 'Score parfait',
       description: 'Obtenir 100 % à un quiz',
       icon: 'target',
       unlockedAt: at(firstPerfect),
@@ -196,7 +196,7 @@ const computeAchievements = (chronological: StoredQuizAttempt[], streakThirdDay:
     const [y, m, d] = streakThirdDay.split('-').map(Number);
     achievements.push({
       id: 'streak-3',
-      title: 'En Série',
+      title: 'En série',
       description: 'Faire un quiz trois jours de suite',
       icon: 'flame',
       unlockedAt: new Date(y, m - 1, d),

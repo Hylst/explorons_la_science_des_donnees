@@ -66,7 +66,7 @@ export const AutomationSection: React.FC = () => {
   const etlPipelines = [
     {
       id: "sales-pipeline",
-      name: "Pipeline Ventes",
+      name: "Pipeline ventes",
       status: "running",
       note: "La transformation est en cours ; le chargement attend qu'elle se termine.",
       stages: [
@@ -78,7 +78,7 @@ export const AutomationSection: React.FC = () => {
     },
     {
       id: "customer-pipeline",
-      name: "Pipeline Clients",
+      name: "Pipeline clients",
       status: "completed",
       note: "Toutes les étapes ont réussi : les données sont disponibles pour les analyses.",
       stages: [
@@ -90,7 +90,7 @@ export const AutomationSection: React.FC = () => {
     },
     {
       id: "inventory-pipeline",
-      name: "Pipeline Inventaire",
+      name: "Pipeline inventaire",
       status: "error",
       note: "La validation a échoué : la transformation et le chargement ne sont pas lancés, les données douteuses n'atteignent pas les tableaux de bord.",
       stages: [
@@ -150,7 +150,7 @@ export const AutomationSection: React.FC = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl font-bold flex items-center justify-center gap-3">
           <Zap className="h-8 w-8 text-orange-500" />
-          Automatisation des Processus
+          Automatisation des processus
         </h2>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
           Automatiser, c'est faire exécuter la préparation des données par un programme plutôt qu'à la main :
@@ -200,7 +200,7 @@ export const AutomationSection: React.FC = () => {
           <CardTitle className="flex flex-wrap items-center justify-between gap-3">
             <span className="flex items-center gap-2">
               <Settings className="h-5 w-5 text-orange-500" />
-              Centre de Contrôle Automatisation
+              Centre de contrôle automatisation
             </span>
           </CardTitle>
         </CardHeader>

@@ -8,7 +8,7 @@ const TrendsSection = () => {
     <section id="trends" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <TrendingUp className="h-8 w-8 text-green-600" />
-        <h2 className="text-3xl font-bold">Tendances et Évolutions</h2>
+        <h2 className="text-3xl font-bold">Tendances et évolutions</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

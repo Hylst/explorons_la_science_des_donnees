@@ -61,7 +61,7 @@ const Fundamentals = () => {
           >
             <Brain className="h-6 w-6 text-blue-600" />
             <div>
-              <h3 className="font-semibold">Maths & Stats</h3>
+              <h3 className="font-semibold">Maths & stats</h3>
               <p className="text-sm text-muted-foreground">Probabilités, statistiques et algèbre</p>
             </div>
           </Link>

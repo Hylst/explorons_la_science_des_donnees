@@ -25,7 +25,7 @@ const MatrixTypesSection = () => {
 
   return (
     <section id="matrix-types" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">3. Types de Matrices Importantes : La Boîte à Outils</h2>
+      <h2 className="text-3xl font-bold mb-6">3. Types de matrices importantes : la boîte à outils</h2>
       
       <CourseHighlight title="Analogie : Les matrices comme des outils spécialisés" type="concept">
         <p>
@@ -41,13 +41,13 @@ const MatrixTypesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Square className="h-5 w-5 text-blue-600" />
-              Matrices Carrées et Identité
+              Matrices carrées et identité
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Matrice Carrée :</h4>
+                <h4 className="font-semibold mb-3">Matrice carrée :</h4>
                 <p className="text-sm mb-2">
                   Une matrice n×n où le nombre de lignes égale le nombre de colonnes.
                 </p>
@@ -56,7 +56,7 @@ const MatrixTypesSection = () => {
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Matrice Identité I :</h4>
+                <h4 className="font-semibold mb-3">Matrice identité I :</h4>
                 <CourseEquation latex="I = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   <strong>Propriété magique :</strong> AI = IA = A pour toute matrice A compatible
@@ -75,13 +75,13 @@ const MatrixTypesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-600" />
-              Matrices Nulles et Diagonales
+              Matrices nulles et diagonales
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Matrice Nulle 0 :</h4>
+                <h4 className="font-semibold mb-3">Matrice nulle 0 :</h4>
                 <CourseEquation latex="0 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   <strong>Propriété :</strong> A + 0 = A, A × 0 = 0
@@ -90,7 +90,7 @@ const MatrixTypesSection = () => {
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Matrice Diagonale D :</h4>
+                <h4 className="font-semibold mb-3">Matrice diagonale D :</h4>
                 <CourseEquation latex="D = \begin{pmatrix} d_1 & 0 & 0 \\ 0 & d_2 & 0 \\ 0 & 0 & d_3 \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   Seuls les éléments diagonaux sont non-nuls.
@@ -111,13 +111,13 @@ const MatrixTypesSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <RotateCcw className="h-5 w-5 text-green-600" />
-            Matrices Symétriques et Antisymétriques
+            Matrices symétriques et antisymétriques
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-semibold mb-3 text-green-600">Matrice Symétrique</h4>
+              <h4 className="font-semibold mb-3 text-green-600">Matrice symétrique</h4>
               <div className="bg-green-50 p-4 rounded-lg space-y-3">
                 <p className="text-sm">
                   Une matrice A est symétrique si A = A^T
@@ -140,7 +140,7 @@ const MatrixTypesSection = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-3 text-red-600">Matrice Antisymétrique</h4>
+              <h4 className="font-semibold mb-3 text-red-600">Matrice antisymétrique</h4>
               <div className="bg-red-50 p-4 rounded-lg space-y-3">
                 <p className="text-sm">
                   Une matrice A est antisymétrique si A = -A^T
@@ -171,13 +171,13 @@ const MatrixTypesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Triangle className="h-5 w-5 text-orange-600" />
-              Matrices Triangulaires
+              Matrices triangulaires
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="bg-orange-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Triangulaire Supérieure :</h4>
+                <h4 className="font-semibold mb-3">Triangulaire supérieure :</h4>
                 <CourseEquation latex="U = \begin{pmatrix} u_{11} & u_{12} & u_{13} \\ 0 & u_{22} & u_{23} \\ 0 & 0 & u_{33} \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   Tous les éléments sous la diagonale sont nuls.
@@ -185,7 +185,7 @@ const MatrixTypesSection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h4 className="font-semibold mb-3">Triangulaire Inférieure :</h4>
+                <h4 className="font-semibold mb-3">Triangulaire inférieure :</h4>
                 <CourseEquation latex="L = \begin{pmatrix} l_{11} & 0 & 0 \\ l_{21} & l_{22} & 0 \\ l_{31} & l_{32} & l_{33} \end{pmatrix}" />
                 <p className="text-sm mt-2">
                   Tous les éléments au-dessus de la diagonale sont nuls.
@@ -205,7 +205,7 @@ const MatrixTypesSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5 text-indigo-600" />
-              Matrices Inversibles
+              Matrices inversibles
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -312,7 +312,7 @@ const MatrixTypesSection = () => {
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
           <div className="bg-white p-3 rounded">
-            <p className="font-semibold text-blue-600">Identité & Diagonale</p>
+            <p className="font-semibold text-blue-600">Identité & diagonale</p>
             <p className="text-xs">Initialisation, mise à l'échelle, calculs rapides</p>
           </div>
           <div className="bg-white p-3 rounded">

@@ -234,7 +234,7 @@ print(roc_auc_score(y_reel, score), sum(paires) / len(paires))
     icon: "BarChart3"
   },
   {
-    term: "Courbe Précision-Rappel",
+    term: "Courbe précision-rappel",
     description: `La courbe précision-rappel trace la précision en fonction du rappel quand on fait varier le seuil de décision. Elle se concentre sur la classe positive, ce qui la rend plus informative que la courbe ROC quand les positifs sont rares.
 
 **Construction :** à chaque seuil, précision = VP / (VP + FP) et rappel = VP / (VP + FN). Quand le seuil baisse, le rappel augmente et la précision tend à diminuer, avec des variations en dents de scie.
@@ -304,7 +304,7 @@ print(y_test.mean(), round(roc_auc_score(y_test, score), 3), round(average_preci
     icon: "Divide"
   },
   {
-    term: "R² (Coefficient de détermination)",
+    term: "R² (coefficient de détermination)",
     description: `Le coefficient de détermination R² compare l'erreur d'un modèle de régression à celle du modèle le plus simple, qui prédit toujours la moyenne des valeurs observées.
 
 **Formule :** R² = 1 − SS_res / SS_tot, avec SS_res = Σ (y_i − ŷ_i)² (erreur du modèle) et SS_tot = Σ (y_i − ȳ)² (erreur de la moyenne).

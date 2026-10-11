@@ -46,12 +46,12 @@ const GlossaryExplorer = () => {
       "machine-learning": "Machine Learning",
       "deep-learning": "Deep Learning",
       "statistiques": "Statistiques",
-      "nlp": "Traitement du Langage",
-      "computer-vision": "Vision par Ordinateur",
-      "preprocessing": "Préparation des Données",
-      "mlops": "MLOps & Production",
+      "nlp": "Traitement du langage",
+      "computer-vision": "Vision par ordinateur",
+      "preprocessing": "Préparation des données",
+      "mlops": "MLOps & production",
       "evaluation": "Évaluation des modèles",
-      "data-engineering": "Ingénierie des Données",
+      "data-engineering": "Ingénierie des données",
       "visualization": "Visualisation"
     };
     return displayNames[category as keyof typeof displayNames] || category;
@@ -129,7 +129,7 @@ const GlossaryExplorer = () => {
             onClick={() => setSortBy("category")}
           >
             <Filter className="w-4 h-4 mr-2" />
-            Par Catégorie
+            Par catégorie
           </Button>
         </div>
       </div>

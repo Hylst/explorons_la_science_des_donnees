@@ -156,7 +156,7 @@ const ResourcesSection = () => {
       {
         title: "Python for Data Analysis",
         auteur: "Wes McKinney",
-        niveau: "Débutant-Intermédiaire",
+        niveau: "Débutant-intermédiaire",
         prix: "Gratuit en ligne",
         description: "Un livre sur pandas et l'analyse de données en Python, écrit par le créateur de pandas",
         url: "https://wesmckinney.com/book/",
@@ -165,7 +165,7 @@ const ResourcesSection = () => {
       {
         title: "Hands-On Machine Learning with Scikit-Learn and PyTorch",
         auteur: "Aurélien Géron",
-        niveau: "Intermédiaire-Avancé",
+        niveau: "Intermédiaire-avancé",
         description: "Guide pratique du machine learning avec Python (scikit-learn, puis réseaux de neurones avec PyTorch, 2025 ; le livre précédent du même auteur utilisait Keras et TensorFlow)",
         url: "https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/",
         specialite: ["Machine Learning", "PyTorch", "Scikit-learn"]
@@ -173,7 +173,7 @@ const ResourcesSection = () => {
       {
         title: "R for Data Science",
         auteur: "Hadley Wickham",
-        niveau: "Débutant-Intermédiaire",
+        niveau: "Débutant-intermédiaire",
         prix: "Gratuit en ligne",
         description: "Introduction à R et au tidyverse : importer, transformer et visualiser des données",
         url: "https://r4ds.hadley.nz/",
@@ -182,7 +182,7 @@ const ResourcesSection = () => {
       {
         title: "SQL for Data Scientists",
         auteur: "Renee M. P. Teate",
-        niveau: "Débutant-Intermédiaire",
+        niveau: "Débutant-intermédiaire",
         description: "Introduction à SQL centrée sur la construction de jeux de données pour l'analyse (Wiley, 2021)",
         url: "https://www.oreilly.com/library/view/sql-for-data/9781119669364/",
         specialite: ["SQL", "Bases de données", "Analytics"]
@@ -372,9 +372,9 @@ const ResourcesSection = () => {
         selectedCategory === 'free' && ((isBookResource(resource) || isPlatformResource(resource)) && 
           (resource.prix === 'Gratuit' || resource.prix === 'Gratuit en ligne')) ||
         selectedCategory === 'beginner' && (isBookResource(resource) && 
-          (resource.niveau === 'Débutant' || resource.niveau === 'Débutant-Intermédiaire')) ||
+          (resource.niveau === 'Débutant' || resource.niveau === 'Débutant-intermédiaire')) ||
         selectedCategory === 'advanced' && (isBookResource(resource) && 
-          (resource.niveau === 'Avancé' || resource.niveau === 'Intermédiaire-Avancé'));
+          (resource.niveau === 'Avancé' || resource.niveau === 'Intermédiaire-avancé'));
       
       return searchMatch && categoryMatch;
     });

@@ -9,7 +9,7 @@ const IntegralCalculus = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Calcul Intégral"
+          title="Calcul intégral"
           description="Découvrez les intégrales et leurs applications en statistiques et probabilités"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

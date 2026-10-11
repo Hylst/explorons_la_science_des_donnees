@@ -87,7 +87,7 @@ const DerivativeConceptSection = () => {
 
   return (
     <section id="derivatives" className="scroll-mt-24 space-y-8">
-      <h2 className="text-3xl font-bold mb-6">1. Le Concept de Dérivée</h2>
+      <h2 className="text-3xl font-bold mb-6">1. Le concept de dérivée</h2>
       
       <CourseHighlight title="Intuition fondamentale" type="concept">
         <p className="mb-4">

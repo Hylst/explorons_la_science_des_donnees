@@ -31,7 +31,7 @@ const Navbar = () => {
       name: "Fondamentaux", 
       path: "/fundamentals",
       subItems: [
-        { name: "Maths & Stats", path: "/fundamentals/math-stats" },
+        { name: "Maths & stats", path: "/fundamentals/math-stats" },
         { name: "Programmation", path: "/fundamentals/programming" },
         { name: "Traiter les données", path: "/fundamentals/data-preparation" },
         { name: "Bases de données", path: "/fundamentals/databases" }
@@ -41,9 +41,9 @@ const Navbar = () => {
       name: "Machine Learning", 
       path: "/machine-learning",
       subItems: [
-        { name: "Apprentissage Supervisé", path: "/machine-learning/supervised" },
-        { name: "Apprentissage Non Supervisé", path: "/machine-learning/unsupervised" },
-        { name: "Apprentissage par Renforcement", path: "/machine-learning/reinforcement" }
+        { name: "Apprentissage supervisé", path: "/machine-learning/supervised" },
+        { name: "Apprentissage non supervisé", path: "/machine-learning/unsupervised" },
+        { name: "Apprentissage par renforcement", path: "/machine-learning/reinforcement" }
       ]
     },
     { name: "Outils", path: "/tools" },

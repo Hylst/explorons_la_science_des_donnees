@@ -15,7 +15,7 @@ const ReinforcementLearning = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="course"
-          title="Apprentissage par Renforcement"
+          title="Apprentissage par renforcement"
           description="L'apprentissage par renforcement : agents, récompenses et stratégies"
           
           courseInfo={{

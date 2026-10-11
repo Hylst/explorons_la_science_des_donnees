@@ -8,7 +8,7 @@ const applications = [
     title: "Segmentation de clientèle",
     description: "Identification automatique de groupes de clients avec des comportements similaires pour optimiser les stratégies marketing.",
     examples: [
-      "Clustering RFM (Récence, Fréquence, Montant)",
+      "Clustering RFM (récence, fréquence, montant)",
       "Segmentation comportementale e-commerce",
       "Groupes de préférences produits",
       "Personnalisation de campagnes marketing"

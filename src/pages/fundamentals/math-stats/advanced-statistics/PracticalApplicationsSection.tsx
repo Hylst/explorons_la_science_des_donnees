@@ -44,7 +44,7 @@ const PracticalApplicationsSection = () => {
       items: [
         "R (gratuit) - Très complet pour statistiques",
         "Python (scipy, statsmodels) - Polyvalent",
-        "Stan - Spécialisé en Bayésien",
+        "Stan - Spécialisé en bayésien",
         "JASP - Interface graphique simple"
       ]
     },
@@ -63,7 +63,7 @@ const PracticalApplicationsSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <Target className="h-8 w-8 text-green-600" />
-          Applications Pratiques
+          Applications pratiques
         </h2>
         <p className="text-lg text-gray-600">
           Découvrez comment appliquer les statistiques avancées dans différents domaines professionnels.

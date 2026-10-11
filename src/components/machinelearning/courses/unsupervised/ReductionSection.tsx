@@ -8,7 +8,7 @@ const ReductionSection = () => {
   const dimensionalityReductionAlgorithms = [
     {
       name: "PCA",
-      type: "Analyse en Composantes Principales",
+      type: "Analyse en composantes principales",
       pros: ["Rapide et efficace", "Interprétable", "Réduit le bruit", "Préserve la variance"],
       cons: ["Linéaire uniquement", "Perte d'information", "Sensible à l'échelle", "Difficile avec données non-linéaires"],
       useCases: ["Compression d'images", "Visualisation de données", "Réduction de bruit", "Feature engineering"],
@@ -75,7 +75,7 @@ const ReductionSection = () => {
           <h4 className="font-semibold">Comparaison des approches principales :</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-green-50 p-4 rounded-lg border">
-              <h5 className="font-medium text-green-800 mb-2">Méthodes Linéaires</h5>
+              <h5 className="font-medium text-green-800 mb-2">Méthodes linéaires</h5>
               <ul className="text-sm text-green-700 space-y-1">
                 <li>• PCA : Maximise la variance expliquée</li>
                 <li>• ICA : Sépare les sources indépendantes</li>
@@ -83,7 +83,7 @@ const ReductionSection = () => {
               </ul>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg border">
-              <h5 className="font-medium text-purple-800 mb-2">Méthodes Non-linéaires</h5>
+              <h5 className="font-medium text-purple-800 mb-2">Méthodes non-linéaires</h5>
               <ul className="text-sm text-purple-700 space-y-1">
                 <li>• t-SNE : Préserve les structures locales</li>
                 <li>• UMAP : Structure locale, avec une meilleure conservation globale que t-SNE en général</li>
@@ -143,7 +143,7 @@ const ReductionSection = () => {
     <div className="space-y-8">
       <h2 className="text-3xl font-bold text-center flex items-center justify-center gap-3">
         <Sparkles className="h-8 w-8 text-purple-600" />
-        Réduction de Dimensionnalité
+        Réduction de dimensionnalité
       </h2>
 
       {/* Introduction conceptuelle */}

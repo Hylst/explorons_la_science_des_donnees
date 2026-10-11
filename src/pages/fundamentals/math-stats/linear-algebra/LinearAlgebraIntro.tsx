@@ -8,7 +8,7 @@ const LinearAlgebraIntro = () => {
   return (
     <section id="intro" className="mb-16">
       <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-8 rounded-xl border border-purple-100 mb-8">
-        <h2 className="text-3xl font-bold mb-6 text-purple-900">L'Algèbre Linéaire : Le GPS du Machine Learning</h2>
+        <h2 className="text-3xl font-bold mb-6 text-purple-900">L'algèbre linéaire : le GPS du Machine Learning</h2>
         
         <div className="max-w-none text-gray-700 mb-8">
           <p className="text-xl leading-relaxed mb-6">

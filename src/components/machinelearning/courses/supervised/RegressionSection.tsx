@@ -194,10 +194,10 @@ const RegressionSection = () => {
                       Exemples typiques
                     </h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Prix vs Surface habitable</li>
-                      <li>• Salaire vs Années d'expérience</li>
-                      <li>• Consommation vs Température</li>
-                      <li>• Ventes vs Budget publicitaire</li>
+                      <li>• Prix vs surface habitable</li>
+                      <li>• Salaire vs années d'expérience</li>
+                      <li>• Consommation vs température</li>
+                      <li>• Ventes vs budget publicitaire</li>
                     </ul>
                   </div>
                 </div>

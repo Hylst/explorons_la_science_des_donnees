@@ -64,7 +64,7 @@ export const ResponsiveTable: React.FC<ResponsiveTableProps> = ({
               size="sm"
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-md"
               onClick={scrollLeft}
-              aria-label="Scroll left"
+              aria-label="Défiler vers la gauche"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -75,7 +75,7 @@ export const ResponsiveTable: React.FC<ResponsiveTableProps> = ({
               size="sm"
               className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm shadow-md"
               onClick={scrollRight}
-              aria-label="Scroll right"
+              aria-label="Défiler vers la droite"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

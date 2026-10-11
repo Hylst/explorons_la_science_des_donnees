@@ -80,12 +80,12 @@ const PracticalApplicationsSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Brain className="h-6 w-6 text-purple-600" />
-            Applications Pratiques des Probabilités en Data Science
+            Applications pratiques des probabilités en Data Science
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <CourseHighlight title="Applications Pratiques" type="concept">
+            <CourseHighlight title="Applications pratiques" type="concept">
               Les probabilités sont au cœur de la Data Science moderne. Elles permettent de quantifier 
               l'incertitude, d'évaluer les risques et de prendre des décisions éclairées basées sur les données.
             </CourseHighlight>
@@ -122,7 +122,7 @@ const PracticalApplicationsSection = () => {
                 className="flex items-center gap-2"
               >
                 <Shield className="h-4 w-4" />
-                Analyse de Risque
+                Analyse de risque
               </Button>
               <Button 
                 variant={selectedApplication === 'recommendation' ? 'default' : 'outline'}
@@ -310,7 +310,7 @@ const PracticalApplicationsSection = () => {
                 <h4 className="font-semibold">Analyse quantitative</h4>
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <div className="text-center">
-                    <div className="text-sm text-gray-600">Rendement Espéré</div>
+                    <div className="text-sm text-gray-600">Rendement espéré</div>
                     <span className="font-bold text-blue-600">{calculateExpectedReturn().toFixed(2)}%</span>
                   </div>
                 </div>
@@ -432,7 +432,7 @@ const PracticalApplicationsSection = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <CourseHighlight title="Points Clés" type="info">
+            <CourseHighlight title="Points clés" type="info">
               Les probabilités permettent de prendre des décisions en tenant compte de l'incertitude, et de dire avec quelle assurance on le fait.
             </CourseHighlight>
             

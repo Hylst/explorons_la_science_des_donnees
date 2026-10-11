@@ -107,7 +107,7 @@ const DescriptiveStatsIntro = () => {
               </div>
               
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-700 mb-2">Recherche Scientifique</h4>
+                <h4 className="font-semibold text-green-700 mb-2">Recherche scientifique</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Description des échantillons</li>
                   <li>• Contrôle qualité des données</li>
@@ -117,7 +117,7 @@ const DescriptiveStatsIntro = () => {
               </div>
               
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-purple-700 mb-2">Intelligence Artificielle</h4>
+                <h4 className="font-semibold text-purple-700 mb-2">Intelligence artificielle</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Exploration des datasets</li>
                   <li>• Feature engineering</li>

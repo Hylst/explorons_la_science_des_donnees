@@ -14,7 +14,7 @@ const ConfidenceIntervalsSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <Target className="h-8 w-8 text-green-600" />
-          Intervalles de Confiance
+          Intervalles de confiance
         </h2>
         <p className="text-lg text-gray-600">
           Quantifiez l'incertitude de vos estimations avec les intervalles de confiance.

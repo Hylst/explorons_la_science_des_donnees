@@ -201,7 +201,7 @@ ORDER BY score_compatibilite DESC;`,
                    - Calculs de scores pondérés avec CASE`
     },
     {
-      title: "IoT Industriel : Monitoring en temps réel",
+      title: "IoT industriel : monitoring en temps réel",
       level: "Avancé",
       description: "Analysez les données de capteurs industriels",
       context: `Une usine surveille ses machines via des capteurs IoT. Vous devez détecter 
@@ -365,7 +365,7 @@ ORDER BY score_maintenance DESC;`,
     <section id="exercises" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <Code className="h-8 w-8 text-green-600" />
-        <h2 className="text-3xl font-bold">Exercices Pratiques Corrigés</h2>
+        <h2 className="text-3xl font-bold">Exercices pratiques corrigés</h2>
       </div>
 
       <p className="text-sm text-gray-600">

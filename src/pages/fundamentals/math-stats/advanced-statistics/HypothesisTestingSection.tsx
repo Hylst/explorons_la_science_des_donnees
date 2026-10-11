@@ -36,7 +36,7 @@ const HypothesisTestingSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <TestTube className="h-8 w-8 text-blue-600" />
-          Tests d'Hypothèses
+          Tests d'hypothèses
         </h2>
         <p className="text-lg text-gray-600">
           Apprenez à valider vos hypothèses scientifiques avec rigueur statistique.
@@ -95,13 +95,13 @@ const HypothesisTestingSection = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-red-700 mb-2">Erreur de Type I (α)</h4>
+                <h4 className="font-semibold text-red-700 mb-2">Erreur de type I (α)</h4>
                 <p className="text-sm text-red-600">
                   Rejeter H₀ alors qu'elle est vraie (faux positif)
                 </p>
               </div>
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-700 mb-2">Erreur de Type II (β)</h4>
+                <h4 className="font-semibold text-blue-700 mb-2">Erreur de type II (β)</h4>
                 <p className="text-sm text-blue-600">
                   Ne pas rejeter H₀ alors qu'elle est fausse (faux négatif)
                 </p>

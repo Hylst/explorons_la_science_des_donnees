@@ -99,7 +99,7 @@ const DataProcessingTools = () => {
         <TabsList className="grid w-full grid-cols-1 md:grid-cols-4">
           <TabsTrigger value="frameworks">Frameworks</TabsTrigger>
           <TabsTrigger value="databases">Bases de données</TabsTrigger>
-          <TabsTrigger value="etl">ETL & Pipelines</TabsTrigger>
+          <TabsTrigger value="etl">ETL & pipelines</TabsTrigger>
           <TabsTrigger value="big-data">Big Data</TabsTrigger>
         </TabsList>
         
@@ -336,7 +336,7 @@ resultats <- donnees %>%
                       <h4 className="font-medium mb-2 text-blue-700">Points forts</h4>
                       <ul className="list-disc pl-5 space-y-1 text-sm">
                         <li>Structure en tables avec relations</li>
-                        <li>ACID (Atomicité, Cohérence, Isolation, Durabilité)</li>
+                        <li>ACID (atomicité, cohérence, isolation, durabilité)</li>
                         <li>Langage SQL normalisé (avec des variantes selon le moteur)</li>
                         <li>Adaptées aux données structurées</li>
                       </ul>
@@ -437,7 +437,7 @@ resultats <- donnees %>%
         <TabsContent value="etl" className="pt-6">
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 rounded-lg border border-orange-100">
-              <h3 className="font-bold text-lg mb-4">ETL (Extract, Transform, Load) et Pipelines de données</h3>
+              <h3 className="font-bold text-lg mb-4">ETL (Extract, Transform, Load) et pipelines de données</h3>
               <p className="mb-4">
                 Les outils ETL permettent d'automatiser l'extraction, la transformation et le chargement des données
                 entre différentes sources et destinations, assurant la qualité et la cohérence des données.
@@ -645,7 +645,7 @@ with DAG(
                     </tr>
                     <tr className="bg-gray-50 border-b">
                       <td className="px-6 py-4 font-medium">Étape 4</td>
-                      <td className="px-6 py-4">Data Mesh & Temps réel</td>
+                      <td className="px-6 py-4">Data Mesh & temps réel</td>
                       <td className="px-6 py-4">Kafka, Flink</td>
                       <td className="px-6 py-4">
                         <ul className="list-disc pl-5">

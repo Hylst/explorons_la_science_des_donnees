@@ -89,7 +89,7 @@ const ApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Music className="h-6 w-6 text-blue-600" />
-              Systèmes de Recommandation
+              Systèmes de recommandation
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -123,7 +123,7 @@ const ApplicationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Smartphone className="h-6 w-6 text-orange-600" />
-              Analyse en Composantes Principales (PCA)
+              Analyse en composantes principales (PCA)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -212,7 +212,7 @@ const ApplicationsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
             <Brain className="h-8 w-8 text-purple-600 mx-auto mb-2" aria-hidden="true" />
-            <h4 className="font-semibold">IA Générative</h4>
+            <h4 className="font-semibold">IA générative</h4>
             <p className="text-sm text-gray-600">
               DALL-E, Midjourney : création d'images par transformations matricielles complexes
             </p>

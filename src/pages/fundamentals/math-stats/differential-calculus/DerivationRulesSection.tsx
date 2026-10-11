@@ -95,7 +95,7 @@ const DerivationRulesSection = () => {
 
   return (
     <section id="rules" className="scroll-mt-24 space-y-8">
-      <h2 className="text-3xl font-bold mb-6">2. Règles de Dérivation</h2>
+      <h2 className="text-3xl font-bold mb-6">2. Règles de dérivation</h2>
       
       <CourseHighlight title="Stratégie d'apprentissage" type="concept">
         <p className="mb-4">

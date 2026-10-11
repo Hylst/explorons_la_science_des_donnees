@@ -15,7 +15,7 @@ const SupervisedLearning = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="course"
-          title="Apprentissage Supervisé"
+          title="Apprentissage supervisé"
           description="Explorez les algorithmes d'apprentissage supervisé : classification, régression et techniques avancées"
           
           courseInfo={{

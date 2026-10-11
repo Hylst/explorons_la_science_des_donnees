@@ -20,7 +20,7 @@ const LinearAlgebra = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Algèbre Linéaire"
+          title="Algèbre linéaire"
           description="Le langage universel du machine learning : vecteurs, matrices et transformations expliqués simplement"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

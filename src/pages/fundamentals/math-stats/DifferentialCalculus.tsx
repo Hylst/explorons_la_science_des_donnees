@@ -18,7 +18,7 @@ const DifferentialCalculus = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Calcul Différentiel"
+          title="Calcul différentiel"
           description="Les dérivées au service de l'optimisation et de l'apprentissage automatique"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

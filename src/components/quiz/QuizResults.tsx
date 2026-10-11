@@ -279,7 +279,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Résultats du Quiz
+            Résultats du quiz
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             {categoryTitle}
@@ -340,7 +340,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-green-700">
                   <TrendingUp className="h-5 w-5" />
-                  Points Forts
+                  Points forts
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -362,7 +362,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-red-700">
                   <TrendingDown className="h-5 w-5" />
-                  Axes d'Amélioration
+                  Axes d'amélioration
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -385,7 +385,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Brain className="h-5 w-5 text-purple-600" />
-                Analyse de Performance
+                Analyse de performance
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -408,7 +408,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-blue-600" />
-              Révision Détaillée
+              Révision détaillée
             </CardTitle>
           </CardHeader>
           <CardContent>

@@ -500,7 +500,7 @@ predicted_class = torch.argmax(logits, dim=1).item()`}</pre>
             </p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h4 className="font-semibold text-blue-700 mb-2">Plateformes Cloud</h4>
+            <h4 className="font-semibold text-blue-700 mb-2">Plateformes cloud</h4>
             <ul className="list-disc pl-5 space-y-1 text-sm">
               <li>AutoML de Vertex AI (Google Cloud)</li>
               <li>Automated ML d'Azure Machine Learning</li>

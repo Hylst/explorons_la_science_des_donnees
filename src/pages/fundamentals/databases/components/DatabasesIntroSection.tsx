@@ -17,7 +17,7 @@ import { SourceNote } from "@/components/ui/source-note";
 const DatabasesIntroSection = () => {
   const analogies = {
     library: {
-      title: "La Bibliothèque",
+      title: "La bibliothèque",
       description: "Une base de données, c'est comme une bibliothèque géante et ultra-organisée",
       details: [
         "Les tables = les rayonnages thématiques",
@@ -28,7 +28,7 @@ const DatabasesIntroSection = () => {
       ]
     },
     city: {
-      title: "La Ville",
+      title: "La ville",
       description: "Pensez à une base de données comme une ville bien planifiée",
       details: [
         "Les quartiers = les schémas/bases de données",
@@ -57,7 +57,7 @@ const DatabasesIntroSection = () => {
     <section id="databases-intro" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <Database className="h-8 w-8 text-blue-600" />
-        <h2 className="text-3xl font-bold">Introduction aux Bases de Données</h2>
+        <h2 className="text-3xl font-bold">Introduction aux bases de données</h2>
       </div>
 
       {/* Définition avec analogies */}

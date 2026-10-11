@@ -82,7 +82,7 @@ const DataPreparationRefactored = () => {
       isActive: currentSection === 'audit'
     },
     {
-      title: "Qualité Avancée",
+      title: "Qualité avancée",
       href: "#enhanced-quality",
       icon: <Database className="h-4 w-4" />,
       isActive: currentSection === 'enhanced-quality'
@@ -187,10 +187,10 @@ const DataPreparationRefactored = () => {
     <>
       
       <ContentLayout
-        title="Préparation des Données"
+        title="Préparation des données"
         backLink={{
           href: "/fundamentals",
-          label: "Retour aux Fondamentaux"
+          label: "Retour aux fondamentaux"
         }}
         sidebar={{
           items: sidebarItems
@@ -200,7 +200,7 @@ const DataPreparationRefactored = () => {
           {/* Hero Section */}
           <UnifiedHeroSection
             variant="course"
-            title="Préparation des Données"
+            title="Préparation des données"
             subtitle="Apprenez l'art de transformer des données brutes en insights exploitables"
             description="La préparation des données est la plus grande part du travail en data science (38 à 45 % du temps déclaré dans les enquêtes Anaconda 2022 et 2020). Techniques, outils et bonnes pratiques pour nettoyer, transformer et valider ses données."
             courseInfo={{
@@ -267,7 +267,7 @@ const DataPreparationRefactored = () => {
               placée au-dessus du bouton flottant de la mise en page sur ordinateur */}
           <div className="fixed bottom-16 right-4 z-50 hidden lg:block">
             <div className="bg-slate-800 text-white p-3 rounded-lg shadow-lg text-xs max-w-xs">
-              <div className="font-semibold mb-2">Navigation Clavier</div>
+              <div className="font-semibold mb-2">Navigation clavier</div>
               <div className="space-y-1">
                 <div><kbd className="bg-slate-600 px-1 rounded">Alt + ↑/↓</kbd> Sections</div>
                 <div><kbd className="bg-slate-600 px-1 rounded">Alt + Home/End</kbd> Début/Fin</div>

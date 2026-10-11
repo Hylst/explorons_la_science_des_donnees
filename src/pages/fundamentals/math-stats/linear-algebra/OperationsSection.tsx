@@ -17,7 +17,7 @@ const OperationsSection = () => {
 
   return (
     <section id="operations" className="mb-12">
-      <h2 className="text-3xl font-bold mb-6">4. Opérations Matricielles : Les Règles du Jeu</h2>
+      <h2 className="text-3xl font-bold mb-6">4. Opérations matricielles : les règles du jeu</h2>
       
       <CourseHighlight title="Rappel : Les matrices comme des règles de jeu" type="concept">
         <p>
@@ -227,19 +227,19 @@ const OperationsSection = () => {
 
       {/* Advanced Operations Section */}
       <div className="mt-12 space-y-8">
-        <h3 className="text-2xl font-bold mb-6">Opérations Avancées : Les Super-Pouvoirs des Matrices</h3>
+        <h3 className="text-2xl font-bold mb-6">Opérations avancées : les super-pouvoirs des matrices</h3>
         
         {/* Matrix Inverse */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5 text-red-600" />
-              Matrice Inverse : L'Opération "Annuler"
+              Matrice inverse : l'opération "annuler"
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CourseHighlight title="Analogie : L'inverse comme un bouton Annuler matriciel" type="concept">
+              <CourseHighlight title="Analogie : l'inverse comme un bouton annuler matriciel" type="concept">
                 <p>
                   Si une matrice A transforme un vecteur, son inverse A^(-1) fait exactement l'opération contraire. 
                   C'est comme avoir un bouton "Annuler" pour les transformations géométriques.
@@ -248,7 +248,7 @@ const OperationsSection = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-3">Définition et Propriétés :</h4>
+                  <h4 className="font-semibold mb-3">Définition et propriétés :</h4>
                   <CourseEquation latex="A \cdot A^{-1} = A^{-1} \cdot A = I" />
                   <div className="space-y-2 mt-3 text-sm">
                     <p><strong>Condition d'existence :</strong> det(A) ≠ 0</p>
@@ -294,7 +294,7 @@ const OperationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-purple-600" />
-              Valeurs et Vecteurs Propres : Les Directions Privilégiées
+              Valeurs et vecteurs propres : les directions privilégiées
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -308,7 +308,7 @@ const OperationsSection = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-purple-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-3">Définition Mathématique :</h4>
+                  <h4 className="font-semibold mb-3">Définition mathématique :</h4>
                   <CourseEquation latex="A\mathbf{v} = \lambda\mathbf{v}" />
                   <div className="space-y-2 mt-3 text-sm">
                     <p><strong>λ (lambda) :</strong> valeur propre (scalaire)</p>
@@ -319,7 +319,7 @@ const OperationsSection = () => {
                 </div>
 
                 <div className="bg-indigo-50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-3">Calcul des Valeurs Propres :</h4>
+                  <h4 className="font-semibold mb-3">Calcul des valeurs propres :</h4>
                   <CourseEquation latex="\det(A - \lambda I) = 0" />
                   <div className="bg-white p-3 rounded mt-3">
                     <p className="text-sm font-semibold">Exemple 2×2 :</p>
@@ -335,7 +335,7 @@ const OperationsSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-blue-600">Analyse en Composantes Principales (PCA)</p>
+                      <p className="font-semibold text-blue-600">Analyse en composantes principales (PCA)</p>
                       <p className="text-xs">Réduction de dimensionnalité, compression d'images</p>
                     </div>
                     <div className="bg-white p-3 rounded">
@@ -345,11 +345,11 @@ const OperationsSection = () => {
                   </div>
                   <div className="space-y-3">
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-purple-600">Reconnaissance Faciale</p>
+                      <p className="font-semibold text-purple-600">Reconnaissance faciale</p>
                       <p className="text-xs">Eigenfaces pour identifier les visages</p>
                     </div>
                     <div className="bg-white p-3 rounded">
-                      <p className="font-semibold text-red-600">Systèmes Dynamiques</p>
+                      <p className="font-semibold text-red-600">Systèmes dynamiques</p>
                       <p className="text-xs">Stabilité, oscillations, chaos</p>
                     </div>
                   </div>
@@ -364,7 +364,7 @@ const OperationsSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Layers className="h-5 w-5 text-orange-600" />
-              Décompositions Matricielles : Démonter pour Mieux Comprendre
+              Décompositions matricielles : démonter pour mieux comprendre
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -406,7 +406,7 @@ const OperationsSection = () => {
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <Badge className="bg-blue-100 text-blue-800">SVD</Badge>
-                    Décomposition en Valeurs Singulières : Le Couteau Suisse
+                    Décomposition en valeurs singulières : le couteau suisse
                   </h4>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
@@ -432,7 +432,7 @@ const OperationsSection = () => {
                 <div className="bg-green-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <Badge className="bg-green-100 text-green-800">QR</Badge>
-                    Décomposition QR : Orthogonal × Triangulaire
+                    Décomposition QR : orthogonal × triangulaire
                   </h4>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
@@ -455,7 +455,7 @@ const OperationsSection = () => {
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold mb-3">Exemple Concret : Compression d'Image par SVD</h4>
+                <h4 className="font-semibold mb-3">Exemple concret : compression d'image par SVD</h4>
                 <div className="space-y-3">
                   <p className="text-sm">
                     Une image 1000×1000 pixels = 1 million de nombres. Avec SVD, on peut la compresser 

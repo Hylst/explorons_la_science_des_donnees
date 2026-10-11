@@ -45,7 +45,7 @@ const ResourcesPage = () => {
       icon: <GraduationCap className="h-4 w-4" /> 
     },
     { 
-      title: "Sites Web", 
+      title: "Sites web", 
       href: "#websites", 
       isActive: currentSection === "websites",
       icon: <Globe className="h-4 w-4" /> 

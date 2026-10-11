@@ -26,7 +26,7 @@ const IntroSectionRefactored = () => {
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-8">
           <Badge variant="secondary" className="px-4 py-2">Inspiré de Kaggle Learn</Badge>
-          <Badge variant="secondary" className="px-4 py-2">Exercices Pratiques</Badge>
+          <Badge variant="secondary" className="px-4 py-2">Exercices pratiques</Badge>
           <Badge variant="secondary" className="px-4 py-2">Python & Pandas</Badge>
           <Badge variant="secondary" className="px-4 py-2">Schémas</Badge>
         </div>
@@ -93,15 +93,15 @@ const IntroSectionRefactored = () => {
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto p-1">
           <TabsTrigger value="models-work" className="text-xs p-3 h-auto flex flex-col gap-1">
             <GitBranch className="h-5 w-5" aria-hidden="true" />
-            <span>Comment Fonctionnent les Modèles</span>
+            <span>Comment fonctionnent les modèles</span>
           </TabsTrigger>
           <TabsTrigger value="data-exploration" className="text-xs p-3 h-auto flex flex-col gap-1">
             <Search className="h-5 w-5" aria-hidden="true" />
-            <span>Exploration des Données</span>
+            <span>Exploration des données</span>
           </TabsTrigger>
           <TabsTrigger value="first-model" className="text-xs p-3 h-auto flex flex-col gap-1">
             <FlaskConical className="h-5 w-5" aria-hidden="true" />
-            <span>Premier Modèle</span>
+            <span>Premier modèle</span>
           </TabsTrigger>
           <TabsTrigger value="model-validation" className="text-xs p-3 h-auto flex flex-col gap-1">
             <CheckCircle className="h-5 w-5" aria-hidden="true" />
@@ -109,11 +109,11 @@ const IntroSectionRefactored = () => {
           </TabsTrigger>
           <TabsTrigger value="overfitting" className="text-xs p-3 h-auto flex flex-col gap-1">
             <Scale className="h-5 w-5" aria-hidden="true" />
-            <span>Sur/Sous-ajustement</span>
+            <span>Sur/sous-ajustement</span>
           </TabsTrigger>
           <TabsTrigger value="random-forests" className="text-xs p-3 h-auto flex flex-col gap-1">
             <TreePine className="h-5 w-5" aria-hidden="true" />
-            <span>Forêts Aléatoires</span>
+            <span>Forêts aléatoires</span>
           </TabsTrigger>
         </TabsList>
 
@@ -121,7 +121,7 @@ const IntroSectionRefactored = () => {
         <TabsContent value="models-work" className="space-y-8">
           <div className="text-center mb-8">
             <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
-              Comment Fonctionnent les Modèles
+              Comment fonctionnent les modèles
             </h3>
             <p className="text-xl text-muted-foreground">Comprendre ce qu'est un modèle prédictif, à travers les arbres de décision</p>
           </div>
@@ -145,7 +145,7 @@ const IntroSectionRefactored = () => {
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-green-400">
                   <h4 className="font-semibold text-green-800 mb-3 flex items-center gap-2">
                     <TreePine className="h-5 w-5" />
-                    Arbre de Décision : Votre Premier Modèle
+                    Arbre de décision : votre premier modèle
                   </h4>
                   <p className="text-green-700 mb-4">
                     Un arbre de décision fonctionne comme un questionnaire. Il pose des questions successives
@@ -167,7 +167,7 @@ const IntroSectionRefactored = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-400">
                   <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
                     <Target className="h-5 w-5" />
-                    Exemple Concret : Prix d'une Maison
+                    Exemple concret : prix d'une maison
                   </h4>
                   <p className="text-blue-700 mb-4">
                     Pour prédire le prix d'une maison, notre modèle examine des caractéristiques comme :
@@ -238,7 +238,7 @@ const IntroSectionRefactored = () => {
           </Card>
 
           <ExerciseCard
-            title="Exercice Pratique : Construisez Votre Arbre de Décision"
+            title="Exercice pratique : construisez votre arbre de décision"
             problem="Vous conseillez une concession automobile. Dessinez un arbre de décision pour prédire si un client achètera plutôt une voiture électrique. Vous devez poser exactement 3 questions pour répartir les clients. (Exercice de réflexion : aucune donnée de ventes n'est fournie.)"
             solution={`
 **Une solution possible** (les seuils sont des exemples, à valider sur des données de ventes réelles) :
@@ -270,7 +270,7 @@ const IntroSectionRefactored = () => {
           <div className="bg-gradient-to-r from-green-700 to-emerald-700 text-white p-6 rounded-lg">
             <h4 className="font-bold text-xl mb-3 flex items-center gap-2">
               <CheckCircle className="h-6 w-6" />
-              Points Clés à Retenir
+              Points clés à retenir
             </h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-2">
@@ -343,7 +343,7 @@ const IntroSectionRefactored = () => {
           </EducationalCard>
 
           <ExerciseCard
-            title="Exercice : Exploration du Dataset Melbourne House Prices"
+            title="Exercice : exploration du dataset Melbourne House Prices"
             problem="Explorez le jeu de données des prix immobiliers de Melbourne (fichier melb_data.csv, publié sur Kaggle et non fourni sur ce site) et calculez quelques statistiques : prix médian, nombre moyen de chambres, taille moyenne du terrain."
             solution="Prix médian : 903 000 AUD | Chambres : 2,94 en moyenne | Terrain : 558 m² en moyenne (fichier melb_data.csv, 13 580 lignes)"
             hints={[
@@ -596,7 +596,7 @@ const IntroSectionRefactored = () => {
                   </div>
 
                   <div className="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                    <h5 className="font-semibold text-green-800 mb-2">Principe des Forêts Aléatoires</h5>
+                    <h5 className="font-semibold text-green-800 mb-2">Principe des forêts aléatoires</h5>
                     <div className="space-y-3">
                       <p className="text-sm">Une forêt aléatoire combine <strong>plusieurs arbres</strong>, chacun entraîné sur un échantillon tiré au hasard avec remise, et limité à un sous-ensemble de variables tiré au hasard à chaque coupure :</p>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

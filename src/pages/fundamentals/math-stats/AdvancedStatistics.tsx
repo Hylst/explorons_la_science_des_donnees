@@ -18,7 +18,7 @@ const AdvancedStatistics = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="page"
-          title="Statistiques Avancées"
+          title="Statistiques avancées"
           description="Explorez les techniques statistiques avancées pour l'analyse de données complexes et la prise de décision éclairée"
         />
         <div className="container mx-auto px-4 py-8 max-w-7xl">

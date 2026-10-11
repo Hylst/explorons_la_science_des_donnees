@@ -93,7 +93,7 @@ describe("routes : chaque page s'affiche", () => {
     expect(texte.length).toBeGreaterThan(300);
     expect(container.querySelectorAll("h1").length, `titres h1 de ${route} (il en faut exactement un)`).toBe(1);
     // un seul fil d'Ariane par page (régression du 5 octobre 2026 : /machine-learning/supervised en affichait deux, l'un sous l'autre)
-    expect(container.querySelectorAll('nav[aria-label="breadcrumb"]').length, `fils d'Ariane de ${route}`).toBeLessThanOrEqual(1);
+    expect(container.querySelectorAll('nav[aria-label="Fil d\'Ariane"]').length, `fils d'Ariane de ${route}`).toBeLessThanOrEqual(1);
     // régression du 5 octobre 2026 : l'algèbre linéaire affichait chaque section deux fois, avec les mêmes id
     expect(idsEnDouble(container), `id en double sur ${route}`).toEqual([]);
 

@@ -2,6 +2,7 @@
 import type { PyodideInterface } from 'pyodide';
 import type { WorkerRequest, WorkerResponse } from './types';
 import { wasmBlocked } from './csp-guard';
+import { describeError } from './describe-error';
 import { ENGINE_SETUP } from './python-setup';
 
 // Pyodide (Python dans WebAssembly) est servi par le site lui-même : public/vendor/pyodide (voir scripts/sync-runtimes.mjs)
@@ -78,7 +79,7 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   try {
     py = await Promise.race([loadPython(baseUrl, status), wasmBlocked]);
   } catch (error) {
-    post({ type: 'done', id, output: '', error: `Impossible de charger Python : ${error instanceof Error ? error.message : String(error)}` });
+    post({ type: 'done', id, output: '', error: `Impossible de charger Python : ${describeError(error)}` });
     return;
   }
 
@@ -98,7 +99,7 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
     await py.runPythonAsync(adaptAsyncio(code), { globals });
     post({ type: 'done', id, output: lines.join('\n'), images: collectFigures(py) });
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+    const message = describeError(error);
     let images: string[] = [];
     try {
       images = collectFigures(py);

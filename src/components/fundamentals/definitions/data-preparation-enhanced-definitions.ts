@@ -225,7 +225,7 @@ export const dataPreparationEnhancedDefinitions: Record<string, GlossaryTermDefi
 
   // Quality Metrics
   "kpi-qualité": {
-    term: "KPI Qualité",
+    term: "KPI qualité",
     shortDefinition: "Indicateurs clés de performance pour mesurer et suivre la qualité des données.",
     longDefinition: "Les KPI (Key Performance Indicators) de qualité sont des métriques quantifiables qui permettent de mesurer, surveiller et améliorer la qualité des données au fil du temps. Ils fournissent une vision objective de l'état de santé des données.",
     examples: [

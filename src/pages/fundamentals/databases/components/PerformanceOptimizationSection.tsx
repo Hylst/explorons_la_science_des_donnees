@@ -7,7 +7,7 @@ const PerformanceOptimizationSection = () => {
     <section id="performance" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <Zap className="h-8 w-8 text-yellow-600 flex-shrink-0" />
-        <h2 className="text-3xl font-bold">Optimisation et Performance</h2>
+        <h2 className="text-3xl font-bold">Optimisation et performance</h2>
       </div>
 
       <Card className="border-l-4 border-l-yellow-500">

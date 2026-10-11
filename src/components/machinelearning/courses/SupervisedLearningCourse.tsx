@@ -24,7 +24,7 @@ const SupervisedLearningCourse = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Target className="h-12 w-12" />
-            Apprentissage Supervisé
+            Apprentissage supervisé
           </CardTitle>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
             Apprendre à prédire à partir d'exemples étiquetés : de la classification de courriels
@@ -41,7 +41,7 @@ const SupervisedLearningCourse = () => {
             </Badge>
             <Badge className="bg-white text-blue-600 text-sm px-4 py-2">
               <Users className="h-4 w-4 mr-2" />
-              Données Étiquetées
+              Données étiquetées
             </Badge>
           </div>
         </CardHeader>

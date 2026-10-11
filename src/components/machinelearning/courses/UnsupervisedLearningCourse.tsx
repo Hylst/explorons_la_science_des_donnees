@@ -31,7 +31,7 @@ const UnsupervisedLearningCourse = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Search className="h-12 w-12" />
-            Apprentissage Non Supervisé
+            Apprentissage non supervisé
           </CardTitle>
           <p className="text-xl text-green-100 max-w-3xl mx-auto">
             Repérer des structures dans des données sans étiquette : groupes, axes principaux,
@@ -44,11 +44,11 @@ const UnsupervisedLearningCourse = () => {
             </Badge>
             <Badge className="bg-white text-green-600 text-sm px-4 py-2">
               <Sparkles className="h-4 w-4 mr-2" />
-              Réduction de Dimension
+              Réduction de dimension
             </Badge>
             <Badge className="bg-white text-green-600 text-sm px-4 py-2">
               <Eye className="h-4 w-4 mr-2" />
-              Détection d'Anomalies
+              Détection d'anomalies
             </Badge>
           </div>
         </CardHeader>

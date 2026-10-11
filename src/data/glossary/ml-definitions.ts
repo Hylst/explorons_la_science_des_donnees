@@ -10,7 +10,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
       "Un système qui apprend à reconnaître des visages après avoir été entraîné sur des milliers d'images",
       "Un programme qui prédit les prix immobiliers en analysant les ventes historiques"
     ],
-    relatedTerms: ["Intelligence Artificielle", "Deep Learning", "Apprentissage supervisé"],
+    relatedTerms: ["Intelligence artificielle", "Deep Learning", "Apprentissage supervisé"],
     source: "Mitchell, Tom M. (1997). Machine Learning",
     sourceUrl: "https://www.cs.cmu.edu/~tom/mlbook.html",
     domain: "general",
@@ -201,7 +201,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
       "T5 pour diverses tâches de NLP",
       "ViT pour la vision par ordinateur"
     ],
-    relatedTerms: ["Attention", "Auto-attention", "BERT", "GPT", "Encodeur-Décodeur"],
+    relatedTerms: ["Attention", "Auto-attention", "BERT", "GPT", "Encodeur-décodeur"],
     source: "Vaswani, A., et al. (2017). Attention Is All You Need",
     sourceUrl: "https://arxiv.org/abs/1706.03762",
     domain: "machinelearning",
@@ -309,7 +309,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
     englishTerm: "MSE (Mean Squared Error)"
   },
   "rmse": {
-    term: "RMSE (Racine de l'erreur quadratique moyenne)",
+    term: "RMSE (racine de l'erreur quadratique moyenne)",
     shortDefinition: "Racine carrée de la MSE, exprimant l'erreur dans la même unité que la variable cible.",
     longDefinition: "La racine de l'erreur quadratique moyenne (Root Mean Squared Error) est l'une des métriques les plus couramment utilisées pour évaluer les modèles de régression. Elle est calculée comme la racine carrée de la MSE, ce qui permet d'exprimer l'erreur dans la même unité que la variable cible, facilitant l'interprétation.",
     examples: [
@@ -323,7 +323,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
     englishTerm: "RMSE (Root Mean Squared Error)"
   },
   "r-carre": {
-    term: "R² (Coefficient de détermination)",
+    term: "R² (coefficient de détermination)",
     shortDefinition: "Proportion de la variance de la variable dépendante qui est prédictible à partir des variables indépendantes.",
     longDefinition: "Le coefficient de détermination (R²) est une mesure statistique qui représente la proportion de la variance dans la variable dépendante qui est prédictible à partir des variables indépendantes. Il varie entre 0 et 1, où 1 indique que le modèle explique parfaitement toute la variabilité des données, et 0 indique que le modèle n'explique aucune variabilité.",
     examples: [
@@ -367,7 +367,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
     englishTerm: "DBSCAN"
   },
   "pca": {
-    term: "PCA (Analyse en Composantes Principales)",
+    term: "PCA (analyse en composantes principales)",
     shortDefinition: "Technique de réduction de dimensionnalité qui transforme les données en un nouvel ensemble de variables décorrélées.",
     longDefinition: "L'Analyse en Composantes Principales (PCA) est une technique statistique qui transforme un ensemble de variables possiblement corrélées en un ensemble de variables linéairement décorrélées appelées composantes principales. La transformation est définie de telle sorte que la première composante principale capture la plus grande variance possible, et chaque composante suivante capture la variance maximale sous contrainte d'être orthogonale aux composantes précédentes.",
     examples: [

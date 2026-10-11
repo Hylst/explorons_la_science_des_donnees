@@ -39,7 +39,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children, position = 'top' }
         onTouchStart={() => setIsVisible(true)} // Touch interaction
         tabIndex={0}
         role="button"
-        aria-label="Show tooltip"
+        aria-label="Afficher l'aide"
       >
         {children}
       </div>

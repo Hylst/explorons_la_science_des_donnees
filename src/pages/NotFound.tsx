@@ -37,7 +37,7 @@ const NotFound = () => {
     if (path.includes('ml') || path.includes('machine') || path.includes('learning')) {
       return [
         { title: "Machine Learning", href: "/machine-learning", icon: Brain, description: "La section Machine Learning" },
-        { title: "ML Supervisé", href: "/courses/machine-learning/supervised-learning", icon: Brain, description: "Cours d'apprentissage supervisé" }
+        { title: "ML supervisé", href: "/courses/machine-learning/supervised-learning", icon: Brain, description: "Cours d'apprentissage supervisé" }
       ];
     }
     

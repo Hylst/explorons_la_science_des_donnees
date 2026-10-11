@@ -28,7 +28,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Grid3X3 className="h-5 w-5 text-blue-600" />
-            Structure des Arrays NumPy
+            Structure des arrays NumPy
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -150,7 +150,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
         <CardContent>
           <div className="space-y-6">
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-orange-800">Qu'est-ce que le Broadcasting ?</h4>
+              <h4 className="font-semibold mb-3 text-orange-800">Qu'est-ce que le broadcasting ?</h4>
               <p className="text-sm text-gray-700 mb-4">
                 Le broadcasting permet d'effectuer des opérations entre arrays de formes différentes sans copier explicitement les données.
               </p>
@@ -264,7 +264,7 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
 
             {/* Broadcasting Rules */}
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-blue-800">Règles du Broadcasting</h4>
+              <h4 className="font-semibold mb-3 text-blue-800">Règles du broadcasting</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h5 className="font-medium mb-2 text-blue-700">Compatible</h5>
@@ -330,13 +330,13 @@ const PythonInteractiveSchemas: React.FC<PythonInteractiveSchemasProps> = ({ typ
           <div className="space-y-6">
             {/* Performance Comparison */}
             <div className="bg-gradient-to-r from-red-50 to-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-4 text-gray-800">Comparaison de Performance</h4>
+              <h4 className="font-semibold mb-4 text-gray-800">Comparaison de performance</h4>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Python Pure */}
                 <div className="bg-white p-4 rounded-lg border border-red-200">
                   <h5 className="font-semibold text-red-700 mb-3 flex items-center gap-2">
-                    Python Pur
+                    Python pur
                   </h5>
                   <pre className="bg-gray-800 text-green-400 p-3 rounded text-xs overflow-x-auto mb-3">
 {`# Addition de 1M d'éléments
@@ -385,7 +385,7 @@ print(f"Temps: {end-start:.3f}s")`}
 
               {/* Performance Metrics */}
               <div className="mt-6 bg-white p-4 rounded-lg border">
-                <h5 className="font-semibold mb-3 text-gray-800">Métriques de Performance</h5>
+                <h5 className="font-semibold mb-3 text-gray-800">Métriques de performance</h5>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-3 bg-green-50 rounded">
                     <div className="text-2xl font-bold text-green-600">Bien plus rapide</div>
@@ -519,7 +519,7 @@ print(f"Temps: {end-start:.3f}s")`}
 
             {/* DataFrame Operations */}
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-blue-800">Opérations Courantes</h4>
+              <h4 className="font-semibold mb-3 text-blue-800">Opérations courantes</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h5 className="font-medium mb-2 text-blue-700">Sélection</h5>
@@ -566,13 +566,13 @@ df.sort_values('Âge')`}
           <div className="space-y-6">
             {/* Workflow Steps */}
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-4 text-purple-800">Étapes de Création d'un Graphique</h4>
+              <h4 className="font-semibold mb-4 text-purple-800">Étapes de création d'un graphique</h4>
               
               <div className="space-y-4">
                 {[
                   {
                     step: 1,
-                    title: "Import et Données",
+                    title: "Import et données",
                     code: `import matplotlib.pyplot as plt
 import numpy as np
 
@@ -593,7 +593,7 @@ fig, ax = plt.subplots(figsize=(10, 6))`,
                   },
                   {
                     step: 3,
-                    title: "Tracer les Données",
+                    title: "Tracer les données",
                     code: `# Méthode simple
 plt.plot(x, y, 'b-', linewidth=2)
 
@@ -680,21 +680,21 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Grid3X3 className="h-5 w-5 text-indigo-600" />
-            Types de Données Python vs NumPy
+            Types de données Python vs NumPy
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
             {/* Comparison Table */}
             <div className="bg-indigo-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-4 text-indigo-800">Comparaison des Types</h4>
+              <h4 className="font-semibold mb-4 text-indigo-800">Comparaison des types</h4>
               
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse border border-indigo-200">
                   <thead>
                     <tr className="bg-indigo-100">
                       <th className="border border-indigo-200 p-2 text-left text-sm font-semibold">Concept</th>
-                      <th className="border border-indigo-200 p-2 text-left text-sm font-semibold">Python Pur</th>
+                      <th className="border border-indigo-200 p-2 text-left text-sm font-semibold">Python pur</th>
                       <th className="border border-indigo-200 p-2 text-left text-sm font-semibold">NumPy</th>
                       <th className="border border-indigo-200 p-2 text-left text-sm font-semibold">Avantages NumPy</th>
                     </tr>
@@ -766,7 +766,7 @@ plt.savefig('sinus.png', dpi=300, bbox_inches='tight')`,
 
             {/* Memory Usage Example */}
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-3 text-yellow-800">Exemple d'Usage Mémoire</h4>
+              <h4 className="font-semibold mb-3 text-yellow-800">Exemple d'usage mémoire</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-white p-3 rounded border">
                   <h5 className="font-semibold text-red-700 mb-2">Liste Python (1M entiers)</h5>
@@ -809,7 +809,7 @@ print(f"Mémoire : {data.nbytes} octets")
           <div className="space-y-6">
             {/* Jupyter Workflow Steps */}
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-4 text-orange-800">Étapes du Workflow Data Science</h4>
+              <h4 className="font-semibold mb-4 text-orange-800">Étapes du workflow Data Science</h4>
               
               <div className="grid gap-4">
                 {[

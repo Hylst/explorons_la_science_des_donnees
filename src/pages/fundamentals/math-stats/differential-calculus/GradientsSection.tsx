@@ -82,7 +82,7 @@ const GradientsSection = () => {
 
   return (
     <section id="gradients" className="scroll-mt-24 space-y-8">
-      <h2 className="text-3xl font-bold mb-6">4. Gradients et Dérivées Partielles</h2>
+      <h2 className="text-3xl font-bold mb-6">4. Gradients et dérivées partielles</h2>
       
       <CourseHighlight title="Le gradient : votre boussole mathématique" type="concept">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -272,7 +272,7 @@ const GradientsSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card className="border-l-4 border-l-purple-500">
                   <CardHeader>
-                    <CardTitle className="text-lg">Réseaux Convolutifs (CNN)</CardTitle>
+                    <CardTitle className="text-lg">Réseaux convolutifs (CNN)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CourseEquation latex="\frac{\partial L}{\partial K_{m,n}} = \sum_{i,j} \frac{\partial L}{\partial Y_{i,j}}\, X_{i+m,\,j+n}" />

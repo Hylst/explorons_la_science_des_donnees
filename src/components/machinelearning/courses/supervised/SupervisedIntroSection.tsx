@@ -20,7 +20,7 @@ const SupervisedIntroSection = () => {
                 <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
                   <BookOpen className="h-8 w-8 text-blue-600" />
                 </div>
-                <h4 className="font-semibold mb-2">Le Professeur</h4>
+                <h4 className="font-semibold mb-2">Le professeur</h4>
                 <p className="text-sm text-blue-700">
                   Donne des exercices avec leurs solutions (données d'entraînement étiquetées)
                 </p>
@@ -29,7 +29,7 @@ const SupervisedIntroSection = () => {
                 <div className="bg-indigo-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
                   <Brain className="h-8 w-8 text-indigo-600" />
                 </div>
-                <h4 className="font-semibold mb-2">L'Élève (IA)</h4>
+                <h4 className="font-semibold mb-2">L'élève (IA)</h4>
                 <p className="text-sm text-indigo-700">
                   Cherche les régularités dans les exemples fournis
                 </p>
@@ -38,7 +38,7 @@ const SupervisedIntroSection = () => {
                 <div className="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-3">
                   <Trophy className="h-8 w-8 text-purple-600" />
                 </div>
-                <h4 className="font-semibold mb-2">L'Examen</h4>
+                <h4 className="font-semibold mb-2">L'examen</h4>
                 <p className="text-sm text-purple-700">
                   Test sur de nouveaux problèmes jamais vus auparavant
                 </p>
@@ -104,7 +104,7 @@ const SupervisedIntroSection = () => {
                 Algorithme
               </text>
               <text x="260" y="130" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
-                d'Apprentissage
+                d'apprentissage
               </text>
               <text x="260" y="145" textAnchor="middle" fill="white" fontSize="10">
                 (Training)

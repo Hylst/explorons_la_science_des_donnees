@@ -17,7 +17,7 @@ const BigDataSection = () => {
     <section id="big-data" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <BarChart3 className="h-8 w-8 text-orange-600 flex-shrink-0" />
-        <h2 className="text-3xl font-bold">Big Data et Écosystème Moderne</h2>
+        <h2 className="text-3xl font-bold">Big Data et écosystème moderne</h2>
       </div>
 
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
@@ -38,7 +38,7 @@ const BigDataSection = () => {
         <figure>
           <img
             src={asset("svg/big_data_5v_diagram.svg")}
-            alt="Schéma des 5 V du Big Data : Volume, Vélocité, Variété, Véracité et Valeur autour du Big Data"
+            alt="Schéma des 5 V du Big Data : volume, vélocité, variété, véracité et valeur autour du Big Data"
             width={600}
             height={400}
             loading="lazy"

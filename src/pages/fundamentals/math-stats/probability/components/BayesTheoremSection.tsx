@@ -44,25 +44,25 @@ const BayesTheoremSection = () => {
 
   // Données pour la visualisation
   const bayesVisualizationData = [
-    { category: 'Vrais Positifs', value: medicalData.diseasePrevalence * medicalData.testSensitivity * 100000, color: '#10B981' },
-    { category: 'Faux Positifs', value: (1 - medicalData.diseasePrevalence) * (1 - medicalData.testSpecificity) * 100000, color: '#EF4444' },
-    { category: 'Vrais Négatifs', value: (1 - medicalData.diseasePrevalence) * medicalData.testSpecificity * 100000, color: '#3B82F6' },
-    { category: 'Faux Négatifs', value: medicalData.diseasePrevalence * (1 - medicalData.testSensitivity) * 100000, color: '#F59E0B' }
+    { category: 'Vrais positifs', value: medicalData.diseasePrevalence * medicalData.testSensitivity * 100000, color: '#10B981' },
+    { category: 'Faux positifs', value: (1 - medicalData.diseasePrevalence) * (1 - medicalData.testSpecificity) * 100000, color: '#EF4444' },
+    { category: 'Vrais négatifs', value: (1 - medicalData.diseasePrevalence) * medicalData.testSpecificity * 100000, color: '#3B82F6' },
+    { category: 'Faux négatifs', value: medicalData.diseasePrevalence * (1 - medicalData.testSensitivity) * 100000, color: '#F59E0B' }
   ];
 
   const examples = {
     medical: {
-      title: "Diagnostic Médical",
+      title: "Diagnostic médical",
       description: "Test de dépistage d'une maladie rare",
       scenario: "Une maladie touche 0.1% de la population. Un test a 99% de sensibilité et 95% de spécificité."
     },
     spam: {
-      title: "Détection de Spam",
+      title: "Détection de spam",
       description: "Classification automatique des emails",
       scenario: "30% des emails sont des spams. Le filtre détecte 95% des spams mais classe 2% des vrais emails comme spam."
     },
     weather: {
-      title: "Prévision Météo",
+      title: "Prévision météo",
       description: "Prédiction de pluie basée sur les nuages",
       scenario: "Il pleut 20% des jours. Quand il pleut, il y a des nuages 90% du temps. Quand il ne pleut pas, il y a des nuages 30% du temps."
     }
@@ -71,7 +71,7 @@ const BayesTheoremSection = () => {
   return (
     <section id="bayes-theorem" className="mb-16">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-        5. Le Théorème de Bayes : L'Art de Réviser ses Croyances
+        5. Le théorème de Bayes : L'art de réviser ses croyances
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -115,7 +115,7 @@ const BayesTheoremSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-5 w-5" />
-            La Formule Magique
+            La formule magique
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -165,7 +165,7 @@ const BayesTheoremSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-5 w-5" />
-            Exemples Interactifs
+            Exemples interactifs
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -331,10 +331,10 @@ const BayesTheoremSection = () => {
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold">Applications Business :</h4>
+            <h4 className="font-semibold">Applications business :</h4>
             <div className="space-y-2 text-sm">
               <div className="bg-white p-3 rounded border">
-                <strong>Détection de Fraude :</strong> Mise à jour du risque avec chaque transaction
+                <strong>Détection de fraude :</strong> Mise à jour du risque avec chaque transaction
               </div>
               <div className="bg-white p-3 rounded border">
                 <strong>Recommandations :</strong> Affinement des préférences utilisateur

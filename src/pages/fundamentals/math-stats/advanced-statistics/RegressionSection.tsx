@@ -29,7 +29,7 @@ const RegressionSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <Brain className="h-8 w-8 text-indigo-600" />
-          Régression Avancée
+          Régression avancée
         </h2>
         <p className="text-lg text-gray-600">
           Explorez les modèles de régression sophistiqués pour analyser des relations complexes.

@@ -29,7 +29,7 @@ const ANOVASection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
           <Calculator className="h-8 w-8 text-purple-600" />
-          Analyse de Variance (ANOVA)
+          Analyse de variance (ANOVA)
         </h2>
         <p className="text-lg text-gray-600">
           Comparez simultanément les moyennes de plusieurs groupes avec l'ANOVA.

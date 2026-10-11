@@ -141,21 +141,21 @@ const DispersionSection = () => {
       title: "Rendements d'investissement",
       description: "Rendements annuels (%) de 3 portefeuilles",
       equipes: {
-        "Portefeuille Prudent": { 
+        "Portefeuille prudent": { 
           data: [4, 5, 6, 5, 7, 5], 
           moyenne: 5.3, 
           ecartType: 1.0,
           couleur: "#10B981",
           interpretation: "Faible risque, rendement stable"
         },
-        "Portefeuille Équilibré": { 
+        "Portefeuille équilibré": { 
           data: [2, 8, 6, 9, 4, 7], 
           moyenne: 6.0, 
           ecartType: 2.8,
           couleur: "#F59E0B",
           interpretation: "Risque modéré, plus de variabilité"
         },
-        "Portefeuille Agressif": { 
+        "Portefeuille agressif": { 
           data: [-5, 15, 8, 18, -2, 12], 
           moyenne: 7.7, 
           ecartType: 9.5,
@@ -232,7 +232,7 @@ const DispersionSection = () => {
     <section id="dispersion" className="mb-12">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
         <TrendingUp className="h-8 w-8 text-green-600" />
-        2. Mesures de Dispersion : Quantifier l'Imprévisibilité
+        2. Mesures de dispersion : Quantifier l'imprévisibilité
       </h2>
 
       {/* Introduction conceptuelle */}
@@ -268,7 +268,7 @@ const DispersionSection = () => {
       {/* Sélecteur de scénarios */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Laboratoire de la Variabilité</CardTitle>
+          <CardTitle>Laboratoire de la variabilité</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-3 mb-6">
@@ -351,7 +351,7 @@ const DispersionSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5" />
-              Variance : La Mesure des Écarts
+              Variance : la mesure des écarts
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -387,7 +387,7 @@ const DispersionSection = () => {
               <div className="bg-yellow-50 p-3 rounded-lg">
                 <h5 className="font-semibold text-sm mb-2 flex items-center gap-2">
                   <AlertCircle className="h-4 w-4" />
-                  Pourquoi n-1 ? (Correction de Bessel)
+                  Pourquoi n-1 ? (correction de Bessel)
                 </h5>
                 <p className="text-xs">
                   Avec un échantillon, on sous-estime naturellement la variance de la population. 
@@ -402,7 +402,7 @@ const DispersionSection = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              Écart-type : L'Unité Naturelle
+              Écart-type : l'unité naturelle
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -414,7 +414,7 @@ const DispersionSection = () => {
 
               <CourseEquation latex="s = \sqrt{s^2} = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}" />
 
-              <CourseHighlight title="Exemple concret : Salaires" type="example">
+              <CourseHighlight title="Exemple concret : salaires" type="example">
                 <div className="text-sm space-y-2">
                   <p><strong>Données :</strong> Salaires en euros</p>
                   <p><strong>Variance :</strong> en euros² (difficile à interpréter)</p>
@@ -455,7 +455,7 @@ const DispersionSection = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5" />
-            Coefficient de Variation : Le Comparateur Universel
+            Coefficient de variation : le comparateur universel
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -531,7 +531,7 @@ const DispersionSection = () => {
       {/* Autres mesures de dispersion */}
       <Card>
         <CardHeader>
-          <CardTitle>La Famille Complète des Mesures de Dispersion</CardTitle>
+          <CardTitle>La famille complète des mesures de dispersion</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -544,7 +544,7 @@ const DispersionSection = () => {
             </div>
 
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-2 text-blue-700">Écart Interquartile</h5>
+              <h5 className="font-semibold mb-2 text-blue-700">Écart interquartile</h5>
               <CourseEquation latex="IQR = Q_3 - Q_1" />
               <p className="text-xs text-blue-600 mt-2">
                 Robuste aux aberrantes. Mesure la dispersion des 50% centraux.
@@ -552,7 +552,7 @@ const DispersionSection = () => {
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-2 text-green-700">Écart Absolu Médian</h5>
+              <h5 className="font-semibold mb-2 text-green-700">Écart absolu médian</h5>
               <CourseEquation latex="MAD = \text{médiane}(|x_i - \text{médiane}|)" />
               <p className="text-xs text-green-600 mt-2">
                 Ultra-robuste. Alternative à l'écart-type pour données avec aberrantes.
@@ -598,7 +598,7 @@ const DispersionSection = () => {
         <CardHeader>
           <CardTitle className="text-2xl text-blue-800 flex items-center gap-3">
             <Zap className="h-6 w-6" />
-            Laboratoire Interactif : Visualisations Dynamiques
+            Laboratoire interactif : visualisations dynamiques
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -611,7 +611,7 @@ const DispersionSection = () => {
                 className="flex items-center gap-2"
               >
                 <BarChart3 className="h-4 w-4" />
-                Animation Variance
+                Animation variance
               </Button>
               <Button
                 variant={selectedVisualization === 'covariance' ? 'default' : 'outline'}
@@ -619,7 +619,7 @@ const DispersionSection = () => {
                 className="flex items-center gap-2"
               >
                 <TrendingUp className="h-4 w-4" />
-                Covariance Interactive
+                Covariance interactive
               </Button>
               <Button
                 variant={selectedVisualization === 'correlation' ? 'default' : 'outline'}
@@ -627,7 +627,7 @@ const DispersionSection = () => {
                 className="flex items-center gap-2"
               >
                 <Target className="h-4 w-4" />
-                Matrice de Corrélation
+                Matrice de corrélation
               </Button>
             </div>
 
@@ -635,7 +635,7 @@ const DispersionSection = () => {
             {selectedVisualization === 'variance' && (
               <div className="bg-white p-6 rounded-lg border">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <h4 className="text-lg font-semibold text-blue-700">Animation : Calcul de la Variance Étape par Étape</h4>
+                  <h4 className="text-lg font-semibold text-blue-700">Animation : calcul de la variance étape par étape</h4>
                   <div className="flex gap-2">
                     <Button
                       size="sm"
@@ -716,7 +716,7 @@ const DispersionSection = () => {
             {/* Covariance Interactive Scatter Plot */}
             {selectedVisualization === 'covariance' && (
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="text-lg font-semibold text-purple-700 mb-4">Covariance Interactive : Température vs Ventes de Glaces</h4>
+                <h4 className="text-lg font-semibold text-purple-700 mb-4">Covariance interactive : température vs ventes de glaces</h4>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="h-80">
@@ -753,7 +753,7 @@ const DispersionSection = () => {
                   
                   <div className="space-y-4">
                     <div className="bg-purple-50 p-4 rounded">
-                      <h5 className="font-semibold mb-3">Analyse des Points</h5>
+                      <h5 className="font-semibold mb-3">Analyse des points</h5>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -783,7 +783,7 @@ const DispersionSection = () => {
             {/* Correlation Matrix Heatmap */}
             {selectedVisualization === 'correlation' && (
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="text-lg font-semibold text-indigo-700 mb-4">Heatmap : Matrice de Corrélation des Notes</h4>
+                <h4 className="text-lg font-semibold text-indigo-700 mb-4">Heatmap : matrice de corrélation des notes</h4>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div>
@@ -842,7 +842,7 @@ const DispersionSection = () => {
                     </div>
                     
                     <div className="bg-yellow-50 p-4 rounded">
-                      <h5 className="font-semibold mb-2">Applications Pratiques</h5>
+                      <h5 className="font-semibold mb-2">Applications pratiques</h5>
                       <div className="text-sm space-y-1">
                         <p>• <strong>Orientation scolaire:</strong> Prédire la réussite dans une matière</p>
                         <p>• <strong>Détection d'anomalies:</strong> Identifier des profils atypiques</p>
@@ -861,11 +861,11 @@ const DispersionSection = () => {
       <div className="mt-12">
         <h3 className="text-2xl font-bold mb-6 text-ds-purple-600 flex items-center gap-2">
           <TrendingUp className="h-6 w-6" />
-          Covariance et Matrices de Covariance
+          Covariance et matrices de covariance
         </h3>
         
         <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-xl border border-purple-100 mb-8">
-          <h4 className="text-lg font-semibold mb-4 text-purple-800">Comprendre les Relations entre Variables</h4>
+          <h4 className="text-lg font-semibold mb-4 text-purple-800">Comprendre les relations entre variables</h4>
           <p className="text-gray-700 mb-4">
             Alors que la variance mesure la dispersion d'une seule variable, la <strong>covariance</strong> mesure 
             comment deux variables varient ensemble. C'est la fondation de l'analyse multivariée et de l'apprentissage automatique.
@@ -875,12 +875,12 @@ const DispersionSection = () => {
         {/* Covariance - Définition et Formule */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-xl text-purple-700">Covariance : Mesurer la Relation Linéaire</CardTitle>
+            <CardTitle className="text-xl text-purple-700">Covariance : mesurer la relation linéaire</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-purple-600">Formule de la Covariance</h5>
+                <h5 className="font-semibold mb-3 text-purple-600">Formule de la covariance</h5>
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
                   <div className="text-center">
                     <div className="text-lg font-mono mb-2">Cov(X,Y) = E[(X - μₓ)(Y - μᵧ)]</div>
@@ -912,7 +912,7 @@ const DispersionSection = () => {
               </div>
               
               <div>
-                <h5 className="font-semibold mb-3 text-purple-600">Exemple Pratique : Température et Ventes de Glaces</h5>
+                <h5 className="font-semibold mb-3 text-purple-600">Exemple pratique : température et ventes de glaces</h5>
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <div className="text-sm space-y-2">
                     <div className="grid grid-cols-3 gap-2 font-semibold border-b pb-2">
@@ -949,12 +949,12 @@ const DispersionSection = () => {
         {/* Matrice de Covariance */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-xl text-indigo-700">Matrice de Covariance : L'Analyse Multivariée</CardTitle>
+            <CardTitle className="text-xl text-indigo-700">Matrice de covariance : l'analyse multivariée</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-indigo-600">Structure de la Matrice</h5>
+                <h5 className="font-semibold mb-3 text-indigo-600">Structure de la matrice</h5>
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
                   <div className="text-center">
                     <div className="text-sm mb-2">Pour 3 variables X, Y, Z :</div>
@@ -982,7 +982,7 @@ const DispersionSection = () => {
                 <h5 className="font-semibold mb-3 text-indigo-600">Applications en Data Science</h5>
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <h6 className="font-semibold text-blue-700 mb-2">Analyse en Composantes Principales (PCA)</h6>
+                    <h6 className="font-semibold text-blue-700 mb-2">Analyse en composantes principales (PCA)</h6>
                     <p className="text-sm text-blue-600">
                       La PCA décompose la matrice de covariance pour identifier les directions 
                       de variance maximale dans les données.
@@ -990,7 +990,7 @@ const DispersionSection = () => {
                   </div>
                   
                   <div className="bg-purple-50 p-4 rounded-lg">
-                    <h6 className="font-semibold text-purple-700 mb-2">Détection d'Anomalies</h6>
+                    <h6 className="font-semibold text-purple-700 mb-2">Détection d'anomalies</h6>
                     <p className="text-sm text-purple-600">
                       Les points qui s'écartent significativement de la structure de covariance 
                       peuvent être des anomalies.
@@ -1013,15 +1013,15 @@ const DispersionSection = () => {
         {/* Exemple Interactif : Matrice de Covariance */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-xl text-emerald-700">Laboratoire : Analyse de Covariance Multi-Variables</CardTitle>
+            <CardTitle className="text-xl text-emerald-700">Laboratoire : analyse de covariance Multi-variables</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="bg-emerald-50 p-6 rounded-lg">
-              <h5 className="font-semibold mb-4 text-emerald-800">Exemple : Données de Performance d'Étudiants</h5>
+              <h5 className="font-semibold mb-4 text-emerald-800">Exemple : données de performance d'étudiants</h5>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                  <h6 className="font-semibold mb-3 text-emerald-700">Données Brutes</h6>
+                  <h6 className="font-semibold mb-3 text-emerald-700">Données brutes</h6>
                   <div className="bg-white p-4 rounded border">
                     <div className="text-xs font-mono space-y-1">
                       <div className="grid grid-cols-4 gap-2 font-semibold border-b pb-1">
@@ -1040,7 +1040,7 @@ const DispersionSection = () => {
                 </div>
                 
                 <div>
-                  <h6 className="font-semibold mb-3 text-emerald-700">Matrice de Covariance Calculée</h6>
+                  <h6 className="font-semibold mb-3 text-emerald-700">Matrice de covariance calculée</h6>
                   <div className="bg-white p-4 rounded border">
                     <div className="text-xs font-mono text-center">
                       <div className="mb-2 text-gray-600">Cov(Maths, Physique, Chimie)</div>
@@ -1070,12 +1070,12 @@ const DispersionSection = () => {
         {/* Conseils Pratiques */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl text-amber-700">Conseils Pratiques pour l'Analyse de Covariance</CardTitle>
+            <CardTitle className="text-xl text-amber-700">Conseils pratiques pour l'analyse de covariance</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-amber-600">Pièges à Éviter</h5>
+                <h5 className="font-semibold mb-3 text-amber-600">Pièges à éviter</h5>
                 <div className="space-y-3">
                   <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
                     <strong className="text-red-700">Unités différentes :</strong>
@@ -1093,7 +1093,7 @@ const DispersionSection = () => {
               </div>
               
               <div>
-                <h5 className="font-semibold mb-3 text-amber-600">Bonnes Pratiques</h5>
+                <h5 className="font-semibold mb-3 text-amber-600">Bonnes pratiques</h5>
                 <div className="space-y-3">
                   <div className="bg-green-50 p-3 rounded border-l-4 border-green-400">
                     <strong className="text-green-700">Standardisation :</strong>

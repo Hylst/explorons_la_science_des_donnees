@@ -7,7 +7,7 @@ const DataModelingSection = () => {
     <section id="data-modeling" className="scroll-mt-24 space-y-8">
       <div className="flex items-center gap-3 mb-6">
         <Brain className="h-8 w-8 text-purple-600 flex-shrink-0" />
-        <h2 className="text-3xl font-bold">Modélisation des Données</h2>
+        <h2 className="text-3xl font-bold">Modélisation des données</h2>
       </div>
 
       <Card className="border-l-4 border-l-purple-500">

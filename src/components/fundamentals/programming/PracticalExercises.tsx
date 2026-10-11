@@ -247,7 +247,7 @@ const PracticalExercises = () => {
         <TabsContent value="beginner" className="space-y-6">
           <ExerciseCard 
             id="ex1"
-            title="Calculatrice de ROI Marketing"
+            title="Calculatrice de ROI marketing"
             difficulty="Débutant"
             duration="30 min"
             description="Créez un script qui calcule le retour sur investissement (ROI) d'une campagne marketing à partir de son coût et de ses revenus, puis commente le résultat selon des seuils que vous choisissez."
@@ -303,7 +303,7 @@ calculer_roi_marketing()`}
           
           <ExerciseCard 
             id="ex2"
-            title="Analyseur de Ventes Mensuelles"
+            title="Analyseur de ventes mensuelles"
             difficulty="Débutant"
             duration="45 min"
             description="Analysez douze mois de ventes (données d'exemple) : meilleur et moins bon mois, variations d'un mois à l'autre, puis une estimation simple pour le mois suivant."

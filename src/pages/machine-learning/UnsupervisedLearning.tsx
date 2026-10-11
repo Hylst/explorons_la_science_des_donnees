@@ -15,7 +15,7 @@ const UnsupervisedLearning = () => {
       <div className="min-h-screen">
         <UnifiedHeroSection
           variant="course"
-          title="Apprentissage Non Supervisé"
+          title="Apprentissage non supervisé"
           description="Explorez les techniques de clustering, réduction de dimensionnalité et détection d'anomalies"
           
           courseInfo={{

@@ -41,7 +41,7 @@ interface ComparisonData {
   cons: string[];
 }
 
-type TopicKey = 'Analyse de Données' | 'Visualisation' | 'Machine Learning' | 'Base de Données';
+type TopicKey = 'Analyse de données' | 'Visualisation' | 'Machine Learning' | 'Base de données';
 
 interface UseCaseData {
   useCase: string;
@@ -107,7 +107,7 @@ const LanguageComparison = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageData | null>(null);
   const [animationStep, setAnimationStep] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [selectedCodeTopic, setSelectedCodeTopic] = useState<TopicKey>('Analyse de Données');
+  const [selectedCodeTopic, setSelectedCodeTopic] = useState<TopicKey>('Analyse de données');
 
   /**
    * Comprehensive language data with enhanced metrics and details
@@ -187,7 +187,7 @@ const LanguageComparison = () => {
       weaknesses: ["Écosystème jeune", "Communauté réduite", "Temps de compilation"],
       useCases: ["Calcul scientifique", "HPC", "Finance quantitative", "Recherche"],
       marketTrend: "Niche (calcul scientifique)",
-      difficulty: "Modéré-Difficile",
+      difficulty: "Modéré-difficile",
       timeToLearn: "6-12 mois"
     }
   ], []);
@@ -244,7 +244,7 @@ const LanguageComparison = () => {
   // Helper function to get code examples based on topic and language
   const getCodeExample = useCallback((language: string, topic: string): string => {
     const examples: Record<string, Record<string, string>> = {
-      'Analyse de Données': {
+      'Analyse de données': {
         Python: `import pandas as pd
 import numpy as np
 
@@ -419,7 +419,7 @@ fit!(mach, rows=train)
 y_pred = predict_mode(mach, rows=test)
 accuracy = mean(y_pred .== y[test])`
       },
-      'Base de Données': {
+      'Base de données': {
         Python: `import sqlite3
 import pandas as pd
 
@@ -517,7 +517,7 @@ first(result, 10)`
   // Helper function to get language comparison data
   const getLanguageComparison = useCallback((topic: string) => {
     const comparisons: Record<string, ComparisonData[]> = {
-      'Analyse de Données': [
+      'Analyse de données': [
         {
           language: 'Python',
           pros: ['Syntaxe claire', 'pandas et NumPy très complets', 'Grande communauté', 'Intégration facile'],
@@ -583,7 +583,7 @@ first(result, 10)`
           cons: ['Écosystème plus petit', 'Moins de modèles pré-entraînés']
         }
       ],
-      'Base de Données': [
+      'Base de données': [
         {
           language: 'Python',
           pros: ['SQLAlchemy (ORM)', 'Intégration avec pandas', 'Nombreux connecteurs'],
@@ -612,7 +612,7 @@ first(result, 10)`
   // Helper function to get best practices
   const getBestPractices = useCallback((topic: string): string[] => {
     const practices: Record<string, string[]> = {
-      'Analyse de Données': [
+      'Analyse de données': [
         'Toujours explorer les données avant l\'analyse (shape, types, valeurs manquantes)',
         'Utiliser des noms de variables explicites et cohérents',
         'Documenter les transformations et hypothèses',
@@ -633,7 +633,7 @@ first(result, 10)`
         'Utiliser la validation croisée pour évaluer les modèles',
         'Surveiller l\'overfitting avec des métriques appropriées'
       ],
-      'Base de Données': [
+      'Base de données': [
         'Utiliser des index sur les colonnes de jointure et filtrage',
         'Éviter SELECT * en production',
         'Choisir la forme la plus lisible (jointure ou sous-requête) : les optimiseurs les réécrivent souvent l\'une en l\'autre, EXPLAIN le confirme',
@@ -976,7 +976,7 @@ first(result, 10)`
                 Comparaison de code, thème par thème
               </CardTitle>
               <div className="flex flex-wrap gap-2 mt-2">
-                {['Analyse de Données', 'Visualisation', 'Machine Learning', 'Base de Données'].map((topic) => (
+                {['Analyse de données', 'Visualisation', 'Machine Learning', 'Base de données'].map((topic) => (
                   <Button 
                     key={topic}
                     variant={selectedCodeTopic === topic ? "default" : "outline"} 
@@ -1116,7 +1116,7 @@ first(result, 10)`
                     <CardHeader>
                       <CardTitle className="text-base flex items-center gap-2">
                         <Scale className="h-4 w-4" />
-                        Avantages & Inconvénients
+                        Avantages & inconvénients
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -1156,7 +1156,7 @@ first(result, 10)`
                     <CardHeader>
                       <CardTitle className="text-base flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
-                        Bonnes Pratiques
+                        Bonnes pratiques
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -1459,7 +1459,7 @@ class DataDashboard {
                   size="sm" 
                   onClick={toggleAdvancedView}
                 >
-                  {showAdvanced ? "Vue Simple" : "Vue Avancée"}
+                  {showAdvanced ? "Vue simple" : "Vue avancée"}
                 </Button>
               </div>
             </CardHeader>
@@ -1668,7 +1668,7 @@ class DataDashboard {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="border-l-4 border-l-blue-500">
                     <CardHeader>
-                      <CardTitle className="text-blue-700">Parcours Débutant (6 mois, indicatif)</CardTitle>
+                      <CardTitle className="text-blue-700">Parcours débutant (6 mois, indicatif)</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 text-sm">
@@ -1690,7 +1690,7 @@ class DataDashboard {
 
                   <Card className="border-l-4 border-l-purple-500">
                     <CardHeader>
-                      <CardTitle className="text-purple-700">Parcours Avancé (3 mois, indicatif)</CardTitle>
+                      <CardTitle className="text-purple-700">Parcours avancé (3 mois, indicatif)</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 text-sm">
