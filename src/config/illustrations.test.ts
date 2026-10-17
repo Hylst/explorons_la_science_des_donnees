@@ -11,8 +11,8 @@ const read = (file: string) => fs.readFileSync(path.resolve(root, file), "utf8")
 const cards = fs.readdirSync(path.resolve(root, CARDS_DIR)).filter((name) => name.endsWith(".svg"));
 
 describe("illustrations animées des cours (public/svg/cards)", () => {
-  it("le dossier contient bien les trois illustrations (garde-fou contre un balayage vide)", () => {
-    expect(cards.sort()).toEqual(["maths-descente.svg", "ml-frontiere.svg", "python-code.svg"]);
+  it("le dossier contient bien les quatre illustrations (garde-fou contre un balayage vide)", () => {
+    expect(cards.sort()).toEqual(["maths-descente.svg", "ml-frontiere.svg", "python-code.svg", "series-co2.svg"]);
   });
 
   it.each(cards)("%s est un SVG bien formé, avec titre et description", (name) => {
@@ -44,7 +44,7 @@ describe("illustrations animées des cours (public/svg/cards)", () => {
 
   it("chaque illustration est utilisée par l'accueil, et chaque référence pointe vers un fichier existant", () => {
     const used = new Set<string>();
-    for (const m of read("src/lib/course-image.ts").matchAll(/svg\/cards\/([a-z-]+\.svg)/g)) used.add(m[1]);
+    for (const m of read("src/lib/course-image.ts").matchAll(/svg\/cards\/([a-z0-9-]+\.svg)/g)) used.add(m[1]);
     expect([...used].sort()).toEqual([...cards].sort());
   });
 });

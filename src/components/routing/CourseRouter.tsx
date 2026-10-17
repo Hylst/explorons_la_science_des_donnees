@@ -6,6 +6,7 @@ const MathIntroCourse = React.lazy(() => import('../../pages/courses/math-stats/
 const InferentialStatisticsCourse = React.lazy(() => import('../../pages/courses/math-stats/inferential-statistics'));
 const PythonBasics = React.lazy(() => import('../../pages/courses/programming/PythonBasics'));
 const AppliedStatistics = React.lazy(() => import('../../pages/courses/statistics/AppliedStatistics'));
+const TimeSeries = React.lazy(() => import('../../pages/courses/statistics/TimeSeries'));
 const SupervisedLearningCourse = React.lazy(() => import('../../pages/courses/machine-learning/SupervisedLearningCourse'));
 const DatabaseFundamentals = React.lazy(() => import('../../pages/courses/databases/DatabaseFundamentals'));
 const DataVisualization = React.lazy(() => import('../../pages/courses/dataviz/DataVisualization'));
@@ -25,6 +26,7 @@ const CourseRouter: React.FC = () => {
       <Route path="math-stats/math-intro" element={<MathIntroCourse />} />
       <Route path="math-stats/inferential-statistics" element={<InferentialStatisticsCourse />} />
       <Route path="statistics/applied-statistics" element={<AppliedStatistics />} />
+      <Route path="statistics/time-series" element={<TimeSeries />} />
       
       {/* Programming Courses */}
       <Route path="programming/python-basics" element={<PythonBasics />} />

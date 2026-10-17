@@ -9,9 +9,9 @@ Pour les commandes et les procédures d'ajout de contenu (dont « Écrire ou mod
 - Application monopage (SPA) 100 % statique : React 18, TypeScript, Vite 7 (plugin SWC), Tailwind CSS 3, shadcn/ui (Radix), React Router 7, KaTeX, Recharts. Aucun serveur, aucune base de données, aucun appel réseau dans `src/` (recherche de `fetch(`, `XMLHttpRequest`, `WebSocket` et `sendBeacon` : aucune occurrence hors tests).
 - Contenu entièrement en français. Auteur : Geoffroy Streit « avec assistance IA ». Licence : AGPL-3.0-or-later (fichier `LICENSE`).
 - Fichiers suivis par git : 609, dont 520 sous `src/` (314 `.tsx`, 202 `.ts`, 3 `.json`, 1 `.css`), tests compris. Compter avec `git ls-files | wc -l`.
-- Routes : 56 routes canoniques (celles du `sitemap.xml`) et 28 anciennes URL redirigées, soit 84 pages HTML générées par `npm run build:hylst`. Compter avec `scripts/collect-routes.ts` (voir plus bas).
-- Pages chargées à la demande : 35 `React.lazy` dans `src/App.tsx`, 11 dans `src/components/routing/CourseRouter.tsx`.
-- Cours : 10 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 65 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 8 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
+- Routes : 57 routes canoniques (celles du `sitemap.xml`) et 28 anciennes URL redirigées, soit 85 pages HTML générées par `npm run build:hylst` (plus `404.html` et `offline.html`). Compter avec `scripts/collect-routes.ts` (voir plus bas).
+- Pages chargées à la demande : 35 `React.lazy` dans `src/App.tsx`, 12 dans `src/components/routing/CourseRouter.tsx` (11 cours et `NotFound`).
+- Cours : 11 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 71 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 8 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
 - Pages longues affichées par morceaux (`ProgressiveSections`, `LazyBlock`, `DeferredResponsiveContainer`) : voir « Affichage par morceaux et chargement différé ».
 
 ## Arborescence commentée
@@ -70,7 +70,7 @@ src/
 │   ├── contact.ts           Coordonnées publiques et préparation des liens mailto:
 │   └── *.test.ts            Tests garde-fous : brand, page-meta, theme, illustrations, gradient-text, internal-links, jsx-spacing, source-link
 │
-├── pages/                   Pages de route (92 fichiers suivis)
+├── pages/                   Pages de route (93 fichiers au 12 octobre 2026, dont `courses/statistics/TimeSeries.tsx`)
 │   ├── (17 pages directes)  Index, Introduction, Fundamentals, MachineLearning, Tools, Projects, Resources,
 │   │                        Quiz, QuizCategory, Community, Blog, Glossary, About, Contact, PrivacyPolicy, TermsOfService, NotFound
 │   ├── fundamentals/        57 fichiers : MathStats, Programming, Databases, DataPreparationRefactored ;
@@ -79,9 +79,9 @@ src/
 │   │   └── databases/components/
 │   ├── machine-learning/    SupervisedLearning, UnsupervisedLearning, ReinforcementLearning
 │   ├── tools/               4 pages d'outils (ProgrammingTools, DataProcessingTools, MLFrameworks, DataVisualization)
-│   └── courses/             11 fichiers : CoursesIndex (catalogue, lu dans data/course-catalog.ts) et une page mince par cours
+│   └── courses/             12 fichiers : CoursesIndex (catalogue, lu dans data/course-catalog.ts) et une page mince par cours
 │                            (25 à 33 lignes) : databases/, dataviz/, machine-learning/, math-stats/ (math-intro, inferential-statistics),
-│                            nlp/, programming/, statistics/, MLModelsGuide, TransformersGuide. Chaque page passe son cours de
+│                            nlp/, programming/, statistics/ (AppliedStatistics, TimeSeries), MLModelsGuide, TransformersGuide. Chaque page passe son cours de
 │                            src/data/lessons/ à LessonCoursePage ; aucun contenu n'y est écrit
 │
 ├── components/              Composants par fonctionnalité
@@ -115,7 +115,7 @@ src/
 │   ├── glossary-terms.ts    Réexport de glossary/ (ancien chemin)
 │   ├── quizData.ts          8 catégories de quiz et leurs questions
 │   ├── projects.ts          12 projets et fonctions de filtre
-│   ├── course-catalog.ts    Catalogue des 10 cours (niveau, durée, modules, statut) : source unique de l'accueil et de /courses
+│   ├── course-catalog.ts    Catalogue des 11 cours (niveau, durée, modules, statut) : source unique de l'accueil et de /courses
 │   ├── tooling.ts           Contenu de la section Git, environnements virtuels et Docker de /fundamentals/programming
 │   ├── data-quality-demos.ts  Démonstrations de la qualité des données, calculées (cas pratique, validation, monitoring)
 │   ├── blog-posts.json      Métadonnées des articles ; blog-contents.ts : corps HTML ; blog-articles.ts : jointure des deux
@@ -144,7 +144,7 @@ public/
 ├── favicon.svg, logo.png    Icône et image de partage (og:image)
 ├── icons/                   Icônes PWA (192, 512, apple-touch-icon)
 ├── img/                     Logos (devicon et marques), blog/ (une image WebP par article, générée en local), courses/ (une image WebP par cours, 7 fichiers), CREDITS.md
-├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : trois illustrations animées des cours de l'accueil (CSS, sans script, qui respectent prefers-reduced-motion)
+├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : quatre illustrations animées de cours, trois pour l'accueil et `series-co2.svg` pour le cours de séries temporelles (CSS, sans script, qui respectent prefers-reduced-motion ; association dans `src/lib/course-image.ts`)
 ├── sandbox/                 Bac à sable JavaScript : js-runner.html, js-runner.js, js-core.js
 └── vendor/                  Moteurs Python et SQL, NOTICE.txt (généré, non suivi par git, 56 Mo mesurés)
 ```
@@ -171,16 +171,16 @@ public/
 | Fichier | Rôle |
 | --- | --- |
 | `src/App.tsx` | Déclare toutes les routes, chaque page en `React.lazy`, sous un seul `Suspense`. `basename` du routeur dérivé de `import.meta.env.BASE_URL`. Rend aussi les `LEGACY_REDIRECTS` en `<Navigate replace>` |
-| `src/components/routing/CourseRouter.tsx` | Sous-routeur de `/courses/*` : 10 cours, puis `NotFound` pour tout cours inconnu |
+| `src/components/routing/CourseRouter.tsx` | Sous-routeur de `/courses/*` : 11 cours, puis `NotFound` pour tout cours inconnu |
 | `src/config/routes.ts` | `LEGACY_REDIRECTS` : 28 entrées au moment de la rédaction |
 | `src/components/routing/ScrollManager.tsx` | Défilement : haut de page à la navigation, ancre `#id` décalée de la barre collante, restauration au retour arrière et au rechargement. Attend la fin des sections en attente (`data-sections-pending`, 3 s au plus) avant de restaurer ou de viser une ancre. Les positions sont dans `lib/scroll-positions.ts` |
 | `src/components/routing/RouteMeta.tsx` | Applique titre et description de `PAGE_META` via Helmet ; ne fait rien pour les routes dynamiques |
 | `src/config/site.ts` | Nom, accroche, description, origine, sous-chemin de déploiement, auteur, licence, fichiers de licence et de NOTICE, `SOURCE_URL` |
-| `src/config/page-meta.ts` | `PAGE_META` : 42 routes statiques, plus `HOME_TITLE` pour l'accueil. Longueurs visées : titre 20 à 38 caractères, description 110 à 160 |
+| `src/config/page-meta.ts` | `PAGE_META` : 43 routes statiques, plus `HOME_TITLE` pour l'accueil. Longueurs visées : titre 20 à 38 caractères, description 110 à 160 |
 | `src/config/contact.ts` | `CONTACT_EMAIL`, liens GitHub, LinkedIn et hub, `mailtoLink`, `buildMailDraft` (le site n'envoie rien) |
 | `src/components/layout/Layout.tsx` | Gabarit simple : Navbar, `<main>`, Footer |
 | `src/components/layout/ContentLayout.tsx` | Layout avec barre latérale (Radix sidebar) ; ne doit jamais appeler `window.scrollTo` au montage. Utilisé par 17 pages |
-| `src/components/layout/CourseLayout.tsx` | Gabarit des pages de cours (fil d'Ariane et titre), posé par `LessonCoursePage` pour les 10 cours |
+| `src/components/layout/CourseLayout.tsx` | Gabarit des pages de cours (fil d'Ariane et titre), posé par `LessonCoursePage` pour les 11 cours |
 | `src/components/layout/ProgressiveSections.tsx`, `LazyBlock.tsx` | Affichage par morceaux et blocs chargés à la demande (voir plus bas) |
 | `src/components/layout/Navbar.tsx` | 11 rubriques (tableau `navItems`), menus déroulants Fondamentaux et Machine Learning, rubriques « secondaires » repliées sous 1536 px (`2xl`), menu hamburger sous 1280 px (`xl`), bascule de thème, bouton d'installation |
 | `src/lib/storage.ts` | Accès `localStorage` qui ne lève jamais d'exception (`readStorage`, `writeStorage`, `removeStorage`, `readJSON`, `writeJSON`, `storageKeys`, validateurs) |
@@ -197,7 +197,7 @@ public/
 | `src/data/quizData.ts` | 8 catégories, 165 questions ; une tentative tire 10 questions au hasard (`getRandomQuestions`, appelé par `QuizCategory.tsx`) |
 | `src/data/glossary/` | 229 termes (comptés en important `index.ts`) : huit fichiers écrits à la main agrégés par `index.ts`, plus les termes des dictionnaires de survol des cours (`dictionaries.ts`) qui n'y figurent pas déjà. Types et catégories dans `types.ts`. `tools.ts` dérive ses entrées des définitions de `components/fundamentals/definitions/` |
 | `src/data/projects.ts` | 12 projets et fonctions de filtre ; tous les compteurs de la page sont calculés dessus. Huit projets sont guidés (`src/data/lessons/projects/`) |
-| `src/data/course-catalog.ts` | 10 cours avec catégorie, niveau, durée indicative, nombre de modules et statut (`redige` ou `plan`, tous `redige` aujourd'hui) ; lu par `FeaturedCourses.tsx` (accueil), `CoursesIndex.tsx` (`/courses`), `InitiationCoursesSection.tsx` (ressources) et `UnifiedMathCourses.tsx` (maths). Niveau, durée et nombre de modules y sont saisis à la main : ils ne sont pas vérifiés contre les données des leçons |
+| `src/data/course-catalog.ts` | 11 cours avec catégorie, niveau, durée indicative, nombre de modules et statut (`redige` ou `plan`, tous `redige` aujourd'hui) ; lu par `FeaturedCourses.tsx` (accueil), `CoursesIndex.tsx` (`/courses`), `InitiationCoursesSection.tsx` (ressources) et `UnifiedMathCourses.tsx` (maths). Niveau, durée et nombre de modules y sont saisis à la main : ils ne sont pas vérifiés contre les données des leçons |
 | `src/data/blog-posts.json`, `blog-contents.ts`, `blog-articles.ts` | Métadonnées (5 articles), corps HTML par identifiant, et jointure des deux pour les pages d'article |
 | `src/components/ui/source-note.tsx` | Ligne « Source : ... » sous un chiffre du monde réel |
 | `vite.config.ts` | Voir les flux ci-dessous |
@@ -225,11 +225,11 @@ Le titre et la description du bandeau (`UnifiedHeroSection`) sont affichés au p
 
 ### Cours rédigés comme données
 
-Les 10 cours et les 8 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
+Les 11 cours et les 8 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
 
 | Dossier ou fichier | Rôle |
 | --- | --- |
-| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, plus `projects/` (8 projets guidés en un seul `LessonCourse`, id `projects`) |
+| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `time-series` (`data.ts` : les amorces Python qui chargent les quatre séries réelles fournies avec statsmodels ; `m1` à `m6`), `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, plus `projects/` (8 projets guidés en un seul `LessonCourse`, id `projects`) |
 | `src/data/lessons/lines.ts` | `lines(...)` : écrit un extrait de code une ligne de source par ligne de code |
 | `src/data/lessons/lessons.test.ts` | Contrôle du cours de bases de données sur sql.js sous Node |
 | `src/data/lessons/lessons-python.test.ts` | Contrôle de tous les cours Python et des projets guidés sur Pyodide sous Node (environ 7 s de chargement, sans réseau) |
@@ -274,7 +274,7 @@ Les routes dynamiques ne sont pas dans `PAGE_META` : les articles du blog (`Blog
 - `src/data/blog-posts.json` : un `/blog/<id>` par article.
 - `src/data/quizData.ts` : un `/quiz/<id>` par `id: '...'` indenté de 4 espaces après `export const quizCategories`.
 
-Ces formats sont donc porteurs : un `path` construit dynamiquement ou une indentation différente fait disparaître la route du sitemap et des pages générées. Le résultat actuel (relevé en important le script) : 84 routes au total, 56 canoniques, 28 anciennes URL, dont 13 routes dynamiques (5 articles et 8 quiz).
+Ces formats sont donc porteurs : un `path` construit dynamiquement ou une indentation différente fait disparaître la route du sitemap et des pages générées. Le résultat actuel (relevé du 12 octobre 2026) : 85 routes au total, 57 canoniques, 28 anciennes URL, dont 13 routes dynamiques (5 articles et 8 quiz).
 
 ### Build statique pour hylst.fr
 
@@ -348,7 +348,7 @@ Tout passe par `src/lib/storage.ts` (ne lève jamais d'exception : stockage bloq
 | Clé | Contenu | Défini dans |
 | --- | --- | --- |
 | `ds-explorer-theme` | Thème choisi | `hooks/use-theme.ts` |
-| `course-progress-<id du cours>` | Statut et notes par module, projet ou étude de cas. Les 10 cours rédigés utilisent l'`id` de leur `LessonCourse` (`python-basics`, `math-intro`...), les projets guidés `projects` | `hooks/use-course-progress.ts` |
+| `course-progress-<id du cours>` | Statut et notes par module, projet ou étude de cas. Les 11 cours rédigés utilisent l'`id` de leur `LessonCourse` (`python-basics`, `math-intro`...), les projets guidés `projects` | `hooks/use-course-progress.ts` |
 | `quiz-attempts-v1` | Tentatives de quiz (100 au plus) | `lib/quiz-storage.ts` |
 | `blog-favorites-v1` | Articles favoris | `hooks/use-blog-favorites.ts` |
 | `code-editor-workspace-v1`, `code-editor-autosave` | Fichiers de l'éditeur et réglage de sauvegarde | `fundamentals/programming/CodeEditor.tsx` |
@@ -369,7 +369,7 @@ Les stores partagés (`use-course-progress`, `quiz-storage`, `use-blog-favorites
 ### Tests
 
 - **Outil** : Vitest 5 (`npm test` = `vitest run`, `npm run test:watch` = `vitest`). Configuration dans `vitest.config.ts` : environnement `jsdom`, fichiers `src/**/*.test.{ts,tsx}`, `restoreMocks: true`, alias `@` vers `src/`, constantes `__PYODIDE_VERSION__` et `__SQLJS_VERSION__` définies comme dans `vite.config.ts`. Le test de fumée des routes (`src/routes.smoke.test.tsx`) est exclu de `npm test` et lancé par `npm run test:smoke` (`vitest.smoke.config.ts`). Aucune bibliothèque de test de composants : les composants se rendent avec `react-dom/client` et `act`.
-- **Emplacement** : un test se place à côté du code testé (`src/lib/storage.ts` et `src/lib/storage.test.ts`). Les tests ne sont pas livrés. Au 9 octobre 2026 : 45 fichiers de test (44 pour `npm test`, plus le test de fumée), comptés avec `git ls-files 'src/**/*.test.*'` ; relever le nombre de tests avec `npm test`.
+- **Emplacement** : un test se place à côté du code testé (`src/lib/storage.ts` et `src/lib/storage.test.ts`). Les tests ne sont pas livrés. Au 12 octobre 2026 : 47 fichiers de test (46 pour `npm test`, plus le test de fumée), comptés avec `find src -name "*.test.ts*" | wc -l` (au 9 octobre : 45) ; relever le nombre de tests avec `npm test` (1 668 tests le 12 octobre, plus 58 pour le test de fumée).
 - **Trois familles** :
   - tests de logique : `src/lib/` (`storage`, `quiz-storage`, `quiz-shuffle`, `sanitize`, `sample-datasets`, `format-duration`, `contrast`, `answer-match`, `glossary-batches`, `glossary-markdown`, `scroll-key`, `progress-migration`, `runner/worker-client`, `runner/index`, `runner/python-setup`, `lessons/check`, `lessons/duration`, `lessons/typography`), `src/hooks/use-sidebar-bounds.test.ts`, `src/data/projects.test.ts`, `quizData.test.ts`, `blog.test.ts`, `data-quality-demos.test.ts`, et des tests de composants (`CorrelationHeatmap`, `NewsArticleCard`, `GlossaryText`, `ProgressiveSections`, `deferred-chart`, `LessonWidget`, `ConditionalProbabilitySection`) ;
   - tests garde-fous qui lisent le code source : `src/config/page-meta.test.ts` (routes, titres, descriptions, redirections, via `scripts/collect-routes.ts`), `brand.test.ts` (nom du site, licence, `index.html`, manifeste, modèles de pages de `vite.config.ts`), `theme.test.ts`, `illustrations.test.ts`, `gradient-text.test.ts`, `internal-links.test.ts`, `jsx-spacing.test.ts`, `source-link.test.ts`, `src/lib/code-snippets.test.ts`, `latex-sources.test.ts`, `src/data/glossary/claims.test.ts`, `dictionaries.test.ts`, et la partie « clés de stockage » de `storage.test.ts` ;

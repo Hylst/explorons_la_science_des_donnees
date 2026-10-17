@@ -46,7 +46,7 @@ const LessonCoursePage = ({ course, title, categoryName, description, level, ico
           icon={icon}
           courseInfo={{
             level,
-            duration: `${totalDuration(course.modules.map((m) => m.duration))} (indicatif)`,
+            duration: totalDuration(course.modules.map((m) => m.duration)), // le bandeau ajoute « (indicatif) »
             modules: course.modules.length,
           }}
         />

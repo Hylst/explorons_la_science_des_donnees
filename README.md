@@ -12,7 +12,7 @@ Le contenu, avec les nombres comptés dans le code :
 
 - **Introduction** et **Fondamentaux** : mathématiques et statistiques (6 cours avec formules et graphiques), programmation, préparation des données, bases de données.
 - **Machine Learning** : apprentissage supervisé, non supervisé, par renforcement, deep learning, évaluation.
-- **10 cours** sous `/courses/`, tous rédigés en leçons (exemples exécutables, exercices vérifiés par le moteur, quiz de module, suivi et notes) : Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, bases de données, visualisation de données, ML supervisé, guide des modèles de ML, Transformers, traitement du langage naturel.
+- **11 cours** sous `/courses/`, tous rédigés en leçons (exemples exécutables, exercices vérifiés par le moteur, quiz de module, suivi et notes) : Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, séries temporelles, bases de données, visualisation de données, ML supervisé, guide des modèles de ML, Transformers, traitement du langage naturel.
 - **165 questions de quiz** en 8 catégories, avec explications, historique et statistiques calculés localement.
 - **229 termes de glossaire**, aussi consultables par survol dans les cours.
 - **12 projets**, dont 8 guidés pas à pas (jeu de données, exercices vérifiés, corrigés) ; les 4 autres sont des sujets à réaliser soi-même.

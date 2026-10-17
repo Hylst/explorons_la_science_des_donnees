@@ -1,5 +1,16 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-12] - Cours de séries temporelles
+
+Onzième cours rédigé au format des leçons, en local : il n'est pas recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Cours « Séries temporelles »** (`/courses/statistics/time-series`, `src/data/lessons/time-series/`, ≈ 13 h indicatives) : données datées avec pandas, décomposition (moyenne mobile, `seasonal_decompose`, STL), prévoir et évaluer honnêtement (références naïves, MAE et pièges du MAPE, validation glissante, horizon), autocorrélation et stationnarité (acf, pacf, ADF, KPSS), ARIMA (AIC, Ljung-Box, intervalles), saisonnalité et lissage exponentiel (SARIMA, Holt-Winters). 6 modules, 27 exemples exécutables, 18 exercices vérifiés, 30 questions.
+- **Données réelles, rien de téléchargé** : quatre séries du domaine public fournies avec statsmodels (CO2 de Mauna Loa, débit du Nil, taches solaires, température de la région Niño 1+2), provenance lue dans leurs notices (`docs/SOURCES.md`, section 13). Le cours dit ce que les mesures montrent, y compris quand elles contredisent l'intuition : sur le Nil, le test ADF ne voit pas la rupture de niveau que montre le graphique, et ARIMA ne bat pas la simple moyenne sur dix ans de test.
+- **Méthode** : rédaction par deux sous-agents Sonnet à partir d'un cahier des charges, chaque chiffre mesuré sur le moteur du site ; relecture : chaque exemple relancé et sa sortie comparée à sa légende, trois chiffres de notes remesurés, une note réécrite (sur 8 origines de 1991 à 1998, la saison multiplicative fait 0,42 contre 0,53 et gagne 5 fois sur 8, et non 0,43 contre 0,52). Dans Chrome (headless) : les 27 exemples s'exécutent, les 18 exercices échouent avec le code de départ puis acceptent le corrigé, aucun débordement à 320, 390 et 1280 px.
+- **Illustration** : `public/svg/cards/series-co2.svg`, SVG animé fait main à partir des vraies moyennes mensuelles du CO2 (6,9 ko), faute d'image générée ; `illustrations.test.ts` attend désormais quatre cartes (son motif de nom de fichier refusait les chiffres).
+- **Défaut corrigé sur tous les cours rédigés** : le bandeau affichait « 13 h (indicatif) (indicatif) » (`LessonCoursePage` ajoutait le suffixe que `UnifiedHeroSection` ajoute aussi). Le test de fumée refuse maintenant un « (indicatif) » répété sur chaque page ; vérifié par mutation (il échouait avant le correctif).
+- **Comptes** : 57 routes canoniques, 28 redirections, 85 pages HTML ; 1 668 tests et 58 tests de fumée. La page /fundamentals/math-stats présente le cours au lieu d'un sujet « sans cours ».
+
 ## [2026-10-11] - Suite du contrôle dans Chrome : affichage corrigé
 
 Contrôles du build `mv2nziuf` (Chrome headless) : retour arrière avec restauration du défilement (position retrouvée sur quatre pages), menus de bureau et mobile, cartes de projets et six pages en mode sombre ; aucun débordement à 600 et 900 px. Défauts trouvés et corrigés :

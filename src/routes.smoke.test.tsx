@@ -96,6 +96,8 @@ describe("routes : chaque page s'affiche", () => {
     expect(container.querySelectorAll('nav[aria-label="Fil d\'Ariane"]').length, `fils d'Ariane de ${route}`).toBeLessThanOrEqual(1);
     // régression du 5 octobre 2026 : l'algèbre linéaire affichait chaque section deux fois, avec les mêmes id
     expect(idsEnDouble(container), `id en double sur ${route}`).toEqual([]);
+    // régression vue le 12 octobre 2026 : les dix cours rédigés affichaient « 13 h (indicatif) (indicatif) » (suffixe ajouté deux fois)
+    expect(texte, `mention « indicatif » répétée sur ${route}`).not.toMatch(/\(indicatif\)\s*\(indicatif\)/);
 
     // Radix n'affiche que l'onglet actif : on active chaque onglet (y compris ceux qui apparaissent ensuite)
     // pour que le contenu des autres onglets soit rendu, lui aussi.

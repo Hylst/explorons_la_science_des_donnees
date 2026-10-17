@@ -18,6 +18,7 @@ const fromCatalog = (id: string) => {
 const mathIntro = fromCatalog("math-intro");
 const inferential = fromCatalog("inferential-statistics");
 const applied = fromCatalog("applied-statistics");
+const timeSeries = fromCatalog("time-series");
 
 interface MathCourse {
   id: string;
@@ -107,6 +108,19 @@ const courses: MathCourse[] = [
     nextModule: "Décrire des données réelles",
   },
   {
+    id: "time-series",
+    title: timeSeries.title,
+    description: timeSeries.description,
+    level: timeSeries.level,
+    duration: timeSeries.duration,
+    modules: timeSeries.modules,
+    icon: <Clock className="h-6 w-6 text-amber-600" />,
+    color: "amber",
+    topics: ["Données datées avec pandas", "Décomposition", "Prévoir et évaluer", "Autocorrélation et stationnarité", "ARIMA", "Saisonnalité et lissage"],
+    link: timeSeries.href,
+    nextModule: "Données datées avec pandas",
+  },
+  {
     id: "linear-algebra",
     title: "Algèbre linéaire",
     description: "Vecteurs, matrices et transformations, pour comprendre le machine learning",
@@ -169,14 +183,6 @@ const missingTopics = [
     icon: <Target className="h-6 w-6 text-violet-600" />,
     color: "violet",
     topics: ["ACP", "Analyse factorielle", "Classification", "Analyse discriminante"],
-  },
-  {
-    id: "time-series",
-    title: "Séries temporelles",
-    description: "Analyser et prévoir des données ordonnées dans le temps",
-    icon: <Clock className="h-6 w-6 text-amber-600" />,
-    color: "amber",
-    topics: ["Tendances", "Saisonnalité", "ARIMA", "Prévision"],
   },
   {
     id: "mathematical-optimization",

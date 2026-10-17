@@ -19,7 +19,7 @@ Ma mission est de rendre la Data Science accessible aux francophones en proposan
 - **Fondamentaux** : mathématiques et statistiques (six pages : probabilités, statistiques descriptives, algèbre linéaire, calcul différentiel, statistiques avancées, calcul intégral), programmation, préparation des données, bases de données
 - **Machine Learning** : apprentissage supervisé, non supervisé et par renforcement, évaluation des modèles, deep learning, exercices
 - **Outils** : langages, traitement des données, frameworks de machine learning, visualisation
-- **Cours** : dix cours rédigés sous `/courses/` (Python pour la data science, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, fondamentaux des bases de données, visualisation de données, machine learning supervisé, guide des modèles de ML, Transformers, traitement du langage naturel). Chaque cours est une suite de modules avec objectifs, exemples modifiables exécutés dans le navigateur, exercices vérifiés par le moteur, quiz de fin de module, progression et notes gardées dans le navigateur
+- **Cours** : onze cours rédigés sous `/courses/` (Python pour la data science, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, séries temporelles, fondamentaux des bases de données, visualisation de données, machine learning supervisé, guide des modèles de ML, Transformers, traitement du langage naturel). Chaque cours est une suite de modules avec objectifs, exemples modifiables exécutés dans le navigateur, exercices vérifiés par le moteur, quiz de fin de module, progression et notes gardées dans le navigateur
 - **Projets** : douze sujets classés par niveau ; huit sont guidés pas à pas (analyse exploratoire de ventes, classification des iris, analyse de sentiment, recommandation de livres, prix des logements, détection de fraudes à la carte bancaire, segmentation de clients, prévision d'une fréquentation en série temporelle), avec jeu de données, exercices vérifiés et corrigés ; les quatre autres (tableau de bord COVID-19 avec Streamlit, classification d'images médicales avec un CNN, traduction automatique avec des Transformers, trading algorithmique) sont des sujets à réaliser soi-même, sans énoncé détaillé, jeu de données ni corrigé
 
 ### Contenu et exercices
@@ -61,7 +61,7 @@ J'ai choisi des technologies modernes que j'apprends et maîtrise progressivemen
 
 J'organise le code de manière modulaire en apprenant les bonnes pratiques :
 - Composants réutilisables que je développe et optimise progressivement (briques de cours, encadrés, quiz, figures)
-- Contenu piloté par des données (`src/data/` : glossaire, quiz, projets, blog) ; les dix cours et les projets guidés sont eux-mêmes des données (`src/data/lessons/`), affichées par un seul jeu de composants, et leurs tests exécutent chaque exemple et chaque corrigé sur les vrais moteurs
+- Contenu piloté par des données (`src/data/` : glossaire, quiz, projets, blog) ; les onze cours et les projets guidés sont eux-mêmes des données (`src/data/lessons/`), affichées par un seul jeu de composants, et leurs tests exécutent chaque exemple et chaque corrigé sur les vrais moteurs
 - Séparation entre logique (`src/lib/`, `src/hooks/`) et interface
 - Gestion d'état avec les hooks React ; stockage local isolé dans `src/lib/storage.ts`
 - Description détaillée dans `structure.md`

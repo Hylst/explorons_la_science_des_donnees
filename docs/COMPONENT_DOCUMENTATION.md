@@ -51,7 +51,7 @@ Pour tenir le contraste WCAG AA (4,5:1) du texte coloré sur fond clair et du te
 
 **Fichier :** `src/components/ui/unified-hero-section.tsx`
 
-Section héros unifiée. Utilisée par 28 fichiers : l'accueil (`home/Hero.tsx`), la plupart des pages de rubrique (Introduction, Fondamentaux, Machine Learning, Outils et leurs sous-pages, Projets, Quiz, Ressources, Glossaire, Blog, Communauté), les pages de mathématiques et de statistiques, les trois pages d'apprentissage ML, et les 10 cours rédigés, par l'intermédiaire de `components/courses/lessons/LessonCoursePage.tsx` (variante `course`, titre en `h2` parce que `CourseLayout` porte déjà le `h1`). Le titre et la description s'affichent dès le premier rendu, sans animation retardée (ils retardaient le LCP de chaque page) ; seuls les badges et les décorations gardent leur fondu.
+Section héros unifiée. Utilisée par 28 fichiers : l'accueil (`home/Hero.tsx`), la plupart des pages de rubrique (Introduction, Fondamentaux, Machine Learning, Outils et leurs sous-pages, Projets, Quiz, Ressources, Glossaire, Blog, Communauté), les pages de mathématiques et de statistiques, les trois pages d'apprentissage ML, et les 11 cours rédigés, par l'intermédiaire de `components/courses/lessons/LessonCoursePage.tsx` (variante `course`, titre en `h2` parce que `CourseLayout` porte déjà le `h1`). Le titre et la description s'affichent dès le premier rendu, sans animation retardée (ils retardaient le LCP de chaque page) ; seuls les badges et les décorations gardent leur fondu.
 
 #### Props
 
@@ -82,7 +82,7 @@ interface UnifiedHeroSectionProps {
 
 1. **home** : page d'accueil
 2. **page** : pages internes
-3. **course** : pages de cours, avec badges issus de `courseInfo` (la durée est suivie de « (indicatif) »)
+3. **course** : pages de cours, avec badges issus de `courseInfo` (la durée est suivie de « (indicatif) » par le bandeau lui-même : l'appelant passe la durée sans ce suffixe ; `LessonCoursePage` l'ajoutait aussi jusqu'au 12 octobre 2026 et la page affichait « 13 h (indicatif) (indicatif) », ce que le test de fumée refuse désormais)
 
 #### Utilisation
 
@@ -125,11 +125,11 @@ Logo de la barre de navigation (`layout/Navbar.tsx`), lien vers l'accueil avec i
 
 ### 4. Images
 
-Les images du site utilisent des balises `<img>` directes, avec `loading="lazy"` quand elles sont sous la ligne de flottaison (accueil, catalogue des cours, cartes du blog, `BigDataSection.tsx`). Un composant `OptimizedImage` (chargement différé par `IntersectionObserver`, image de repli) a existé : il n'était importé nulle part et a été supprimé le 5 octobre 2026. Les chemins d'images statiques doivent passer par `asset()` de `src/lib/asset.ts`, jamais en dur. Les illustrations des trois cours mis en avant sur l'accueil sont des SVG animés maison (`public/svg/cards/`, `lib/course-image.ts`) ; les autres cours et chaque article du blog ont une image WebP (`public/img/courses/`, `public/img/blog/`). Une image décorative porte `alt=""`.
+Les images du site utilisent des balises `<img>` directes, avec `loading="lazy"` quand elles sont sous la ligne de flottaison (accueil, catalogue des cours, cartes du blog, `BigDataSection.tsx`). Un composant `OptimizedImage` (chargement différé par `IntersectionObserver`, image de repli) a existé : il n'était importé nulle part et a été supprimé le 5 octobre 2026. Les chemins d'images statiques doivent passer par `asset()` de `src/lib/asset.ts`, jamais en dur. Les illustrations des trois cours mis en avant sur l'accueil et celle du cours de séries temporelles (`series-co2.svg`, tracée d'après les vraies moyennes mensuelles de CO2) sont des SVG animés maison (quatre fichiers dans `public/svg/cards/`, associés aux cours par `lib/course-image.ts`) ; les autres cours et chaque article du blog ont une image WebP (`public/img/courses/`, `public/img/blog/`). Une image décorative porte `alt=""`.
 
 ### 5. Composants de cours
 
-Les 10 cours sont des données (`src/data/lessons/<cours>/`) affichées par `src/components/courses/lessons/` ; une page de cours (`src/pages/courses/...`) ne fait que passer son cours à `LessonCoursePage` (25 à 33 lignes). Les composants de `src/components/courses/lessons/` :
+Les 11 cours sont des données (`src/data/lessons/<cours>/`) affichées par `src/components/courses/lessons/` ; une page de cours (`src/pages/courses/...`) ne fait que passer son cours à `LessonCoursePage` (25 à 33 lignes). Les composants de `src/components/courses/lessons/` :
 
 - `LessonCoursePage` : page d'un cours (bandeau `UnifiedHeroSection`, encadré « Comment ça marche », liste des modules, section « Et ensuite ? » reçue en propriété) dans `CourseLayout`. Propriétés : `course`, `title`, `categoryName`, `description`, `level`, `icon`, `language` (`sql` ou `python`, pour le texte du mode d'emploi) et `next`
 - `LessonModuleView` : un module repliable, avec objectifs, sections, quiz (`CourseQuizBlock`) et boutons de progression (`CourseItemActions`) ; les formules (`CourseEquation`) sont chargées à la demande
@@ -232,11 +232,11 @@ Classes présentes, entre autres : `.btn-interactive` (survol avec balayage de d
 npm run lint
 npm run typecheck     # tsc -p tsconfig.app.json --noEmit
 npm test              # Vitest (jsdom) ; prépare d'abord public/vendor (cours Python testés sur Pyodide)
-npm run test:smoke    # affiche chacune des 56 routes et chaque onglet (environ 20 s)
+npm run test:smoke    # affiche chacune des 57 routes et chaque onglet (environ 20 s)
 npm run build:hylst   # build statique, puis contrôle du dossier dist-hylst
 ```
 
-`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (45 fichiers de test au 9 octobre 2026, dont le test de fumée ; `npm test` donne le nombre de tests) ; React Testing Library n'est pas installée.
+`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (47 fichiers de test au 12 octobre 2026, dont le test de fumée, 45 au 9 octobre ; `npm test` donne le nombre de tests) ; React Testing Library n'est pas installée.
 
 ---
 

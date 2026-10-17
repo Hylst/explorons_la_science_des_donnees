@@ -30,6 +30,7 @@ Les niveaux des sections 1, 2 et 7 reprennent les rapports de recherche R1 (prog
 | `src/pages/fundamentals/databases/components/DatabasesIntroSection.tsx` | `/fundamentals/databases` | Volumes de données et impact business |
 | `src/components/introduction/sections/CareersSection.tsx` | `/introduction` | Fourchettes de salaires Apec |
 | `src/data/lessons/` (références citées dans le texte des cours, sans `SourceNote`) | `/courses/...` | Voir la section 12 |
+| `src/data/lessons/time-series/` (séries réelles et références du cours de séries temporelles) | `/courses/statistics/time-series` | Voir la section 13 |
 
 ---
 
@@ -226,6 +227,28 @@ Relevé fait le 10 octobre 2026 en cherchant, dans `src/data/lessons/`, les ann�
 | Traitement du langage (`nlp/`) | Voir la section 11 | voir la section 11 |
 
 Les autres cours (Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, guide des modèles de ML) et les projets guidés ne contiennent, d'après cette recherche, aucune référence d'auteur datée ni chiffre externe : leurs valeurs sont calculées par les exemples, tirées de jeux fournis avec scikit-learn (rien n'est téléchargé) ou inventées avec une graine fixe et annoncées comme telles. Cette recherche est lexicale : elle ne remplace pas une relecture des leçons.
+---
+
+## 13. Séries réelles du cours de séries temporelles (11 et 12 octobre 2026)
+
+Les quatre séries sont fournies avec statsmodels 0.14.6 et chargées par `src/data/lessons/time-series/data.ts` : rien n'est téléchargé. Leur provenance a été lue le 11 octobre 2026 dans la notice de chaque jeu de données à l'intérieur de statsmodels (attributs `TITLE`, `SOURCE`, `COPYRIGHT`, `NOTE`, affichés par le moteur du site), pas sur les pages d'origine, qui n'ont pas été ouvertes. Les valeurs citées dans les leçons sont calculées sur ces données par le moteur et revérifiées en relançant chaque exemple.
+
+| Série (variable du cours) | Provenance d'après la notice statsmodels | Licence d'après la notice | Niveau |
+|---|---|---|---|
+| `co2` (et `co2_hebdo`) | Concentration de CO2 à Mauna Loa, prélèvements du réseau Scripps : Keeling, C. D. et Whorf, T. P. (2004), *Trends: A Compendium of Data on Global Change*, CDIAC, Oak Ridge National Laboratory ; données obtenues par statsmodels le 15 mars 2014 ; hebdomadaire du 29 mars 1958 au 29 décembre 2001 (2 284 lignes, 59 manquantes) | domaine public | notice lue, page d'origine non ouverte |
+| `nil` | Débit annuel du Nil à Assouan, 1871-1970, en 10^8 m³ ; analysé d'abord par Cobb, G. W. (1978), « The Problem of the Nile », *Biometrika* 65(2), 243-251 | domaine public | notice lue, page d'origine non ouverte |
+| `taches` | Nombre annuel de taches solaires, 1700-2008, National Geophysical Data Center (NOAA) | domaine public | notice lue, page d'origine non ouverte |
+| `elnino` | Température de surface de la mer, moyenne mensuelle, région Niño 1+2 (Pacifique est, au large de l'Équateur et du Pérou), jeu ERSST.V3B de la NOAA, 1950-2010 | domaine public | notice lue, page d'origine non ouverte |
+
+Références citées dans le texte des leçons :
+
+| Leçon (fichier) | Fait ou référence cité | Niveau |
+|---|---|---|
+| `m5-arima.ts`, `m6-saisonnalite.ts` | Box et Jenkins (1970) pour la démarche ARIMA | non vérifié (référence classique, ouvrage non ouvert) |
+| `m4-autocorrelation.ts` | Cobb (1978) pour la rupture du Nil vers 1898 | citée par la notice statsmodels (voir ci-dessus) ; l'article n'a pas été ouvert |
+| `m2-decomposition.ts` | STL : Cleveland et ses collègues (1990) | non vérifié |
+| `m2-decomposition.ts` | L'épisode El Niño de 1982-1983, « l'un des plus intenses connus » | non vérifié (le plus grand écart à la saison de la série, juin 1983, est mesuré ; le classement historique ne l'est pas) |
+
 ---
 
 ## Éléments éditoriaux

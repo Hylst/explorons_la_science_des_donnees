@@ -75,6 +75,17 @@ export const COURSE_CATALOG: CatalogCourse[] = [
     status: "redige",
   },
   {
+    id: "time-series",
+    category: "math-stats",
+    title: "Séries temporelles",
+    description: "Décrire, décomposer et prévoir des séries réelles (CO2, Nil, taches solaires) avec pandas et statsmodels, en évaluant chaque prévision.",
+    level: "Intermédiaire",
+    duration: "≈ 13 h",
+    modules: 6,
+    href: "/courses/statistics/time-series",
+    status: "redige",
+  },
+  {
     id: "database-fundamentals",
     category: "databases",
     title: "Fondamentaux des bases de données",

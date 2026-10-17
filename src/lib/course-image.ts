@@ -1,10 +1,14 @@
 import { asset } from "@/lib/asset";
 
-/** Les trois cours mis en avant sur l'accueil ont une illustration SVG animée (public/svg/cards) */
+/**
+ * Illustrations SVG animées (public/svg/cards) : les trois cours mis en avant sur l'accueil, et le cours de séries temporelles
+ * (tracé des vraies moyennes mensuelles du CO2 de Mauna Loa, faute d'image générée pour lui).
+ */
 export const ANIMATED_COURSE_IMAGES: Record<string, string> = {
   "python-basics": "svg/cards/python-code.svg",
   "math-intro": "svg/cards/maths-descente.svg",
   "ml-models-guide": "svg/cards/ml-frontiere.svg",
+  "time-series": "svg/cards/series-co2.svg",
 };
 
 /**
