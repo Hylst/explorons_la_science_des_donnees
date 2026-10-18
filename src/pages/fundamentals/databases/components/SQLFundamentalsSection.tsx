@@ -217,7 +217,7 @@ GROUP BY d.id, d.nom_departement;`,
               <div className="flex items-start gap-2">
                 <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h5 className="font-semibold text-blue-800 mb-1">Explication</h5>
+                  <h4 className="font-semibold text-blue-800 mb-1">Explication</h4>
                   <p className="text-sm text-blue-700">
                     {sqlExamples[activeExample].explanation}
                   </p>
@@ -374,7 +374,7 @@ GROUP BY d.id, d.nom_departement;`,
             <TabsContent value="maintenance" className="space-y-4">
               <div className="space-y-3">
                 <div className="bg-blue-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-blue-800 mb-1">Conventions de nommage</h5>
+                  <h4 className="font-semibold text-blue-800 mb-1">Conventions de nommage</h4>
                   <ul className="text-sm space-y-1">
                     <li>• Tables en minuscules, pluriel : <code>employes</code>, <code>commandes</code></li>
                     <li>• Colonnes descriptives : <code>date_creation</code>, <code>prix_unitaire</code></li>

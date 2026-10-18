@@ -218,15 +218,15 @@ const CorrelationSection = () => {
 
               <div className="space-y-3">
                 <div className="bg-green-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-sm mb-1">Cov {">"} 0</h5>
+                  <h4 className="font-semibold text-sm mb-1">Cov {">"} 0</h4>
                   <p className="text-xs">Relation positive : quand X augmente, Y tend à augmenter</p>
                 </div>
                 <div className="bg-red-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-sm mb-1">Cov {"<"} 0</h5>
+                  <h4 className="font-semibold text-sm mb-1">Cov {"<"} 0</h4>
                   <p className="text-xs">Relation négative : quand X augmente, Y tend à diminuer</p>
                 </div>
                 <div className="bg-gray-50 p-3 rounded-lg">
-                  <h5 className="font-semibold text-sm mb-1">Cov ≈ 0</h5>
+                  <h4 className="font-semibold text-sm mb-1">Cov ≈ 0</h4>
                   <p className="text-xs">Pas de relation linéaire entre X et Y</p>
                 </div>
               </div>
@@ -259,10 +259,11 @@ const CorrelationSection = () => {
                 C'est la "covariance standardisée", bien adaptée aux comparaisons.
               </p>
 
-              <CourseEquation latex="r = \frac{Cov(X,Y)}{s_X \cdot s_Y} = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}}" />
+              <CourseEquation latex="r = \frac{Cov(X,Y)}{s_X \cdot s_Y} = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}}"
+              narrow="\begin{aligned} r &= \frac{Cov(X,Y)}{s_X \cdot s_Y} \\ &= \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2}} \end{aligned}" />
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Super-pouvoirs du coefficient r</h5>
+                <h4 className="font-semibold text-sm mb-2">Super-pouvoirs du coefficient r</h4>
                 <ul className="text-xs space-y-1">
                   <li>• <strong>Borné :</strong> -1 ≤ r ≤ 1 (toujours)</li>
                   <li>• <strong>Sans unité :</strong> Comparable universellement</li>
@@ -315,7 +316,7 @@ const CorrelationSection = () => {
                 style={{borderLeftColor: type.color}}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h5 className="font-semibold text-sm">{type.type}</h5>
+                  <h4 className="font-semibold text-sm">{type.type}</h4>
                   <Badge style={{backgroundColor: type.color, color: readableTextColor(type.color)}}>
                     {type.r > 0 ? '+' : ''}{type.r}
                   </Badge>
@@ -349,10 +350,10 @@ const CorrelationSection = () => {
             </div>
 
             <div className="bg-red-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 flex items-center gap-2">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4" />
                 Pièges à éviter absolument
-              </h5>
+              </h4>
               <ul className="space-y-2 text-sm">
                 <li>• <strong>Corrélation ≠ causalité</strong><br/>
                     <span className="text-xs">Crème solaire et noyades sont corrélées, mais...</span>
@@ -374,19 +375,19 @@ const CorrelationSection = () => {
             <CourseHighlight title="Applications modernes de la corrélation" type="concept">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                 <div className="bg-blue-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">Finance</h6>
+                  <h5 className="font-semibold mb-1">Finance</h5>
                   <p className="text-xs">Diversification de portefeuille, corrélations entre actifs</p>
                 </div>
                 <div className="bg-green-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">Recherche</h6>
+                  <h5 className="font-semibold mb-1">Recherche</h5>
                   <p className="text-xs">Validation d'hypothèses, sélection de variables</p>
                 </div>
                 <div className="bg-purple-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">Machine Learning</h6>
+                  <h5 className="font-semibold mb-1">Machine Learning</h5>
                   <p className="text-xs">Feature selection, détection de multicolinéarité</p>
                 </div>
                 <div className="bg-orange-50 p-3 rounded-lg">
-                  <h6 className="font-semibold mb-1">Business</h6>
+                  <h5 className="font-semibold mb-1">Business</h5>
                   <p className="text-xs">KPIs corrélés, optimisation marketing</p>
                 </div>
               </div>
@@ -409,7 +410,7 @@ const CorrelationSection = () => {
               </p>
               
               <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                <h5 className="font-semibold mb-2">Structure mathématique</h5>
+                <h4 className="font-semibold mb-2">Structure mathématique</h4>
                 <CourseEquation latex="\Sigma = \begin{pmatrix} \sigma_{11} & \sigma_{12} & \cdots & \sigma_{1n} \\ \sigma_{21} & \sigma_{22} & \cdots & \sigma_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ \sigma_{n1} & \sigma_{n2} & \cdots & \sigma_{nn} \end{pmatrix}" />
               </div>
             </CourseHighlight>
@@ -592,7 +593,7 @@ const CorrelationSection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-2 text-blue-700">Spearman (ρ)</h5>
+              <h4 className="font-semibold mb-2 text-blue-700">Spearman (ρ)</h4>
               <p className="text-sm mb-3">Corrélation de rang, parfaite pour relations monotones non-linéaires</p>
               <div className="text-xs space-y-1">
                 <p><strong>Avantage :</strong> détecte les relations monotones, même courbes (pas les relations en U)</p>

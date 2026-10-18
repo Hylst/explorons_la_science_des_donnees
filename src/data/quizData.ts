@@ -2482,20 +2482,3 @@ export const getRandomQuestions = (categoryId: string, count: number): QuizQuest
   const shuffled = shuffle(category.questions);
   return shuffled.slice(0, Math.min(count, shuffled.length)).map((question) => shuffleOptions(question));
 };
-
-/**
- * Get quiz statistics
- */
-export const getQuizStats = () => {
-  const totalCategories = quizCategories.length;
-  const totalQuestions = quizCategories.reduce((sum, cat) => sum + cat.questions.length, 0);
-  const totalTime = quizCategories.reduce((sum, cat) => sum + cat.estimatedTime, 0);
-  const avgProgress = 0; // This would come from user data
-  
-  return {
-    totalCategories,
-    totalQuestions,
-    totalTime,
-    avgProgress
-  };
-};

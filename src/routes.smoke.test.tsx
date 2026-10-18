@@ -60,6 +60,23 @@ const idsEnDouble = (el: Element) => {
   return [...vus].filter(([, n]) => n > 1).map(([id, n]) => `${id} x${n}`);
 };
 
+/**
+ * Ordre des titres pour un lecteur d'écran : le premier titre de la page est le h1, et un titre ne descend jamais
+ * de plus d'un niveau sous le précédent (h2 puis h4 laisse un niveau vide). Remonter de plusieurs niveaux est permis.
+ */
+const sautsDeTitres = (el: Element) => {
+  const titres = [...el.querySelectorAll("h1, h2, h3, h4, h5, h6")];
+  const fautes: string[] = [];
+  if (titres.length && titres[0].tagName !== "H1") fautes.push(`premier titre ${titres[0].tagName} « ${(titres[0].textContent ?? "").trim().slice(0, 40)} »`);
+  let precedent = 0;
+  for (const t of titres) {
+    const niveau = Number(t.tagName[1]);
+    if (precedent && niveau > precedent + 1) fautes.push(`h${precedent} puis h${niveau} « ${(t.textContent ?? "").trim().slice(0, 40)} »`);
+    precedent = niveau;
+  }
+  return fautes;
+};
+
 describe("routes : chaque page s'affiche", () => {
   it("trouve les routes du site", () => {
     expect(routes.length).toBeGreaterThan(40);
@@ -98,6 +115,8 @@ describe("routes : chaque page s'affiche", () => {
     expect(idsEnDouble(container), `id en double sur ${route}`).toEqual([]);
     // régression vue le 12 octobre 2026 : les dix cours rédigés affichaient « 13 h (indicatif) (indicatif) » (suffixe ajouté deux fois)
     expect(texte, `mention « indicatif » répétée sur ${route}`).not.toMatch(/\(indicatif\)\s*\(indicatif\)/);
+    // hiérarchie des titres (17 octobre 2026 : 79 sauts relevés dans Chrome sur 37 pages, et un h2 avant le h1 sur 20 pages)
+    const fautesDeTitres = new Set(sautsDeTitres(container));
 
     // Radix n'affiche que l'onglet actif : on active chaque onglet (y compris ceux qui apparaissent ensuite)
     // pour que le contenu des autres onglets soit rendu, lui aussi.
@@ -116,9 +135,12 @@ describe("routes : chaque page s'affiche", () => {
         });
         expect(container.textContent ?? "", `onglet « ${onglet.textContent} » de ${route}`).not.toContain("Une erreur s'est produite");
         expect(idsEnDouble(container), `id en double, onglet « ${onglet.textContent} » de ${route}`).toEqual([]);
+        for (const faute of sautsDeTitres(container)) fautesDeTitres.add(`${faute} (onglet « ${onglet.textContent} »)`);
       }
       if (nouveaux === 0) break;
     }
+
+    expect([...fautesDeTitres], `ordre des titres de ${route}`).toEqual([]);
 
     // chaque lien d'ancre (href="#x") de la page mène à un élément présent dans la page elle-même (barre latérale comprise)
     // Régression du 5 octobre 2026 : le guide des modèles pointait vers « #overview » et le guide des transformers vers « #data-transformers ».

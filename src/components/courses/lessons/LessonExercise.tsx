@@ -5,14 +5,17 @@ import FigureOutput from "@/components/ui/figure-output";
 import LessonMarkdown from "./LessonMarkdown";
 import { runCode, type RunResult } from "@/lib/runner";
 import { compareSqlOutputs } from "@/lib/lessons/check";
-import type { LessonSection } from "@/lib/lessons/types";
-
-type ExerciseSection = Extract<LessonSection, { kind: "exercise" }>;
+import type { ChallengeExercise } from "@/lib/lessons/types";
 
 interface LessonExerciseProps {
-  exercise: ExerciseSection;
+  /** Exercice d'une leçon (SQL, Python) ou d'un défi (Python, JavaScript) */
+  exercise: ChallengeExercise;
   /** Numéro affiché (« Exercice 2 ») */
   number: number;
+  /** Titre affiché à la place de « Exercice n » (défis) */
+  title?: string;
+  /** Appelé quand une vérification réussit (progression enregistrée par l'appelant) */
+  onSolved?: () => void;
 }
 
 type Verdict = { ok: boolean; message: string } | null;
@@ -21,9 +24,10 @@ const withSetup = (setup: string | undefined, code: string) => (setup ? `${setup
 
 /**
  * Exercice vérifié par le vrai moteur : en SQL, le résultat de la réponse est comparé à celui du corrigé
- * sur les mêmes données ; en Python, la réponse est suivie des tests de l'exercice (assert).
+ * sur les mêmes données ; en Python, la réponse est suivie des tests de l'exercice (assert) ; en JavaScript aussi
+ * (bac à sable du site, tests qui lèvent une erreur nommée AssertionError, donc le même message qu'en Python).
  */
-const LessonExercise = ({ exercise, number }: LessonExerciseProps) => {
+const LessonExercise = ({ exercise, number, title, onSolved }: LessonExerciseProps) => {
   const [answer, setAnswer] = useState(exercise.starter);
   const [result, setResult] = useState<RunResult | null>(null);
   const [verdict, setVerdict] = useState<Verdict>(null);
@@ -46,12 +50,16 @@ const LessonExercise = ({ exercise, number }: LessonExerciseProps) => {
         } else {
           const comparison = compareSqlOutputs(expected.output, mine.output, exercise.ordered, exercise.columns);
           setVerdict(comparison.ok ? { ok: true, message: "Bravo, c'est le résultat attendu." } : { ok: false, message: comparison.reason });
+          if (comparison.ok) onSolved?.();
         }
       } else {
         const code = `${withSetup(exercise.setup, answer)}\n${exercise.test ?? ""}`;
-        const mine = await runCode("python", code);
+        const mine = await runCode(exercise.language === "javascript" ? "javascript" : "python", code);
         setResult(mine);
-        if (!mine.error) setVerdict({ ok: true, message: "Bravo, tous les tests passent." });
+        if (!mine.error) {
+          setVerdict({ ok: true, message: "Bravo, tous les tests passent." });
+          onSolved?.();
+        }
         else if (/AssertionError/.test(mine.error)) {
           const detail = mine.error.split("AssertionError").pop()?.replace(/^:\s*/, "").trim();
           setVerdict({ ok: false, message: detail ? `Pas encore : ${detail}` : "Pas encore : un test ne passe pas." });
@@ -64,10 +72,10 @@ const LessonExercise = ({ exercise, number }: LessonExerciseProps) => {
 
   return (
     <section className="mb-6 rounded-lg border-2 border-indigo-200 bg-indigo-50/40 p-4 dark:border-indigo-800 dark:bg-indigo-950/30">
-      <h4 className="mb-2 font-semibold text-indigo-900 dark:text-indigo-200">Exercice {number}</h4>
+      <h4 className="mb-2 font-semibold text-indigo-900 dark:text-indigo-200">{title ?? `Exercice ${number}`}</h4>
       <LessonMarkdown md={exercise.prompt} />
       <textarea
-        aria-label={`Votre réponse à l'exercice ${number}`}
+        aria-label={title ? `Votre réponse : ${title}` : `Votre réponse à l'exercice ${number}`}
         value={answer}
         onChange={(event) => setAnswer(event.target.value)}
         spellCheck={false}

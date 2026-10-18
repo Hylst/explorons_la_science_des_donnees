@@ -241,7 +241,7 @@ Avant de recueillir des données, on choisit n pour que la puissance atteigne un
     },
     {
       kind: "equation",
-      latex: String.raw`n \;\approx\; \frac{2\,\left(z_{1-\alpha/2} + z_{1-\beta}\right)^2}{d^2} \quad\text{individus par groupe}`,
+      latex: String.raw`n \;\approx\; \frac{2\,\left(z_{1-\alpha/2} + z_{1-\beta}\right)^2}{d^2} \qquad\text{individus par groupe}`,
       caption: "Taille de chaque groupe pour un test à deux groupes (approximation normale)",
     },
     {

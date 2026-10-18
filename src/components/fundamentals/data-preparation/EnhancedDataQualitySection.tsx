@@ -458,7 +458,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                     </div>
                     
                     <div className="bg-blue-50 p-3 rounded-lg">
-                      <h5 className="font-semibold text-blue-700 mb-2">Techniques d'amélioration :</h5>
+                      <h4 className="font-semibold text-blue-700 mb-2">Techniques d'amélioration :</h4>
                       <ul className="text-sm text-blue-600 space-y-1">
                         {dimension.techniques.map((technique, tIndex) => (
                           <li key={tIndex}>• {technique}</li>
@@ -509,7 +509,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="bg-blue-50 p-3 rounded-lg">
-                            <h5 className="font-semibold text-blue-700 mb-2">Questions à se poser :</h5>
+                            <h4 className="font-semibold text-blue-700 mb-2">Questions à se poser :</h4>
                             <ul className="text-sm text-blue-600 space-y-1">
                               {criterion.questions.map((question, qIndex) => (
                                 <li key={qIndex}>• {question}</li>
@@ -598,7 +598,7 @@ const EnhancedDataQualitySection: React.FC = () => {
                             </ul>
                           </div>
                           <div className="bg-blue-50 p-3 rounded-lg">
-                            <h5 className="font-semibold text-blue-700 mb-2">Quand utiliser :</h5>
+                            <h4 className="font-semibold text-blue-700 mb-2">Quand utiliser :</h4>
                             <p className="text-sm text-blue-600">{technique.when}</p>
                           </div>
                         </div>

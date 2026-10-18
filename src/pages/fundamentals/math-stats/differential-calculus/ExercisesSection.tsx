@@ -95,17 +95,17 @@ const ExercisesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
             <Brain className="h-8 w-8 mx-auto mb-2 text-blue-600" />
-            <h4 className="font-semibold">1. Réfléchissez</h4>
+            <h3 className="font-semibold">1. Réfléchissez</h3>
             <p className="text-sm">Prenez le temps d'analyser le problème</p>
           </div>
           <div className="text-center">
             <Target className="h-8 w-8 mx-auto mb-2 text-green-600" />
-            <h4 className="font-semibold">2. Tentez</h4>
+            <h3 className="font-semibold">2. Tentez</h3>
             <p className="text-sm">Essayez de résoudre par vous-même</p>
           </div>
           <div className="text-center">
             <Lightbulb className="h-8 w-8 mx-auto mb-2 text-orange-600" />
-            <h4 className="font-semibold">3. Apprenez</h4>
+            <h3 className="font-semibold">3. Apprenez</h3>
             <p className="text-sm">Consultez la solution détaillée</p>
           </div>
         </div>

@@ -40,7 +40,7 @@ const TermsOfService = () => {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <BookOpen className="h-5 w-5" />
                 Présentation du service
               </CardTitle>
@@ -58,7 +58,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Users className="h-5 w-5" />
                 Acceptation des conditions
               </CardTitle>
@@ -73,7 +73,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Scale className="h-5 w-5" />
                 Propriété intellectuelle et licence
               </CardTitle>
@@ -123,7 +123,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5" />
                 Utilisation responsable
               </CardTitle>
@@ -148,7 +148,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Shield className="h-5 w-5" />
                 Limitation de responsabilité
               </CardTitle>
@@ -184,7 +184,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Liens externes</CardTitle>
+              <CardTitle as="h2">Liens externes</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">
@@ -198,7 +198,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Droit applicable</CardTitle>
+              <CardTitle as="h2">Droit applicable</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">
@@ -210,7 +210,7 @@ const TermsOfService = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Contact</CardTitle>
+              <CardTitle as="h2">Contact</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">

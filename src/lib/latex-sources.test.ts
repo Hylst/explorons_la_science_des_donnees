@@ -22,7 +22,7 @@ describe("formules KaTeX des cours", () => {
   const formulas: { file: string; latex: string }[] = [];
   for (const file of sourceFiles(SRC)) {
     const text = fs.readFileSync(file, "utf8");
-    for (const match of text.matchAll(/latex="([^"]*)"/g)) formulas.push({ file: path.relative(SRC, file), latex: match[1] });
+    for (const match of text.matchAll(/(?:latex|narrow)="([^"]*)"/g)) formulas.push({ file: path.relative(SRC, file), latex: match[1] });
   }
 
   it("en trouve beaucoup (le test regarde bien les sources)", () => {

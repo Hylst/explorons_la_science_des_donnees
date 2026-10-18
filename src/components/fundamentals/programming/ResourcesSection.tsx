@@ -885,7 +885,7 @@ const ResourcesSection = () => {
             <CourseHighlight title="Bien utiliser les communautés" type="info">
               <div className="space-y-3">
                 <div>
-                  <h5 className="font-semibold">Bonnes pratiques :</h5>
+                  <h4 className="font-semibold">Bonnes pratiques :</h4>
                   <ul className="text-sm space-y-1 list-disc pl-5">
                     <li>Lisez les règles avant de poster</li>
                     <li>Utilisez des titres descriptifs</li>
@@ -895,7 +895,7 @@ const ResourcesSection = () => {
                   </ul>
                 </div>
                 <div>
-                  <h5 className="font-semibold">À éviter :</h5>
+                  <h4 className="font-semibold">À éviter :</h4>
                   <ul className="text-sm space-y-1 list-disc pl-5">
                     <li>Poser sans avoir cherché avant</li>
                     <li>Demander qu'on fasse le travail à votre place</li>

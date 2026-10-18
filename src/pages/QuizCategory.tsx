@@ -266,7 +266,7 @@ const QuizCategory: React.FC = () => {
             {/* Topics */}
             {category.topics && category.topics.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3">Sujets couverts :</h3>
+                <h2 className="text-lg font-semibold mb-3">Sujets couverts :</h2>
                 <div className="flex flex-wrap gap-2">
                   {category.topics.map((topic: string, index: number) => (
                     <Badge key={index} variant="outline" className="text-sm">

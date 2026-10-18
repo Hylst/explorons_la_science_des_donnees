@@ -10,3 +10,10 @@ export const ENGINE_SETUP = `
 import warnings
 warnings.filterwarnings('ignore', message=r'.*as_object_map.*')
 `;
+
+/**
+ * `asyncio.run(f())` devient `await (f())` : le code s'exécute avec runPythonAsync, qui accepte un await au niveau
+ * du module, alors qu'asyncio.run demande à Pyodide le « stack switching » de WebAssembly (JSPI), absent de Node 24
+ * et que tous les navigateurs ne proposent peut-être pas (présent dans Chrome, vérifié le 18 octobre 2026). Partagé par le worker du site et par lib/lessons/python-node.ts (tests).
+ */
+export const adaptAsyncio = (code: string) => code.replace(/\basyncio\.run\(/g, 'await (');

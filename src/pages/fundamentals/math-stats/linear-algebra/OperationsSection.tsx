@@ -49,7 +49,7 @@ const OperationsSection = () => {
               </div>
 
               <div className="bg-green-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-green-700 mb-2">Applications pratiques :</h5>
+                <h4 className="font-semibold text-green-700 mb-2">Applications pratiques :</h4>
                 <ul className="text-sm text-green-600 space-y-1">
                   <li>• Changer l'organisation des données</li>
                   <li>• Calculs de covariance en statistiques</li>

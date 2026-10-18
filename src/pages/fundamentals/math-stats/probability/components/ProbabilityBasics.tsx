@@ -145,7 +145,7 @@ const ProbabilityBasics = () => {
 
       <div className="mb-8">
         <CourseHighlight title="Zoom sur : Les trois visions des probabilités" type="concept">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <h4 className="font-semibold text-blue-700 mb-3 flex items-center gap-2">
                 <Badge className="bg-blue-100 text-blue-800">1</Badge>
@@ -180,7 +180,8 @@ const ProbabilityBasics = () => {
                 Approche subjective (bayésienne)
               </h4>
               <p className="text-sm mb-2">Degré de croyance personnelle</p>
-              <CourseEquation latex="P(A) = \text{Croyance subjective}" />
+              <CourseEquation latex="P(A) = \text{Croyance subjective}"
+              narrow="\begin{gathered} P(A) = \text{croyance} \\ \text{subjective} \end{gathered}" />
               <div className="mt-3 space-y-1 text-xs">
                 <p><strong>Avantages :</strong> Intègre l'expertise humaine</p>
                 <p><strong>Limites :</strong> Peut être biaisée</p>

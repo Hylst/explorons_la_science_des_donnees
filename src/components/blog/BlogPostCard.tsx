@@ -48,8 +48,6 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, onReadMore, isFavorit
         return "bg-red-50 text-red-800 border-red-200";
       case "Visualisation":
         return "bg-pink-50 text-pink-800 border-pink-200";
-      case "Communication":
-        return "bg-indigo-50 text-indigo-800 border-indigo-200";
       case "Data Cleaning":
         return "bg-yellow-50 text-yellow-800 border-yellow-200";
       default:
@@ -70,7 +68,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, onReadMore, isFavorit
       />
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <CardTitle className="text-xl font-bold leading-tight pr-4">
+          <CardTitle as="h2" className="text-xl font-bold leading-tight pr-4">
             {post.title}
           </CardTitle>
           {post.featured && (

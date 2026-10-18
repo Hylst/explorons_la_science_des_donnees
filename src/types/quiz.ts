@@ -80,41 +80,6 @@ export interface QuizAttempt {
 }
 
 /**
- * Quiz results interface
- */
-export interface QuizResults {
-  attempt: QuizAttempt;
-  performance: {
-    scorePercentage: number;
-    correctCount: number;
-    incorrectCount: number;
-    totalTime: number;
-    averageTimePerQuestion: number;
-    pointsEarned: number;
-    maxPoints: number;
-  };
-  insights: {
-    strongAreas: string[];
-    weakAreas: string[];
-    difficultyBreakdown: {
-      [key in QuizDifficulty]: {
-        correct: number;
-        total: number;
-        percentage: number;
-      };
-    };
-    topicBreakdown: {
-      [topic: string]: {
-        correct: number;
-        total: number;
-        percentage: number;
-      };
-    };
-  };
-  recommendations: string[];
-}
-
-/**
  * Résultat simplifié d'un quiz, échangé entre QuizTaking, QuizResults et la page d'une catégorie
  */
 export interface SimpleQuizResults {
@@ -163,20 +128,6 @@ export interface Achievement {
   icon: string;
   unlockedAt: Date;
   category: 'score' | 'streak' | 'completion' | 'time' | 'special';
-}
-
-/**
- * Quiz session state for taking a quiz
- */
-export interface QuizSession {
-  categoryId: string;
-  questions: QuizQuestion[];
-  currentQuestionIndex: number;
-  answers: QuizAnswer[];
-  startTime: Date;
-  timeRemaining?: number; // in seconds, if timed
-  isCompleted: boolean;
-  showExplanations: boolean;
 }
 
 /**

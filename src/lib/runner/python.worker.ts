@@ -3,7 +3,7 @@ import type { PyodideInterface } from 'pyodide';
 import type { WorkerRequest, WorkerResponse } from './types';
 import { wasmBlocked } from './csp-guard';
 import { describeError } from './describe-error';
-import { ENGINE_SETUP } from './python-setup';
+import { ENGINE_SETUP, adaptAsyncio } from './python-setup';
 
 // Pyodide (Python dans WebAssembly) est servi par le site lui-même : public/vendor/pyodide (voir scripts/sync-runtimes.mjs)
 let pyodidePromise: Promise<PyodideInterface> | null = null;
@@ -70,7 +70,6 @@ const cleanTraceback = (message: string): string => {
 };
 
 // asyncio.run() échoue dans la boucle déjà lancée de Pyodide : le code est exécuté avec « await » au niveau supérieur
-const adaptAsyncio = (code: string) => code.replace(/\basyncio\.run\(/g, 'await (');
 
 self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   const { id, code, baseUrl } = event.data;

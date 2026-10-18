@@ -251,6 +251,19 @@ Références citées dans le texte des leçons :
 
 ---
 
+## 14. Jeu du diabète du cours de statistiques appliquées (module 7, 18 octobre 2026)
+
+Le module 7 (`m7-ols-statsmodels.ts`), comme le module 4, utilise le jeu du diabète fourni avec scikit-learn 1.8.0 (`load_diabetes(scaled=False)`), chargé par `src/data/lessons/applied-statistics/data.ts` : rien n'est téléchargé. La notice du jeu (`load_diabetes().DESCR`) a été lue le 18 octobre 2026 sur le moteur du site.
+
+| Fait repris dans la leçon | Source | Niveau |
+|---|---|---|
+| 442 patients ; dix variables mesurées au départ ; cible : une mesure quantitative de la progression de la maladie un an plus tard | notice scikit-learn | notice lue |
+| s1 cholestérol total, s2 LDL, s3 HDL, s4 rapport cholestérol total sur HDL, s5 « possibly log of serum triglycerides level », s6 glycémie | notice scikit-learn | notice lue |
+| La variable sex n'a pas d'étiquette dans la notice : la leçon parle des groupes 1 et 2 | notice scikit-learn | notice lue |
+| Origine : B. Efron, T. Hastie, I. Johnstone et R. Tibshirani (2004), « Least Angle Regression », *Annals of Statistics*, 407-499, et la page https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html | citée par la notice scikit-learn | notice lue, article et page non ouverts |
+
+Les seuils cités comme usuels (VIF au-delà de 10, distance de Cook au-delà de 4/n) sont des repères courants de la littérature, présentés comme tels ; aucun chiffre externe n'est cité dans ce module.
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

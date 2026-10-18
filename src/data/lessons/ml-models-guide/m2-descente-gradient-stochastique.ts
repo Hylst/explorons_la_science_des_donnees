@@ -32,7 +32,7 @@ La règle de mise à jour s'écrit :`,
     },
     {
       kind: "equation",
-      latex: String.raw`w \leftarrow w - \eta \,\nabla \ell(w;\, x_i, y_i) \quad \text{avec } i \text{ tiré au hasard}`,
+      latex: String.raw`w \leftarrow w - \eta \,\nabla \ell(w;\, x_i, y_i) \qquad \text{avec } i \text{ tiré au hasard}`,
       caption: "Descente de gradient stochastique : le pas est calculé sur l'exemple i seulement.",
     },
     {

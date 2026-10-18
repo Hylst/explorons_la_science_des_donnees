@@ -1,521 +1,74 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Trophy,
-  Target,
-  Clock,
-  CheckCircle,
-  Lightbulb,
-  RotateCcw,
-  Award,
-  Zap,
-  Brain,
-  Code2,
-  Eye,
-  EyeOff,
-  TrendingUp
-} from "lucide-react";
+import { Trophy, Target, Clock, CheckCircle, Brain, Code2, Zap, Award, TrendingUp, Info } from "lucide-react";
 import CourseHighlight from "@/components/courses/CourseHighlight";
-import { readJSON, writeJSON, removeStorage, isStringArray } from "@/lib/storage";
+import LessonExercise from "@/components/courses/lessons/LessonExercise";
+import { CHALLENGES, type Challenge } from "@/data/challenges";
+import { useCourseProgress } from "@/hooks/use-course-progress";
+import { readJSON, removeStorage } from "@/lib/storage";
 
-// Types for challenges
-interface Challenge {
-  id: string;
-  title: string;
-  description: string;
-  difficulty: 'facile' | 'moyen' | 'difficile';
-  category: string;
-  points: number;
-  timeLimit?: number; // in minutes
-  language: string;
-  problem: string;
-  starterCode: string;
-  solution: string;
-  testCases: TestCase[];
-  hints: string[];
-  learningObjectives: string[];
-  tags: string[];
-}
-
-interface TestCase {
-  input: string;
-  expectedOutput: string;
-  description: string;
-}
-
-interface UserProgress {
-  completedChallenges: string[];
-  totalPoints: number;
-  timeSpent: number; // in minutes
-  level: number;
-}
-
-const DEFAULT_PROGRESS: UserProgress = {
-  completedChallenges: [],
-  totalPoints: 0,
-  timeSpent: 0,
-  level: 1
-};
-
-// La clé v1 contenait des défis « réussis » par tirage aléatoire : elle n'est pas reprise
-const PROGRESS_KEY = 'challenge-progress-v2';
-const LEGACY_PROGRESS_KEY = 'challenge-progress';
-
-/** Conserve chaque champ valide de la progression sauvegardée, complète le reste par défaut */
-const parseUserProgress = (value: unknown): UserProgress | null => {
-  if (typeof value !== 'object' || value === null) return null;
-  const v = value as Record<string, unknown>;
-  const num = (field: keyof UserProgress) =>
-    typeof v[field] === 'number' && Number.isFinite(v[field]) ? (v[field] as number) : DEFAULT_PROGRESS[field] as number;
-  return {
-    completedChallenges: isStringArray(v.completedChallenges) ? v.completedChallenges : [],
-    totalPoints: num('totalPoints'),
-    timeSpent: num('timeSpent'),
-    level: num('level')
-  };
-};
-
-// Base des défis proposés (données statiques, hors du composant : référence stable pour les useMemo)
-const challenges: Challenge[] = [
-  {
-    id: 'python-basics-1',
-    title: 'Calculateur de moyenne',
-    description: 'Créez une fonction qui calcule la moyenne d\'une liste de nombres',
-    difficulty: 'facile',
-    category: 'Bases de Python',
-    points: 10,
-    timeLimit: 15,
-    language: 'python',
-    problem: `Écrivez une fonction appelée 'calculer_moyenne' qui prend une liste de nombres en paramètre et retourne leur moyenne.
-
-Exemple:
-- calculer_moyenne([1, 2, 3, 4, 5]) doit retourner 3.0
-- calculer_moyenne([10, 20]) doit retourner 15.0`,
-    starterCode: `def calculer_moyenne(nombres):
-    # Votre code ici
-    pass
-
-# Test de votre fonction
-resultat = calculer_moyenne([1, 2, 3, 4, 5])
-print(f"Moyenne: {resultat}")`,
-    solution: `def calculer_moyenne(nombres):
-    if not nombres:  # Liste vide : la moyenne n'est pas définie, on renvoie 0 par convention ici
-        return 0
-    return sum(nombres) / len(nombres)
-
-# Test de votre fonction
-resultat = calculer_moyenne([1, 2, 3, 4, 5])
-print(f"Moyenne: {resultat}")`,
-    testCases: [
-      {
-        input: '[1, 2, 3, 4, 5]',
-        expectedOutput: '3.0',
-        description: 'Liste de nombres consécutifs'
-      },
-      {
-        input: '[10, 20]',
-        expectedOutput: '15.0',
-        description: 'Deux nombres'
-      },
-      {
-        input: '[100]',
-        expectedOutput: '100.0',
-        description: 'Un seul nombre'
-      }
-    ],
-    hints: [
-      'Utilisez la fonction sum() pour additionner tous les éléments',
-      'Utilisez len() pour obtenir le nombre d\'éléments',
-      'N\'oubliez pas le cas d\'une liste vide (la moyenne n\'y est pas définie : choisissez une convention, par exemple renvoyer 0)',
-      'La moyenne = somme / nombre d\'éléments'
-    ],
-    learningObjectives: [
-      'Manipulation des listes Python',
-      'Fonctions built-in (sum, len)',
-      'Gestion des cas limites',
-      'Définition de fonctions'
-    ],
-    tags: ['functions', 'lists', 'math', 'basics']
-  },
-  {
-    id: 'python-data-1',
-    title: 'Analyse de ventes mensuelles',
-    description: 'Calculez des indicateurs simples sur un dictionnaire de ventes',
-    difficulty: 'moyen',
-    category: 'Analyse de données',
-    points: 25,
-    timeLimit: 30,
-    language: 'python',
-    problem: `Vous avez un dictionnaire représentant les ventes mensuelles d'une entreprise.
-Écrivez une fonction 'analyser_ventes' qui retourne un dictionnaire avec:
-- 'total': le total des ventes
-- 'moyenne': la moyenne mensuelle
-- 'meilleur_mois': le mois avec les meilleures ventes
-- 'croissance': True si les ventes du dernier mois dépassent celles du premier`,
-    starterCode: `def analyser_ventes(ventes_mensuelles):
-    # ventes_mensuelles = {'Jan': 1000, 'Feb': 1200, 'Mar': 1100, ...}
-    # Votre code ici
-    pass
-
-# Test
-ventes = {'Jan': 1000, 'Feb': 1200, 'Mar': 1100, 'Apr': 1300}
-resultat = analyser_ventes(ventes)
-print(resultat)`,
-    solution: `def analyser_ventes(ventes_mensuelles):
-    if not ventes_mensuelles:
-        return {}
-    
-    valeurs = list(ventes_mensuelles.values())
-    total = sum(valeurs)
-    moyenne = total / len(valeurs)
-    
-    # Trouver le meilleur mois
-    meilleur_mois = max(ventes_mensuelles, key=ventes_mensuelles.get)
-    
-    # Vérifier la croissance (comparer premier et dernier mois)
-    mois_ordonnes = list(ventes_mensuelles.keys())
-    croissance = ventes_mensuelles[mois_ordonnes[-1]] > ventes_mensuelles[mois_ordonnes[0]]
-    
-    return {
-        'total': total,
-        'moyenne': moyenne,
-        'meilleur_mois': meilleur_mois,
-        'croissance': croissance
-    }`,
-    testCases: [
-      {
-        input: "{'Jan': 1000, 'Feb': 1200, 'Mar': 1100, 'Apr': 1300}",
-        expectedOutput: "{'total': 4600, 'moyenne': 1150.0, 'meilleur_mois': 'Apr', 'croissance': True}",
-        description: 'Données de ventes croissantes'
-      }
-    ],
-    hints: [
-      'Utilisez sum() et len() pour calculer total et moyenne',
-      'La fonction max() avec key peut trouver le meilleur mois',
-      'Comparez le premier et le dernier mois pour la croissance',
-      'Les méthodes .keys() et .values() sont utiles pour les dictionnaires'
-    ],
-    learningObjectives: [
-      'Manipulation des dictionnaires',
-      'Fonctions d\'agrégation',
-      'Analyse de données basique',
-      'Logique conditionnelle'
-    ],
-    tags: ['dictionaries', 'data-analysis', 'aggregation', 'intermediate']
-  },
-  {
-    id: 'python-ml-1',
-    title: 'Classificateur des k plus proches voisins',
-    description: 'Implémentez un classificateur k-NN simple sur des points en deux dimensions',
-    difficulty: 'difficile',
-    category: 'Machine Learning',
-    points: 50,
-    timeLimit: 45,
-    language: 'python',
-    problem: `Implémentez un classificateur k-NN (k-Nearest Neighbors) simple.
-La fonction doit prendre:
-- points_entrainement: liste de tuples (x, y, classe)
-- nouveau_point: tuple (x, y)
-- k: nombre de voisins à considérer
-
-Retournez la classe prédite basée sur les k plus proches voisins.`,
-    starterCode: `import math
-
-def distance_euclidienne(point1, point2):
-    # Calculer la distance entre deux points
-    pass
-
-def knn_classifier(points_entrainement, nouveau_point, k=3):
-    # Votre implémentation k-NN ici
-    pass
-
-# Test
-data = [(1, 1, 'A'), (2, 2, 'A'), (3, 3, 'B'), (4, 4, 'B')]
-resultat = knn_classifier(data, (2.2, 2.2), k=3)
-print(f"Classe prédite: {resultat}")`,
-    solution: `import math
-
-def distance_euclidienne(point1, point2):
-    return math.sqrt((point1[0] - point2[0])**2 + (point1[1] - point2[1])**2)
-
-def knn_classifier(points_entrainement, nouveau_point, k=3):
-    # Calculer les distances
-    distances = []
-    for point in points_entrainement:
-        dist = distance_euclidienne((point[0], point[1]), nouveau_point)
-        distances.append((dist, point[2]))  # (distance, classe)
-    
-    # Trier par distance et prendre les k plus proches
-    distances.sort(key=lambda x: x[0])
-    k_plus_proches = distances[:k]
-    
-    # Compter les votes pour chaque classe
-    votes = {}
-    for _, classe in k_plus_proches:
-        votes[classe] = votes.get(classe, 0) + 1
-    
-    # Retourner la classe avec le plus de votes
-    return max(votes, key=votes.get)`,
-    testCases: [
-      {
-        input: "[(1, 1, 'A'), (2, 2, 'A'), (3, 3, 'B'), (4, 4, 'B')], (2.2, 2.2), 3",
-        expectedOutput: "'A'",
-        description: 'Classification avec k=3 (voisins A, B, A : aucune égalité)'
-      }
-    ],
-    hints: [
-      'La distance euclidienne: sqrt((x1-x2)² + (y1-y2)²)',
-      'Triez les points par distance croissante',
-      'Prenez les k premiers après tri',
-      'Comptez les votes de chaque classe',
-      'Retournez la classe majoritaire'
-    ],
-    learningObjectives: [
-      'Algorithmes de machine learning',
-      'Calcul de distances',
-      'Tri et sélection de données',
-      'Logique de vote/majorité'
-    ],
-    tags: ['machine-learning', 'knn', 'classification', 'advanced']
-  },
-  {
-    id: 'js-dom-1',
-    title: 'Gestionnaire de tâches',
-    description: 'Écrivez une petite classe JavaScript qui gère une liste de tâches',
-    difficulty: 'moyen',
-    category: 'JavaScript',
-    points: 30,
-    timeLimit: 25,
-    language: 'javascript',
-    problem: `Créez une classe TaskManager qui gère une liste de tâches.
-La classe doit avoir les méthodes:
-- addTask(task): ajouter une tâche
-- removeTask(index): supprimer une tâche par index
-- toggleTask(index): marquer/démarquer comme terminée
-- getStats(): retourner {total, completed, pending}`,
-    starterCode: `class TaskManager {
-    constructor() {
-        // Initialiser la liste des tâches
-    }
-    
-    addTask(task) {
-        // Ajouter une nouvelle tâche
-    }
-    
-    removeTask(index) {
-        // Supprimer une tâche
-    }
-    
-    toggleTask(index) {
-        // Basculer l'état d'une tâche
-    }
-    
-    getStats() {
-        // Retourner les statistiques
-    }
-}
-
-// Test
-const manager = new TaskManager();
-manager.addTask({text: "Apprendre JavaScript", completed: false});
-console.log(manager.getStats());`,
-    solution: `class TaskManager {
-    constructor() {
-        this.tasks = [];
-    }
-    
-    addTask(task) {
-        this.tasks.push({
-            text: task.text,
-            completed: task.completed || false
-        });
-    }
-    
-    removeTask(index) {
-        if (index >= 0 && index < this.tasks.length) {
-            this.tasks.splice(index, 1);
-        }
-    }
-    
-    toggleTask(index) {
-        if (index >= 0 && index < this.tasks.length) {
-            this.tasks[index].completed = !this.tasks[index].completed;
-        }
-    }
-    
-    getStats() {
-        const total = this.tasks.length;
-        const completed = this.tasks.filter(task => task.completed).length;
-        const pending = total - completed;
-        
-        return { total, completed, pending };
-    }
-}`,
-    testCases: [
-      {
-        input: 'addTask({text: "Apprendre JavaScript", completed: false}) puis getStats()',
-        expectedOutput: '{ total: 1, completed: 0, pending: 1 }',
-        description: 'Test des statistiques de base'
-      }
-    ],
-    hints: [
-      'Utilisez un tableau pour stocker les tâches',
-      'Chaque tâche peut être un objet avec text et completed',
-      'splice() permet de supprimer des éléments d\'un tableau',
-      'filter() peut compter les tâches terminées'
-    ],
-    learningObjectives: [
-      'Classes JavaScript',
-      'Manipulation de tableaux',
-      'Méthodes d\'objet',
-      'Gestion d\'état'
-    ],
-    tags: ['javascript', 'classes', 'arrays']
-  }
-];
+/** Progression des défis : un élément « done » par identifiant de défi, posé après une vérification réussie */
+const COURSE_ID = 'challenges';
 
 /**
- * Interactive Programming Challenges Component
- * Provides gamified coding challenges with progress tracking,
- * hints system, and comprehensive feedback
+ * Anciennes clés : jusqu'au 17 octobre 2026, un défi se validait à la main (« J'ai réussi ce défi »). Ces validations
+ * ne sont pas reprises comme réussites (la réussite se vérifie désormais par le moteur) : on les compte pour le dire
+ * une fois au visiteur, puis on efface les clés.
+ */
+const LEGACY_PROGRESS_KEY = 'challenge-progress-v2';
+const OLDEST_PROGRESS_KEY = 'challenge-progress';
+const LEGACY_KEYS = [LEGACY_PROGRESS_KEY, OLDEST_PROGRESS_KEY];
+
+const countLegacyValidations = (): number => {
+  const saved = readJSON<unknown>(LEGACY_PROGRESS_KEY, null);
+  const list = saved && typeof saved === 'object' ? (saved as Record<string, unknown>).completedChallenges : undefined;
+  return Array.isArray(list) ? list.filter((id) => typeof id === 'string').length : 0;
+};
+
+const DIFFICULTIES = ['all', 'facile', 'moyen', 'difficile'] as const;
+
+const difficultyColor = (difficulty: Challenge['difficulty']) => {
+  switch (difficulty) {
+    case 'facile': return 'bg-green-700 text-white';
+    case 'moyen': return 'bg-yellow-700 text-white';
+    case 'difficile': return 'bg-red-600 text-white';
+  }
+};
+
+const languageLabel = (language: Challenge['exercise']['language']) => (language === 'javascript' ? 'JavaScript' : language === 'sql' ? 'SQL' : 'Python');
+
+/**
+ * Défis de programmation : quatre exercices vérifiés par le moteur du site (Python ou JavaScript exécutés dans le
+ * navigateur). Les données sont dans src/data/challenges.ts, testées par src/data/challenges.test.ts.
  */
 const InteractiveChallenges: React.FC = () => {
-  // State management
-  const [selectedChallenge, setSelectedChallenge] = useState<Challenge | null>(null);
-  const [userCode, setUserCode] = useState<string>('');
-  const [showSolution, setShowSolution] = useState<boolean>(false);
-  const [showHints, setShowHints] = useState<boolean>(false);
-  const [currentHint, setCurrentHint] = useState<number>(0);
-  const [timeElapsed, setTimeElapsed] = useState<number>(0);
-  const [isTimerActive, setIsTimerActive] = useState<boolean>(false);
-  const [userProgress, setUserProgress] = useState<UserProgress>(DEFAULT_PROGRESS);
+  const { statusOf, setStatus, countDone } = useCourseProgress(COURSE_ID);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
-
-  // Filter challenges based on selected criteria
-  const filteredChallenges = useMemo(() => {
-    return challenges.filter(challenge => {
-      const categoryMatch = selectedCategory === 'all' || challenge.category === selectedCategory;
-      const difficultyMatch = selectedDifficulty === 'all' || challenge.difficulty === selectedDifficulty;
-      return categoryMatch && difficultyMatch;
-    });
-  }, [selectedCategory, selectedDifficulty]);
-
-  // Get unique categories and difficulties
-  const categories = useMemo(() => {
-    const cats = [...new Set(challenges.map(c => c.category))];
-    return ['all', ...cats];
-  }, []);
-
-  const difficulties = ['all', 'facile', 'moyen', 'difficile'];
-
-  // Timer effect
+  // lu sans effet de bord (initialiseur pur) ; les anciennes clés sont effacées après le premier affichage
+  const [legacyCount] = useState(countLegacyValidations);
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isTimerActive) {
-      interval = setInterval(() => {
-        setTimeElapsed(prev => prev + 1);
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isTimerActive]);
-
-  // Load user progress from localStorage
-  useEffect(() => {
-    removeStorage(LEGACY_PROGRESS_KEY);
-    const saved = parseUserProgress(readJSON<unknown>(PROGRESS_KEY, null));
-    if (saved) {
-      setUserProgress(saved);
-    }
+    for (const key of LEGACY_KEYS) removeStorage(key);
   }, []);
 
-  // Save progress to localStorage
-  const saveProgress = useCallback((newProgress: UserProgress) => {
-    setUserProgress(newProgress);
-    writeJSON(PROGRESS_KEY, newProgress);
-  }, []);
+  const categories = useMemo(() => ['all', ...new Set(CHALLENGES.map((c) => c.category))], []);
+  const filteredChallenges = useMemo(
+    () =>
+      CHALLENGES.filter(
+        (c) => (selectedCategory === 'all' || c.category === selectedCategory) && (selectedDifficulty === 'all' || c.difficulty === selectedDifficulty),
+      ),
+    [selectedCategory, selectedDifficulty],
+  );
 
-  // Start a challenge
-  const startChallenge = useCallback((challenge: Challenge) => {
-    setSelectedChallenge(challenge);
-    setUserCode(challenge.starterCode);
-    setShowSolution(false);
-    setShowHints(false);
-    setCurrentHint(0);
-    setTimeElapsed(0);
-    // Le chronomètre ne tourne que sur un défi pas encore validé
-    setIsTimerActive(!userProgress.completedChallenges.includes(challenge.id));
-  }, [userProgress.completedChallenges]);
-
-  // Les défis ne sont pas corrigés automatiquement : la réussite est déclarée par le visiteur lui-même, après
-  // comparaison avec les cas de test et la solution. Pour exécuter sa solution, il dispose de l'éditeur de la page.
-  const completeChallenge = useCallback(() => {
-    if (!selectedChallenge || userProgress.completedChallenges.includes(selectedChallenge.id)) return;
-    const totalPoints = userProgress.totalPoints + selectedChallenge.points;
-    setIsTimerActive(false);
-    saveProgress({
-      completedChallenges: [...userProgress.completedChallenges, selectedChallenge.id],
-      totalPoints,
-      timeSpent: userProgress.timeSpent + Math.round(timeElapsed / 60),
-      level: Math.floor(totalPoints / 100) + 1
-    });
-  }, [selectedChallenge, userProgress, timeElapsed, saveProgress]);
-
-  // Annule une validation faite par erreur : les points du défi sont retirés
-  const reopenChallenge = useCallback(() => {
-    if (!selectedChallenge || !userProgress.completedChallenges.includes(selectedChallenge.id)) return;
-    const totalPoints = Math.max(0, userProgress.totalPoints - selectedChallenge.points);
-    saveProgress({
-      ...userProgress,
-      completedChallenges: userProgress.completedChallenges.filter(id => id !== selectedChallenge.id),
-      totalPoints,
-      level: Math.floor(totalPoints / 100) + 1
-    });
-  }, [selectedChallenge, userProgress, saveProgress]);
-
-  // Show next hint
-  const showNextHint = useCallback(() => {
-    if (selectedChallenge && currentHint < selectedChallenge.hints.length - 1) {
-      setCurrentHint(prev => prev + 1);
-    }
-  }, [selectedChallenge, currentHint]);
-
-  // Reset challenge
-  const resetChallenge = useCallback(() => {
-    if (selectedChallenge) {
-      setUserCode(selectedChallenge.starterCode);
-      setShowSolution(false);
-      setTimeElapsed(0);
-      setIsTimerActive(!userProgress.completedChallenges.includes(selectedChallenge.id));
-    }
-  }, [selectedChallenge, userProgress.completedChallenges]);
-
-  const isSelectedCompleted = selectedChallenge ? userProgress.completedChallenges.includes(selectedChallenge.id) : false;
-
-  // Format time
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  // Get difficulty color
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'facile': return 'bg-green-700 text-white';
-      case 'moyen': return 'bg-yellow-700 text-white';
-      case 'difficile': return 'bg-red-600 text-white';
-      default: return 'bg-gray-600 text-white';
-    }
-  };
+  const selected = CHALLENGES.find((c) => c.id === selectedId) ?? null;
+  const done = countDone(CHALLENGES.map((c) => c.id));
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* En-tête */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center gap-2">
           <Trophy className="h-8 w-8 text-yellow-600" />
@@ -524,17 +77,27 @@ const InteractiveChallenges: React.FC = () => {
           </h2>
         </div>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Quatre défis de programmation progressifs, en Python et en JavaScript.
-          Écrivez votre solution, comparez-la aux cas de test et à la solution proposée, puis validez le défi vous-même.
+          Quatre défis progressifs, trois en Python et un en JavaScript. Écrivez votre solution dans l'éditeur du défi,
+          puis cliquez sur « Vérifier » : votre code s'exécute dans votre navigateur et des tests disent s'il est juste.
         </p>
         <p className="text-sm text-muted-foreground max-w-3xl mx-auto">
-          Les défis ne sont pas corrigés automatiquement : la validation repose sur votre auto-évaluation.
-          Pour essayer votre solution, copiez-la dans l'éditeur de code de cette page (Python, SQL ou JavaScript, exécutés dans votre navigateur).
-          Les points et le niveau sont de simples repères personnels. Votre progression reste enregistrée dans ce navigateur uniquement.
+          Un défi compte comme réussi quand ses tests passent. La première vérification en Python charge le moteur
+          (quelques secondes). Votre progression reste enregistrée dans ce navigateur uniquement.
         </p>
       </div>
 
-      {/* User Progress Dashboard */}
+      {legacyCount > 0 && (
+        <div className="flex items-start gap-2 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900 max-w-3xl mx-auto">
+          <Info className="mt-0.5 h-4 w-4 flex-shrink-0" aria-hidden="true" />
+          <p>
+            {legacyCount === 1 ? 'Vous aviez validé un défi à la main' : `Vous aviez validé ${legacyCount} défis à la main`} dans
+            l'ancienne version de cette page. Les défis sont maintenant vérifiés par le moteur : cette validation n'est pas
+            reprise, il suffit de relancer la vérification de votre solution.
+          </p>
+        </div>
+      )}
+
+      {/* Progression */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -543,42 +106,16 @@ const InteractiveChallenges: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <div className="text-center p-3 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">{userProgress.level}</div>
-              <div className="text-sm text-blue-700">Niveau</div>
-            </div>
-            <div className="text-center p-3 bg-yellow-50 rounded-lg">
-              <div className="text-2xl font-bold text-yellow-600">{userProgress.totalPoints}</div>
-              <div className="text-sm text-yellow-700">Points</div>
-            </div>
-            <div className="text-center p-3 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-600">{userProgress.completedChallenges.length}</div>
-              <div className="text-sm text-green-700">Défis validés</div>
-            </div>
-            <div className="text-center p-3 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">{challenges.length - userProgress.completedChallenges.length}</div>
-              <div className="text-sm text-purple-700">Défis restants</div>
-            </div>
-            <div className="text-center p-3 bg-orange-50 rounded-lg">
-              <div className="text-2xl font-bold text-orange-600">{userProgress.timeSpent}</div>
-              <div className="text-sm text-orange-700">Minutes passées sur les défis</div>
-            </div>
+          <div className="flex justify-between text-sm text-muted-foreground mb-1">
+            <span>Défis réussis</span>
+            <span>{done} sur {CHALLENGES.length}</span>
           </div>
-          
-          {/* Progress to next level */}
-          <div className="mt-4">
-            <div className="flex justify-between text-sm text-muted-foreground mb-1">
-              <span>Progression vers le niveau {userProgress.level + 1}</span>
-              <span>{userProgress.totalPoints % 100}/100 points</span>
-            </div>
-            <Progress value={(userProgress.totalPoints % 100)} className="h-2" />
-          </div>
+          <Progress value={(done / CHALLENGES.length) * 100} className="h-2" aria-label={`${done} défis réussis sur ${CHALLENGES.length}`} />
         </CardContent>
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Challenge List */}
+        {/* Liste des défis */}
         <div className="lg:col-span-1">
           <Card>
             <CardHeader>
@@ -588,17 +125,16 @@ const InteractiveChallenges: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Filters */}
               <div className="space-y-3 mb-4">
                 <div>
                   <label htmlFor="challenge-category" className="text-sm font-medium mb-1 block">Catégorie</label>
-                  <select 
+                  <select
                     id="challenge-category"
-                    value={selectedCategory} 
+                    value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="w-full p-2 border rounded-md text-sm"
                   >
-                    {categories.map(cat => (
+                    {categories.map((cat) => (
                       <option key={cat} value={cat}>
                         {cat === 'all' ? 'Toutes les catégories' : cat}
                       </option>
@@ -607,13 +143,13 @@ const InteractiveChallenges: React.FC = () => {
                 </div>
                 <div>
                   <label htmlFor="challenge-difficulty" className="text-sm font-medium mb-1 block">Difficulté</label>
-                  <select 
+                  <select
                     id="challenge-difficulty"
-                    value={selectedDifficulty} 
+                    value={selectedDifficulty}
                     onChange={(e) => setSelectedDifficulty(e.target.value)}
                     className="w-full p-2 border rounded-md text-sm"
                   >
-                    {difficulties.map(diff => (
+                    {DIFFICULTIES.map((diff) => (
                       <option key={diff} value={diff}>
                         {diff === 'all' ? 'Toutes les difficultés' : diff.charAt(0).toUpperCase() + diff.slice(1)}
                       </option>
@@ -622,59 +158,38 @@ const InteractiveChallenges: React.FC = () => {
                 </div>
               </div>
 
-              {/* Challenge Cards */}
-              <div className="space-y-3 max-h-96 overflow-y-auto">
-                {filteredChallenges.map(challenge => {
-                  const isCompleted = userProgress.completedChallenges.includes(challenge.id);
+              <div className="space-y-3">
+                {filteredChallenges.length === 0 && <p className="text-sm text-muted-foreground">Aucun défi pour ces filtres.</p>}
+                {filteredChallenges.map((challenge) => {
+                  const isDone = statusOf(challenge.id) === 'done';
                   return (
-                    <Card 
-                      key={challenge.id} 
-                      className={`cursor-pointer transition-all hover:shadow-md ${
-                        selectedChallenge?.id === challenge.id ? 'ring-2 ring-blue-500' : ''
-                      } ${isCompleted ? 'bg-green-50 border-green-200' : ''}`}
-                      onClick={() => startChallenge(challenge)}
+                    <Card
+                      key={challenge.id}
+                      className={`cursor-pointer transition-all hover:shadow-md ${selectedId === challenge.id ? 'ring-2 ring-blue-500' : ''} ${isDone ? 'bg-green-50 border-green-200' : ''}`}
+                      onClick={() => setSelectedId(challenge.id)}
                       role="button"
                       tabIndex={0}
-                      aria-pressed={selectedChallenge?.id === challenge.id}
+                      aria-pressed={selectedId === challenge.id}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          startChallenge(challenge);
+                          setSelectedId(challenge.id);
                         }
                       }}
                     >
                       <CardContent className="p-4">
-                        <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-start justify-between gap-2 mb-2">
                           <h4 className="font-semibold text-sm">{challenge.title}</h4>
-                          {isCompleted && <CheckCircle className="h-4 w-4 text-green-600" />}
+                          {isDone && <CheckCircle className="h-4 w-4 flex-shrink-0 text-green-600" aria-label="Défi réussi" />}
                         </div>
-                        
                         <p className="text-xs text-muted-foreground mb-3">{challenge.description}</p>
-                        
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <Badge className={`text-xs ${getDifficultyColor(challenge.difficulty)}`}>
-                              {challenge.difficulty}
-                            </Badge>
-                            <Badge variant="outline" className="text-xs">
-                              {challenge.points} pts
-                            </Badge>
-                          </div>
-                          
-                          {challenge.timeLimit && (
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <Clock className="h-3 w-3" />
-                              {challenge.timeLimit}min
-                            </div>
-                          )}
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          {challenge.tags.slice(0, 3).map(tag => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
-                              {tag}
-                            </Badge>
-                          ))}
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge className={`text-xs ${difficultyColor(challenge.difficulty)}`}>{challenge.difficulty}</Badge>
+                          <Badge variant="outline" className="text-xs">{languageLabel(challenge.exercise.language)}</Badge>
+                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3" aria-hidden="true" />
+                            {challenge.duration} (indicatif)
+                          </span>
                         </div>
                       </CardContent>
                     </Card>
@@ -685,219 +200,62 @@ const InteractiveChallenges: React.FC = () => {
           </Card>
         </div>
 
-        {/* Challenge Workspace */}
-        <div className="lg:col-span-2">
-          {selectedChallenge ? (
-            <div className="space-y-4">
-              {/* Challenge Header */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="flex items-center gap-2">
-                        <Code2 className="h-5 w-5" />
-                        {selectedChallenge.title}
-                      </CardTitle>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Badge className={`${getDifficultyColor(selectedChallenge.difficulty)}`}>
-                          {selectedChallenge.difficulty}
-                        </Badge>
-                        <Badge variant="outline">{selectedChallenge.points} points</Badge>
-                        <Badge variant="secondary">{selectedChallenge.language}</Badge>
-                      </div>
-                    </div>
-                    
-                    <div className="text-right">
-                      <div className="text-2xl font-mono font-bold">
-                        {formatTime(timeElapsed)}
-                      </div>
-                      {selectedChallenge.timeLimit && (
-                        <div className="text-sm text-muted-foreground">
-                          durée indicative : {selectedChallenge.timeLimit} min
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="max-w-none">
-                    <p className="whitespace-pre-line">{selectedChallenge.problem}</p>
-                  </div>
-                  
-                  {/* Learning Objectives */}
-                  <div className="mt-4">
-                    <h4 className="font-semibold text-sm mb-2 flex items-center gap-2">
-                      <Brain className="h-4 w-4" />
-                      Objectifs d'apprentissage
-                    </h4>
-                    <div className="flex flex-wrap gap-1">
-                      {selectedChallenge.learningObjectives.map((obj, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          {obj}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Code Editor */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Votre solution</CardTitle>
-                    <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" onClick={resetChallenge}>
-                        <RotateCcw className="h-4 w-4 mr-1" />
-                        Réinitialiser
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setShowSolution(shown => !shown)}
-                      >
-                        {showSolution ? <EyeOff className="h-4 w-4 mr-1" /> : <Eye className="h-4 w-4 mr-1" />}
-                        {showSolution ? 'Masquer la solution' : 'Voir la solution'}
-                      </Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-gray-900 rounded-lg overflow-hidden">
-                    <div className="px-4 py-2 bg-gray-800 text-gray-200 text-sm font-mono flex items-center justify-between">
-                      <span>{selectedChallenge.language}</span>
-                      <span>{userCode.length} caractères</span>
-                    </div>
-                    <Textarea
-                      value={userCode}
-                      onChange={(e) => setUserCode(e.target.value)}
-                      aria-label="Votre solution"
-                      className="min-h-64 font-mono text-sm bg-gray-900 text-gray-100 border-0 resize-none"
-                      placeholder="Écrivez votre code ici..."
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Solution de référence */}
-              {showSolution && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      <Lightbulb className="h-5 w-5" />
-                      Solution proposée
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono"><code>{selectedChallenge.solution}</code></pre>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      Un même problème a souvent plusieurs solutions : comparez la logique, pas seulement le texte.
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Cas de test et validation */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <CheckCircle className="h-5 w-5" />
-                    Cas de test à vérifier
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Exécutez votre code (dans l'éditeur de code de cette page ou dans votre propre environnement) et vérifiez que vous obtenez ces résultats.
+        {/* Espace de travail */}
+        <div className="lg:col-span-2 min-w-0">
+          {selected ? (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Code2 className="h-5 w-5" />
+                  {selected.title}
+                </CardTitle>
+                <div className="flex flex-wrap items-center gap-2 pt-2">
+                  <Badge className={difficultyColor(selected.difficulty)}>{selected.difficulty}</Badge>
+                  <Badge variant="outline">{languageLabel(selected.exercise.language)}</Badge>
+                  <Badge variant="secondary">{selected.category}</Badge>
+                  <span className="text-sm text-muted-foreground">durée indicative : {selected.duration}</span>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <p className="font-semibold text-sm mb-2 flex items-center gap-2">
+                    <Brain className="h-4 w-4" aria-hidden="true" />
+                    Ce que le défi fait travailler
                   </p>
-                  <div className="space-y-2">
-                    {selectedChallenge.testCases.map((testCase, idx) => (
-                      <div key={idx} className="p-3 rounded-lg bg-gray-50 border text-sm">
-                        <div className="font-medium">{testCase.description}</div>
-                        <div className="font-mono text-xs mt-1">
-                          Entrée : <code>{testCase.input}</code> → Attendu : <code>{testCase.expectedOutput}</code>
-                        </div>
-                      </div>
+                  <div className="flex flex-wrap gap-1">
+                    {selected.learningObjectives.map((obj) => (
+                      <Badge key={obj} variant="outline" className="text-xs">{obj}</Badge>
                     ))}
                   </div>
-
-                  {isSelectedCompleted ? (
-                    <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                      <div className="flex items-center gap-2 text-yellow-800">
-                        <Trophy className="h-5 w-5" />
-                        <span className="font-semibold">Défi validé</span>
-                      </div>
-                      <p className="text-sm text-yellow-700 mt-1">
-                        {selectedChallenge.points} points ajoutés à votre progression (un simple repère personnel).
-                      </p>
-                      <Button size="sm" variant="ghost" className="mt-2" onClick={reopenChallenge}>
-                        Annuler la validation
-                      </Button>
-                    </div>
-                  ) : (
-                    <Button className="mt-4 w-full" onClick={completeChallenge}>
-                      <CheckCircle className="h-4 w-4 mr-2" />
-                      J'ai réussi ce défi (+{selectedChallenge.points} points)
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Hints */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <Lightbulb className="h-5 w-5" />
-                      Indices ({currentHint + 1}/{selectedChallenge.hints.length})
-                    </div>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      onClick={() => setShowHints(!showHints)}
-                    >
-                      {showHints ? 'Masquer' : 'Afficher'}
-                    </Button>
-                  </CardTitle>
-                </CardHeader>
-                {showHints && (
-                  <CardContent>
-                    <div className="space-y-3">
-                      {selectedChallenge.hints.slice(0, currentHint + 1).map((hint, idx) => (
-                        <div key={idx} className="p-3 bg-blue-50 rounded-lg">
-                          <div className="flex items-start gap-2">
-                            <Badge variant="secondary" className="text-xs mt-0.5">
-                              {idx + 1}
-                            </Badge>
-                            <span className="text-sm text-blue-800">{hint}</span>
-                          </div>
-                        </div>
-                      ))}
-                      
-                      {currentHint < selectedChallenge.hints.length - 1 && (
-                        <Button size="sm" variant="outline" onClick={showNextHint}>
-                          Indice suivant
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
+                </div>
+                {statusOf(selected.id) === 'done' && (
+                  <p className="flex items-center gap-2 rounded-md bg-green-50 p-3 text-sm text-green-900">
+                    <CheckCircle className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                    Défi réussi : vos tests sont passés. Vous pouvez le refaire autrement, sans indice.
+                  </p>
                 )}
-              </Card>
-            </div>
+                <LessonExercise
+                  key={selected.id}
+                  exercise={selected.exercise}
+                  number={CHALLENGES.indexOf(selected) + 1}
+                  title="À vous de jouer"
+                  onSolved={() => setStatus(selected.id, 'done')}
+                />
+              </CardContent>
+            </Card>
           ) : (
-            <Card className="h-96 flex items-center justify-center">
-              <CardContent className="text-center">
-                <Target className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <Card className="min-h-64 flex items-center justify-center">
+              <CardContent className="text-center pt-6">
+                <Target className="h-12 w-12 text-muted-foreground mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-lg font-semibold mb-2">Choisissez un défi</h3>
-                <p className="text-muted-foreground">
-                  Sélectionnez un défi dans la liste pour commencer.
-                </p>
+                <p className="text-muted-foreground">Sélectionnez un défi dans la liste pour commencer.</p>
               </CardContent>
             </Card>
           )}
         </div>
       </div>
 
-      {/* Tips */}
+      {/* Conseils */}
       <CourseHighlight title="Conseils pour aborder les défis" type="tip">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           <div>
@@ -908,8 +266,8 @@ const InteractiveChallenges: React.FC = () => {
             <ul className="text-sm space-y-1 text-muted-foreground">
               <li>• Lisez attentivement l'énoncé</li>
               <li>• Décomposez le problème en étapes</li>
-              <li>• Testez avec des exemples simples</li>
-              <li>• Utilisez les indices si nécessaire</li>
+              <li>• Affichez des résultats intermédiaires avec print ou console.log</li>
+              <li>• Utilisez l'indice si vous bloquez</li>
             </ul>
           </div>
           <div>
@@ -919,8 +277,8 @@ const InteractiveChallenges: React.FC = () => {
             </h4>
             <ul className="text-sm space-y-1 text-muted-foreground">
               <li>• Commencez par les défis faciles</li>
-              <li>• Ne regardez la solution qu'après avoir cherché</li>
-              <li>• Pratiquez régulièrement</li>
+              <li>• Ne regardez le corrigé qu'après avoir cherché</li>
+              <li>• Lisez le message d'un test qui échoue : il dit ce qui était attendu</li>
               <li>• Analysez vos erreurs</li>
             </ul>
           </div>
@@ -930,10 +288,10 @@ const InteractiveChallenges: React.FC = () => {
               Progression
             </h4>
             <ul className="text-sm space-y-1 text-muted-foreground">
-              <li>• Les points font monter le niveau affiché, sans rien débloquer</li>
+              <li>• Un défi réussi reste coché dans ce navigateur</li>
               <li>• Explorez différentes catégories</li>
-              <li>• Comparez votre solution à celle proposée</li>
-              <li>• Rejouez un défi plus tard, sans indice</li>
+              <li>• Comparez votre solution au corrigé : il en existe souvent plusieurs</li>
+              <li>• Refaites un défi plus tard, sans indice</li>
             </ul>
           </div>
         </div>

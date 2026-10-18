@@ -365,6 +365,7 @@ La **convolution** exploite cela. Un petit tableau de poids, le **noyau** (3 sur
     {
       kind: "equation",
       latex: String.raw`(I \star K)(i,j) = \sum_{u=0}^{k_h-1}\ \sum_{v=0}^{k_w-1} I(i+u,\, j+v)\; K(u,v)`,
+      narrow: String.raw`\begin{aligned} &(I \star K)(i,j) \\ &= \sum_{u=0}^{k_h-1}\ \sum_{v=0}^{k_w-1} I(i+u,\, j+v)\; K(u,v) \end{aligned}`,
       caption: "I est l'image, K le noyau de k_h lignes et k_w colonnes. Les bibliothèques d'apprentissage profond appellent « convolution » ce calcul, qui est en toute rigueur une corrélation croisée (la convolution mathématique retourne d'abord le noyau).",
     },
     {

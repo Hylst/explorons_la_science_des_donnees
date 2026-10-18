@@ -172,7 +172,7 @@ export const AutomationSection: React.FC = () => {
               >
                 <CardContent className="p-4 text-center">
                   <IconComponent className="h-8 w-8 mx-auto mb-2 text-orange-500" />
-                  <h4 className="font-semibold mb-1">
+                  <h3 className="font-semibold mb-1">
                     <GlossaryTerm 
                       definition={dataPreparationEnhancedDefinitions[
                         category.id === 'etl' ? 'etl' :
@@ -185,7 +185,7 @@ export const AutomationSection: React.FC = () => {
                     >
                       {category.name}
                     </GlossaryTerm>
-                  </h4>
+                  </h3>
                   <p className="text-sm text-muted-foreground">{category.description}</p>
                 </CardContent>
               </Card>
@@ -443,7 +443,7 @@ export const AutomationSection: React.FC = () => {
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <h6 className="font-medium mb-3">Plateformes courantes</h6>
+                          <h4 className="font-medium mb-3">Plateformes courantes</h4>
                           <div className="space-y-2">
                             {[
                               { name: "AWS", services: "EC2, S3, RDS, Lambda" },
@@ -460,7 +460,7 @@ export const AutomationSection: React.FC = () => {
                         </div>
                         
                         <div>
-                          <h6 className="font-medium mb-3">Outils DevOps</h6>
+                          <h4 className="font-medium mb-3">Outils DevOps</h4>
                           <div className="space-y-2">
                             {[
                               { tool: "Docker", role: "emballer le programme et ses dépendances dans une image" },

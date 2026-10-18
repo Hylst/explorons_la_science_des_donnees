@@ -190,7 +190,7 @@ print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</p
           <CardContent className="pt-4">
             <div className="space-y-4">
               <div className="p-3 border rounded-lg bg-blue-50">
-                <h5 className="font-medium text-blue-700 mb-1">scikit-learn</h5>
+                <h4 className="font-medium text-blue-700 mb-1">scikit-learn</h4>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Algorithmes classiques (arbres, SVM, etc.)</li>
                   <li>Jeux de données qui tiennent en mémoire</li>
@@ -200,7 +200,7 @@ print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</p
               </div>
               
               <div className="p-3 border rounded-lg bg-red-50">
-                <h5 className="font-medium text-red-700 mb-1">TensorFlow / Keras</h5>
+                <h4 className="font-medium text-red-700 mb-1">TensorFlow / Keras</h4>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Deep learning complexe</li>
                   <li>Déploiement en production</li>
@@ -210,7 +210,7 @@ print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</p
               </div>
               
               <div className="p-3 border rounded-lg bg-orange-50">
-                <h5 className="font-medium text-orange-700 mb-1">PyTorch</h5>
+                <h4 className="font-medium text-orange-700 mb-1">PyTorch</h4>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Recherche et expérimentation</li>
                   <li>Vision par ordinateur avancée</li>
@@ -220,7 +220,7 @@ print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</p
               </div>
               
               <div className="p-3 border rounded-lg bg-green-50">
-                <h5 className="font-medium text-green-700 mb-1">XGBoost / LightGBM</h5>
+                <h4 className="font-medium text-green-700 mb-1">XGBoost / LightGBM</h4>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Compétitions et défis ML</li>
                   <li>Problèmes avec données tabulaires</li>
@@ -230,7 +230,7 @@ print(f"Exactitude du modèle : {accuracy:.2f}")  # 0.98 avec ces réglages`}</p
               </div>
               
               <div className="p-3 border rounded-lg bg-purple-50">
-                <h5 className="font-medium text-purple-700 mb-1">Hugging Face</h5>
+                <h4 className="font-medium text-purple-700 mb-1">Hugging Face</h4>
                 <ul className="text-sm space-y-1 list-disc pl-5">
                   <li>Modèles de langage préentraînés</li>
                   <li>Ajustement fin (fine-tuning) de transformers</li>

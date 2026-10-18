@@ -92,6 +92,7 @@ Pourquoi ce masque est-il indispensable ? Un décodeur est entraîné à prédir
     {
       kind: "equation",
       latex: String.raw`\text{Attention masquée}(Q,K,V) = \operatorname{softmax}\!\left(\frac{Q\,K^{\top}}{\sqrt{d_k}} + M\right)V \qquad M_{ij}=\begin{cases}0 & \text{si } j \le i\\ -\infty & \text{si } j > i\end{cases}`,
+      narrow: String.raw`\begin{gathered} \text{Attention masquée}(Q,K,V) \\ = \operatorname{softmax}\!\left(\frac{Q\,K^{\top}}{\sqrt{d_k}} + M\right)V \\[0.6em] M_{ij}=\begin{cases}0 & \text{si } j \le i\\ -\infty & \text{si } j > i\end{cases} \end{gathered}`,
       caption: "Attention avec masque causal : la matrice M s'ajoute aux scores avant la softmax ; sans masque (encodeur), M est nulle partout",
     },
     {
@@ -184,6 +185,7 @@ Aucune de ces tâches n'exige d'étiquettes faites à la main : **le texte fourn
     {
       kind: "equation",
       latex: String.raw`\mathcal{L}_{\text{GPT}} = -\sum_{t=2}^{T}\log P\big(x_t \mid x_1,\dots,x_{t-1}\big) \qquad \mathcal{L}_{\text{BERT}} = -\sum_{t\in\text{masqués}}\log P\big(x_t \mid \text{séquence modifiée}\big)`,
+      narrow: String.raw`\begin{aligned} \mathcal{L}_{\text{GPT}} &= -\sum_{t=2}^{T}\log P\big(x_t \mid x_1,\dots,x_{t-1}\big) \\[0.6em] \mathcal{L}_{\text{BERT}} &= -\sum_{t\in\text{masqués}}\log P\big(x_t \mid \text{séquence} \\ &\qquad\qquad \text{modifiée}\big) \end{aligned}`,
       caption: "Les deux objectifs de pré-entraînement : le GPT prédit chaque élément d'après ceux qui le précèdent, BERT prédit les éléments masqués d'après tous les autres",
     },
     {

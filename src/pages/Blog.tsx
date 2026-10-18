@@ -8,6 +8,7 @@ import { blogPosts } from "@/data/blog-articles";
 import BlogPost from "@/components/blog/BlogPost";
 import UnifiedHeroSection from "@/components/ui/unified-hero-section";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import NotFound from "@/pages/NotFound";
 
 const Blog = () => {
   const { id } = useParams();
@@ -16,6 +17,9 @@ const Blog = () => {
   
   // Utilise le hook de smooth scrolling
   useSmoothScroll();
+
+  // Article inconnu (adresse mal saisie, article retiré) : la page 404 du site, comme pour toute adresse inconnue
+  if (id && !blogPost) return <NotFound />;
 
   // Sidebar navigation items
   const sidebarItems = [

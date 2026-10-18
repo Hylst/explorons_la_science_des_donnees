@@ -36,7 +36,7 @@ const IntroductionSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
           <div className="text-center p-4">
             <Database className="h-12 w-12 mx-auto mb-3 text-blue-500" />
-            <h4 className="font-semibold mb-2">
+            <h3 className="font-semibold mb-2">
               <GlossaryTerm 
                 definition={dataPreparationEnhancedDefinitions['exactitude']}
                 variant="hover"
@@ -44,14 +44,14 @@ const IntroductionSection: React.FC = () => {
               >
                 Qualité des données
               </GlossaryTerm>
-            </h4>
+            </h3>
             <p className="text-sm text-muted-foreground">
               Des données de qualité sont une condition nécessaire, mais pas suffisante, de résultats fiables et de décisions éclairées.
             </p>
           </div>
           <div className="text-center p-4">
             <TrendingUp className="h-12 w-12 mx-auto mb-3 text-green-500" />
-            <h4 className="font-semibold mb-2">Performance des modèles</h4>
+            <h3 className="font-semibold mb-2">Performance des modèles</h3>
             <p className="text-sm text-muted-foreground">
               Une <GlossaryTerm 
                 definition={dataPreparationEnhancedDefinitions['nettoyage']}
@@ -64,7 +64,7 @@ const IntroductionSection: React.FC = () => {
           </div>
           <div className="text-center p-4">
             <Eye className="h-12 w-12 mx-auto mb-3 text-purple-500" />
-            <h4 className="font-semibold mb-2">Repérer ce qui se cache</h4>
+            <h3 className="font-semibold mb-2">Repérer ce qui se cache</h3>
             <p className="text-sm text-muted-foreground">
               L'exploration permet de repérer des motifs et des anomalies qu'un simple coup d'œil sur les données brutes ne montre pas.
             </p>

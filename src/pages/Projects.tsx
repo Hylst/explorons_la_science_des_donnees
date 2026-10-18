@@ -113,7 +113,7 @@ const Projects = () => {
                 <div className="mx-auto w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
                   <Target className="h-6 w-6 text-blue-600" />
                 </div>
-                <CardTitle className="text-lg">{projects.length} projets</CardTitle>
+                <CardTitle as="h2" className="text-lg">{projects.length} projets</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
@@ -127,7 +127,7 @@ const Projects = () => {
                 <div className="mx-auto w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-2">
                   <Trophy className="h-6 w-6 text-green-600" />
                 </div>
-                <CardTitle className="text-lg">Suivi de progression</CardTitle>
+                <CardTitle as="h2" className="text-lg">Suivi de progression</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
@@ -141,7 +141,7 @@ const Projects = () => {
                 <div className="mx-auto w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-2">
                   <Code className="h-6 w-6 text-orange-600" />
                 </div>
-                <CardTitle className="text-lg">Technologies</CardTitle>
+                <CardTitle as="h2" className="text-lg">Technologies</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
@@ -155,7 +155,7 @@ const Projects = () => {
                 <div className="mx-auto w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-2">
                   <Search className="h-6 w-6 text-purple-600" />
                 </div>
-                <CardTitle className="text-lg">Recherche et filtres</CardTitle>
+                <CardTitle as="h2" className="text-lg">Recherche et filtres</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">

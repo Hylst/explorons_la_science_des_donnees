@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import GlossaryGrid from '@/components/glossary/GlossaryGrid';
-import { glossaryTerms } from '@/data/glossary-terms';
+import { glossaryTerms } from '@/data/glossary';
 
 /** Recherche, filtres et fiches du glossaire : chargé à part de la page, avec les définitions (le plus gros du poids) */
 const GlossaryExplorer = () => {

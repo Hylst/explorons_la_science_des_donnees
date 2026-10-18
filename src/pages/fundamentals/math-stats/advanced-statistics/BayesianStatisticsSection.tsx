@@ -64,7 +64,7 @@ const BayesianStatisticsSection = () => {
             <div className="space-y-4">
               <div className="space-y-3">
                 <div className="bg-green-50 p-3 rounded">
-                  <h5 className="font-semibold text-green-700">Intégration des connaissances</h5>
+                  <h4 className="font-semibold text-green-700">Intégration des connaissances</h4>
                   <p className="text-sm text-green-600">
                     Utilise l'expertise et les études antérieures
                   </p>

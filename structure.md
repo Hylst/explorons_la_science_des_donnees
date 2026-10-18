@@ -112,22 +112,29 @@ src/
 │   ├── glossary/            8 fichiers de termes écrits à la main, dictionaries.ts (termes des dictionnaires de survol absents des
 │   │                        fichiers à la main), from-definition.ts, index.ts (agrégation), types.ts, ml-definitions.ts
 │   │                        (définitions survolables du ML)
-│   ├── glossary-terms.ts    Réexport de glossary/ (ancien chemin)
 │   ├── quizData.ts          8 catégories de quiz et leurs questions
 │   ├── projects.ts          12 projets et fonctions de filtre
 │   ├── course-catalog.ts    Catalogue des 11 cours (niveau, durée, modules, statut) : source unique de l'accueil et de /courses
 │   ├── tooling.ts           Contenu de la section Git, environnements virtuels et Docker de /fundamentals/programming
 │   ├── data-quality-demos.ts  Démonstrations de la qualité des données, calculées (cas pratique, validation, monitoring)
+│   ├── challenges.ts        Défis de programmation vérifiés (3 Python, 1 JavaScript), testés par challenges.test.ts
+│   ├── programming-exercises.ts, programming-exercises-verified.ts    Exercices pratiques de la page Programmation
+│   │                        (exercice vérifié et script complet de chacun) ; advanced-concepts.ts, python-masterclass-examples.ts :
+│   │                        exemples des concepts avancés et de la masterclass Python (chacun testé par son .test.ts)
+│   ├── ml-practical.ts, ml-exercises-verified.ts    Programmes et exercices de la page Machine learning (codes
+│   │                        exécutables ou à lire, exercices vérifiés, résultats cités testés par ml-practical.test.ts)
 │   ├── blog-posts.json      Métadonnées des articles ; blog-contents.ts : corps HTML ; blog-articles.ts : jointure des deux
 │   ├── rss-sources.json, rss-articles.json    Flux suivis et instantané daté des actualités (npm run news:refresh)
 │   └── data-preparation-enhanced-definitions.ts    Définitions survolables de la préparation des données (version courte)
 │
 ├── hooks/                   use-theme, use-course-progress, use-blog-favorites, useQuiz, use-persisted-tab, use-section-tracker,
-│                            use-smooth-scroll, use-text-truncation, use-error-handling, use-mobile, use-toast, use-sidebar-bounds
+│                            use-smooth-scroll, use-text-truncation, use-error-handling, use-mobile, use-toast, use-sidebar-bounds ;
+│                            render-hook.tsx : outil des tests de hooks (monte un hook dans un composant, react-dom/client et act)
 ├── lib/                     storage.ts, asset.ts, sanitize.ts, quiz-storage.ts, quiz-shuffle.ts, pwa-install.ts, sample-datasets.ts,
 │                            format-duration.ts, contrast.ts, scroll.ts, scroll-key.ts, scroll-positions.ts, progressive-sections.ts,
 │                            progress-migration.ts, answer-match.ts, glossary-batches.ts, glossary-markdown.ts, blog-image.ts,
-│                            course-image.ts, utils.ts ; lessons/ (outils des cours rédigés) ; runner/ (exécution de code) ;
+│                            course-image.ts, latex-stack.ts (formules empilées sur petit écran), riemann.ts (sommes de Riemann),
+│                            utils.ts ; lessons/ (outils des cours rédigés) ; runner/ (exécution de code) ;
 │                            les tests sont à côté des modules testés
 └── types/                   quiz.ts et déclarations de types (react-katex, sql.js)
 ```
@@ -352,7 +359,7 @@ Tout passe par `src/lib/storage.ts` (ne lève jamais d'exception : stockage bloq
 | `quiz-attempts-v1` | Tentatives de quiz (100 au plus) | `lib/quiz-storage.ts` |
 | `blog-favorites-v1` | Articles favoris | `hooks/use-blog-favorites.ts` |
 | `code-editor-workspace-v1`, `code-editor-autosave` | Fichiers de l'éditeur et réglage de sauvegarde | `fundamentals/programming/CodeEditor.tsx` |
-| `challenge-progress-v2` | Défis de programmation (auto-évaluation) ; l'ancienne clé `challenge-progress` est supprimée au chargement | `fundamentals/programming/InteractiveChallenges.tsx` |
+| `challenge-progress-v2`, `challenge-progress` | Anciennes validations à la main des défis : comptées une fois pour prévenir le visiteur, puis effacées (les défis sont vérifiés par le moteur depuis le 18 octobre 2026 ; la réussite est dans `course-progress-challenges`) | `fundamentals/programming/InteractiveChallenges.tsx` |
 | `ds-bookmarks`, `ds-completed`, `ds-user-level` | Ressources de la section programmation | `fundamentals/programming/ResourcesSection.tsx` |
 | `math-intro-completed`, `math-intro-progress-migrated` | Ancienne progression du cours de mathématiques, lue une seule fois puis reprise dans `course-progress-math-intro` ; l'indicateur évite de recommencer | `lib/progress-migration.ts` |
 | `supervised-learning-tab` | Onglet mémorisé (`usePersistedTab`) | `machinelearning/courses/SupervisedLearningCourse.tsx` |
@@ -369,9 +376,9 @@ Les stores partagés (`use-course-progress`, `quiz-storage`, `use-blog-favorites
 ### Tests
 
 - **Outil** : Vitest 5 (`npm test` = `vitest run`, `npm run test:watch` = `vitest`). Configuration dans `vitest.config.ts` : environnement `jsdom`, fichiers `src/**/*.test.{ts,tsx}`, `restoreMocks: true`, alias `@` vers `src/`, constantes `__PYODIDE_VERSION__` et `__SQLJS_VERSION__` définies comme dans `vite.config.ts`. Le test de fumée des routes (`src/routes.smoke.test.tsx`) est exclu de `npm test` et lancé par `npm run test:smoke` (`vitest.smoke.config.ts`). Aucune bibliothèque de test de composants : les composants se rendent avec `react-dom/client` et `act`.
-- **Emplacement** : un test se place à côté du code testé (`src/lib/storage.ts` et `src/lib/storage.test.ts`). Les tests ne sont pas livrés. Au 12 octobre 2026 : 47 fichiers de test (46 pour `npm test`, plus le test de fumée), comptés avec `find src -name "*.test.ts*" | wc -l` (au 9 octobre : 45) ; relever le nombre de tests avec `npm test` (1 668 tests le 12 octobre, plus 58 pour le test de fumée).
+- **Emplacement** : un test se place à côté du code testé (`src/lib/storage.ts` et `src/lib/storage.test.ts`). Les tests ne sont pas livrés. Au 18 octobre 2026 : 65 fichiers de test (64 pour `npm test`, plus le test de fumée), comptés avec `find src -name "*.test.ts*" | wc -l` (au 12 octobre : 47) ; relever le nombre de tests avec `npm test` (1 786 tests le 18 octobre, plus 58 pour le test de fumée).
 - **Trois familles** :
-  - tests de logique : `src/lib/` (`storage`, `quiz-storage`, `quiz-shuffle`, `sanitize`, `sample-datasets`, `format-duration`, `contrast`, `answer-match`, `glossary-batches`, `glossary-markdown`, `scroll-key`, `progress-migration`, `runner/worker-client`, `runner/index`, `runner/python-setup`, `lessons/check`, `lessons/duration`, `lessons/typography`), `src/hooks/use-sidebar-bounds.test.ts`, `src/data/projects.test.ts`, `quizData.test.ts`, `blog.test.ts`, `data-quality-demos.test.ts`, et des tests de composants (`CorrelationHeatmap`, `NewsArticleCard`, `GlossaryText`, `ProgressiveSections`, `deferred-chart`, `LessonWidget`, `ConditionalProbabilitySection`) ;
+  - tests de logique : `src/lib/` (`storage`, `quiz-storage`, `quiz-shuffle`, `sanitize`, `sample-datasets`, `format-duration`, `contrast`, `answer-match`, `glossary-batches`, `glossary-markdown`, `scroll-key`, `progress-migration`, `runner/worker-client`, `runner/index`, `runner/python-setup`, `lessons/check`, `lessons/duration`, `lessons/typography`, `latex-stack`, `riemann`), les hooks (`src/hooks/` : `use-sidebar-bounds`, `use-course-progress`, `use-blog-favorites`, `use-persisted-tab`, `useQuiz`, rendus avec `render-hook.tsx`), `src/data/projects.test.ts`, `quizData.test.ts`, `blog.test.ts`, `data-quality-demos.test.ts`, et des tests de composants (`CorrelationHeatmap`, `NewsArticleCard`, `GlossaryText`, `ProgressiveSections`, `deferred-chart`, `LessonWidget`, `ConditionalProbabilitySection`, `card`, la page `Blog` pour un article inconnu) ;
   - tests garde-fous qui lisent le code source : `src/config/page-meta.test.ts` (routes, titres, descriptions, redirections, via `scripts/collect-routes.ts`), `brand.test.ts` (nom du site, licence, `index.html`, manifeste, modèles de pages de `vite.config.ts`), `theme.test.ts`, `illustrations.test.ts`, `gradient-text.test.ts`, `internal-links.test.ts`, `jsx-spacing.test.ts`, `source-link.test.ts`, `src/lib/code-snippets.test.ts`, `latex-sources.test.ts`, `src/data/glossary/claims.test.ts`, `dictionaries.test.ts`, et la partie « clés de stockage » de `storage.test.ts` ;
   - tests des cours sur les vrais moteurs : `src/data/lessons/lessons.test.ts` (SQL, sql.js sous Node) et `lessons-python.test.ts` (Python, Pyodide sous Node, avec les roues de `public/vendor`, d'où le `pretest` qui lance `runtimes:sync`). Chaque exemple s'exécute, chaque corrigé réussit, chaque point de départ d'exercice échoue.
 - Les tests du client de worker (`worker-client.test.ts`) utilisent un faux `Worker` ; ce qui n'est pas couvert automatiquement : l'exécution dans un vrai navigateur (Web Workers, WebAssembly), les débordements horizontaux, le service worker et les images binaires.
@@ -382,8 +389,9 @@ Les stores partagés (`use-course-progress`, `quiz-storage`, `use-blog-favorites
 - Deux composants portent le nom `SupervisedLearningCourse` : `src/components/machinelearning/courses/SupervisedLearningCourse.tsx` (contenu en sections, route `/machine-learning/supervised`) et `src/pages/courses/machine-learning/SupervisedLearningCourse.tsx` (cours rédigé en 8 modules, route `/courses/machine-learning/supervised-learning`).
 - Le calcul intégral n'a qu'une page (`pages/fundamentals/math-stats/IntegralCalculus.tsx`) ; l'ancienne URL `/courses/math-stats/integral-calculus` redirige vers `/fundamentals/math-stats/integral-calculus`. Le cours rédigé `math-intro` (module 5) traite aussi des intégrales : ce sont deux contenus distincts.
 - `src/data/data-preparation-enhanced-definitions.ts` et `src/components/fundamentals/definitions/data-preparation-enhanced-definitions.ts` sont deux fichiers différents de même nom ; `src/data/glossary/dictionaries.ts` importe les deux (la version riche remplace la version courte pour les termes communs).
-- `src/types/quiz.ts` contient plus de types que le site n'en utilise (classement, notifications, défis) : ce sont des types seuls, sans fonctionnalité associée.
-- Les icônes des catégories de quiz sont choisies par l'identifiant de la catégorie (`iconMap` de `components/quiz/QuizCategoriesSection.tsx`, repli `Brain`), pas par le champ `icon` de `quizData.ts`, que ces composants ne lisent pas. La table est indexée par `mathematics` alors que l'identifiant réel est `math-stats`.
+- `src/types/quiz.ts` contient plus de types que le site n'en utilise (classement, notifications, défis) : ce sont des types seuls, sans fonctionnalité associée. `QuizSession` et `QuizResults`, avec les hooks `useQuizSession` et `useQuizResults` qui seuls s'en servaient, ont été retirés le 17 octobre 2026.
+- **Titres** : le test de fumée refuse un premier titre qui n'est pas le h1 et tout saut de niveau descendant (h2 puis h4). `CardTitle` rend un `h3` par défaut et accepte `as` (`h2`, `h3`, `h4`, `p`) ; les titres de `CourseHighlight` et de la barre latérale de `ContentLayout` sont des paragraphes. Une carte posée juste sous le h1 prend `as="h2"`.
+- Les icônes des catégories de quiz sont choisies par l'identifiant de la catégorie (`iconMap` de `components/quiz/QuizCategoriesSection.tsx`, repli `Brain`), pas par le champ `icon` de `quizData.ts`, que ces composants ne lisent pas. (La table, indexée autrefois par `mathematics`, l'est désormais par l'identifiant réel `math-stats` : constaté le 17 octobre 2026.)
 - `src/components/ui/chart.tsx` (shadcn) injecte du CSS par `dangerouslySetInnerHTML` à partir de la configuration du graphique ; ce n'est pas du contenu externe et il ne passe pas par `sanitizeHtml`. Le seul autre usage est l'article de blog, qui passe bien par `sanitizeHtml`. C'est aussi le seul fichier qui utilise `ResponsiveContainer` sans passer par `DeferredResponsiveContainer`.
 - `CourseHeroTemplate.tsx` et `CourseModuleTemplate.tsx` ne sont importés par aucune page depuis la conversion des cours en leçons (`LessonCoursePage` les a remplacés). Ils restent disponibles pour un futur cours qui ne serait qu'un plan de modules (`status: "plan"` dans le catalogue) ; les supprimer est une décision de l'auteur.
 - `tsc` (`npm run typecheck`) ne couvre que `src/` (`tsconfig.app.json`) ; `vite.config.ts` a son propre `tsconfig.node.json`, mais `scripts/`, `tailwind/` et `vitest.config.ts` ne sont inclus dans aucun des deux. ESLint, lui, lint tous les `.ts` et `.tsx`.

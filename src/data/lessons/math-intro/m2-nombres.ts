@@ -149,6 +149,7 @@ Un **ensemble** est une collection d'objets distincts, sans ordre : {1, 2, 3} et
     {
       kind: "equation",
       latex: String.raw`\begin{aligned} A \cup B &= \{ x : x \in A \text{ ou } x \in B \} && \text{(union)} \\ A \cap B &= \{ x : x \in A \text{ et } x \in B \} && \text{(intersection)} \\ A \setminus B &= \{ x : x \in A \text{ et } x \notin B \} && \text{(différence)} \\ A^{c} &= \Omega \setminus A && \text{(complémentaire)} \end{aligned}`,
+      narrow: String.raw`\begin{aligned} &\text{union :} \\ &A \cup B = \{ x : x \in A \text{ ou } x \in B \} \\[0.4em] &\text{intersection :} \\ &A \cap B = \{ x : x \in A \text{ et } x \in B \} \\[0.4em] &\text{différence :} \\ &A \setminus B = \{ x : x \in A \text{ et } x \notin B \} \\[0.4em] &\text{complémentaire :} \\ &A^{c} = \Omega \setminus A \end{aligned}`,
       caption: "Le « ou » est inclusif : un élément qui est dans A et dans B appartient à l'union.",
     },
     {

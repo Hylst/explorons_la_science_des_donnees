@@ -236,7 +236,7 @@ npm run test:smoke    # affiche chacune des 57 routes et chaque onglet (environ 
 npm run build:hylst   # build statique, puis contrôle du dossier dist-hylst
 ```
 
-`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (47 fichiers de test au 12 octobre 2026, dont le test de fumée, 45 au 9 octobre ; `npm test` donne le nombre de tests) ; React Testing Library n'est pas installée.
+`npm run build` ne vérifie pas les types : lancer `typecheck` séparément. Les tests utilisent Vitest (65 fichiers de test au 18 octobre 2026, dont le test de fumée, 47 au 12 octobre ; `npm test` donne le nombre de tests) ; React Testing Library n'est pas installée : les composants se testent avec `react-dom/client` et `act` (outil des hooks : `src/hooks/render-hook.tsx`).
 
 ---
 

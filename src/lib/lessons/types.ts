@@ -53,7 +53,15 @@ export type LessonSection =
   /** Composant interactif (schéma, banc d'essai), sans code à vérifier */
   | { kind: "widget"; widget: LessonWidget }
   /** Formule mathématique en LaTeX (rendue par KaTeX ; les tests vérifient qu'elle se compile) */
-  | { kind: "equation"; latex: string; caption?: string };
+  | { kind: "equation"; latex: string; caption?: string; /** version coupée pour les écrans de moins de 1024 px */ narrow?: string };
+
+/**
+ * Exercice des défis de programmation (src/data/challenges.ts) : le format d'un exercice de leçon, avec en plus
+ * le JavaScript (bac à sable public/sandbox, la réponse suivie de `test`, qui lève une erreur AssertionError).
+ */
+export type ChallengeExercise = Omit<Extract<LessonSection, { kind: "exercise" }>, "language"> & {
+  language: LessonLanguage | "javascript";
+};
 
 export interface LessonModule {
   /** Identifiant stable (sert à mémoriser la progression : ne pas le changer) */

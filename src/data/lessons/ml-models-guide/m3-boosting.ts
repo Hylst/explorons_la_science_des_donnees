@@ -32,6 +32,7 @@ Pour une régression avec la perte quadratique, le procédé tient en quelques l
     {
       kind: "equation",
       latex: String.raw`r_i = y_i - F_{m-1}(x_i) = -\frac{\partial}{\partial F}\left[\tfrac{1}{2}\,(y_i - F)^2\right]_{F = F_{m-1}(x_i)}`,
+      narrow: String.raw`\begin{aligned} r_i &= y_i - F_{m-1}(x_i) \\ &= -\frac{\partial}{\partial F}\left[\tfrac{1}{2}\,(y_i - F)^2\right]_{F = F_{m-1}(x_i)} \end{aligned}`,
       caption: "L'arbre h_m est entraîné à prédire les résidus r_i. Le résidu est l'opposé du gradient de la perte quadratique par rapport à la prédiction : c'est la raison du mot « gradient » dans gradient boosting.",
     },
     {

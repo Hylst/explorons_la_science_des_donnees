@@ -99,10 +99,10 @@ const OptimizationSection = () => {
               Les dérivées nous indiquent dans quelle direction aller.
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold flex items-center gap-2">
+              <h3 className="font-semibold flex items-center gap-2">
                 <Target className="h-4 w-4" />
                 Principe fondamental
-              </h4>
+              </h3>
               <p className="text-sm">Suivre la pente négative pour descendre vers le minimum</p>
             </div>
           </div>
@@ -158,7 +158,7 @@ const OptimizationSection = () => {
             <div className="space-y-4">
               {criticalPointsExamples.map((example, index) => (
                 <div key={index} className="border rounded-lg p-3">
-                  <h5 className="font-semibold text-sm mb-2">Exemple {index + 1}</h5>
+                  <h4 className="font-semibold text-sm mb-2">Exemple {index + 1}</h4>
                   <div className="space-y-2 text-xs">
                     <div>
                       <span className="font-semibold">Fonction :</span> {example.function}
@@ -333,7 +333,7 @@ const OptimizationSection = () => {
           </div>
           <div>
             <h4 className="font-semibold mb-3">Momentum</h4>
-            <CourseEquation latex="v_t = \beta v_{t-1} + (1-\beta) \nabla J(\theta_t), \quad \theta_{t+1} = \theta_t - \alpha v_t" />
+            <CourseEquation latex="v_t = \beta v_{t-1} + (1-\beta) \nabla J(\theta_t), \qquad \theta_{t+1} = \theta_t - \alpha v_t" />
             <p className="text-sm text-gray-600">Accélère la convergence avec &quot;inertie&quot;</p>
           </div>
           <div>

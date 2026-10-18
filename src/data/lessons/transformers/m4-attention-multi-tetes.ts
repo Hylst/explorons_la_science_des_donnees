@@ -86,6 +86,7 @@ Dans le modèle de base de l'article de 2017, d_model vaut 512, h vaut 8 et donc
     {
       kind: "equation",
       latex: String.raw`\text{MultiTête}(X) = \operatorname{Concat}\big(\text{tête}_1,\dots,\text{tête}_h\big)\,W^{O} \qquad \text{tête}_i = \text{Attention}\big(X W_i^{Q},\; X W_i^{K},\; X W_i^{V}\big)`,
+      narrow: String.raw`\begin{gathered} \text{MultiTête}(X) \\ = \operatorname{Concat}\big(\text{tête}_1,\dots,\text{tête}_h\big)\,W^{O} \\[0.6em] \text{tête}_i = \text{Attention}\big(X W_i^{Q},\; X W_i^{K},\; X W_i^{V}\big) \end{gathered}`,
       caption: "Attention multi-têtes (Vaswani et al., 2017). Chaque W_i est de forme (d_model, d_k) ; mises côte à côte, les h matrices W_i^Q forment une matrice (d_model, d_model)",
     },
     {

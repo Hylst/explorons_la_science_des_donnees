@@ -70,6 +70,7 @@ Mesurons la convergence. Trois méthodes sont comparées sur x² entre 0 et 3 : 
     {
       kind: "equation",
       latex: String.raw`T_n = \Delta x \left( \frac{f(x_0)}{2} + f(x_1) + \dots + f(x_{n-1}) + \frac{f(x_n)}{2} \right)`,
+      narrow: String.raw`\begin{aligned} T_n = \Delta x \biggl( &\frac{f(x_0)}{2} + f(x_1) + \dots \\ &+ f(x_{n-1}) + \frac{f(x_n)}{2} \biggr) \end{aligned}`,
       caption: "Règle des trapèzes : les valeurs aux deux extrémités comptent pour moitié, les autres comptent entièrement.",
     },
     {

@@ -56,7 +56,7 @@ const TransformationSection: React.FC = () => {
             <div key={index} className="p-4 bg-muted/30 rounded-lg">
               <div className="text-center mb-3">
                 <transfo.Icon className="h-8 w-8 mx-auto mb-2 text-purple-600" aria-hidden="true" />
-                <h4 className="font-semibold text-purple-700">
+                <h3 className="font-semibold text-purple-700">
                   <GlossaryTerm 
                     definition={dataPreparationEnhancedDefinitions[
                       transfo.type === 'Structurelle' ? 'transformation' :
@@ -69,7 +69,7 @@ const TransformationSection: React.FC = () => {
                   >
                     {transfo.type}
                   </GlossaryTerm>
-                </h4>
+                </h3>
               </div>
               <p className="text-sm text-muted-foreground mb-3">{transfo.description}</p>
               <div className="space-y-1">

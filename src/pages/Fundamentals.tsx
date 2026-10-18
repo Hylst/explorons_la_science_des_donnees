@@ -61,7 +61,7 @@ const Fundamentals = () => {
           >
             <Brain className="h-6 w-6 text-blue-600" />
             <div>
-              <h3 className="font-semibold">Maths & stats</h3>
+              <h2 className="font-semibold">Maths & stats</h2>
               <p className="text-sm text-muted-foreground">Probabilités, statistiques et algèbre</p>
             </div>
           </Link>
@@ -72,7 +72,7 @@ const Fundamentals = () => {
           >
             <Code className="h-6 w-6 text-purple-600" />
             <div>
-              <h3 className="font-semibold">Programmation</h3>
+              <h2 className="font-semibold">Programmation</h2>
               <p className="text-sm text-muted-foreground">Python, R et langages de Data Science</p>
             </div>
           </Link>
@@ -83,7 +83,7 @@ const Fundamentals = () => {
           >
             <Database className="h-6 w-6 text-orange-600" />
             <div>
-              <h3 className="font-semibold">Traiter les données</h3>
+              <h2 className="font-semibold">Traiter les données</h2>
               <p className="text-sm text-muted-foreground">Nettoyage, transformation et préparation</p>
             </div>
           </Link>
@@ -94,7 +94,7 @@ const Fundamentals = () => {
           >
             <Database className="h-6 w-6 text-emerald-600" />
             <div>
-              <h3 className="font-semibold">Bases de données</h3>
+              <h2 className="font-semibold">Bases de données</h2>
               <p className="text-sm text-muted-foreground">SQL, NoSQL et gestion des données</p>
             </div>
           </Link>

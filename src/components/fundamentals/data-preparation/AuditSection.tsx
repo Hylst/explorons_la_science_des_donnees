@@ -135,7 +135,7 @@ const AuditSection: React.FC = () => {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="bg-blue-50 p-3 rounded-lg">
-                    <h5 className="font-medium text-sm text-blue-700 mb-1">Exemple :</h5>
+                    <h4 className="font-medium text-sm text-blue-700 mb-1">Exemple :</h4>
                     <p className="text-sm text-blue-600">{dimension.example}</p>
                   </div>
                   <div className="bg-red-50 p-3 rounded-lg">

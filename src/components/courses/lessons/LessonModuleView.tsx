@@ -55,7 +55,7 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
         </button>
       </h3>
       {open && (
-        <div id={panelId} className="border-t border-slate-200 p-5 dark:border-slate-700">
+        <div id={panelId} className="border-t border-slate-200 p-4 sm:p-5 dark:border-slate-700">
           <div className="mb-5 rounded-lg bg-slate-50 p-4 dark:bg-slate-800/60">
             <p className="mb-2 flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100">
               <Target className="h-4 w-4" aria-hidden="true" />
@@ -87,7 +87,7 @@ const LessonModuleView = ({ courseId, module, number, defaultOpen = false }: Les
               return (
                 <figure key={index} className="mb-4">
                   <Suspense fallback={<div className="h-12" aria-hidden="true" />}>
-                    <CourseEquation latex={section.latex} />
+                    <CourseEquation latex={section.latex} narrow={section.narrow} />
                   </Suspense>
                   {section.caption && <figcaption className="mt-1 text-center text-sm text-muted-foreground">{frenchSpacing(section.caption)}</figcaption>}
                 </figure>

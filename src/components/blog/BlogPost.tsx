@@ -21,17 +21,8 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
   // Si title et content ne sont pas fournis, trouvez l'article par id
   const post = blogPosts.find(post => post.id === id);
   
-  if (!post) {
-    return (
-      <div className="my-16 text-center">
-        <h2 className="text-2xl font-bold mb-4">Article non trouvé</h2>
-        <p className="mb-8">L'article que vous recherchez n'existe pas ou a été déplacé.</p>
-        <Button asChild>
-          <Link to="/blog">Retour à la liste des articles</Link>
-        </Button>
-      </div>
-    );
-  }
+  // un article inconnu est traité par la page Blog (page 404) avant d'arriver ici
+  if (!post) return null;
 
   return (
     <div className="max-w-4xl mx-auto">

@@ -51,7 +51,7 @@ const ContentLayout = ({ children, title, backLink, sidebar }: ContentLayoutProp
             <Sidebar className="md:!top-[var(--sidebar-top,0px)] md:!bottom-[var(--sidebar-bottom,0px)] md:!h-auto border-r bg-sidebar">
               <SidebarHeader className="border-b border-sidebar-border p-4 min-h-[4rem]">
                 <div className="flex items-start justify-between mb-2">
-                  <h2 className="text-lg font-semibold text-sidebar-foreground leading-tight break-words">{title}</h2>
+                  <p className="text-lg font-semibold text-sidebar-foreground leading-tight break-words">{title}</p>
                   <SidebarTrigger className="ml-2 flex-shrink-0" />
                 </div>
                 {backLink && (

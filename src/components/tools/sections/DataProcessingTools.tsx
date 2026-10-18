@@ -690,19 +690,19 @@ with DAG(
                     
                     <div className="grid grid-cols-2 gap-2">
                       <div className="p-3 bg-yellow-50 rounded text-center">
-                        <h5 className="font-medium text-yellow-700 text-sm">HDFS</h5>
+                        <h4 className="font-medium text-yellow-700 text-sm">HDFS</h4>
                         <p className="text-xs mt-1">Système de fichiers distribué</p>
                       </div>
                       <div className="p-3 bg-yellow-50 rounded text-center">
-                        <h5 className="font-medium text-yellow-700 text-sm">MapReduce</h5>
+                        <h4 className="font-medium text-yellow-700 text-sm">MapReduce</h4>
                         <p className="text-xs mt-1">Modèle de programmation parallèle</p>
                       </div>
                       <div className="p-3 bg-yellow-50 rounded text-center">
-                        <h5 className="font-medium text-yellow-700 text-sm">YARN</h5>
+                        <h4 className="font-medium text-yellow-700 text-sm">YARN</h4>
                         <p className="text-xs mt-1">Gestion des ressources</p>
                       </div>
                       <div className="p-3 bg-yellow-50 rounded text-center">
-                        <h5 className="font-medium text-yellow-700 text-sm">Hive</h5>
+                        <h4 className="font-medium text-yellow-700 text-sm">Hive</h4>
                         <p className="text-xs mt-1">Requêtes SQL sur Hadoop</p>
                       </div>
                     </div>
@@ -734,19 +734,19 @@ with DAG(
                     
                     <div className="grid grid-cols-2 gap-2">
                       <div className="p-3 bg-orange-50 rounded text-center">
-                        <h5 className="font-medium text-orange-700 text-sm">Spark SQL</h5>
+                        <h4 className="font-medium text-orange-700 text-sm">Spark SQL</h4>
                         <p className="text-xs mt-1">Requêtes sur données structurées</p>
                       </div>
                       <div className="p-3 bg-orange-50 rounded text-center">
-                        <h5 className="font-medium text-orange-700 text-sm">Structured Streaming</h5>
+                        <h4 className="font-medium text-orange-700 text-sm">Structured Streaming</h4>
                         <p className="text-xs mt-1">Flux traités avec l'API DataFrame</p>
                       </div>
                       <div className="p-3 bg-orange-50 rounded text-center">
-                        <h5 className="font-medium text-orange-700 text-sm">MLlib</h5>
+                        <h4 className="font-medium text-orange-700 text-sm">MLlib</h4>
                         <p className="text-xs mt-1">Bibliothèque de machine learning</p>
                       </div>
                       <div className="p-3 bg-orange-50 rounded text-center">
-                        <h5 className="font-medium text-orange-700 text-sm">GraphX</h5>
+                        <h4 className="font-medium text-orange-700 text-sm">GraphX</h4>
                         <p className="text-xs mt-1">Traitement de graphes</p>
                       </div>
                     </div>

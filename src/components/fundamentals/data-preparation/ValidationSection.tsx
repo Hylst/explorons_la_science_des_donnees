@@ -133,7 +133,7 @@ export const ValidationSection: React.FC = () => {
               >
                 <CardContent className="p-4 text-center">
                   <IconComponent className="h-8 w-8 mx-auto mb-2 text-green-500" />
-                  <h4 className="font-semibold mb-1">{category.name}</h4>
+                  <h3 className="font-semibold mb-1">{category.name}</h3>
                   <p className="text-sm text-muted-foreground">{category.description}</p>
                 </CardContent>
               </Card>
@@ -182,7 +182,7 @@ export const ValidationSection: React.FC = () => {
 
             <TabsContent value="quality" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">Tests de qualité des données</h4>
+                <h3 className="font-semibold mb-4">Tests de qualité des données</h3>
                 <div className="space-y-4">
                   {qualityChecks.map((check) => (
                     <div key={check.name} className="p-4 border rounded-lg">
@@ -209,7 +209,7 @@ export const ValidationSection: React.FC = () => {
 
             <TabsContent value="metrics" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">Indicateurs de validation et leur calcul</h4>
+                <h3 className="font-semibold mb-4">Indicateurs de validation et leur calcul</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
                     {
@@ -260,7 +260,7 @@ export const ValidationSection: React.FC = () => {
 
             <TabsContent value="compliance" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">Conformité : les questions à se poser</h4>
+                <h3 className="font-semibold mb-4">Conformité : les questions à se poser</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="bg-blue-50 border-blue-200">
                     <CardHeader>
@@ -302,7 +302,7 @@ export const ValidationSection: React.FC = () => {
 
             <TabsContent value="business" className="space-y-4">
               <div className="bg-white p-6 rounded-lg border">
-                <h4 className="font-semibold mb-4">Contrôles de cohérence métier</h4>
+                <h3 className="font-semibold mb-4">Contrôles de cohérence métier</h3>
                 <div className="space-y-4">
                   {businessRules.map((rule) => (
                     <div key={rule.rule} className="p-4 border rounded-lg">
@@ -315,7 +315,7 @@ export const ValidationSection: React.FC = () => {
                   ))}
                 </div>
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h5 className="font-medium text-blue-800 mb-2">Dans quel ordre corriger</h5>
+                  <h4 className="font-medium text-blue-800 mb-2">Dans quel ordre corriger</h4>
                   <ul className="text-sm text-blue-700 space-y-1">
                     <li>• D'abord les violations critiques, qui faussent tout le reste (dates incohérentes, identifiants en double).</li>
                     <li>• Ensuite celles qui demandent l'avis des équipes concernées (montants nuls ou négatifs : erreur ou avoir ?).</li>

@@ -1,84 +1,51 @@
-import { Calculator, Settings, Target, BookOpen, Lightbulb } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Calculator, GraduationCap, Lightbulb } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import CourseEquation from "@/components/courses/CourseEquation";
 
+/** Introduction et concepts fondamentaux (affichés avec la page ; les sections suivantes sont chargées ensuite) */
 const IntegralCalculusContent = () => {
-  const integrationTechniques = [
-    {
-      name: "Intégration par substitution",
-      formula: "∫ f(g(x))g'(x)dx = ∫ f(u)du",
-      description: "Changement de variable pour simplifier l'intégrale",
-      example: "∫ 2x(x² + 1)³dx = (x² + 1)⁴/4 + C (avec u = x² + 1)"
-    },
-    {
-      name: "Intégration par parties",
-      formula: "∫ udv = uv - ∫ vdu",
-      description: "Pour les produits de fonctions",
-      example: "∫ x·eˣdx = (x - 1)eˣ + C (avec u = x et dv = eˣdx)"
-    },
-    {
-      name: "Fractions partielles",
-      formula: "∫ P(x)/Q(x)dx",
-      description: "Décomposition de fractions rationnelles",
-      example: "∫ 1/(x² - 1)dx = ½ ln|(x - 1)/(x + 1)| + C, car 1/(x² - 1) = ½ [1/(x - 1) - 1/(x + 1)]"
-    }
-  ];
-
-  const applications = [
-    {
-      domain: "Statistiques",
-      description: "Calcul de probabilités avec des densités continues",
-      example: "∫_a^b f(x)dx = P(a ≤ X ≤ b)",
-      use_cases: ["Loi normale", "Fonctions de densité", "Espérance mathématique"]
-    },
-    {
-      domain: "Machine Learning",
-      description: "Perte moyenne attendue d'un modèle",
-      example: "R(\\theta) = \\mathbb{E}[L(\\theta, X)] = \\int L(\\theta, x)\\, p(x)\\, dx",
-      use_cases: ["Risque espéré (perte moyenne)", "Entropie et divergence de Kullback-Leibler", "Pertes moyennes sur une loi continue"]
-    },
-    {
-      domain: "Analyse de données",
-      description: "Aire sous la courbe ROC (u = taux de faux positifs, TPR = taux de vrais positifs)",
-      example: "\\mathrm{AUC} = \\int_0^1 \\mathrm{TPR}(u)\\, du",
-      use_cases: ["Métriques de performance", "Intégration numérique (méthode des trapèzes)"]
-    }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       {/* Introduction */}
       <section id="introduction" className="scroll-mt-24">
-        <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-8 rounded-xl border border-purple-100">
+        <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-4 sm:p-8 rounded-xl border border-purple-100">
           <h2 className="text-3xl font-bold mb-6 text-indigo-900 flex items-center gap-3">
             <Lightbulb className="h-8 w-8 text-yellow-500" />
             Le calcul intégral : mesurer une accumulation
           </h2>
-          
+
           <div className="max-w-none text-gray-700 mb-8">
             <p className="text-xl leading-relaxed mb-6">
-              Le calcul intégral est l'art de mesurer l'accumulation. Là où les dérivées nous parlent 
-              de vitesse de changement, les intégrales nous parlent de quantités totales accumulées. 
-              En data science, on la retrouve surtout dans les probabilités continues (densités, espérance)
-              et dans certains indicateurs comme l'aire sous la courbe ROC (AUC).
+              Le calcul intégral est l'art de mesurer l'accumulation. Là où les dérivées nous parlent
+              de vitesse de changement, les intégrales nous parlent de quantités totales accumulées.
+              En data science, on la retrouve surtout dans les probabilités continues (densités, espérance),
+              dans la théorie de l'information (entropie, divergence de Kullback-Leibler) et dans certains
+              indicateurs comme l'aire sous la courbe ROC (AUC).
             </p>
-            
-            <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500 my-6">
+
+            <div className="bg-white p-4 sm:p-6 rounded-lg border-l-4 border-purple-500 my-6">
               <h3 className="text-lg font-semibold text-purple-700 mb-3 flex items-center gap-2">
                 <Calculator className="h-5 w-5" />
                 Intuition géométrique
               </h3>
               <p className="mb-4">
-                Imaginez que vous voulez mesurer l'aire sous une courbe. Le calcul intégral vous permet 
-                de découper cette aire en rectangles infinitésimaux et de les additionner pour obtenir 
-                la surface exacte.
+                Imaginez que vous voulez mesurer l'aire sous une courbe. Le calcul intégral vous permet
+                de découper cette aire en rectangles de plus en plus fins et d'additionner leurs aires :
+                la limite de ces sommes, quand la largeur des rectangles tend vers zéro, est l'intégrale.
               </p>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <CourseEquation latex="A = \int_a^b f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i)\Delta x" />
+              <div className="bg-gray-50 p-2 sm:p-4 rounded-lg space-y-1">
+                <CourseEquation latex="A = \int_a^b f(x)dx" />
+                <CourseEquation latex="\int_a^b f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i)\Delta x" />
               </div>
             </div>
+
+            <p className="leading-relaxed">
+              Cette page est une référence : elle rassemble les définitions, les techniques et leurs usages en data science,
+              avec des exemples que vous pouvez exécuter et modifier (Python, NumPy et SciPy tournent dans votre navigateur)
+              et cinq exercices, dont trois vérifiés par le moteur du site.
+            </p>
           </div>
         </div>
       </section>
@@ -89,7 +56,7 @@ const IntegralCalculusContent = () => {
           <Calculator className="h-6 w-6 text-blue-600" />
           Concepts fondamentaux
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card className="border-l-4 border-blue-400">
             <CardHeader>
@@ -100,7 +67,7 @@ const IntegralCalculusContent = () => {
                 <CourseEquation latex="∫ f(x)dx = F(x) + C" />
               </div>
               <p className="text-sm text-gray-700">
-                Famille de fonctions dont la dérivée est f(x). 
+                Famille de fonctions dont la dérivée est f(x).
                 La constante C représente toutes les primitives possibles.
               </p>
             </CardContent>
@@ -115,8 +82,8 @@ const IntegralCalculusContent = () => {
                 <CourseEquation latex="∫_a^b f(x)dx = F(b) - F(a)" />
               </div>
               <p className="text-sm text-gray-700">
-                Valeur numérique représentant l'aire nette entre la courbe 
-                et l'axe x, entre les bornes a et b.
+                Valeur numérique représentant l'aire nette entre la courbe
+                et l'axe x, entre les bornes a et b : les parties sous l'axe comptent négativement.
               </p>
             </CardContent>
           </Card>
@@ -130,8 +97,8 @@ const IntegralCalculusContent = () => {
                 <CourseEquation latex="\frac{d}{dx}\int_a^x f(t)dt = f(x)" />
               </div>
               <p className="text-sm text-gray-600">
-                La dérivée d'une intégrale par rapport à sa borne supérieure 
-                est égale à la fonction intégrée.
+                La dérivée d'une intégrale par rapport à sa borne supérieure
+                est égale à la fonction intégrée (pour f continue).
               </p>
             </div>
             <div>
@@ -140,154 +107,24 @@ const IntegralCalculusContent = () => {
                 <CourseEquation latex="\int_a^b f'(x)dx = f(b) - f(a)" />
               </div>
               <p className="text-sm text-gray-600">
-                L'intégrale d'une dérivée sur un intervalle est égale 
+                L'intégrale d'une dérivée sur un intervalle est égale
                 à la différence des valeurs aux bornes.
               </p>
             </div>
           </div>
         </CourseHighlight>
-      </section>
 
-      {/* Techniques d'intégration */}
-      <section id="techniques" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Settings className="h-6 w-6 text-purple-600" />
-          Techniques d'intégration
-        </h2>
-
-        <div className="space-y-6">
-          {integrationTechniques.map((technique, index) => (
-            <Card key={index} className="border-l-4 border-purple-400">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Badge variant="outline" className="mb-2">Technique {index + 1}</Badge>
-                    <CardTitle className="text-lg">{technique.name}</CardTitle>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                  <CourseEquation latex={technique.formula} />
-                </div>
-                <p className="text-sm text-gray-700 mb-3">{technique.description}</p>
-                <div className="bg-blue-50 p-3 rounded border">
-                  <p className="text-sm font-medium text-blue-800">Exemple : {technique.example}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mt-6 flex items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <GraduationCap className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
+          <p className="text-sm text-blue-900">
+            Pour apprendre pas à pas (sommes de Riemann, théorème fondamental, densités, AUC) avec des exercices vérifiés, suivez le{" "}
+            <Link to="/courses/math-stats/math-intro#module-module-5" className="font-medium underline">
+              module 5 du cours d'introduction aux mathématiques
+            </Link>
+            . Cette page le complète : techniques d'intégration, méthodes numériques, intégrales impropres et multiples, entropie.
+          </p>
         </div>
       </section>
-
-      {/* Applications */}
-      <section id="applications" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Target className="h-6 w-6 text-green-600" />
-          Applications en science des données
-        </h2>
-
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-100">
-          <h3 className="text-xl font-semibold mb-6">Domaines d'application</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {applications.map((app, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-                <h4 className="font-semibold text-green-700 mb-3 flex items-center gap-2">
-                  <Target className="h-4 w-4" />
-                  {app.domain}
-                </h4>
-                <p className="text-sm mb-3">{app.description}</p>
-                <div className="bg-gray-50 p-3 rounded mb-3">
-                  <CourseEquation latex={app.example} />
-                </div>
-                <div>
-                  <h5 className="text-xs font-semibold text-gray-500 uppercase mb-2">Cas d'usage</h5>
-                  <ul className="text-xs space-y-1">
-                    {app.use_cases.map((use_case, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1 h-1 bg-green-400 rounded-full" />
-                        {use_case}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Exercices pratiques */}
-      <section id="exercices" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <BookOpen className="h-6 w-6 text-orange-600" />
-          Exercices pratiques
-        </h2>
-
-        <div className="space-y-6">
-          <Card className="border-l-4 border-orange-400">
-            <CardHeader>
-              <CardTitle className="text-lg">Exercice 1 : Calcul d'aires</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4">Calculez l'aire sous la courbe f(x) = x² entre x = 0 et x = 2</p>
-              <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                <CourseEquation latex="A = \int_0^2 x^2 dx" />
-              </div>
-              <details className="bg-blue-50 p-4 rounded border">
-                <summary className="cursor-pointer font-medium text-blue-800">Voir la solution</summary>
-                <div className="mt-3 space-y-2">
-                  <CourseEquation latex="A = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3} - 0 = \frac{8}{3}" />
-                  <p className="text-sm text-blue-700">L'aire vaut 8/3 unités d'aire (environ 2,67).</p>
-                </div>
-              </details>
-            </CardContent>
-          </Card>
-
-          <Card className="border-l-4 border-orange-400">
-            <CardHeader>
-              <CardTitle className="text-lg">Exercice 2 : Probabilité continue</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4">Pour une loi uniforme sur [0,1], calculez P(0,2 ≤ X ≤ 0,7)</p>
-              <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                <CourseEquation latex="P(0{,}2 \leq X \leq 0{,}7) = \int_{0{,}2}^{0{,}7} 1\, dx" />
-              </div>
-              <details className="bg-blue-50 p-4 rounded border">
-                <summary className="cursor-pointer font-medium text-blue-800">Voir la solution</summary>
-                <div className="mt-3 space-y-2">
-                  <CourseEquation latex="P = [x]_{0{,}2}^{0{,}7} = 0{,}7 - 0{,}2 = 0{,}5" />
-                  <p className="text-sm text-blue-700">La probabilité vaut 0,5, soit 50 %.</p>
-                </div>
-              </details>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <CourseHighlight title="Prochaines étapes" type="info">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 className="font-semibold mb-3">Avec les bases du calcul intégral, vous pouvez aborder :</h4>
-            <ul className="space-y-2 text-sm">
-              <li>✓ Calcul des probabilités continues</li>
-              <li>✓ Espérance et variance d'une variable continue</li>
-              <li>✓ Analyse de performance de modèles</li>
-              <li>✓ Méthodes d'intégration numérique</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-3">Ressources pour approfondir :</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Khan Academy - Calcul intégral</li>
-              <li>3Blue1Brown - Essence du calcul</li>
-              <li>MIT OpenCourseWare - Calculus</li>
-              <li>SciPy pour l'intégration numérique</li>
-            </ul>
-          </div>
-        </div>
-      </CourseHighlight>
     </div>
   );
 };

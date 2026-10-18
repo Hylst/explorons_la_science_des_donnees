@@ -6,7 +6,7 @@
  */
 import path from "node:path";
 import { loadPyodide, type PyodideInterface } from "pyodide";
-import { ENGINE_SETUP } from "@/lib/runner/python-setup";
+import { ENGINE_SETUP, adaptAsyncio } from "@/lib/runner/python-setup";
 
 const ROOT = process.cwd();
 const VENDOR = path.join(ROOT, "public", "vendor", `pyodide-${__PYODIDE_VERSION__}`) + path.sep;
@@ -41,7 +41,7 @@ export const runPythonNode = async (code: string): Promise<{ output: string; err
   try {
     await py.loadPackagesFromImports(code, { messageCallback: () => {} });
     if (/matplotlib/.test(code)) py.runPython(MATPLOTLIB_SETUP);
-    await py.runPythonAsync(code, { globals });
+    await py.runPythonAsync(adaptAsyncio(code), { globals });
     py.runPython("import sys\nif 'matplotlib.pyplot' in sys.modules:\n    import matplotlib.pyplot as _p\n    _p.close('all')");
     return { output: lines.join("\n") };
   } catch (error) {

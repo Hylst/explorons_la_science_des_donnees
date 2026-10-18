@@ -17,23 +17,29 @@ const Card = React.forwardRef<
 ))
 Card.displayName = "Card"
 
+// Sous 640 px, 16 px de marge intérieure à gauche et à droite au lieu de 24 (les cartes imbriquées laissaient
+// moins de 150 px aux formules sur un téléphone), sauf si la carte fixe elle-même sa marge horizontale.
+const HORIZONTAL_PADDING = /(^|\s)([^\s:]+:)*!?p[xlr]?-/
+const mobilePadding = (className?: string) => (HORIZONTAL_PADDING.test(className ?? "") ? undefined : "max-sm:px-4")
+
 const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn("flex flex-col space-y-1.5 p-6", mobilePadding(className), className)}
     {...props}
   />
 ))
 CardHeader.displayName = "CardHeader"
 
+// Niveau du titre : h3 par défaut ; « as » le règle selon la place de la carte dans la page (pas de saut h1 -> h3)
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
+  React.HTMLAttributes<HTMLHeadingElement> & { as?: "h2" | "h3" | "h4" | "p" }
+>(({ className, as: Tag = "h3", ...props }, ref) => (
+  <Tag
     ref={ref}
     className={cn(
       "text-2xl font-semibold leading-none tracking-tight",
@@ -60,7 +66,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("p-6 pt-0", mobilePadding(className), className)} {...props} />
 ))
 CardContent.displayName = "CardContent"
 

@@ -138,7 +138,7 @@ const Contact = () => {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle as="h2" className="flex items-center gap-2">
                   <User className="h-5 w-5" />
                   À propos de Geoffroy Streit
                 </CardTitle>
@@ -198,7 +198,7 @@ const Contact = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle as="h2" className="flex items-center gap-2">
                   <MessageSquare className="h-5 w-5" />
                   Types de messages
                 </CardTitle>
@@ -251,7 +251,7 @@ const Contact = () => {
           <div>
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle as="h2" className="flex items-center gap-2">
                   <Send className="h-5 w-5" />
                   Écrire un message
                 </CardTitle>

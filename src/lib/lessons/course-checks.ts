@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { compareSqlOutputs, parseSqlTables } from "./check";
 import { runSqlNode } from "./sql-node";
 import { runPythonNode } from "./python-node";
+import { stackLatex } from "../latex-stack";
 
 const PYTHON_TIMEOUT = 120_000;
 import type { LessonCourse, LessonSection } from "./types";
@@ -31,7 +32,11 @@ export const describeLessonCourse = (course: LessonCourse) => {
           expect(module.sections.some((s) => s.kind === "exercise")).toBe(true);
           // chaque formule doit se compiler avec KaTeX (une formule fausse s'afficherait en rouge sur la page)
           for (const s of module.sections) {
-            if (s.kind === "equation") expect(() => katex.renderToString(s.latex, { throwOnError: true }), s.latex).not.toThrow();
+            if (s.kind !== "equation") continue;
+            expect(() => katex.renderToString(s.latex, { throwOnError: true }), s.latex).not.toThrow();
+            // et sa version empilée des petits écrans (CourseEquation)
+            const stacked = s.narrow ?? stackLatex(s.latex);
+            if (stacked) expect(() => katex.renderToString(stacked, { throwOnError: true, displayMode: true }), stacked).not.toThrow();
           }
           expect(module.quiz.length).toBeGreaterThanOrEqual(3);
         });

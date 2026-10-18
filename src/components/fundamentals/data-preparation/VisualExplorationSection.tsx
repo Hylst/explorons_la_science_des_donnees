@@ -74,7 +74,7 @@ export const VisualExplorationSection: React.FC = () => {
               >
                 <CardContent className="p-4 text-center">
                   <IconComponent className="h-8 w-8 mx-auto mb-2 text-blue-500" />
-                  <h4 className="font-semibold mb-1">{chart.name}</h4>
+                  <h3 className="font-semibold mb-1">{chart.name}</h3>
                   <p className="text-sm text-muted-foreground">{chart.description}</p>
                 </CardContent>
               </Card>

@@ -17,6 +17,7 @@ Le contenu, avec les nombres comptés dans le code :
 - **229 termes de glossaire**, aussi consultables par survol dans les cours.
 - **12 projets**, dont 8 guidés pas à pas (jeu de données, exercices vérifiés, corrigés) ; les 4 autres sont des sujets à réaliser soi-même.
 - **5 articles de blog**, des ressources externes sélectionnées, et une page Communauté dont les actualités sont un **instantané daté** de flux RSS publics (pas un flux en direct).
+- **Exercices vérifiés hors des cours** : défis de programmation (Python et JavaScript), exercices pratiques des pages Programmation et Machine learning ; un code qui ne peut pas tourner dans le navigateur est présenté comme code à lire, avec la raison.
 - **Exécution de code réelle** : Python (Pyodide : NumPy, pandas, scikit-learn, statsmodels, Matplotlib), SQL (SQLite via sql.js) et JavaScript (iframe isolée, sans réseau). Les moteurs, 56 Mo, sont servis par le site lui-même et mis en cache.
 - **Application installable** (PWA), utilisable hors ligne pour les pages et moteurs déjà chargés ; thème clair, sombre ou celui de l'appareil.
 
@@ -45,11 +46,12 @@ Au premier `npm run dev` ou `npm run build`, le script `runtimes:sync` prépare 
 | `npm run typecheck` | vérification TypeScript stricte (le build ne vérifie pas les types) |
 | `npm run lint` | ESLint |
 | `npm test` / `npm run test:watch` | tests Vitest |
+| `npm run test:smoke` | test de fumée : chaque route et chaque onglet s'affichent dans jsdom (un seul h1, ordre des titres, ancres, identifiants uniques), une trentaine de secondes |
 | `npm run runtimes:sync` | (re)prépare `public/vendor` ; lancé automatiquement avant `dev` et les builds |
 | `npm run news:refresh` | réécrit `src/data/rss-articles.json` à partir des flux de `src/data/rss-sources.json` |
 | `npm run verify:dist` / `npm run verify:hylst` | contrôle d'un dossier de build (`verify:hylst` suit `build:hylst` automatiquement) |
 
-Avant une livraison : `npm run typecheck`, `npm run lint`, `npm test`, `npm run news:refresh`, puis `npm run build:hylst`. Le guide du développeur ([readme_dev.md](readme_dev.md)) détaille les étapes de livraison.
+Avant une livraison : `npm run typecheck`, `npm run lint`, `npm test`, `npm run test:smoke`, `npm run news:refresh`, puis `npm run build:hylst`. Le guide du développeur ([readme_dev.md](readme_dev.md)) détaille les étapes de livraison.
 
 ## Documentation
 
@@ -71,7 +73,7 @@ React 18, TypeScript, Vite 7 (plugin SWC), Tailwind CSS 3, shadcn/ui (Radix), Re
 
 1. Créer une branche depuis `main`.
 2. Respecter les conventions du code voisin ; ne jamais afficher de chiffre inventé (étudiants, notes, avis, statistiques de fréquentation).
-3. Lancer `npm run typecheck`, `npm run lint` et `npm test` (zéro erreur attendue).
+3. Lancer `npm run typecheck`, `npm run lint`, `npm test` et `npm run test:smoke` (zéro erreur attendue).
 4. Vérifier la mise en page à 390, 768 et 1280 px (aucun défilement horizontal de la page).
 5. Ouvrir une Pull Request.
 

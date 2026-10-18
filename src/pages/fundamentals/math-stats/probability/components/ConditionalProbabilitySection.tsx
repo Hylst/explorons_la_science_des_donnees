@@ -152,7 +152,7 @@ const ConditionalProbabilitySection = () => {
               </p>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">L'essence de la probabilité conditionnelle :</h4>
+              <h3 className="font-semibold text-blue-800 mb-2">L'essence de la probabilité conditionnelle :</h3>
               <p className="text-sm text-blue-700">
                 Chaque nouvelle information <strong>restreint l'espace des possibles</strong> et peut 
                 drastiquement changer les probabilités. C'est le fondement de l'apprentissage automatique.

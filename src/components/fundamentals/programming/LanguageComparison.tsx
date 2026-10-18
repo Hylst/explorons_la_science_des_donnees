@@ -1632,7 +1632,7 @@ class DataDashboard {
               <CourseHighlight title="Trois questions pour s'orienter (repères de l'auteur)" type="question">
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <h5 className="font-semibold mb-2">1. Quel est votre niveau en programmation ?</h5>
+                    <h4 className="font-semibold mb-2">1. Quel est votre niveau en programmation ?</h4>
                     <div className="text-sm space-y-1">
                       <p>• <strong>Débutant complet :</strong> Python</p>
                       <p>• <strong>Quelques bases :</strong> Python ou R selon votre domaine</p>
@@ -1641,7 +1641,7 @@ class DataDashboard {
                   </div>
 
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <h5 className="font-semibold mb-2">2. Dans quel secteur travaillez-vous ?</h5>
+                    <h4 className="font-semibold mb-2">2. Dans quel secteur travaillez-vous ?</h4>
                     <div className="text-sm space-y-1">
                       <p>• <strong>Tech et start-up :</strong> Python + SQL</p>
                       <p>• <strong>Recherche académique :</strong> R ou Python, plus SQL</p>
@@ -1651,7 +1651,7 @@ class DataDashboard {
                   </div>
 
                   <div className="bg-purple-50 p-4 rounded-lg">
-                    <h5 className="font-semibold mb-2">3. Quel type de projets vous intéresse ?</h5>
+                    <h4 className="font-semibold mb-2">3. Quel type de projets vous intéresse ?</h4>
                     <div className="text-sm space-y-1">
                       <p>• <strong>Applications web :</strong> Python (avec un framework comme Django ou Flask)</p>
                       <p>• <strong>Analyses statistiques :</strong> R</p>

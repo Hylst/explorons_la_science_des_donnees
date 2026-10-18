@@ -77,7 +77,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentSection }) => {
       <CardContent className="p-4">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-slate-700">Sections parcourues</h3>
+            <h2 className="font-semibold text-slate-700">Sections parcourues</h2>
             <Badge variant="outline" className="bg-blue-50">
               {completedSections.size}/{sections.length}
             </Badge>

@@ -278,6 +278,14 @@
   overflow-wrap: anywhere;
 }
 
+/* Formules centrées (KaTeX) sur téléphone : 1,05 em au lieu de 1,21 em, pour qu'elles tiennent plus souvent dans leur boîte
+   sans défilement (le 17 octobre 2026, 134 formules défilaient à 320 px). Le sélecteur est plus précis que .katex de KaTeX. */
+@media (max-width: 639px) {
+  .katex-display > .katex {
+    font-size: 1.05em;
+  }
+}
+
 /* Respecte le réglage « réduire les animations » du système : animations et transitions quasi instantanées */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -143,6 +143,7 @@ Quand on classe un message comme indésirable à partir d'un mot qu'il contient,
     {
       kind: "equation",
       latex: String.raw`P(\text{indésirable} \mid \text{mot}) = \frac{P(\text{mot} \mid \text{indésirable}) \; P(\text{indésirable})}{P(\text{mot})}`,
+      narrow: String.raw`\begin{aligned} &P(\text{indésirable} \mid \text{mot}) \\ &= \frac{P(\text{mot} \mid \text{indésirable}) \; P(\text{indésirable})}{P(\text{mot})} \end{aligned}`,
       caption: "Théorème de Bayes. Le dénominateur vaut P(mot | indésirable) P(indésirable) + P(mot | normal) P(normal).",
     },
     {

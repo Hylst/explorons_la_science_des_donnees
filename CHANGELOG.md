@@ -1,5 +1,95 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-18, fin de matinée] - Page Machine learning : exercices vérifiés, programmes exécutés ou à lire (passe 4)
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Page /machine-learning, « Exercices pratiques et exemples de code »** (`PracticalExercisesSection.tsx`, de 1 690 à 462 lignes ; données dans `src/data/ml-practical.ts` et `src/data/ml-exercises-verified.ts`, codes déplacés tels quels) :
+  - trois programmes complets : la régression (logements) s'exécute dans la page ; la classification des iris (seaborn, absent du moteur) et la segmentation de clients (49 s hors navigateur, au-delà de la limite de 30 s) restent à lire, copier ou télécharger, et la page dit pourquoi ;
+  - les résultats cités par la page sont comparés à l'exécution réelle par un test (pour le programme des iris, seaborn, qui ne sert qu'aux graphiques, est remplacé par un module vide le temps du test) ; ils étaient tous exacts ;
+  - deux exercices vérifiés par le moteur, sur le cœur de leur solution : similarité cosinus, plus proche voisin et film à recommander ; précision et rappel calculés à la main, plus haut seuil qui détecte au moins 95 % des fraudes ; réussite enregistrée après une vérification réussie (`course-progress-ml-exercises`) ;
+  - solutions complètes : la recommandation s'exécute dans la page ; la fraude, qui utilise imbalanced-learn (absent du moteur), reste à lire.
+- **Tests** : `ml-practical.test.ts` (corrigés, départs, codes exécutables, résultats cités), `ml-progress.test.tsx` (enregistrement de la réussite, moteur simulé) ; 4 mutations, toutes détectées.
+- **Navigateur** (Chrome sans interface) : deux exercices refusés puis acceptés, réussite gardée au rechargement ; programme de régression exécuté (environ 12 s, plus le chargement de Python et de scikit-learn au premier lancement) ; solution de recommandation exécutée ; aucun débordement à 320 et 390 px sur les 57 routes.
+- **Comptes** : 64 fichiers et 1 786 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-18, matin] - Module « Régression multiple avec statsmodels » (passe 3)
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Statistiques appliquées, module 7** (`src/data/lessons/applied-statistics/m7-ols-statsmodels.ts`, 2 h 30 indicatives) : statsmodels à côté de scikit-learn (inférence contre prédiction), `smf.ols` et le tableau des coefficients (erreurs standard, t, p-values, intervalles à 95 %, R² et R² ajusté, deux formules), variables qualitatives `C(...)` et interactions, diagnostics (résidus contre valeurs ajustées et QQ-plot, Jarque-Bera, Breusch-Pagan, erreurs robustes HC3, VIF, distance de Cook), et ce que la régression ne dit pas (causalité, extrapolation, variables omises). 5 exemples exécutables, 3 exercices vérifiés (intervalle de confiance, graphique des résidus inspecté et test de Breusch-Pagan, VIF), 5 questions de quiz.
+- **Données réelles** : le jeu du diabète déjà utilisé au module 4 (442 patients, fourni avec scikit-learn, rien de téléchargé). Exemple de coefficient qui change de signe, trouvé dans les données et non inventé : le cholestérol total (s1) vaut +0,472 seul et -0,242 à s5 égal ; la variable sex, +6,65 seule et -22,86 avec les neuf autres.
+- **Chaque nombre du texte est gardé par un test** (`m7-ols-statsmodels.test.ts` compare légendes et sorties réelles) ; le test des leçons exécute exemples et exercices.
+- **Catalogue** : le cours passe à 7 modules et environ 14 h ; la notice du jeu est inscrite dans `docs/SOURCES.md` (section 14).
+- **Navigateur** (Chrome sans interface) : 5 exemples sur 5 exécutés, 3 réponses de départ refusées et 3 corrigés acceptés, graphiques de diagnostic regardés, aucun débordement à 320, 390 et 1280 px.
+- **Comptes** : 62 fichiers et 1 777 tests pour `npm test`, 58 tests de fumée ; cours rédigés : 72 modules, 183 exercices vérifiés.
+
+## [2026-10-18, nuit] - Page Programmation : exercices vérifiés, exemples exécutés, progression enregistrée (passe 2)
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Exercices pratiques** (six exercices, du ROI marketing à la prédiction de départ de clients) : chacun commence par un exercice vérifié par le moteur sur sa fonction centrale (`calculer_roi`, `resume_ventes`, `recommander`, `calculer_kpis` avec pandas, `detecter_intention` avec des expressions régulières, `entrainer_et_evaluer` avec scikit-learn) ; la réussite est enregistrée après une vérification réussie (`course-progress-programming-exercises`), au lieu d'une case « terminé » perdue au rechargement. Le script complet d'origine est gardé tel quel (`src/data/programming-exercises.ts`) : exécutable dans la page pour quatre exercices (2 à 14 s dans Chrome), code à lire pour deux, avec la raison (ex1 lit le clavier avec `input()` ; ex5 dépasse dans le navigateur la limite de 30 s du moteur : 40 s mesurées).
+- **Concepts avancés** : les données passent dans `src/data/advanced-concepts.ts` (exemples inchangés) ; un concept « marqué comme lu » est enregistré (`course-progress-advanced-concepts`) et le marquage s'annule ; les quatre exemples exécutables sont maintenant testés.
+- **Masterclass Python** : les sept exemples passent dans `src/data/python-masterclass-examples.ts` (code inchangé) ; six sont exécutables dans la page (`RunnableCode`), dont « Analyse des salaires », qui continue l'exemple précédent (son tableau est recréé sans affichage avant le code) ; l'exemple de graphiques, qui importe seaborn, absent du moteur, reste à lire et le dit. Les deux sorties écrites à la main sont remplacées par l'exécution réelle (elles étaient identiques). Exercices marqués terminés enregistrés (`course-progress-python-masterclass`), marquage réversible.
+- **Moteur** : la conversion de `asyncio.run(...)` en `await` (le moteur exécute le code avec `runPythonAsync`) passe dans `lib/runner/python-setup.ts`, partagée par le worker du site et par l'exécution des tests sous Node, qui échouait sur les exemples asynchrones (« WebAssembly stack switching not supported »).
+- **Tests** : `programming-exercises.test.ts` (corrigés, départs, scripts complets), `advanced-concepts.test.ts`, `python-masterclass-examples.test.ts`, `programming-progress.test.tsx` (enregistrement de la progression des trois sections, moteur simulé), test de `adaptAsyncio` ; 6 mutations, toutes détectées.
+- **Navigateur** (Chrome sans interface) : exercice refusé puis accepté, réussite gardée après rechargement ; chaque exemple et script exécutable lancé (aucune erreur, aucun dépassement) ; aucun débordement à 320, 390 et 1280 px ; 0 saut de titre.
+- **Comptes** : 61 fichiers et 1 759 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-18] - Défis de programmation vérifiés par le moteur (passe 1)
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Défis de programmation** (`/fundamentals/programming`, section « Défis interactifs ») : les quatre défis se validaient à la main (« J'ai réussi ce défi », points et niveaux déclarés par le visiteur). Ils sont maintenant vérifiés par le moteur du site : la réponse est suivie de tests, et le défi n'est compté comme réussi qu'après une vérification réussie (progression `course-progress-challenges`, un élément par défi).
+  - données dans `src/data/challenges.ts` (énoncé, réponse de départ, corrigé, tests aux messages français, indices) ; les identifiants des défis sont gardés ;
+  - le défi JavaScript reste en JavaScript : il s'exécute dans le bac à sable du site, et ses tests lèvent une erreur nommée `AssertionError`, donc le même message qu'un `assert` Python ; `LessonExercise` accepte le JavaScript, un titre et un rappel `onSolved` ;
+  - points, niveaux, chronomètre et minutes passées retirés (ils n'avaient de sens qu'avec l'auto-évaluation) ; filtres par catégorie et difficulté gardés, durées marquées « (indicatif) » ;
+  - anciennes validations à la main (`challenge-progress-v2`) : non reprises comme réussites ; la page le dit une fois au visiteur concerné, puis efface les anciennes clés ; une valeur illisible ne fait pas planter la page (testé).
+- **Tests** : `src/data/challenges.test.ts` exécute chaque corrigé (Pyodide sous Node pour Python ; pour JavaScript, le noyau du bac à sable du site, `public/sandbox/js-core.js`, chargé sous Node par `src/lib/lessons/javascript-node.ts`) et vérifie que chaque réponse de départ échoue sur un message lisible ; `InteractiveChallenges.test.tsx` vérifie l'enregistrement de la réussite (moteur simulé). 5 mutations, toutes détectées après renforcement de deux tests (voir le journal de `suivi_autonome.md`).
+- **Navigateur** (Chrome sans interface, vrais moteurs) : réponse de départ refusée puis corrigé accepté, en Python et en JavaScript, réussite gardée après rechargement, aucun débordement à 320, 390 et 1280 px, aucune erreur console.
+- **Comptes** : 57 fichiers et 1 729 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-17, fin d'après-midi] - Hiérarchie des titres, tests des hooks, nettoyages
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Hiérarchie des titres** (lecteurs d'écran, navigation par titres) : relevé dans Chrome sur les 57 routes, 79 sauts de niveau sur 37 pages (h1 puis h3, h2 puis h4...) et un h2 avant le h1 sur 20 pages. Après ce lot : 0 sur les 57 routes, et le test de fumée refuse désormais, sur chaque page et chaque onglet, un premier titre qui ne soit pas le h1 et un titre qui descend de plus d'un niveau (vérifié par mutation).
+  - le titre de la barre latérale de `ContentLayout` (répétition du titre de la page, avant le h1) devient un paragraphe ;
+  - le titre des encadrés `CourseHighlight` (112 usages) devient un paragraphe : un encadré dans le fil du texte n'est pas une section ;
+  - `CardTitle` accepte `as` (`h2`, `h3` par défaut, `h4`, `p`) : les cartes posées juste sous le h1 (à propos, contact, mentions, projets, outils, cours d'apprentissage automatique, articles du blog, glossaire) passent en h2 ;
+  - 162 titres changés de niveau dans 42 fichiers ; leur apparence ne change pas (classes explicites, Tailwind remet les titres à la taille du texte).
+- **Tests des hooks** : `use-course-progress` (9 tests : enregistrement, partage entre composants, donnée corrompue ignorée, autre onglet, `markDone`, synthèse de l'accueil), `use-blog-favorites` (4), `use-persisted-tab` (3), `useQuiz` (3), avec un petit outil de rendu (`src/hooks/render-hook.tsx`) ; 9 mutations du code des hooks, toutes détectées.
+- **Code mort retiré** (338 lignes) : `useQuizSession` et `useQuizResults` (aucun import), `getQuizStats` de `quizData.ts` (aucun import, renvoyait une progression moyenne fixée à 0 « qui viendrait des données de l'utilisateur »), le champ `avgProgress: 0` de `useQuizCategories` (jamais lu : la page calcule la sienne à partir des tentatives), les types `QuizSession` et `QuizResults`.
+- **Petits nettoyages** : `src/data/glossary-terms.ts` supprimé (simple réexport) ; cas `Communication` retiré des cartes du blog (aucun article) ; une adresse d'article inconnue affiche la page 404 du site au lieu du bandeau du blog suivi de « Article non trouvé » (testé).
+- **Contrôles** : aucun débordement horizontal à 320 et 390 px sur les 57 routes ; 0 saut de titre dans Chrome.
+- **Comptes** : 55 fichiers et 1 719 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-17, après-midi] - Formules lisibles sur téléphone, cartes moins rembourrées
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Formules (KaTeX) qui défilaient dans leur boîte** : mesurées dans Chrome sans interface sur les 11 pages qui en affichent (6 pages de mathématiques, 5 cours) : 134 formules défilaient à 320 px, 84 à 390 px. Après ce lot : 0 à 390, 768, 1024 et 1280 px, 41 à 320 px (souvent de quelques pixels) ; aucune boîte de formule ne défile non plus en hauteur.
+  - une formule faite de plusieurs parties séparées par `\qquad` est affichée une partie par ligne sous 1024 px (`src/lib/latex-stack.ts`, testé ; un mot de liaison comme « avec » ou « ⟹ » ouvre la ligne suivante) ;
+  - une formule longue peut porter une version écrite pour les écrans étroits (`narrow`, dans les leçons et sur `CourseEquation`) : 24 formules en ont une, l'affichage sur grand écran ne change pas ; les tests compilent aussi ces versions ;
+  - sous 640 px, les formules centrées passent de 1,21 à 1,05 em ;
+  - trois grilles de cartes de formules passent à deux colonnes au plus (calcul intégral, statistiques descriptives) ou à une colonne jusqu'à 1024 px (probabilités) : elles laissaient 130 à 190 px aux formules.
+- **Formules en ligne du calcul différentiel** : chacune affichait deux barres de défilement de 15 px sur ordinateur pour 2 px de débord (constaté le 17 octobre) ; les formules en ligne ne défilent plus.
+- **Cartes** (`components/ui/card.tsx`) : sous 640 px, 16 px de marge intérieure à gauche et à droite au lieu de 24 pour `CardHeader` et `CardContent`, sauf quand la carte fixe sa propre marge horizontale (testé). Les cartes imbriquées laissaient moins de 150 px aux formules sur un téléphone. Les panneaux des modules de cours passent aussi de 20 à 16 px sous 640 px. Aucun débordement horizontal à 320 et 390 px sur les 57 routes.
+- **Comptes** : 50 fichiers et 1 698 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-17] - Calcul intégral enrichi, programme des passes autonomes
+
+En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
+
+- **Page Calcul intégral** (`/fundamentals/math-stats/integral-calculus`), jusqu'ici la plus mince des pages de mathématiques (un fichier de 295 lignes, sans exemple exécutable) :
+  - somme de Riemann interactive : trois fonctions, quatre méthodes (rectangles à gauche, à droite, point milieu, trapèzes), 1 à 40 tranches ; l'approximation, l'erreur et le facteur de réduction de l'erreur quand n double sont calculés en direct (`src/lib/riemann.ts`, testé, vérifié par mutation) ;
+  - nouvelles sections : vérification numérique des primitives (une primitive fausse démasquée), intégration numérique (trapèzes et Simpson, ordres 2 et 4 mesurés sur l'intégrale de sin x), intégrales impropres (loi exponentielle, intégrale de Gauss, 1/x qui diverge contre 1/x² qui converge), intégrale double et méthode de Monte-Carlo (avec l'écart type attendu à côté de l'erreur réelle), entropie et divergence de Kullback-Leibler (asymétrie mesurée) ;
+  - 5 exemples exécutables et 3 exercices vérifiés par le moteur (espérance et variance par `quad`, méthode de Simpson programmée à la main, estimation de π par Monte-Carlo) ; chaque chiffre des légendes est vérifié par `src/data/integral-demos.test.ts` (vérifié par mutation) ;
+  - liste « Ressources pour approfondir » sans liens remplacée par des liens vers les pages et le module de cours du site qui prolongent la page ; page découpée en sections chargées à la demande (`ProgressiveSections`).
+- **Mise en page** : dans Chrome sans interface, aucun débordement à 320, 390, 768 et 1280 px ; formules trop larges à 390 px (mesurées) coupées en plusieurs lignes, marges réduites sur téléphone.
+- **Suivi** : `suivi_autonome.md` porte de nouveau le programme actif (quatre passes des 17 et 18 octobre, règles, décisions de l'auteur du 17 octobre) au-dessus de l'ancien journal archivé.
+- **Comptes** : 48 fichiers et 1 687 tests pour `npm test`, 58 tests de fumée.
+
 ## [2026-10-12] - Cours de séries temporelles
 
 Onzième cours rédigé au format des leçons, en local : il n'est pas recopié dans Docker (l'auteur revoit chaque lot avant le suivant).

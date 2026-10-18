@@ -24,6 +24,7 @@ La difficulté tient à ce qu'une récompense peut arriver longtemps après l'ac
     {
       kind: "equation",
       latex: String.raw`G_t = r_{t+1} + \gamma\, r_{t+2} + \gamma^2\, r_{t+3} + \cdots = \sum_{k=0}^{\infty} \gamma^k\, r_{t+k+1}`,
+      narrow: String.raw`\begin{aligned} G_t &= r_{t+1} + \gamma\, r_{t+2} + \gamma^2\, r_{t+3} + \cdots \\ &= \sum_{k=0}^{\infty} \gamma^k\, r_{t+k+1} \end{aligned}`,
       caption: "Le retour G_t est la somme des récompenses futures, pondérées par γ^k. Avec γ proche de 0, l'agent ne voit que le très court terme ; avec γ proche de 1, il tient compte de l'avenir lointain.",
     },
     {
@@ -128,6 +129,7 @@ Au départ, la table est remplie de zéros. À chaque pas, l'agent observe une t
     {
       kind: "equation",
       latex: String.raw`Q(s,a) \leftarrow Q(s,a) + \alpha \Bigl[\, r + \gamma \max_{a'} Q(s',a') - Q(s,a) \,\Bigr]`,
+      narrow: String.raw`\begin{aligned} Q(s,a) \leftarrow\; &Q(s,a) \\ &+ \alpha \Bigl[\, r + \gamma \max_{a'} Q(s',a') \\ &\qquad - Q(s,a) \,\Bigr] \end{aligned}`,
       caption: "α est le taux d'apprentissage. Le crochet est l'erreur de différence temporelle : l'écart entre la cible r + γ·max Q(s', ·) (ce qu'on vient d'observer plus l'estimation de la suite) et l'estimation actuelle Q(s, a). Si l'épisode est terminé en s', la cible est simplement r.",
     },
     {
@@ -201,6 +203,7 @@ Si l'agent joue toujours l'action qui lui semble la meilleure, il ne découvrira
     {
       kind: "equation",
       latex: String.raw`a = \begin{cases} \text{une action tirée au hasard} & \text{avec la probabilité } \varepsilon \\ \arg\max_{a'} Q(s,a') & \text{avec la probabilité } 1 - \varepsilon \end{cases}`,
+      narrow: String.raw`a = \begin{cases} \text{une action tirée au hasard} \\ \quad \text{avec la probabilité } \varepsilon \\[0.4em] \arg\max_{a'} Q(s,a') \\ \quad \text{avec la probabilité } 1 - \varepsilon \end{cases}`,
       caption: "Politique epsilon-glouton. Au début de l'apprentissage, toutes les valeurs sont nulles, et l'on tire alors au hasard parmi les actions à égalité.",
     },
     {

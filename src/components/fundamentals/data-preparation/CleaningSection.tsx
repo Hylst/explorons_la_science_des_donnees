@@ -47,7 +47,7 @@ const CleaningSection: React.FC = () => {
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
               <XCircle className="h-8 w-8 text-red-500" />
             </div>
-            <h4 className="font-semibold text-red-700">
+            <h3 className="font-semibold text-red-700">
               <GlossaryTerm 
                 definition={typedDataPreparationDefinitions['donneesManquantes']}
                 variant="hover"
@@ -55,7 +55,7 @@ const CleaningSection: React.FC = () => {
               >
                 Données manquantes
               </GlossaryTerm>
-            </h4>
+            </h3>
             <p className="text-sm text-red-600">
               Les valeurs manquantes sont fréquentes dans les jeux de données réels et peuvent biaiser l'analyse si on les ignore
             </p>

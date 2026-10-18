@@ -566,9 +566,9 @@ const GlossaryCard: React.FC<GlossaryCardProps> = memo(({ entry }) => {
               {getIconComponent(entry.icon)}
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
                 {entry.term}
-              </h3>
+              </h2>
               {entry.category && (
                 <Badge 
                   variant="secondary" 

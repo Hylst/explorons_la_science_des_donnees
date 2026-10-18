@@ -30,7 +30,7 @@ const About = () => {
           <Card>
             <CardHeader>
               <Target className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Mission</CardTitle>
+              <CardTitle as="h2">Mission</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
@@ -43,7 +43,7 @@ const About = () => {
           <Card>
             <CardHeader>
               <Heart className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Philosophie</CardTitle>
+              <CardTitle as="h2">Philosophie</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
@@ -56,7 +56,7 @@ const About = () => {
           <Card>
             <CardHeader>
               <Users className="h-8 w-8 text-primary mb-2" />
-              <CardTitle>Public visé</CardTitle>
+              <CardTitle as="h2">Public visé</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">

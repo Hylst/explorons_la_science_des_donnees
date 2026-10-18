@@ -35,6 +35,7 @@ Une règle de lecture classique, idéale mais rarement aussi nette sur des donn�
     {
       kind: "equation",
       latex: String.raw`y_t = c + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q}`,
+      narrow: String.raw`\begin{aligned} y_t = c &+ \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} \\ &+ \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} \end{aligned}`,
       caption: "Modèle ARMA(p, q) : p termes autorégressifs (les valeurs passées, coefficients φ) et q termes de moyenne mobile (les chocs passés, coefficients θ). ARIMA(p, d, q) applique ce modèle à la série différenciée d fois.",
     },
     {

@@ -145,7 +145,8 @@ const RandomVariables = () => {
             "Beaucoup de clients, peu de clients" devient "150, 50"...
           </p>
           <div className="bg-white p-4 rounded-lg border border-gray-200">
-            <CourseEquation latex="X: \text{Monde du hasard} \rightarrow \text{Monde des nombres}" />
+            <CourseEquation latex="X: \text{Monde du hasard} \rightarrow \text{Monde des nombres}"
+              narrow="\begin{gathered} \text{Monde du hasard} \\ \Big\downarrow\, X \\ \text{Monde des nombres} \end{gathered}" />
           </div>
           <div className="mt-4 bg-blue-50 p-4 rounded-lg">
             <p className="text-sm">
@@ -238,11 +239,11 @@ const RandomVariables = () => {
               
               <div className="bg-purple-50 p-3 rounded text-sm">
                 <strong>Fonction de masse :</strong>
-                <CourseEquation latex="P(X = k) = \text{probabilité d'avoir exactement } k \text{ notifications}" />
+                <CourseEquation latex="\begin{gathered} P(X = k) = \text{probabilité d'avoir} \\ \text{exactement } k \text{ notifications} \end{gathered}" />
               </div>
 
               <div className="space-y-2 text-xs">
-                <h5 className="font-semibold">Autres exemples de variables discrètes :</h5>
+                <h4 className="font-semibold">Autres exemples de variables discrètes :</h4>
                 <ul className="space-y-1 ml-4">
                   <li>• Nombre de défauts dans un produit</li>
                   <li>• Nombre de visiteurs sur un site web</li>
@@ -337,7 +338,7 @@ const RandomVariables = () => {
               </div>
 
               <div className="space-y-2 text-xs">
-                <h5 className="font-semibold">Autres exemples de variables continues :</h5>
+                <h4 className="font-semibold">Autres exemples de variables continues :</h4>
                 <ul className="space-y-1 ml-4">
                   <li>• Temps d'attente dans une file</li>
                   <li>• Poids d'un colis</li>

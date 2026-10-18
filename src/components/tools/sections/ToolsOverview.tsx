@@ -19,7 +19,7 @@ const ToolsOverview = () => {
         <Card className="group hover:shadow-xl transition-all duration-300 border-t-4 border-t-blue-500 hover:border-t-blue-600 hover:-translate-y-1">
           <CardHeader className="relative overflow-hidden">
             <div className="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -translate-y-10 translate-x-10 opacity-20 group-hover:scale-110 transition-transform"></div>
-            <CardTitle className="flex items-center gap-3 text-blue-700 relative z-10">
+            <CardTitle as="h2" className="flex items-center gap-3 text-blue-700 relative z-10">
               <div className="p-2 rounded-lg bg-blue-100">
                 <Code2 className="h-6 w-6" />
               </div>
@@ -73,7 +73,7 @@ const ToolsOverview = () => {
         <Card className="group hover:shadow-xl transition-all duration-300 border-t-4 border-t-amber-500 hover:border-t-amber-600 hover:-translate-y-1">
           <CardHeader className="relative overflow-hidden">
             <div className="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -translate-y-10 translate-x-10 opacity-20 group-hover:scale-110 transition-transform"></div>
-            <CardTitle className="flex items-center gap-3 text-amber-700 relative z-10">
+            <CardTitle as="h2" className="flex items-center gap-3 text-amber-700 relative z-10">
               <div className="p-2 rounded-lg bg-amber-100">
                 <Database className="h-6 w-6" />
               </div>
@@ -128,7 +128,7 @@ const ToolsOverview = () => {
         <Card className="group hover:shadow-xl transition-all duration-300 border-t-4 border-t-purple-500 hover:border-t-purple-600 hover:-translate-y-1">
           <CardHeader className="relative overflow-hidden">
             <div className="absolute top-0 right-0 w-20 h-20 bg-purple-100 rounded-full -translate-y-10 translate-x-10 opacity-20 group-hover:scale-110 transition-transform"></div>
-            <CardTitle className="flex items-center gap-3 text-purple-700 relative z-10">
+            <CardTitle as="h2" className="flex items-center gap-3 text-purple-700 relative z-10">
               <div className="p-2 rounded-lg bg-purple-100">
                 <BrainCircuit className="h-6 w-6" />
               </div>
@@ -182,7 +182,7 @@ const ToolsOverview = () => {
         <Card className="group hover:shadow-xl transition-all duration-300 border-t-4 border-t-green-500 hover:border-t-green-600 hover:-translate-y-1">
           <CardHeader className="relative overflow-hidden">
             <div className="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -translate-y-10 translate-x-10 opacity-20 group-hover:scale-110 transition-transform"></div>
-            <CardTitle className="flex items-center gap-3 text-green-700 relative z-10">
+            <CardTitle as="h2" className="flex items-center gap-3 text-green-700 relative z-10">
               <div className="p-2 rounded-lg bg-green-100">
                 <LineChart className="h-6 w-6" />
               </div>
@@ -233,7 +233,7 @@ const ToolsOverview = () => {
           <div className="p-2 bg-blue-500 rounded-lg">
             <BookOpen className="h-6 w-6 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900">Guides et ressources recommandées</h3>
+          <h2 className="text-2xl font-bold text-gray-900">Guides et ressources recommandées</h2>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -242,7 +242,7 @@ const ToolsOverview = () => {
               <div className="p-1.5 bg-blue-100 rounded-lg">
                 <Users className="h-5 w-5 text-blue-600" />
               </div>
-              <h4 className="font-semibold text-blue-700">Plateformes d'apprentissage</h4>
+              <h3 className="font-semibold text-blue-700">Plateformes d'apprentissage</h3>
             </div>
             <ul className="space-y-3 text-sm">
               <li>
@@ -275,7 +275,7 @@ const ToolsOverview = () => {
               <div className="p-1.5 bg-purple-100 rounded-lg">
                 <BookOpen className="h-5 w-5 text-purple-600" />
               </div>
-              <h4 className="font-semibold text-purple-700">Documentations officielles</h4>
+              <h3 className="font-semibold text-purple-700">Documentations officielles</h3>
             </div>
             <ul className="space-y-3 text-sm">
               <li>
@@ -319,7 +319,7 @@ const ToolsOverview = () => {
               <div className="p-1.5 bg-green-100 rounded-lg">
                 <Code2 className="h-5 w-5 text-green-600" />
               </div>
-              <h4 className="font-semibold text-green-700">Communautés et pratique</h4>
+              <h3 className="font-semibold text-green-700">Communautés et pratique</h3>
             </div>
             <ul className="space-y-3 text-sm">
               <li>
@@ -361,7 +361,7 @@ const ToolsOverview = () => {
           <div className="p-2 bg-gray-500 rounded-lg">
             <Zap className="h-6 w-6 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-gray-900">Comment choisir vos outils ?</h3>
+          <h2 className="text-xl font-bold text-gray-900">Comment choisir vos outils ?</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -371,7 +371,7 @@ const ToolsOverview = () => {
               exigences de performance et de déploiement.
             </p>
             <div className="space-y-2">
-              <h4 className="font-semibold text-gray-800">Facteurs clés :</h4>
+              <h3 className="font-semibold text-gray-800">Facteurs clés :</h3>
               <ul className="space-y-1 text-sm text-gray-600 pl-4">
                 <li>• Volume et complexité des données</li>
                 <li>• Budget et contraintes de temps</li>
@@ -382,7 +382,7 @@ const ToolsOverview = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <h4 className="font-semibold text-gray-800">Une suggestion pour débuter (point de vue de l'auteur) :</h4>
+            <h3 className="font-semibold text-gray-800">Une suggestion pour débuter (point de vue de l'auteur) :</h3>
             <div className="bg-white/80 p-4 rounded-lg border">
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">

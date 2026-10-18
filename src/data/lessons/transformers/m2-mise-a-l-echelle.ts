@@ -64,7 +64,7 @@ La **standardisation** retire la moyenne de chaque colonne puis divise par son �
     },
     {
       kind: "equation",
-      latex: String.raw`z \;=\; \frac{x-\mu}{\sigma} \qquad\text{avec}\qquad \mu=\frac{1}{n}\sum_{i=1}^{n}x_i \quad\text{et}\quad \sigma=\sqrt{\frac{1}{n}\sum_{i=1}^{n}\left(x_i-\mu\right)^2}`,
+      latex: String.raw`z \;=\; \frac{x-\mu}{\sigma} \qquad\text{avec}\qquad \mu=\frac{1}{n}\sum_{i=1}^{n}x_i \qquad\text{et}\qquad \sigma=\sqrt{\frac{1}{n}\sum_{i=1}^{n}\left(x_i-\mu\right)^2}`,
       caption: "Standardisation. Attention : StandardScaler calcule σ avec n au dénominateur, alors que pandas divise par n − 1 par défaut",
     },
     {
@@ -127,7 +127,7 @@ Le mot « normalisation » prête à confusion : il désigne ici une mise à l'�
     },
     {
       kind: "equation",
-      latex: String.raw`x' \;=\; \frac{x-x_{\min}}{x_{\max}-x_{\min}} \qquad\text{puis, pour l'intervalle } [a,b] :\quad x'' \;=\; a + x'\,(b-a)`,
+      latex: String.raw`x' \;=\; \frac{x-x_{\min}}{x_{\max}-x_{\min}} \qquad\text{puis, pour l'intervalle } [a,b] :\qquad x'' \;=\; a + x'\,(b-a)`,
       caption: "Normalisation min-max. Si x_max = x_min (colonne constante), le dénominateur est nul : scikit-learn renvoie alors 0",
     },
     {

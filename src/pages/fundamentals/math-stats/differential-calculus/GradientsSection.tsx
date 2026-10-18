@@ -92,7 +92,7 @@ const GradientsSection = () => {
               toujours la direction de la <strong>montée la plus raide</strong>.
             </p>
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2">Analogie GPS</h4>
+              <h3 className="font-semibold mb-2">Analogie GPS</h3>
               <p className="text-sm">
                 Le gradient = flèche GPS qui pointe vers la montée.
                 Pour descendre (optimisation), on va dans le sens opposé.
@@ -100,7 +100,7 @@ const GradientsSection = () => {
             </div>
           </div>
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">Propriétés clés :</h4>
+            <h3 className="font-semibold mb-2">Propriétés clés :</h3>
             <ul className="text-sm space-y-1">
               <li>• Direction de montée maximale</li>
               <li>• Perpendiculaire aux courbes de niveau</li>
@@ -126,7 +126,7 @@ const GradientsSection = () => {
             <div className="space-y-4 mt-4">
               {partialDerivativeExamples.map((example, index) => (
                 <div key={index} className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold text-sm mb-2">Exemple {index + 1}</h5>
+                  <h4 className="font-semibold text-sm mb-2">Exemple {index + 1}</h4>
                   <div className="space-y-1 text-xs">
                     <p><strong>Fonction :</strong> {example.function}</p>
                     <p><strong>∂f/∂x :</strong> {example.partialX}</p>

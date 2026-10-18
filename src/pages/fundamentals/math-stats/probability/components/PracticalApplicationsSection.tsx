@@ -201,7 +201,8 @@ const PracticalApplicationsSection = () => {
             </div>
             
             <div className="mt-6">
-              <CourseEquation latex="P(Spam|Email) = \frac{P(Email|Spam) \cdot P(Spam)}{P(Email)}" />
+              <CourseEquation latex="P(Spam|Email) = \frac{P(Email|Spam) \cdot P(Spam)}{P(Email)}"
+              narrow="\begin{aligned} &P(Spam|Email) \\ &= \frac{P(Email|Spam) \cdot P(Spam)}{P(Email)} \end{aligned}" />
               <p className="text-sm text-gray-600 mt-2">
                 Théorème de Bayes appliqué à la classification d'emails
               </p>

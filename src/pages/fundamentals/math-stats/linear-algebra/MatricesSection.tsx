@@ -323,7 +323,8 @@ const MatricesSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <h5 className="font-semibold mb-2">Étape 1 : Matrice de rotation (45°)</h5>
-                <CourseEquation latex="R = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \approx \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix}" />
+                <CourseEquation latex="R = \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \approx \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix}"
+              narrow="\begin{aligned} R &= \begin{pmatrix} \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{pmatrix} \\ &\approx \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} \end{aligned}" />
               </div>
               <div>
                 <h5 className="font-semibold mb-2">Étape 2 : Matrice d'échelle</h5>
@@ -334,7 +335,8 @@ const MatricesSection = () => {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold">Composition des transformations :</h5>
-                <CourseEquation latex="T = S \cdot R = \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} = \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix}" />
+                <CourseEquation latex="T = S \cdot R = \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} = \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix}"
+              narrow="\begin{aligned} T &= S \cdot R \\ &= \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} \\ &= \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \end{aligned}" />
               </div>
               
               <div>

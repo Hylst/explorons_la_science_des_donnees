@@ -91,7 +91,8 @@ const CourseHighlight: React.FC<CourseHighlightProps> = ({
     )}>
       <div className="flex items-center gap-2 mb-2">
         {highlight.icon}
-        <h4 className={cn("font-medium", highlight.title)}>{title}</h4>
+        {/* encadré dans le fil du texte, pas une section : son titre n'entre pas dans la hiérarchie des titres */}
+        <p className={cn("font-medium", highlight.title)}>{title}</p>
       </div>
       <div className="pl-7 text-gray-700">
         {children}

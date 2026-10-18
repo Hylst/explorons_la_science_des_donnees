@@ -81,7 +81,7 @@ const RegressionSection = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-green-50 p-3 rounded">
-                  <h5 className="font-semibold text-green-700">R² ajusté</h5>
+                  <h4 className="font-semibold text-green-700">R² ajusté</h4>
                   <p className="text-sm text-green-600">Qualité d'ajustement corrigée</p>
                 </div>
                 <div className="bg-blue-50 p-3 rounded">

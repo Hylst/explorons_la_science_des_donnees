@@ -101,6 +101,7 @@ Reprenons une proportion p inconnue (taux de conversion, part d'avis favorables)
     {
       kind: "equation",
       latex: String.raw`p \sim \mathrm{Beta}(a,\,b) \;\;\xrightarrow{\;\;k \text{ succès, } n-k \text{ échecs}\;\;}\;\; p \mid \text{données} \sim \mathrm{Beta}(a + k,\; b + n - k) \qquad \mathbb{E}[p \mid \text{données}] = \frac{a + k}{a + b + n}`,
+      narrow: String.raw`\begin{gathered} p \sim \mathrm{Beta}(a,\,b) \\ \Big\downarrow\; k \text{ succès, } n-k \text{ échecs} \\ p \mid \text{données} \sim \mathrm{Beta}(a + k,\; b + n - k) \\[0.6em] \mathbb{E}[p \mid \text{données}] = \frac{a + k}{a + b + n} \end{gathered}`,
       caption: "Mise à jour d'une loi Beta par des données binomiales",
     },
     {

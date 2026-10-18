@@ -48,6 +48,7 @@ const PracticalApplicationsEnriched = () => {
         {
           title: "Classification naïve de Bayes",
           math: "P(C|F_1,...,F_n) = \\frac{P(C)\\prod_{i=1}^{n}P(F_i|C)}{P(F_1,...,F_n)}",
+          narrow: "\\begin{aligned} &P(C|F_1,...,F_n) \\\\ &= \\frac{P(C)\\prod_{i=1}^{n}P(F_i|C)}{P(F_1,...,F_n)} \\end{aligned}",
           description: "Classification basée sur l'indépendance conditionnelle des caractéristiques",
           realWorldUse: "Analyse de sentiment, classification de textes",
           complexity: "Intermédiaire",
@@ -159,7 +160,7 @@ const PracticalApplicationsEnriched = () => {
                   
                   <CardContent className="space-y-4">
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <CourseEquation latex={app.math} displayMode={true} />
+                      <CourseEquation latex={app.math} narrow={app.narrow} displayMode={true} />
                     </div>
 
                     <div>

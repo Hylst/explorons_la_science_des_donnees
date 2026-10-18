@@ -191,7 +191,7 @@ const ProbabilityDistributionsSection = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">Variables discrètes</h4>
+                <h3 className="font-semibold text-blue-800 mb-2">Variables discrètes</h3>
                 <p className="text-sm text-blue-700">
                   Valeurs séparées (0, 1, 2, 3...)<br/>
                   <strong>Fonction de masse :</strong> P(X = k)

@@ -93,7 +93,7 @@ const GaussianDistributionSection = () => {
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-blue-700">Fonction de densité</h5>
+                  <h4 className="font-semibold mb-3 text-blue-700">Fonction de densité</h4>
                   <CourseEquation 
                     latex="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}"
                   />
@@ -171,7 +171,7 @@ const GaussianDistributionSection = () => {
             <CourseHighlight title="Comment μ et σ façonnent la distribution" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-purple-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-purple-700">Effet de la moyenne (μ)</h5>
+                  <h4 className="font-semibold mb-3 text-purple-700">Effet de la moyenne (μ)</h4>
                   <ul className="text-sm space-y-2">
                     <li>• <strong>Translation horizontale :</strong> Déplace toute la courbe</li>
                     <li>• <strong>Centre de symétrie :</strong> Point d'équilibre</li>
@@ -288,7 +288,7 @@ const GaussianDistributionSection = () => {
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-blue-700">Formules mathématiques</h5>
+                <h4 className="font-semibold mb-3 text-blue-700">Formules mathématiques</h4>
                 <div className="space-y-2 text-sm">
                   <CourseEquation 
                     latex="P(\mu - \sigma \leq X \leq \mu + \sigma) \approx 0.6827"
@@ -454,17 +454,17 @@ const GaussianDistributionSection = () => {
             <CourseHighlight title="Comment estimer μ et σ à partir des données" type="concept">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-3 text-blue-700">Estimateurs ponctuels</h5>
+                  <h4 className="font-semibold mb-3 text-blue-700">Estimateurs ponctuels</h4>
                   <div className="space-y-3">
                     <div>
-                      <h6 className="font-semibold text-sm">Moyenne de l'échantillon :</h6>
+                      <h5 className="font-semibold text-sm">Moyenne de l'échantillon :</h5>
                       <CourseEquation 
                         latex="\hat{\mu} = \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i"
                       />
                       <p className="text-xs text-gray-600">Estimateur non biaisé de μ</p>
                     </div>
                     <div>
-                      <h6 className="font-semibold text-sm">Écart-type de l'échantillon :</h6>
+                      <h5 className="font-semibold text-sm">Écart-type de l'échantillon :</h5>
                       <CourseEquation 
                         latex="\hat{\sigma} = s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}"
                       />
@@ -477,15 +477,15 @@ const GaussianDistributionSection = () => {
                   <h5 className="font-semibold mb-3 text-green-700">Méthodes d'estimation</h5>
                   <div className="space-y-3 text-sm">
                     <div>
-                      <h6 className="font-semibold">1. Méthode des moments :</h6>
+                      <h5 className="font-semibold">1. Méthode des moments :</h5>
                       <p>Égaler les moments empiriques aux moments théoriques</p>
                     </div>
                     <div>
-                      <h6 className="font-semibold">2. Maximum de vraisemblance :</h6>
+                      <h5 className="font-semibold">2. Maximum de vraisemblance :</h5>
                       <p>Maximiser la fonction de vraisemblance L(μ,σ)</p>
                     </div>
                     <div>
-                      <h6 className="font-semibold">3. Estimation bayésienne :</h6>
+                      <h5 className="font-semibold">3. Estimation bayésienne :</h5>
                       <p>Utiliser des distributions a priori conjuguées</p>
                     </div>
                   </div>
@@ -496,17 +496,17 @@ const GaussianDistributionSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-3 text-purple-700">Intervalles de confiance</h5>
+              <h4 className="font-semibold mb-3 text-purple-700">Intervalles de confiance</h4>
               <div className="space-y-3 text-sm">
                 <div>
-                  <h6 className="font-semibold">Pour la moyenne (σ connu) :</h6>
+                  <h5 className="font-semibold">Pour la moyenne (σ connu) :</h5>
                   <CourseEquation 
                     latex="\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}"
                   />
                   <p className="text-xs text-gray-600">Distribution normale</p>
                 </div>
                 <div>
-                  <h6 className="font-semibold">Pour la moyenne (σ inconnu) :</h6>
+                  <h5 className="font-semibold">Pour la moyenne (σ inconnu) :</h5>
                   <CourseEquation 
                     latex="\bar{x} \pm t_{\alpha/2,n-1} \frac{s}{\sqrt{n}}"
                   />
@@ -537,7 +537,7 @@ const GaussianDistributionSection = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-blue-700">Statistiques</h6>
+              <h4 className="font-semibold mb-2 text-blue-700">Statistiques</h4>
               <ul className="text-xs space-y-1">
                 <li>• Théorème central limite</li>
                 <li>• Tests d'hypothèses (z-test, t-test)</li>
@@ -547,7 +547,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-green-700">Machine Learning</h6>
+              <h5 className="font-semibold mb-2 text-green-700">Machine Learning</h5>
               <ul className="text-xs space-y-1">
                 <li>• Initialisation des poids</li>
                 <li>• Régularisation gaussienne</li>
@@ -557,7 +557,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-purple-700">Finance</h6>
+              <h5 className="font-semibold mb-2 text-purple-700">Finance</h5>
               <ul className="text-xs space-y-1">
                 <li>• Modèle de Black-Scholes</li>
                 <li>• Value at Risk (VaR)</li>
@@ -567,7 +567,7 @@ const GaussianDistributionSection = () => {
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <h6 className="font-semibold mb-2 text-orange-700">Sciences</h6>
+              <h5 className="font-semibold mb-2 text-orange-700">Sciences</h5>
               <ul className="text-xs space-y-1">
                 <li>• Erreurs de mesure</li>
                 <li>• Contrôle qualité (Six Sigma)</li>
@@ -604,7 +604,7 @@ const GaussianDistributionSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-blue-700">Règles de pouce</h5>
+                <h4 className="font-semibold mb-3 text-blue-700">Règles de pouce</h4>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>n ≥ 30 :</strong> TCL applicable pour la moyenne</li>
                   <li>• <strong>|Skewness| ≤ 2 :</strong> Approximation normale acceptable</li>
@@ -626,7 +626,7 @@ const GaussianDistributionSection = () => {
 
             <div className="space-y-4">
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-3 text-purple-700">Diagnostic visuel</h5>
+                <h4 className="font-semibold mb-3 text-purple-700">Diagnostic visuel</h4>
                 <ul className="text-sm space-y-2">
                   <li>• <strong>Histogramme :</strong> Forme en cloche symétrique</li>
                   <li>• <strong>Q-Q plot :</strong> Points alignés sur la diagonale</li>

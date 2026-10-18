@@ -363,11 +363,11 @@ const DispersionSection = () => {
 
               <div className="space-y-3">
                 <div>
-                  <h5 className="font-semibold text-sm mb-2">Variance de population :</h5>
+                  <h4 className="font-semibold text-sm mb-2">Variance de population :</h4>
                   <CourseEquation latex="\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2" />
                 </div>
                 <div>
-                  <h5 className="font-semibold text-sm mb-2">Variance d'échantillon :</h5>
+                  <h4 className="font-semibold text-sm mb-2">Variance d'échantillon :</h4>
                   <CourseEquation latex="s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2" />
                 </div>
               </div>
@@ -427,7 +427,7 @@ const DispersionSection = () => {
               </CourseHighlight>
 
               <div className="bg-blue-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Règle empirique (68-95-99.7)</h5>
+                <h4 className="font-semibold text-sm mb-2">Règle empirique (68-95-99.7)</h4>
                 <p className="text-xs mb-2">Pour une distribution normale :</p>
                 <ul className="text-xs space-y-1">
                   <li>• 68% des données dans [μ-σ, μ+σ]</li>
@@ -437,7 +437,7 @@ const DispersionSection = () => {
               </div>
 
               <div className="bg-purple-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Applications pratiques</h5>
+                <h4 className="font-semibold text-sm mb-2">Applications pratiques</h4>
                 <ul className="text-xs space-y-1">
                   <li>• <strong>Contrôle qualité :</strong> Détecter les défauts</li>
                   <li>• <strong>Finance :</strong> Mesurer le risque (volatilité)</li>
@@ -487,7 +487,7 @@ const DispersionSection = () => {
               </CourseHighlight>
 
               <div className="bg-green-50 p-3 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Interprétation du CV</h5>
+                <h4 className="font-semibold text-sm mb-2">Interprétation du CV</h4>
                 <ul className="text-xs space-y-1">
                   <li>• <strong>CV {"<"} 15% :</strong> Faible variabilité</li>
                   <li>• <strong>15% ≤ CV {"<"} 30% :</strong> Variabilité modérée</li>
@@ -498,7 +498,7 @@ const DispersionSection = () => {
 
             <div className="space-y-4">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Cas d'usage du CV</h5>
+                <h4 className="font-semibold text-sm mb-2">Cas d'usage du CV</h4>
                 <ul className="text-xs space-y-1">
                   <li>• <strong>Comparaison multi-secteurs :</strong> Volatilité actions vs obligations</li>
                   <li>• <strong>Évaluation de risque :</strong> Quel investissement est plus risqué ?</li>
@@ -508,7 +508,7 @@ const DispersionSection = () => {
               </div>
 
               <div className="bg-orange-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Limitations du CV</h5>
+                <h4 className="font-semibold text-sm mb-2">Limitations du CV</h4>
                 <ul className="text-xs space-y-1">
                   <li>• Ne fonctionne que si moyenne {">"} 0</li>
                   <li>• Sensible aux valeurs proches de zéro</li>
@@ -517,7 +517,7 @@ const DispersionSection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-sm mb-2">Astuce de pro</h5>
+                <h4 className="font-semibold text-sm mb-2">Astuce de pro</h4>
                 <p className="text-xs">
                   En finance, on utilise souvent le CV comme ratio risque/rendement (volatilité par unité de rendement). 
                   Un CV faible = investissement intéressant (bon rendement, faible volatilité).
@@ -534,9 +534,9 @@ const DispersionSection = () => {
           <CardTitle>La famille complète des mesures de dispersion</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h5 className="font-semibold mb-2 text-gray-700">Étendue (Range)</h5>
+              <h4 className="font-semibold mb-2 text-gray-700">Étendue (Range)</h4>
               <CourseEquation latex="R = x_{\max} - x_{\min}" />
               <p className="text-xs text-gray-600 mt-2">
                 Simple mais sensible aux valeurs aberrantes. Parfait pour un premier aperçu.
@@ -880,7 +880,7 @@ const DispersionSection = () => {
           <CardContent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-purple-600">Formule de la covariance</h5>
+                <h4 className="font-semibold mb-3 text-purple-600">Formule de la covariance</h4>
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
                   <div className="text-center">
                     <div className="text-lg font-mono mb-2">Cov(X,Y) = E[(X - μₓ)(Y - μᵧ)]</div>
@@ -912,7 +912,7 @@ const DispersionSection = () => {
               </div>
               
               <div>
-                <h5 className="font-semibold mb-3 text-purple-600">Exemple pratique : température et ventes de glaces</h5>
+                <h4 className="font-semibold mb-3 text-purple-600">Exemple pratique : température et ventes de glaces</h4>
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <div className="text-sm space-y-2">
                     <div className="grid grid-cols-3 gap-2 font-semibold border-b pb-2">
@@ -954,7 +954,7 @@ const DispersionSection = () => {
           <CardContent>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-indigo-600">Structure de la matrice</h5>
+                <h4 className="font-semibold mb-3 text-indigo-600">Structure de la matrice</h4>
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
                   <div className="text-center">
                     <div className="text-sm mb-2">Pour 3 variables X, Y, Z :</div>
@@ -979,10 +979,10 @@ const DispersionSection = () => {
               </div>
               
               <div>
-                <h5 className="font-semibold mb-3 text-indigo-600">Applications en Data Science</h5>
+                <h4 className="font-semibold mb-3 text-indigo-600">Applications en Data Science</h4>
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <h6 className="font-semibold text-blue-700 mb-2">Analyse en composantes principales (PCA)</h6>
+                    <h5 className="font-semibold text-blue-700 mb-2">Analyse en composantes principales (PCA)</h5>
                     <p className="text-sm text-blue-600">
                       La PCA décompose la matrice de covariance pour identifier les directions 
                       de variance maximale dans les données.
@@ -1017,11 +1017,11 @@ const DispersionSection = () => {
           </CardHeader>
           <CardContent>
             <div className="bg-emerald-50 p-6 rounded-lg">
-              <h5 className="font-semibold mb-4 text-emerald-800">Exemple : données de performance d'étudiants</h5>
+              <h4 className="font-semibold mb-4 text-emerald-800">Exemple : données de performance d'étudiants</h4>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                  <h6 className="font-semibold mb-3 text-emerald-700">Données brutes</h6>
+                  <h5 className="font-semibold mb-3 text-emerald-700">Données brutes</h5>
                   <div className="bg-white p-4 rounded border">
                     <div className="text-xs font-mono space-y-1">
                       <div className="grid grid-cols-4 gap-2 font-semibold border-b pb-1">
@@ -1040,7 +1040,7 @@ const DispersionSection = () => {
                 </div>
                 
                 <div>
-                  <h6 className="font-semibold mb-3 text-emerald-700">Matrice de covariance calculée</h6>
+                  <h5 className="font-semibold mb-3 text-emerald-700">Matrice de covariance calculée</h5>
                   <div className="bg-white p-4 rounded border">
                     <div className="text-xs font-mono text-center">
                       <div className="mb-2 text-gray-600">Cov(Maths, Physique, Chimie)</div>
@@ -1075,7 +1075,7 @@ const DispersionSection = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h5 className="font-semibold mb-3 text-amber-600">Pièges à éviter</h5>
+                <h4 className="font-semibold mb-3 text-amber-600">Pièges à éviter</h4>
                 <div className="space-y-3">
                   <div className="bg-red-50 p-3 rounded border-l-4 border-red-400">
                     <strong className="text-red-700">Unités différentes :</strong>

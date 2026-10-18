@@ -180,10 +180,10 @@ const CentralTendencySection = () => {
               </CourseHighlight>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2 flex items-center gap-2">
+                <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-green-600" />
                   Avantages
-                </h5>
+                </h4>
                 <ul className="text-sm space-y-1">
                   <li>• Utilise toutes les données</li>
                   <li>• Base de calculs statistiques avancés</li>
@@ -193,10 +193,10 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-red-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2 flex items-center gap-2">
+                <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-red-600" />
                   Inconvénients
-                </h5>
+                </h4>
                 <ul className="text-sm space-y-1">
                   <li>• Sensible aux valeurs aberrantes</li>
                   <li>• Peut ne pas correspondre à une valeur réelle</li>
@@ -205,7 +205,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Quand l'utiliser ?</h5>
+                <h4 className="font-semibold mb-2">Quand l'utiliser ?</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Distributions normales ou symétriques</li>
                   <li>• Données sans valeurs aberrantes</li>
@@ -243,7 +243,7 @@ const CentralTendencySection = () => {
               </CourseHighlight>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Super-pouvoirs de la médiane</h5>
+                <h4 className="font-semibold mb-2">Super-pouvoirs de la médiane</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Robuste :</strong> Insensible aux valeurs extrêmes</li>
                   <li>• <strong>Concrète :</strong> Avec un nombre impair de valeurs, c'est une valeur réellement observée</li>
@@ -253,7 +253,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Exemples concrets</h5>
+                <h4 className="font-semibold mb-2">Exemples concrets</h4>
                 <div className="text-sm space-y-2">
                   <p><strong>Immobilier :</strong> Prix médian = ce que paie "l'acheteur typique"</p>
                   <p><strong>Salaires :</strong> Salaire médian = seuil où 50% gagnent plus/moins</p>
@@ -293,7 +293,7 @@ const CentralTendencySection = () => {
               </CourseHighlight>
 
               <div className="bg-purple-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Types de modes</h5>
+                <h4 className="font-semibold mb-2">Types de modes</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Unimodal :</strong> Une seule valeur dominante</li>
                   <li>• <strong>Bimodal :</strong> Deux valeurs ex-aequo</li>
@@ -305,7 +305,7 @@ const CentralTendencySection = () => {
 
             <div className="space-y-4">
               <div className="bg-orange-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Applications modernes</h5>
+                <h4 className="font-semibold mb-2">Applications modernes</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>E-commerce :</strong> Taille de vêtement la plus vendue</li>
                   <li>• <strong>Netflix :</strong> Genre de film le plus regardé</li>
@@ -315,7 +315,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-yellow-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Attention</h5>
+                <h4 className="font-semibold mb-2">Attention</h4>
                 <p className="text-sm">
                   Le mode n'existe pas toujours (si toutes les valeurs sont différentes) 
                   et peut être multiple (plusieurs valeurs ex-aequo).
@@ -323,7 +323,7 @@ const CentralTendencySection = () => {
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold mb-2">Parfait pour :</h5>
+                <h4 className="font-semibold mb-2">Parfait pour :</h4>
                 <ul className="text-sm space-y-1">
                   <li>• Variables catégorielles</li>
                   <li>• Variables ordinales</li>

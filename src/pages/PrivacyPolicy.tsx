@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Eye className="h-5 w-5" />
                 En résumé
               </CardTitle>
@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Database className="h-5 w-5" />
                 Ce qui est enregistré dans votre navigateur
               </CardTitle>
@@ -82,7 +82,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Lock className="h-5 w-5" />
                 Le code que vous exécutez
               </CardTitle>
@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Globe className="h-5 w-5" />
                 Serveur et services tiers
               </CardTitle>
@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
                 Me contacter
               </CardTitle>
@@ -138,7 +138,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Vos droits
               </CardTitle>
@@ -155,7 +155,7 @@ const PrivacyPolicy = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Modifications de cette politique</CardTitle>
+              <CardTitle as="h2">Modifications de cette politique</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">

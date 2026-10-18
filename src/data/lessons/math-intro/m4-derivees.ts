@@ -189,6 +189,7 @@ Il a une propriété essentielle : en un point, il pointe dans la direction de *
     {
       kind: "equation",
       latex: String.raw`\nabla f(x, y) = \left( \frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y} \right) \qquad\text{par exemple}\qquad f(x, y) = x^2 + y^2 \ \Rightarrow\ \nabla f(x, y) = (2x,\ 2y)`,
+      narrow: String.raw`\begin{gathered} \nabla f(x, y) = \left( \frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y} \right) \\[0.6em] \text{par exemple}\; f(x, y) = x^2 + y^2 \\ \Rightarrow\ \nabla f(x, y) = (2x,\ 2y) \end{gathered}`,
       caption: "Au point (1, 2), le gradient de x² + y² vaut (2, 4).",
     },
     {

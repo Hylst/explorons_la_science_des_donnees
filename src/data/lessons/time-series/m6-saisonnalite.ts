@@ -34,6 +34,7 @@ En statsmodels : \`SARIMAX(serie, order=(p, d, q), seasonal_order=(P, D, Q, m))\
     {
       kind: "equation",
       latex: String.raw`(1 - B)\,(1 - B^{12})\; y_t = (1 + \theta_1 B)\,(1 + \Theta_1 B^{12})\; \varepsilon_t`,
+      narrow: String.raw`\begin{aligned} &(1 - B)\,(1 - B^{12})\; y_t \\ &= (1 + \theta_1 B)\,(1 + \Theta_1 B^{12})\; \varepsilon_t \end{aligned}`,
       caption: "SARIMA(0, 1, 1)(0, 1, 1)12 écrit avec l'opérateur de retard B (B y(t) = y(t-1)). À gauche : une différence d'ordre 1 et une différence de 12 mois. À droite : un terme de moyenne mobile au retard 1 (θ) et un au retard 12 (Θ).",
     },
     {

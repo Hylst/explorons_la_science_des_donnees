@@ -158,7 +158,8 @@ const VectorsSection = () => {
           
           <div className="bg-gray-50 p-4 rounded-lg">
             <p><strong>Solution :</strong></p>
-            <CourseEquation latex="\vec{Alice} \cdot \vec{Bob} = 5 \times 4 + 2 \times 3 + 1 \times 2 = 20 + 6 + 2 = 28" />
+            <CourseEquation latex="\vec{Alice} \cdot \vec{Bob} = 5 \times 4 + 2 \times 3 + 1 \times 2 = 20 + 6 + 2 = 28"
+              narrow="\begin{aligned} \vec{Alice} \cdot \vec{Bob} &= 5 \times 4 + 2 \times 3 + 1 \times 2 \\ &= 20 + 6 + 2 = 28 \end{aligned}" />
             <p className="text-sm mt-2">
               Avec une magnitude d'Alice = √(5²+2²+1²) = √30 ≈ 5.48 et Bob = √(4²+3²+2²) = √29 ≈ 5.39
             </p>
@@ -273,7 +274,7 @@ const VectorsSection = () => {
                 <p className="text-sm">
                   Des vecteurs sont <strong>linéairement indépendants</strong> si aucun ne peut s'exprimer comme combinaison des autres.
                 </p>
-                <CourseEquation latex="a_1\vec{v_1} + a_2\vec{v_2} + ... + a_n\vec{v_n} = \vec{0} \Rightarrow a_1 = a_2 = ... = a_n = 0" />
+                <CourseEquation latex="\begin{gathered} a_1\vec{v_1} + a_2\vec{v_2} + ... + a_n\vec{v_n} = \vec{0} \\ \Rightarrow a_1 = a_2 = ... = a_n = 0 \end{gathered}" />
                 
                 <div className="bg-white p-3 rounded">
                   <p className="text-xs font-semibold mb-1">Test pratique (2D) :</p>

@@ -34,6 +34,7 @@ On compare parfois cela à un procès : on part de la présomption d'innocence, 
     {
       kind: "equation",
       latex: String.raw`p \;=\; \mathbb{P}\!\left(\,\text{résultat au moins aussi extrême que celui observé} \;\middle|\; H_0 \text{ vraie}\,\right)`,
+      narrow: String.raw`\begin{aligned} p \;=\; \mathbb{P}\Bigl(\, &\text{résultat au moins aussi} \\ &\text{extrême que celui observé} \\ &\;\Big|\; H_0 \text{ vraie}\,\Bigr) \end{aligned}`,
       caption: "La p-value : une probabilité calculée en supposant H0 vraie",
     },
     {
