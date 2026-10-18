@@ -121,6 +121,7 @@ src/
 │   ├── programming-exercises.ts, programming-exercises-verified.ts    Exercices pratiques de la page Programmation
 │   │                        (exercice vérifié et script complet de chacun) ; advanced-concepts.ts, python-masterclass-examples.ts :
 │   │                        exemples des concepts avancés et de la masterclass Python (chacun testé par son .test.ts)
+│   ├── database-exercises.ts  Tables SQLite d'exemple et exercices SQL vérifiés de la page Bases de données
 │   ├── ml-practical.ts, ml-exercises-verified.ts    Programmes et exercices de la page Machine learning (codes
 │   │                        exécutables ou à lire, exercices vérifiés, résultats cités testés par ml-practical.test.ts)
 │   ├── blog-posts.json      Métadonnées des articles ; blog-contents.ts : corps HTML ; blog-articles.ts : jointure des deux
@@ -165,7 +166,8 @@ public/
 | `scripts/collect-routes.ts` | Lit le code source pour établir la liste des routes (`collectRoutes`) et les métadonnées des routes dynamiques (`collectDynamicMeta`). Importé par `vite.config.ts` et par `page-meta.test.ts` ; exécutable seul par un Node récent qui retire les types TypeScript de lui-même (essayé avec Node 24.14) |
 | `scripts/sync-runtimes.mjs` | Prépare `public/vendor` (Pyodide, sql.js, roues Python vérifiées par SHA-256) et génère `NOTICE.txt` |
 | `scripts/refresh-news.mjs` | Récupère les flux de `src/data/rss-sources.json` et réécrit `src/data/rss-articles.json` |
-| `scripts/verify-dist.mjs` | Contrôle d'un build statique : aucun secret ni référence Supabase ou `VITE_*`, aucun chemin absolu hors base dans `index.html`, canonical hylst.fr et `sitemap.xml` présents, `og:image` et `twitter:image` absolus sur chaque page |
+| `scripts/structured-data.ts` | Données structurées (JSON-LD) des pages générées : `WebSite` pour l'accueil, `Course` par cours rédigé de `course-catalog.ts`, `BlogPosting` par article de `blog-posts.json` ; importé par `vite.config.ts`, testé par `src/config/structured-data.test.ts` |
+| `scripts/verify-dist.mjs` | Contrôle d'un build statique : aucun secret ni référence Supabase ou `VITE_*`, aucun chemin absolu hors base dans `index.html`, canonical hylst.fr et `sitemap.xml` présents, `og:image` et `twitter:image` absolus sur chaque page, JSON-LD lisible et dont l'`url` est la canonique de la page |
 | `scripts/export-public-repo.mjs` | Prépare un dépôt neuf à un seul commit à partir de `HEAD` pour la publication du code (voir `readme_dev.md`, section 5.12) |
 | `tailwind/dark-palette.ts` | Plugin Tailwind : génère les règles `.dark` des classes de couleur fixes utilisées dans `src/` |
 | `tailwind/dynamic-colors.ts` | Couleurs des classes construites à l'exécution (safelist et règles sombres) |
@@ -289,6 +291,7 @@ Ces formats sont donc porteurs : un `path` construit dynamiquement ou une indent
 
 - une page `<route>/index.html` par route (Nginx n'a pas de repli vers `index.html`), avec titre, description, `og:*`, `canonical` et `og:url` propres à la route ;
 - pour chaque ancienne URL, une page de redirection (`<meta http-equiv="refresh">` et `canonical` vers la destination), sans attendre le JavaScript ;
+- un bloc JSON-LD (`scripts/structured-data.ts`) sur l'accueil, les 11 cours et les 5 articles ;
 - `sitemap.xml` (routes canoniques, `lastmod` du jour du build) ;
 - `404.html` autonome (CSS en ligne, liens absolus, `noindex`) à brancher sur `error_page 404` côté Nginx ;
 - une ligne `Sitemap:` ajoutée à `robots.txt` ;

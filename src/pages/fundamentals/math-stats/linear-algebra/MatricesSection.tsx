@@ -336,12 +336,13 @@ const MatricesSection = () => {
               <div>
                 <h5 className="font-semibold">Composition des transformations :</h5>
                 <CourseEquation latex="T = S \cdot R = \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} = \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix}"
-              narrow="\begin{aligned} T &= S \cdot R \\ &= \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} \\ &= \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \end{aligned}" />
+              narrow="\begin{aligned} T &= S \cdot R = \begin{pmatrix} 2 & 0 \\ 0 & 0.5 \end{pmatrix} \\ &\quad \cdot \begin{pmatrix} 0.707 & -0.707 \\ 0.707 & 0.707 \end{pmatrix} \\ &= \begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \end{aligned}" />
               </div>
               
               <div>
                 <h5 className="font-semibold">Application au point (4, 2) :</h5>
-                <CourseEquation latex="\begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2.828 \\ 2.121 \end{pmatrix}" />
+                <CourseEquation latex="\begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2.828 \\ 2.121 \end{pmatrix}"
+              narrow="\begin{aligned} &\begin{pmatrix} 1.414 & -1.414 \\ 0.354 & 0.354 \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &= \begin{pmatrix} 2.828 \\ 2.121 \end{pmatrix} \end{aligned}" />
               </div>
               
               <div className="bg-blue-100 p-3 rounded">

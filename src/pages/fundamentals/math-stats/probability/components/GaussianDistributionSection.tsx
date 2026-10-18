@@ -292,14 +292,17 @@ const GaussianDistributionSection = () => {
                 <div className="space-y-2 text-sm">
                   <CourseEquation 
                     latex="P(\mu - \sigma \leq X \leq \mu + \sigma) \approx 0.6827"
+              narrow="\begin{gathered} P(\mu - \sigma \leq X \leq \mu + \sigma) \\ \approx 0.6827 \end{gathered}"
                   />
                   <p className="text-xs text-gray-600">68.27% des valeurs dans [μ-σ, μ+σ]</p>
                   <CourseEquation 
                     latex="P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) \approx 0.9545"
+              narrow="\begin{gathered} P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) \\ \approx 0.9545 \end{gathered}"
                   />
                   <p className="text-xs text-gray-600">95.45% des valeurs dans [μ-2σ, μ+2σ]</p>
                   <CourseEquation 
                     latex="P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) \approx 0.9973"
+              narrow="\begin{gathered} P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) \\ \approx 0.9973 \end{gathered}"
                   />
                   <p className="text-xs text-gray-600">99.73% des valeurs dans [μ-3σ, μ+3σ]</p>
                 </div>
@@ -467,6 +470,7 @@ const GaussianDistributionSection = () => {
                       <h5 className="font-semibold text-sm">Écart-type de l'échantillon :</h5>
                       <CourseEquation 
                         latex="\hat{\sigma} = s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}"
+              narrow="\begin{aligned} \hat{\sigma} &= s \\ &= \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2} \end{aligned}"
                       />
                       <p className="text-xs text-gray-600">Correction de Bessel (n-1) : s² est un estimateur non biaisé de σ² (s reste légèrement biaisé)</p>
                     </div>

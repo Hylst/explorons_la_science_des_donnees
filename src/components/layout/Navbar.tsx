@@ -27,6 +27,8 @@ const Navbar = () => {
   const navItems: NavItem[] = [
     { name: "Accueil", path: "/" },
     { name: "Introduction", path: "/introduction" },
+    // le catalogue des 11 cours n'était atteint que par l'accueil et quelques liens de pages (relevé du 18 octobre 2026)
+    { name: "Cours", path: "/courses" },
     { 
       name: "Fondamentaux", 
       path: "/fundamentals",

@@ -134,7 +134,7 @@ const ProbabilityDistributionsSection = () => {
       title: "Distribution binomiale",
       icon: Target,
       description: "Nombre de succès dans n essais indépendants",
-      formula: "P(X = k) = C(n,k) \\cdot p^k \\cdot (1-p)^{n-k}",
+      formula: "P(X = k) = \\binom{n}{k}\\, p^k\\, (1-p)^{n-k}",
       parameters: "n (nombre d'essais), p (probabilité de succès)",
       examples: "Lancers de pièce, tests de qualité, sondages",
       data: binomialData,

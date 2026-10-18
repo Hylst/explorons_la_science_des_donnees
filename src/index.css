@@ -285,6 +285,12 @@
     font-size: 1.05em;
   }
 }
+/* Très petits écrans (moins de 360 px de large) : un cran de plus, la plupart des formules restantes dépassaient de 3 à 15 % */
+@media (max-width: 359px) {
+  .katex-display > .katex {
+    font-size: 0.92em;
+  }
+}
 
 /* Respecte le réglage « réduire les animations » du système : animations et transitions quasi instantanées */
 @media (prefers-reduced-motion: reduce) {

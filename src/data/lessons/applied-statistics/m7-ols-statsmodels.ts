@@ -115,6 +115,7 @@ statsmodels accepte des **formules** à la manière du langage R : \`"progressio
     {
       kind: "equation",
       latex: String.raw`y_i = \beta_0 + \beta_1\,x_{i1} + \beta_2\,x_{i2} + \dots + \beta_p\,x_{ip} + \varepsilon_i`,
+      narrow: String.raw`\begin{aligned} y_i = \beta_0 &+ \beta_1\,x_{i1} + \beta_2\,x_{i2} + \dots \\ &+ \beta_p\,x_{ip} + \varepsilon_i \end{aligned}`,
       caption: "Le modèle : chaque coefficient βⱼ est l'effet moyen de la variable xⱼ quand les autres variables du modèle restent fixes ; ε est l'erreur.",
     },
     {

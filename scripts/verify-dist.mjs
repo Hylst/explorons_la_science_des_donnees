@@ -79,6 +79,7 @@ const failsBeforePages = fails.length;
 const titles = new Map();
 const descriptions = new Map();
 let pageCount = 0;
+let jsonLdCount = 0;
 let redirectCount = 0;
 for (const file of pageFiles) {
   const html = fs.readFileSync(file, 'utf8');
@@ -106,7 +107,15 @@ for (const file of pageFiles) {
   }
   const expected = route === '/' ? CANONICAL + '/' : CANONICAL + route;
   if (canonical !== expected) fail(route + ' : canonical ' + canonical + ' (attendu ' + expected + ')');
+  // JSON-LD (accueil, cours, articles) : du JSON valide, dont l'url est l'adresse canonique de la page
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try { data = JSON.parse(m[1]); } catch { fail(route + ' : JSON-LD illisible'); continue; }
+    jsonLdCount += 1;
+    if (data.url !== expected) fail(route + ' : JSON-LD url ' + data.url + ' (attendu ' + expected + ')');
+  }
 }
+if (pageCount > 1 && jsonLdCount < 17) fail('JSON-LD : ' + jsonLdCount + ' page(s) seulement (attendu : accueil, 11 cours, 5 articles)');
 for (const [title, routes] of titles) if (routes.length > 1) fail('titre en double (' + title + ') : ' + routes.join(', '));
 for (const [description, routes] of descriptions) if (routes.length > 1) fail('description en double : ' + routes.join(', '));
 if (fails.length === failsBeforePages) ok(pageCount + ' pages et ' + redirectCount + ' redirections controlees (titres et descriptions uniques, canonical sans fragment, og:image absolu)');

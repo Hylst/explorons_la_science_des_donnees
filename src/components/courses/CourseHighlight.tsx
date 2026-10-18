@@ -94,7 +94,7 @@ const CourseHighlight: React.FC<CourseHighlightProps> = ({
         {/* encadré dans le fil du texte, pas une section : son titre n'entre pas dans la hiérarchie des titres */}
         <p className={cn("font-medium", highlight.title)}>{title}</p>
       </div>
-      <div className="pl-7 text-gray-700">
+      <div className="sm:pl-7 text-gray-700">
         {children}
       </div>
     </Card>

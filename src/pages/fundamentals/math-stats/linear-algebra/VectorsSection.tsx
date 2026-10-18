@@ -131,7 +131,8 @@ const VectorsSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <h4 className="font-semibold mb-3">Formule mathématique</h4>
-              <CourseEquation latex="\vec{u} \cdot \vec{v} = \sum_{i=1}^{n} u_i v_i = u_1v_1 + u_2v_2 + ... + u_nv_n" />
+              <CourseEquation latex="\vec{u} \cdot \vec{v} = \sum_{i=1}^{n} u_i v_i = u_1v_1 + u_2v_2 + ... + u_nv_n"
+              narrow="\begin{aligned} \vec{u} \cdot \vec{v} &= \sum_{i=1}^{n} u_i v_i \\ &= u_1v_1 + u_2v_2 + ... + u_nv_n \end{aligned}" />
               <div className="bg-blue-50 p-3 rounded-lg mt-3">
                 <p className="text-sm">
                   <strong>Interprétation :</strong> à longueurs fixées, plus le produit scalaire est grand,
@@ -159,7 +160,7 @@ const VectorsSection = () => {
           <div className="bg-gray-50 p-4 rounded-lg">
             <p><strong>Solution :</strong></p>
             <CourseEquation latex="\vec{Alice} \cdot \vec{Bob} = 5 \times 4 + 2 \times 3 + 1 \times 2 = 20 + 6 + 2 = 28"
-              narrow="\begin{aligned} \vec{Alice} \cdot \vec{Bob} &= 5 \times 4 + 2 \times 3 + 1 \times 2 \\ &= 20 + 6 + 2 = 28 \end{aligned}" />
+              narrow="\begin{aligned} &\vec{Alice} \cdot \vec{Bob} \\ &= 5 \times 4 + 2 \times 3 + 1 \times 2 \\ &= 20 + 6 + 2 = 28 \end{aligned}" />
             <p className="text-sm mt-2">
               Avec une magnitude d'Alice = √(5²+2²+1²) = √30 ≈ 5.48 et Bob = √(4²+3²+2²) = √29 ≈ 5.39
             </p>

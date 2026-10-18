@@ -48,6 +48,7 @@ La **dérivée** de f en x₀ est la limite de ce taux quand h tend vers 0, **si
     {
       kind: "equation",
       latex: String.raw`\frac{(1 + h)^2 - 1^2}{h} = \frac{2h + h^2}{h} = 2 + h \xrightarrow[h \to 0]{} 2`,
+      narrow: String.raw`\begin{aligned} \frac{(1 + h)^2 - 1^2}{h} &= \frac{2h + h^2}{h} \\ &= 2 + h \xrightarrow[h \to 0]{} 2 \end{aligned}`,
       caption: "Calcul de la dérivée de x² en 1 directement par la définition.",
     },
     {

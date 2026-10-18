@@ -39,6 +39,7 @@ const PracticalApplicationsEnriched = () => {
         {
           title: "Théorème de Bayes",
           math: "P(H|E) = \\frac{P(E|H) \\cdot P(H)}{P(E)}",
+          narrow: "\\begin{aligned} &P(H|E) \\\\ &= \\frac{P(E|H) \\cdot P(H)}{P(E)} \\end{aligned}",
           description: "Mise à jour des croyances avec de nouvelles informations",
           realWorldUse: "Diagnostic médical, filtrage de spam, recommandations",
           complexity: "Intermédiaire",
@@ -160,7 +161,7 @@ const PracticalApplicationsEnriched = () => {
                   
                   <CardContent className="space-y-4">
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <CourseEquation latex={app.math} narrow={app.narrow} displayMode={true} />
+                      <CourseEquation latex={app.math} narrow={"narrow" in app ? app.narrow : undefined} displayMode={true} />
                     </div>
 
                     <div>

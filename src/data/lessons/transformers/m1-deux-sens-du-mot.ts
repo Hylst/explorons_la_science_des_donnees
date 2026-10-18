@@ -166,6 +166,7 @@ Dans l'autre sens, un **Transformer** n'est pas un outil de préparation mais un
     {
       kind: "equation",
       latex: String.raw`\text{Attention}(Q,K,V) \;=\; \operatorname{softmax}\!\left(\frac{Q\,K^{\top}}{\sqrt{d_k}}\right)V`,
+      narrow: String.raw`\begin{aligned} &\text{Attention}(Q,K,V) \\ &= \operatorname{softmax}\!\left(\frac{Q\,K^{\top}}{\sqrt{d_k}}\right)V \end{aligned}`,
       caption: "L'attention de l'architecture Transformer (Vaswani et al., 2017) : Q, K et V sont des matrices construites à partir de la séquence, d_k est la dimension des clés",
     },
     {

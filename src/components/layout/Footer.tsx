@@ -19,6 +19,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Contenu</h3>
             <ul className="space-y-2">
               <li><Link to="/introduction" className="text-muted-foreground hover:text-primary">Introduction</Link></li>
+              <li><Link to="/courses" className="text-muted-foreground hover:text-primary">Cours</Link></li>
               <li><Link to="/fundamentals" className="text-muted-foreground hover:text-primary">Fondamentaux</Link></li>
               <li><Link to="/machine-learning" className="text-muted-foreground hover:text-primary">Machine Learning</Link></li>
               <li><Link to="/tools" className="text-muted-foreground hover:text-primary">Outils</Link></li>

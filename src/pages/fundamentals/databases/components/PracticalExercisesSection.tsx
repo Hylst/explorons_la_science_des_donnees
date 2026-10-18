@@ -3,11 +3,17 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LessonExercise from "@/components/courses/lessons/LessonExercise";
+import RunnableCode from "@/components/courses/lessons/RunnableCode";
+import { DATABASE_EXERCISES } from "@/data/database-exercises";
+import { useCourseProgress } from "@/hooks/use-course-progress";
 import { Code, PlayCircle, AlertCircle, Lightbulb } from "lucide-react";
 
 const PracticalExercisesSection = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [showSolution, setShowSolution] = useState(false);
+  // une réussite par question vérifiée, enregistrée dans ce navigateur (clé « <scénario>-q<n> »)
+  const { statusOf, setStatus } = useCourseProgress("database-exercises");
 
   const exercises = [
     {
@@ -360,6 +366,11 @@ ORDER BY score_maintenance DESC;`,
   ];
 
   const currentEx = exercises[currentExercise];
+  const verified = DATABASE_EXERCISES[currentExercise];
+  const progressId = (scenario: number, question: number) => `${DATABASE_EXERCISES[scenario].id}-q${question + 1}`;
+  const doneCount = (scenario: number) =>
+    DATABASE_EXERCISES[scenario].exercises.filter((e, q) => e && statusOf(progressId(scenario, q)) === "done").length;
+  const verifiedCount = (scenario: number) => DATABASE_EXERCISES[scenario].exercises.filter(Boolean).length;
 
   return (
     <section id="exercises" className="scroll-mt-24 space-y-8">
@@ -369,18 +380,19 @@ ORDER BY score_maintenance DESC;`,
       </div>
 
       <p className="text-sm text-gray-600">
-        Ces exercices sont à corriger vous-même : aucun jeu de données n&apos;est fourni et le site ne vérifie pas votre réponse ;
-        comparez votre requête au corrigé.
+        Chaque scénario a de petites tables aux données inventées. Les questions se vérifient dans la page : votre requête
+        s&apos;exécute dans votre navigateur (SQLite) et son résultat est comparé à celui du corrigé. Votre réussite est enregistrée
+        dans ce navigateur. Les deux scores composites (question 4 des exercices 2 et 3) restent à travailler avec la solution complète.
       </p>
 
       <p className="text-sm text-gray-600">
-        Les corrigés utilisent la syntaxe MySQL (<code>YEAR</code>, <code>MONTH</code>, <code>NOW()</code>, <code>DATE_SUB</code>, <code>DATEDIFF</code>, <code>STDDEV</code>,{" "}
+        La solution complète, en bas de chaque exercice, utilise la syntaxe MySQL (<code>YEAR</code>, <code>MONTH</code>, <code>NOW()</code>, <code>DATE_SUB</code>, <code>DATEDIFF</code>, <code>STDDEV</code>,{" "}
         <code>LEAST</code>, <code>DAYOFWEEK</code>, <code>HOUR</code>, <code>TIMESTAMPDIFF</code>). L&apos;éditeur SQL du site (page Programmation)
         exécute SQLite sur une base vide : pour y essayer une requête, créez d&apos;abord les tables, puis remplacez les fonctions de date par{" "}
         <code>date(&apos;now&apos;, &apos;-6 months&apos;)</code> et <code>julianday(&apos;now&apos;) - julianday(colonne)</code> ; SQLite n&apos;a ni <code>YEAR</code>, ni <code>MONTH</code>,
         ni <code>DATEDIFF</code>, ni <code>STDDEV</code>, ni <code>DAYOFWEEK</code>, ni <code>HOUR</code>, ni <code>TIMESTAMPDIFF</code> (utilisez <code>strftime</code>),
         et <code>min(a, b)</code> tient lieu de <code>LEAST</code>. De plus, <code>GROUP_CONCAT</code> et les alias dans <code>HAVING</code> fonctionnent sous MySQL et SQLite,
-        pas sous PostgreSQL (<code>string_agg</code>, expression répétée). Pour l&apos;exercice 1, une variante SQLite des questions 1 et 4 est donnée sous le corrigé.
+        pas sous PostgreSQL (<code>string_agg</code>, expression répétée). Les questions vérifiées, elles, s&apos;écrivent directement en SQLite.
       </p>
 
       {/* Sélecteur d'exercices */}
@@ -412,6 +424,7 @@ ORDER BY score_maintenance DESC;`,
                   </Badge>
                 </div>
                 <p className="text-xs text-left">{exercise.description}</p>
+                <span className="text-xs">{doneCount(index)} question(s) réussie(s) sur {verifiedCount(index)}</span>
               </Button>
             ))}
           </div>
@@ -469,13 +482,48 @@ ORDER BY score_maintenance DESC;`,
           </CardContent>
         </Card>
 
+        {/* Questions vérifiées par le moteur */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Code className="h-5 w-5 flex-shrink-0" />
+              Les questions, à vérifier dans la page
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-gray-600">Commencez par regarder les tables : la requête ci-dessous s&apos;exécute sur les données de l&apos;exercice.</p>
+            <RunnableCode
+              key={`exploration-${verified.id}`}
+              language="sql"
+              code={verified.exploration}
+              setup={verified.setup}
+              label={`Explorer les tables de l'exercice « ${currentEx.title} », modifiable`}
+            />
+            {verified.exercises.map((exercise, q) =>
+              exercise ? (
+                <LessonExercise
+                  key={progressId(currentExercise, q)}
+                  exercise={exercise}
+                  number={q + 1}
+                  title={`Question ${q + 1}${statusOf(progressId(currentExercise, q)) === "done" ? " (réussie)" : ""}`}
+                  onSolved={() => setStatus(progressId(currentExercise, q), "done")}
+                />
+              ) : (
+                <p key={q} className="text-sm rounded-md bg-slate-50 p-3 text-slate-700">
+                  Question {q + 1} : un score composite à poids arbitraires, sans réponse unique à vérifier ; travaillez-la avec la solution complète ci-dessous.
+                </p>
+              )
+            )}
+          </CardContent>
+        </Card>
+
         {/* Solution */}
         <Card>
           <CardHeader>
             <div className="flex flex-wrap justify-between items-center gap-2">
               <CardTitle className="flex items-center gap-2">
                 <PlayCircle className="h-5 w-5 flex-shrink-0" />
-                Solution complète
+                Solution complète (MySQL, à lire)
               </CardTitle>
               <Button
                 onClick={() => setShowSolution(!showSolution)}

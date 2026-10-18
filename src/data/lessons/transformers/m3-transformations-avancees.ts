@@ -77,6 +77,7 @@ Ce que l'on **garde** : l'ordre des valeurs (la transformation est croissante), 
     {
       kind: "equation",
       latex: String.raw`u \;=\; \hat F(x) \qquad\text{puis, pour une sortie normale :}\qquad z \;=\; \Phi^{-1}(u)`,
+      narrow: String.raw`\begin{gathered} u = \hat F(x) \\ \text{puis, pour une sortie normale :} \\ z = \Phi^{-1}(u) \end{gathered}`,
       caption: "F̂ est la fonction de répartition empirique des données d'entraînement (scikit-learn interpole entre n_quantiles quantiles), Φ⁻¹ la réciproque de la fonction de répartition de la loi normale",
     },
     {

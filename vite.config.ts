@@ -5,6 +5,7 @@ import fs from "fs";
 import { LICENSE_FILE, SITE_BASE, SITE_NAME, SITE_URL } from "./src/config/site";
 import { pageMetaFor } from "./src/config/page-meta";
 import { collectDynamicMeta, collectRoutes } from "./scripts/collect-routes";
+import { jsonLdTag, structuredData } from "./scripts/structured-data";
 
 // Content-Security-Policy injectée uniquement au build : en dev, Vite
 // a besoin de scripts inline (React refresh) qu'elle bloquerait.
@@ -86,6 +87,8 @@ const staticHosting = (): Plugin => {
       const template = fs.readFileSync(indexPath, "utf8");
       const { all, canonical, legacy } = collectRoutes(__dirname);
       const dynamicMeta = collectDynamicMeta(__dirname);
+      // JSON-LD (schema.org) : site, cours rédigés, articles du blog ; un bloc de données, que la CSP n'exécute pas
+      const jsonLd = structuredData(__dirname);
       const urlOf = (route: string) => (route === "/" ? HYLST_SITE_URL : `${HYLST_SITE_URL}${route.slice(1)}`);
       const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
       const legacyTarget = new Map(legacy.map((entry) => [entry.from, entry.to]));
@@ -124,7 +127,7 @@ const staticHosting = (): Plugin => {
           const base = meta && route !== "/" ? withMeta(template, meta) : template;
           page = base.replace(
             "</head>",
-            `    <link rel="canonical" href="${urlOf(route)}" />\n    <meta property="og:url" content="${urlOf(route)}" />\n  </head>`
+            `    <link rel="canonical" href="${urlOf(route)}" />\n    <meta property="og:url" content="${urlOf(route)}" />\n${jsonLd.has(route) ? jsonLdTag(jsonLd.get(route) as Record<string, unknown>) : ""}  </head>`
           );
         }
         fs.mkdirSync(path.dirname(target), { recursive: true });

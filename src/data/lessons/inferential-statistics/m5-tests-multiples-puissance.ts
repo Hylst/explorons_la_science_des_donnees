@@ -23,6 +23,7 @@ Au seuil de 5 %, un test dont l'hypothèse nulle est vraie se trompe une fois su
     {
       kind: "equation",
       latex: String.raw`\mathbb{P}\!\left(\text{au moins un faux positif}\right) \;=\; 1 - (1-\alpha)^m \qquad\text{soit}\qquad 1 - 0{,}95^{20} \approx 0{,}6415`,
+      narrow: String.raw`\begin{gathered} \mathbb{P}\big(\text{au moins un faux positif}\big) \\ = 1 - (1-\alpha)^m \\[0.6em] \text{soit}\; 1 - 0{,}95^{20} \approx 0{,}6415 \end{gathered}`,
       caption: "Inflation du risque d'erreur avec m tests indépendants (H0 vraie partout)",
     },
     {

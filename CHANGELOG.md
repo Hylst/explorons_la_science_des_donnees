@@ -1,5 +1,22 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-18, soir] - Données structurées (JSON-LD), formules à 320 px
+
+- **Données structurées** : chaque page générée de l'accueil, des 11 cours et des 5 articles du blog porte un bloc JSON-LD (`scripts/structured-data.ts`, injecté par le plugin `staticHosting` de `vite.config.ts`) : `WebSite` sur l'accueil, `Course` (gratuit, niveau, auteur) par cours rédigé, `BlogPosting` (date ISO tirée de la date française, image de l'article) par article. Rien que le site ne sait : ni note, ni prix, ni nombre d'élèves (refusé par le test). Le bloc est des données, pas un script : vérifié dans Chrome, aucune violation de la CSP ni erreur console sur l'accueil, un cours et un article. `scripts/verify-dist.mjs` lit chaque bloc et compare son `url` à l'adresse canonique de la page (17 pages au moins).
+- **Formules à 320 px** : 41 formules défilaient encore ; 16 versions `narrow` ajoutées ou reprises (algèbre linéaire, loi normale, Bayes, dérivée, tests multiples, attention, transformation par quantiles, régression multiple), coefficient binomial écrit `\binom{n}{k}`, taille des formules centrées réduite d'un cran sous 360 px, retrait des encadrés (`CourseHighlight`) supprimé sous 640 px. Il en reste une (le binôme, 2 px de trop dans une carte imbriquée), 0 à 360, 390 et 1280 px.
+- **`npm audit`** (relevé du 18 octobre, inchangé en nombre : 6 high, 3 moderate, 2 low, 0 critical) : rien de corrigé, décision laissée à l'auteur (voir `todo.md`).
+- **Navigateur** (Chrome sans interface, build `mve4clu8`) : aucun débordement sur les 57 routes à 320 et 390 px, un h1 par page, aucun saut de titre.
+- **Comptes** : 67 fichiers et 1 805 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-18, après-midi] - « Cours » dans la navigation, exercices SQL vérifiés de la page Bases de données
+
+- **Navigation** : le catalogue des 11 cours (`/courses`) n'était atteint que par les cartes de l'accueil et quelques liens de pages (relevé du 18 octobre : aucun lien dans la barre de navigation ni dans le pied de page). Entrée « Cours » ajoutée à la barre, après « Introduction » (elle s'allume sur toute page de cours), et au pied de page. La barre tient sur une ligne à 1280 et 1440 px ; sous 1280 px, le menu passe dans le bouton, comme avant.
+- **Page Bases de données, « Exercices pratiques corrigés »** : les trois scénarios (e-commerce, réseau social, usine) n'avaient ni données ni vérification (« à corriger vous-même », corrigés en MySQL). Chacun a maintenant de petites tables SQLite aux données inventées (`src/data/database-exercises.ts`), un bloc exécutable pour les explorer, et ses questions deviennent 10 exercices vérifiés par le moteur (le résultat de la réponse est comparé à celui du corrigé) ; réussite enregistrée par question (`course-progress-database-exercises`). Les deux scores composites (question 4 des scénarios 2 et 3), sans réponse unique, restent à travailler avec la solution complète en MySQL, gardée à lire. Les questions qui dépendaient du jour (`NOW()`) prennent une date de référence fixe.
+- **Statistiques appliquées** : la description de la page et son bandeau mentionnent le module 7 (sept modules, statsmodels).
+- **Tests** : `database-exercises.test.ts` (résultats attendus calculés à la main et vérifiés sur sql.js, réponses de départ refusées), `database-progress.test.tsx` ; 3 mutations détectées, après l'ajout d'une amitié dans les données (le filtre « déjà ami » n'avait sinon aucun effet).
+- **Navigateur** (Chrome sans interface) : les 10 exercices refusés au départ puis acceptés avec le corrigé, progression enregistrée ; barre de navigation à 1024, 1280, 1440 et 390 px.
+- **Comptes** : 66 fichiers et 1 802 tests pour `npm test`, 58 tests de fumée.
+
 ## [2026-10-18, fin de matinée] - Page Machine learning : exercices vérifiés, programmes exécutés ou à lire (passe 4)
 
 En local : rien n'est recopié dans Docker (l'auteur revoit chaque lot avant le suivant).
