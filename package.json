@@ -26,6 +26,7 @@
     "preview": "vite preview",
     "verify:dist": "node scripts/verify-dist.mjs dist",
     "verify:hylst": "node scripts/verify-dist.mjs dist-hylst",
+    "nginx:redirects": "node --experimental-strip-types scripts/nginx-redirects.ts",
     "postbuild:hylst": "node scripts/verify-dist.mjs dist-hylst",
     "runtimes:sync": "node scripts/sync-runtimes.mjs"
   },

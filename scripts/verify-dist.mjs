@@ -80,6 +80,7 @@ const titles = new Map();
 const descriptions = new Map();
 let pageCount = 0;
 let jsonLdCount = 0;
+let summaryCount = 0;
 let redirectCount = 0;
 for (const file of pageFiles) {
   const html = fs.readFileSync(file, 'utf8');
@@ -101,28 +102,69 @@ for (const file of pageFiles) {
   const description = (/<meta name="description" content="([^"]*)"/.exec(html) || [])[1];
   if (!title) fail(route + ' : titre absent'); else titles.set(title, [...(titles.get(title) || []), route]);
   if (!description) fail(route + ' : description absente'); else descriptions.set(description, [...(descriptions.get(description) || []), route]);
+  // Un article du blog a son illustration (fichier present dans le build) et le type article ; les autres pages, le logo
+  const article = /^\/blog\/[^/]+$/.test(route);
+  const expectedImage = article ? CANONICAL + '/img/blog/' + route.slice('/blog/'.length) + '.webp' : CANONICAL + '/logo.png';
   for (const property of ['property="og:image"', 'name="twitter:image"']) {
     const image = (new RegExp('<meta ' + property + ' content="([^"]*)"').exec(html) || [])[1];
-    if (image !== CANONICAL + '/logo.png') fail(route + ' : ' + property + ' vaut ' + image + ' (attendu ' + CANONICAL + '/logo.png)');
+    if (image !== expectedImage) fail(route + ' : ' + property + ' vaut ' + image + ' (attendu ' + expectedImage + ')');
   }
+  if (article && !fs.existsSync(path.join(DIST, expectedImage.slice(CANONICAL.length + 1)))) fail(route + ' : illustration absente du build (' + expectedImage + ')');
+  const ogType = (/<meta property="og:type" content="([^"]*)"/.exec(html) || [])[1];
+  if (ogType !== (article ? 'article' : 'website')) fail(route + ' : og:type ' + ogType);
   const expected = route === '/' ? CANONICAL + '/' : CANONICAL + route;
   if (canonical !== expected) fail(route + ' : canonical ' + canonical + ' (attendu ' + expected + ')');
-  // JSON-LD (accueil, cours, articles) : du JSON valide, dont l'url est l'adresse canonique de la page
+  // JSON-LD : du JSON valide ; le bloc propre a la page (accueil, cours, articles) a pour url l'adresse canonique,
+  // le fil d'Ariane (toute page sauf l'accueil) part de l'accueil, finit sur la page, et chaque element est une vraie page
+  let breadcrumbs = 0;
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     let data;
     try { data = JSON.parse(m[1]); } catch { fail(route + ' : JSON-LD illisible'); continue; }
+    if (data['@type'] === 'BreadcrumbList') {
+      breadcrumbs += 1;
+      const items = data.itemListElement || [];
+      if (items[0]?.item !== CANONICAL + '/' || items.at(-1)?.item !== expected) fail(route + ' : fil d\'Ariane de ' + items[0]?.item + ' a ' + items.at(-1)?.item);
+      for (const [i, it] of items.entries()) {
+        if (it.position !== i + 1 || !it.name) fail(route + ' : fil d\'Ariane, element ' + (i + 1) + ' mal forme');
+        const file = path.join(DIST, String(it.item).slice(CANONICAL.length + 1), 'index.html');
+        if (!fs.existsSync(file) || isRedirect(fs.readFileSync(file, 'utf8'))) fail(route + ' : fil d\'Ariane vers ' + it.item + ', qui n\'est pas une page');
+      }
+      continue;
+    }
     jsonLdCount += 1;
     if (data.url !== expected) fail(route + ' : JSON-LD url ' + data.url + ' (attendu ' + expected + ')');
   }
+  if (breadcrumbs !== (route === '/' ? 0 : 1)) fail(route + ' : ' + breadcrumbs + ' fil(s) d\'Ariane en JSON-LD');
+  // Resume statique dans #root (lu sans JavaScript) : un seul h1 non vide, du texte, des liens internes vers de vraies pages ;
+  // un article y porte son texte complet
+  const summary = (/<div id="root"><div class="static-summary">([\s\S]*)<\/div><\/div>\s*<\/body>/.exec(html) || [])[1];
+  if (summary === undefined) { fail(route + ' : resume statique absent de #root'); continue; }
+  const h1s = [...summary.matchAll(/<h1>([^<]*)<\/h1>/g)];
+  if (h1s.length !== 1 || !h1s[0][1].trim() || (summary.match(/<h1[\s>]/g) || []).length !== 1) fail(route + ' : resume statique sans h1 unique');
+  const text = summary.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (text.length < (article ? 1500 : 80)) fail(route + ' : resume statique trop court (' + text.length + ' caracteres)');
+  for (const m of summary.matchAll(/href="([^"]*)"/g)) {
+    if (!m[1].startsWith(BASE)) continue;
+    const file = path.join(DIST, m[1].slice(BASE.length), 'index.html');
+    if (!fs.existsSync(file) || isRedirect(fs.readFileSync(file, 'utf8'))) fail(route + ' : resume statique, lien vers ' + m[1] + ', qui n\'est pas une page');
+  }
+  summaryCount += 1;
 }
 if (pageCount > 1 && jsonLdCount < 17) fail('JSON-LD : ' + jsonLdCount + ' page(s) seulement (attendu : accueil, 11 cours, 5 articles)');
 for (const [title, routes] of titles) if (routes.length > 1) fail('titre en double (' + title + ') : ' + routes.join(', '));
 for (const [description, routes] of descriptions) if (routes.length > 1) fail('description en double : ' + routes.join(', '));
-if (fails.length === failsBeforePages) ok(pageCount + ' pages et ' + redirectCount + ' redirections controlees (titres et descriptions uniques, canonical sans fragment, og:image absolu)');
+if (pageCount > 1 && summaryCount !== pageCount) fail('resume statique : ' + summaryCount + ' page(s) sur ' + pageCount);
+if (fails.length === failsBeforePages) ok(pageCount + ' pages et ' + redirectCount + ' redirections controlees (titres et descriptions uniques, canonical sans fragment, og:image absolu, resume statique)');
 
 const sitemapFile = path.join(DIST, 'sitemap.xml');
 if (fs.existsSync(sitemapFile)) {
-  const locations = [...fs.readFileSync(sitemapFile, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const sitemapXml = fs.readFileSync(sitemapFile, 'utf8');
+  const locations = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  // lastmod seulement pour une date connue (articles, pages legales) : jamais la date du build sur toutes les pages
+  const lastmods = [...sitemapXml.matchAll(/<lastmod>([^<]*)<\/lastmod>/g)].map((m) => m[1]);
+  const today = new Date().toISOString().slice(0, 10);
+  if (lastmods.some((d) => !/^\d{4}-\d{2}-\d{2}$/.test(d) || d > today)) fail('sitemap : lastmod mal forme ou dans le futur');
+  if (lastmods.length === 0 || lastmods.length >= locations.length / 2) fail('sitemap : ' + lastmods.length + ' lastmod sur ' + locations.length + ' URL (attendu : les seules dates connues)');
   const missing = locations.filter((loc) => {
     const route = loc.slice(CANONICAL.length) || '/';
     const file = route === '/' ? path.join(DIST, 'index.html') : path.join(DIST, route.slice(1), 'index.html');

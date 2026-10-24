@@ -1,5 +1,28 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-24, suite 4] - SEO, lot 2 (partie 2) : résumé statique des pages
+
+- **Contenu lisible sans JavaScript** (approche choisie par l'auteur : un résumé, pas un rendu complet) : le build écrit dans `<div id="root">` de chacune des 57 pages un bloc `static-summary` (`scripts/static-summary.ts`) : fil d'Ariane, titre `h1`, description, plan des 11 cours et des projets guidés (titres des modules lus dans `src/data/lessons`), texte complet des 5 articles du blog, liens vers les pages filles (l'accueil liste les 15 pages de premier niveau). React le remplace au montage (`createRoot().render`, sans hydratation). Mise en forme sobre aux couleurs du thème dans `src/index.css` (sans JavaScript, le thème clair, `theme-init.js` ne pouvant pas s'exécuter).
+- **Mesures** : Chrome sur 7 pages : sans JavaScript, un `h1`, des liens et aucun débordement à 320 et 390 px ; avec JavaScript, résumé remplacé, un seul `h1`, décalage de mise en page nul, aucune erreur. Lighthouse mobile : accessibilité et SEO 100 sur l'accueil, un cours, un article et `/fundamentals` ; performance comparée au build précédent sur les mêmes pages, écarts dans le bruit de mesure (cours 87-88 contre 86-90, `/fundamentals` 72-83 contre 76-85). Build `mvm87avz`.
+- **Contrôles** : `verify-dist.mjs` exige le résumé sur chaque page, un `h1` unique, assez de texte (et le texte complet sur les articles), des liens internes vers de vraies pages ; `static-summary.test.ts` (plan de chaque cours égal au nombre de modules du catalogue, échappement). 7 mutations détectées.
+- **Test plus robuste** : `code-snippets.test.ts` lit les sources une seule fois pour ses trois tests (il dépassait 5 s sous la charge de `npm test`).
+- **Comptes** : 71 fichiers et 1 822 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-24, suite 3] - SEO, lot 2 (partie 1) : articles, fil d'Ariane, dates du sitemap
+
+- **Articles du blog** : chaque page générée annonce `og:type` « article », sa propre illustration (`og:image` et `twitter:image`, 800 × 450, carte `summary_large_image`), `article:published_time` et `article:modified_time`. Nouvelle date `updated` dans `blog-posts.json` : la dernière modification réelle du texte, relevée dans l'historique git (9 octobre pour trois articles, 3 octobre pour les deux autres), reprise par `dateModified` du JSON-LD et affichée sous l'article (« Publié le 2 octobre 2026, mis à jour le 9 octobre 2026 »).
+- **Fil d'Ariane en JSON-LD** (`BreadcrumbList`) sur les 56 pages autres que l'accueil : l'accueil, chaque niveau de l'URL qui est une vraie page, puis la page, avec le titre court de `page-meta.ts` (ou le titre de l'article ou du quiz).
+- **Sitemap** : `lastmod` n'est plus la date du build sur toutes les pages ; il ne figure que là où la date est connue (articles : dernière modification ; `/privacy` et `/terms` : `LEGAL_UPDATED`).
+- **Contrôles** : `verify-dist.mjs` vérifie l'image et le type des articles (fichier présent dans le build), un fil d'Ariane par page qui part de l'accueil, finit sur la page et ne mène qu'à de vraies pages, et des `lastmod` ni futurs ni posés partout. `structured-data.test.ts` : 2 tests de plus (fil d'Ariane de chaque route, taille réelle des images lue dans les fichiers WebP, dates). 10 mutations détectées (5 dans le code, 5 dans le build). Lighthouse SEO mobile : 100 sur un article et un cours ; Chrome : date de mise à jour lisible à 320 px en clair et à 390 px en sombre, sans débordement. Build `mvm72pg6`.
+- **Reste du lot 2** : le contenu des pages n'est toujours pas dans le HTML statique (il n'apparaît qu'avec JavaScript).
+- **Comptes** : 70 fichiers et 1 819 tests pour `npm test`, 58 tests de fumée.
+
+## [2026-10-24, suite 2] - Règles 301 pour Nginx
+
+- **Anciennes URL** : elles répondaient 200 avec une page `meta refresh` (constat de l'agent de la plateforme). `scripts/nginx-redirects.ts` (`npm run nginx:redirects`) écrit, depuis `src/config/routes.ts`, une règle `location` Nginx par ancienne URL (28) qui répond 301 vers l'adresse canonique, avec ou sans barre finale ou `index.html`, en gardant la chaîne de requête (et l'ancre quand la cible en a une). À poser par la plateforme ; les pages `meta refresh` du build restent en secours. Le site lui-même ne change pas (build inchangé).
+- **Tests** : `nginx-redirects.test.ts` (une règle par entrée, chaque ancienne URL vers sa cible, aucune des 57 adresses canoniques ni une sous-page attrapée) ; 2 mutations détectées (ancre de fin `$` retirée, ancre `#` mal placée).
+- **Comptes** : 70 fichiers et 1 817 tests pour `npm test`, 58 tests de fumée.
+
 ## [2026-10-24, suite] - RGPD, mentions légales et transparence sur les images générées par IA (lot 1)
 
 - **Politique de confidentialité** (`/privacy`, révisée le 24 octobre 2026) : base légale des journaux du serveur et des e-mails (intérêt légitime, RGPD article 6.1.f), durées de conservation décidées par l'auteur (journaux : un an au plus ; e-mails : un an après le dernier échange), messagerie nommée (Gmail), serveur situé au Royaume-Uni (serveur privé virtuel ; l'hébergeur reste nommé dans les mentions légales de la plateforme, pas dans le dépôt public) et base du transfert : décision d'adéquation de la Commission européenne, renouvelée le 19 décembre 2025 (source affichée, `docs/SOURCES.md` section 15 ; la date de fin, 2031, ne vient que d'articles de cabinets et n'est pas reprise).

@@ -54,6 +54,7 @@ Source : champ `scripts` de `package.json`.
 | `npm run runtimes:sync` | `node scripts/sync-runtimes.mjs` | Recrée `public/vendor`. Réseau requis la première fois |
 | `npm run news:refresh` | `node scripts/refresh-news.mjs` | Réseau requis. Réécrit `src/data/rss-articles.json` depuis `src/data/rss-sources.json` ; un flux en échec est ignoré, et si aucun ne répond le fichier reste intact |
 | `npm run verify:hylst` | `node scripts/verify-dist.mjs dist-hylst` | Contrôle d'un build hylst déjà fait (aussi lancé automatiquement par `build:hylst`) |
+| `npm run nginx:redirects` | `node --experimental-strip-types scripts/nginx-redirects.ts` | Écrit sur la sortie les règles Nginx 301 des anciennes URL (depuis `src/config/routes.ts`), à transmettre à la plateforme quand cette liste change |
 | `npm run verify:dist` | `node scripts/verify-dist.mjs dist` | Écrit pour le build hylst : sur un `dist/` ordinaire il échoue (chemins absolus hors base, canonical et `sitemap.xml` absents). Ce n'est pas une anomalie du code |
 
 Avant de livrer, dans cet ordre : `npm run lint`, `npm run typecheck`, `npm test`, `npm run test:smoke`, puis `npm run build:hylst` (voir la section 5.11).

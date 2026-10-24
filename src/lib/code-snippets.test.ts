@@ -13,6 +13,11 @@ const sourceFiles = (dir: string, out: string[] = []): string[] => {
   return out;
 };
 
+// Lecture unique des sources, partagée par les trois tests (relire tout src trois fois dépassait 5 s sous la charge de npm test)
+let cache: { file: string; lines: string[] }[] | undefined;
+const sourceLines = () => (cache ??= sourceFiles(SRC).map((file) => ({ file, lines: fs.readFileSync(file, "utf8").split("\n") })));
+const SCAN_TIMEOUT = 20_000;
+
 /**
  * Dans un gabarit TypeScript (`...`), un \n simple devient un vrai saut de ligne : l'exemple Python affiché
  * contient alors print("<saut de ligne>texte"), qui est une erreur de syntaxe pour qui le copie.
@@ -21,38 +26,32 @@ const sourceFiles = (dir: string, out: string[] = []): string[] => {
 describe("exemples Python affichés dans les cours", () => {
   it("aucune ligne print(...) ne contient un \\n ou \\t simple dans un gabarit", () => {
     const fautifs: string[] = [];
-    for (const file of sourceFiles(SRC)) {
-      fs.readFileSync(file, "utf8")
-        .split("\n")
-        .forEach((line, index) => {
+    for (const { file, lines } of sourceLines()) {
+      lines.forEach((line, index) => {
           if (/\bprint\(/.test(line) && /(?<!\\)\\[nt]/.test(line)) fautifs.push(`${path.relative(SRC, file)}:${index + 1}`);
         });
     }
     expect(fautifs).toEqual([]);
-  });
+  }, SCAN_TIMEOUT);
 
   it("aucune ligne ne se termine par une barre oblique inverse seule (dans un gabarit, elle fusionne la ligne suivante avec celle-ci)", () => {
     const fautifs: string[] = [];
-    for (const file of sourceFiles(SRC)) {
-      fs.readFileSync(file, "utf8")
-        .split("\n")
-        .forEach((line, index) => {
+    for (const { file, lines } of sourceLines()) {
+      lines.forEach((line, index) => {
           if (/(?<!\\)\\\r?$/.test(line)) fautifs.push(`${path.relative(SRC, file)}:${index + 1}`);
         });
     }
     expect(fautifs).toEqual([]);
-  });
+  }, SCAN_TIMEOUT);
 
   it("aucun exemple pandas n'utilise un alias ou un argument supprimé de pandas 3 (le moteur du site exécute pandas 3)", () => {
     const fautifs: string[] = [];
     const supprime = /freq ?= ?['"][0-9]*(M|Q|Y|A|H|T|S|BM|BQ)['"]|resample\(['"][0-9]*(M|Q|Y|A|H|T|S)['"]\)|fillna\(method/;
-    for (const file of sourceFiles(SRC)) {
-      fs.readFileSync(file, "utf8")
-        .split("\n")
-        .forEach((line, index) => {
+    for (const { file, lines } of sourceLines()) {
+      lines.forEach((line, index) => {
           if (supprime.test(line)) fautifs.push(`${path.relative(SRC, file)}:${index + 1}`);
         });
     }
     expect(fautifs).toEqual([]);
-  });
+  }, SCAN_TIMEOUT);
 });

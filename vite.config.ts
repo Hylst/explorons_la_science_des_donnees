@@ -5,7 +5,9 @@ import fs from "fs";
 import { LICENSE_FILE, SITE_BASE, SITE_NAME, SITE_URL } from "./src/config/site";
 import { pageMetaFor } from "./src/config/page-meta";
 import { collectDynamicMeta, collectRoutes } from "./scripts/collect-routes";
-import { jsonLdTag, structuredData } from "./scripts/structured-data";
+import { BLOG_IMAGE_SIZE, blogArticles, breadcrumbChain, breadcrumbList, jsonLdTag, knownDates, pageNames, structuredData } from "./scripts/structured-data";
+import { lessonOutlines, staticSummary } from "./scripts/static-summary";
+import { blogContents } from "./src/data/blog-contents";
 
 // Content-Security-Policy injectée uniquement au build : en dev, Vite
 // a besoin de scripts inline (React refresh) qu'elle bloquerait.
@@ -92,6 +94,13 @@ const staticHosting = (): Plugin => {
       const urlOf = (route: string) => (route === "/" ? HYLST_SITE_URL : `${HYLST_SITE_URL}${route.slice(1)}`);
       const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
       const legacyTarget = new Map(legacy.map((entry) => [entry.from, entry.to]));
+      const nameOf = pageNames(__dirname);
+      const articles = new Map(blogArticles(__dirname).map((article) => [article.route, article]));
+      const dates = knownDates(__dirname);
+      const outlines = lessonOutlines(__dirname);
+      const EMPTY_ROOT = '<div id="root"></div>';
+      // Parent d'une page : l'avant-dernier maillon de son fil d'Ariane
+      const parentOf = (route: string) => breadcrumbChain(route, nameOf).at(-2);
 
       /** Remplace titre et description (balises de index.html) par ceux de la route ; échoue si une balise manque */
       const withMeta = (html: string, meta: { title: string; description: string }) => {
@@ -104,6 +113,26 @@ const staticHosting = (): Plugin => {
         out = swap(out, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeHtml(meta.title)}" />`);
         out = swap(out, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeHtml(meta.description)}" />`);
         return out;
+      };
+
+      /** En-tête d'un article : type article, son illustration (grande carte), ses dates de publication et de modification */
+      const withArticle = (html: string, article: { image: string; datePublished: string; dateModified: string }) => {
+        const swap = (source: string, pattern: RegExp, replacement: string) => {
+          if (!pattern.test(source)) throw new Error(`static-hosting : balise introuvable dans index.html : ${pattern}`);
+          return source.replace(pattern, replacement);
+        };
+        let out = swap(html, /<meta property="og:type" content="website" \/>/, `<meta property="og:type" content="article" />`);
+        out = swap(
+          out,
+          /<meta property="og:image" content="[^"]*" \/>/,
+          `<meta property="og:image" content="${article.image}" />\n    <meta property="og:image:width" content="${BLOG_IMAGE_SIZE.width}" />\n    <meta property="og:image:height" content="${BLOG_IMAGE_SIZE.height}" />`
+        );
+        out = swap(out, /<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${article.image}" />`);
+        out = swap(out, /<meta name="twitter:card" content="summary" \/>/, `<meta name="twitter:card" content="summary_large_image" />`);
+        return out.replace(
+          "</head>",
+          `    <meta property="article:published_time" content="${article.datePublished}" />\n    <meta property="article:modified_time" content="${article.dateModified}" />\n  </head>`
+        );
       };
 
       const missingMeta: string[] = [];
@@ -124,11 +153,26 @@ const staticHosting = (): Plugin => {
           const dynamic = dynamicMeta[route];
           const meta = staticMeta ?? (dynamic ? { title: `${dynamic.title} - ${SITE_NAME}`, description: dynamic.description } : undefined);
           if (!meta) missingMeta.push(route);
-          const base = meta && route !== "/" ? withMeta(template, meta) : template;
+          const withRouteMeta = meta && route !== "/" ? withMeta(template, meta) : template;
+          const article = articles.get(route);
+          const base = article ? withArticle(withRouteMeta, article) : withRouteMeta;
+          // JSON-LD propre à la page (site, cours, article) puis son fil d'Ariane (toutes les pages sauf l'accueil)
+          const blocks = [jsonLd.get(route), breadcrumbList(route, nameOf)].filter((block): block is Record<string, unknown> => Boolean(block));
           page = base.replace(
             "</head>",
-            `    <link rel="canonical" href="${urlOf(route)}" />\n    <meta property="og:url" content="${urlOf(route)}" />\n${jsonLd.has(route) ? jsonLdTag(jsonLd.get(route) as Record<string, unknown>) : ""}  </head>`
+            `    <link rel="canonical" href="${urlOf(route)}" />\n    <meta property="og:url" content="${urlOf(route)}" />\n${blocks.map(jsonLdTag).join("")}  </head>`
           );
+          // Résumé statique dans #root, remplacé par React au montage
+          if (!page.includes(EMPTY_ROOT)) throw new Error(`static-hosting : ${EMPTY_ROOT} introuvable dans index.html`);
+          const summary = staticSummary({
+            name: route === "/" ? SITE_NAME : (nameOf(route) as string),
+            description: meta?.description ?? "",
+            crumbs: breadcrumbChain(route, nameOf).slice(0, -1).map((r) => ({ route: r, name: r === "/" ? "Accueil" : (nameOf(r) as string) })),
+            children: canonical.filter((r) => r !== "/" && parentOf(r) === route).map((r) => ({ route: r, name: nameOf(r) as string })),
+            outline: outlines.get(route),
+            articleHtml: article ? blogContents[route.slice("/blog/".length)] : undefined,
+          });
+          page = page.replace(EMPTY_ROOT, `<div id="root">${summary}</div>`);
         }
         fs.mkdirSync(path.dirname(target), { recursive: true });
         fs.writeFileSync(target, page);
@@ -136,9 +180,9 @@ const staticHosting = (): Plugin => {
       if (missingMeta.length > 0) throw new Error(`static-hosting : routes sans titre ni description (à ajouter dans src/config/page-meta.ts) : ${missingMeta.join(", ")}`);
 
       const escapeXml = (value: string) => value.replace(/&/g, "&amp;");
-      const today = new Date().toISOString().slice(0, 10);
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${canonical
-        .map((route) => `  <url><loc>${escapeXml(urlOf(route))}</loc><lastmod>${today}</lastmod></url>`)
+        // lastmod seulement quand la date est connue (articles, pages légales) : la date du build, partout la même, n'apprenait rien
+        .map((route) => `  <url><loc>${escapeXml(urlOf(route))}</loc>${dates.has(route) ? `<lastmod>${dates.get(route)}</lastmod>` : ""}</url>`)
         .join("\n")}\n</urlset>\n`;
       fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
 

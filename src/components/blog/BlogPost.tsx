@@ -86,7 +86,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h3 className="font-semibold">Écrit par {post.author}</h3>
-            <p className="text-gray-600 text-sm">Publié le {post.date}</p>
+            <p className="text-gray-600 text-sm">
+              Publié le {post.date}
+              {post.updated !== post.date && <>, mis à jour le {post.updated}</>}
+            </p>
           </div>
           
           <div className="flex items-center gap-2">

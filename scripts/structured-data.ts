@@ -1,10 +1,12 @@
 // Données structurées (JSON-LD, schema.org) des pages générées au build hylst : le site (accueil), chaque cours
-// rédigé du catalogue et chaque article du blog. Tout vient des données du site (catalogue, blog-posts.json, site.ts) :
+// rédigé du catalogue, chaque article du blog et le fil d'Ariane de chaque page ; dates connues pour le sitemap. Tout vient des données du site (catalogue, blog-posts.json, site.ts) :
 // aucune note, aucun nombre d'élèves, aucun prix (le site n'a pas de partie commerciale).
 import fs from "node:fs";
 import path from "node:path";
 import { COURSE_CATALOG } from "../src/data/course-catalog";
-import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/config/site";
+import { PAGE_META } from "../src/config/page-meta";
+import { collectDynamicMeta, collectRoutes } from "./collect-routes";
+import { AUTHOR_NAME, LEGAL_UPDATED, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../src/config/site";
 
 type JsonLd = Record<string, unknown>;
 
@@ -21,6 +23,71 @@ export const isoFromFrenchDate = (date: string): string | null => {
 
 const urlOf = (route: string) => (route === "/" ? SITE_URL : `${SITE_URL}${route.slice(1)}`);
 const author = { "@type": "Person", name: AUTHOR_NAME };
+
+/** Taille des illustrations du blog (public/img/blog), annoncée dans og:image:width et og:image:height ; vérifiée par le test */
+export const BLOG_IMAGE_SIZE = { width: 800, height: 450 };
+
+// `updated` : date de la dernière modification du texte de l'article, à changer quand on le retouche
+interface Post { id: string; title: string; excerpt: string; author: string; date: string; updated: string }
+const readPosts = (root: string): Post[] => JSON.parse(fs.readFileSync(path.resolve(root, "src/data/blog-posts.json"), "utf8"));
+
+/** Articles du blog : route, image absolue, dates de publication et de modification (ISO), pour l'en-tête Open Graph,
+ *  le JSON-LD et le sitemap ; échoue sur une date illisible ou une modification antérieure à la publication */
+export const blogArticles = (root: string) =>
+  readPosts(root).map((post) => {
+    const datePublished = isoFromFrenchDate(post.date);
+    const dateModified = isoFromFrenchDate(post.updated ?? "");
+    if (!datePublished || !dateModified || dateModified < datePublished) throw new Error(`article ${post.id} : dates illisibles ou incohérentes (${post.date}, ${post.updated})`);
+    return { post, route: `/blog/${post.id}`, image: `${SITE_URL}img/blog/${post.id}.webp`, datePublished, dateModified };
+  });
+
+/** Dates réellement connues, pour le lastmod du sitemap : dernière modification des articles, révision des pages légales.
+ *  Les autres pages n'en ont pas (la date du build, la même partout, n'apprenait rien aux moteurs). */
+export const knownDates = (root: string): Map<string, string> => {
+  const out = new Map<string, string>();
+  for (const { route, dateModified } of blogArticles(root)) out.set(route, dateModified);
+  const legal = isoFromFrenchDate(LEGAL_UPDATED);
+  if (!legal) throw new Error(`LEGAL_UPDATED illisible : ${LEGAL_UPDATED}`);
+  for (const route of ["/privacy", "/terms"]) out.set(route, legal);
+  return out;
+};
+
+/** Nom court de chaque page (titre sans le nom du site, comme dans page-meta.ts ; titre de l'article ou du quiz) ;
+ *  undefined pour une adresse qui n'est pas une page canonique */
+export const pageNames = (root: string) => {
+  const pages = new Set(collectRoutes(root).canonical);
+  const dynamic = collectDynamicMeta(root);
+  return (route: string): string | undefined => (pages.has(route) ? PAGE_META[route]?.title ?? dynamic[route]?.title : undefined);
+};
+
+/** Fil d'Ariane d'une page : l'accueil, chaque niveau de l'URL qui est lui-même une page, puis la page.
+ *  `nameOf` donne le nom court d'une page, `undefined` si ce n'est pas une page */
+export const breadcrumbChain = (route: string, nameOf: (route: string) => string | undefined): string[] => {
+  if (route === "/") return ["/"];
+  const parts = route.split("/").filter(Boolean);
+  const chain = ["/"];
+  for (let i = 1; i < parts.length; i += 1) {
+    const parent = `/${parts.slice(0, i).join("/")}`;
+    if (nameOf(parent)) chain.push(parent);
+  }
+  chain.push(route);
+  return chain;
+};
+
+/** BreadcrumbList JSON-LD de la chaîne ci-dessus ; null pour l'accueil */
+export const breadcrumbList = (route: string, nameOf: (route: string) => string | undefined): JsonLd | null => {
+  if (route === "/") return null;
+  const chain = breadcrumbChain(route, nameOf);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: chain.map((r, i) => {
+      const name = r === "/" ? "Accueil" : nameOf(r);
+      if (!name) throw new Error(`fil d'Ariane : page sans nom : ${r}`);
+      return { "@type": "ListItem", position: i + 1, name, item: urlOf(r) };
+    }),
+  };
+};
 
 /** JSON-LD de chaque route qui en a ; les autres pages n'en ont pas */
 export const structuredData = (root: string): Map<string, JsonLd> => {
@@ -48,21 +115,18 @@ export const structuredData = (root: string): Map<string, JsonLd> => {
       provider: { "@type": "Person", name: AUTHOR_NAME, url: SITE_URL },
     });
   }
-  const posts: { id: string; title: string; excerpt: string; author: string; date: string }[] = JSON.parse(
-    fs.readFileSync(path.resolve(root, "src/data/blog-posts.json"), "utf8"),
-  );
-  for (const post of posts) {
-    const date = isoFromFrenchDate(post.date);
-    out.set(`/blog/${post.id}`, {
+  for (const { post, route, image, datePublished, dateModified } of blogArticles(root)) {
+    out.set(route, {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      url: urlOf(`/blog/${post.id}`),
+      url: urlOf(route),
       inLanguage: "fr",
       author: { "@type": "Person", name: post.author },
-      ...(date ? { datePublished: date } : {}),
-      image: `${SITE_URL}img/blog/${post.id}.webp`,
+      datePublished,
+      dateModified,
+      image,
       publisher: { "@type": "Person", name: AUTHOR_NAME },
     });
   }

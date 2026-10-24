@@ -303,3 +303,23 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Résumé statique écrit par le build hylst dans #root (scripts/static-summary.ts) : lu par les moteurs et sans JavaScript,
+   remplacé par React au montage. Sobre, aux couleurs du thème. */
+.static-summary {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.static-summary h1 { font-size: 1.875rem; line-height: 1.25; font-weight: 700; margin: 1rem 0 0.75rem; }
+.static-summary h2 { font-size: 1.25rem; font-weight: 600; margin: 1.75rem 0 0.5rem; }
+.static-summary p, .static-summary li { color: hsl(var(--muted-foreground)); }
+.static-summary p, .static-summary article ul, .static-summary article ol, .static-summary pre { margin: 0 0 0.75rem; }
+.static-summary article h3 { font-weight: 600; margin: 1.25rem 0 0.5rem; }
+.static-summary ol, .static-summary ul { padding-left: 1.25rem; list-style: revert; }
+.static-summary nav ol { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; padding: 0; list-style: none; font-size: 0.875rem; }
+.static-summary a { color: hsl(var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+.static-summary pre { overflow-x: auto; padding: 0.75rem; border-radius: 0.5rem; background: hsl(var(--muted)); font-size: 0.875rem; }
