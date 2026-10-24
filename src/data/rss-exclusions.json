@@ -1,0 +1,19 @@
+{
+  "_comment": "Le site n'a aucun côté commercial (décision de l'auteur du 4 octobre 2026) : un article de flux dont le titre ou l'adresse annonce une formation, une offre ou une inscription n'est pas repris. Motifs insensibles à la casse, lus par scripts/refresh-news.mjs et par src/data/rss-articles.test.ts.",
+  "patterns": [
+    "\\bformations?\\b",
+    "\\bdevene?z\\b",
+    "bootcamp",
+    "\\binscri(s|vez|ptions?)\\b",
+    "\\bpromo(tion)?s?\\b",
+    "\\boffres?\\b",
+    "\\bréductions?\\b",
+    "\\bwebin(ar|aire)s?\\b",
+    "\\btarifs?\\b",
+    "\\bprix\\b",
+    "\\bsign ?up\\b",
+    "\\benroll\\b",
+    "\\bdiscount\\b",
+    "\\bcourse offer\\b"
+  ]
+}

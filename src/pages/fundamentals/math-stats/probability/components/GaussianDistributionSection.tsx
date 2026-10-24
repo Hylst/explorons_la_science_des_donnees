@@ -38,9 +38,9 @@ const GaussianDistributionSection = () => {
 
   // Données pour la règle 68-95-99.7
   const empiricalRuleData = [
-    { range: '±1σ', percentage: 68.27, color: '#3b82f6', description: 'Dans 1 écart-type' },
-    { range: '±2σ', percentage: 95.45, color: '#10b981', description: 'Dans 2 écarts-types' },
-    { range: '±3σ', percentage: 99.73, color: '#f59e0b', description: 'Dans 3 écarts-types' }
+    { range: '±1σ', percentage: 68.27, color: '#3b82f6', textClass: 'text-blue-700', description: 'Dans 1 écart-type' },
+    { range: '±2σ', percentage: 95.45, color: '#10b981', textClass: 'text-emerald-700', description: 'Dans 2 écarts-types' },
+    { range: '±3σ', percentage: 99.73, color: '#f59e0b', textClass: 'text-amber-700', description: 'Dans 3 écarts-types' }
   ];
 
   // Exemples pratiques
@@ -277,7 +277,7 @@ const GaussianDistributionSection = () => {
                 {empiricalRuleData.map((rule, index) => (
                   <div key={index} className="bg-white border-2 rounded-lg p-4" style={{borderColor: rule.color}}>
                     <div className="text-center">
-                      <div className="text-2xl font-bold mb-2" style={{color: rule.color}}>
+                      <div className={`text-2xl font-bold mb-2 ${rule.textClass}`}>
                         {rule.percentage}%
                       </div>
                       <div className="text-lg font-semibold mb-1">{rule.range}</div>

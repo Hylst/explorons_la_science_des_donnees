@@ -237,8 +237,8 @@ const AuditSection: React.FC = () => {
                     <span className="font-bold">{kpi.value}</span>
                     <span className="text-xs text-muted-foreground">/ {kpi.target}</span>
                     <div className={`w-4 h-4 ${
-                      kpi.trend === 'up' ? 'text-green-500' : 
-                      kpi.trend === 'down' ? 'text-red-500' : 'text-gray-400'
+                      kpi.trend === 'up' ? 'text-green-600' : 
+                      kpi.trend === 'down' ? 'text-red-600' : 'text-gray-500'
                     }`}>
                       {kpi.trend === 'up' ? '↗' : kpi.trend === 'down' ? '↘' : '→'}
                     </div>

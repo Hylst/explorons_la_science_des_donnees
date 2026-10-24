@@ -319,9 +319,9 @@ const DataScienceMap: React.FC<DataScienceMapProps> = ({ className }) => {
                   transition-all duration-500
                   ${
                     isCompleted 
-                      ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' 
+                      ? 'bg-green-600 text-white shadow-lg shadow-green-500/30' 
                       : isActive 
-                      ? 'bg-primary text-white shadow-lg shadow-primary/30 animate-pulse' 
+                      ? 'bg-blue-600 text-white shadow-lg shadow-primary/30 ring-2 ring-primary/40' 
                       : 'bg-muted text-muted-foreground'
                   }
                 `}>

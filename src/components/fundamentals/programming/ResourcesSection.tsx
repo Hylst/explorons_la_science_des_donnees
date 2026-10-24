@@ -945,7 +945,7 @@ const ResourcesSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+              <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
               <h4 className="font-semibold">Fondations (1-2 mois)</h4>
             </div>
             <ul className="text-sm space-y-1">
@@ -981,7 +981,7 @@ const ResourcesSection = () => {
           
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
+              <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
               <h4 className="font-semibold">Approfondissement (6+ mois)</h4>
             </div>
             <ul className="text-sm space-y-1">

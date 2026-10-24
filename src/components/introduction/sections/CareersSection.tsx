@@ -72,7 +72,7 @@ const CareersSection = () => {
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
       acronymBg: "bg-ds-purple-100",
-      acronymText: "text-ds-purple-500",
+      acronymText: "text-ds-purple-600",
       titleColor: "text-ds-purple-600"
     },
     {
@@ -94,7 +94,7 @@ const CareersSection = () => {
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
       acronymBg: "bg-ds-purple-100",
-      acronymText: "text-ds-purple-500",
+      acronymText: "text-ds-purple-600",
       titleColor: "text-ds-purple-600"
     },
     {
@@ -116,7 +116,7 @@ const CareersSection = () => {
       fromColor: "from-ds-purple-50",
       toColor: "to-ds-blue-50",
       acronymBg: "bg-ds-purple-100",
-      acronymText: "text-ds-purple-500",
+      acronymText: "text-ds-purple-600",
       titleColor: "text-ds-purple-600"
     },
     {

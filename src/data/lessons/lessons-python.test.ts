@@ -11,6 +11,7 @@ import { inferentialStatisticsCourse } from "./inferential-statistics";
 import { transformersCourse } from "./transformers";
 import { mlModelsGuideCourse } from "./ml-models-guide";
 import { timeSeriesCourse } from "./time-series";
+import { computerVisionCourse } from "./computer-vision";
 
 // Cours rédigés en Python : chaque exemple et chaque corrigé est exécuté par Pyodide (mêmes paquets que le site, sans réseau).
-for (const course of [supervisedLearningCourse, dataVisualizationCourse, appliedStatisticsCourse, guidedProjects, nlpCourse, pythonCourse, mathIntroCourse, inferentialStatisticsCourse, transformersCourse, mlModelsGuideCourse, timeSeriesCourse]) describeLessonCourse(course);
+for (const course of [supervisedLearningCourse, dataVisualizationCourse, appliedStatisticsCourse, guidedProjects, nlpCourse, pythonCourse, mathIntroCourse, inferentialStatisticsCourse, transformersCourse, mlModelsGuideCourse, timeSeriesCourse, computerVisionCourse]) describeLessonCourse(course);

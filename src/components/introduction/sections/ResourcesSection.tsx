@@ -143,7 +143,7 @@ const ResourcesSection = () => {
                 Une sélection plus large de livres, de cours, de tutoriels et d'outils.
               </p>
             </div>
-            <Button className="bg-ds-blue-500 hover:bg-ds-blue-600" asChild>
+            <Button className="bg-ds-blue-500 hover:bg-ds-blue-600 text-white" asChild>
               <Link to="/resources">Voir toutes les ressources</Link>
             </Button>
           </div>

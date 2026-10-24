@@ -264,6 +264,14 @@
   color: hsl(var(--foreground)) !important;
 }
 
+/* Graduations, titres d'axe et étiquettes : gris #808080 par défaut (3,95:1 sur blanc), couleur de la série sur les
+   camemberts (jusqu'à 1,7:1). Recharts pose `fill` en attribut, qu'une règle CSS remplace ; le thème sombre fait de même
+   (plugin dark-palette). */
+.recharts-text,
+.recharts-cartesian-axis-tick-value {
+  fill: hsl(var(--muted-foreground));
+}
+
 /* Texte à dégradé : le dégradé est peint dans la boîte de ligne. Avec un interligne serré (text-4xl vaut 1,11, text-5xl vaut 1)
    les lettres basses (g, p, q, y) sont rognées. Cet interligne minimal les laisse entières, sans toucher aux marges. */
 .bg-clip-text.text-transparent,

@@ -9,7 +9,7 @@ const MLModelsGuide = () => (
     course={mlModelsGuideCourse}
     title="Guide des modèles de machine learning"
     categoryName="Machine Learning"
-    description="Choisir une famille de modèles, puis la prendre en main : descente de gradient stochastique, boosting, clustering, apprentissage par renforcement et réseaux de neurones, scores mesurés dans votre navigateur."
+    description="Choisir une famille de modèles, puis la prendre en main : descente de gradient stochastique, boosting, clustering, apprentissage par renforcement, réseaux de neurones et combinaison de modèles, scores mesurés dans votre navigateur."
     level="Intermédiaire"
     icon={Brain}
     language="python"

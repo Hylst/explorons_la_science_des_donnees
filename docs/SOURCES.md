@@ -273,6 +273,16 @@ Les seuils cités comme usuels (VIF au-delà de 10, distance de Cook au-delà de
 | Validité jusqu'au 27 décembre 2031 | articles de cabinets (Freeths, Hunton), communiqué IP/25/3059 non lisible par mon outil | extrait de recherche : non repris sur le site |
 | Journaux conservés au plus un an, e-mails un an après le dernier échange | décisions de l'auteur, le 24 octobre 2026 | à faire correspondre à la configuration réelle du serveur (rotation des journaux) |
 
+## 16. Cours de vision par ordinateur (24 octobre 2026)
+
+Images : `sklearn.datasets.load_digits`, fourni avec scikit-learn (rien n'est téléchargé). Tous les nombres des six modules (réussites, tailles, durées) sont mesurés par le moteur du site et revérifiés par `src/data/lessons/lessons-python.test.ts` pour les exercices.
+
+| Fait repris dans le cours | Source | Niveau |
+|---|---|---|
+| 1 797 images de 8 x 8, entiers de 0 à 16, copie de la partie test du jeu UCI « Optical Recognition of Handwritten Digits », créé par E. Alpaydin (juillet 1998) ; chiffres de 13 personnes ; images de 32 x 32 points découpées en blocs de 4 x 4 dont on compte les points | description jointe au jeu (`load_digits().DESCR`, scikit-learn de Pyodide 314.0.7) | lue le 24 octobre 2026 |
+| Les premières couches d'un réseau convolutif apprennent des détecteurs généraux, les dernières sont spécialisées (Yosinski et al., 2014, « How transferable are features in deep neural networks? ») | connaissance de l'article | non relu à la source pour ce cours |
+| ImageNet comme jeu de pré-entraînement courant, MobileNetV2 disponible pré-entraîné dans Keras (`weights='imagenet'`) | documentation Keras (connaissance) | code à lire, non exécuté (TensorFlow absent du moteur) |
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

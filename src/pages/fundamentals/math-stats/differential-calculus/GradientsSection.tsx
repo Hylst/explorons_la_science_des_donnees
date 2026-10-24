@@ -199,7 +199,7 @@ const GradientsSection = () => {
             {backpropagationSteps.map((step, index) => (
               <div key={index} className={`p-4 rounded-lg border-l-4 border-l-${step.color}-500 bg-${step.color}-50`}>
                 <div className="flex items-center gap-2 mb-2">
-                  <div className={`w-6 h-6 rounded-full bg-${step.color}-500 text-white text-xs flex items-center justify-center font-bold`}>
+                  <div className={`w-6 h-6 rounded-full bg-${step.color}-600 text-white text-xs flex items-center justify-center font-bold`}>
                     {step.step}
                   </div>
                   <h4 className="font-semibold text-sm">{step.title}</h4>

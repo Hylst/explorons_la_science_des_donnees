@@ -1,7 +1,7 @@
 [
   {
     "name": "Data.gouv.fr",
-    "url": "https://www.data.gouv.fr/fr/datasets/recent.atom",
+    "url": "https://www.data.gouv.fr/api/1/datasets/recent.atom",
     "siteUrl": "https://www.data.gouv.fr/",
     "description": "Le portail officiel des données publiques en France : derniers jeux de données publiés",
     "language": "Français",
@@ -11,9 +11,9 @@
     "name": "Liora (ex-DataScientest)",
     "url": "https://liora.io/feed",
     "siteUrl": "https://liora.io/",
-    "description": "Blog de l'organisme de formation data anciennement nommé DataScientest : articles, tutoriels et analyses",
+    "description": "Blog d'un organisme de formation (anciennement DataScientest) : articles, tutoriels et analyses",
     "language": "Français",
-    "category": "Formation"
+    "category": "Tutoriels"
   },
   {
     "name": "Le Big Data",

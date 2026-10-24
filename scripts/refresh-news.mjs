@@ -15,6 +15,7 @@ import { readFile, writeFile } from "node:fs/promises";
 
 const SOURCES_URL = new URL("../src/data/rss-sources.json", import.meta.url);
 const ARTICLES_URL = new URL("../src/data/rss-articles.json", import.meta.url);
+const EXCLUSIONS_URL = new URL("../src/data/rss-exclusions.json", import.meta.url);
 const PER_SOURCE = 4;
 const EXCERPT_MAX = 220;
 const TIMEOUT_MS = 20_000;
@@ -93,11 +94,14 @@ const fetchFeed = async (url) => {
 };
 
 const sources = JSON.parse(await readFile(SOURCES_URL, "utf8"));
+// Aucun article promotionnel (formation, offre, inscription) : le site n'a pas de côté commercial
+const PROMO = JSON.parse(await readFile(EXCLUSIONS_URL, "utf8")).patterns.map((p) => new RegExp(p, "iu"));
+const isPromotional = (item) => PROMO.some((re) => re.test(item.title) || re.test(item.url));
 const articles = [];
 const failed = [];
 for (const source of sources) {
   try {
-    const items = parseFeed(await fetchFeed(source.url)).slice(0, PER_SOURCE);
+    const items = parseFeed(await fetchFeed(source.url)).filter((item) => !isPromotional(item)).slice(0, PER_SOURCE);
     if (!items.length) throw new Error("aucun article exploitable");
     items.forEach((item) =>
       articles.push({

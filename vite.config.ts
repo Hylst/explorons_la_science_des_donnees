@@ -71,6 +71,7 @@ const HYLST_SITE_URL = SITE_URL;
 
 const staticHosting = (): Plugin => {
   let outDir = "dist";
+  let buildFailed = false;
   return {
     name: "static-hosting-hylst",
     apply: "build",
@@ -83,7 +84,16 @@ const staticHosting = (): Plugin => {
     transformIndexHtml: (html) =>
       html
         .replace("</head>", `    <meta property="og:locale" content="fr_FR" />\n    <meta name="robots" content="index, follow" />\n  </head>`),
+    // Rollup appelle closeBundle même quand le build échoue : travailler alors sur l'ancien dossier de sortie masquait
+    // l'erreur d'origine sous « <div id="root"></div> introuvable » (constaté le 24 octobre 2026)
+    buildEnd(error) {
+      buildFailed = Boolean(error);
+    },
+    renderError() {
+      buildFailed = true;
+    },
     closeBundle() {
+      if (buildFailed) return;
       const indexPath = path.join(outDir, "index.html");
       if (!fs.existsSync(indexPath)) return;
       const template = fs.readFileSync(indexPath, "utf8");

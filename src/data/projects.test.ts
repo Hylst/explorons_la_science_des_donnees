@@ -208,7 +208,7 @@ describe("matchesFilters", () => {
     });
 
     it("cherche dans les technologies", () => {
-      expect(ids(select({ query: "statsmodels" }))).toEqual(["intermediate-5"]);
+      expect(ids(select({ query: "statsmodels" }))).toEqual(["beginner-3", "intermediate-5"]);
     });
 
     it("cherche dans les objectifs d'apprentissage", () => {
@@ -255,7 +255,7 @@ describe("matchesFilters", () => {
       expect(ids(select({ level: "beginner", technologies: ["pandas"] })).sort()).toEqual(["beginner-1", "beginner-3"]);
       expect(ids(select({ level: "beginner", technologies: ["scikit-learn"] })).sort()).toEqual(["beginner-2", "beginner-4"]);
       expect(ids(select({ level: "beginner", technologies: ["pandas"], category: "visualisation" }))).toEqual(["beginner-3"]);
-      expect(ids(select({ level: "beginner", technologies: ["pandas"], category: "visualisation", query: "covid", duration: "medium" }))).toEqual(["beginner-3"]);
+      expect(ids(select({ level: "beginner", technologies: ["pandas"], category: "visualisation", query: "économiques", duration: "short" }))).toEqual(["beginner-3"]);
     });
 
     it("renvoie une liste vide quand les filtres se contredisent", () => {
@@ -300,7 +300,7 @@ describe("valeurs dérivées des données", () => {
   });
 
   it("levelSummary : nombre de projets et fourchette de durée calculés sur les données", () => {
-    expect(levelSummary("beginner")).toEqual({ count: 4, minHours: 3, maxHours: 7 });
+    expect(levelSummary("beginner")).toEqual({ count: 4, minHours: 3, maxHours: 6 });
     expect(levelSummary("intermediate")).toEqual({ count: 5, minHours: 3, maxHours: 4 });
     expect(levelSummary("advanced")).toEqual({ count: 3, minHours: 20, maxHours: 35 });
   });

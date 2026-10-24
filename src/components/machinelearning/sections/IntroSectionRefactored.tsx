@@ -220,17 +220,17 @@ const IntroSectionRefactored = () => {
                   <div className="bg-yellow-100 p-3 rounded border-l-4 border-yellow-500">
                     <strong className="text-yellow-700">Région 2 :</strong><br/>
                     Surface &gt; 150 m² et chambres ≤ 3<br/>
-                    <span className="text-yellow-600">→ Prix moyen (par exemple 200 à 300 k€)</span>
+                    <span className="text-yellow-700">→ Prix moyen (par exemple 200 à 300 k€)</span>
                   </div>
                   <div className="bg-orange-100 p-3 rounded border-l-4 border-orange-500">
                     <strong className="text-orange-700">Région 3 :</strong><br/>
                     Surface ≤ 150 m² avec garage<br/>
-                    <span className="text-orange-600">→ Prix moyen-bas (par exemple 150 à 200 k€)</span>
+                    <span className="text-orange-700">→ Prix moyen-bas (par exemple 150 à 200 k€)</span>
                   </div>
                   <div className="bg-red-100 p-3 rounded border-l-4 border-red-500">
                     <strong className="text-red-700">Région 4 :</strong><br/>
                     Surface ≤ 150 m² sans garage<br/>
-                    <span className="text-red-600">→ Prix bas (par exemple moins de 150 k€)</span>
+                    <span className="text-red-700">→ Prix bas (par exemple moins de 150 k€)</span>
                   </div>
                 </div>
               </div>

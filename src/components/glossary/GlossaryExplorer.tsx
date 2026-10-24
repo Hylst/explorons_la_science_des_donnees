@@ -66,11 +66,11 @@ const GlossaryExplorer = () => {
           <div className="text-sm text-muted-foreground">Termes</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-secondary">{categories.length - 1}</div>
+          <div className="text-2xl font-bold text-indigo-600">{categories.length - 1}</div>
           <div className="text-sm text-muted-foreground">Catégories</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-accent">{filteredEntries.length}</div>
+          <div className="text-2xl font-bold text-purple-700">{filteredEntries.length}</div>
           <div className="text-sm text-muted-foreground">Résultats</div>
         </div>
       </div>

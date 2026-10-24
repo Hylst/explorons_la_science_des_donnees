@@ -11,6 +11,7 @@ const SupervisedLearningCourse = React.lazy(() => import('../../pages/courses/ma
 const DatabaseFundamentals = React.lazy(() => import('../../pages/courses/databases/DatabaseFundamentals'));
 const DataVisualization = React.lazy(() => import('../../pages/courses/dataviz/DataVisualization'));
 const NaturalLanguageProcessing = React.lazy(() => import('../../pages/courses/nlp/NaturalLanguageProcessing'));
+const ComputerVision = React.lazy(() => import('../../pages/courses/vision/ComputerVision'));
 const MLModelsGuide = React.lazy(() => import('../../pages/courses/MLModelsGuide'));
 const TransformersGuide = React.lazy(() => import('../../pages/courses/TransformersGuide'));
 const NotFound = React.lazy(() => import('../../pages/NotFound'));
@@ -44,6 +45,9 @@ const CourseRouter: React.FC = () => {
       
       {/* NLP Courses */}
       <Route path="nlp/natural-language-processing" element={<NaturalLanguageProcessing />} />
+
+      {/* Vision par ordinateur */}
+      <Route path="vision/computer-vision" element={<ComputerVision />} />
       
       {/* Anciennes URL : déclarées dans src/config/routes.ts (rendues par App.tsx) */}
 

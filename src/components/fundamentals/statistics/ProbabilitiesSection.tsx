@@ -1,20 +1,14 @@
 
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { DeferredResponsiveContainer } from "@/components/ui/deferred-chart";
+import { LazyChart } from "@/components/ui/lazy-chart";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { statisticsDefinitions } from "../definitions/statistics-definitions";
 
-const ProbabilitiesSection = () => {
-  // Data for probability visualization
-  const probabilityData = [
-    { name: 'Succès', value: 30 },
-    { name: 'Échec', value: 70 },
-  ];
-  
-  const COLORS = ['#4f46e5', '#e11d48'];
+// Graphique et données dans charts/BernoulliChart.tsx, chargé à l'approche de l'écran
+const loadBernoulliChart = () => import("./charts/BernoulliChart");
 
+const ProbabilitiesSection = () => {
   return (
     <Card className="border-t-4 border-t-ds-blue-300 hover:shadow-md transition-all duration-300">
       <CardHeader>
@@ -51,25 +45,7 @@ const ProbabilitiesSection = () => {
         <div className="mt-6 h-64 chart-container">
           <p className="text-sm text-gray-500 mb-2 chart-description">Visualisation : une loi de Bernoulli de paramètre 0,3 (exemple)</p>
           <div className="flex justify-center h-full">
-            <DeferredResponsiveContainer width="70%" height="100%">
-              <PieChart>
-                <Pie
-                  data={probabilityData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)} %`}
-                >
-                  {probabilityData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </DeferredResponsiveContainer>
+            <LazyChart load={loadBernoulliChart} width="70%" />
           </div>
           <p className="text-xs text-gray-500 mt-1 text-center chart-legend-container">
             Les probabilités permettent de quantifier l'incertitude : ici, 30 % de chances de succès et 70 % d'échec.

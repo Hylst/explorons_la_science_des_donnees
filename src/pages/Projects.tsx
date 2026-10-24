@@ -28,7 +28,7 @@ import {
 import { Rocket, Target, Trophy, TrendingUp, BookOpen, Code, Search } from "lucide-react";
 
 /** Nombre de projets guidés, écrit en toutes lettres en début de phrase */
-const NOMBRES = ["Aucun", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"];
+const NOMBRES = ["Aucun", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze"];
 const nombreGuides = NOMBRES[guidedProjects.modules.length] ?? String(guidedProjects.modules.length);
 
 /** Les technologies les plus utilisées par les projets, calculées sur les données */

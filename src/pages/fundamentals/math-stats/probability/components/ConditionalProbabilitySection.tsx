@@ -24,7 +24,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "Malade",
         probability: 0.01,
-        color: "#EF4444",
+        color: "#B91C1C",
         outcomes: [
           { result: "Test +", probability: 0.95, joint: 0.01 * 0.95 },
           { result: "Test -", probability: 0.05, joint: 0.01 * 0.05 }
@@ -33,7 +33,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "Sain",
         probability: 0.99,
-        color: "#10B981",
+        color: "#047857",
         outcomes: [
           { result: "Test +", probability: 0.02, joint: 0.99 * 0.02 },
           { result: "Test -", probability: 0.98, joint: 0.99 * 0.98 }
@@ -51,7 +51,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "Nuageux",
         probability: 0.4,
-        color: "#6B7280",
+        color: "#4B5563",
         outcomes: [
           { result: "Pluie", probability: 0.7, joint: 0.4 * 0.7 },
           { result: "Sec", probability: 0.3, joint: 0.4 * 0.3 }
@@ -60,7 +60,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "Dégagé",
         probability: 0.6,
-        color: "#F59E0B",
+        color: "#B45309",
         outcomes: [
           { result: "Pluie", probability: 0.1, joint: 0.6 * 0.1 },
           { result: "Sec", probability: 0.9, joint: 0.6 * 0.9 }
@@ -78,7 +78,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "VIP",
         probability: 0.2,
-        color: "#8B5CF6",
+        color: "#6D28D9",
         outcomes: [
           { result: "Ouvre", probability: 0.6, joint: 0.2 * 0.6 },
           { result: "Ignore", probability: 0.4, joint: 0.2 * 0.4 }
@@ -87,7 +87,7 @@ const ConditionalProbabilitySection = () => {
       {
         condition: "Standard",
         probability: 0.8,
-        color: "#3B82F6",
+        color: "#1D4ED8",
         outcomes: [
           { result: "Ouvre", probability: 0.25, joint: 0.8 * 0.25 },
           { result: "Ignore", probability: 0.75, joint: 0.8 * 0.75 }

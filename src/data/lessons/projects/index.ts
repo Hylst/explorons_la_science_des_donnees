@@ -7,6 +7,7 @@ import { projectTimeSeries } from "./time-series";
 import { projectFraud } from "./fraud-detection";
 import { projectHousePrices } from "./house-prices";
 import { projectRecommendation } from "./recommendation";
+import { projectDashboard } from "./dashboard";
 
 /**
  * Projets guidés de la page Projets : chaque projet est un module (même format que les cours) dont l'identifiant
@@ -18,6 +19,7 @@ export const guidedProjects: LessonCourse = {
   modules: [
     projectSalesEda,
     projectIris,
+    projectDashboard,
     projectSentiment,
     projectRecommendation,
     projectHousePrices,

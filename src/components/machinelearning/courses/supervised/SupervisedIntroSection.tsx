@@ -84,7 +84,7 @@ const SupervisedIntroSection = () => {
           <div className="flex justify-center">
             <svg width="800" height="300" viewBox="0 0 800 300" className="border rounded-lg bg-gray-50">
               {/* Données d'entrée */}
-              <rect x="20" y="80" width="120" height="80" fill="#3B82F6" rx="8" />
+              <rect x="20" y="80" width="120" height="80" fill="#1D4ED8" rx="8" />
               <text x="80" y="115" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                 Données
               </text>
@@ -96,10 +96,10 @@ const SupervisedIntroSection = () => {
               </text>
 
               {/* Flèche 1 */}
-              <path d="M150 120 L190 120" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M150 120 L190 120" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" markerEnd="url(#arrowhead)" />
 
               {/* Algorithme */}
-              <rect x="200" y="80" width="120" height="80" fill="#10B981" rx="8" />
+              <rect x="200" y="80" width="120" height="80" fill="#047857" rx="8" />
               <text x="260" y="115" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                 Algorithme
               </text>
@@ -111,10 +111,10 @@ const SupervisedIntroSection = () => {
               </text>
 
               {/* Flèche 2 */}
-              <path d="M330 120 L370 120" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M330 120 L370 120" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" markerEnd="url(#arrowhead)" />
 
               {/* Modèle */}
-              <rect x="380" y="80" width="120" height="80" fill="#8B5CF6" rx="8" />
+              <rect x="380" y="80" width="120" height="80" fill="#6D28D9" rx="8" />
               <text x="440" y="115" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                 Modèle
               </text>
@@ -126,7 +126,7 @@ const SupervisedIntroSection = () => {
               </text>
 
               {/* Nouvelles données */}
-              <rect x="550" y="20" width="100" height="60" fill="#F59E0B" rx="8" />
+              <rect x="550" y="20" width="100" height="60" fill="#B45309" rx="8" />
               <text x="600" y="45" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                 Nouvelles
               </text>
@@ -135,10 +135,10 @@ const SupervisedIntroSection = () => {
               </text>
 
               {/* Flèche 3 */}
-              <path d="M550 50 L480 80" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M550 50 L480 80" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" markerEnd="url(#arrowhead)" />
 
               {/* Prédictions */}
-              <rect x="600" y="140" width="100" height="60" fill="#EF4444" rx="8" />
+              <rect x="600" y="140" width="100" height="60" fill="#B91C1C" rx="8" />
               <text x="650" y="165" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                 Prédictions
               </text>
@@ -147,21 +147,21 @@ const SupervisedIntroSection = () => {
               </text>
 
               {/* Flèche 4 */}
-              <path d="M480 140 L580 170" stroke="#374151" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M480 140 L580 170" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" markerEnd="url(#arrowhead)" />
 
               {/* Définition des marqueurs de flèches */}
               <defs>
                 <marker id="arrowhead" markerWidth="10" markerHeight="7"
                         refX="10" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#374151" />
+                  <polygon points="0 0, 10 3.5, 0 7" className="fill-gray-700 dark:fill-gray-300" />
                 </marker>
               </defs>
 
               {/* Labels */}
-              <text x="170" y="110" textAnchor="middle" fontSize="10" fill="#6B7280">Entraînement</text>
-              <text x="350" y="110" textAnchor="middle" fontSize="10" fill="#6B7280">Produit</text>
-              <text x="530" y="70" textAnchor="middle" fontSize="10" fill="#6B7280">Prédiction</text>
-              <text x="540" y="185" textAnchor="middle" fontSize="10" fill="#6B7280">Résultat</text>
+              <text x="170" y="110" textAnchor="middle" fontSize="10" className="fill-gray-600 dark:fill-gray-300">Entraînement</text>
+              <text x="350" y="110" textAnchor="middle" fontSize="10" className="fill-gray-600 dark:fill-gray-300">Produit</text>
+              <text x="530" y="70" textAnchor="middle" fontSize="10" className="fill-gray-600 dark:fill-gray-300">Prédiction</text>
+              <text x="540" y="185" textAnchor="middle" fontSize="10" className="fill-gray-600 dark:fill-gray-300">Résultat</text>
             </svg>
           </div>
         </CardContent>

@@ -106,6 +106,10 @@ find dist-hylst/assets -name '*.js' | wc -l
 du -sk public/vendor
 ```
 
+## Recharts hors du premier affichage (24 octobre 2026, après-midi)
+
+`LazyChart` (`src/components/ui/lazy-chart.tsx`) charge le module d'un graphique, donc Recharts, à l'approche de l'écran. Appliqué aux graphiques des deux premières sections de `/fundamentals` (statistiques, visuels mathématiques). Mesure locale (gzip, mobile simulé), trois passes alternées dans la même séance, ancien build `mvm87avz` puis nouveau `mvmay9tl` : performance 87, 88, 88 puis 92, 93, 91 ; temps de blocage 201, 163, 172 puis 85, 86, 92 ms ; élément principal 3,46 s puis 3,14 à 3,30 s. Le reste du délai vient de l'exécution du bundle principal (2,6 s en mobile simulé).
+
 ## Remesure du 24 octobre 2026 (`/fundamentals`)
 
 Même méthode que ci-dessous, ancien build (`mve4clu8`) et nouveau (`mvm3w9y9`) mesurés dans la même séance : performance 75 puis 84 pour l'ancien, 82 et 82 pour le nouveau (écart de mesure, pas de gain) ; accessibilité 85 → 100. Sur hylst.fr, l'agent de la plateforme a mesuré le 23 octobre l'accueil à 99, `/fundamentals` à 75 et le cours de séries temporelles à 97 en performance. Diagnostic de `/fundamentals` : élément principal à 3,5 s dont 87 % de délai de rendu ; 2,5 s d'exécution du bundle principal ; Recharts chargé dès la première section ; piste : sortir les graphiques des sections dans des modules chargés à la demande.

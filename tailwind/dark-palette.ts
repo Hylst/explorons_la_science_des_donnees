@@ -23,8 +23,9 @@ const MAPS = {
   },
 } as const;
 
-// Jeu de couleurs propre au site (ds-blue, ds-purple) : sa nuance 400 est trop sombre sur fond sombre (4:1), le texte passe à 300
-const DS_TEXT: Record<number, number> = { 400: 300, 500: 300, 600: 300, 700: 200, 800: 100, 900: 50 };
+// Jeu de couleurs propre au site (ds-blue, ds-purple) : sa nuance 400 est trop sombre sur fond sombre (4:1), le texte passe à 300 ;
+// 600 passe à 200 (ds-purple-300 donnait 4,4:1 sur un fond blue-950, 24 octobre 2026)
+const DS_TEXT: Record<number, number> = { 400: 300, 500: 300, 600: 200, 700: 200, 800: 100, 900: 50 };
 
 type Kind = "bg" | "text" | "border" | "border-l" | "border-r" | "border-t" | "border-b" | "divide" | "from" | "via" | "to";
 const MAP_KIND: Record<Kind, keyof typeof MAPS> = {

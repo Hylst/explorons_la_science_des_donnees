@@ -824,7 +824,7 @@ print(f"Mémoire : {data.nbytes} octets")
                   }`}
                        onClick={() => setActiveElement(activeElement === idx + 400 ? null : idx + 400)}>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {item.step}
                       </div>
                       <h5 className="font-semibold text-orange-800">{item.title}</h5>

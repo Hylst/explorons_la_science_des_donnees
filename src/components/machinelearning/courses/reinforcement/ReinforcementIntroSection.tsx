@@ -115,29 +115,29 @@ const ReinforcementIntroSection = () => {
               {/* Flèches et labels */}
               <defs>
                 <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="#374151" />
+                  <polygon points="0 0, 10 3.5, 0 7" className="fill-gray-700 dark:fill-gray-300" />
                 </marker>
               </defs>
 
               {/* État vers Agent */}
-              <path d="M 200 100 Q 300 50 400 280" stroke="#374151" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-              <text x="280" y="140" textAnchor="middle" className="text-sm font-medium" fill="#374151">État s(t)</text>
+              <path d="M 200 100 Q 300 50 400 280" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
+              <text x="280" y="140" textAnchor="middle" className="text-sm font-medium fill-gray-700 dark:fill-gray-200">État s(t)</text>
 
               {/* Action Agent vers Environnement */}
-              <path d="M 400 300 Q 300 350 200 120" stroke="#374151" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-              <text x="320" y="320" textAnchor="middle" className="text-sm font-medium" fill="#374151">Action a(t)</text>
+              <path d="M 400 300 Q 300 350 200 120" className="stroke-gray-700 dark:stroke-gray-300" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
+              <text x="360" y="336" textAnchor="middle" className="text-sm font-medium fill-gray-700 dark:fill-gray-200">Action a(t)</text>
 
               {/* Récompense */}
               <path d="M 180 150 Q 250 200 380 280" stroke="#dc2626" strokeWidth="3" fill="none" markerEnd="url(#arrowhead)"/>
-              <text x="280" y="220" textAnchor="middle" className="text-sm font-bold" fill="#dc2626">Récompense r(t+1)</text>
+              <text x="280" y="220" textAnchor="middle" className="text-sm font-bold fill-red-600 dark:fill-red-400">Récompense r(t+1)</text>
 
               {/* Légende */}
-              <rect x="50" y="320" width="300" height="60" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
-              <text x="60" y="340" className="text-sm font-semibold" fill="#374151">Cycle d'apprentissage :</text>
-              <text x="60" y="355" className="text-xs" fill="#6b7280">1. L'agent observe l'état</text>
-              <text x="60" y="370" className="text-xs" fill="#6b7280">2. Il choisit une action selon sa politique</text>
-              <text x="200" y="355" className="text-xs" fill="#6b7280">3. L'environnement change d'état</text>
-              <text x="200" y="370" className="text-xs" fill="#6b7280">4. Une récompense est donnée</text>
+              <rect x="30" y="308" width="290" height="88" rx="10" className="fill-gray-50 stroke-gray-300 dark:fill-gray-800 dark:stroke-gray-600"/>
+              <text x="42" y="326" className="text-sm font-semibold fill-gray-700 dark:fill-gray-200">Cycle d'apprentissage :</text>
+              <text x="42" y="343" className="text-xs fill-gray-600 dark:fill-gray-300">1. L'agent observe l'état</text>
+              <text x="42" y="358" className="text-xs fill-gray-600 dark:fill-gray-300">2. Il choisit une action selon sa politique</text>
+              <text x="42" y="373" className="text-xs fill-gray-600 dark:fill-gray-300">3. L'environnement change d'état</text>
+              <text x="42" y="388" className="text-xs fill-gray-600 dark:fill-gray-300">4. Une récompense est donnée</text>
             </svg>
           </div>
         </CardContent>

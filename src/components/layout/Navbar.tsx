@@ -84,7 +84,7 @@ const Navbar = () => {
                           size="sm"
                           className={`h-9 px-3 flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${
                             isActivePath(item.path)
-                              ? "text-primary bg-primary/10"
+                              ? "text-blue-700 bg-primary/10"
                               : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                           }`}
                         >
@@ -118,7 +118,7 @@ const Navbar = () => {
                       to={item.path}
                       className={`h-9 px-3 inline-flex items-center text-sm font-medium transition-colors duration-200 rounded-md ${
                         isActivePath(item.path)
-                          ? "text-primary bg-primary/10"
+                          ? "text-blue-700 bg-primary/10"
                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                       }`}
                     >
@@ -137,7 +137,7 @@ const Navbar = () => {
                       size="sm"
                       className={`h-9 px-3 flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${
                         secondaryItems.some((item) => isActivePath(item.path))
-                          ? "text-primary bg-primary/10"
+                          ? "text-blue-700 bg-primary/10"
                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                       }`}
                     >
@@ -193,7 +193,7 @@ const Navbar = () => {
                   to={item.path}
                   className={`block px-3 py-3 rounded-md text-base font-medium transition-colors ${
                     isActivePath(item.path)
-                      ? "text-primary bg-primary/10"
+                      ? "text-blue-700 bg-primary/10"
                       : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                   }`}
                   onClick={() => setIsOpen(false)}

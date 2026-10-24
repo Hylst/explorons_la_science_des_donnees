@@ -1,0 +1,42 @@
+# Intégration continue : la chaîne de livraison du projet (readme_dev.md), sur chaque envoi et chaque demande de fusion.
+# Les moteurs Python et SQL (public/vendor, ~56 Mo) ne sont pas dans git : scripts/sync-runtimes.mjs les reconstruit
+# (copie depuis node_modules, roues Pyodide téléchargées et vérifiées par sha256) ; le cache évite de les retélécharger.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache des moteurs (public/vendor)
+        uses: actions/cache@v4
+        with:
+          path: public/vendor
+          key: vendor-${{ hashFiles('package-lock.json', 'scripts/sync-runtimes.mjs') }}
+
+      - run: npm run runtimes:sync
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:smoke
+      - run: npm run build:hylst

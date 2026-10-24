@@ -59,19 +59,19 @@ export const projects: Project[] = [
   },
   {
     id: "beginner-3",
-    title: "Tableau de bord COVID-19 avec Streamlit",
-    description: "Créez un tableau de bord interactif pour visualiser l'évolution des données COVID-19 mondiales.",
+    title: "Tableau de bord d'indicateurs économiques",
+    description: "Construisez un tableau de bord sur cinquante ans de données économiques réelles des États-Unis (projet guidé, données du domaine public fournies avec statsmodels) avec pandas et Matplotlib, puis voyez comment Streamlit le rend interactif.",
     level: "beginner",
-    technologies: ["Python", "Streamlit", "Plotly", "pandas"],
+    technologies: ["Python", "pandas", "Matplotlib", "Streamlit"],
     category: "visualisation",
-    duration: "5-7 heures",
-    difficulty: 3,
+    duration: "3-5 heures",
+    difficulty: 2,
     prerequisites: ["Python", "pandas"],
     learningObjectives: [
-      "Applications web avec Streamlit",
-      "Visualisations interactives",
-      "APIs de données",
-      "Déploiement d'applications"
+      "Choix et calcul d'indicateurs clés",
+      "Variations sur un an d'une série trimestrielle",
+      "Composition d'un tableau de bord lisible",
+      "Filtre par période, puis application Streamlit"
     ]
   },
   {

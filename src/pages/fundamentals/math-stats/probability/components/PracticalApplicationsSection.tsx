@@ -45,6 +45,8 @@ const PracticalApplicationsSection = () => {
   ];
 
   const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'];
+  // Texte des pourcentages : classes (adaptées au thème sombre), les teintes des graphiques donnaient 2:1 à 3,5:1
+  const TEXT_COLORS = ['text-blue-700', 'text-emerald-700', 'text-amber-700', 'text-red-700', 'text-purple-700'];
 
   /**
    * Calculate expected return for risk analysis
@@ -183,7 +185,7 @@ const PracticalApplicationsSection = () => {
                         {item.label}
                       </Badge>
                     </div>
-                    <span className="text-lg font-bold" style={{ color: COLORS[index] }}>
+                    <span className={`text-lg font-bold ${TEXT_COLORS[index]}`}>
                       {(item.probability * 100).toFixed(1)}%
                     </span>
                   </div>

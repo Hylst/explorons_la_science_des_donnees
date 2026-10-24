@@ -44,8 +44,8 @@ export const DistributionPanel: React.FC<{ ds: SampleDataset }> = ({ ds }) => {
             return <rect key={i} x={6 + i * 19.5} y={105 - h} width={18} height={h} className="fill-blue-500"><title>{`${fmt(data.lo + i * data.width, 0)} à ${fmt(data.lo + (i + 1) * data.width, 0)} ${ds.unit} : ${c}`}</title></rect>;
           })}
           <line x1="4" y1="105" x2="238" y2="105" stroke="#9ca3af" />
-          <text x="4" y="117" fontSize="8" fill="#6b7280">{fmt(data.lo, 0)}</text>
-          <text x="238" y="117" fontSize="8" fill="#6b7280" textAnchor="end">{fmt(data.lo + data.width * 12, 0)} {ds.unit}</text>
+          <text x="4" y="117" fontSize="8" className="fill-gray-600 dark:fill-gray-300">{fmt(data.lo, 0)}</text>
+          <text x="238" y="117" fontSize="8" className="fill-gray-600 dark:fill-gray-300" textAnchor="end">{fmt(data.lo + data.width * 12, 0)} {ds.unit}</text>
         </svg>
         <div className="text-sm space-y-1">
           <StatRow label="Moyenne :" value={`${fmt(data.d.mean)} ${ds.unit}`} />
@@ -91,13 +91,13 @@ export const OutliersPanel: React.FC<{ ds: SampleDataset }> = ({ ds }) => {
         <div className="space-y-2 min-w-0">
           <h5 className="font-medium text-center">Boîte à moustaches (IQR)</h5>
           <svg viewBox="0 0 240 70" className="w-full h-32 bg-gray-50 rounded" role="img" aria-label="Boîte à moustaches">
-            <line x1={x(d.whiskerLow)} x2={x(d.whiskerHigh)} y1="30" y2="30" stroke="#374151" />
+            <line x1={x(d.whiskerLow)} x2={x(d.whiskerHigh)} y1="30" y2="30" className="stroke-gray-700 dark:stroke-gray-300" />
             <rect x={x(d.q1)} y="16" width={Math.max(1, x(d.q3) - x(d.q1))} height="28" className="fill-blue-200 stroke-blue-600" />
             <line x1={x(d.median)} x2={x(d.median)} y1="16" y2="44" stroke="#1d4ed8" strokeWidth="2" />
-            {[d.whiskerLow, d.whiskerHigh].map((v, i) => <line key={i} x1={x(v)} x2={x(v)} y1="23" y2="37" stroke="#374151" />)}
+            {[d.whiskerLow, d.whiskerHigh].map((v, i) => <line key={i} x1={x(v)} x2={x(v)} y1="23" y2="37" className="stroke-gray-700 dark:stroke-gray-300" />)}
             {d.outliersIqr.map((v, i) => <circle key={i} cx={x(v)} cy="30" r="3" className="fill-red-500"><title>{`${fmt(v, 0)} ${ds.unit}`}</title></circle>)}
-            <text x="10" y="64" fontSize="8" fill="#6b7280">{fmt(lo, 0)}</text>
-            <text x="230" y="64" fontSize="8" fill="#6b7280" textAnchor="end">{fmt(hi, 0)} {ds.unit}</text>
+            <text x="10" y="64" fontSize="8" className="fill-gray-600 dark:fill-gray-300">{fmt(lo, 0)}</text>
+            <text x="230" y="64" fontSize="8" className="fill-gray-600 dark:fill-gray-300" textAnchor="end">{fmt(hi, 0)} {ds.unit}</text>
           </svg>
           <p className="text-xs text-center text-muted-foreground">Q1 {fmt(d.q1, 0)} · médiane {fmt(d.median, 0)} · Q3 {fmt(d.q3, 0)} · bornes [{fmt(d.lowFence, 0)} ; {fmt(d.highFence, 0)}]</p>
         </div>

@@ -845,7 +845,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">1</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">1</div>
                 <span className="font-medium">Public cible</span>
               </div>
               <p className="text-xs pl-8">
@@ -855,7 +855,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">2</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">2</div>
                 <span className="font-medium">Type de données</span>
               </div>
               <p className="text-xs pl-8">
@@ -865,7 +865,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">3</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">3</div>
                 <span className="font-medium">Interactivité</span>
               </div>
               <p className="text-xs pl-8">
@@ -875,7 +875,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">4</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">4</div>
                 <span className="font-medium">Intégration</span>
               </div>
               <p className="text-xs pl-8">
@@ -885,7 +885,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">5</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">5</div>
                 <span className="font-medium">Budget</span>
               </div>
               <p className="text-xs pl-8">
@@ -895,7 +895,7 @@ ggsave("diamonds_plot.png", p, width = 10, height = 8, dpi = 300)`}</pre>
             
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">6</div>
+                <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-medium">6</div>
                 <span className="font-medium">Évolutivité</span>
               </div>
               <p className="text-xs pl-8">
