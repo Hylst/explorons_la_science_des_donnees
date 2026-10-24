@@ -1,5 +1,13 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-24, suite 11] - Dépendances vulnérables corrigées
+
+Demande de l'agent de la plateforme : DOMPurify (critique) et source-map-js (élevé) bloquaient la production.
+
+- **Mises à jour ciblées**, sans `npm audit fix` (qui montait aussi tailwindcss, @tailwindcss/typography, katex...) : dompurify 3.4.16 → 3.4.17 (seule copie du bundle, chunk Blog, plancher `^3.4.17` dans package.json), source-map-js 1.2.1 → 1.2.2 (outil de build), et dans le même lot les deux « élevé » des outils de développement : vite 7.3.6 → 7.3.7, undici 7.30.0 → 7.30.1 (jsdom). `npm audit` : 0 critique, 0 élevé.
+- **Restent** (modérés ou faibles, correctifs en version majeure, décision à prendre) : katex 0.16 (faible ; l'option `trust` n'est pas utilisée et l'attaque suppose une pollution de prototype existante), tailwindcss 3 et @tailwindcss/typography via postcss-selector-parser (modéré, outil de build).
+- **Contrôles** : lint 0, typecheck 0, 2117 tests, fumée 61, build:hylst mvmw137q (index-C-zdG-mD.js) VERIFY-DIST SUCCES ; dans Chrome avec les en-têtes de production : les 5 articles du blog rendus à l'identique (même empreinte HTML qu'en ligne avec 3.4.16), 4 défis (JavaScript et Python), cours SQL (6 modules), MLOps (6) et les 12 projets guidés passent, moteurs isolés, aucune erreur console. Une WebSocket ouverte depuis le moteur Python isolé est refusée (témoin : le serveur de test voit bien une connexion sans CSP).
+
 ## [2026-10-24, suite 10] - Cours MLOps et R, les trois projets avancés guidés
 
 Programme de l'auteur du 24 octobre (« 1 sujets sans cours, 2 projets non guidés, CI, isolation des moteurs ») : terminé pour R, MLOps et les projets. Modules écrits par des sous-agents (Sonnet) sur des fichiers séparés, relus et branchés par le coordinateur.
