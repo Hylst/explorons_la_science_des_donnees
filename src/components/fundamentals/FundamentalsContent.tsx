@@ -114,7 +114,7 @@ const FundamentalsContent = () => {
         <div className="flex gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="icon" disabled={currentSectionIndex <= 0}>
+              <Button variant="outline" size="icon" disabled={currentSectionIndex <= 0} aria-label="Section précédente">
                 <ArrowUp size={16} />
               </Button>
             </PopoverTrigger>
@@ -134,6 +134,7 @@ const FundamentalsContent = () => {
                 variant="outline" 
                 size="icon" 
                 disabled={currentSectionIndex >= sections.length - 1}
+                aria-label="Section suivante"
               >
                 <ArrowDown size={16} />
               </Button>

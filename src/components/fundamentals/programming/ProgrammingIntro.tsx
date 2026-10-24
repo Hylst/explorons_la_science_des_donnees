@@ -5,7 +5,7 @@ import { Code, Brain, Target, Zap, Database, Globe, Cpu, BarChart3, Package, Tv 
 import CourseHighlight from "@/components/courses/CourseHighlight";
 import { GlossaryTerm } from "@/components/ui/glossary-term";
 import { programmingDefinitions } from "@/components/fundamentals/definitions/programming-definitions";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SourceNote } from "@/components/ui/source-note";
 
 /**
@@ -16,7 +16,6 @@ import { SourceNote } from "@/components/ui/source-note";
 const ProgrammingIntro = () => {
   // Modern ES6 state management with hooks
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
-  const [animationStep, setAnimationStep] = useState(0);
 
   // ES6 Array of objects with enhanced language data
   const programmingLanguages = [
@@ -66,13 +65,6 @@ const ProgrammingIntro = () => {
     }
   ];
 
-  // ES6 useEffect hook for animations
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setAnimationStep(prev => (prev + 1) % 4);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
 
   // ES6 Arrow function with destructuring
   const handleLanguageSelect = (languageId: string) => {
@@ -110,9 +102,8 @@ const ProgrammingIntro = () => {
 
         {/* Enhanced interactive language grid using ES6 map and modern features */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {programmingLanguages.map((language, index) => {
+          {programmingLanguages.map((language) => {
             const isSelected = selectedLanguage === language.id;
-            const isAnimated = animationStep === index;
             
             return (
               <div 
@@ -120,7 +111,6 @@ const ProgrammingIntro = () => {
                 className={`
                   bg-white p-6 rounded-lg shadow-sm border transition-all duration-300 cursor-pointer
                   ${isSelected ? 'border-blue-500 shadow-lg scale-105' : 'border-gray-100 hover:border-gray-300'}
-                  ${isAnimated ? 'animate-pulse' : ''}
                 `}
                 onClick={() => handleLanguageSelect(language.id)}
                 role="button"

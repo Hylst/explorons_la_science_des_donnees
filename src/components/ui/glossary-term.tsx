@@ -25,6 +25,19 @@ export interface GlossaryTermDefinition {
 const isCitable = (definition: GlossaryTermDefinition) =>
   Boolean(definition.source && (definition.sourceUrl || /\(\d{4}\)/.test(definition.source)));
 
+/** Un terme qui ouvre la définition détaillée reste un `span` (il se coupe en fin de ligne comme le texte) mais se comporte
+ * en bouton : atteignable par Tab, ouvert par Entrée ou Espace (Radix ne réagit qu'au clic sur un élément qui n'est pas un bouton). */
+const keyboardTrigger = {
+  role: "button",
+  tabIndex: 0,
+  onKeyDown: (event: React.KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.currentTarget.click();
+    }
+  },
+} as const;
+
 interface GlossaryTermProps {
   definition: GlossaryTermDefinition;
   variant?: "hover" | "click" | "tooltip" | "all";
@@ -187,7 +200,7 @@ export const GlossaryTerm: React.FC<GlossaryTermProps> = ({
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <span className={cn(
+          <span {...keyboardTrigger} className={cn(
             getHighlightStyles(),
             className,
             "cursor-pointer"
@@ -287,7 +300,7 @@ export const GlossaryTerm: React.FC<GlossaryTermProps> = ({
       <HoverCard>
         <HoverCardTrigger asChild>
           <DialogTrigger asChild>
-            <span className={cn(
+            <span {...keyboardTrigger} className={cn(
               getHighlightStyles(),
               "cursor-pointer group relative",
               className

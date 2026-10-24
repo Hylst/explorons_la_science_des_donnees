@@ -399,7 +399,7 @@ const PythonMasterclass = () => {
               <span className="text-sm font-medium text-gray-700">Progression générale</span>
               <span className="text-sm text-gray-500">{completionRate}%</span>
             </div>
-            <Progress value={completionRate} className="h-3" />
+            <Progress value={completionRate} className="h-3" aria-label="Progression générale" />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>Débutant</span>
               <span>Intermédiaire</span>

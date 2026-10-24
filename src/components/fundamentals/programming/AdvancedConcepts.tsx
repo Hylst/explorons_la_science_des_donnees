@@ -273,7 +273,7 @@ const AdvancedConcepts = () => {
           <span className="text-sm font-medium text-gray-700">Progression générale</span>
           <span className="text-sm text-gray-500">{Math.round(progressPercentage)}%</span>
         </div>
-        <Progress value={progressPercentage} className="h-3" />
+        <Progress value={progressPercentage} className="h-3" aria-label="Progression générale" />
       </div>
 
       {/* Concepts Tabs */}

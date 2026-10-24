@@ -179,6 +179,7 @@ const QuizHistorySection: React.FC = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Titre ou catégorie..."
+                  aria-label="Rechercher dans l'historique"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -189,7 +190,7 @@ const QuizHistorySection: React.FC = () => {
             <div className="space-y-2">
               <label className="text-sm font-medium">Catégorie</label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger>
+                <SelectTrigger aria-label="Catégorie">
                   <SelectValue placeholder="Toutes les catégories" />
                 </SelectTrigger>
                 <SelectContent>
@@ -204,7 +205,7 @@ const QuizHistorySection: React.FC = () => {
             <div className="space-y-2">
               <label className="text-sm font-medium">Statut</label>
               <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                <SelectTrigger>
+                <SelectTrigger aria-label="Statut">
                   <SelectValue placeholder="Tous les statuts" />
                 </SelectTrigger>
                 <SelectContent>
@@ -219,7 +220,7 @@ const QuizHistorySection: React.FC = () => {
             <div className="space-y-2">
               <label className="text-sm font-medium">Trier par</label>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger>
+                <SelectTrigger aria-label="Trier par">
                   <SelectValue placeholder="Date" />
                 </SelectTrigger>
                 <SelectContent>

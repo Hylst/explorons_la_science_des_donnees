@@ -106,6 +106,10 @@ find dist-hylst/assets -name '*.js' | wc -l
 du -sk public/vendor
 ```
 
+## Remesure du 24 octobre 2026 (`/fundamentals`)
+
+Même méthode que ci-dessous, ancien build (`mve4clu8`) et nouveau (`mvm3w9y9`) mesurés dans la même séance : performance 75 puis 84 pour l'ancien, 82 et 82 pour le nouveau (écart de mesure, pas de gain) ; accessibilité 85 → 100. Sur hylst.fr, l'agent de la plateforme a mesuré le 23 octobre l'accueil à 99, `/fundamentals` à 75 et le cours de séries temporelles à 97 en performance. Diagnostic de `/fundamentals` : élément principal à 3,5 s dont 87 % de délai de rendu ; 2,5 s d'exécution du bundle principal ; Recharts chargé dès la première section ; piste : sortir les graphiques des sections dans des modules chargés à la demande.
+
 ## Mesures Lighthouse (6 et 7 octobre 2026, non refaites depuis)
 
 **Date des chiffres : 6 et 7 octobre 2026.** Depuis, les pages suivantes ont été profondément modifiées et leur score n'est plus mesuré : les cours Python (8 octobre), introduction aux mathématiques, statistiques inférentielles, guide des modèles de ML et Transformers (9 octobre, passage au format des leçons), le glossaire et les projets (8 octobre), la page de programmation (section Git, environnements et Docker, 8 octobre) et la plupart des pages de contenu (relecture des 9 octobre). Les lignes de ces pages dans le tableau sont donc historiques. Les cinq routes sous 80 au dernier passage étaient `/fundamentals` (75), `/fundamentals/math-stats` (75), `/fundamentals/programming` (77), `/machine-learning` (77) et `/fundamentals/data-preparation` (79). Il n'y a pas eu de nouveau passage Lighthouse depuis le 7 octobre.

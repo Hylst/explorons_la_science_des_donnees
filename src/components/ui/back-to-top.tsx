@@ -13,6 +13,8 @@ const BackToTop = () => {
       size="sm"
       className="fixed bottom-8 right-8 rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300"
       onClick={scrollToTop}
+      aria-label="Revenir en haut de la page"
+      title="Revenir en haut de la page"
     >
       <ArrowUp className="h-4 w-4" />
     </Button>

@@ -1,5 +1,19 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-24] - Accessibilité : barres de progression, termes du glossaire au clavier, contrôles nommés
+
+Point de départ : la mesure Lighthouse faite par l'agent de la plateforme sur hylst.fr (`/fundamentals` à 85 en accessibilité), reproduite en local.
+
+- **Barres de progression** (`components/ui/progress.tsx`, 35 emplois sur le site) : la valeur n'était jamais transmise à Radix, si bien que toutes les barres étaient annoncées « indéterminées », sans valeur, par les lecteurs d'écran. Valeur transmise et bornée entre 0 et 100 (Radix signale en console une valeur hors limites ou NaN), nom « Progression » par défaut, nom précis là où la page en affiche un (comparaison des langages, progression générale, ressources terminées).
+- **Termes du glossaire** qui ouvrent une définition : c'étaient des `span` inaccessibles au clavier. Ils restent des `span` (ils se coupent en fin de ligne comme le texte) mais sont atteignables par Tab, annoncés comme boutons et ouverts par Entrée ou Espace ; Échap referme et rend le focus au terme (essayé dans Chrome).
+- **Cartes qui clignotaient sans fin** : sur `/fundamentals` et `/fundamentals/programming`, une carte de langage sur quatre passait à 50 % d'opacité toutes les 3 s, sans arrêt possible (critère WCAG 2.2.2 ; c'était aussi la cause des échecs de contraste mesurés). Animation retirée (`LanguageComparison.tsx`, `ProgrammingIntro.tsx`).
+- **Contrôles sans nom** : flèches « section précédente / suivante », boutons à icône et listes de l'éditeur de code, listes des ressources et des filtres de l'historique des quiz, bouton « Revenir en haut de la page ». Lien « mlflow.org » de la page Machine learning passé en vert 700 (2,27:1 avant).
+- **Mesures** (Lighthouse 12, mobile, build local servi en gzip, même séance pour l'ancien et le nouveau build) : accessibilité de `/fundamentals` 85 → 100, et 100 sur `/fundamentals/math-stats`, `/fundamentals/programming`, `/quiz`, `/glossary`, `/courses/statistics/time-series` ; `/machine-learning` 97 → 100 attendu après le lien (non remesuré). Performance de `/fundamentals` inchangée aux écarts de mesure près (ancien build 75 puis 84, nouveau 82 deux fois).
+- **Navigateur** (Chrome sans interface, build `mvm3w9y9`) : plus aucun bouton, liste ou barre sans nom sur les 57 routes ; aucun débordement à 320 et 390 px, aucun saut de titre.
+- **Tests** : `a11y-controls.test.tsx` (valeur, bornes et nom des barres ; terme du glossaire ouvert au clavier, deux variantes), 5 mutations détectées. `storage.test.ts` : le balayage de `src/` dépassait 5 s quand les 68 fichiers tournent en parallèle (deux échecs par délai le 24 octobre, réussite seul en 6 s) ; il est fait une seule fois, avec un délai de 20 s.
+- **Mise au point** : l'adresse `/courses/python` que j'avais proposée à l'agent comme ancienne URL n'a jamais existé (elle n'est pas dans `src/config/routes.ts`) : sa réponse 404 est correcte. Les vraies anciennes URL (`/course/python-basics`, `/programming/python`...) redirigent bien en ligne.
+- **Comptes** : 68 fichiers et 1 809 tests pour `npm test`, 58 tests de fumée.
+
 ## [2026-10-18, soir] - Données structurées (JSON-LD), formules à 320 px
 
 - **Données structurées** : chaque page générée de l'accueil, des 11 cours et des 5 articles du blog porte un bloc JSON-LD (`scripts/structured-data.ts`, injecté par le plugin `staticHosting` de `vite.config.ts`) : `WebSite` sur l'accueil, `Course` (gratuit, niveau, auteur) par cours rédigé, `BlogPosting` (date ISO tirée de la date française, image de l'article) par article. Rien que le site ne sait : ni note, ni prix, ni nombre d'élèves (refusé par le test). Le bloc est des données, pas un script : vérifié dans Chrome, aucune violation de la CSP ni erreur console sur l'accueil, un cours et un article. `scripts/verify-dist.mjs` lit chaque bloc et compare son `url` à l'adresse canonique de la page (17 pages au moins).

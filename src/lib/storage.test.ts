@@ -258,17 +258,22 @@ describe("clés de stockage du site", () => {
     walk(path.resolve(process.cwd(), "src"));
     return found;
   };
+  // Le balayage lit tout src/ (plus de 5 s quand les 68 fichiers de test tournent en parallèle, 24 octobre 2026) :
+  // fait une seule fois, avec un délai explicite
+  let keys: ReturnType<typeof collectKeys> | undefined;
+  const allKeys = () => (keys ??= collectKeys());
+  const SCAN_TIMEOUT = 20_000;
 
   it("repère les clés déclarées (garde-fou contre un balayage vide)", () => {
-    expect(collectKeys().length).toBeGreaterThanOrEqual(8);
-  });
+    expect(allKeys().length).toBeGreaterThanOrEqual(8);
+  }, SCAN_TIMEOUT);
 
   it("deux modules n'utilisent jamais la même clé pour des données différentes", () => {
     const byValue = new Map<string, string[]>();
-    for (const { value, name, file } of collectKeys()) {
+    for (const { value, name, file } of allKeys()) {
       byValue.set(value, [...(byValue.get(value) ?? []), `${file} (${name})`]);
     }
     const duplicates = [...byValue.entries()].filter(([, owners]) => owners.length > 1);
     expect(duplicates).toEqual([]);
-  });
+  }, SCAN_TIMEOUT);
 });

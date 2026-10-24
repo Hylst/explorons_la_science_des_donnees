@@ -437,7 +437,7 @@ const PracticalExercisesSection = () => {
             <p className="text-sm text-gray-600 mb-3">Suivi et gestion des expériences ML</p>
             <div className="flex items-center gap-2">
               <ExternalLink className="h-4 w-4 text-green-500" />
-              <a href="https://mlflow.org" target="_blank" rel="noopener noreferrer" className="text-green-500 text-sm hover:underline">mlflow.org</a>
+              <a href="https://mlflow.org" target="_blank" rel="noopener noreferrer" className="text-green-700 text-sm hover:underline">mlflow.org</a>
             </div>
           </div>
 

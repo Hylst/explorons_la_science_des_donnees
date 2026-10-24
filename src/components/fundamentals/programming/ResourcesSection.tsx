@@ -561,7 +561,7 @@ const ResourcesSection = () => {
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-bold text-indigo-900">Votre suivi</h3>
         <Select value={userLevel} onValueChange={setUserLevel}>
-          <SelectTrigger className="w-40">
+          <SelectTrigger className="w-40" aria-label="Votre niveau">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -597,7 +597,7 @@ const ResourcesSection = () => {
             <span className="font-semibold">Progression</span>
           </div>
           <div className="text-2xl font-bold text-purple-600">{progressStats.percentage}%</div>
-          <Progress value={progressStats.percentage} className="mt-2" />
+          <Progress value={progressStats.percentage} className="mt-2" aria-label="Ressources terminées" />
         </div>
         
         <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -640,7 +640,7 @@ const ResourcesSection = () => {
         </div>
         
         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger className="w-full md:w-48">
+          <SelectTrigger className="w-full md:w-48" aria-label="Filtrer les ressources">
             <Filter className="h-4 w-4 mr-2" />
             <SelectValue />
           </SelectTrigger>

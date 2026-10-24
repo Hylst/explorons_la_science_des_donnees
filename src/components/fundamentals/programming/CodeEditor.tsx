@@ -656,10 +656,10 @@ const CodeEditor: React.FC = () => {
         </div>
         
         <div className="flex items-center gap-2">
-          <Button size="sm" variant="outline" onClick={() => setIsFullscreen(!isFullscreen)}>
+          <Button size="sm" variant="outline" onClick={() => setIsFullscreen(!isFullscreen)} aria-label={isFullscreen ? "Quitter le plein écran" : "Plein écran"}>
             {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
           </Button>
-          <Button size="sm" variant="outline" onClick={() => setShowOutput(!showOutput)}>
+          <Button size="sm" variant="outline" onClick={() => setShowOutput(!showOutput)} aria-label={showOutput ? "Masquer la sortie" : "Afficher la sortie"}>
             {showOutput ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </Button>
         </div>
@@ -681,7 +681,7 @@ const CodeEditor: React.FC = () => {
                 setSelectedTemplate(value);
                 loadTemplate(value);
               }}>
-                <SelectTrigger>
+                <SelectTrigger aria-label="Modèle de code">
                   <SelectValue placeholder="Choisir un template" />
                 </SelectTrigger>
                 <SelectContent>
@@ -751,7 +751,7 @@ const CodeEditor: React.FC = () => {
                 <Select value={settings.theme} onValueChange={(value: 'light' | 'dark') => 
                   setSettings(prev => ({ ...prev, theme: value }))
                 }>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Thème de l'éditeur">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -766,7 +766,7 @@ const CodeEditor: React.FC = () => {
                 <Select value={settings.fontSize.toString()} onValueChange={(value) => 
                   setSettings(prev => ({ ...prev, fontSize: parseInt(value) }))
                 }>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Taille de police">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -835,10 +835,10 @@ const CodeEditor: React.FC = () => {
                   <Button size="sm" variant="outline" onClick={saveNow} title="Enregistrer (Ctrl+S)" aria-label="Enregistrer">
                     <Save className="h-4 w-4" />
                   </Button>
-                  <Button size="sm" variant="outline" onClick={copyToClipboard}>
+                  <Button size="sm" variant="outline" onClick={copyToClipboard} aria-label="Copier le code">
                     {copiedToClipboard ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={() => activeFile && updateFileContent(activeFile.id, '')}>
+                  <Button size="sm" variant="outline" onClick={() => activeFile && updateFileContent(activeFile.id, '')} aria-label="Effacer le code">
                     <RotateCcw className="h-4 w-4" />
                   </Button>
                   <Button 

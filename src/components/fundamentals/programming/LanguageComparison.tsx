@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -105,7 +105,6 @@ const CodeComparison = ({ title, pythonCode, rCode, sqlCode }: { title: string, 
 const LanguageComparison = () => {
   const [selectedComparison, setSelectedComparison] = useState("overview");
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageData | null>(null);
-  const [animationStep, setAnimationStep] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [selectedCodeTopic, setSelectedCodeTopic] = useState<TopicKey>('Analyse de données');
 
@@ -229,16 +228,6 @@ const LanguageComparison = () => {
 
   const toggleAdvancedView = useCallback(() => {
     setShowAdvanced(prev => !prev);
-  }, []);
-
-  /**
-   * Animation effect for interactive elements
-   */
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setAnimationStep(prev => (prev + 1) % 4);
-    }, 3000);
-    return () => clearInterval(timer);
   }, []);
 
   // Helper function to get code examples based on topic and language
@@ -795,12 +784,12 @@ first(result, 10)`
 
           {/* Interactive Language Cards with Enhanced Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {languageData.map((lang, index) => (
+            {languageData.map((lang) => (
               <Card 
                 key={lang.name} 
                 className={`border-l-4 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 ${
                   selectedLanguage?.name === lang.name ? 'ring-2 ring-blue-500 shadow-lg' : ''
-                } ${animationStep === index ? 'animate-pulse' : ''}`}
+                }`}
                 style={{ borderLeftColor: lang.color }}
                 onClick={() => handleLanguageSelect(lang)}
               >
@@ -827,7 +816,7 @@ first(result, 10)`
                         <span>Facilité d'apprentissage</span>
                         <span className="font-semibold">{lang.learningCurve}%</span>
                       </div>
-                      <Progress value={lang.learningCurve} className="h-2" />
+                      <Progress value={lang.learningCurve} className="h-2" aria-label="Facilité d'apprentissage" />
                     </div>
                     
                     <div className="space-y-2">
@@ -835,7 +824,7 @@ first(result, 10)`
                         <span>Marché de l'emploi</span>
                         <span className="font-semibold">{lang.jobMarket}%</span>
                       </div>
-                      <Progress value={lang.jobMarket} className="h-2" />
+                      <Progress value={lang.jobMarket} className="h-2" aria-label="Marché de l'emploi" />
                     </div>
                     
                     <div className="space-y-2">
@@ -843,7 +832,7 @@ first(result, 10)`
                         <span>Performance</span>
                         <span className="font-semibold">{lang.performance}%</span>
                       </div>
-                      <Progress value={lang.performance} className="h-2" />
+                      <Progress value={lang.performance} className="h-2" aria-label="Performance" />
                     </div>
                     
                     <div className="space-y-2">
@@ -851,7 +840,7 @@ first(result, 10)`
                         <span>Écosystème</span>
                         <span className="font-semibold">{lang.ecosystem}%</span>
                       </div>
-                      <Progress value={lang.ecosystem} className="h-2" />
+                      <Progress value={lang.ecosystem} className="h-2" aria-label="Écosystème" />
                     </div>
 
                     {/* Quick Stats */}
@@ -1079,28 +1068,28 @@ first(result, 10)`
                               <div className="flex items-center justify-between">
                                 <span>Vitesse:</span>
                                 <div className="flex items-center gap-1">
-                                  <Progress value={metrics.speed * 10} className="w-12 h-1" />
+                                  <Progress value={metrics.speed * 10} className="w-12 h-1" aria-label="Vitesse" />
                                   <span>{metrics.speed}/10</span>
                                 </div>
                               </div>
                               <div className="flex items-center justify-between">
                                 <span>Lisibilité:</span>
                                 <div className="flex items-center gap-1">
-                                  <Progress value={metrics.readability * 10} className="w-12 h-1" />
+                                  <Progress value={metrics.readability * 10} className="w-12 h-1" aria-label="Lisibilité" />
                                   <span>{metrics.readability}/10</span>
                                 </div>
                               </div>
                               <div className="flex items-center justify-between">
                                 <span>Écosystème:</span>
                                 <div className="flex items-center gap-1">
-                                  <Progress value={metrics.ecosystem * 10} className="w-12 h-1" />
+                                  <Progress value={metrics.ecosystem * 10} className="w-12 h-1" aria-label="Écosystème" />
                                   <span>{metrics.ecosystem}/10</span>
                                 </div>
                               </div>
                               <div className="flex items-center justify-between">
                                 <span>Apprentissage:</span>
                                 <div className="flex items-center gap-1">
-                                  <Progress value={metrics.learning * 10} className="w-12 h-1" />
+                                  <Progress value={metrics.learning * 10} className="w-12 h-1" aria-label="Apprentissage" />
                                   <span>{metrics.learning}/10</span>
                                 </div>
                               </div>
@@ -1538,7 +1527,8 @@ class DataDashboard {
                             </div>
                             <div className="flex items-center gap-2">
                               <Progress 
-                                value={lang.score * 10} 
+                                value={lang.score * 10}
+                                aria-label={`Note de ${lang.name}`} 
                                 className="w-16 h-2" 
                               />
                               <span className="text-sm font-semibold w-8">{lang.score}/10</span>

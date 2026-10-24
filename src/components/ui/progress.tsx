@@ -9,6 +9,9 @@ const Progress = React.forwardRef<
 >(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
+    // valeur bornée : Radix refuse (et signale en console) une valeur hors de 0..100 ou NaN
+    value={typeof value === "number" && Number.isFinite(value) ? Math.min(100, Math.max(0, value)) : null}
+    aria-label={props["aria-labelledby"] ? undefined : "Progression"}
     className={cn(
       "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
       className
