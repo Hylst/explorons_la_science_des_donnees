@@ -15,4 +15,7 @@ export const ANIMATED_COURSE_IMAGES: Record<string, string> = {
  * Illustration d'un cours du catalogue : le SVG animé s'il existe, sinon public/img/courses/<id du cours>.webp
  * (800 x 450, générée en local, voir public/img/CREDITS.md). Un nouveau cours demande donc une nouvelle image.
  */
+/** Vrai quand la carte du cours montre une image générée par IA (tous les cours sans SVG animé dessiné pour le site) */
+export const isAiCourseImage = (id: string): boolean => !(id in ANIMATED_COURSE_IMAGES);
+
 export const courseImage = (id: string): string => asset(ANIMATED_COURSE_IMAGES[id] ?? `img/courses/${id}.webp`);

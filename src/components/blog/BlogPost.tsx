@@ -9,6 +9,7 @@ import { useBlogFavorites } from "@/hooks/use-blog-favorites";
 import { Helmet } from "react-helmet-async";
 import { SITE_NAME } from "@/config/site";
 import { blogImage } from "@/lib/blog-image";
+import { Illustration } from "@/components/ui/illustration";
 
 interface BlogPostProps {
   id: string;
@@ -67,9 +68,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ id }) => {
           ))}
         </div>
 
-        <img
+        <Illustration
+          ai
           src={blogImage(post.id)}
-          alt=""
           width={800}
           height={450}
           decoding="async"

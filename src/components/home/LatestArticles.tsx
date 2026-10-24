@@ -1,4 +1,5 @@
 import { blogImage } from "@/lib/blog-image";
+import { AiImageLabel } from "@/components/ui/illustration";
 
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -53,6 +54,7 @@ const LatestArticles = () => {
                   decoding="async"
                   className="object-cover w-full h-full"
                 />
+                <AiImageLabel />
                 <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm text-xs px-2 py-1 rounded-full">
                   {article.category}
                 </div>

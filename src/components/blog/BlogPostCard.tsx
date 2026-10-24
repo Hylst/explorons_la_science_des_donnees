@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { blogImage } from "@/lib/blog-image";
+import { Illustration } from "@/components/ui/illustration";
 
 interface BlogPost {
   id: string;
@@ -57,9 +58,9 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, onReadMore, isFavorit
 
   return (
     <Card className={`overflow-hidden hover:shadow-lg transition-all duration-300 ${post.featured ? 'ring-2 ring-blue-200' : ''}`}>
-      <img
+      <Illustration
+        ai
         src={blogImage(post.id)}
-        alt=""
         width={800}
         height={450}
         loading="lazy"

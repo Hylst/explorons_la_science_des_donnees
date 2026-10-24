@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Code, BarChart3, Brain } from "lucide-react";
 import { COURSE_CATALOG, COURSE_CATEGORIES, type CourseCategoryId } from "@/data/course-catalog";
-import { courseImage } from "@/lib/course-image";
+import { courseImage, isAiCourseImage } from "@/lib/course-image";
+import { Illustration } from "@/components/ui/illustration";
 
 const CATEGORY_ICONS: Record<CourseCategoryId, JSX.Element> = {
   programming: <Code className="h-8 w-8 text-blue-600" />,
@@ -56,9 +57,9 @@ const CoursesIndex = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.courses.map((course, courseIndex) => (
                     <Card key={courseIndex} className="overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                      <img
+                      <Illustration
+                        ai={isAiCourseImage(course.id)}
                         src={courseImage(course.id)}
-                        alt=""
                         width={800}
                         height={450}
                         loading="lazy"

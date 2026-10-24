@@ -4,7 +4,7 @@
  */
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Users, AlertTriangle, Scale, BookOpen, Shield } from "lucide-react";
+import { FileText, Users, AlertTriangle, Scale, BookOpen, Shield, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   AUTHOR_CREDIT,
@@ -51,7 +51,7 @@ const TermsOfService = () => {
                 au partage de connaissances en science des données. Il propose gratuitement, sans compte, des cours,
                 des quiz, un glossaire, des ressources et un éditeur de code exécuté dans votre navigateur.
                 L'éditeur et l'hébergeur du site sont indiqués dans les{" "}
-                <a href={PLATFORM_LEGAL_URL} className="text-blue-600 hover:underline">mentions légales de la plateforme hylst.fr</a>.
+                <a href={PLATFORM_LEGAL_URL} className="text-blue-600 underline underline-offset-2">mentions légales de la plateforme hylst.fr</a>.
               </p>
             </CardContent>
           </Card>
@@ -84,7 +84,7 @@ const TermsOfService = () => {
                   Le code source et les contenus rédigés pour ce site (textes, exercices, données d'exemple,
                   illustrations) sont la propriété de Geoffroy Streit et publiés sous licence{" "}
                   <strong>{LICENSE_NAME}</strong> ({LICENSE_SPDX}). Le texte complet est dans le{" "}
-                  <a href={asset(LICENSE_FILE)} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  <a href={asset(LICENSE_FILE)} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline underline-offset-2">
                     fichier de licence
                   </a>{" "}
                   et seul ce texte fait foi.
@@ -101,19 +101,19 @@ const TermsOfService = () => {
                   cités (propriété de leurs détenteurs) et les composants tiers embarqués, qui gardent leur propre
                   licence, notamment les moteurs Python et SQL (Pyodide, NumPy, pandas, scikit-learn, Matplotlib, statsmodels, SQLite), dont la
                   liste figure dans{" "}
-                  <a href={asset(NOTICE_FILE)} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  <a href={asset(NOTICE_FILE)} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline underline-offset-2">
                     cet inventaire
                   </a>.
                   Le site a été réalisé par {AUTHOR_CREDIT}.
                   {SOURCE_URL ? (
                     <>
                       {" "}Code source :{" "}
-                      <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{SOURCE_URL}</a>.
+                      <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline underline-offset-2">{SOURCE_URL}</a>.
                     </>
                   ) : (
                     <>
                       {" "}Le code source est disponible sur demande, par la{" "}
-                      <Link to="/contact" className="text-blue-600 hover:underline">page de contact</Link>.
+                      <Link to="/contact" className="text-blue-600 underline underline-offset-2">page de contact</Link>.
                     </>
                   )}
                 </p>
@@ -178,6 +178,31 @@ const TermsOfService = () => {
                     pour maintenance ou pour des raisons techniques, ou être modifié ou arrêté.
                   </p>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle as="h2" className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5" />
+                Contenus produits avec l'aide de l'IA
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <p className="text-gray-700 leading-relaxed">
+                  Les textes, les exemples de code et les exercices ont été écrits avec l'aide d'outils d'intelligence
+                  artificielle, puis relus par l'auteur, qui en assume la responsabilité éditoriale. Les exemples et
+                  les corrigés exécutables sont vérifiés par des tests automatiques sur le moteur du site, et les
+                  chiffres venus de l'extérieur citent leur source.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Les illustrations des articles du blog et des cartes de cours (hors schémas animés) sont générées
+                  par un modèle d'image, en local ; chacune porte la mention « Illustration générée par IA ». Elles ne
+                  représentent ni personne réelle ni lieu réel. Le site ne propose lui-même aucun service d'IA : rien de
+                  ce que vous écrivez n'est envoyé à un modèle.
+                </p>
               </div>
             </CardContent>
           </Card>

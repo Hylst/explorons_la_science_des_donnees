@@ -84,7 +84,8 @@ const About = () => {
                   mon apprentissage, ainsi que des enrichissements proposés par des IA, que j'ai relus et qui
                   m'ont paru tout à fait cohérents. Réuni ici de manière structurée, l'ensemble me permet de
                   consolider mes connaissances tout en créant une ressource pour la communauté francophone. Je ne suis pas data scientist de métier : les cours sont des notes de
-                  formation, à recouper avec les sources citées. Écrivez-moi pour signaler une erreur.
+                  formation, à recouper avec les sources citées. Écrivez-moi pour signaler une erreur. Les illustrations
+                  du blog et de la plupart des cartes de cours sont générées par IA, et chacune le dit.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="secondary">Autodidacte en data science</Badge>

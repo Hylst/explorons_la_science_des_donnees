@@ -1,4 +1,5 @@
-import { courseImage } from "@/lib/course-image";
+import { courseImage, isAiCourseImage } from "@/lib/course-image";
+import { AiImageLabel } from "@/components/ui/illustration";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,7 @@ const FeaturedCourses = () => {
                   decoding="async"
                   className="object-cover w-full h-full"
                 />
+                {isAiCourseImage(course.id) && <AiImageLabel />}
                 {course.level && (
                   <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm text-xs px-2 py-1 rounded-full">
                     {course.level}

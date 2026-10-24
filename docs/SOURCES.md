@@ -264,6 +264,15 @@ Le module 7 (`m7-ols-statsmodels.ts`), comme le module 4, utilise le jeu du diab
 
 Les seuils cités comme usuels (VIF au-delà de 10, distance de Cook au-delà de 4/n) sont des repères courants de la littérature, présentés comme tels ; aucun chiffre externe n'est cité dans ce module.
 
+## 15. Politique de confidentialité : serveur au Royaume-Uni (24 octobre 2026)
+
+| Fait repris dans la page `/privacy` | Source | Niveau |
+|---|---|---|
+| Le serveur est un serveur privé virtuel situé au Royaume-Uni (hébergeur nommé dans les mentions légales de la plateforme) | l'auteur, le 24 octobre 2026 | déclaration de l'auteur, non vérifiée par moi |
+| La Commission européenne a renouvelé le 19 décembre 2025 la décision d'adéquation du Royaume-Uni au titre du RGPD | https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en | page lue (elle ne donne pas de date de fin) |
+| Validité jusqu'au 27 décembre 2031 | articles de cabinets (Freeths, Hunton), communiqué IP/25/3059 non lisible par mon outil | extrait de recherche : non repris sur le site |
+| Journaux conservés au plus un an, e-mails un an après le dernier échange | décisions de l'auteur, le 24 octobre 2026 | à faire correspondre à la configuration réelle du serveur (rotation des journaux) |
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

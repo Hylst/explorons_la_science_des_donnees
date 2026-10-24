@@ -1,5 +1,16 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-24, suite] - RGPD, mentions légales et transparence sur les images générées par IA (lot 1)
+
+- **Politique de confidentialité** (`/privacy`, révisée le 24 octobre 2026) : base légale des journaux du serveur et des e-mails (intérêt légitime, RGPD article 6.1.f), durées de conservation décidées par l'auteur (journaux : un an au plus ; e-mails : un an après le dernier échange), messagerie nommée (Gmail), serveur situé au Royaume-Uni (serveur privé virtuel ; l'hébergeur reste nommé dans les mentions légales de la plateforme, pas dans le dépôt public) et base du transfert : décision d'adéquation de la Commission européenne, renouvelée le 19 décembre 2025 (source affichée, `docs/SOURCES.md` section 15 ; la date de fin, 2031, ne vient que d'articles de cabinets et n'est pas reprise).
+- **Mentions légales** : lien direct dans le pied de page (vers celles de la plateforme), en plus du lien de la politique de confidentialité.
+- **Images générées par IA** (12 : 5 articles du blog, 7 cartes de cours) : étiquette visible « Illustration générée par IA » sur chacune (`components/ui/illustration.tsx` : `Illustration` et `AiImageLabel`, `isAiCourseImage` dans `lib/course-image.ts`) ; les cartes en SVG dessinées pour le site n'en portent pas. Nouvelle section « Contenus produits avec l'aide de l'IA » dans les conditions d'utilisation (textes écrits avec l'aide de l'IA puis relus par l'auteur, responsable éditorial ; illustrations générées en local ; aucun service d'IA proposé par le site), une phrase sur la page À propos.
+- **Liens dans le texte** de `/privacy` et `/terms` soulignés en permanence (ils ne se distinguaient que par la couleur) : accessibilité 96 → 100 sur ces deux pages.
+- **Mesures** (Lighthouse mobile, local) : accessibilité et SEO à 100 sur `/courses`, `/blog`, `/privacy`, `/terms`. Chrome : 7 étiquettes sur `/courses`, 5 sur `/blog`, 3 sur l'accueil (derniers articles ; les cartes de cours de l'accueil sont des SVG), lisibles en clair et en sombre ; aucun débordement à 320, 390 et 1280 px sur les pages touchées. Build `mvm69ilu`.
+- **Tests** : `illustration.test.tsx` (étiquette, correspondance avec les images réellement générées, toute page qui affiche ces images passe par l'étiquette) ; 4 mutations détectées, après renforcement (une étiquette désactivée sur les articles passait d'abord inaperçue). `illustrations.test.ts` accepte le composant `Illustration` (qui pose lui-même `alt=""`).
+- **En ligne** : l'agent de la plateforme a publié `mvm3w9y9` (commit Docker `18a78476`) ; Lighthouse mobile en production : `/fundamentals` 89 et 100, `/machine-learning` 85 et 100 (performance et accessibilité).
+- **Comptes** : 69 fichiers et 1 814 tests pour `npm test`, 58 tests de fumée.
+
 ## [2026-10-24] - Accessibilité : barres de progression, termes du glossaire au clavier, contrôles nommés
 
 Point de départ : la mesure Lighthouse faite par l'agent de la plateforme sur hylst.fr (`/fundamentals` à 85 en accessibilité), reproduite en local.

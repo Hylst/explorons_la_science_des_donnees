@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { asset } from "@/lib/asset";
-import { AUTHOR_CREDIT, LICENSE_FILE, LICENSE_SPDX, PLATFORM_URL, SITE_NAME, SOURCE_URL } from "@/config/site";
+import { AUTHOR_CREDIT, LICENSE_FILE, LICENSE_SPDX, PLATFORM_LEGAL_URL, PLATFORM_URL, SITE_NAME, SOURCE_URL } from "@/config/site";
 
 const Footer = () => {
   return (
@@ -40,6 +40,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Informations</h3>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-muted-foreground hover:text-primary">À propos</Link></li>
+              <li><a href={PLATFORM_LEGAL_URL} className="text-muted-foreground hover:text-primary">Mentions légales</a></li>
               <li><Link to="/privacy" className="text-muted-foreground hover:text-primary">Politique de confidentialité</Link></li>
               <li><Link to="/terms" className="text-muted-foreground hover:text-primary">Conditions d'utilisation</Link></li>
               <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>

@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Eye, Database, Lock, Mail, Calendar, Globe } from "lucide-react";
 import { LEGAL_UPDATED, PLATFORM_LEGAL_URL, SITE_NAME } from "@/config/site";
 import { CONTACT_EMAIL } from "@/config/contact";
+import { SourceNote } from "@/components/ui/source-note";
 
 const PrivacyPolicy = () => {
   return (
@@ -106,10 +107,21 @@ const PrivacyPolicy = () => {
               <div className="space-y-4">
                 <p className="text-gray-700 leading-relaxed">
                   Comme tout serveur web, celui de la plateforme hylst.fr qui héberge ce site enregistre des journaux
-                  techniques (adresse IP, date, page demandée, navigateur) pour la sécurité et le bon fonctionnement.
-                  L'éditeur et l'hébergeur sont indiqués dans les{" "}
-                  <a href={PLATFORM_LEGAL_URL} className="text-blue-600 hover:underline">mentions légales de la plateforme</a>.
+                  techniques (adresse IP, date, page demandée, navigateur) pour la sécurité et le bon fonctionnement,
+                  sur la base de l'intérêt légitime de l'éditeur à protéger son service (RGPD, article 6.1.f). Ces journaux
+                  sont conservés au plus un an, puis supprimés.
                 </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Le serveur est un serveur privé virtuel situé au Royaume-Uni. Ce pays est hors de
+                  l'Union européenne, mais la Commission européenne y reconnaît un niveau de protection des données
+                  adéquat (décision d'adéquation renouvelée le 19 décembre 2025) : les journaux peuvent y être conservés
+                  sans autre garantie. L'éditeur et l'hébergeur sont indiqués dans les{" "}
+                  <a href={PLATFORM_LEGAL_URL} className="text-blue-600 underline underline-offset-2">mentions légales de la plateforme</a>.
+                </p>
+                <SourceNote
+                  sources={[{ label: "Commission européenne, décisions d'adéquation", href: "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en" }]}
+                  consulted="24 octobre 2026"
+                />
                 <p className="text-gray-700 leading-relaxed">
                   Les pages ne chargent ni police, ni script, ni image, ni statistiques depuis un service tiers.
                   Les liens vers des sites externes (ressources, forums, vidéos, actualités) ouvrent ces sites, qui ont
@@ -131,7 +143,9 @@ const PrivacyPolicy = () => {
               <p className="text-gray-700 leading-relaxed">
                 Le formulaire de contact ne transmet rien : il prépare un e-mail dans votre messagerie, que vous
                 envoyez ou non. Si vous m'écrivez à {CONTACT_EMAIL}, votre adresse et votre message me parviennent par
-                e-mail ; je les utilise uniquement pour vous répondre et ne les transmets à personne.
+                e-mail ; je les utilise uniquement pour vous répondre et ne les transmets à personne. Base légale : mon
+                intérêt légitime à répondre à qui m'écrit (RGPD, article 6.1.f). Le message reste dans ma messagerie
+                (Gmail, fournie par Google) et je le supprime un an après notre dernier échange.
               </p>
             </CardContent>
           </Card>

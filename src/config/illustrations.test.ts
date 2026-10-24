@@ -8,6 +8,13 @@ const root = process.cwd();
 const CARDS_DIR = "public/svg/cards";
 const BLOG_DIR = "public/img/blog";
 const read = (file: string) => fs.readFileSync(path.resolve(root, file), "utf8");
+/** Première balise d'image du fichier : <img ... /> ou le composant <Illustration ... /> (qui pose lui-même alt="") */
+const imageTag = (tsx: string) => {
+  const starts = ["<img", "<Illustration"].map((t) => tsx.indexOf(t)).filter((i) => i >= 0);
+  const start = Math.min(...starts);
+  return tsx.slice(start, tsx.indexOf("/>", start));
+};
+const isDecorative = (tag: string) => tag.startsWith("<Illustration") || /alt=""/.test(tag);
 const cards = fs.readdirSync(path.resolve(root, CARDS_DIR)).filter((name) => name.endsWith(".svg"));
 
 describe("illustrations animées des cours (public/svg/cards)", () => {
@@ -64,8 +71,8 @@ describe("illustrations des cours du catalogue", () => {
     const files = fs.readdirSync(path.resolve(root, "public/img/courses")).map((f) => f.replace(/\.webp$/, ""));
     expect(files.filter((id) => !COURSE_CATALOG.some((c) => c.id === id)), "image sans cours").toEqual([]);
     const tsx = read("src/pages/courses/CoursesIndex.tsx");
-    const img = tsx.slice(tsx.indexOf("<img"), tsx.indexOf("/>", tsx.indexOf("<img")));
-    expect(img).toMatch(/alt=""/);
+    const img = imageTag(tsx);
+    expect(isDecorative(img)).toBe(true);
     expect(img).toMatch(/width=\{800\}/);
   });
 });
@@ -91,15 +98,15 @@ describe("illustrations des articles du blog (public/img/blog)", () => {
     for (const file of ["src/components/home/LatestArticles.tsx", "src/components/blog/BlogPostCard.tsx", "src/components/blog/BlogPost.tsx"]) {
       const tsx = read(file);
       expect(tsx, file).toContain("blogImage(");
-      const img = tsx.slice(tsx.indexOf("<img"), tsx.indexOf("/>", tsx.indexOf("<img")));
-      expect(img, file).toMatch(/alt=""/);
+      const img = imageTag(tsx);
+      expect(isDecorative(img), file).toBe(true);
       expect(img, file).toMatch(/width=\{800\}/);
       expect(img, file).toMatch(/height=\{450\}/);
     }
     for (const file of ["src/components/home/FeaturedCourses.tsx"]) {
       const tsx = read(file);
-      const img = tsx.slice(tsx.indexOf("<img"), tsx.indexOf("/>", tsx.indexOf("<img")));
-      expect(img, file).toMatch(/alt=""/);
+      const img = imageTag(tsx);
+      expect(isDecorative(img), file).toBe(true);
     }
   });
 
