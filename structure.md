@@ -10,8 +10,8 @@ Pour les commandes et les procédures d'ajout de contenu (dont « Écrire ou mod
 - Contenu entièrement en français. Auteur : Geoffroy Streit « avec assistance IA ». Licence : AGPL-3.0-or-later (fichier `LICENSE`).
 - Fichiers suivis par git : 609, dont 520 sous `src/` (314 `.tsx`, 202 `.ts`, 3 `.json`, 1 `.css`), tests compris. Compter avec `git ls-files | wc -l`.
 - Routes : 57 routes canoniques (celles du `sitemap.xml`) et 28 anciennes URL redirigées, soit 85 pages HTML générées par `npm run build:hylst` (plus `404.html` et `offline.html`). Compter avec `scripts/collect-routes.ts` (voir plus bas).
-- Pages chargées à la demande : 35 `React.lazy` dans `src/App.tsx`, 13 dans `src/components/routing/CourseRouter.tsx` (12 cours et `NotFound`).
-- Cours : 12 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 79 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 9 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
+- Pages chargées à la demande : 35 `React.lazy` dans `src/App.tsx`, 15 dans `src/components/routing/CourseRouter.tsx` (14 cours et `NotFound`).
+- Cours : 14 cours rédigés, tous au même format de données (`src/data/lessons/<cours>/`, 90 modules) affiché par un seul jeu de composants (`src/components/courses/lessons/`), plus 12 projets guidés dans le même format. Aucun cours n'est plus un simple plan.
 - Pages longues affichées par morceaux (`ProgressiveSections`, `LazyBlock`, `DeferredResponsiveContainer`) : voir « Affichage par morceaux et chargement différé ».
 
 ## Arborescence commentée
@@ -114,7 +114,7 @@ src/
 │   │                        (définitions survolables du ML)
 │   ├── quizData.ts          8 catégories de quiz et leurs questions
 │   ├── projects.ts          12 projets et fonctions de filtre
-│   ├── course-catalog.ts    Catalogue des 12 cours (niveau, durée, modules, statut) : source unique de l'accueil et de /courses
+│   ├── course-catalog.ts    Catalogue des 14 cours (niveau, durée, modules, statut) : source unique de l'accueil et de /courses
 │   ├── tooling.ts           Contenu de la section Git, environnements virtuels et Docker de /fundamentals/programming
 │   ├── data-quality-demos.ts  Démonstrations de la qualité des données, calculées (cas pratique, validation, monitoring)
 │   ├── challenges.ts        Défis de programmation vérifiés (3 Python, 1 JavaScript), testés par challenges.test.ts
@@ -182,7 +182,7 @@ public/
 | Fichier | Rôle |
 | --- | --- |
 | `src/App.tsx` | Déclare toutes les routes, chaque page en `React.lazy`, sous un seul `Suspense`. `basename` du routeur dérivé de `import.meta.env.BASE_URL`. Rend aussi les `LEGACY_REDIRECTS` en `<Navigate replace>` |
-| `src/components/routing/CourseRouter.tsx` | Sous-routeur de `/courses/*` : 12 cours, puis `NotFound` pour tout cours inconnu |
+| `src/components/routing/CourseRouter.tsx` | Sous-routeur de `/courses/*` : 14 cours, puis `NotFound` pour tout cours inconnu |
 | `src/config/routes.ts` | `LEGACY_REDIRECTS` : 28 entrées au moment de la rédaction |
 | `src/components/routing/ScrollManager.tsx` | Défilement : haut de page à la navigation, ancre `#id` décalée de la barre collante, restauration au retour arrière et au rechargement. Attend la fin des sections en attente (`data-sections-pending`, 3 s au plus) avant de restaurer ou de viser une ancre. Les positions sont dans `lib/scroll-positions.ts` |
 | `src/components/routing/RouteMeta.tsx` | Applique titre et description de `PAGE_META` via Helmet ; ne fait rien pour les routes dynamiques |
@@ -191,7 +191,7 @@ public/
 | `src/config/contact.ts` | `CONTACT_EMAIL`, liens GitHub, LinkedIn et hub, `mailtoLink`, `buildMailDraft` (le site n'envoie rien) |
 | `src/components/layout/Layout.tsx` | Gabarit simple : Navbar, `<main>`, Footer |
 | `src/components/layout/ContentLayout.tsx` | Layout avec barre latérale (Radix sidebar) ; ne doit jamais appeler `window.scrollTo` au montage. Utilisé par 17 pages |
-| `src/components/layout/CourseLayout.tsx` | Gabarit des pages de cours (fil d'Ariane et titre), posé par `LessonCoursePage` pour les 12 cours |
+| `src/components/layout/CourseLayout.tsx` | Gabarit des pages de cours (fil d'Ariane et titre), posé par `LessonCoursePage` pour les 14 cours |
 | `src/components/layout/ProgressiveSections.tsx`, `LazyBlock.tsx` | Affichage par morceaux et blocs chargés à la demande (voir plus bas) |
 | `src/components/layout/Navbar.tsx` | 11 rubriques (tableau `navItems`), menus déroulants Fondamentaux et Machine Learning, rubriques « secondaires » repliées sous 1536 px (`2xl`), menu hamburger sous 1280 px (`xl`), bascule de thème, bouton d'installation |
 | `src/lib/storage.ts` | Accès `localStorage` qui ne lève jamais d'exception (`readStorage`, `writeStorage`, `removeStorage`, `readJSON`, `writeJSON`, `storageKeys`, validateurs) |
@@ -208,7 +208,7 @@ public/
 | `src/data/quizData.ts` | 8 catégories, 165 questions ; une tentative tire 10 questions au hasard (`getRandomQuestions`, appelé par `QuizCategory.tsx`) |
 | `src/data/glossary/` | 229 termes (comptés en important `index.ts`) : huit fichiers écrits à la main agrégés par `index.ts`, plus les termes des dictionnaires de survol des cours (`dictionaries.ts`) qui n'y figurent pas déjà. Types et catégories dans `types.ts`. `tools.ts` dérive ses entrées des définitions de `components/fundamentals/definitions/` |
 | `src/data/projects.ts` | 12 projets et fonctions de filtre ; tous les compteurs de la page sont calculés dessus. Huit projets sont guidés (`src/data/lessons/projects/`) |
-| `src/data/course-catalog.ts` | 12 cours avec catégorie, niveau, durée indicative, nombre de modules et statut (`redige` ou `plan`, tous `redige` aujourd'hui) ; lu par `FeaturedCourses.tsx` (accueil), `CoursesIndex.tsx` (`/courses`), `InitiationCoursesSection.tsx` (ressources) et `UnifiedMathCourses.tsx` (maths). Niveau, durée et nombre de modules y sont saisis à la main : ils ne sont pas vérifiés contre les données des leçons |
+| `src/data/course-catalog.ts` | 14 cours avec catégorie, niveau, durée indicative, nombre de modules et statut (`redige` ou `plan`, tous `redige` aujourd'hui) ; lu par `FeaturedCourses.tsx` (accueil), `CoursesIndex.tsx` (`/courses`), `InitiationCoursesSection.tsx` (ressources) et `UnifiedMathCourses.tsx` (maths). Niveau, durée et nombre de modules y sont saisis à la main : ils ne sont pas vérifiés contre les données des leçons |
 | `src/data/blog-posts.json`, `blog-contents.ts`, `blog-articles.ts` | Métadonnées (5 articles), corps HTML par identifiant, et jointure des deux pour les pages d'article |
 | `src/components/ui/source-note.tsx` | Ligne « Source : ... » sous un chiffre du monde réel |
 | `vite.config.ts` | Voir les flux ci-dessous |
@@ -236,11 +236,11 @@ Le titre et la description du bandeau (`UnifiedHeroSection`) sont affichés au p
 
 ### Cours rédigés comme données
 
-Les 12 cours et les 9 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
+Les 14 cours et les 12 projets guidés ne contiennent pas de JSX : un cours est une liste de modules (`LessonCourse` de `src/lib/lessons/types.ts`), chaque module une suite de sections typées.
 
 | Dossier ou fichier | Rôle |
 | --- | --- |
-| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `time-series` (`data.ts` : les amorces Python qui chargent les quatre séries réelles fournies avec statsmodels ; `m1` à `m6`), `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, `computer-vision` (`data.ts` : les amorces qui chargent les chiffres de `load_digits` et le découpage commun ; `m1` à `m6`), plus `projects/` (9 projets guidés en un seul `LessonCourse`, id `projects`) |
+| `src/data/lessons/<cours>/` | `index.ts` (l'objet `LessonCourse`, `id` stable) et un fichier par module (`m1-...ts`) ; `data.ts` et `datasets/` pour les jeux de données partagés. Dossiers : `python`, `math-intro`, `inferential-statistics`, `applied-statistics`, `time-series` (`data.ts` : les amorces Python qui chargent les quatre séries réelles fournies avec statsmodels ; `m1` à `m6`), `database-fundamentals`, `data-visualization`, `supervised-learning`, `ml-models-guide`, `transformers`, `nlp`, `computer-vision` (`data.ts` : les amorces qui chargent les chiffres de `load_digits` et le découpage commun ; `m1` à `m6`), `mlops` (`m1` à `m6`, chaque module a ses propres amorces), `r-language` (`m1` à `m5`, code R à lire), plus `projects/` (12 projets guidés en un seul `LessonCourse`, id `projects`) |
 | `src/data/lessons/lines.ts` | `lines(...)` : écrit un extrait de code une ligne de source par ligne de code |
 | `src/data/lessons/lessons.test.ts` | Contrôle du cours de bases de données sur sql.js sous Node |
 | `src/data/lessons/lessons-python.test.ts` | Contrôle de tous les cours Python et des projets guidés sur Pyodide sous Node (environ 7 s de chargement, sans réseau) |
@@ -293,7 +293,7 @@ Ces formats sont donc porteurs : un `path` construit dynamiquement ou une indent
 
 - une page `<route>/index.html` par route (Nginx n'a pas de repli vers `index.html`), avec titre, description, `og:*`, `canonical` et `og:url` propres à la route ;
 - pour chaque ancienne URL, une page de redirection (`<meta http-equiv="refresh">` et `canonical` vers la destination), sans attendre le JavaScript ;
-- un bloc JSON-LD (`scripts/structured-data.ts`) sur l'accueil, les 12 cours et les 5 articles, et un `BreadcrumbList` sur toutes les pages sauf l'accueil ;
+- un bloc JSON-LD (`scripts/structured-data.ts`) sur l'accueil, les 14 cours et les 5 articles, et un `BreadcrumbList` sur toutes les pages sauf l'accueil ;
 - pour les articles du blog : `og:type` article, leur illustration en `og:image` et `twitter:image` (carte `summary_large_image`), `article:published_time` et `article:modified_time` ;
 - dans `<div id="root">`, un résumé statique (`scripts/static-summary.ts`) que React remplace au montage : fil d'Ariane, `h1`, description, plan des cours, texte des articles, pages filles ;
 - `sitemap.xml` (routes canoniques ; `lastmod` seulement pour les articles et les pages légales, dont la date est connue) ;
@@ -322,7 +322,7 @@ runCode(language, code, onStatus)             index.ts
  └─ javascript -> runJavaScript(code)                                 javascript.ts
 ```
 
-- **Python** : Pyodide (CPython compilé en WebAssembly) dans un Web Worker module de même origine. Le worker charge `vendor/pyodide-<version>/pyodide.module.js`, exécute une fois `python-setup.ts` (il masque l'avertissement `as_object_map` de Pyodide, déclenché par threadpoolctl pendant une validation croisée de scikit-learn, et rien d'autre), puis charge les paquets déduits des `import` du code (`loadPackagesFromImports`) : un paquet n'est chargé que s'il apparaît dans un `import`, et reste chargé ensuite. Paquets fournis : numpy, pandas, scikit-learn, matplotlib (et leurs dépendances, scipy compris). `PROVIDED_PACKAGES` dans `python.worker.ts` doit rester aligné avec `PYTHON_PACKAGES` de `scripts/sync-runtimes.mjs`. Matplotlib tourne sans écran (rendu Agg) : `plt.show()` ne fait rien et les figures ouvertes reviennent en PNG encodé en base64 dans `RunResult.images`, affichées par `components/ui/figure-output.tsx`. Pas de threads, aucun paquet à télécharger (le verrou `pyodide-lock.json` livré est allégé aux seuls paquets fournis). `asyncio.run(` est réécrit en `await (` car la boucle d'événements de Pyodide est déjà lancée. Les traces sont nettoyées des images internes de Pyodide.
+- **Python** : Pyodide (CPython compilé en WebAssembly) dans un Web Worker, lancé en production dans le bac à sable décrit plus bas (repli : worker de même origine). Le worker charge `vendor/pyodide-<version>/pyodide.module.js`, exécute une fois `python-setup.ts` (il masque l'avertissement `as_object_map` de Pyodide, déclenché par threadpoolctl pendant une validation croisée de scikit-learn, et rien d'autre), puis charge les paquets déduits des `import` du code (`loadPackagesFromImports`) : un paquet n'est chargé que s'il apparaît dans un `import`, et reste chargé ensuite. Paquets fournis : numpy, pandas, scikit-learn, matplotlib (et leurs dépendances, scipy compris). `PROVIDED_PACKAGES` dans `python.worker.ts` doit rester aligné avec `PYTHON_PACKAGES` de `scripts/sync-runtimes.mjs`. Matplotlib tourne sans écran (rendu Agg) : `plt.show()` ne fait rien et les figures ouvertes reviennent en PNG encodé en base64 dans `RunResult.images`, affichées par `components/ui/figure-output.tsx`. Pas de threads, aucun paquet à télécharger (le verrou `pyodide-lock.json` livré est allégé aux seuls paquets fournis). `asyncio.run(` est réécrit en `await (` car la boucle d'événements de Pyodide est déjà lancée. Les traces sont nettoyées des images internes de Pyodide.
 - **SQL** : SQLite via sql.js dans un Web Worker ; une base vide en mémoire est recréée à chaque exécution, le script doit créer ses tables. Résultats mis en forme en tableaux texte (`sql-format.ts`, partagé avec les tests des cours).
 - **JavaScript** : iframe `sandbox="allow-scripts"` (origine opaque) chargeant `sandbox/js-runner.html`, dont la CSP (`default-src 'none'`, pas de `connect-src`) coupe le réseau. Une iframe neuve par exécution, délai de 12 s. Le code qui n'utilise pas le DOM (détection par une expression régulière sur `document`, `window`, `navigator`, etc.) part dans un Web Worker créé depuis un Blob ; celui qui l'utilise s'exécute dans la page du bac à sable.
 - **Délais** : le décompte du délai ne démarre qu'au message `started` du worker (le chargement du moteur n'est pas compté). En cas de dépassement, le worker est arrêté (`terminate`) et recréé à la prochaine exécution. Les exécutions sont mises en file : une seule à la fois par langage.
@@ -330,7 +330,7 @@ runCode(language, code, onStatus)             index.ts
 - **Utilisateurs de `runCode`** : `RunnableCode.tsx` et `LessonExercise.tsx` (exemples et exercices des cours), `CodeEditor.tsx`, `AdvancedConcepts.tsx` (exemples Python) et `courses/python/NumpyBenchmark.tsx` (mesure NumPy contre Python pur).
 - **Mêmes moteurs sous Node pour les tests** : `lib/lessons/python-node.ts` charge le Pyodide et les roues de `public/vendor` sans Worker ni réseau, `sql-node.ts` fait de même avec sql.js. C'est ce qui permet d'exécuter chaque exemple et chaque corrigé des cours dans `npm test`.
 
-Point de sécurité à connaître : les workers Python et SQL sont de même origine que le site et ne sont pas isolés comme l'iframe JavaScript (pas de `sandbox`, pas de politique propre). La Content-Security-Policy du site est une balise `<meta>` du document ; elle ne s'applique pas à un worker chargé par URL (le `CHANGELOG.md` consigne qu'une CSP envoyée en en-tête par le serveur bloquait Python et SQL, ce que la balise `<meta>` ne fait pas). Le code d'un visiteur s'exécute sur sa propre machine, mais rien dans le dépôt ne l'empêche d'utiliser les API disponibles dans un worker de cette origine, `fetch` compris (non testé).
+Isolation (24 octobre 2026) : en production, `src/lib/runner/index.ts` lance chaque moteur par `SandboxedEngine` (`src/lib/runner/sandbox.ts`) : un iframe `sandbox="allow-scripts"` sur `public/sandbox/engine-host.html` (origine opaque, `connect-src 'none'`) reçoit le texte du worker construit, le lance depuis un blob derrière un prélude (`engine-host.js`) qui remplace `fetch` par une demande à la page ; la page ne sert que les fichiers sous `vendor/` (`isEngineFile`, tests dans `sandbox.test.ts`). Pyodide importe ses deux modules depuis des blobs (`importModule` de `python.worker.ts`). Si l'hôte ne démarre pas, ou si Python ne peut pas importer de module blob (en-tête CSP du serveur), le moteur est lancé comme avant dans un worker de même origine (`mode` : `sandbox` ou `worker`). En développement, worker direct. Mesuré avec les en-têtes de production : SQL isolé, Python en repli tant que le serveur n'envoie pas l'en-tête du dossier `sandbox/` (demandé à la plateforme ; politique dans `readme_dev.md`, « Moteurs isolés »).
 
 ### PWA et hors ligne
 
@@ -362,7 +362,7 @@ Tout passe par `src/lib/storage.ts` (ne lève jamais d'exception : stockage bloq
 | Clé | Contenu | Défini dans |
 | --- | --- | --- |
 | `ds-explorer-theme` | Thème choisi | `hooks/use-theme.ts` |
-| `course-progress-<id du cours>` | Statut et notes par module, projet ou étude de cas. Les 12 cours rédigés utilisent l'`id` de leur `LessonCourse` (`python-basics`, `math-intro`...), les projets guidés `projects` | `hooks/use-course-progress.ts` |
+| `course-progress-<id du cours>` | Statut et notes par module, projet ou étude de cas. Les 14 cours rédigés utilisent l'`id` de leur `LessonCourse` (`python-basics`, `math-intro`...), les projets guidés `projects` | `hooks/use-course-progress.ts` |
 | `quiz-attempts-v1` | Tentatives de quiz (100 au plus) | `lib/quiz-storage.ts` |
 | `blog-favorites-v1` | Articles favoris | `hooks/use-blog-favorites.ts` |
 | `code-editor-workspace-v1`, `code-editor-autosave` | Fichiers de l'éditeur et réglage de sauvegarde | `fundamentals/programming/CodeEditor.tsx` |

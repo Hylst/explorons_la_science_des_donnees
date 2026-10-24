@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<!-- Hôte des moteurs Python et SQL, chargé dans un iframe sandbox="allow-scripts" (origine opaque : aucun accès au site,
+     à son stockage, à ses caches ni au service worker). Aucun accès réseau : les fichiers des moteurs sont lus par la page
+     parente, qui n'accepte que vendor/ (src/lib/runner/sandbox.ts). blob: sert au worker et aux modules de Pyodide. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' blob: 'wasm-unsafe-eval'; worker-src blob:; connect-src 'none'; style-src 'unsafe-inline'; img-src data:" />
+<title>Moteur d'exécution isolé</title>
+</head>
+<body>
+<script src="engine-host.js"></script>
+</body>
+</html>

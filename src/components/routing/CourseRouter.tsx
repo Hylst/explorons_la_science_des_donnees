@@ -12,6 +12,8 @@ const DatabaseFundamentals = React.lazy(() => import('../../pages/courses/databa
 const DataVisualization = React.lazy(() => import('../../pages/courses/dataviz/DataVisualization'));
 const NaturalLanguageProcessing = React.lazy(() => import('../../pages/courses/nlp/NaturalLanguageProcessing'));
 const ComputerVision = React.lazy(() => import('../../pages/courses/vision/ComputerVision'));
+const MLOps = React.lazy(() => import('../../pages/courses/machine-learning/MLOps'));
+const RLanguage = React.lazy(() => import('../../pages/courses/programming/RLanguage'));
 const MLModelsGuide = React.lazy(() => import('../../pages/courses/MLModelsGuide'));
 const TransformersGuide = React.lazy(() => import('../../pages/courses/TransformersGuide'));
 const NotFound = React.lazy(() => import('../../pages/NotFound'));
@@ -31,6 +33,7 @@ const CourseRouter: React.FC = () => {
       
       {/* Programming Courses */}
       <Route path="programming/python-basics" element={<PythonBasics />} />
+      <Route path="programming/r-language" element={<RLanguage />} />
       
       {/* Database Courses */}
       <Route path="databases/database-fundamentals" element={<DatabaseFundamentals />} />
@@ -42,6 +45,7 @@ const CourseRouter: React.FC = () => {
       <Route path="machine-learning/supervised-learning" element={<SupervisedLearningCourse />} />
       <Route path="machine-learning/ml-models-guide" element={<MLModelsGuide />} />
       <Route path="machine-learning/transformers" element={<TransformersGuide />} />
+      <Route path="machine-learning/mlops" element={<MLOps />} />
       
       {/* NLP Courses */}
       <Route path="nlp/natural-language-processing" element={<NaturalLanguageProcessing />} />

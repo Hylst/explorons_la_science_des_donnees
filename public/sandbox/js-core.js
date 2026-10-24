@@ -36,7 +36,17 @@
   scope.__runUserCode = async (code) => {
     try {
       const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
-      await new AsyncFunction(code)();
+      let run;
+      try {
+        run = new AsyncFunction(code);
+      } catch (error) {
+        // Compiler le code demande 'unsafe-eval' : un en-tête CSP du serveur qui ne l'autorise pas donne une EvalError
+        if (error instanceof EvalError) {
+          return { output: '', error: "JavaScript est bloqué par la politique de sécurité du serveur (CSP) : la page du bac à sable (sandbox/) doit autoriser 'unsafe-eval' dans script-src." };
+        }
+        throw error;
+      }
+      await run();
       // Laisse se terminer les minuteries lancées par le code (setTimeout), 8 s au plus
       const limit = Date.now() + 8000;
       while (pending > 0 && Date.now() < limit) await new Promise((resolve) => nativeSetTimeout(resolve, 20));

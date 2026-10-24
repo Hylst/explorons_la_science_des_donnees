@@ -283,6 +283,18 @@ Images : `sklearn.datasets.load_digits`, fourni avec scikit-learn (rien n'est t�
 | Les premières couches d'un réseau convolutif apprennent des détecteurs généraux, les dernières sont spécialisées (Yosinski et al., 2014, « How transferable are features in deep neural networks? ») | connaissance de l'article | non relu à la source pour ce cours |
 | ImageNet comme jeu de pré-entraînement courant, MobileNetV2 disponible pré-entraîné dans Keras (`weights='imagenet'`) | documentation Keras (connaissance) | code à lire, non exécuté (TensorFlow absent du moteur) |
 
+## 17. Cours MLOps et cours R (24 octobre 2026)
+
+Jeux : `load_breast_cancer`, `load_diabetes`, `load_iris` (scikit-learn) ; `spector` et `stackloss` (statsmodels) ; simulations avec graine pour la dérive (cours MLOps, module 6). Rien n'est téléchargé. Les nombres cités sont mesurés par le moteur du site ; les exercices sont revérifiés par `src/data/lessons/lessons-python.test.ts`. Le code R, MLflow, FastAPI, Docker, ONNX et pytest est à lire : aucune sortie n'en est montrée comme exécutée.
+
+| Fait repris dans le cours | Source | Niveau |
+|---|---|---|
+| Repères de lecture de l'indice de stabilité de population (moins de 0,1 stable, 0,1 à 0,25 à surveiller, plus de 0,25 notable), présentés comme une règle empirique de la pratique du crédit | usage courant (connaissance) | non vérifié à une source ; présenté comme règle empirique |
+| Ne pas charger un fichier pickle d'origine inconnue : le chargement peut exécuter du code | documentation du module `pickle` de Python (avertissement en tête de page) | connaissance ; démontré par le module 3 avec un `print` inoffensif |
+| R : `t.test` fait un test de Welch par défaut ; `chisq.test` applique la correction de Yates à un tableau 2 x 2 par défaut ; `write.csv` ajoute une colonne de noms de lignes ; tube natif `\|>` depuis R 4.1 ; `sd()` divise par n - 1 | documentation de R (connaissance) | non relu à la source pour ce cours ; les chiffres montrés viennent de l'équivalent Python |
+| `spector` : Spector et Mazzeo (1980) ; `stackloss` : 21 jours d'une usine d'oxydation de l'ammoniac, jeu également fourni avec R | description jointe aux jeux de statsmodels | lue par l'agent de rédaction le 24 octobre 2026 |
+| Le jeu iris de scikit-learn peut différer de celui de R sur quelques mesures | documentation de scikit-learn (connaissance) | non vérifié ; sert à ne pas promettre l'égalité au chiffre près |
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

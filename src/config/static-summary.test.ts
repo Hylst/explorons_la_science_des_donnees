@@ -12,14 +12,14 @@ describe("résumé statique des pages générées", () => {
   it("plan de chaque cours rédigé (autant de modules que le catalogue) et des projets guidés", () => {
     const outlines = lessonOutlines(ROOT);
     const rediges = COURSE_CATALOG.filter((c) => c.status === "redige");
-    expect(rediges).toHaveLength(12);
+    expect(rediges).toHaveLength(14);
     for (const course of rediges) {
       const titles = outlines.get(course.href);
       expect(titles, course.href).toBeDefined();
       expect(titles?.length, course.href).toBe(course.modules);
       for (const t of titles ?? []) expect(t.trim().length, course.href).toBeGreaterThan(3);
     }
-    expect(outlines.get("/projects")).toHaveLength(9);
+    expect(outlines.get("/projects")).toHaveLength(12);
     expect(outlines.get("/courses/programming/python-basics")?.[0]).toBe("Premiers pas avec Python");
   });
 

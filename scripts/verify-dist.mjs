@@ -150,7 +150,7 @@ for (const file of pageFiles) {
   }
   summaryCount += 1;
 }
-if (pageCount > 1 && jsonLdCount < 18) fail('JSON-LD : ' + jsonLdCount + ' page(s) seulement (attendu : accueil, 12 cours, 5 articles)');
+if (pageCount > 1 && jsonLdCount < 20) fail('JSON-LD : ' + jsonLdCount + ' page(s) seulement (attendu : accueil, 14 cours, 5 articles)');
 for (const [title, routes] of titles) if (routes.length > 1) fail('titre en double (' + title + ') : ' + routes.join(', '));
 for (const [description, routes] of descriptions) if (routes.length > 1) fail('description en double : ' + routes.join(', '));
 if (pageCount > 1 && summaryCount !== pageCount) fail('resume statique : ' + summaryCount + ' page(s) sur ' + pageCount);

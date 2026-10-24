@@ -24,7 +24,7 @@ describe("données structurées (JSON-LD) des pages générées", () => {
   it("le site sur l'accueil, un Course par cours rédigé, un BlogPosting par article", () => {
     expect(data.get("/")?.["@type"]).toBe("WebSite");
     const rediges = COURSE_CATALOG.filter((c) => c.status === "redige");
-    expect(rediges.length).toBe(12);
+    expect(rediges.length).toBe(14);
     for (const c of rediges) {
       const d = data.get(c.href);
       expect(d?.["@type"], c.href).toBe("Course");

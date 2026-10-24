@@ -10,6 +10,25 @@ let pyodidePromise: Promise<PyodideInterface> | null = null;
 
 const post = (message: WorkerResponse) => self.postMessage(message);
 
+/** Vrai quand le worker tourne dans le bac à sable (public/sandbox/engine-host.js) : origine opaque, fetch relayé */
+const inSandbox = () => (self as unknown as { __ENGINE_SANDBOX?: boolean }).__ENGINE_SANDBOX === true;
+
+/**
+ * Module JavaScript de Pyodide. Dans le bac à sable, un import direct du site serait une requête d'une autre origine
+ * (refusée sans en-tête CORS) : le texte est lu par le fetch relayé, puis importé depuis un blob.
+ */
+const importModule = async (url: string) => {
+  if (!inSandbox()) return import(/* @vite-ignore */ url);
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${url} : HTTP ${response.status}`);
+  const blobUrl = URL.createObjectURL(new Blob([await response.text()], { type: 'text/javascript' }));
+  try {
+    return await import(/* @vite-ignore */ blobUrl);
+  } finally {
+    URL.revokeObjectURL(blobUrl);
+  }
+};
+
 /** Paquets scientifiques fournis par le site (liste à garder alignée avec PYTHON_PACKAGES de scripts/sync-runtimes.mjs) */
 const PROVIDED_PACKAGES = ['numpy', 'pandas', 'scikit-learn', 'matplotlib', 'statsmodels'];
 
@@ -46,8 +65,10 @@ const loadPython = (baseUrl: string, status: (m: string) => void) =>
   (pyodidePromise ??= (async () => {
     status('Chargement de Python (une dizaine de Mo, une seule fois)…');
     const indexURL = `${baseUrl}vendor/pyodide-${__PYODIDE_VERSION__}/`;
-    const module = await import(/* @vite-ignore */ `${indexURL}pyodide.module.js`);
-    const py = (await module.loadPyodide({ indexURL })) as PyodideInterface;
+    const module = await importModule(`${indexURL}pyodide.module.js`);
+    // Dans le bac à sable, le module WebAssembly de Pyodide est importé de la même façon, puis fourni à loadPyodide
+    const createPyodideModule = inSandbox() ? (await importModule(`${indexURL}pyodide.asm.js`)).default : undefined;
+    const py = (await module.loadPyodide(createPyodideModule ? { indexURL, createPyodideModule } : { indexURL })) as PyodideInterface;
     py.runPython(ENGINE_SETUP);
     return py;
   })().catch((error) => {

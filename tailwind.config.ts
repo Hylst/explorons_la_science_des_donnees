@@ -15,7 +15,7 @@ export default {
 	// Classes construites à l'exécution (`bg-${couleur}-50`...) que Tailwind ne voit pas dans le code : liste dans tailwind/dynamic-colors.ts
 	safelist: DYNAMIC_SAFELIST,
 	// Tranches Python des leçons que Tailwind lit comme des propriétés arbitraires (`[-48:-24]` donnait la règle invalide `-48: -24`)
-	blocklist: ["[-48:-24]"],
+	blocklist: ["[-48:-24]", "[-1500:-500]"],
 	prefix: "",
 	theme: {
 		container: {

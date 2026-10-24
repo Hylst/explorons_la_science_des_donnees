@@ -2,8 +2,9 @@ import { asset } from "@/lib/asset";
 
 /**
  * Illustrations SVG animées (public/svg/cards) : les trois cours mis en avant sur l'accueil, et le cours de séries temporelles
- * (tracé des vraies moyennes mensuelles du CO2 de Mauna Loa) et celui de vision par ordinateur (une convolution sur un vrai
- * chiffre manuscrit), faute d'image générée pour eux.
+ * (tracé des vraies moyennes mensuelles du CO2 de Mauna Loa), celui de vision par ordinateur (une convolution sur un vrai
+ * chiffre manuscrit), celui de MLOps (la boucle d'un modèle en service) et celui de R
+ * (la même moyenne écrite en R et en Python), faute d'image générée pour eux.
  */
 export const ANIMATED_COURSE_IMAGES: Record<string, string> = {
   "python-basics": "svg/cards/python-code.svg",
@@ -11,6 +12,8 @@ export const ANIMATED_COURSE_IMAGES: Record<string, string> = {
   "ml-models-guide": "svg/cards/ml-frontiere.svg",
   "time-series": "svg/cards/series-co2.svg",
   "computer-vision": "svg/cards/vision-convolution.svg",
+  "mlops": "svg/cards/mlops-boucle.svg",
+  "r-language": "svg/cards/r-et-python.svg",
 };
 
 /**

@@ -182,53 +182,53 @@ export const projects: Project[] = [
   // PROJETS AVANCÉS
   {
     id: "advanced-1",
-    title: "Classification d'images médicales avec un CNN",
-    description: "Développez, à but pédagogique, un classifieur d'images médicales à base de réseaux de neurones convolutifs. Cet exercice ne constitue pas un dispositif médical.",
+    title: "Un réseau convolutif sur les chiffres, écrit en NumPy",
+    description: "Projet de vision par ordinateur de bout en bout sur les chiffres manuscrits de scikit-learn (projet guidé) : références simples, réseau convolutif écrit en NumPy, rétropropagation vérifiée, comparaison avec un perceptron, analyse des erreurs, puis ce qui change avec de vraies images médicales. Exercice pédagogique, aucun dispositif médical.",
     level: "advanced",
-    technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "pydicom"],
+    technologies: ["Python", "NumPy", "scikit-learn", "Matplotlib", "Keras"],
     category: "computer-vision",
-    duration: "20-25 heures",
-    difficulty: 5,
-    prerequisites: ["Deep Learning", "Vision par ordinateur", "Python avancé"],
+    duration: "4-6 heures",
+    difficulty: 4,
+    prerequisites: ["Python et NumPy", "Machine learning supervisé", "Réseaux de neurones et convolution"],
     learningObjectives: [
-      "CNNs pour l'imagerie médicale",
-      "Apprentissage par transfert",
-      "Gestion des données DICOM",
-      "Éthique en IA médicale"
+      "Écrire et vérifier la rétropropagation d'un réseau convolutif",
+      "Comparer des modèles en tenant compte de l'incertitude",
+      "Lire une matrice de confusion et analyser les erreurs",
+      "Situer la limite entre un exercice et un usage médical"
     ]
   },
   {
     id: "advanced-2",
-    title: "Traduction automatique avec des Transformers",
-    description: "Construisez un système de traduction automatique fondé sur l'architecture Transformer (Vaswani et al., 2017).",
+    title: "L'attention écrite en NumPy : une traduction jouet",
+    description: "Construisez à la main le mécanisme au cœur des Transformers (Vaswani et al., 2017) : attention par produit scalaire, masque causal, plusieurs têtes, rétropropagation ; entraînez-le sur une traduction jouet du français vers l'anglais, mesurez-le avec un BLEU simplifié et lisez ses poids d'attention (projet guidé).",
     level: "advanced",
-    technologies: ["Python", "PyTorch", "Transformers", "CUDA", "Weights & Biases"],
+    technologies: ["Python", "NumPy", "Matplotlib", "PyTorch", "Hugging Face Transformers"],
     category: "nlp",
-    duration: "25-30 heures",
+    duration: "4-6 heures",
     difficulty: 5,
-    prerequisites: ["NLP avancé", "Deep Learning", "Mécanismes d'attention"],
+    prerequisites: ["Python et NumPy", "Algèbre linéaire", "Réseaux de neurones", "Cours Transformers"],
     learningObjectives: [
-      "Architecture Transformer",
-      "Attention multi-têtes",
-      "Ajustement fin de modèles préentraînés",
-      "Évaluation BLEU/chrF"
+      "Coder l'attention multi-têtes avec masque causal",
+      "Dériver et vérifier sa rétropropagation",
+      "Mesurer l'effet du codage positionnel et des graines",
+      "Comprendre ce que mesure, et ne mesure pas, BLEU"
     ]
   },
   {
     id: "advanced-3",
-    title: "Système de trading algorithmique",
-    description: "Développez, à but pédagogique, une stratégie de trading automatisée testée sur données historiques (backtesting). Cet exercice n'est pas un conseil en investissement : les performances passées ne préjugent pas des résultats futurs.",
+    title: "Un backtest honnête sur une série simulée",
+    description: "Testez une stratégie de croisement de moyennes mobiles sur une marche aléatoire simulée, où rien n'est prévisible par construction (projet guidé) : frais, rendement, volatilité, perte maximale, puis biais d'anticipation et surapprentissage des paramètres. Exercice pédagogique, pas un conseil en investissement : les performances passées ne préjugent pas des résultats futurs.",
     level: "advanced",
-    technologies: ["Python", "backtrader", "QuantLib", "Apache Airflow", "Docker"],
+    technologies: ["Python", "pandas", "NumPy", "Matplotlib", "backtrader"],
     category: "finance",
-    duration: "30-35 heures",
-    difficulty: 5,
-    prerequisites: ["Finance quantitative", "Séries temporelles", "ML avancé"],
+    duration: "4-6 heures",
+    difficulty: 4,
+    prerequisites: ["Python et pandas", "Moyenne et écart-type", "Séries temporelles"],
     learningObjectives: [
-      "Stratégies quantitatives",
-      "Backtesting rigoureux",
-      "Gestion des risques",
-      "Déploiement en production"
+      "Construire un moteur de backtest avec frais de transaction",
+      "Calculer rendement, volatilité annualisée et perte maximale",
+      "Détecter et corriger un biais d'anticipation",
+      "Mesurer le surapprentissage des paramètres sur plusieurs graines"
     ]
   }
 
@@ -276,6 +276,10 @@ export const durationBucket = (project: Project): Exclude<DurationFilter, "all">
   const [min] = hoursOf(project);
   return min <= 4 ? "short" : min <= 12 ? "medium" : "long";
 };
+
+/** Catégories de durée qui retiennent au moins un projet : le filtre ne propose pas un choix qui ne donnerait rien */
+export const durationBuckets = (): Exclude<DurationFilter, "all">[] =>
+  (Object.keys(DURATION_LABELS) as Exclude<DurationFilter, "all">[]).filter((bucket) => projects.some((p) => durationBucket(p) === bucket));
 
 export type ProgressFilter = "all" | "todo" | "started" | "done";
 export const PROGRESS_LABELS: Record<Exclude<ProgressFilter, "all">, string> = {

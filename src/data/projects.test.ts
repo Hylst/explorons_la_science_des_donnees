@@ -6,6 +6,7 @@ import {
   CATEGORY_LABELS,
   DEFAULT_FILTERS,
   durationBucket,
+  durationBuckets,
   hoursOf,
   LEVEL_LABELS,
   LEVELS,
@@ -160,17 +161,19 @@ describe("matchesFilters", () => {
       expect(long.every((p) => hoursOf(p)[0] >= 13)).toBe(true);
     });
 
-    it("« court » retient le projet de 3-5 heures, pas celui de 30-35 heures", () => {
+    it("« court » retient le projet de 3-5 heures ; le filtre ne propose que des durées qui retiennent un projet", () => {
       expect(ids(select({ duration: "short" }))).toContain("beginner-1");
-      expect(ids(select({ duration: "short" }))).not.toContain("advanced-3");
-      expect(ids(select({ duration: "long" }))).toContain("advanced-3");
+      for (const bucket of durationBuckets()) expect(select({ duration: bucket }).length, bucket).toBeGreaterThan(0);
+      // Aucun projet ne démarre à 13 h ou plus depuis que les projets avancés sont guidés (24 octobre 2026)
+      expect(durationBuckets()).not.toContain("long");
+      expect(select({ duration: "long" })).toEqual([]);
     });
   });
 
   describe("technologies", () => {
     it("retient les projets qui utilisent la technologie cochée", () => {
       const result = select({ technologies: ["NumPy"] });
-      expect(ids(result).sort()).toEqual(["beginner-2", "beginner-4", "intermediate-1"]);
+      expect(ids(result).sort()).toEqual(["advanced-1", "advanced-2", "advanced-3", "beginner-2", "beginner-4", "intermediate-1"]);
     });
 
     it("avec plusieurs technologies, exige qu'elles soient toutes utilisées (ET, pas OU)", () => {
@@ -212,7 +215,7 @@ describe("matchesFilters", () => {
     });
 
     it("cherche dans les objectifs d'apprentissage", () => {
-      expect(ids(select({ query: "DICOM" }))).toEqual(["advanced-1"]);
+      expect(ids(select({ query: "frais de transaction" }))).toEqual(["advanced-3"]);
     });
 
     it("cherche dans le libellé de la catégorie", () => {
@@ -302,7 +305,7 @@ describe("valeurs dérivées des données", () => {
   it("levelSummary : nombre de projets et fourchette de durée calculés sur les données", () => {
     expect(levelSummary("beginner")).toEqual({ count: 4, minHours: 3, maxHours: 6 });
     expect(levelSummary("intermediate")).toEqual({ count: 5, minHours: 3, maxHours: 4 });
-    expect(levelSummary("advanced")).toEqual({ count: 3, minHours: 20, maxHours: 35 });
+    expect(levelSummary("advanced")).toEqual({ count: 3, minHours: 4, maxHours: 6 });
   });
 
   it("levelSummary : la somme des effectifs est le nombre total de projets", () => {

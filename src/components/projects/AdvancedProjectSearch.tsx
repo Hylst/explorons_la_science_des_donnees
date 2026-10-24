@@ -27,6 +27,7 @@ import {
   allCategories,
   allTechnologies,
   categoryLabel,
+  durationBuckets,
   type DurationFilter,
   type ProgressFilter,
   type ProjectFilterState
@@ -105,8 +106,8 @@ export function AdvancedProjectSearch({ filters, onChange, resultCount, totalCou
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Toute durée</SelectItem>
-              {Object.entries(DURATION_LABELS).map(([value, label]) => (
-                <SelectItem key={value} value={value}>{label}</SelectItem>
+              {durationBuckets().map((value) => (
+                <SelectItem key={value} value={value}>{DURATION_LABELS[value]}</SelectItem>
               ))}
             </SelectContent>
           </Select>

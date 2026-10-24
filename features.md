@@ -16,7 +16,7 @@ Recomptés le 9 octobre 2026, puis le 12 octobre 2026 pour les routes, les cours
 
 | Élément | Nombre | Détail |
 | --- | --- | --- |
-| Routes canoniques (sitemap) | 58 | 1 accueil, 1 introduction, 11 Fondamentaux, 4 Machine Learning, 5 Outils, 13 Cours (catalogue + 12 cours), 9 Quiz (index + 8 catégories), 1 glossaire, 1 projets, 1 ressources, 1 communauté, 6 blog (index + 5 articles), 4 pages d'information (à propos, contact, confidentialité, conditions) |
+| Routes canoniques (sitemap) | 60 | 1 accueil, 1 introduction, 11 Fondamentaux, 4 Machine Learning, 5 Outils, 15 Cours (catalogue + 14 cours), 9 Quiz (index + 8 catégories), 1 glossaire, 1 projets, 1 ressources, 1 communauté, 6 blog (index + 5 articles), 4 pages d'information (à propos, contact, confidentialité, conditions) |
 | Anciennes URL redirigées | 28 | `LEGACY_REDIRECTS` dans `src/config/routes.ts` ; le build génère une page de redirection pour chacune |
 | Pages HTML générées (build hylst) | 85 | 57 canoniques + 28 redirections, plus `404.html`, `offline.html` et `sitemap.xml` |
 | Cours sous `/courses/` | 11 | tous rédigés au format des cours en données (`src/data/lessons/`) ; voir « Cours » |
@@ -27,7 +27,7 @@ Recomptés le 9 octobre 2026, puis le 12 octobre 2026 pour les routes, les cours
 | Formules des cours (sections « équation ») | 82 | 33 en introduction aux mathématiques, 18 en statistiques inférentielles, 14 dans le guide des modèles, 12 dans Transformers, 5 en séries temporelles ; chacune est compilée par les tests |
 | Questions de quiz (section Quiz) | 165 | 8 catégories : Programmation 25, puis 20 pour chacune des 7 autres ; 10 questions tirées au hasard par tentative |
 | Termes du glossaire | 229 | 190 écrits à la main (8 fichiers) et 39 issus des dictionnaires de survol des cours ; 9 catégories utilisées (fondamentaux 23, statistiques 22, machine learning 32, deep learning 31, NLP 16, MLOps 34, évaluation 34, préparation 32, ingénierie des données 5) ; 52 ont une définition longue ; aucun doublon de nom |
-| Projets | 12 | 4 débutant, 5 intermédiaire, 3 avancé ; 11 catégories, 20 technologies distinctes ; 9 guidés pas à pas (35 exercices vérifiés) |
+| Projets | 12 | 4 débutant, 5 intermédiaire, 3 avancé ; 11 catégories, 20 technologies distinctes ; 12 guidés pas à pas (52 exercices vérifiés) |
 | Articles de blog | 5 | tous signés Geoffroy Streit, datés du 2 octobre 2026, 3 à 4 minutes de lecture annoncées |
 | Articles d'actualité (Communauté) | 20 | instantané du 2 octobre 2026, 5 flux sur les 6 déclarés dans `rss-sources.json` (4 articles chacun) ; articles publiés du 23 juin au 2 octobre 2026 |
 | Modèles de code de l'éditeur | 6 | 3 Python, 2 JavaScript, 1 SQL |
@@ -92,7 +92,7 @@ Recomptés le 9 octobre 2026, puis le 12 octobre 2026 pour les routes, les cours
 
 ### Cours (`/courses`, 12 routes)
 
-Catalogue (`CoursesIndex.tsx`) : 6 catégories et 12 cours, lus dans `src/data/course-catalog.ts` (source unique, partagée avec l'accueil). Depuis le 6 octobre 2026, les cours du catalogue ont des leçons rédigées (11 depuis le 12 octobre, 12 depuis le 24 octobre avec la vision par ordinateur) et se présentent avec « Commencer le cours » ; le statut `plan` (badge « Plan du cours ») reste prévu dans le code mais n'est plus utilisé. Niveau, durée « indicative » et nombre de modules ne sont affichés que s'ils figurent sur la page du cours. Les 12 cours sont routés dans `CourseRouter.tsx` ; tout autre chemin affiche la page 404.
+Catalogue (`CoursesIndex.tsx`) : 6 catégories et 14 cours, lus dans `src/data/course-catalog.ts` (source unique, partagée avec l'accueil). Depuis le 6 octobre 2026, les cours du catalogue ont des leçons rédigées (11 depuis le 12 octobre, 12 depuis le 24 octobre avec la vision par ordinateur) et se présentent avec « Commencer le cours » ; le statut `plan` (badge « Plan du cours ») reste prévu dans le code mais n'est plus utilisé. Niveau, durée « indicative » et nombre de modules ne sont affichés que s'ils figurent sur la page du cours. Les 12 cours sont routés dans `CourseRouter.tsx` ; tout autre chemin affiche la page 404.
 
 | Cours | Route | État | Détail vérifié |
 | --- | --- | --- | --- |
@@ -141,7 +141,7 @@ Les onze cours partagent `LessonCoursePage` (`src/components/courses/lessons/`) 
 | Fonctionnalité | État | Détail vérifié |
 | --- | --- | --- |
 | Sélection de ressources externes | Disponible | 3 livres, 2 cours en ligne, 5 sites, 4 chaînes vidéo, avec lien ; les liens sortants ne sont pas vérifiés à chaque build |
-| Cours du site par thème | Disponible | `InitiationCoursesSection` : les 12 cours du catalogue, rangés par thème, lus dans `src/data/course-catalog.ts` (niveau, durée indicative et modules viennent du catalogue). Les entrées sans cours (logique formelle, data warehousing, computer vision...) ont été retirées le 8 octobre |
+| Cours du site par thème | Disponible | `InitiationCoursesSection` : les 14 cours du catalogue, rangés par thème, lus dans `src/data/course-catalog.ts` (niveau, durée indicative et modules viennent du catalogue). Les entrées sans cours (logique formelle, data warehousing, computer vision...) ont été retirées le 8 octobre |
 
 ### Blog (`/blog`, 6 routes)
 
@@ -194,12 +194,12 @@ Les onze cours partagent `LessonCoursePage` (`src/components/courses/lessons/`) 
 
 - **Pas de compte ni de serveur.** Aucune donnée n'est partagée entre appareils ou navigateurs ; vider les données du site efface progression, notes, quiz et code. Aucun certificat n'est délivré (le texte du cours supervisé le dit).
 - **Bibliothèques du moteur.** NumPy, pandas, scikit-learn (SciPy comprise), statsmodels (depuis le 10 octobre 2026) et Matplotlib (rendu Agg, figures affichées sous la sortie) sont fournis. `xgboost`, `lightgbm`, `beautifulsoup4` et `nltk` existent dans la distribution Pyodide du site mais ne sont pas livrés (question de poids) ; seaborn, plotly, spacy, TensorFlow et PyTorch n'existent pas dans Pyodide. Un `import` de l'un d'eux échoue avec un `ModuleNotFoundError` explicite.
-- **Worker Python (et SQL) de même origine, donc non isolé.** Contrairement à l'iframe JavaScript (origine opaque, sans réseau), les workers Python et SQL sont chargés depuis l'origine du site, sans `sandbox` ni politique propre : la CSP du site est une balise `<meta>` qui ne s'applique pas à un worker. Le code s'exécute sur la machine du visiteur, mais rien dans le dépôt n'empêche ce code d'utiliser les API de l'origine, `fetch` compris (non testé).
+- **Moteurs Python et SQL isolés, avec repli.** Depuis le 24 octobre 2026, ils tournent dans un iframe `sandbox` à origine opaque (`src/lib/runner/sandbox.ts`) : le code n'atteint ni le stockage du site, ni ses caches, ni le réseau ; seuls les fichiers de `vendor/` lui sont servis, par la page. Si l'isolation ne démarre pas, le moteur tourne comme avant dans un worker de même origine. En ligne, Python reste dans ce repli tant que le serveur n'envoie pas, pour le dossier `sandbox/`, un en-tête CSP qui autorise `blob:` (demandé à la plateforme) ; SQL est isolé. Mesuré dans Chrome avec les en-têtes de production (`.banc/cdp-sandbox-probe.mjs`).
 - **Moteurs lourds.** 56 Mo dans `public/vendor` (non versionné, recréé par `npm run runtimes:sync`, qui a besoin du réseau la première fois). Ils ne se téléchargent qu'à la première exécution, puis restent en cache.
 - **Données externes datées.** Les actualités sont un instantané du 2 octobre 2026. Les chiffres de marché des pages Outils, Introduction et Programmation portent une date de consultation (1er octobre 2026) et vieillissent. Quelques chiffres de la page Bases de données (IDC, Google, McKinsey, Amazon, IBM) et les 13 millisecondes de la masterclass Python restent non vérifiés à la source (`docs/SOURCES.md`). Les liens externes (ressources, forums, vidéos) ne sont pas vérifiés automatiquement.
 - **Cours en plan.** Plus aucun depuis le 6 octobre 2026 : les cinq plans de modules ont été rédigés (bases de données, ML supervisé, visualisation, statistiques appliquées, traitement du langage).
 - **Contenu illustratif.** Plusieurs encadrés de la préparation des données (validation, automatisation, qualité avancée) montrent des chiffres d'exemple fixes, signalés comme tels dans leur texte.
-- **Projets sans corrigé.** 3 projets sur 12 (les avancés) restent des fiches : aucun jeu de données ni solution n'est fourni, et certains sujets (imagerie médicale) demandent des données publiques à récupérer soi-même. Les 9 projets guidés fournissent leurs données (simulées ou intégrées à scikit-learn) et leurs corrigés.
+- **Projets à l'échelle du moteur.** Depuis le 24 octobre 2026, les 12 projets sont guidés et fournissent leurs données (simulées, ou intégrées à scikit-learn et statsmodels) et leurs corrigés. Les trois projets avancés sont des versions réduites (chiffres de 8 x 8 au lieu d'images médicales, traduction jouet, série simulée) : ce qui demande un GPU, de vraies données de santé ou des données de marché est en code à lire.
 - **Blog limité.** 5 articles, sans recherche ni filtre sur la page `/blog`.
 - **Langue.** Interface et contenus uniquement en français ; certaines ressources externes sont en anglais.
 - **Code source.** Aucun lien vers le dépôt n'est affiché : `SOURCE_URL` vaut `null` par décision de l'auteur (5 octobre 2026). Le code est proposé sur demande, par la page Contact, ce que l'AGPL permet (offrir l'accès au code source correspondant).

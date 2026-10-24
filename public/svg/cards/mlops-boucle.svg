@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-labelledby="t d">
+<title id="t">La boucle d'un modèle en service, de la donnée à la surveillance</title>
+<desc id="d">Cinq étapes reliées par des flèches : données, entraînement, tests, service, surveillance. Un point parcourt la boucle. En dessous, la distribution des nouvelles données glisse peu à peu par rapport à celle de référence, et le signal de dérive s'allume.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e3a5f"/></linearGradient></defs>
+<style>text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@keyframes run{0%{transform:translate(0,0)}18%{transform:translate(150px,0)}36%{transform:translate(300px,0)}54%{transform:translate(450px,0)}72%{transform:translate(600px,0)}82%{transform:translate(600px,90px)}92%{transform:translate(0,90px)}100%{transform:translate(0,0)}}
+@keyframes drift{0%,20%{transform:translate(0,0)}60%,85%{transform:translate(70px,0)}100%{transform:translate(0,0)}}
+@keyframes alert{0%,45%{fill:#334155}55%,85%{fill:#f59e0b}100%{fill:#334155}}
+@keyframes glow{0%,100%{stroke:#38bdf8}50%{stroke:#a5f3fc}}
+.dot{animation:run 9s linear infinite}.cur{animation:drift 9s ease-in-out infinite}.lamp{animation:alert 9s ease-in-out infinite}.box{animation:glow 4.5s ease-in-out infinite}</style>
+<rect width="800" height="450" fill="url(#bg)"/>
+<g fill="#0b1220" stroke-width="2" class="box">
+<rect x="40" y="120" width="120" height="56" rx="10" stroke="#38bdf8"/>
+<rect x="190" y="120" width="120" height="56" rx="10" stroke="#38bdf8"/>
+<rect x="340" y="120" width="120" height="56" rx="10" stroke="#38bdf8"/>
+<rect x="490" y="120" width="120" height="56" rx="10" stroke="#38bdf8"/>
+<rect x="640" y="120" width="120" height="56" rx="10" stroke="#38bdf8"/>
+</g>
+<g fill="#e2e8f0" font-size="17" text-anchor="middle">
+<text x="100" y="154">Données</text><text x="250" y="154">Entraînement</text><text x="400" y="154">Tests</text><text x="550" y="154">Service</text><text x="700" y="154">Surveillance</text>
+</g>
+<g stroke="#64748b" stroke-width="2" fill="none">
+<path d="M160 148h30M310 148h30M460 148h30M610 148h30"/>
+<path d="M700 176v34H100v-34" stroke-dasharray="6 6"/>
+</g>
+<g fill="#64748b"><path d="M190 148l-8-5v10zM340 148l-8-5v10zM490 148l-8-5v10zM640 148l-8-5v10zM100 176l-5 8h10z"/></g>
+<text x="400" y="234" fill="#94a3b8" font-size="15" text-anchor="middle">réentraîner quand les données changent</text>
+<circle cx="100" cy="120" r="7" fill="#fbbf24" class="dot"/>
+<line x1="90" y1="400" x2="610" y2="400" stroke="#475569" stroke-width="2"/>
+<path d="M110 400C190 400 210 292 270 292S350 400 430 400" fill="#38bdf8" fill-opacity=".25" stroke="#38bdf8" stroke-width="2"/>
+<g class="cur"><path d="M110 400C190 400 210 306 270 306S350 400 430 400" fill="none" stroke="#fb923c" stroke-width="3" stroke-dasharray="8 6"/></g>
+<g font-size="15"><text x="110" y="282" fill="#7dd3fc">référence</text><text x="330" y="292" fill="#fdba74">nouvelles données</text></g>
+<circle cx="680" cy="330" r="22" class="lamp" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+<text x="680" y="380" fill="#e2e8f0" font-size="16" text-anchor="middle">dérive ?</text>
+</svg>
