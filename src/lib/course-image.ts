@@ -16,6 +16,7 @@ export const ANIMATED_COURSE_IMAGES: Record<string, string> = {
   "mlops": "svg/cards/mlops-boucle.svg",
   "r-language": "svg/cards/r-et-python.svg",
   "factor-analysis": "svg/cards/acp-vins.svg",
+  "cloud-data-science": "svg/cards/cloud-elasticite.svg",
 };
 
 /**

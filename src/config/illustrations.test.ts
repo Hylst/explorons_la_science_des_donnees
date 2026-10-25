@@ -18,8 +18,8 @@ const isDecorative = (tag: string) => tag.startsWith("<Illustration") || /alt=""
 const cards = fs.readdirSync(path.resolve(root, CARDS_DIR)).filter((name) => name.endsWith(".svg"));
 
 describe("illustrations animées des cours (public/svg/cards)", () => {
-  it("le dossier contient bien les quatre illustrations (garde-fou contre un balayage vide)", () => {
-    expect(cards.sort()).toEqual(["acp-vins.svg", "maths-descente.svg", "ml-frontiere.svg", "mlops-boucle.svg", "python-code.svg", "r-et-python.svg", "series-co2.svg", "vision-convolution.svg"]);
+  it("le dossier contient bien les neuf illustrations (garde-fou contre un balayage vide)", () => {
+    expect(cards.sort()).toEqual(["acp-vins.svg", "cloud-elasticite.svg", "maths-descente.svg", "ml-frontiere.svg", "mlops-boucle.svg", "python-code.svg", "r-et-python.svg", "series-co2.svg", "vision-convolution.svg"]);
   });
 
   it.each(cards)("%s est un SVG bien formé, avec titre et description", (name) => {

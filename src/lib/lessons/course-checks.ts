@@ -102,6 +102,8 @@ export const describeLessonCourse = (course: LessonCourse) => {
             it(`exemple Python ${n + 1} s'exécute sans erreur`, async () => {
               const result = await runPythonNode(withSetup(section.setup, section.code));
               expect(result.error, section.code).toBeUndefined();
+              // un avertissement (DeprecationWarning de Matplotlib...) s'afficherait chez l'apprenant comme une erreur
+              expect(result.output, section.code).not.toMatch(/\w+Warning: /);
             }, PYTHON_TIMEOUT);
           } else if (section.kind === "exercise") {
             it(`exercice Python ${n + 1} : le corrigé passe les tests, la réponse de départ non`, async () => {

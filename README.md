@@ -2,7 +2,7 @@
 
 Site éducatif en français sur la data science : cours, quiz, glossaire, projets, ressources et blog, avec un éditeur de code qui exécute Python, SQL et JavaScript dans le navigateur. Le projet s'appelait auparavant « Data Science Explorer » (le dépôt et le sous-chemin de déploiement `/data_science_explorer/` gardent ce nom).
 
-Auteur : Geoffroy Streit, avec assistance IA. Adresse de déploiement prévue : [hylst.fr/data_science_explorer/](https://hylst.fr/data_science_explorer/) (plateforme de l'auteur). Licence : [AGPL-3.0-or-later](LICENSE).
+Auteur : Geoffroy Streit, avec assistance IA. En ligne : [hylst.fr/data_science_explorer/](https://hylst.fr/data_science_explorer/) (plateforme de l'auteur). Licence : [AGPL-3.0-or-later](LICENSE).
 
 ## Ce que c'est, et ce que ce n'est pas
 
@@ -12,10 +12,10 @@ Le contenu, avec les nombres comptés dans le code :
 
 - **Introduction** et **Fondamentaux** : mathématiques et statistiques (6 cours avec formules et graphiques), programmation, préparation des données, bases de données.
 - **Machine Learning** : apprentissage supervisé, non supervisé, par renforcement, deep learning, évaluation.
-- **11 cours** sous `/courses/`, tous rédigés en leçons (exemples exécutables, exercices vérifiés par le moteur, quiz de module, suivi et notes) : Python, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, séries temporelles, bases de données, visualisation de données, ML supervisé, guide des modèles de ML, Transformers, traitement du langage naturel.
+- **16 cours** sous `/courses/` (102 modules, 283 exercices), tous rédigés en leçons (exemples exécutables, exercices vérifiés par le moteur, quiz de module, suivi et notes) : Python, R pour la data science, introduction aux mathématiques, statistiques inférentielles, statistiques appliquées, séries temporelles, analyse factorielle, bases de données, le cloud pour la data science, visualisation de données, ML supervisé, guide des modèles de ML, MLOps, Transformers, traitement du langage naturel, vision par ordinateur.
 - **165 questions de quiz** en 8 catégories, avec explications, historique et statistiques calculés localement.
 - **229 termes de glossaire**, aussi consultables par survol dans les cours.
-- **12 projets**, dont 8 guidés pas à pas (jeu de données, exercices vérifiés, corrigés) ; les 4 autres sont des sujets à réaliser soi-même.
+- **12 projets**, tous guidés pas à pas (jeu de données, exercices vérifiés, corrigés).
 - **5 articles de blog**, des ressources externes sélectionnées, et une page Communauté dont les actualités sont un **instantané daté** de flux RSS publics (pas un flux en direct).
 - **Exercices vérifiés hors des cours** : défis de programmation (Python et JavaScript), exercices pratiques des pages Programmation et Machine learning ; un code qui ne peut pas tourner dans le navigateur est présenté comme code à lire, avec la raison.
 - **Exécution de code réelle** : Python (Pyodide : NumPy, pandas, scikit-learn, statsmodels, Matplotlib), SQL (SQLite via sql.js) et JavaScript (iframe isolée, sans réseau). Les moteurs, 56 Mo, sont servis par le site lui-même et mis en cache.

@@ -307,6 +307,17 @@ Jeux : `load_wine` (scikit-learn ; 178 vins de trois cultivars, 13 mesures chimi
 | Correction de Benzécri des valeurs propres d'une ACM, [Q / (Q - 1) (λ - 1/Q)]² pour λ > 1/Q ; Greenacre en a proposé une variante qui change le dénominateur | littérature de l'ACM (connaissance) | formule contrôlée par le calcul du cours, attribution non relue à la source |
 | API de prince (`CA`, `MCA`, `PCA`) et de FactoMineR (`CA`, `MCA`, `PCA`, `res$eig`), umap-learn | documentation de ces bibliothèques (connaissance) | écrites de mémoire, montrées comme code à lire, jamais exécutées |
 
+## 19. Cours sur le cloud (25 octobre 2026)
+
+Aucun chiffre extérieur : pas de prix, de part de marché, de nombre de régions ni de date. Tous les nombres du cours sortent des simulations exécutées dans le moteur du site (graines fixes), et les tarifs du module sur les coûts sont fictifs, en « unités », annoncés comme tels.
+
+| Fait repris dans le cours | Source | Niveau |
+|---|---|---|
+| Noms des services (S3, EC2, Lambda, IAM, KMS, Secrets Manager, CloudTrail, EMR, Redshift ; Cloud Storage, Compute Engine, Cloud Run, Cloud Functions, BigQuery, Dataproc, Secret Manager, Cloud KMS, Cloud Audit Logs ; Blob Storage, Virtual Machines, Azure Functions, Synapse Analytics, Key Vault, Entra ID) et modes d'achat interruptibles (Spot, préemptible) | documentation des fournisseurs (connaissance) | non relu à la source |
+| Commandes `aws`, `gcloud`, `az`, `func`, Dockerfile, PySpark, Dask, requête BigQuery, politique IAM au format AWS (`"Version": "2012-10-17"`) | documentation des outils (connaissance) | écrites de mémoire, montrées comme code à lire, jamais exécutées |
+| RGPD : article 4 (définitions, dont la pseudonymisation), article 28 (sous-traitant), article 32 (sécurité du traitement), chapitre V (transferts hors de l'Union) | règlement (UE) 2016/679 (connaissance) | non relu à la source ; aucun texte cité mot pour mot |
+| Loi d'Amdahl, accélération 1 / (s + (1 - s) / k) | connaissance | formule comparée à la simulation du module 3 |
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

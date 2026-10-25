@@ -23,7 +23,7 @@ export interface CatalogCourse {
 export const COURSE_CATEGORIES: { id: CourseCategoryId; title: string; description: string }[] = [
   { id: "programming", title: "Programmation", description: "Langages et outils de développement pour la Data Science" },
   { id: "math-stats", title: "Mathématiques et statistiques", description: "Concepts mathématiques et statistiques essentiels" },
-  { id: "databases", title: "Bases de données", description: "SQL, NoSQL et gestion de données pour la Data Science" },
+  { id: "databases", title: "Bases de données", description: "SQL, NoSQL, stockage et cloud pour la Data Science" },
   { id: "dataviz", title: "Visualisation", description: "Construire des graphiques lisibles et honnêtes, du choix du graphique aux tableaux de bord" },
   { id: "machine-learning", title: "Machine Learning", description: "Algorithmes et techniques d'apprentissage automatique" },
   { id: "ai", title: "Intelligence artificielle", description: "NLP et techniques avancées d'IA" },
@@ -105,6 +105,17 @@ export const COURSE_CATALOG: CatalogCourse[] = [
     duration: "≈ 14 h 30",
     modules: 6,
     href: "/courses/databases/database-fundamentals",
+    status: "redige",
+  },
+  {
+    id: "cloud-data-science",
+    category: "databases",
+    title: "Le cloud pour la data science",
+    description: "Stockage objet, calcul, coûts, gros volumes, sécurité et RGPD, sans favori entre fournisseurs : les mécanismes mesurés sur des simulations en Python.",
+    level: "Intermédiaire",
+    duration: "≈ 14 h",
+    modules: 6,
+    href: "/courses/databases/cloud-data-science",
     status: "redige",
   },
   {

@@ -10,6 +10,7 @@ const TimeSeries = React.lazy(() => import('../../pages/courses/statistics/TimeS
 const FactorAnalysis = React.lazy(() => import('../../pages/courses/statistics/FactorAnalysis'));
 const SupervisedLearningCourse = React.lazy(() => import('../../pages/courses/machine-learning/SupervisedLearningCourse'));
 const DatabaseFundamentals = React.lazy(() => import('../../pages/courses/databases/DatabaseFundamentals'));
+const CloudDataScience = React.lazy(() => import('../../pages/courses/databases/CloudDataScience'));
 const DataVisualization = React.lazy(() => import('../../pages/courses/dataviz/DataVisualization'));
 const NaturalLanguageProcessing = React.lazy(() => import('../../pages/courses/nlp/NaturalLanguageProcessing'));
 const ComputerVision = React.lazy(() => import('../../pages/courses/vision/ComputerVision'));
@@ -39,6 +40,7 @@ const CourseRouter: React.FC = () => {
       
       {/* Database Courses */}
       <Route path="databases/database-fundamentals" element={<DatabaseFundamentals />} />
+      <Route path="databases/cloud-data-science" element={<CloudDataScience />} />
       
       {/* Data Visualization Courses */}
       <Route path="dataviz/data-visualization" element={<DataVisualization />} />

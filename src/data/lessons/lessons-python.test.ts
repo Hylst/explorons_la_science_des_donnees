@@ -15,6 +15,7 @@ import { computerVisionCourse } from "./computer-vision";
 import { mlopsCourse } from "./mlops";
 import { rLanguageCourse } from "./r-language";
 import { factorAnalysisCourse } from "./factor-analysis";
+import { cloudCourse } from "./cloud";
 
 // Cours rédigés en Python : chaque exemple et chaque corrigé est exécuté par Pyodide (mêmes paquets que le site, sans réseau).
-for (const course of [supervisedLearningCourse, dataVisualizationCourse, appliedStatisticsCourse, guidedProjects, nlpCourse, pythonCourse, mathIntroCourse, inferentialStatisticsCourse, transformersCourse, mlModelsGuideCourse, timeSeriesCourse, computerVisionCourse, mlopsCourse, rLanguageCourse, factorAnalysisCourse]) describeLessonCourse(course);
+for (const course of [supervisedLearningCourse, dataVisualizationCourse, appliedStatisticsCourse, guidedProjects, nlpCourse, pythonCourse, mathIntroCourse, inferentialStatisticsCourse, transformersCourse, mlModelsGuideCourse, timeSeriesCourse, computerVisionCourse, mlopsCourse, rLanguageCourse, factorAnalysisCourse, cloudCourse]) describeLessonCourse(course);
