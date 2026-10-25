@@ -5,6 +5,7 @@ import { compareSqlOutputs, parseSqlTables } from "./check";
 import { runSqlNode } from "./sql-node";
 import { runPythonNode } from "./python-node";
 import { stackLatex } from "../latex-stack";
+import { durationMinutes } from "./duration";
 
 const PYTHON_TIMEOUT = 120_000;
 import type { LessonCourse, LessonSection } from "./types";
@@ -39,6 +40,8 @@ export const describeLessonCourse = (course: LessonCourse) => {
             if (stacked) expect(() => katex.renderToString(stacked, { throwOnError: true, displayMode: true }), stacked).not.toThrow();
           }
           expect(module.quiz.length).toBeGreaterThanOrEqual(3);
+          // la page additionne les durées (« 2 h 30 », sans « ≈ ») : une durée illisible fait planter la page entière
+          expect(() => durationMinutes(module.duration), module.duration).not.toThrow();
         });
 
         it("quiz cohérent : bonne réponse existante, explication, pas de renvoi à une lettre", () => {

@@ -1,5 +1,5 @@
 
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath, BlockMath } from './katex-math';
 import 'katex/dist/katex.min.css';
 import { cn } from '@/lib/utils';
 import { stackLatex } from '@/lib/latex-stack';

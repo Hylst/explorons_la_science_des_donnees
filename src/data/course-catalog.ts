@@ -86,6 +86,17 @@ export const COURSE_CATALOG: CatalogCourse[] = [
     status: "redige",
   },
   {
+    id: "factor-analysis",
+    category: "math-stats",
+    title: "Analyse factorielle : ACP, AFC, ACM",
+    description: "Résumer des mesures, un tableau de contingence ou une enquête en quelques axes, en NumPy puis avec scikit-learn, sur des vins et une enquête réelle.",
+    level: "Intermédiaire",
+    duration: "≈ 14 h",
+    modules: 6,
+    href: "/courses/statistics/factor-analysis",
+    status: "redige",
+  },
+  {
     id: "database-fundamentals",
     category: "databases",
     title: "Fondamentaux des bases de données",

@@ -12,7 +12,7 @@ describe("résumé statique des pages générées", () => {
   it("plan de chaque cours rédigé (autant de modules que le catalogue) et des projets guidés", () => {
     const outlines = lessonOutlines(ROOT);
     const rediges = COURSE_CATALOG.filter((c) => c.status === "redige");
-    expect(rediges).toHaveLength(14);
+    expect(rediges).toHaveLength(15);
     for (const course of rediges) {
       const titles = outlines.get(course.href);
       expect(titles, course.href).toBeDefined();

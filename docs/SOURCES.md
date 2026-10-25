@@ -295,6 +295,18 @@ Jeux : `load_breast_cancer`, `load_diabetes`, `load_iris` (scikit-learn) ; `spec
 | `spector` : Spector et Mazzeo (1980) ; `stackloss` : 21 jours d'une usine d'oxydation de l'ammoniac, jeu également fourni avec R | description jointe aux jeux de statsmodels | lue par l'agent de rédaction le 24 octobre 2026 |
 | Le jeu iris de scikit-learn peut différer de celui de R sur quelques mesures | documentation de scikit-learn (connaissance) | non vérifié ; sert à ne pas promettre l'égalité au chiffre près |
 
+## 18. Cours d'analyse factorielle (25 octobre 2026)
+
+Jeux : `load_wine` (scikit-learn ; 178 vins de trois cultivars, 13 mesures chimiques ; d'après la description jointe, copie du jeu « Wine » de l'UCI) et `anes96` (statsmodels ; sous-ensemble de 944 personnes de l'American National Election Study de 1996, « public domain » d'après statsmodels). Rien n'est téléchargé. Les nombres cités sont mesurés par le moteur du site (rapports des agents de rédaction, relancés le 25 octobre 2026).
+
+| Fait repris dans le cours | Source | Niveau |
+|---|---|---|
+| Le niveau d'études `educ` de `anes96` n'est pas utilisé avec ses libellés : la documentation de statsmodels donne 6 « master » et 7 « doctorat », soit 354 personnes sur 944, ce qui n'est pas vraisemblable | description jointe au jeu, effectifs comptés par le moteur | constat ; les vrais libellés n'ont pas été retrouvés à la source |
+| Karl Pearson (1901) : droites et plans d'ajustement au plus près d'un nuage de points ; Harold Hotelling (1933) : composantes principales | articles fondateurs (connaissance) | non relu à la source ; aucun titre cité dans le cours |
+| L'AFC s'est développée en France dans les années 1960-1970 autour de Jean-Paul Benzécri | histoire de l'analyse des données (connaissance) | non relu à la source |
+| Correction de Benzécri des valeurs propres d'une ACM, [Q / (Q - 1) (λ - 1/Q)]² pour λ > 1/Q ; Greenacre en a proposé une variante qui change le dénominateur | littérature de l'ACM (connaissance) | formule contrôlée par le calcul du cours, attribution non relue à la source |
+| API de prince (`CA`, `MCA`, `PCA`) et de FactoMineR (`CA`, `MCA`, `PCA`, `res$eig`), umap-learn | documentation de ces bibliothèques (connaissance) | écrites de mémoire, montrées comme code à lire, jamais exécutées |
+
 ## Éléments éditoriaux
 
 Ces éléments sont des appréciations ou des estimations de l'auteur, **non issues d'une étude**. Le site les signale comme telles.

@@ -42,7 +42,9 @@ const CourseQuizBlock = ({ title = "Vérifiez votre compréhension", questions }
           const chosen = answers[qi];
           const isAnswered = chosen !== undefined;
           return (
-            <fieldset key={qi} className="space-y-2">
+            // min-w-0 : un fieldset est au moins aussi large que son plus long mot ; [overflow-wrap:anywhere] coupe un nom
+            // de code sans espace (« PCA(n_components=13).fit(Z)... » élargissait la page à 430 px sur un écran de 320)
+            <fieldset key={qi} className="min-w-0 space-y-2 [overflow-wrap:anywhere]">
               <legend className="mb-2 font-medium text-gray-900">
                 {qi + 1}. {q.question}
               </legend>

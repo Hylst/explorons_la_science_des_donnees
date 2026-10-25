@@ -1,5 +1,15 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-25] - Cours d'analyse factorielle, KaTeX 0.19
+
+Choix de l'auteur (QCM du 25 octobre) : le cours d'analyse factorielle, et KaTeX 0.19 seul (Tailwind 3 reste). Modules écrits par deux sous-agents (Sonnet) sur des fichiers séparés, relus et vérifiés ensuite.
+
+- **Cours « Analyse factorielle : ACP, AFC, ACM »** (15e cours, `/courses/statistics/factor-analysis`, 6 modules, 20 exercices, ≈ 14 h indicatif) : pourquoi réduire (inertie, centrer et réduire), l'ACP pas à pas en NumPy comparée à scikit-learn (facteur n / (n - 1) expliqué), interpréter une ACP (cercle des corrélations, cos², contributions, éléments supplémentaires, pièges), AFC du tableau parti × position de l'enquête électorale américaine de 1996 (khi-deux, décomposition en valeurs singulières, effet Guttman mesuré), ACM et correction de Benzécri, puis classification sur les axes, ACP dans un Pipeline sans fuite, FactorAnalysis à ne pas confondre avec l'analyse factorielle au sens français, t-SNE. Données livrées avec les paquets (`load_wine`, `anes96`) ; le niveau d'études de `anes96` n'est pas utilisé, ses libellés n'étant pas vraisemblables. FactoMineR, prince et UMAP en code à lire. Sources : `docs/SOURCES.md` section 18. Carte animée `public/svg/cards/acp-vins.svg` : les 178 vrais vins sur le premier plan, un axe qui tourne jusqu'à la direction du premier axe.
+- **KaTeX 0.19.0** sans react-katex (qui imposait katex 0.16) : composant `src/components/courses/katex-math.tsx` au même rendu ; garde-fou `src/config/inner-html.test.ts` (HTML injecté par `sanitizeHtml`, deux exceptions listées). Mesuré dans Chrome avant et après sur les 264 formules du site à 390 et 1280 px : mêmes largeurs, aucune nouvelle formule qui défile, les formules sur plusieurs lignes gagnent 5 px d'espace en bas. `npm audit` : 4 alertes modérées, toutes de Tailwind 3 (outil de build).
+- **Quiz des cours** : une question contenant un long nom de code sans espace élargissait la page à 430 px sur un écran de 320 (`fieldset` au moins aussi large que son plus long mot) ; `min-w-0` et coupure des mots trop longs. Toutes les pages de cours, modules ouverts, sans débordement à 320 et 390 px, le nouveau cours aussi à 768, 1024 et 1280.
+- **Contrôle des durées de module** dans `course-checks.ts` : une durée illisible (« ≈ 2 h » au lieu de « 2 h ») faisait planter la page entière, vu seulement par le test de fumée ; testé en mutation.
+- **Contrôles** : lint 0, typecheck 0, 2195 tests, fumée 62, build:hylst mvn6a1a8 (index-BFoIUXn2.js) VERIFY-DIST SUCCES (61 pages) ; dans Chrome avec les en-têtes de production : les 6 modules du nouveau cours (26 exemples, 20 exercices : départ refusé, corrigé accepté), formules sans débordement à 320, 390 et 1280 px, moteurs isolés, aucune erreur console.
+
 ## [2026-10-24, suite 11] - Dépendances vulnérables corrigées
 
 Demande de l'agent de la plateforme : DOMPurify (critique) et source-map-js (élevé) bloquaient la production.
