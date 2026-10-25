@@ -149,7 +149,8 @@ public/
 ├── offline.html, offline.js Page hors ligne pré-mise en cache (script externe à cause de la CSP)
 ├── theme-init.js            Applique le thème enregistré avant le premier affichage (script externe à cause de la CSP)
 ├── robots.txt               Règles pour les robots ; la ligne Sitemap: est ajoutée au build hylst
-├── favicon.svg, logo.png    Icône et image de partage (og:image)
+├── favicon.svg, logo.png    Icône et logo
+├── og-image.png             Image de partage (og:image, 1200 × 630, dessinée sans IA par .banc/make-og-image.cjs)
 ├── icons/                   Icônes PWA (192, 512, apple-touch-icon)
 ├── img/                     Logos (devicon et marques), blog/ (une image WebP par article, générée en local), courses/ (une image WebP par cours, 7 fichiers), CREDITS.md
 ├── svg/                     Trois schémas (5 V du Big Data, parcours d'apprentissage, aperçu du ML) et cards/ : quatre illustrations animées de cours, trois pour l'accueil et `series-co2.svg` pour le cours de séries temporelles (CSS, sans script, qui respectent prefers-reduced-motion ; association dans `src/lib/course-image.ts`)

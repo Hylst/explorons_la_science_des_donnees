@@ -81,7 +81,7 @@ const OLD_NAME_EXCEPTIONS: Exception[] = [
   },
   {
     file: "index.html",
-    line: /content="https:\/\/hylst\.fr\/data_science_explorer\/logo\.png"/,
+    line: /content="https:\/\/hylst\.fr\/data_science_explorer\/og-image\.png"/,
     reason: "og:image et twitter:image en URL absolue : les réseaux sociaux ne résolvent pas une URL relative.",
   },
   {
@@ -188,9 +188,18 @@ describe("cohérence de la marque", () => {
       expect(attribute(/<meta name="description" content="([^"]*)"/)).toBe(SITE_DESCRIPTION);
     });
 
-    it("og:image et twitter:image sont l'URL absolue du logo (une URL relative n'est pas lue par les réseaux sociaux)", () => {
-      expect(attribute(/<meta property="og:image" content="([^"]*)"/)).toBe(`${SITE_URL}logo.png`);
-      expect(attribute(/<meta name="twitter:image" content="([^"]*)"/)).toBe(`${SITE_URL}logo.png`);
+    it("og:image et twitter:image sont l'URL absolue de l'image de partage (une URL relative n'est pas lue par les réseaux sociaux)", () => {
+      expect(attribute(/<meta property="og:image" content="([^"]*)"/)).toBe(`${SITE_URL}og-image.png`);
+      expect(attribute(/<meta name="twitter:image" content="([^"]*)"/)).toBe(`${SITE_URL}og-image.png`);
+      expect(attribute(/<meta name="twitter:card" content="([^"]*)"/)).toBe("summary_large_image");
+    });
+
+    it("l'image de partage est un PNG de la taille annoncée (1200 × 630, grande carte LinkedIn et X)", () => {
+      const png = fs.readFileSync(path.resolve(root, "public/og-image.png"));
+      expect(png.toString("latin1", 1, 4)).toBe("PNG");
+      const size = [png.readUInt32BE(16), png.readUInt32BE(20)].map(String);
+      expect(size).toEqual(["1200", "630"]);
+      expect([attribute(/<meta property="og:image:width" content="([^"]*)"/), attribute(/<meta property="og:image:height" content="([^"]*)"/)]).toEqual(size);
     });
   });
 

@@ -1,5 +1,14 @@
 # Changelog - Explorons la Data Science (ex Data Science Explorer)
 
+## [2026-10-25, suite] - Image de partage, npm audit à zéro
+
+Choix de l'auteur (QCM du 25 octobre) : un visuel maison pour le partage, la version corrigée de postcss-selector-parser imposée sous Tailwind 3, livraison en deux lots (celui-ci, puis le cours sur le cloud).
+
+- **Image de partage** `public/og-image.png` (1200 × 630) sur toutes les pages sauf les articles du blog, qui gardent leur illustration : nom du site, ce qu'il propose, et les 178 vrais vins sur le premier plan de l'ACP. Dessinée sans IA (`.banc/make-og-image.cjs`, rendue en PNG par Chrome) ; `twitter:card` passe à `summary_large_image`, `og:image:width`, `height` et `alt` annoncés. LinkedIn montrait jusqu'ici le logo de 239 × 218 en petite vignette. Contrôlée par `brand.test.ts` (taille du PNG égale à la taille annoncée) et `verify-dist.mjs` (fichier, taille, une seule largeur par page, grande carte partout), tous deux testés en mutation.
+- **`npm audit` : 0 alerte**. Les 4 alertes modérées venaient de postcss-selector-parser 6 (Tailwind 3 et @tailwindcss/typography, outils de build) : la version 7.1.7 est imposée par `overrides` dans package.json ; le CSS construit est identique octet pour octet à celui du build précédent.
+- **Glossaire** : le lien de l'article LSTM (Hochreiter et Schmidhuber, 1997) pointait vers un serveur au certificat expiré ; il passe par son DOI. Les 187 liens externes ont été vérifiés : 23 sites refusent les robots (403, ou 999 pour LinkedIn) mais s'ouvrent dans un navigateur.
+- **Contrôles** : lint 0, typecheck 0, 2196 tests, fumée 62, build:hylst mvnpbmc0 (index-DDvtQbYF.js) VERIFY-DIST SUCCES ; dans Chrome avec les en-têtes de production, les 61 pages à 390 px : un seul h1, aucun débordement, aucune erreur console, aucune requête tierce, aucun cookie.
+
 ## [2026-10-25] - Cours d'analyse factorielle, KaTeX 0.19
 
 Choix de l'auteur (QCM du 25 octobre) : le cours d'analyse factorielle, et KaTeX 0.19 seul (Tailwind 3 reste). Modules écrits par deux sous-agents (Sonnet) sur des fichiers séparés, relus et vérifiés ensuite.

@@ -409,7 +409,7 @@ export const mlDefinitions: Record<string, GlossaryTermDefinition> = {
     ],
     relatedTerms: ["RNN", "GRU", "Deep Learning", "Problème du gradient qui s'évanouit"],
     source: "Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory",
-    sourceUrl: "https://www.bioinf.jku.at/publications/older/2604.pdf",
+    sourceUrl: "https://doi.org/10.1162/neco.1997.9.8.1735",
     domain: "machinelearning",
     level: "advanced",
     englishTerm: "LSTM (Long Short-Term Memory)"

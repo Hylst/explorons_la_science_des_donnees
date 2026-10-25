@@ -59,6 +59,16 @@ else ok('canonical hylst.fr present');
 if (!fs.existsSync(path.join(DIST, 'sitemap.xml'))) fail('sitemap.xml absent');
 else ok('sitemap.xml present');
 
+// Image de partage : un PNG de 1200 x 630 (largeur et hauteur aux octets 16 et 20 de l'en-tete IHDR)
+const ogImage = path.join(DIST, 'og-image.png');
+if (!fs.existsSync(ogImage)) fail('og-image.png absent');
+else {
+  const png = fs.readFileSync(ogImage);
+  const size = png.readUInt32BE(16) + ' x ' + png.readUInt32BE(20);
+  if (png.toString('latin1', 1, 4) !== 'PNG' || size !== '1200 x 630') fail('og-image.png : ' + size + ' (attendu un PNG de 1200 x 630)');
+  else ok('og-image.png present, 1200 x 630');
+}
+
 // Pages HTML : une par route, avec titre et description propres, canonical sans fragment, redirections valides
 const SKIPPED_DIRS = new Set(['assets', 'vendor', 'img', 'icons', 'svg', 'sandbox']);
 const pageFiles = [];
@@ -102,13 +112,18 @@ for (const file of pageFiles) {
   const description = (/<meta name="description" content="([^"]*)"/.exec(html) || [])[1];
   if (!title) fail(route + ' : titre absent'); else titles.set(title, [...(titles.get(title) || []), route]);
   if (!description) fail(route + ' : description absente'); else descriptions.set(description, [...(descriptions.get(description) || []), route]);
-  // Un article du blog a son illustration (fichier present dans le build) et le type article ; les autres pages, le logo
+  // Un article du blog a son illustration (fichier present dans le build) et le type article ; les autres pages, l'image
+  // de partage 1200 x 630 ; toutes en grande carte, avec une seule taille annoncee
   const article = /^\/blog\/[^/]+$/.test(route);
-  const expectedImage = article ? CANONICAL + '/img/blog/' + route.slice('/blog/'.length) + '.webp' : CANONICAL + '/logo.png';
+  const expectedImage = article ? CANONICAL + '/img/blog/' + route.slice('/blog/'.length) + '.webp' : CANONICAL + '/og-image.png';
   for (const property of ['property="og:image"', 'name="twitter:image"']) {
     const image = (new RegExp('<meta ' + property + ' content="([^"]*)"').exec(html) || [])[1];
     if (image !== expectedImage) fail(route + ' : ' + property + ' vaut ' + image + ' (attendu ' + expectedImage + ')');
   }
+  const widths = [...html.matchAll(/<meta property="og:image:width" content="(\d+)"/g)].map((m) => m[1]);
+  if (widths.length !== 1 || widths[0] !== (article ? '800' : '1200')) fail(route + ' : og:image:width ' + widths.join(','));
+  if (article === /og:image:alt/.test(html)) fail(route + ' : og:image:alt ' + (article ? 'de la page d accueil sur un article' : 'absent'));
+  if (!/<meta name="twitter:card" content="summary_large_image" \/>/.test(html)) fail(route + ' : twitter:card n est pas summary_large_image');
   if (article && !fs.existsSync(path.join(DIST, expectedImage.slice(CANONICAL.length + 1)))) fail(route + ' : illustration absente du build (' + expectedImage + ')');
   const ogType = (/<meta property="og:type" content="([^"]*)"/.exec(html) || [])[1];
   if (ogType !== (article ? 'article' : 'website')) fail(route + ' : og:type ' + ogType);

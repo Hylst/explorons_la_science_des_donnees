@@ -134,11 +134,11 @@ const staticHosting = (): Plugin => {
         let out = swap(html, /<meta property="og:type" content="website" \/>/, `<meta property="og:type" content="article" />`);
         out = swap(
           out,
-          /<meta property="og:image" content="[^"]*" \/>/,
+          // l'image de partage du site et sa taille cèdent la place à l'illustration de l'article (la carte est déjà grande)
+          /<meta property="og:image" content="[^"]*" \/>\s*<meta property="og:image:width" content="\d+" \/>\s*<meta property="og:image:height" content="\d+" \/>\s*<meta property="og:image:alt" content="[^"]*" \/>/,
           `<meta property="og:image" content="${article.image}" />\n    <meta property="og:image:width" content="${BLOG_IMAGE_SIZE.width}" />\n    <meta property="og:image:height" content="${BLOG_IMAGE_SIZE.height}" />`
         );
         out = swap(out, /<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${article.image}" />`);
-        out = swap(out, /<meta name="twitter:card" content="summary" \/>/, `<meta name="twitter:card" content="summary_large_image" />`);
         return out.replace(
           "</head>",
           `    <meta property="article:published_time" content="${article.datePublished}" />\n    <meta property="article:modified_time" content="${article.dateModified}" />\n  </head>`
